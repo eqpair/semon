@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -27,6 +28,49 @@
         </div>
       </div>
     </header>
+
+    <!-- GUIDE -->
+    <div class="mb-6">
+      <button onclick="toggleGuide()" class="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">
+        <span id="guide-arrow">▶</span>
+        <span>User Guide</span>
+      </button>
+      <div id="guide-panel" style="display:none;" class="mt-3 bg-white rounded-lg shadow p-5 text-sm text-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="font-bold text-gray-800 mb-2">📊 섹터 카드</div>
+            <ul class="space-y-1 text-gray-600">
+              <li><span class="font-medium text-gray-800">수익률 (%)</span> — 섹터 내 종목 평균 5일 수익률</li>
+              <li><span class="font-medium text-gray-800">XX% 상승</span> — 섹터 내 상승 종목 비율</li>
+              <li><span class="font-medium text-gray-800">N 소외</span> — LAGGING 신호 종목 수</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-bold text-gray-800 mb-2">📋 종목 테이블 컬럼</div>
+            <ul class="space-y-1 text-gray-600">
+              <li><span class="font-medium text-gray-800">5D</span> — 5거래일 수익률</li>
+              <li><span class="font-medium text-gray-800">RS5 / RS20 / RS60</span> — 섹터 평균 대비 상대강도. <span
+                  class="text-blue-600">1.0 = 섹터 평균</span>, 낮을수록 소외</li>
+              <li><span class="font-medium text-gray-800">VOL</span> — 당일 거래량 / 20일 평균. <span class="text-blue-600">1.0
+                  = 평균</span>, 0.7 미만이면 거래 부진</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-bold text-gray-800 mb-2">🟡 LAGGING 신호</div>
+            <p class="text-gray-600">섹터는 상승 중인데 이 종목만 덜 오른 소외주.<br>
+              RS5 &lt; 0.85 + RS20 &lt; 0.90 + 거래량 정상 조건 충족 시 표시.<br>
+              <span class="text-yellow-700 font-medium">섹터 반등 시 따라올 가능성 있는 매수 후보.</span>
+            </p>
+          </div>
+          <div>
+            <div class="font-bold text-gray-800 mb-2">⚪ WATCH 신호</div>
+            <p class="text-gray-600">5일 기준으로는 소외됐지만 조건 일부 미충족.<br>
+              <span class="text-gray-500 font-medium">관찰 대상 — 다음 사이클에 LAGGING 전환 가능.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- LOADING -->
     <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
@@ -247,8 +291,17 @@ ${ret5}
       if (currentSector) renderTable(currentSector)
     }
 
+    function toggleGuide() {
+      const panel = document.getElementById("guide-panel")
+      const arrow = document.getElementById("guide-arrow")
+      const isOpen = panel.style.display !== "none"
+      panel.style.display = isOpen ? "none" : "block"
+      arrow.textContent = isOpen ? "▶" : "▼"
+    }
+
     loadData()
     setInterval(loadData, REFRESH_MS)
   </script>
 </body>
+
 </html>
