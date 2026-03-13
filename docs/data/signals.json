@@ -1,32 +1,101 @@
 {
-  "updated_at": "2026-03-13 14:34:36",
+  "updated_at": "2026-03-13 14:36:02",
   "sectors": {
     "자동차": {
       "sector": "자동차",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 7.24,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 1,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "000270",
+          "name": "기아",
+          "price": 164500.0,
+          "ret_5d": 7.24,
+          "rs_5d": 1.0,
+          "rs_20d": 1.0,
+          "rs_60d": 1.0,
+          "vol_ratio": 0.561,
+          "signal": "neutral"
+        }
+      ]
     },
     "반도체": {
       "sector": "반도체",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
+      "sector_ret_5d": 9.74,
+      "rising_ratio": 0.33,
       "is_rising": false,
-      "total": 0,
+      "total": 3,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "095340",
+          "name": "ISC",
+          "price": 187000.0,
+          "ret_5d": -2.35,
+          "rs_5d": -0.241,
+          "rs_20d": 0.372,
+          "rs_60d": 0.75,
+          "vol_ratio": 0.709,
+          "signal": "neutral"
+        },
+        {
+          "code": "403870",
+          "name": "HPSP",
+          "price": 42850.0,
+          "ret_5d": -1.49,
+          "rs_5d": -0.153,
+          "rs_20d": -0.114,
+          "rs_60d": 0.475,
+          "vol_ratio": 0.274,
+          "signal": "neutral"
+        },
+        {
+          "code": "218410",
+          "name": "RFHIC",
+          "price": 84100.0,
+          "ret_5d": 33.07,
+          "rs_5d": 3.395,
+          "rs_20d": 2.741,
+          "rs_60d": 1.775,
+          "vol_ratio": 0.878,
+          "signal": "neutral"
+        }
+      ]
     },
     "헬스케어": {
       "sector": "헬스케어",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
+      "sector_ret_5d": 1.96,
+      "rising_ratio": 0.5,
       "is_rising": false,
-      "total": 0,
+      "total": 2,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "028300",
+          "name": "HLB",
+          "price": 48600.0,
+          "ret_5d": -1.72,
+          "rs_5d": -0.876,
+          "rs_20d": 0.748,
+          "rs_60d": 3.501,
+          "vol_ratio": 0.417,
+          "signal": "neutral"
+        },
+        {
+          "code": "328130",
+          "name": "루닛",
+          "price": 37450.0,
+          "ret_5d": 5.64,
+          "rs_5d": 2.876,
+          "rs_20d": 1.252,
+          "rs_60d": -1.501,
+          "vol_ratio": 0.566,
+          "signal": "neutral"
+        }
+      ]
     },
     "은행": {
       "sector": "은행",
@@ -39,57 +108,239 @@
     },
     "에너지화학": {
       "sector": "에너지화학",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 2.66,
+      "rising_ratio": 0.86,
+      "is_rising": true,
+      "total": 7,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "010950",
+          "name": "S-Oil",
+          "price": 108900.0,
+          "ret_5d": -15.38,
+          "rs_5d": -5.775,
+          "rs_20d": -56.485,
+          "rs_60d": 2.497,
+          "vol_ratio": 0.686,
+          "signal": "watch"
+        },
+        {
+          "code": "017940",
+          "name": "E1",
+          "price": 96400.0,
+          "ret_5d": 1.26,
+          "rs_5d": 0.473,
+          "rs_20d": -7.902,
+          "rs_60d": 1.079,
+          "vol_ratio": 0.419,
+          "signal": "watch"
+        },
+        {
+          "code": "011790",
+          "name": "SKC",
+          "price": 99700.0,
+          "ret_5d": 3.0,
+          "rs_5d": 1.125,
+          "rs_20d": 73.55,
+          "rs_60d": -0.859,
+          "vol_ratio": 0.301,
+          "signal": "neutral"
+        },
+        {
+          "code": "002380",
+          "name": "KCC",
+          "price": 509000.0,
+          "ret_5d": 3.14,
+          "rs_5d": 1.179,
+          "rs_20d": -27.273,
+          "rs_60d": 1.405,
+          "vol_ratio": 0.703,
+          "signal": "neutral"
+        },
+        {
+          "code": "285130",
+          "name": "SK케미칼",
+          "price": 57300.0,
+          "ret_5d": 3.8,
+          "rs_5d": 1.428,
+          "rs_20d": 89.345,
+          "rs_60d": -1.136,
+          "vol_ratio": 0.296,
+          "signal": "neutral"
+        },
+        {
+          "code": "456040",
+          "name": "OCI",
+          "price": 85900.0,
+          "ret_5d": 10.27,
+          "rs_5d": 3.855,
+          "rs_20d": -66.452,
+          "rs_60d": 2.952,
+          "vol_ratio": 0.368,
+          "signal": "neutral"
+        },
+        {
+          "code": "000210",
+          "name": "DL",
+          "price": 46150.0,
+          "ret_5d": 12.56,
+          "rs_5d": 4.715,
+          "rs_20d": 2.218,
+          "rs_60d": 1.063,
+          "vol_ratio": 0.936,
+          "signal": "neutral"
+        }
+      ]
     },
     "철강": {
       "sector": "철강",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 5.13,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 1,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "001390",
+          "name": "KG케미칼",
+          "price": 5330.0,
+          "ret_5d": 5.13,
+          "rs_5d": 1.0,
+          "rs_20d": 1.0,
+          "rs_60d": 1.0,
+          "vol_ratio": 2.32,
+          "signal": "neutral"
+        }
+      ]
     },
     "방송통신": {
       "sector": "방송통신",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
+      "sector_ret_5d": 0.87,
+      "rising_ratio": 0.5,
       "is_rising": false,
-      "total": 0,
+      "total": 2,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "030200",
+          "name": "KT",
+          "price": 59400.0,
+          "ret_5d": -0.17,
+          "rs_5d": -0.193,
+          "rs_20d": 0.311,
+          "rs_60d": 980.5,
+          "vol_ratio": 0.329,
+          "signal": "neutral"
+        },
+        {
+          "code": "034120",
+          "name": "SBS",
+          "price": 16520.0,
+          "ret_5d": 1.91,
+          "rs_5d": 2.193,
+          "rs_20d": 1.689,
+          "rs_60d": -978.5,
+          "vol_ratio": 0.212,
+          "signal": "neutral"
+        }
+      ]
     },
     "건설": {
       "sector": "건설",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 12.78,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 2,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "012630",
+          "name": "HDC",
+          "price": 24150.0,
+          "ret_5d": 1.26,
+          "rs_5d": 0.098,
+          "rs_20d": 1.138,
+          "rs_60d": 1.47,
+          "vol_ratio": 0.438,
+          "signal": "watch"
+        },
+        {
+          "code": "060370",
+          "name": "LS마린솔루션",
+          "price": 33000.0,
+          "ret_5d": 24.29,
+          "rs_5d": 1.902,
+          "rs_20d": 0.862,
+          "rs_60d": 0.53,
+          "vol_ratio": 3.183,
+          "signal": "neutral"
+        }
+      ]
     },
     "증권": {
       "sector": "증권",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 3.28,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 1,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "001510",
+          "name": "SK증권",
+          "price": 1765.0,
+          "ret_5d": 3.28,
+          "rs_5d": 1.0,
+          "rs_20d": 1.0,
+          "rs_60d": 1.0,
+          "vol_ratio": 0.18,
+          "signal": "neutral"
+        }
+      ]
     },
     "기계장비": {
       "sector": "기계장비",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 8.34,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 3,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "267270",
+          "name": "HD건설기계",
+          "price": 132000.0,
+          "ret_5d": 7.23,
+          "rs_5d": 0.867,
+          "rs_20d": 0.127,
+          "rs_60d": 0.675,
+          "vol_ratio": 0.66,
+          "signal": "neutral"
+        },
+        {
+          "code": "006260",
+          "name": "LS",
+          "price": 249500.0,
+          "ret_5d": 8.24,
+          "rs_5d": 0.988,
+          "rs_20d": 1.302,
+          "rs_60d": 0.973,
+          "vol_ratio": 0.384,
+          "signal": "neutral"
+        },
+        {
+          "code": "010120",
+          "name": "LS ELECTRIC",
+          "price": 746000.0,
+          "ret_5d": 9.54,
+          "rs_5d": 1.145,
+          "rs_20d": 1.571,
+          "rs_60d": 1.352,
+          "vol_ratio": 0.559,
+          "signal": "neutral"
+        }
+      ]
     },
     "보험": {
       "sector": "보험",
@@ -102,57 +353,217 @@
     },
     "운송": {
       "sector": "운송",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 2.18,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 1,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "011200",
+          "name": "HMM",
+          "price": 21100.0,
+          "ret_5d": 2.18,
+          "rs_5d": 1.0,
+          "rs_20d": 1.0,
+          "rs_60d": 1.0,
+          "vol_ratio": 0.402,
+          "signal": "neutral"
+        }
+      ]
     },
     "경기소비재": {
       "sector": "경기소비재",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 4.55,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 3,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "114090",
+          "name": "GKL",
+          "price": 12030.0,
+          "ret_5d": 2.47,
+          "rs_5d": 0.543,
+          "rs_20d": 1.108,
+          "rs_60d": 3.201,
+          "vol_ratio": 0.423,
+          "signal": "watch"
+        },
+        {
+          "code": "093050",
+          "name": "LF",
+          "price": 21650.0,
+          "ret_5d": 5.35,
+          "rs_5d": 1.176,
+          "rs_20d": -0.16,
+          "rs_60d": -2.864,
+          "vol_ratio": 0.334,
+          "signal": "neutral"
+        },
+        {
+          "code": "383220",
+          "name": "F&F",
+          "price": 63500.0,
+          "ret_5d": 5.83,
+          "rs_5d": 1.281,
+          "rs_20d": 2.052,
+          "rs_60d": 2.663,
+          "vol_ratio": 0.515,
+          "signal": "neutral"
+        }
+      ]
     },
     "필수소비재": {
       "sector": "필수소비재",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
+      "sector_ret_5d": -0.33,
+      "rising_ratio": 0.0,
       "is_rising": false,
-      "total": 0,
+      "total": 1,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "033780",
+          "name": "KT&G",
+          "price": 153100.0,
+          "ret_5d": -0.33,
+          "rs_5d": 1.0,
+          "rs_20d": 1.0,
+          "rs_60d": 1.0,
+          "vol_ratio": 0.416,
+          "signal": "neutral"
+        }
+      ]
     },
     "K콘텐츠": {
       "sector": "K콘텐츠",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 2.16,
+      "rising_ratio": 0.6,
+      "is_rising": true,
+      "total": 5,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "035760",
+          "name": "CJ ENM",
+          "price": 63700.0,
+          "ret_5d": -2.15,
+          "rs_5d": -0.997,
+          "rs_20d": 3.333,
+          "rs_60d": 1.068,
+          "vol_ratio": 0.454,
+          "signal": "watch"
+        },
+        {
+          "code": "067160",
+          "name": "SOOP",
+          "price": 64600.0,
+          "ret_5d": -0.92,
+          "rs_5d": -0.427,
+          "rs_20d": 1.563,
+          "rs_60d": -2.238,
+          "vol_ratio": 0.577,
+          "signal": "neutral"
+        },
+        {
+          "code": "035420",
+          "name": "NAVER",
+          "price": 221750.0,
+          "ret_5d": 1.49,
+          "rs_5d": 0.689,
+          "rs_20d": 2.529,
+          "rs_60d": -2.548,
+          "vol_ratio": 0.386,
+          "signal": "neutral"
+        },
+        {
+          "code": "181710",
+          "name": "NHN",
+          "price": 39150.0,
+          "ret_5d": 5.81,
+          "rs_5d": 2.693,
+          "rs_20d": -3.713,
+          "rs_60d": 9.139,
+          "vol_ratio": 0.435,
+          "signal": "neutral"
+        },
+        {
+          "code": "035900",
+          "name": "JYP Ent.",
+          "price": 66600.0,
+          "ret_5d": 6.56,
+          "rs_5d": 3.041,
+          "rs_20d": 1.287,
+          "rs_60d": -0.422,
+          "vol_ratio": 0.499,
+          "signal": "neutral"
+        }
+      ]
     },
     "정보기술": {
       "sector": "정보기술",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
+      "sector_ret_5d": -0.69,
+      "rising_ratio": 0.33,
       "is_rising": false,
-      "total": 0,
+      "total": 3,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "042000",
+          "name": "카페24",
+          "price": 28800.0,
+          "ret_5d": 1.77,
+          "rs_5d": -2.552,
+          "rs_20d": 5.126,
+          "rs_60d": -0.301,
+          "vol_ratio": 0.309,
+          "signal": "neutral"
+        },
+        {
+          "code": "403870",
+          "name": "HPSP",
+          "price": 42850.0,
+          "ret_5d": -1.49,
+          "rs_5d": 2.158,
+          "rs_20d": 0.935,
+          "rs_60d": 1.28,
+          "vol_ratio": 0.274,
+          "signal": "neutral"
+        },
+        {
+          "code": "095340",
+          "name": "ISC",
+          "price": 187000.0,
+          "ret_5d": -2.35,
+          "rs_5d": 3.394,
+          "rs_20d": -3.06,
+          "rs_60d": 2.021,
+          "vol_ratio": 0.709,
+          "signal": "neutral"
+        }
+      ]
     },
     "유틸리티": {
       "sector": "유틸리티",
-      "sector_ret_5d": null,
-      "rising_ratio": null,
-      "is_rising": false,
-      "total": 0,
+      "sector_ret_5d": 5.39,
+      "rising_ratio": 1.0,
+      "is_rising": true,
+      "total": 1,
       "lagging_count": 0,
-      "candidates": []
+      "candidates": [
+        {
+          "code": "015360",
+          "name": "INVENI",
+          "price": 76200.0,
+          "ret_5d": 5.39,
+          "rs_5d": 1.0,
+          "rs_20d": 1.0,
+          "rs_60d": 1.0,
+          "vol_ratio": 0.14,
+          "signal": "neutral"
+        }
+      ]
     }
   }
 }
