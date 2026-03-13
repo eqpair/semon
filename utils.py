@@ -86,7 +86,7 @@ def git_push(commit_msg: str = None) -> bool:
             logger.info("변경사항 없음, push 스킵")
             return True
 
-        repo.index.add(["data/signals.json"])
+        repo.index.add(["docs/data/signals.json"])
 
         msg = commit_msg or f"update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
         repo.index.commit(msg)
