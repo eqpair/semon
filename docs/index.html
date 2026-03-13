@@ -49,7 +49,14 @@
         <h2 class="text-lg font-bold text-gray-800 mb-2">
           종목 상세
         </h2>
-        <div id="sector-label" class="text-sm text-blue-600 mb-4">
+        <div class="flex items-center gap-3 mb-2">
+          <div id="sector-label" class="text-sm text-blue-600"></div>
+          <button onclick="toggleMembers()" class="text-xs text-gray-400 hover:text-gray-600">
+            <span id="members-arrow">▶</span> 구성종목
+          </button>
+        </div>
+        <div id="members-panel" style="display:none;"
+          class="mb-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600 leading-6">
         </div>
 
         <!-- FILTER -->
@@ -77,6 +84,7 @@
                   <th class="px-3 py-2 text-left">종목명</th>
                   <th class="px-3 py-2 text-right">코드</th>
                   <th class="px-3 py-2 text-right">현재가</th>
+                  <th class="px-3 py-2 text-right">1D</th>
                   <th class="px-3 py-2 text-right">5D</th>
                   <th class="px-3 py-2 text-right">RS5</th>
                   <th class="px-3 py-2 text-right">RS20</th>
@@ -163,11 +171,11 @@ ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
 <div class="text-xs text-gray-500 flex justify-between">
 
 <span>
-${data.rising_ratio ? Math.round(data.rising_ratio * 100) + "% 상승" : "-"}
+${data.rising_ratio ? Math.round(data.rising_ratio * 100) + "% 종목 상승" : "-"}
 </span>
 
 <span>
-${lagCount > 0 ? lagCount + " 소외" : "-"}
+${lagCount > 0 ? lagCount + " Lagging" : "-"}
 </span>
 
 </div>`
@@ -180,7 +188,30 @@ ${lagCount > 0 ? lagCount + " 소외" : "-"}
       currentFilter = "all"
       document.getElementById("lagging-section").style.display = "block"
       document.getElementById("sector-label").textContent = "▸ " + name + " 섹터"
+      // 구성종목 패널 닫기
+      document.getElementById("members-panel").style.display = "none"
+      document.getElementById("members-arrow").textContent = "▶"
+      // 구성종목 목록 채우기
+      const data = allData.sectors?.[name]
+      if (data && data.candidates) {
+        const panel = document.getElementById("members-panel")
+        panel.innerHTML = data.candidates.map(s =>
+          `<span class="inline-block mr-3">
+            <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+               target="_blank" class="hover:underline text-gray-700">${s.name}</a>
+            <span class="text-gray-400">(${s.code})</span>
+          </span>`
+        ).join("")
+      }
       renderTable(name)
+    }
+
+    function toggleMembers() {
+      const panel = document.getElementById("members-panel")
+      const arrow = document.getElementById("members-arrow")
+      const isOpen = panel.style.display !== "none"
+      panel.style.display = isOpen ? "none" : "block"
+      arrow.textContent = isOpen ? "▶" : "▼"
     }
 
     function renderTable(sectorName) {
@@ -188,7 +219,7 @@ ${lagCount > 0 ? lagCount + " 소외" : "-"}
       const tbody = document.getElementById("stock-tbody")
       if (!data || !data.candidates) {
         tbody.innerHTML =
-          '<tr><td colspan="9" class="text-center py-4">데이터 없음</td></tr>'
+          '<tr><td colspan="10" class="text-center py-4">데이터 없음</td></tr>'
         return
       }
       let list = data.candidates
@@ -196,14 +227,13 @@ ${lagCount > 0 ? lagCount + " 소외" : "-"}
         list = list.filter(s => s.signal === currentFilter)
       if (list.length === 0) {
         tbody.innerHTML =
-          '<tr><td colspan="9" class="text-center py-4">신호 없음</td></tr>'
+          '<tr><td colspan="10" class="text-center py-4">신호 없음</td></tr>'
         return
       }
       tbody.innerHTML = list.map(s => {
-        const ret5 =
-          s.ret_5d !== null
-            ? (s.ret_5d > 0 ? "+" : "") + s.ret_5d.toFixed(2) + "%"
-            : "-"
+        const fmt = (v) => v !== null ? (v > 0 ? "+" : "") + v.toFixed(2) + "%" : "-"
+        const ret1 = fmt(s.ret_1d)
+        const ret5 = fmt(s.ret_5d)
         const isLagging = s.signal === "lagging"
         const rowClass = isLagging
           ? "border-b bg-yellow-50 hover:bg-yellow-100 font-medium"
@@ -218,16 +248,16 @@ ${lagCount > 0 ? lagCount + " 소외" : "-"}
     ${s.name}
   </a>
 </td>
-<td class="px-3 py-2 text-right">${s.code}</td>
-<td class="px-3 py-2 text-right">
-${s.price ? s.price.toLocaleString() : "-"}
+<td class="px-3 py-2 text-right text-gray-500">${s.code}</td>
+<td class="px-3 py-2 text-right font-medium">
+  ${s.price ? s.price.toLocaleString() : "-"}
 </td>
-
-<td class="px-3 py-2 text-right
-${s.ret_5d > 0 ? "text-green-600" : "text-red-600"}">
-${ret5}
+<td class="px-3 py-2 text-right ${s.ret_1d > 0 ? "text-green-600" : s.ret_1d < 0 ? "text-red-600" : "text-gray-500"}">
+  ${ret1}
 </td>
-
+<td class="px-3 py-2 text-right ${s.ret_5d > 0 ? "text-green-600" : "text-red-600"}">
+  ${ret5}
+</td>
 <td class="px-3 py-2 text-right ${s.rs_5d !== null && s.rs_5d < 0.85 ? "text-red-500 font-medium" : ""}">${rsCell(s.rs_5d)}</td>
 <td class="px-3 py-2 text-right ${s.rs_20d !== null && s.rs_20d < 0.90 ? "text-red-500 font-medium" : ""}">${rsCell(s.rs_20d)}</td>
 <td class="px-3 py-2 text-right">${rsCell(s.rs_60d)}</td>

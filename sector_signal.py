@@ -116,6 +116,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
 
     candidates = []
     for code in code_list:
+        r1  = _get_return(code, 1)
         r5  = returns_5d.get(code)
         r20 = _get_return(code, 20)
         r60 = _get_return(code, 60)
@@ -140,6 +141,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "code":      code,
             "name":      name_map[code],
             "price":     price,
+            "ret_1d":    round(r1 * 100, 2) if r1 is not None else None,
             "ret_5d":    round(r5 * 100, 2),
             "rs_5d":     round(rs_5d,  3) if rs_5d  is not None else None,
             "rs_20d":    round(rs_20d, 3) if rs_20d is not None else None,
