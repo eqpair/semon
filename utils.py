@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 # 저장소 루트 경로
 REPO_PATH = Path(os.environ.get("SEMON_REPO_PATH", "/home/eq/semon"))
-DATA_PATH = REPO_PATH / "data"
+DATA_PATH = REPO_PATH / "docs" / "data"
 SIGNALS_FILE = DATA_PATH / "signals.json"
 
 
