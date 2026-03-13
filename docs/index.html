@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Sector Monitor</title>
+  <title>Constituents' Momentum</title>
   <link rel="icon" href="./favicon.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
 </head>
@@ -15,7 +15,7 @@
     <header class="mb-8">
       <div class="flex justify-between items-center">
         <div>
-          <h1 class="text-3xl font-bold text-gray-800">Sector Monitor</h1>
+          <h1 class="text-3xl font-bold text-gray-800">Sector Momentum Overview</h1>
           <div class="text-sm text-gray-600 mt-1">
             Last Update (KST):
             <span id="updated" class="font-medium">-</span>
@@ -49,16 +49,16 @@
         <h2 class="text-lg font-bold text-gray-800 mb-2">
           종목 상세
         </h2>
-        <div class="flex items-center gap-3 mb-2">
+        <div class="flex items-center gap-3 mb-4">
           <div id="sector-label" class="text-sm text-blue-600"></div>
-          <button onclick="toggleMembers()" class="text-xs text-gray-400 hover:text-gray-600">
-            <span id="members-arrow">▶</span> 구성종목
-          </button>
+          <span class="text-xs text-gray-400">구성 종목</span>
+          <!-- ▶ 화살표 아이콘도 텍스트 스타일로 유지 -->
+          <span class="text-xs text-gray-400">▶</span>
         </div>
-        <div id="members-panel" style="display:none;"
-          class="mb-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600 leading-6">
+        <!-- 항상 표시 -->
+        <div id="members-panel" class="mb-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600 leading-6">
+          <!-- 구성종목 데이터 로드 -->
         </div>
-
         <!-- FILTER -->
         <div id="filter-bar" class="flex gap-2 mb-4">
           <button class="px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded" data-filter="all"
