@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEMON — 섹터 소외주 모니터</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0f12;
+    --bg2:       #13161b;
+    --bg3:       #1a1e25;
+    --border:    #252b35;
+    --text:      #c8cdd6;
+    --text-dim:  #565d6e;
+    --text-bright: #eef0f4;
+    --green:     #2ecc8a;
+    --green-dim: #1a4a35;
+    --red:       #e05555;
+    --red-dim:   #4a1e1e;
+    --amber:     #f0a500;
+    --amber-dim: #3d2a00;
+    --blue:      #4a9eff;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Noto Sans KR', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    min-height: 100vh;
+  }
+
+  /* ── 헤더 ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-bright);
+    letter-spacing: 0.12em;
+  }
+  .logo span { color: var(--green); }
+  #updated {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  #market-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+  }
+  .badge-open  { background: var(--green-dim); color: var(--green); }
+  .badge-close { background: var(--bg3);       color: var(--text-dim); }
+
+  /* ── 레이아웃 ── */
+  main { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+
+  section + section { margin-top: 28px; }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── 섹터 히트맵 ── */
+  #heatmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .sector-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+  .sector-card:hover {
+    border-color: #3a4455;
+    transform: translateY(-1px);
+  }
+  .sector-card.rising  { border-left: 3px solid var(--green); }
+  .sector-card.falling { border-left: 3px solid var(--red); }
+  .sector-card.neutral { border-left: 3px solid var(--border); }
+  .sector-card.active  { border-color: var(--blue); }
+
+  .sc-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-bright);
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sc-ret {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .sc-ret.pos { color: var(--green); }
+  .sc-ret.neg { color: var(--red); }
+  .sc-ret.neu { color: var(--text-dim); }
+
+  .sc-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+  }
+  .sc-lag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    background: var(--amber-dim);
+    color: var(--amber);
+  }
+  .sc-lag.none { background: transparent; color: var(--text-dim); }
+
+  /* ── 소외주 테이블 ── */
+  #lagging-section { display: none; }
+
+  #sector-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  thead th {
+    text-align: left;
+    padding: 8px 12px;
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: var(--bg3); }
+  tbody td {
+    padding: 9px 12px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .td-name { color: var(--text-bright); font-family: var(--sans); font-size: 12px; }
+  .td-code { color: var(--text-dim); font-size: 11px; }
+  .td-price { color: var(--text-bright); }
+
+  .rs-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .rs-val { min-width: 38px; text-align: right; }
+  .rs-val.weak   { color: var(--amber); }
+  .rs-val.strong { color: var(--green); }
+  .rs-val.normal { color: var(--text); }
+
+  .bar-bg {
+    width: 48px;
+    height: 4px;
+    background: var(--bg3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .bar-fill.weak   { background: var(--amber); }
+  .bar-fill.strong { background: var(--green); }
+  .bar-fill.normal { background: var(--text-dim); }
+
+  .signal-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .pill-lagging { background: var(--amber-dim); color: var(--amber); }
+  .pill-watch   { background: var(--bg3);       color: var(--text-dim); border: 1px solid var(--border); }
+  .pill-neutral { background: transparent;      color: var(--text-dim); }
+
+  .vol-ratio { color: var(--text); }
+  .vol-ratio.low { color: var(--red); }
+
+  /* ── 필터 바 ── */
+  #filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: all 0.1s;
+  }
+  .filter-btn:hover { border-color: #3a4455; color: var(--text); }
+  .filter-btn.active { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+
+  /* ── 빈 상태 ── */
+  .empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  /* ── 로딩 ── */
+  #loading {
+    text-align: center;
+    padding: 60px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  #loading span { animation: blink 1.2s infinite; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SE<span>MON</span></div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span id="market-badge" class="badge-close">MARKET CLOSED</span>
+    <span id="updated">—</span>
+  </div>
+</header>
+
+<main>
+  <div id="loading"><span>LOADING DATA...</span></div>
+
+  <div id="content" style="display:none">
+    <!-- 섹터 히트맵 -->
+    <section>
+      <div class="section-title">섹터 현황</div>
+      <div id="heatmap"></div>
+    </section>
+
+    <!-- 소외주 테이블 -->
+    <section id="lagging-section">
+      <div class="section-title">종목 상세</div>
+      <div id="sector-label"></div>
+      <div id="filter-bar">
+        <button class="filter-btn active" data-filter="all"    onclick="setFilter('all')">ALL</button>
+        <button class="filter-btn"        data-filter="lagging" onclick="setFilter('lagging')">LAGGING</button>
+        <button class="filter-btn"        data-filter="watch"   onclick="setFilter('watch')">WATCH</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>종목명</th>
+              <th>코드</th>
+              <th>현재가</th>
+              <th>5일 수익률</th>
+              <th>RS 5일</th>
+              <th>RS 20일</th>
+              <th>RS 60일</th>
+              <th>거래량 비율</th>
+              <th>신호</th>
+            </tr>
+          </thead>
+          <tbody id="stock-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+// GitHub Pages URL — signals.json 경로
+const DATA_URL = "./data/signals.json";
+const REFRESH_MS = 10 * 60 * 1000; // 10분마다 자동 갱신
+
+let currentSector = null;
+let currentFilter = "all";
+let allData = null;
+
+// ── 데이터 로드 ──────────────────────────────────────────────
+
+async function loadData() {
+  try {
+    const res = await fetch(DATA_URL + "?t=" + Date.now());
+    if (!res.ok) throw new Error("fetch 실패");
+    allData = await res.json();
+    render();
+  } catch (e) {
+    document.getElementById("loading").innerHTML =
+      '<span style="color:#e05555">데이터 로드 실패. 잠시 후 새로고침해주세요.</span>';
+  }
+}
+
+// ── 렌더링 ───────────────────────────────────────────────────
+
+function render() {
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("content").style.display = "block";
+
+  // 업데이트 시각
+  document.getElementById("updated").textContent =
+    allData.updated_at ? "UPD " + allData.updated_at.slice(11, 16) : "—";
+
+  // 마켓 뱃지
+  const badge = document.getElementById("market-badge");
+  const now = new Date();
+  const h = now.getHours(), m = now.getMinutes(), d = now.getDay();
+  const isOpen = d >= 1 && d <= 5 &&
+    (h > 9 || (h === 9 && m >= 0)) &&
+    (h < 15 || (h === 15 && m <= 30));
+  badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED";
+  badge.className = isOpen ? "badge-open" : "badge-close";
+
+  renderHeatmap();
+  if (currentSector) renderTable(currentSector);
+}
+
+function renderHeatmap() {
+  const heatmap = document.getElementById("heatmap");
+  heatmap.innerHTML = "";
+  const sectors = allData.sectors || {};
+
+  Object.entries(sectors).forEach(([name, data]) => {
+    const card = document.createElement("div");
+    const rising = data.is_rising;
+    const ret = data.sector_ret_5d;
+    const retClass = ret === null ? "neu" : ret > 0 ? "pos" : ret < 0 ? "neg" : "neu";
+    const cardClass = ret === null ? "neutral" : ret > 0 ? "rising" : "falling";
+    const lagCount = data.lagging_count || 0;
+
+    card.className = `sector-card ${cardClass}${currentSector === name ? " active" : ""}`;
+    card.innerHTML = `
+      <div class="sc-name">${name}</div>
+      <div class="sc-ret ${retClass}">${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "—"}</div>
+      <div class="sc-meta">
+        <span>${data.rising_ratio !== null ? Math.round(data.rising_ratio * 100) + "% 상승" : "—"}</span>
+        <span class="sc-lag${lagCount === 0 ? " none" : ""}">${lagCount > 0 ? lagCount + " 소외" : "—"}</span>
+      </div>
+    `;
+    card.onclick = () => selectSector(name);
+    heatmap.appendChild(card);
+  });
+}
+
+function selectSector(name) {
+  currentSector = name;
+  currentFilter = "all";
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.filter === "all");
+  });
+  document.getElementById("lagging-section").style.display = "block";
+  document.getElementById("sector-label").textContent =
+    "▸ " + name + "  섹터";
+  renderTable(name);
+  renderHeatmap(); // active 표시 갱신
+  document.getElementById("lagging-section").scrollIntoView({ behavior: "smooth" });
+}
+
+function renderTable(sectorName) {
+  const data = allData.sectors?.[sectorName];
+  const tbody = document.getElementById("stock-tbody");
+  if (!data || !data.candidates || data.candidates.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty">데이터 없음</td></tr>';
+    return;
+  }
+
+  let list = data.candidates;
+  if (currentFilter !== "all") {
+    list = list.filter(s => s.signal === currentFilter);
+  }
+
+  if (list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty">해당 신호 없음</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = list.map(s => {
+    const ret5 = s.ret_5d !== null ? (s.ret_5d > 0 ? "+" : "") + s.ret_5d.toFixed(2) + "%" : "—";
+    const ret5Color = s.ret_5d === null ? "" : s.ret_5d > 0 ? "color:var(--green)" : "color:var(--red)";
+
+    return `
+      <tr>
+        <td class="td-name">${s.name}</td>
+        <td class="td-code">${s.code}</td>
+        <td class="td-price">${s.price !== null ? s.price.toLocaleString() : "—"}</td>
+        <td style="${ret5Color};font-family:var(--mono)">${ret5}</td>
+        <td>${rsBar(s.rs_5d)}</td>
+        <td>${rsBar(s.rs_20d)}</td>
+        <td>${rsBar(s.rs_60d)}</td>
+        <td>${volCell(s.vol_ratio)}</td>
+        <td>${signalPill(s.signal)}</td>
+      </tr>`;
+  }).join("");
+}
+
+function rsBar(val) {
+  if (val === null || val === undefined) return '<span style="color:var(--text-dim)">—</span>';
+  const cls = val < 0.85 ? "weak" : val > 1.15 ? "strong" : "normal";
+  const pct = Math.min(Math.max(val * 50, 0), 100);
+  return `
+    <div class="rs-bar">
+      <span class="rs-val ${cls}">${val.toFixed(2)}</span>
+      <div class="bar-bg"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>
+    </div>`;
+}
+
+function volCell(val) {
+  if (val === null || val === undefined) return '<span style="color:var(--text-dim)">—</span>';
+  const cls = val < 0.7 ? "low" : "";
+  return `<span class="vol-ratio ${cls} " style="font-family:var(--mono)">${val.toFixed(2)}</span>`;
+}
+
+function signalPill(signal) {
+  if (signal === "lagging") return '<span class="signal-pill pill-lagging">LAGGING</span>';
+  if (signal === "watch")   return '<span class="signal-pill pill-watch">WATCH</span>';
+  return '<span class="signal-pill pill-neutral">—</span>';
+}
+
+// ── 필터 ────────────────────────────────────────────────────
+
+function setFilter(filter) {
+  currentFilter = filter;
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.filter === filter);
+  });
+  if (currentSector) renderTable(currentSector);
+}
+
+// ── 자동 갱신 ────────────────────────────────────────────────
+
+loadData();
+setInterval(loadData, REFRESH_MS);
+</script>
+</body>
+</html>
