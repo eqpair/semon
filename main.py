@@ -4,8 +4,8 @@ import sys
 from datetime import datetime
 
 from config import SECTORS, WAIT_TIME
-from crawler import fetch_all_prices, fetch_all_volumes
-from sector_signal import update_prices, update_volumes, calc_all_signals
+from crawler import fetch_all_prices, fetch_all_ohlcv
+from sector_signal import update_prices, update_ohlcv, calc_all_signals
 from utils import is_market_time, save_and_push
 
 # ── 로깅 설정 ─────────────────────────────────────────────────
@@ -25,25 +25,23 @@ logger = logging.getLogger(__name__)
 ALL_CODES = list({code for codes in SECTORS.values() for code, _ in codes})
 logger.info(f"총 {len(ALL_CODES)}개 종목 로드")
 
+# ── OHLCV 갱신 주기 ───────────────────────────────────────────
 
-# ── 거래량 갱신 주기 관리 ─────────────────────────────────────
-
-VOLUME_REFRESH_INTERVAL = 3600  # 1시간마다 거래량 갱신
-_last_volume_fetch: datetime | None = None
+OHLCV_REFRESH_INTERVAL = 3600  # 1시간마다
+_last_ohlcv_fetch: datetime | None = None
 
 
-def _need_volume_refresh() -> bool:
-    global _last_volume_fetch
-    if _last_volume_fetch is None:
+def _need_ohlcv_refresh() -> bool:
+    global _last_ohlcv_fetch
+    if _last_ohlcv_fetch is None:
         return True
-    elapsed = (datetime.now() - _last_volume_fetch).total_seconds()
-    return elapsed >= VOLUME_REFRESH_INTERVAL
+    return (datetime.now() - _last_ohlcv_fetch).total_seconds() >= OHLCV_REFRESH_INTERVAL
 
 
 # ── 메인 루프 ─────────────────────────────────────────────────
 
 async def run():
-    global _last_volume_fetch
+    global _last_ohlcv_fetch
     logger.info("semon 시작")
 
     while True:
@@ -53,14 +51,14 @@ async def run():
                 await asyncio.sleep(60)
                 continue
 
-            # 1. 거래량 갱신 (1시간마다)
-            if _need_volume_refresh():
-                logger.info("거래량 fetch 시작")
-                volumes = await fetch_all_volumes(ALL_CODES)
-                update_volumes(volumes)
-                _last_volume_fetch = datetime.now()
+            # 1. OHLCV 갱신 (1시간마다) — 과거 종가 + 거래량
+            if _need_ohlcv_refresh():
+                logger.info("OHLCV fetch 시작")
+                ohlcv = await fetch_all_ohlcv(ALL_CODES)
+                update_ohlcv(ohlcv)
+                _last_ohlcv_fetch = datetime.now()
 
-            # 2. 현재가 fetch
+            # 2. 현재가 fetch (10분마다)
             logger.info("현재가 fetch 시작")
             prices = await fetch_all_prices(ALL_CODES)
             update_prices(prices)
@@ -80,7 +78,7 @@ async def run():
             break
         except Exception as e:
             logger.error(f"메인 루프 오류: {e}", exc_info=True)
-            await asyncio.sleep(60)  # 오류 시 1분 후 재시도
+            await asyncio.sleep(60)
 
 
 if __name__ == "__main__":

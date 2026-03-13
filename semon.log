@@ -4431,3 +4431,106 @@
 2026-03-13 14:14:16,732 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
 2026-03-13 14:14:19,599 [INFO] utils - git push 완료: update 2026-03-13 14:14
 2026-03-13 14:14:19,600 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:22:17,663 [INFO] __main__ - 총 421개 종목 로드
+2026-03-13 14:22:17,665 [INFO] __main__ - semon 시작
+2026-03-13 14:22:17,665 [INFO] __main__ - 거래량 fetch 시작
+2026-03-13 14:22:29,630 [INFO] crawler - 거래량 fetch: 421/421개 성공
+2026-03-13 14:22:29,630 [ERROR] __main__ - 메인 루프 오류: 'tuple' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/eq/semon/main.py", line 60, in run
+    update_volumes(volumes)
+  File "/home/eq/semon/sector_signal.py", line 46, in update_volumes
+    for code, vols in volumes.items():
+                      ^^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'items'
+2026-03-13 14:23:29,694 [INFO] __main__ - 거래량 fetch 시작
+2026-03-13 14:23:41,207 [INFO] crawler - 거래량 fetch: 421/421개 성공
+2026-03-13 14:23:41,212 [ERROR] __main__ - 메인 루프 오류: 'tuple' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/eq/semon/main.py", line 60, in run
+    update_volumes(volumes)
+  File "/home/eq/semon/sector_signal.py", line 46, in update_volumes
+    for code, vols in volumes.items():
+                      ^^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'items'
+2026-03-13 14:24:14,111 [INFO] __main__ - 총 421개 종목 로드
+2026-03-13 14:24:14,112 [INFO] __main__ - semon 시작
+2026-03-13 14:24:14,113 [INFO] __main__ - 거래량 fetch 시작
+2026-03-13 14:24:24,813 [INFO] crawler - 거래량 fetch: 421/421개 성공
+2026-03-13 14:24:24,818 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:24:29,218 [INFO] crawler - 현재가 fetch: 421/421개 성공
+2026-03-13 14:24:29,221 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:24:29,230 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:24:32,190 [INFO] utils - git push 완료: update 2026-03-13 14:24
+2026-03-13 14:24:32,190 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:34:32,274 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:34:36,402 [INFO] crawler - 현재가 fetch: 421/421개 성공
+2026-03-13 14:34:36,402 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:34:36,413 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:34:39,202 [INFO] utils - git push 완료: update 2026-03-13 14:34
+2026-03-13 14:34:39,203 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:35:49,196 [INFO] __main__ - 총 421개 종목 로드
+2026-03-13 14:35:49,198 [INFO] __main__ - semon 시작
+2026-03-13 14:35:49,200 [INFO] __main__ - OHLCV fetch 시작
+2026-03-13 14:35:58,367 [INFO] crawler - OHLCV fetch: 34/421개 성공
+2026-03-13 14:35:58,374 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:36:02,564 [INFO] crawler - 현재가 fetch: 421/421개 성공
+2026-03-13 14:36:02,565 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:36:02,581 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:36:05,458 [INFO] utils - git push 완료: update 2026-03-13 14:36
+2026-03-13 14:36:05,459 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:38:48,852 [INFO] __main__ - 총 421개 종목 로드
+2026-03-13 14:38:48,853 [INFO] __main__ - semon 시작
+2026-03-13 14:38:48,858 [INFO] __main__ - OHLCV fetch 시작
+2026-03-13 14:39:34,620 [INFO] crawler - OHLCV fetch: 34/421개 성공
+2026-03-13 14:39:34,621 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:39:38,274 [INFO] crawler - 현재가 fetch: 421/421개 성공
+2026-03-13 14:39:38,275 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:39:38,291 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:39:41,204 [INFO] utils - git push 완료: update 2026-03-13 14:39
+2026-03-13 14:39:41,205 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:43:14,595 [INFO] __main__ - 총 419개 종목 로드
+2026-03-13 14:43:14,597 [INFO] __main__ - semon 시작
+2026-03-13 14:43:14,597 [INFO] __main__ - OHLCV fetch 시작
+2026-03-13 14:43:57,487 [INFO] crawler - OHLCV fetch: 34/419개 성공
+2026-03-13 14:43:57,488 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:44:00,957 [INFO] crawler - 현재가 fetch: 419/419개 성공
+2026-03-13 14:44:00,958 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:44:00,972 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:44:03,885 [INFO] utils - git push 완료: update 2026-03-13 14:44
+2026-03-13 14:44:03,886 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:44:39,274 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:44:43,355 [INFO] crawler - 현재가 fetch: 421/421개 성공
+2026-03-13 14:44:43,355 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:44:43,367 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:44:46,067 [INFO] utils - git push 완료: update 2026-03-13 14:44
+2026-03-13 14:44:46,067 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:49:21,924 [INFO] __main__ - 총 419개 종목 로드
+2026-03-13 14:49:21,925 [INFO] __main__ - semon 시작
+2026-03-13 14:49:21,926 [INFO] __main__ - OHLCV fetch 시작
+2026-03-13 14:50:04,692 [INFO] crawler - OHLCV fetch: 34/419개 성공
+2026-03-13 14:50:04,693 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:50:08,187 [INFO] crawler - 현재가 fetch: 419/419개 성공
+2026-03-13 14:50:08,188 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:50:08,204 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:50:11,092 [INFO] utils - git push 완료: update 2026-03-13 14:50
+2026-03-13 14:50:11,093 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:54:46,170 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:54:46,648 [INFO] __main__ - 총 419개 종목 로드
+2026-03-13 14:54:46,649 [INFO] __main__ - semon 시작
+2026-03-13 14:54:46,650 [INFO] __main__ - OHLCV fetch 시작
+2026-03-13 14:54:50,756 [INFO] crawler - 현재가 fetch: 421/421개 성공
+2026-03-13 14:54:50,762 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:54:50,778 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:54:53,544 [INFO] utils - git push 완료: update 2026-03-13 14:54
+2026-03-13 14:54:53,546 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 14:55:33,873 [INFO] crawler - OHLCV fetch: 419/419개 성공
+2026-03-13 14:55:33,875 [INFO] __main__ - 현재가 fetch 시작
+2026-03-13 14:55:37,598 [INFO] crawler - 현재가 fetch: 419/419개 성공
+2026-03-13 14:55:37,599 [INFO] __main__ - 신호 계산 시작
+2026-03-13 14:55:37,654 [INFO] utils - JSON 저장 완료: /home/eq/semon/docs/data/signals.json
+2026-03-13 14:55:40,734 [INFO] utils - git push 완료: update 2026-03-13 14:55
+2026-03-13 14:55:40,735 [INFO] __main__ - 완료 — 600초 후 재실행
+2026-03-13 15:04:35,776 [INFO] __main__ - 총 419개 종목 로드
+2026-03-13 15:04:35,778 [INFO] __main__ - semon 시작
+2026-03-13 15:04:35,779 [INFO] __main__ - OHLCV fetch 시작
