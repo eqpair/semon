@@ -170,7 +170,9 @@
       document.getElementById("loading").style.display = "none"
       document.getElementById("content").style.display = "block"
       document.getElementById("updated").textContent =
-        allData.updated_at ? allData.updated_at.slice(11, 16) : "-"
+        allData.updated_at
+          ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR")
+          : "-"
 
       const badge = document.getElementById("market-badge")
       const now = new Date()
