@@ -108,3 +108,9 @@ def save_and_push(data: dict) -> bool:
     if not saved:
         return False
     return git_push()
+
+CLOSING_FILE = DATA_PATH / "signals_closing.json"
+
+def save_closing(data: dict) -> bool:
+    """장 마감 시 closing 스냅샷 저장"""
+    return save_json(data, CLOSING_FILE)

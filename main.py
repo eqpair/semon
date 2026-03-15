@@ -1,12 +1,12 @@
 import asyncio
 import logging
 import sys
-from datetime import datetime
+from datetime import datetime, time
 
 from config import SECTORS, WAIT_TIME
 from crawler import fetch_all_prices, fetch_all_ohlcv
 from sector_signal import update_prices, update_ohlcv, calc_all_signals
-from utils import is_market_time, save_and_push
+from utils import is_market_time, save_and_push, save_closing
 
 # ── 로깅 설정 ─────────────────────────────────────────────────
 
@@ -29,7 +29,7 @@ logger.info(f"총 {len(ALL_CODES)}개 종목 로드")
 
 OHLCV_REFRESH_INTERVAL = 3600  # 1시간마다
 _last_ohlcv_fetch: datetime | None = None
-
+_closing_saved: str | None = None  # ← 이 줄 추가
 
 def _need_ohlcv_refresh() -> bool:
     global _last_ohlcv_fetch
@@ -41,7 +41,7 @@ def _need_ohlcv_refresh() -> bool:
 # ── 메인 루프 ─────────────────────────────────────────────────
 
 async def run():
-    global _last_ohlcv_fetch
+    global _last_ohlcv_fetch, _closing_saved  # ← _closing_saved 추가
     logger.info("semon 시작")
 
     while True:
@@ -70,6 +70,15 @@ async def run():
             # 4. JSON 저장 + git push
             save_and_push(signals)
 
+            # 15:30~15:45 사이 오늘 첫 실행이면 closing 저장  ← 여기부터 추가
+
+            today = datetime.now().strftime("%Y-%m-%d")
+            now_t = datetime.now().time()
+            if time(15, 30) <= now_t <= time(15, 45) and _closing_saved != today:
+                save_closing(signals)
+                _closing_saved = today
+                logger.info(f"closing 스냅샷 저장: {today}")
+                
             logger.info(f"완료 — {WAIT_TIME}초 후 재실행")
             await asyncio.sleep(WAIT_TIME)
 
