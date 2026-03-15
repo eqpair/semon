@@ -21,7 +21,11 @@
             <span id="updated" class="font-medium">-</span>
           </div>
         </div>
-        <div class="text-right">
+        <div class="text-right flex items-center gap-3">
+          <a href="./rrg.html"
+            class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">
+            RRG Chart →
+          </a>
           <span id="market-badge" class="px-3 py-1 text-xs rounded bg-gray-200 text-gray-700">
             MARKET CLOSED
           </span>
@@ -58,17 +62,13 @@
             onclick="setFilter('all')">
             ALL
           </button>
-          <button class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded" data-filter="improving"
-            onclick="setFilter('improving')">
-            IMPROVING ★
-          </button>
           <button class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded" data-filter="lagging"
             onclick="setFilter('lagging')">
             LAGGING
           </button>
-          <button class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded" data-filter="weakening"
-            onclick="setFilter('weakening')">
-            WEAKENING
+          <button class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded" data-filter="watch"
+            onclick="setFilter('watch')">
+            WATCH
           </button>
         </div>
 
@@ -86,14 +86,12 @@
                   <th class="px-3 py-2 text-right">RS20</th>
                   <th class="px-3 py-2 text-right">RS60</th>
                   <th class="px-3 py-2 text-right">VOL</th>
-                  <th class="px-3 py-2 text-right">RS-R</th>
-                  <th class="px-3 py-2 text-right">RS-M</th>
                   <th class="px-3 py-2 text-right">SIGNAL</th>
                 </tr>
               </thead>
               <tbody id="stock-tbody">
                 <tr>
-                  <td colspan="11" class="text-center py-4">
+                  <td colspan="9" class="text-center py-4">
                     Loading…
                   </td>
                 </tr>
@@ -173,7 +171,7 @@ ${data.rising_ratio ? Math.round(data.rising_ratio * 100) + "% 상승" : "-"}
 </span>
 
 <span>
-${data.improving_count > 0 ? data.improving_count + " ★" : lagCount > 0 ? lagCount + " 소외" : "-"}
+${lagCount > 0 ? lagCount + " 소외" : "-"}
 </span>
 
 </div>`
@@ -194,7 +192,7 @@ ${data.improving_count > 0 ? data.improving_count + " ★" : lagCount > 0 ? lagC
       const tbody = document.getElementById("stock-tbody")
       if (!data || !data.candidates) {
         tbody.innerHTML =
-          '<tr><td colspan="11" class="text-center py-4">데이터 없음</td></tr>'
+          '<tr><td colspan="9" class="text-center py-4">데이터 없음</td></tr>'
         return
       }
       let list = data.candidates
@@ -202,7 +200,7 @@ ${data.improving_count > 0 ? data.improving_count + " ★" : lagCount > 0 ? lagC
         list = list.filter(s => s.signal === currentFilter)
       if (list.length === 0) {
         tbody.innerHTML =
-          '<tr><td colspan="11" class="text-center py-4">신호 없음</td></tr>'
+          '<tr><td colspan="9" class="text-center py-4">신호 없음</td></tr>'
         return
       }
       tbody.innerHTML = list.map(s => {
@@ -227,8 +225,6 @@ ${ret5}
 <td class="px-3 py-2 text-right">${rsCell(s.rs_20d)}</td>
 <td class="px-3 py-2 text-right">${rsCell(s.rs_60d)}</td>
 <td class="px-3 py-2 text-right">${volCell(s.vol_ratio)}</td>
-<td class="px-3 py-2 text-right">${s.rs_ratio !== null ? s.rs_ratio.toFixed(2) : '-'}</td>
-<td class="px-3 py-2 text-right">${s.rs_momentum !== null ? s.rs_momentum.toFixed(2) : '-'}</td>
 <td class="px-3 py-2 text-right">${signalPill(s.signal)}</td>
 </tr>`
       }).join("")
@@ -244,14 +240,11 @@ ${ret5}
     }
 
     function signalPill(signal) {
-      const map = {
-        "improving": `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">IMPROVING ★</span>`,
-        "lagging": `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">LAGGING</span>`,
-        "weakening": `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">WEAKENING</span>`,
-        "leading": `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">LEADING</span>`,
-        "watch": `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">WATCH</span>`,
-      }
-      return map[signal] || `<span class="text-gray-400">-</span>`
+      if (signal === "lagging")
+        return `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">LAGGING</span>`
+      if (signal === "watch")
+        return `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">WATCH</span>`
+      return `<span class="text-gray-400">-</span>`
     }
 
     function setFilter(filter) {
