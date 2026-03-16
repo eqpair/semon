@@ -137,11 +137,7 @@
               ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
             </div>
             <div class="text-xs text-gray-500 flex justify-between">
-              <span>${(() => {
-              const total = data.candidates?.length
-              const rising = data.rising_count ?? (data.rising_ratio != null && total ? Math.round(data.rising_ratio * total) : null)
-              return rising != null && total ? `${rising}/${total}` : "-"
-            })()} 상승</span>
+              <span>${data.candidates?.length ?? "-"}종목</span>
               ${badge}
             </div>`
           card.onclick = () => selectSector(name, cardRow)
