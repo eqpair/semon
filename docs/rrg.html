@@ -736,6 +736,17 @@
                     seg.setAttribute("display", "none")
                     seg.setAttribute("data-code", s.code)
                     svg.appendChild(seg)
+                
+                    // 중간 포인트 — 작은 점
+                    const midCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                    midCircle.setAttribute("cx", p2.x.toFixed(1))
+                    midCircle.setAttribute("cy", p2.y.toFixed(1))
+                    midCircle.setAttribute("r", "2")
+                    midCircle.setAttribute("fill", color)
+                    midCircle.setAttribute("fill-opacity", opacity)
+                    midCircle.setAttribute("display", "none")
+                    midCircle.setAttribute("data-code", s.code)
+                    svg.appendChild(midCircle)
                 })
 
                 // 시작점 — 작은 빈 원
