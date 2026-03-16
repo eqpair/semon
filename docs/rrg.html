@@ -637,7 +637,7 @@
                     ${item.imp > 0
                                         ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>`
                                         : item.watch > 0
-                                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">👁${item.watch}</span>`
+                                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${item.watch}</span>`
                                             : ''}
                     <span class="text-xs ${item.ret > 0 ? 'text-green-600' : item.ret < 0 ? 'text-red-500' : 'text-gray-400'}">
                     ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
@@ -663,7 +663,7 @@
       ${d.improving_count > 0
             ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>`
             : d.watch_count > 0
-                ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">👁${d.watch_count}</span>`
+                ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${d.watch_count}</span>`
                 : ""}
     </div>`
             }).join("")
