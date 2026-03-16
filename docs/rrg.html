@@ -546,7 +546,7 @@
                 if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
                 const pos = toPos(pt.ratio, pt.mom)
                 const color = quadrantColor(pt.quad)
-                const size = pt.data.improving_count > 0 ? 12 : 9
+                const size = pt.data.improving_count > 0 || pt.data.watch_count > 0 ? 12 : 9
 
                 const dot = document.createElement("div")
                 dot.className = `dot ${pt.quad}`
@@ -574,6 +574,7 @@
     <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${pt.mom.toFixed(2)}</span></div>
     <div style="color:#6b7280;font-size:11px;margin-top:4px;">5D: <span style="color:${d.sector_ret_5d > 0 ? '#16a34a' : '#dc2626'};">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
     <div style="color:#6b7280;font-size:11px;">Improving: <span style="color:#2563eb;">${d.improving_count || 0}종목</span></div>
+    <div style="color:#6b7280;font-size:11px;">Watch: <span style="color:#9ca3af;">${d.watch_count || 0}종목</span></div>
     <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → 종목 RRG</div>`
             tip.style.display = "block"
             moveTooltip(e)
@@ -584,7 +585,7 @@
             const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
             tip.innerHTML = `
     <div style="font-weight:600;margin-bottom:4px;color:#111827;">${s.name} <span style="font-weight:400;color:#9ca3af;font-size:11px;">${s.code}</span></div>
-    <div style="color:${quadrantColor(s.quadrant)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(s.quadrant)}</div>
+    <div style="color:${quadrantColor(s.signal || s.quadrant)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(s.signal || s.quadrant)}</div>
     <div style="color:#6b7280;font-size:11px;">현재가: <span style="color:#111827;">${s.price ? s.price.toLocaleString() : '-'}</span></div>
     <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${s.rs_ratio?.toFixed(2) ?? '-'}</span></div>
     <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
@@ -607,34 +608,38 @@
 
         // ── 섹터 목록 ────────────────────────────────────────────────
         function renderSectorList() {
-            if (!allData) return
-            const list = document.getElementById("sector-list")
-            const sectors = allData.sectors || {}
-            const items = Object.entries(sectors).map(([name, d]) => {
-                const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                const avgR = cands.length ? cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length : 100
-                const avgM = cands.length ? cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length : 100
-                const quad = getQuadrant(avgR, avgM)
-                return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0 }
-            })
-            const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
-            items.sort((a, b) => order[a.quad] - order[b.quad])
+                if (!allData) return
+                const list = document.getElementById("sector-list")
+                const sectors = allData.sectors || {}
+                const items = Object.entries(sectors).map(([name, d]) => {
+                    const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+                    const avgR = cands.length ? cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length : 100
+                    const avgM = cands.length ? cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length : 100
+                    const quad = getQuadrant(avgR, avgM)
+                    return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }  // watch 추가
+                })
+                const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
+                items.sort((a, b) => order[a.quad] - order[b.quad])
 
-            list.innerHTML = items.map(item => `
-    <div class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-         onclick="selectSector('${item.name}'); switchTab('stock')">
-      <div class="flex items-center gap-2">
-        <span style="width:7px;height:7px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;display:inline-block;"></span>
-        <span class="text-xs text-gray-700">${item.name}</span>
-      </div>
-      <div class="flex items-center gap-2">
-        ${item.imp > 0 ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>` : ''}
-        <span class="text-xs ${item.ret > 0 ? 'text-green-600' : item.ret < 0 ? 'text-red-500' : 'text-gray-400'}">
-          ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
-        </span>
-      </div>
-    </div>`).join("")
-        }
+                list.innerHTML = items.map(item => `
+                <div class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                    onclick="selectSector('${item.name}'); switchTab('stock')">
+                <div class="flex items-center gap-2">
+                    <span style="width:7px;height:7px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;display:inline-block;"></span>
+                    <span class="text-xs text-gray-700">${item.name}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    ${item.imp > 0
+                                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>`
+                                        : item.watch > 0
+                                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">👁${item.watch}</span>`
+                                            : ''}
+                    <span class="text-xs ${item.ret > 0 ? 'text-green-600' : item.ret < 0 ? 'text-red-500' : 'text-gray-400'}">
+                    ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
+                    </span>
+                </div>
+                </div>`).join("")
+            }
 
         // ── 섹터 칩 ─────────────────────────────────────────────────
         function renderSectorChips() {
@@ -650,7 +655,11 @@
                 return `<div class="sector-chip ${sel}" onclick="selectSector('${name}')">
       <span class="dot-sm" style="background:${quadrantColor(quad)};"></span>
       <span>${name}</span>
-      ${d.improving_count > 0 ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>` : ""}
+      ${d.improving_count > 0
+            ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>`
+            : d.watch_count > 0
+                ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">👁${d.watch_count}</span>`
+                : ""}
     </div>`
             }).join("")
         }
