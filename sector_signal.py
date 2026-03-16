@@ -162,16 +162,35 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         curr_mom   = next((v for v in reversed(rs_momentum) if v is not None), None)
         quad       = _quadrant(curr_ratio, curr_mom)
 
-        # 궤적 누적
-        if code not in rrg_history:
-            rrg_history[code] = []
+        # 궤적 누적(처음 실행 시 과거 궤적 미리 채움)
+        if code not in rrg_history or len(rrg_history[code]) == 0:
+            # 과거 TAIL_DAYS일치 한번에 계산
+            tail = []
+            for offset in range(TAIL_DAYS, 0, -1):
+                if offset >= min_len:
+                    continue
+                past_closes    = [aligned[c][-(offset)] for c in aligned]
+                past_benchmark = [sum(past_closes) / len(past_closes)]
+                # 해당 시점까지의 데이터로 RS-Ratio, RS-Momentum 계산
+                hist_closes    = aligned[code][:-offset] if offset > 0 else aligned[code]
+                hist_benchmark = [sum(aligned[c][i] for c in aligned) / len(aligned)
+                                for i in range(len(hist_closes))]
+                hist_ratio    = _calc_rs_ratio(hist_closes, hist_benchmark)
+                hist_momentum = _calc_rs_momentum(hist_ratio)
+                t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)
+                t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
+                if t_ratio is not None and t_mom is not None:
+                    tail.append({"rs_ratio": round(t_ratio, 3), "rs_momentum": round(t_mom, 3)})
+            rrg_history[code] = tail
+
+        # 현재 값 append
         if curr_ratio is not None and curr_mom is not None:
             rrg_history[code].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
             })
             rrg_history[code] = rrg_history[code][-TAIL_DAYS:]
-
+    
         r1  = _get_return(code, 1)
         r5  = returns_5d.get(code)
         r20 = _get_return(code, 20)

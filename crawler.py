@@ -11,10 +11,10 @@ logger = logging.getLogger(__name__)
 # 현재가 API
 PRICE_URL = "https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:{code}"
 
-# 일별 시세 XML — 62일치 (60일 수익률 계산용)
+# 일별 시세 XML — 500일치 (500일 수익률 계산용)
 SISE_URL = (
     "https://fchart.stock.naver.com/sise.nhn"
-    "?symbol={code}&timeframe=day&count=62&requestType=0"
+    "?symbol={code}&timeframe=day&count=500&requestType=0"
 )
 
 
