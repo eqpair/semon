@@ -7,6 +7,23 @@
   <title>Momentum Board</title>
   <link rel="icon" href="./favicon.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+  <style>
+    #sector-tooltip {
+      position: fixed;
+      z-index: 100;
+      background: #1e293b;
+      color: #f1f5f9;
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      max-width: 200px;
+      pointer-events: none;
+      display: none;
+      line-height: 1.5;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100 min-h-screen">
@@ -304,6 +321,81 @@
 
     loadData()
     setInterval(loadData, REFRESH_MS)
+  </script>
+  <div id="sector-tooltip"></div>
+  <script>
+    const SECTOR_DESC = {
+      "반도체_제조": "메모리 가격·HBM 수요에 반응",
+      "반도체_장비": "반도체 설비투자(CAPEX) 사이클에 반응",
+      "반도체_소재부품": "소재 가격·수율·반도체 업황에 반응",
+      "2차전지_셀": "전기차 수요·배터리 가격에 반응",
+      "2차전지_소재부품": "리튬·니켈 등 원자재 가격에 반응",
+      "전력기기": "AI 데이터센터·전력망 투자에 반응",
+      "신재생에너지": "신재생 정책·REC 가격에 반응",
+      "조선": "선박 발주·LNG선 수요에 반응",
+      "방산": "국방예산·지정학 리스크에 반응",
+      "로봇": "로봇 도입 정책·자동화 수요에 반응",
+      "자동차_완성차": "글로벌 판매량·환율(달러·원)에 반응",
+      "자동차_부품": "완성차 생산량·부품 단가에 반응",
+      "타이어": "천연고무 가격·완성차 수요에 반응",
+      "IT부품": "스마트폰·가전 수요·부품 단가에 반응",
+      "빅플랫폼": "플랫폼 광고·커머스 실적에 반응",
+      "B2B_IT서비스": "기업 IT투자·디지털전환 수요에 반응",
+      "CMO_CDMO": "글로벌 제약사 위탁생산 수주에 반응",
+      "바이오_기술이전": "기술이전·라이선스 딜 뉴스에 반응",
+      "바이오_임상단계": "임상 결과·금리(성장주 할인율)에 반응",
+      "대형제약": "약가·건보 정책·실적에 반응",
+      "중소제약": "내수 약가·제네릭 정책에 반응",
+      "미용·에스테틱": "중국 소비심리·미용 시술 수요에 반응",
+      "은행": "금리·NIM·가계대출에 반응",
+      "증권": "증시 거래대금·IB 수수료에 반응",
+      "보험": "손해율·금리(자산운용)에 반응",
+      "철강": "철광석·석탄·중국 철강 수요에 반응",
+      "비철금속": "LME 금속가격(아연·구리)에 반응",
+      "정유": "유가·정제마진에 반응",
+      "석유화학": "납사·에틸렌 스프레드에 반응",
+      "도시가스": "LNG 가격·도시가스 요금에 반응",
+      "전력": "전기요금·정부 에너지 정책에 반응",
+      "건설": "부동산 경기·수주잔고·금리에 반응",
+      "시멘트": "건설 착공량·시멘트 단가에 반응",
+      "건자재": "인테리어·리모델링 수요에 반응",
+      "해운": "컨테이너 운임(BDI·SCFI)에 반응",
+      "항공": "항공 여객수요·유가·환율에 반응",
+      "물류·육운": "택배 단가·내수 물동량에 반응",
+      "통신": "ARPU·설비투자·배당에 반응",
+      "엔터·음악": "아이돌 앨범·공연·일본 수출에 반응",
+      "게임": "신작 출시·게임 트래픽·MAU에 반응",
+      "미디어·콘텐츠": "OTT·드라마 제작·광고 시장에 반응",
+      "화장품_브랜드": "중국 관광객·K뷰티 수출에 반응",
+      "화장품_ODM": "ODM 수주·글로벌 브랜드 생산에 반응",
+      "K푸드_수출": "K푸드 수출·환율(달러)에 반응",
+      "중국내수식품": "중국 내수 소비·현지법인 실적에 반응",
+      "내수식품": "내수 소비경기·원자재(곡물) 가격에 반응",
+      "유통": "내수 소비경기·오프라인 유통에 반응",
+      "패션·의류": "글로벌 OEM 수주·달러 매출에 반응",
+      "레저·여행": "내국인 소비·중국 관광객 회복에 반응",
+      "생활용품": "내수 소비·주거 교체 수요에 반응",
+    }
+
+    const _tip = document.getElementById('sector-tooltip')
+
+    document.addEventListener('mouseover', e => {
+      const card = e.target.closest('[data-sector]')
+      if (!card) return
+      const desc = SECTOR_DESC[card.dataset.sector]
+      if (!desc) return
+      _tip.textContent = desc
+      _tip.style.display = 'block'
+    })
+
+    document.addEventListener('mousemove', e => {
+      _tip.style.left = (e.clientX + 14) + 'px'
+      _tip.style.top = (e.clientY + 14) + 'px'
+    })
+
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest('[data-sector]')) _tip.style.display = 'none'
+    })
   </script>
 </body>
 
