@@ -166,7 +166,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         if code not in rrg_history or len(rrg_history[code]) == 0:
             # 과거 TAIL_DAYS일치 한번에 계산
             tail = []
-            for offset in range(TAIL_DAYS, 0, -1):
+            for offset in range(TAIL_DAYS, 0, -5):
                 if offset >= min_len:
                     continue
                 past_closes    = [aligned[c][-(offset)] for c in aligned]
