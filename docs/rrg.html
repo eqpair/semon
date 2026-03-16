@@ -301,7 +301,7 @@
         <!-- 범례 -->
         <div
             class="flex flex-wrap gap-4 mb-5 items-center bg-white rounded-lg px-4 py-3 shadow-sm border border-gray-100">
-            <span class="text-xs text-gray-400 mr-1 font-medium">4분면</span>
+            <span class="text-xs text-gray-400 mr-1 font-medium">사분면</span>
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
                     style="background:var(--improving)"></span><span class="text-blue-600 font-medium">Improving
                     ★</span><span class="text-gray-400">모멘텀 전환</span></span>
@@ -713,8 +713,10 @@
                 path.setAttribute("stroke", color)
                 path.setAttribute("stroke-width", "1.5")
                 path.setAttribute("fill", "none")
-                path.setAttribute("stroke-opacity", "0.2")
+                path.setAttribute("stroke-opacity", "0.5")
                 path.setAttribute("stroke-dasharray", "3,2")
+                path.setAttribute("display", "none")
+                path.setAttribute("data-code", s.code)
                 svg.appendChild(path)
             })
 
@@ -726,9 +728,16 @@
                 const dot = document.createElement("div")
                 dot.className = `dot ${s.quadrant}`
                 dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
-                dot.addEventListener("mouseenter", e => showStockTooltip(e, s))
-                dot.addEventListener("click", e => showStockTooltip(e, s))
-                dot.addEventListener("mouseleave", hideTooltip)
+                dot.addEventListener("mouseenter", e => {
+                    showStockTooltip(e, s)
+                    svg.querySelectorAll(`path[data-code="${s.code}"]`)
+                        .forEach(p => p.setAttribute("display", "block"))
+                })
+                dot.addEventListener("mouseleave", () => {
+                    hideTooltip()
+                    svg.querySelectorAll("path")
+                        .forEach(p => p.setAttribute("display", "none"))
+                })
                 container.appendChild(dot)
 
                 const lbl = document.createElement("div")
