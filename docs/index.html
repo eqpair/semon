@@ -126,8 +126,8 @@
           const impCount = data.improving_count || 0
           const lagCount = data.lagging_count || 0
           const badge = impCount > 0
-            ? `<span class="text-blue-600 font-medium">${impCount} ★</span>`
-            : lagCount > 0 ? `<span class="text-gray-500">${lagCount} 소외</span>` : "<span>-</span>"
+            ? `<span class="text-blue-600 font-medium">${impCount} Improving</span>`
+            : lagCount > 0 ? `<span class="text-gray-500">${lagCount} Lagging</span>` : "<span>-</span>"
 
           card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
           card.dataset.sector = name
