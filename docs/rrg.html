@@ -486,7 +486,7 @@
             return { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", neutral: "#9ca3af" }[q] || "#9ca3af"
         }
         function quadrantLabel(q) {
-            return { improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", neutral: "-" }[q] || "-"
+            return { improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-" }[q] || "-"
         }
         function getQuadrant(r, m) {
             if (r == null || m == null) return "neutral"
@@ -816,7 +816,7 @@
             <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
             <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
             <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
-            <td style="padding:7px 8px;text-align:right;"><span class="pill ${s.quadrant}">${quadrantLabel(s.quadrant)}</span></td>
+            <td style="padding:7px 8px;text-align:right;"><span class="pill ${s.signal || s.quadrant}">${quadrantLabel(s.signal || s.quadrant)}</span></td>
           </tr>`
             }).join("")}
       </tbody>
