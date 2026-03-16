@@ -11,6 +11,7 @@
 
 <body class="bg-gray-100 min-h-screen">
   <div class="container mx-auto px-4 py-8">
+
     <!-- HEADER -->
     <header class="mb-8">
       <div class="flex justify-between items-center">
@@ -21,7 +22,11 @@
             <span id="updated" class="font-medium">-</span>
           </div>
         </div>
-        <div class="text-right">
+        <div class="text-right flex items-center gap-3">
+          <a href="./rrg.html"
+            class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">
+            ◎ RRG Chart
+          </a>
           <span id="market-badge" class="px-3 py-1 text-xs rounded bg-gray-200 text-gray-700">
             MARKET CLOSED
           </span>
@@ -33,30 +38,40 @@
     <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
       Loading Data...
     </div>
+
     <div id="content" style="display:none;">
 
       <!-- SECTOR HEATMAP -->
       <section class="mb-8">
-        <h2 class="text-lg font-bold text-gray-800 mb-4">섹터 현황</h2>
+        <h2 class="text-lg font-bold text-gray-800 mb-4">Sector Overview</h2>
         <div id="heatmap"></div>
       </section>
+
     </div>
   </div>
 
   <script>
-    const DATA_URL = "./data/signals.json"
     const REFRESH_MS = 10 * 60 * 1000
     let currentSector = null
     let currentFilter = "all"
     let allData = null
+
+    function getDataUrl() {
+      const now = new Date()
+      const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
+      const isMarket = d >= 1 && d <= 5 &&
+        (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
+      return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
+    }
+
     async function loadData() {
       try {
-        const res = await fetch(DATA_URL + "?t=" + Date.now())
+        let res = await fetch(getDataUrl() + "?t=" + Date.now())
+        if (!res.ok) res = await fetch("./data/signals.json?t=" + Date.now())
         if (!res.ok) throw new Error()
         allData = await res.json()
         render()
-      }
-      catch (e) {
+      } catch (e) {
         document.getElementById("loading").innerHTML =
           "<span class='text-red-500'>데이터 로드 실패</span>"
       }
@@ -67,27 +82,30 @@
       document.getElementById("content").style.display = "block"
       document.getElementById("updated").textContent =
         allData.updated_at
-          ? allData.updated_at.slice(11, 16)
+          ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR")
           : "-"
       const badge = document.getElementById("market-badge")
       const now = new Date()
-      const h = now.getHours()
-      const m = now.getMinutes()
-      const d = now.getDay()
-      const isOpen =
-        d >= 1 && d <= 5 &&
-        (h > 9 || (h === 9 && m >= 0)) &&
-        (h < 15 || (h === 15 && m <= 30))
+      const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
+      const isOpen = d >= 1 && d <= 5 &&
+        (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
       badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
-      badge.className =
-        isOpen
-          ? "px-3 py-1 text-xs rounded bg-green-100 text-green-700"
-          : "px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
+      badge.className = isOpen
+        ? "px-3 py-1 text-xs rounded bg-green-100 text-green-700"
+        : "px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
       renderHeatmap()
-      if (currentSector) renderTable(currentSector)
+      if (currentSector) {
+        const rows = document.querySelectorAll(".inline-panel")
+        rows.forEach(p => {
+          if (p.style.display !== "none") {
+            const rowStart = parseInt(p.dataset.row)
+            renderPanelTable(rowStart, currentSector, currentFilter)
+          }
+        })
+      }
     }
 
-    const COLS = 6  // 한 행에 표시할 카드 수
+    const COLS = 6
 
     function renderHeatmap() {
       const heatmap = document.getElementById("heatmap")
@@ -95,11 +113,9 @@
       const sectors = allData.sectors || {}
       const entries = Object.entries(sectors)
 
-      // 6개씩 행으로 묶기
       for (let rowStart = 0; rowStart < entries.length; rowStart += COLS) {
         const rowEntries = entries.slice(rowStart, rowStart + COLS)
 
-        // 카드 행
         const cardRow = document.createElement("div")
         cardRow.className = "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-1"
         cardRow.dataset.row = rowStart
@@ -110,8 +126,8 @@
           const impCount = data.improving_count || 0
           const lagCount = data.lagging_count || 0
           const badge = impCount > 0
-            ? `<span class="text-blue-600">${impCount} ★</span>`
-            : lagCount > 0 ? `<span>${lagCount} 소외</span>` : "<span>-</span>"
+            ? `<span class="text-blue-600 font-medium">${impCount} ★</span>`
+            : lagCount > 0 ? `<span class="text-gray-500">${lagCount} 소외</span>` : "<span>-</span>"
 
           card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
           card.dataset.sector = name
@@ -130,33 +146,33 @@
 
         heatmap.appendChild(cardRow)
 
-        // 인라인 패널 (이 행 아래에 펼쳐짐)
+        // 인라인 패널
         const panel = document.createElement("div")
         panel.className = "inline-panel mb-3"
         panel.dataset.row = rowStart
         panel.style.display = "none"
         panel.innerHTML = `
           <div class="bg-white rounded-lg shadow-md p-4 border-t-2 border-blue-400">
-            <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
               <div class="flex items-center gap-3">
                 <span id="panel-label-${rowStart}" class="text-sm font-semibold text-blue-600"></span>
                 <button onclick="togglePanelMembers(${rowStart})" class="text-xs text-gray-400 hover:text-gray-600">
                   <span id="panel-members-arrow-${rowStart}">▶</span> 구성종목
                 </button>
               </div>
-              <div class="flex gap-2">
+              <div class="flex gap-1 flex-wrap items-center">
                 <button class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded" onclick="setPanelFilter(${rowStart},'all')">ALL</button>
-                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'improving')">IMPROVING ★</button>
-                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">LAGGING</button>
-                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">WEAKENING</button>
-                <button onclick="closePanel(${rowStart})" class="text-gray-400 hover:text-gray-600 ml-2 text-sm">✕</button>
+                <button class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">모멘텀 전환 ★</button>
+                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">소외 지속</button>
+                <button class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">모멘텀 약화</button>
+                <button onclick="closePanel(${rowStart})" class="text-gray-400 hover:text-gray-600 ml-1 text-sm font-medium">✕</button>
               </div>
             </div>
             <div id="panel-members-${rowStart}" style="display:none;" class="mb-3 p-2 bg-gray-50 rounded text-xs text-gray-600 leading-6"></div>
             <div class="overflow-x-auto">
               <table class="min-w-full text-sm text-gray-700">
                 <thead>
-                  <tr class="bg-gray-50 text-gray-600">
+                  <tr class="bg-gray-50 text-gray-600 text-xs">
                     <th class="px-3 py-2 text-left">종목명</th>
                     <th class="px-3 py-2 text-right">코드</th>
                     <th class="px-3 py-2 text-right">현재가</th>
@@ -165,7 +181,7 @@
                     <th class="px-3 py-2 text-right">RS-R</th>
                     <th class="px-3 py-2 text-right">RS-M</th>
                     <th class="px-3 py-2 text-right">VOL</th>
-                    <th class="px-3 py-2 text-right">SIGNAL</th>
+                    <th class="px-3 py-2 text-right">신호</th>
                   </tr>
                 </thead>
                 <tbody id="panel-tbody-${rowStart}"></tbody>
@@ -181,21 +197,15 @@
       currentFilter = "all"
       const rowStart = parseInt(cardRow.dataset.row)
 
-      // 모든 패널 닫기 + 카드 선택 해제
       document.querySelectorAll(".inline-panel").forEach(p => p.style.display = "none")
-      document.querySelectorAll("[data-sector]").forEach(c => {
-        c.classList.remove("ring-2", "ring-blue-400")
-      })
+      document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
 
-      // 클릭한 카드 강조
       cardRow.querySelector(`[data-sector="${name}"]`).classList.add("ring-2", "ring-blue-400")
 
-      // 해당 행 패널 열기
       const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
       panel.style.display = "block"
       document.getElementById(`panel-label-${rowStart}`).textContent = "▸ " + name + " 섹터"
 
-      // 구성종목 채우기
       const data = allData.sectors?.[name]
       if (data?.candidates) {
         document.getElementById(`panel-members-${rowStart}`).innerHTML =
@@ -209,8 +219,6 @@
       }
 
       renderPanelTable(rowStart, name, "all")
-
-      // 패널 위치로 부드럽게 스크롤
       setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50)
     }
 
@@ -240,7 +248,7 @@
         tbody.innerHTML = '<tr><td colspan="9" class="text-center py-4 text-gray-400">데이터 없음</td></tr>'
         return
       }
-      let list = data.candidates
+      let list = [...data.candidates]
       if (filter !== "all")
         list = list.filter(s => s.signal === filter || s.quadrant === filter)
       if (!list.length) {
@@ -263,86 +271,31 @@
     ${isImproving ? '<span class="text-blue-500 mr-1">★</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
     <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
   </td>
-  <td class="px-3 py-2 text-right text-gray-500">${s.code}</td>
+  <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
   <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
   <td class="px-3 py-2 text-right ${r1c}">${fmt(s.ret_1d)}</td>
   <td class="px-3 py-2 text-right ${r5c}">${fmt(s.ret_5d)}</td>
-  <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : ""}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : ""}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : ""}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right">${signalPill(s.signal || s.quadrant)}</td>
 </tr>`
       }).join("")
     }
 
-    // 기존 selectSector 호환용 (혹시 다른 곳에서 호출 시)
-    function setFilter(filter) {
-      currentFilter = filter
-    }
-
-    function renderTable(sectorName) {
-      const data = allData.sectors?.[sectorName]
-      const tbody = document.getElementById("stock-tbody")
-      if (!data || !data.candidates) {
-        tbody.innerHTML =
-          '<tr><td colspan="9" class="text-center py-4">데이터 없음</td></tr>'
-        return
-      }
-      let list = data.candidates
-      if (currentFilter !== "all")
-        list = list.filter(s => s.signal === currentFilter)
-      if (list.length === 0) {
-        tbody.innerHTML =
-          '<tr><td colspan="9" class="text-center py-4">신호 없음</td></tr>'
-        return
-      }
-      tbody.innerHTML = list.map(s => {
-        const ret5 =
-          s.ret_5d !== null
-            ? (s.ret_5d > 0 ? "+" : "") + s.ret_5d.toFixed(2) + "%"
-            : "-"
-        return `
-<tr class="border-b hover:bg-gray-50">
-<td class="px-3 py-2">${s.name}</td>
-<td class="px-3 py-2 text-right">${s.code}</td>
-<td class="px-3 py-2 text-right">
-${s.price ? s.price.toLocaleString() : "-"}
-</td>
-
-<td class="px-3 py-2 text-right
-${s.ret_5d > 0 ? "text-green-600" : "text-red-600"}">
-${ret5}
-</td>
-
-<td class="px-3 py-2 text-right">${rsCell(s.rs_5d)}</td>
-<td class="px-3 py-2 text-right">${rsCell(s.rs_20d)}</td>
-<td class="px-3 py-2 text-right">${rsCell(s.rs_60d)}</td>
-<td class="px-3 py-2 text-right">${volCell(s.vol_ratio)}</td>
-<td class="px-3 py-2 text-right">${signalPill(s.signal)}</td>
-</tr>`
-      }).join("")
-    }
-    function rsCell(v) {
-      if (v === null) return "-"
-      return v.toFixed(2)
-    }
-
-    function volCell(v) {
-      if (v === null) return "-"
-      return v.toFixed(2)
-    }
-
     function signalPill(signal) {
-      if (signal === "lagging")
-        return `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">LAGGING</span>`
-      if (signal === "watch")
-        return `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">WATCH</span>`
-      return `<span class="text-gray-400">-</span>`
+      const map = {
+        improving: `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">모멘텀 전환 ★</span>`,
+        lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">소외 지속</span>`,
+        weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">모멘텀 약화</span>`,
+        leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">상승 주도</span>`,
+        watch: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">관찰</span>`,
+      }
+      return map[signal] || `<span class="text-gray-400">-</span>`
     }
 
     function setFilter(filter) {
       currentFilter = filter
-      if (currentSector) renderTable(currentSector)
     }
 
     loadData()
