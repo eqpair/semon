@@ -713,57 +713,56 @@
                 const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
                 return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
             }
-
             // 궤적
             cands.forEach(s => {
                 const tail = s.tail || []
                 if (tail.length < 2) return
-                const color = quadrantColor(s.quadrant)
-                let d = ""
-                tail.forEach((t, i) => {
-                    const pos = toPos(t.rs_ratio, t.rs_momentum)
-                    d += (i === 0 ? "M" : "L") + `${pos.x.toFixed(1)},${pos.y.toFixed(1)}`
-                })
-                // 궤적 선
-                const path = document.createElementNS("http://www.w3.org/2000/svg", "path")
-                path.setAttribute("d", d)
-                path.setAttribute("stroke", color)
-                path.setAttribute("stroke-width", "1.5")
-                path.setAttribute("fill", "none")
-                path.setAttribute("stroke-opacity", "0.5")
-                path.setAttribute("stroke-dasharray", "3,2")
-                path.setAttribute("display", "none")
-                path.setAttribute("data-code", s.code)
-                svg.appendChild(path)
+                const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
 
-                // 출발점 — 빈 원 
+                // 구간별로 나눠서 시작은 흐리게 → 끝으로 갈수록 진하게
+                tail.forEach((t, i) => {
+                    if (i === 0) return
+                    const p1 = toPos(tail[i - 1].rs_ratio, tail[i - 1].rs_momentum)
+                    const p2 = toPos(t.rs_ratio, t.rs_momentum)
+                    const opacity = 0.08 + (i / tail.length) * 0.7
+                    const seg = document.createElementNS("http://www.w3.org/2000/svg", "line")
+                    seg.setAttribute("x1", p1.x.toFixed(1))
+                    seg.setAttribute("y1", p1.y.toFixed(1))
+                    seg.setAttribute("x2", p2.x.toFixed(1))
+                    seg.setAttribute("y2", p2.y.toFixed(1))
+                    seg.setAttribute("stroke", color)
+                    seg.setAttribute("stroke-width", "1.5")
+                    seg.setAttribute("stroke-opacity", opacity)
+                    seg.setAttribute("display", "none")
+                    seg.setAttribute("data-code", s.code)
+                    svg.appendChild(seg)
+                })
+
+                // 시작점 — 작은 빈 원
                 const firstPos = toPos(tail[0].rs_ratio, tail[0].rs_momentum)
                 const startCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
                 startCircle.setAttribute("cx", firstPos.x.toFixed(1))
                 startCircle.setAttribute("cy", firstPos.y.toFixed(1))
-                startCircle.setAttribute("r", "4")
+                startCircle.setAttribute("r", "3")
                 startCircle.setAttribute("fill", "none")
                 startCircle.setAttribute("stroke", color)
                 startCircle.setAttribute("stroke-width", "1.5")
-                startCircle.setAttribute("stroke-opacity", "0.5")
+                startCircle.setAttribute("stroke-opacity", "0.4")
                 startCircle.setAttribute("display", "none")
                 startCircle.setAttribute("data-code", s.code)
                 svg.appendChild(startCircle)
 
-                // 현재 위치 → 화살표 (마지막 두 점으로 방향 계산)
-                if (tail.length >= 2) {
-                    const p1 = toPos(tail[tail.length - 2].rs_ratio, tail[tail.length - 2].rs_momentum)
-                    const p2 = toPos(tail[tail.length - 1].rs_ratio, tail[tail.length - 1].rs_momentum)
-                    const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI
-                    const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
-                    const ax = p2.x, ay = p2.y, size = 6
-                    arrow.setAttribute("points", `${ax},${ay} ${ax - size * Math.cos((angle - 30) * Math.PI / 180)},${ay - size * Math.sin((angle - 30) * Math.PI / 180)} ${ax - size * Math.cos((angle + 30) * Math.PI / 180)},${ay - size * Math.sin((angle + 30) * Math.PI / 180)}`)
-                    arrow.setAttribute("fill", color)
-                    arrow.setAttribute("fill-opacity", "0.8")
-                    arrow.setAttribute("display", "none")
-                    arrow.setAttribute("data-code", s.code)
-                    svg.appendChild(arrow)
-                }
+                // 끝점 — 채워진 원으로 현재 위치 강조
+                const endPos = toPos(tail[tail.length - 1].rs_ratio, tail[tail.length - 1].rs_momentum)
+                const endCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                endCircle.setAttribute("cx", endPos.x.toFixed(1))
+                endCircle.setAttribute("cy", endPos.y.toFixed(1))
+                endCircle.setAttribute("r", "5")
+                endCircle.setAttribute("fill", color)
+                endCircle.setAttribute("fill-opacity", "0.9")
+                endCircle.setAttribute("display", "none")
+                endCircle.setAttribute("data-code", s.code)
+                svg.appendChild(endCircle)
             })
 
             // 도트
@@ -776,13 +775,13 @@
                 dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
                 dot.addEventListener("mouseenter", e => {
                     showStockTooltip(e, s)
-                    svg.querySelectorAll(`path[data-code="${s.code}"]`)
-                        .forEach(p => p.setAttribute("display", "block"))
+                    svg.querySelectorAll(`[data-code="${s.code}"]`)
+                       .forEach(p => p.setAttribute("display", "block"))
                 })
                 dot.addEventListener("mouseleave", () => {
                     hideTooltip()
-                    svg.querySelectorAll("path")
-                        .forEach(p => p.setAttribute("display", "none"))
+                    svg.querySelectorAll("line, circle")
+                       .forEach(p => p.setAttribute("display", "none"))
                 })
                 container.appendChild(dot)
 
