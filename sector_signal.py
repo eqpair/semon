@@ -230,7 +230,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         "rising_ratio":    round(rising_ratio, 2),
         "is_rising":       is_rising,
         "total":           len(candidates),
-        "improving_count": sum(1 for c in candidates if c["quadrant"] == "improving"),
+        "improving_count": sum(1 for c in candidates if c["signal"] == "improving"),
         "watch_count":     sum(1 for c in candidates if c["signal"] == "watch"),
         "lagging_count":   sum(1 for c in candidates if c["quadrant"] == "lagging"),
         "candidates":      candidates,
