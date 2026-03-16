@@ -772,7 +772,7 @@
                 const size = s.quadrant === "improving" ? 10 : 8
 
                 const dot = document.createElement("div")
-                dot.className = `dot ${s.signal === "watch" ? "watch" : s.quadrant}`
+                dot.className = `dot ${s.signal === 'watch' ? 'watch' : s.quadrant}`
                 dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
                 dot.addEventListener("mouseenter", e => {
                     showStockTooltip(e, s)
@@ -788,7 +788,7 @@
 
                 const lbl = document.createElement("div")
                 lbl.className = "dot-label"
-                lbl.style.cssText = `left:${pos.x}px;top:${pos.y}px;color:${s.signal === "watch" ? "#9ca3af" : quadrantColor(s.quadrant)};font-size:9px;`
+                lbl.style.cssText = `left:${pos.x}px;top:${pos.y}px;color:${s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)};font-size:9px;`
                 lbl.textContent = s.name
                 container.appendChild(lbl)
             })
@@ -824,14 +824,14 @@
                 const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
                 const r1c = s.ret_1d > 0 ? '#16a34a' : s.ret_1d < 0 ? '#dc2626' : '#9ca3af'
                 const r5c = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
-                return `< tr class="stock-row ${s.signal === "watch" ? "watch" : s.quadrant}" >`
-            <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">${s.name}</a></td>
-            <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
-            <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
-            <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
-            <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
-            <td style="padding:7px 8px;text-align:right;"><span class="pill ${s.signal || s.quadrant}">${quadrantLabel(s.signal || s.quadrant)}</span></td>
-          </tr>`
+                return `<tr class="stock-row ${s.signal === 'watch' ? 'watch' : s.quadrant}">
+                <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">${s.name}</a></td>
+                <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 8px;text-align:right;"><span class="pill ${s.signal || s.quadrant}">${quadrantLabel(s.signal || s.quadrant)}</span></td>
+            </tr>`
             }).join("")}
       </tbody>
     </table>`
