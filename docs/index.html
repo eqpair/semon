@@ -259,19 +259,21 @@
       }
       const fmt = v => v != null ? (v > 0 ? "+" : "") + v.toFixed(2) + "%" : "-"
       tbody.innerHTML = list.map(s => {
-        const isImproving = s.quadrant === "improving" || s.signal === "improving"
+        const isImproving = s.signal === "improving"
+        const isWatch = s.signal === "watch"
         const isLagging = s.quadrant === "lagging" || s.signal === "lagging"
         const rowClass = isImproving ? "border-b bg-blue-50 font-medium"
-          : isLagging ? "border-b bg-yellow-50"
-            : "border-b hover:bg-gray-50"
+          : isWatch ? "border-b bg-gray-50"
+            : isLagging ? "border-b bg-yellow-50"
+              : "border-b hover:bg-gray-50"
         const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
         const r1c = s.ret_1d > 0 ? "text-green-600" : "text-red-600"
         const r5c = s.ret_5d > 0 ? "text-green-600" : "text-red-600"
         return `
 <tr class="${rowClass}">
   <td class="px-3 py-2">
-    ${isImproving ? '<span class="text-blue-500 mr-1">★</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
-    <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
+    ${isImproving ? '<span class="text-blue-500 mr-1">★</span>' : isWatch ? '<span class="text-gray-400 mr-1">👁</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
+    <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : isWatch ? "text-gray-500" : "text-gray-800"}">${s.name}</a>
   </td>
   <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
   <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
