@@ -1,0 +1,16 @@
+[Unit]
+Description=Semon Sector Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=eq
+WorkingDirectory=/home/eq/semon
+ExecStart=/home/eq/stmon_env/bin/python /home/eq/semon/main.py
+Restart=on-failure
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
