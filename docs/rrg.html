@@ -503,6 +503,12 @@
             renderSectorChips()
             if (currentSector) renderStockRRG(currentSector)
             updateSpotlightVisibility()
+            const params = new URLSearchParams(location.search)
+            const sector = params.get('sector')
+            if (sector && allData?.sectors?.[sector]) {
+                switchTab('stock')
+                selectSector(sector)
+            }
         }
 
         function quadrantColor(q) {
