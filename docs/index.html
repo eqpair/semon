@@ -7,23 +7,6 @@
   <title>Momentum Board</title>
   <link rel="icon" href="./favicon.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
-  <style>
-    #sector-tooltip {
-      position: fixed;
-      z-index: 100;
-      background: #1e293b;
-      color: #f1f5f9;
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 6px;
-      max-width: 200px;
-      pointer-events: none;
-      display: none;
-      line-height: 1.5;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-      white-space: normal;
-    }
-  </style>
 </head>
 
 <body class="bg-gray-100 min-h-screen">
@@ -50,6 +33,20 @@
         </div>
       </div>
     </header>
+
+    <!-- SEARCH -->
+    <div class="mb-6 relative" id="search-wrap">
+      <div class="relative inline-block w-full md:w-80">
+        <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
+          class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
+          oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}" autocomplete="off">
+        <button onclick="closeSearch()" id="search-clear"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">✕</button>
+      </div>
+      <div id="search-results"
+        class="absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 w-full md:w-80 hidden max-h-72 overflow-y-auto">
+      </div>
+    </div>
 
     <!-- LOADING -->
     <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
@@ -142,11 +139,9 @@
           const ret = data.sector_ret_5d
           const impCount = data.improving_count || 0
           const lagCount = data.lagging_count || 0
-          const watchCount = data.watch_count || 0
           const badge = impCount > 0
-            ? `<span class="text-blue-600 font-medium">${impCount} Improving ★</span>`
-            : watchCount > 0 ? `<span class="text-gray-400 font-medium">${watchCount} Watch</span>`
-              : lagCount > 0 ? `<span class="text-orange-500 font-medium">${lagCount} Lagging</span>` : "<span>-</span>"
+            ? `<span class="text-blue-600 font-medium">${impCount} ★</span>`
+            : lagCount > 0 ? `<span class="text-gray-500">${lagCount} 소외</span>` : "<span>-</span>"
 
           card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
           card.dataset.sector = name
@@ -156,7 +151,7 @@
               ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
             </div>
             <div class="text-xs text-gray-500 flex justify-between">
-              <span>${data.candidates?.length ?? "-"}종목</span>
+              <span>${data.rising_ratio ? Math.round(data.rising_ratio * 100) + "% 상승" : "-"}</span>
               ${badge}
             </div>`
           card.onclick = () => selectSector(name, cardRow)
@@ -181,9 +176,9 @@
               </div>
               <div class="flex gap-1 flex-wrap items-center">
                 <button class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded" onclick="setPanelFilter(${rowStart},'all')">ALL</button>
-                <button class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">Improving ★</button>
-                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">Lagging</button>
-                <button class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">Weakening</button>
+                <button class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">모멘텀 전환 ★</button>
+                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">소외 지속</button>
+                <button class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">모멘텀 약화</button>
                 <button onclick="closePanel(${rowStart})" class="text-gray-400 hover:text-gray-600 ml-1 text-sm font-medium">✕</button>
               </div>
             </div>
@@ -276,21 +271,19 @@
       }
       const fmt = v => v != null ? (v > 0 ? "+" : "") + v.toFixed(2) + "%" : "-"
       tbody.innerHTML = list.map(s => {
-        const isImproving = s.signal === "improving"
-        const isWatch = s.signal === "watch"
+        const isImproving = s.quadrant === "improving" || s.signal === "improving"
         const isLagging = s.quadrant === "lagging" || s.signal === "lagging"
         const rowClass = isImproving ? "border-b bg-blue-50 font-medium"
-          : isWatch ? "border-b bg-gray-50"
-            : isLagging ? "border-b bg-yellow-50"
-              : "border-b hover:bg-gray-50"
+          : isLagging ? "border-b bg-yellow-50"
+            : "border-b hover:bg-gray-50"
         const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
         const r1c = s.ret_1d > 0 ? "text-green-600" : "text-red-600"
         const r5c = s.ret_5d > 0 ? "text-green-600" : "text-red-600"
         return `
 <tr class="${rowClass}">
   <td class="px-3 py-2">
-    ${isImproving ? '<span class="text-blue-500 mr-1">★</span>' : isWatch ? '<span class="text-gray-400 mr-1">◎</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
-    <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : isWatch ? "text-gray-500" : "text-gray-800"}">${s.name}</a>
+    ${isImproving ? '<span class="text-blue-500 mr-1">★</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
+    <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
   </td>
   <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
   <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
@@ -306,11 +299,11 @@
 
     function signalPill(signal) {
       const map = {
-        improving: `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">Improving ★</span>`,
-        lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
-        weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
-        leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
-        watch: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">Watch</span>`,
+        improving: `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">모멘텀 전환 ★</span>`,
+        lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">소외 지속</span>`,
+        weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">모멘텀 약화</span>`,
+        leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">상승 주도</span>`,
+        watch: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">관찰</span>`,
       }
       return map[signal] || `<span class="text-gray-400">-</span>`
     }
@@ -319,82 +312,90 @@
       currentFilter = filter
     }
 
-    loadData()
-    setInterval(loadData, REFRESH_MS)
-  </script>
-  <div id="sector-tooltip"></div>
-  <script>
-    const SECTOR_DESC = {
-      "반도체_제조": "메모리 가격·HBM(High Bandwidth Memory) 수요",
-      "반도체_장비": "반도체 설비투자(CAPEX) 사이클",
-      "반도체_소재부품": "소재 가격·수율·반도체 업황",
-      "2차전지_셀": "전기차 수요·배터리 가격",
-      "2차전지_소재부품": "리튬·니켈 등 원자재 가격",
-      "전력기기": "AI 데이터센터·전력망 투자",
-      "신재생에너지": "신재생 정책·REC(Renewable Energy Certificate) 가격",
-      "조선": "선박 발주·LNG선 수요",
-      "방산": "국방예산·지정학 리스크",
-      "로봇": "로봇 도입 정책·자동화 수요",
-      "자동차_완성차": "글로벌 판매량·환율(달러·원)",
-      "자동차_부품": "완성차 생산량·부품 단가",
-      "타이어": "천연고무 가격·완성차 수요",
-      "IT부품": "스마트폰·가전 수요·부품 단가",
-      "빅플랫폼": "플랫폼 광고·커머스 실적",
-      "B2B_IT서비스": "기업 IT투자·디지털전환 수요",
-      "바이오_제약": "글로벌 제약사 위탁생산 수주",
-      "바이오_기술이전": "기술이전·라이선스 딜 뉴스",
-      "바이오_임상": "임상 결과·금리(성장주 할인율)",
-      "대형제약": "약가·건보 정책·실적",
-      "중소제약": "내수 약가·제네릭 정책",
-      "미용·에스테틱": "중국 소비심리·미용 시술 수요",
-      "은행": "금리·NIM(Net Interest Margin)·가계대출",
-      "증권": "증시 거래대금·IB 수수료",
-      "보험": "손해율·금리(자산운용)",
-      "비철금속": "LME 금속가격(아연·구리)",
-      "정유": "유가·정제마진",
-      "석유화학": "납사·에틸렌 스프레드",
-      "도시가스": "LNG 가격·도시가스 요금",
-      "전력": "전기요금·정부 에너지 정책",
-      "건설": "부동산 경기·수주잔고·금리",
-      "시멘트": "건설 착공량·시멘트 단가",
-      "건자재": "인테리어·리모델링 수요",
-      "해운": "컨테이너 운임(BDI·SCFI)",
-      "항공": "항공 여객수요·유가·환율",
-      "물류·육운": "택배 단가·내수 물동량",
-      "통신": "ARPU(Average Revenue/User)·설비투자·배당",
-      "엔터·음악": "아이돌 앨범·공연·일본 수출",
-      "게임": "신작 출시·게임 트래픽·MAU",
-      "미디어·콘텐츠": "OTT·드라마 제작·광고 시장",
-      "화장품_브랜드": "중국 관광객·K뷰티 수출",
-      "화장품_ODM": "ODM 수주·글로벌 브랜드 생산",
-      "K푸드_수출": "K푸드 수출·환율(달러)",
-      "중국내수식품": "중국 내수 소비·현지법인 실적",
-      "내수식품": "내수 소비경기·원자재(곡물) 가격",
-      "유통": "내수 소비경기·오프라인 유통",
-      "패션·의류": "글로벌 OEM 수주·달러 매출",
-      "레저·여행": "내국인 소비·중국 관광객 회복",
-      "생활용품": "내수 소비·주거 교체 수요",
+    function searchStock(query) {
+      const results = document.getElementById("search-results")
+      const clearBtn = document.getElementById("search-clear")
+      clearBtn.classList.toggle("hidden", !query)
+
+      if (!query || query.length < 1) { results.classList.add("hidden"); return }
+
+      const matches = []
+      const sectors = allData?.sectors || {}
+      Object.entries(sectors).forEach(([sectorName, data]) => {
+        (data.candidates || []).forEach(s => {
+          if (s.name.includes(query) || s.code.includes(query))
+            matches.push({ ...s, sectorName })
+        })
+      })
+
+      if (!matches.length) {
+        results.innerHTML = '<div class="px-4 py-3 text-sm text-gray-400">검색 결과 없음</div>'
+        results.classList.remove("hidden")
+        return
+      }
+
+      results.innerHTML = matches.slice(0, 10).map(s => {
+        const isImproving = s.signal === "improving"
+        const isWatch = s.signal === "watch"
+        const pill = signalPill(s.signal || s.quadrant)
+        return `
+        <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
+             onclick="goToStock('${s.sectorName}', '${s.code}')">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
+              ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
+            </span>
+            <span class="text-xs text-gray-400">${s.code}</span>
+          </div>
+          <div class="flex items-center gap-2 mt-0.5">
+            <span class="text-xs text-gray-400">${s.sectorName}</span>
+            ${pill}
+          </div>
+        </div>`
+      }).join("")
+      results.classList.remove("hidden")
     }
 
-    const _tip = document.getElementById('sector-tooltip')
+    function goToStock(sectorName, code) {
+      closeSearch()
+      const sectorCard = document.querySelector(`[data-sector="${sectorName}"]`)
+      if (!sectorCard) return
+      const cardRow = sectorCard.closest(".grid")
+      if (!cardRow) return
+      selectSector(sectorName, cardRow)
+      // 해당 종목 행 하이라이트
+      setTimeout(() => {
+        const rows = document.querySelectorAll(`[data-code="${code}"], td`)
+        document.querySelectorAll(".highlight-row").forEach(r => r.classList.remove("highlight-row", "ring-1", "ring-blue-300"))
+        const panel = document.querySelector(`.inline-panel[data-row="${cardRow.dataset.row}"]`)
+        if (panel) {
+          const links = panel.querySelectorAll("a[href*='code=" + code + "']")
+          links.forEach(link => {
+            const row = link.closest("tr")
+            if (row) {
+              row.classList.add("ring-1", "ring-blue-300")
+              row.scrollIntoView({ behavior: "smooth", block: "nearest" })
+            }
+          })
+        }
+      }, 300)
+    }
 
-    document.addEventListener('mouseover', e => {
-      const card = e.target.closest('[data-sector]')
-      if (!card) return
-      const desc = SECTOR_DESC[card.dataset.sector]
-      if (!desc) return
-      _tip.textContent = desc
-      _tip.style.display = 'block'
+    function closeSearch() {
+      document.getElementById("stock-search").value = ""
+      document.getElementById("search-results").classList.add("hidden")
+      document.getElementById("search-clear").classList.add("hidden")
+    }
+
+    // 검색창 외부 클릭 시 닫기
+    document.addEventListener("click", e => {
+      if (!document.getElementById("search-wrap")?.contains(e.target)) {
+        document.getElementById("search-results")?.classList.add("hidden")
+      }
     })
 
-    document.addEventListener('mousemove', e => {
-      _tip.style.left = (e.clientX + 14) + 'px'
-      _tip.style.top = (e.clientY + 14) + 'px'
-    })
-
-    document.addEventListener('mouseout', e => {
-      if (e.target.closest('[data-sector]')) _tip.style.display = 'none'
-    })
+    loadData()
+    setInterval(loadData, REFRESH_MS)
   </script>
 </body>
 

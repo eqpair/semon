@@ -379,6 +379,20 @@
         <div id="view-stock" style="display:none;">
             <div class="mb-4">
                 <div class="text-xs text-gray-400 mb-2 font-medium">테마 선택</div>
+                <!-- 검색 -->
+                <div class="relative mb-3" id="search-wrap">
+                    <div class="relative inline-block w-full md:w-72">
+                        <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
+                            class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
+                            oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}"
+                            autocomplete="off">
+                        <button onclick="closeSearch()" id="search-clear"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">✕</button>
+                    </div>
+                    <div id="search-results"
+                        class="absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 w-full md:w-72 hidden max-h-72 overflow-y-auto">
+                    </div>
+                </div>
                 <div id="sector-chips" class="flex flex-wrap gap-2"></div>
             </div>
 
@@ -1178,6 +1192,81 @@
                     </div>
                 </div>`).join("") + `</div>`
         }
+
+        function searchStock(query) {
+            const results = document.getElementById("search-results")
+            const clearBtn = document.getElementById("search-clear")
+            clearBtn.classList.toggle("hidden", !query)
+
+            if (!query || query.length < 1) { results.classList.add("hidden"); return }
+
+            const matches = []
+            const sectors = allData?.sectors || {}
+            Object.entries(sectors).forEach(([sectorName, data]) => {
+                (data.candidates || []).forEach(s => {
+                    if (s.name.includes(query) || s.code.includes(query))
+                        matches.push({ ...s, sectorName })
+                })
+            })
+
+            if (!matches.length) {
+                results.innerHTML = '<div class="px-4 py-3 text-sm text-gray-400">검색 결과 없음</div>'
+                results.classList.remove("hidden")
+                return
+            }
+
+            results.innerHTML = matches.slice(0, 10).map(s => {
+                const isImproving = s.signal === "improving"
+                const isWatch = s.signal === "watch"
+                return `
+                <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
+                     onclick="goToStock('${s.sectorName}', '${s.code}')">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
+                      ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
+                    </span>
+                    <span class="text-xs text-gray-400">${s.code}</span>
+                  </div>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    <span class="text-xs text-gray-400">${s.sectorName}</span>
+                    <span class="pill ${s.signal || s.quadrant}">${quadrantLabel(s.signal || s.quadrant)}</span>
+                  </div>
+                </div>`
+            }).join("")
+            results.classList.remove("hidden")
+        }
+
+        function goToStock(sectorName, code) {
+            closeSearch()
+            selectSector(sectorName)
+            switchTab('stock')
+            // 해당 종목 행 하이라이트
+            setTimeout(() => {
+                const table = document.getElementById("stock-table")
+                if (!table) return
+                const links = table.querySelectorAll(`a[href*='code=${code}']`)
+                links.forEach(link => {
+                    const row = link.closest("tr")
+                    if (row) {
+                        row.style.outline = "2px solid #3b82f6"
+                        row.scrollIntoView({ behavior: "smooth", block: "nearest" })
+                        setTimeout(() => row.style.outline = "", 2000)
+                    }
+                })
+            }, 400)
+        }
+
+        function closeSearch() {
+            document.getElementById("stock-search").value = ""
+            document.getElementById("search-results").classList.add("hidden")
+            document.getElementById("search-clear").classList.add("hidden")
+        }
+
+        document.addEventListener("click", e => {
+            if (!document.getElementById("search-wrap")?.contains(e.target)) {
+                document.getElementById("search-results")?.classList.add("hidden")
+            }
+        })
 
         loadData()
         setInterval(loadData, REFRESH_MS)
