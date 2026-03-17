@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 MA_PERIOD  = 10
 ROC_PERIOD = 10
 TAIL_DAYS  = 40   # 8주 궤적
+CHART_DAYS = 120  # 주가 차트용 6개월
 
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
@@ -122,6 +123,18 @@ def _sector_avg(code_list: list[str], days: int) -> float | None:
     return sum(vals) / len(vals) if vals else None
 
 
+def _get_closes_chart(code: str) -> list[float]:
+    """6개월(120거래일)치 종가 반환. 현재가로 마지막 값 교체."""
+    entry = ohlcv_store.get(code)
+    if not entry:
+        return []
+    closes = entry["closes"][-CHART_DAYS:]
+    # 현재가가 있으면 마지막 값을 현재가로 교체
+    if code in current_price and closes:
+        closes = list(closes[:-1]) + [current_price[code]]
+    return [round(v, 0) for v in closes]
+
+
 def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     code_list = [c for c, _ in codes]
     name_map  = {c: n for c, n in codes}
@@ -162,16 +175,12 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         curr_mom   = next((v for v in reversed(rs_momentum) if v is not None), None)
         quad       = _quadrant(curr_ratio, curr_mom)
 
-        # 궤적 누적(처음 실행 시 과거 궤적 미리 채움)
+        # 궤적 누적
         if code not in rrg_history or len(rrg_history[code]) == 0:
-            # 과거 TAIL_DAYS일치 한번에 계산
             tail = []
             for offset in range(TAIL_DAYS, 0, -5):
                 if offset >= min_len:
                     continue
-                past_closes    = [aligned[c][-(offset)] for c in aligned]
-                past_benchmark = [sum(past_closes) / len(past_closes)]
-                # 해당 시점까지의 데이터로 RS-Ratio, RS-Momentum 계산
                 hist_closes    = aligned[code][:-offset] if offset > 0 else aligned[code]
                 hist_benchmark = [sum(aligned[c][i] for c in aligned) / len(aligned)
                                 for i in range(len(hist_closes))]
@@ -183,14 +192,13 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
                     tail.append({"rs_ratio": round(t_ratio, 3), "rs_momentum": round(t_mom, 3)})
             rrg_history[code] = tail
 
-        # 현재 값 append
         if curr_ratio is not None and curr_mom is not None:
             rrg_history[code].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
             })
             rrg_history[code] = rrg_history[code][-TAIL_DAYS:]
-    
+
         r1  = _get_return(code, 1)
         r5  = returns_5d.get(code)
         r20 = _get_return(code, 20)
@@ -201,21 +209,25 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         rs_20d = (r20 / sector_ret_20d) if r20 is not None and sector_ret_20d else None
         rs_60d = (r60 / sector_ret_60d) if r60 is not None and sector_ret_60d else None
 
+        # 주가 차트용 데이터 (6개월, 마지막 20일 강조는 프론트에서)
+        closes_chart = _get_closes_chart(code)
+
         candidates.append({
-            "code":        code,
-            "name":        name_map[code],
-            "price":       now_price,
-            "ret_1d":      round(r1  * 100, 2) if r1  is not None else None,
-            "ret_5d":      round(r5  * 100, 2) if r5  is not None else None,
-            "rs_5d":       round(rs_5d,  3)    if rs_5d  is not None else None,
-            "rs_20d":      round(rs_20d, 3)    if rs_20d is not None else None,
-            "rs_60d":      round(rs_60d, 3)    if rs_60d is not None else None,
-            "vol_ratio":   round(vol,    3)    if vol    is not None else None,
-            "rs_ratio":    round(curr_ratio, 3) if curr_ratio is not None else None,
-            "rs_momentum": round(curr_mom,   3) if curr_mom   is not None else None,
-            "quadrant":    quad,
-            "tail":        rrg_history.get(code, [])[-TAIL_DAYS:],
-            "signal":      _rrg_signal(quad, vol),
+            "code":          code,
+            "name":          name_map[code],
+            "price":         now_price,
+            "ret_1d":        round(r1  * 100, 2) if r1  is not None else None,
+            "ret_5d":        round(r5  * 100, 2) if r5  is not None else None,
+            "rs_5d":         round(rs_5d,  3)    if rs_5d  is not None else None,
+            "rs_20d":        round(rs_20d, 3)    if rs_20d is not None else None,
+            "rs_60d":        round(rs_60d, 3)    if rs_60d is not None else None,
+            "vol_ratio":     round(vol,    3)    if vol    is not None else None,
+            "rs_ratio":      round(curr_ratio, 3) if curr_ratio is not None else None,
+            "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
+            "quadrant":      quad,
+            "tail":          rrg_history.get(code, [])[-TAIL_DAYS:],
+            "signal":        _rrg_signal(quad, vol),
+            "closes_chart":  closes_chart,   # 6개월 주가 (마지막 20일은 프론트에서 강조)
         })
 
     def _sort_key(x):

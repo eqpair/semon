@@ -441,6 +441,26 @@
             </div>
         </div>
 
+        <!-- ═══ 주가 차트 ═══ -->
+        <div id="view-price-chart" class="mt-4" style="display:none;">
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <div>
+                        <h2 id="chart-title" class="text-sm font-semibold text-gray-800">종목별 주가</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">6개월 전체(연한선) · 최근 20일(진한선) 강조</p>
+                    </div>
+                    <div class="flex gap-2 text-xs text-gray-400 items-center">
+                        <span class="flex items-center gap-1"><span
+                                style="display:inline-block;width:20px;height:2px;background:#cbd5e1;"></span>6개월</span>
+                        <span class="flex items-center gap-1"><span
+                                style="display:inline-block;width:20px;height:2px;background:#2563eb;"></span>최근
+                            20일</span>
+                    </div>
+                </div>
+                <div id="price-charts" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+            </div>
+        </div>
+
         <!-- ═══ 주목 섹션 ═══ -->
         <div id="view-spotlight" class="mt-6" style="display:none;">
             <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
@@ -827,6 +847,7 @@
             })
 
             renderStockTable(sectorName)
+            renderPriceCharts(sectorName)
         }
 
         function renderStockTable(sectorName) {
@@ -870,11 +891,128 @@
     </table>`
         }
 
+        // ── 주가 차트 ────────────────────────────────────────────────
+        function renderPriceCharts(sectorName) {
+            const data = allData.sectors?.[sectorName]
+            const chartEl = document.getElementById("price-charts")
+            const section = document.getElementById("view-price-chart")
+            const titleEl = document.getElementById("chart-title")
+
+            if (!data?.candidates?.length) {
+                section.style.display = "none"
+                return
+            }
+
+            const cands = [...data.candidates].sort((a, b) => {
+                const o = { improving: 0, watch: 1, lagging: 2, weakening: 3, leading: 4, neutral: 5 }
+                return (o[a.signal] ?? o[a.quadrant] ?? 5) - (o[b.signal] ?? o[b.quadrant] ?? 5)
+            })
+
+            // closes_chart 없는 종목 제외
+            const charted = cands.filter(s => s.closes_chart && s.closes_chart.length > 5)
+            if (!charted.length) {
+                section.style.display = "none"
+                return
+            }
+
+            titleEl.textContent = `${sectorName} — 종목별 주가`
+            section.style.display = "block"
+
+            chartEl.innerHTML = charted.map(s => {
+                const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
+                const canvasId = `chart-${s.code}`
+                const ret5cls = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
+                const signalLabel = s.signal === 'improving' ? '★ Improving'
+                    : s.signal === 'watch' ? '◎ Watch'
+                        : quadrantLabel(s.quadrant)
+                return `
+                <div class="bg-gray-50 rounded-lg p-2 border border-gray-100">
+                    <div class="flex items-center justify-between mb-1">
+                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                           target="_blank"
+                           class="text-xs font-semibold text-gray-800 hover:text-blue-600 truncate"
+                           style="max-width:80px;">${s.name}</a>
+                        <span style="font-size:10px;color:${color};font-weight:600;">${signalLabel}</span>
+                    </div>
+                    <canvas id="${canvasId}" height="60" style="width:100%;display:block;"></canvas>
+                    <div class="flex justify-between mt-1" style="font-size:10px;">
+                        <span style="color:#6b7280;">${s.price ? s.price.toLocaleString() + '원' : '-'}</span>
+                        <span style="color:${ret5cls};font-weight:600;">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</span>
+                    </div>
+                </div>`
+            }).join("")
+
+            // 캔버스에 차트 그리기
+            requestAnimationFrame(() => {
+                charted.forEach(s => {
+                    if (!s.closes_chart || s.closes_chart.length < 2) return
+                    const canvas = document.getElementById(`chart-${s.code}`)
+                    if (!canvas) return
+                    const ctx = canvas.getContext("2d")
+                    const W = canvas.offsetWidth || 160
+                    const H = 60
+                    canvas.width = W
+                    canvas.height = H
+
+                    const prices = s.closes_chart
+                    const total = prices.length
+                    const splitIdx = Math.max(0, total - 20) // 마지막 20일 시작 인덱스
+                    const min = Math.min(...prices)
+                    const max = Math.max(...prices)
+                    const range = max - min || 1
+
+                    const toX = i => (i / (total - 1)) * W
+                    const toY = v => H - 4 - ((v - min) / range) * (H - 8)
+
+                    const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
+
+                    // 6개월 전체 — 연한선
+                    ctx.beginPath()
+                    ctx.strokeStyle = '#cbd5e1'
+                    ctx.lineWidth = 1
+                    prices.forEach((v, i) => {
+                        i === 0 ? ctx.moveTo(toX(i), toY(v)) : ctx.lineTo(toX(i), toY(v))
+                    })
+                    ctx.stroke()
+
+                    // 최근 20일 강조 — 진한선
+                    ctx.beginPath()
+                    ctx.strokeStyle = color
+                    ctx.lineWidth = 1.8
+                    prices.slice(splitIdx).forEach((v, i) => {
+                        const xi = splitIdx + i
+                        i === 0 ? ctx.moveTo(toX(xi), toY(v)) : ctx.lineTo(toX(xi), toY(v))
+                    })
+                    ctx.stroke()
+
+                    // 현재가 점
+                    const lastX = toX(total - 1)
+                    const lastY = toY(prices[total - 1])
+                    ctx.beginPath()
+                    ctx.arc(lastX, lastY, 2.5, 0, Math.PI * 2)
+                    ctx.fillStyle = color
+                    ctx.fill()
+
+                    // 20일 시작 수직선 (연한 구분선)
+                    ctx.beginPath()
+                    ctx.strokeStyle = 'rgba(100,116,139,0.2)'
+                    ctx.lineWidth = 1
+                    ctx.setLineDash([2, 2])
+                    const splitX = toX(splitIdx)
+                    ctx.moveTo(splitX, 0)
+                    ctx.lineTo(splitX, H)
+                    ctx.stroke()
+                    ctx.setLineDash([])
+                })
+            })
+        }
+
         // ── 탭·필터 ──────────────────────────────────────────────────
         function switchTab(tab) {
             currentTab = tab
             document.getElementById("view-sector").style.display = tab === "sector" ? "block" : "none"
             document.getElementById("view-stock").style.display = tab === "stock" ? "block" : "none"
+            if (tab === "sector") document.getElementById("view-price-chart").style.display = "none"
             const s = tab === "sector"
             document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
             document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
