@@ -511,19 +511,29 @@
                 allData.updated_at
                     ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR")
                     : "-"
+
+            // URL 파라미터 처리를 가장 먼저 — 섹터탭 렌더보다 앞서야 함
+            const params = new URLSearchParams(location.search)
+            const urlSector = params.get('sector')
+            if (urlSector && allData?.sectors?.[urlSector]) {
+                currentSector = urlSector
+                currentTab = "stock"
+                history.replaceState(null, '', location.pathname)
+            }
+
             renderSectorRRG()
             renderSectorList()
             renderSectorChips()
+
+            // 탭 버튼 상태 동기화
+            const isStock = currentTab === "stock"
+            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!isStock ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${isStock ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("view-sector").style.display = isStock ? "none" : "block"
+            document.getElementById("view-stock").style.display = isStock ? "block" : "none"
+
             if (currentSector) renderStockRRG(currentSector)
             updateSpotlightVisibility()
-
-            // index.html에서 넘어올 때 URL 파라미터로 섹터 자동 선택
-            const params = new URLSearchParams(location.search)
-            const sector = params.get('sector')
-            if (sector && allData?.sectors?.[sector] && !currentSector) {
-                switchTab('stock')
-                selectSector(sector)
-            }
         }
 
         function quadrantColor(q) {
@@ -1222,9 +1232,8 @@
         }
 
         function generateSpotlight() {
-            const resultEl = document.getElementById("spotlight-result")
             const contentEl = document.getElementById("spotlight-content")
-
+            if (!contentEl) return
 
             if (currentTab === "sector") {
                 const sectors = allData.sectors || {}
@@ -1258,7 +1267,10 @@
 
             // 종목 분석
             const cands = getSpotlightCandidates()
-            if (!cands.length) return
+            if (!cands.length) {
+                contentEl.innerHTML = '<div class="text-sm text-gray-400 py-2">주목할 만한 종목 신호가 없습니다.</div>'
+                return
+            }
 
             contentEl.innerHTML = cands.map((s, i) => `
                 <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
@@ -1274,30 +1286,6 @@
                     </div>
                 </div>
             `).join("") + `<div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">* RRG 신호 기반 자동 분석 — 투자 판단은 본인 책임입니다</div>`
-        }
-
-        function updateSpotlightVisibility() {
-            const el = document.getElementById("view-spotlight")
-            if (el) el.style.display = "block"
-
-            const title = document.getElementById("spotlight-title")
-            const desc = document.getElementById("spotlight-desc")
-            const resultEl = document.getElementById("spotlight-result")
-            const btn = document.getElementById("spotlight-btn")
-            resultEl.classList.add("hidden")
-            btn.style.display = "block"
-            btn.disabled = false
-            btn.className = "px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-
-            if (currentTab === "sector") {
-                title.textContent = "🔍 주목 테마"
-                desc.textContent = "Improving 사분면 진입 + 상승 종목 비율 40% 이상 기준"
-                renderSpotlightSectors()
-            } else {
-                title.textContent = "🔍 주목 종목"
-                desc.textContent = "Improving 우선 선정, 없으면 Watch 종목으로 표시"
-                renderSpotlightCandidates()
-            }
         }
 
         function renderSpotlightSectors() {
