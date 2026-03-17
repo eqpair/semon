@@ -427,13 +427,14 @@
             </div>
         </div>
 
-        <!-- ═══ 주목 종목 ═══ -->
+        <!-- ═══ 주목 섹션 ═══ -->
         <div id="view-spotlight" class="mt-6" style="display:none;">
             <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
                 <div class="flex items-center justify-between mb-4">
                     <div>
-                        <h2 class="text-sm font-semibold text-gray-800">🔍 오늘의 주목 종목</h2>
-                        <p class="text-xs text-gray-400 mt-0.5">Improving/Watch + RS-M 100 이상 + RS-Ratio 100 미만 기준</p>
+                        <h2 id="spotlight-title" class="text-sm font-semibold text-gray-800">🔍 주목 테마</h2>
+                        <p id="spotlight-desc" class="text-xs text-gray-400 mt-0.5">Improving 사분면 진입 + 상승 종목 비율 40% 이상
+                            기준</p>
                     </div>
                     <button onclick="generateSpotlight()" id="spotlight-btn"
                         class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
@@ -863,6 +864,7 @@
             const s = tab === "sector"
             document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
             document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            updateSpotlightVisibility()
         }
 
         function filterSector(q) {
@@ -872,30 +874,111 @@
             renderSectorRRG()
         }
 
-        // ── 주목 종목 ────────────────────────────────────────────────
+        // ── 주목 섹션 ────────────────────────────────────────────────
+        function updateSpotlightVisibility() {
+            const el = document.getElementById("view-spotlight")
+            if (el) el.style.display = "block"
+
+            const title = document.getElementById("spotlight-title")
+            const desc = document.getElementById("spotlight-desc")
+            const resultEl = document.getElementById("spotlight-result")
+            const btn = document.getElementById("spotlight-btn")
+            resultEl.classList.add("hidden")
+            btn.style.display = "block"
+            btn.disabled = false
+            btn.className = "px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+
+            if (currentTab === "sector") {
+                title.textContent = "🔍 주목 테마"
+                desc.textContent = "Improving 사분면 진입 + 상승 종목 비율 40% 이상 기준"
+                renderSpotlightSectors()
+            } else {
+                title.textContent = "🔍 주목 종목"
+                desc.textContent = "Improving/Watch + RS-M 100 이상 + RS-Ratio 100 미만 기준"
+                renderSpotlightCandidates()
+            }
+        }
+
+        function renderSpotlightSectors() {
+            if (!allData) return
+            const el = document.getElementById("spotlight-candidates")
+            const sectors = allData.sectors || {}
+
+            const result = Object.entries(sectors)
+                .filter(([, d]) => {
+                    const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+                    if (!cands.length) return false
+                    const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
+                    const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
+                    return getQuadrant(avgR, avgM) === "improving" && (d.rising_ratio || 0) > 0.4
+                })
+                .map(([name, d]) => ({ name, d }))
+                .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
+                .slice(0, 3)
+
+            if (!result.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 테마가 없습니다.</div>'
+                document.getElementById("spotlight-btn").style.display = "none"
+                return
+            }
+
+            el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
+                result.map(({ name, d }) => `
+                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"
+                     onclick="selectSector('${name}'); switchTab('stock')">
+                    <div class="font-semibold text-sm text-gray-800 mb-1">${name} <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>
+                    <div class="text-xs text-gray-500 space-y-0.5">
+                        <div>5D <span class="${d.sector_ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
+                        <div>상승비율 <span class="text-blue-600 font-medium">${d.rising_ratio != null ? Math.round(d.rising_ratio * 100) + '%' : '-'}</span></div>
+                        <div>Improving <span class="text-blue-600 font-medium">${d.improving_count || 0}종목</span>
+                             &nbsp;Watch <span class="text-gray-500 font-medium">${d.watch_count || 0}종목</span></div>
+                    </div>
+                </div>`).join("") + `</div>`
+        }
+
+        function generateSpotlightSectorComment(name, d) {
+            const lines = []
+            const impCount = d.improving_count || 0
+            const watchCount = d.watch_count || 0
+            const ret = d.sector_ret_5d
+
+            if (impCount > 0)
+                lines.push(`${name} 테마에서 ${impCount}개 종목이 모멘텀 전환(Improving) 신호를 보이고 있습니다.`)
+            if (watchCount > 0)
+                lines.push(`추가로 ${watchCount}개 종목이 방향 전환 초기 단계(Watch)에 있습니다.`)
+            if (ret > 1)
+                lines.push(`테마 5일 수익률 +${ret.toFixed(1)}%로 테마 전체 흐름도 긍정적입니다.`)
+            else if (ret < 0)
+                lines.push(`테마 전체 수익률은 아직 ${ret.toFixed(1)}%로 부진하지만 개별 종목 모멘텀이 먼저 살아나는 중입니다.`)
+
+            lines.push(`종목 RRG에서 개별 종목의 세부 신호를 확인하세요.`)
+            return lines.join(" ")
+        }
+
         function getSpotlightCandidates() {
             if (!allData) return []
             const result = []
             const sectors = allData.sectors || {}
 
             Object.entries(sectors).forEach(([sectorName, sectorData]) => {
-                const isStrong = sectorData.rising_ratio > 0.4
+                const isStrong = sectorData.sector_ret_5d > 0 && sectorData.rising_ratio > 0.5
                 if (!isStrong) return
 
                 const cands = sectorData.candidates || []
                 cands.forEach(s => {
                     if (
-                        (s.signal === "improving" || s.signal === "watch") &&
+                        s.signal === "improving" &&
                         s.rs_momentum != null && s.rs_momentum >= 100 &&
-                        s.rs_ratio != null && s.rs_ratio < 100
+                        s.rs_ratio != null && s.rs_ratio < 100 &&
+                        s.vol_ratio != null && s.vol_ratio >= 1.5
                     ) {
                         result.push({
                             ...s,
                             sectorName,
                             sectorRet: sectorData.sector_ret_5d,
-                            score: (s.rs_momentum - 100) * 0.5 +
-                                (100 - s.rs_ratio) * 0.3 +
-                                (sectorData.sector_ret_5d || 0) * 0.2
+                            score: (s.rs_momentum - 100) * 0.4 +
+                                (s.vol_ratio || 0) * 0.3 +
+                                (sectorData.sector_ret_5d || 0) * 0.3
                         })
                     }
                 })
@@ -910,7 +993,7 @@
             const el = document.getElementById("spotlight-candidates")
 
             if (!cands.length) {
-                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다.</div>'
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다. (장중 데이터 축적 필요)</div>'
                 const btn = document.getElementById("spotlight-btn")
                 btn.disabled = true
                 btn.className = "px-3 py-1.5 text-xs bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"
@@ -938,48 +1021,86 @@
         }
 
         function generateSpotlightComment(s) {
-                const lines = []
-
-                if (s.signal === 'improving') {
-                    // Improving — 거래량 확인된 모멘텀 전환
-                    const momStr = s.rs_momentum > 101.5 ? "강한 모멘텀 전환" : "모멘텀 전환 초기"
-                    lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 ${momStr} 신호이며 거래량이 뒷받침되고 있습니다.`)
-
-                    if (s.vol_ratio >= 2.0)
-                        lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 급증 — 강한 매수세 유입 중입니다.`)
-                    else if (s.vol_ratio >= 1.0)
-                        lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준으로 관심이 확대되고 있습니다.`)
-
-                    if (s.rs_ratio < 98)
-                        lines.push(`아직 RS-Ratio ${s.rs_ratio?.toFixed(2)}로 소외 구간이지만 모멘텀이 먼저 살아나는 전형적인 조기 신호입니다.`)
-                    else
-                        lines.push(`RS-Ratio가 100에 근접해 조만간 주도 구간 진입이 기대됩니다.`)
-
-                } else {
-                    // Watch — 방향은 맞지만 거래량 미확인
-                    lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 모멘텀 전환 방향은 맞지만 거래량이 아직 충분하지 않습니다.`)
-
-                    if (s.vol_ratio != null)
-                        lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준 — 거래량 증가 여부를 추가 확인하세요.`)
-
-                    lines.push(`⚠ 신호 강도가 약한 만큼 관망하거나 소량 관심 종목으로만 두는 것을 권장합니다.`)
-                }
-
-                if (s.sectorRet > 1)
-                    lines.push(`${s.sectorName} 테마 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 테마 흐름도 긍정적입니다.`)
-                else if (s.sectorRet < 0)
-                    lines.push(`${s.sectorName} 테마가 약세인 점은 부담 요인입니다.`)
-
-                return lines.join(" ")
+            const lines = []
+            if (s.signal === 'improving') {
+                const momStr = s.rs_momentum > 101.5 ? "강한 모멘텀 전환" : "모멘텀 전환 초기"
+                lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 ${momStr} 신호이며 거래량이 뒷받침되고 있습니다.`)
+                if (s.vol_ratio >= 2.0)
+                    lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 급증 — 강한 매수세 유입 중입니다.`)
+                else if (s.vol_ratio != null)
+                    lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준으로 관심이 확대되고 있습니다.`)
+                if (s.rs_ratio < 98)
+                    lines.push(`아직 RS-Ratio ${s.rs_ratio?.toFixed(2)}로 소외 구간이지만 모멘텀이 먼저 살아나는 전형적인 조기 신호입니다.`)
+                else
+                    lines.push(`RS-Ratio가 100에 근접해 조만간 주도 구간 진입이 기대됩니다.`)
+            } else {
+                lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 모멘텀 전환 방향은 맞지만 거래량이 아직 충분하지 않습니다.`)
+                if (s.vol_ratio != null)
+                    lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준 — 거래량 증가 여부를 추가 확인하세요.`)
+                lines.push(`⚠ 신호 강도가 약한 만큼 관망하거나 소량 관심 종목으로만 두는 것을 권장합니다.`)
             }
+            if (s.sectorRet > 1)
+                lines.push(`${s.sectorName} 테마 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 테마 흐름도 긍정적입니다.`)
+            else if (s.sectorRet < 0)
+                lines.push(`${s.sectorName} 테마가 약세인 점은 부담 요인입니다.`)
+            return lines.join(" ")
+        }
+
+        function generateSpotlightSectorComment(name, d) {
+            const lines = []
+            const impCount = d.improving_count || 0
+            const watchCount = d.watch_count || 0
+            const ret = d.sector_ret_5d
+            if (impCount > 0)
+                lines.push(`${name} 테마에서 ${impCount}개 종목이 모멘텀 전환(Improving) 신호를 보이고 있습니다.`)
+            if (watchCount > 0)
+                lines.push(`추가로 ${watchCount}개 종목이 방향 전환 초기 단계(Watch)에 있습니다.`)
+            if (ret > 1)
+                lines.push(`테마 5일 수익률 +${ret.toFixed(1)}%로 테마 전체 흐름도 긍정적입니다.`)
+            else if (ret < 0)
+                lines.push(`테마 전체 수익률은 아직 ${ret.toFixed(1)}%로 부진하지만 개별 종목 모멘텀이 먼저 살아나는 중입니다.`)
+            lines.push(`종목 RRG에서 개별 종목의 세부 신호를 확인하세요.`)
+            return lines.join(" ")
+        }
 
         function generateSpotlight() {
-            const cands = getSpotlightCandidates()
-            if (!cands.length) return
-
             const resultEl = document.getElementById("spotlight-result")
             const contentEl = document.getElementById("spotlight-content")
             resultEl.classList.remove("hidden")
+
+            if (currentTab === "sector") {
+                const sectors = allData.sectors || {}
+                const result = Object.entries(sectors)
+                    .filter(([, d]) => {
+                        const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+                        if (!cands.length) return false
+                        const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
+                        const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
+                        return getQuadrant(avgR, avgM) === "improving" && (d.rising_ratio || 0) > 0.4
+                    })
+                    .map(([name, d]) => ({ name, d }))
+                    .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
+                    .slice(0, 3)
+
+                contentEl.innerHTML = result.map((item, i) => `
+                    <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
+                            <span class="font-semibold text-gray-800 cursor-pointer hover:text-blue-600"
+                                  onclick="selectSector('${item.name}'); switchTab('stock')">${item.name}</span>
+                            <span class="text-xs text-gray-400">→ 클릭시 종목보기</span>
+                        </div>
+                        <div class="text-sm text-gray-600 leading-relaxed">
+                            ${generateSpotlightSectorComment(item.name, item.d)}
+                        </div>
+                    </div>
+                `).join("") + `<div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">* RRG 신호 기반 자동 분석 — 투자 판단은 본인 책임입니다</div>`
+                return
+            }
+
+            // 종목 분석
+            const cands = getSpotlightCandidates()
+            if (!cands.length) return
 
             contentEl.innerHTML = cands.map((s, i) => `
                 <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
@@ -994,16 +1115,68 @@
                         ${generateSpotlightComment(s)}
                     </div>
                 </div>
-            `).join("") + `
-                <div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">
-                    * RRG 신호 기반 자동 분석 — 투자 판단은 본인 책임입니다
-                </div>`
+            `).join("") + `<div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">* RRG 신호 기반 자동 분석 — 투자 판단은 본인 책임입니다</div>`
         }
 
         function updateSpotlightVisibility() {
             const el = document.getElementById("view-spotlight")
             if (el) el.style.display = "block"
-            renderSpotlightCandidates()
+
+            const title = document.getElementById("spotlight-title")
+            const desc = document.getElementById("spotlight-desc")
+            const resultEl = document.getElementById("spotlight-result")
+            const btn = document.getElementById("spotlight-btn")
+            resultEl.classList.add("hidden")
+            btn.style.display = "block"
+            btn.disabled = false
+            btn.className = "px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+
+            if (currentTab === "sector") {
+                title.textContent = "🔍 주목 테마"
+                desc.textContent = "Improving 사분면 진입 + 상승 종목 비율 40% 이상 기준"
+                renderSpotlightSectors()
+            } else {
+                title.textContent = "🔍 주목 종목"
+                desc.textContent = "Improving/Watch + RS-M 100 이상 + RS-Ratio 100 미만 기준"
+                renderSpotlightCandidates()
+            }
+        }
+
+        function renderSpotlightSectors() {
+            if (!allData) return
+            const el = document.getElementById("spotlight-candidates")
+            const sectors = allData.sectors || {}
+
+            const result = Object.entries(sectors)
+                .filter(([, d]) => {
+                    const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+                    if (!cands.length) return false
+                    const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
+                    const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
+                    return getQuadrant(avgR, avgM) === "improving" && (d.rising_ratio || 0) > 0.4
+                })
+                .map(([name, d]) => ({ name, d }))
+                .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
+                .slice(0, 3)
+
+            if (!result.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 테마가 없습니다.</div>'
+                document.getElementById("spotlight-btn").style.display = "none"
+                return
+            }
+
+            el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
+                result.map(({ name, d }) => `
+                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"
+                     onclick="selectSector('${name}'); switchTab('stock')">
+                    <div class="font-semibold text-sm text-gray-800 mb-1">${name} <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>
+                    <div class="text-xs text-gray-500 space-y-0.5">
+                        <div>5D <span class="${d.sector_ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
+                        <div>상승비율 <span class="text-blue-600 font-medium">${d.rising_ratio != null ? Math.round(d.rising_ratio * 100) + '%' : '-'}</span></div>
+                        <div>Improving <span class="text-blue-600 font-medium">${d.improving_count || 0}종목</span>
+                             &nbsp;Watch <span class="text-gray-500 font-medium">${d.watch_count || 0}종목</span></div>
+                    </div>
+                </div>`).join("") + `</div>`
         }
 
         loadData()
