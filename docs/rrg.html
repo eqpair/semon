@@ -523,6 +523,13 @@
             renderSectorChips()
             if (currentSector) renderStockRRG(currentSector)
             updateSpotlightVisibility()
+                // URL 파라미터로 섹터 자동 선택 (index에서 넘어올 때)
+            const params = new URLSearchParams(location.search)
+            const sector = params.get('sector')
+            if (sector && allData?.sectors?.[sector] && !currentSector) {
+                switchTab('stock')
+                selectSector(sector)
+            }
         }
 
         function quadrantColor(q) {
