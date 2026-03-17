@@ -95,15 +95,26 @@ def _quadrant(ratio: float | None, mom: float | None) -> str:
     return "improving"
 
 
+# 변경 — 오늘 장중 데이터를 closes에서 제외하고 전일 종가 기준으로 계산
 def _get_return(code: str, days: int) -> float | None:
     entry = ohlcv_store.get(code)
     if not entry:
         return None
     closes = entry["closes"]
-    if len(closes) < days:
+
+    # 장중에 오늘 데이터가 closes[-1]에 포함될 수 있으므로
+    # current_price가 있으면 closes[-1]은 오늘 임시값으로 보고 제외
+    if code in current_price and current_price[code] is not None:
+        hist_closes = closes[:-1]  # 오늘 제외 → 순수 과거 종가만
+        now = current_price[code]
+    else:
+        hist_closes = closes
+        now = closes[-1]
+
+    if len(hist_closes) < days:
         return None
-    now  = current_price.get(code) or closes[-1]
-    past = closes[-days]
+
+    past = hist_closes[-days]
     return (now - past) / past if past != 0 else None
 
 
@@ -114,8 +125,8 @@ def _get_vol_ratio(code: str) -> float | None:
     vols = entry["volumes"]
     if len(vols) < 2:
         return None
-    avg = sum(vols[-21:-1]) / len(vols[-21:-1]) if vols[-21:-1] else 0
-    return vols[-1] / avg if avg > 0 else None
+    avg = sum(vols[-22:-2]) / len(vols[-22:-2]) if vols[-22:-2] else 0
+    return vols[-2] / avg if avg > 0 else None
 
 
 def _sector_avg(code_list: list[str], days: int) -> float | None:
@@ -124,15 +135,15 @@ def _sector_avg(code_list: list[str], days: int) -> float | None:
 
 
 def _get_closes_chart(code: str) -> list[float]:
-    """6개월(120거래일)치 종가 반환. 현재가로 마지막 값 교체."""
     entry = ohlcv_store.get(code)
     if not entry:
         return []
-    closes = entry["closes"][-CHART_DAYS:]
-    # 현재가가 있으면 마지막 값을 현재가로 교체
-    if code in current_price and closes:
-        closes = list(closes[:-1]) + [current_price[code]]
-    return [round(v, 0) for v in closes]
+    closes = entry["closes"]
+    # 현재가 있으면 오늘 임시 종가 제외하고 현재가로 교체
+    if code in current_price and current_price[code] is not None:
+        hist = closes[:-1][-CHART_DAYS:]
+        return [round(v, 0) for v in hist] + [round(current_price[code], 0)]
+    return [round(v, 0) for v in closes[-CHART_DAYS:]]
 
 
 def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
@@ -141,7 +152,8 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
 
     min_req = MA_PERIOD + ROC_PERIOD + 5
     valid   = {
-        c: ohlcv_store[c]["closes"]
+        c: ohlcv_store[c]["closes"][:-1] if c in current_price and current_price[c] is not None
+        else ohlcv_store[c]["closes"]
         for c in code_list
         if c in ohlcv_store and len(ohlcv_store[c]["closes"]) >= min_req
     }
