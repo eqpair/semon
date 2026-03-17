@@ -879,7 +879,7 @@
             const sectors = allData.sectors || {}
 
             Object.entries(sectors).forEach(([sectorName, sectorData]) => {
-                const isStrong = sectorData.sector_ret_5d > 0 && sectorData.rising_ratio > 0.5
+                const isStrong = sectorData.rising_ratio > 0.4
                 if (!isStrong) return
 
                 const cands = sectorData.candidates || []
@@ -887,16 +887,15 @@
                     if (
                         s.signal === "improving" &&
                         s.rs_momentum != null && s.rs_momentum >= 100 &&
-                        s.rs_ratio != null && s.rs_ratio < 100 &&
-                        s.vol_ratio != null && s.vol_ratio >= 1.5
+                        s.rs_ratio != null && s.rs_ratio < 100
                     ) {
                         result.push({
                             ...s,
                             sectorName,
                             sectorRet: sectorData.sector_ret_5d,
-                            score: (s.rs_momentum - 100) * 0.4 +
-                                (s.vol_ratio || 0) * 0.3 +
-                                (sectorData.sector_ret_5d || 0) * 0.3
+                            score: (s.rs_momentum - 100) * 0.5 +
+                                (100 - s.rs_ratio) * 0.3 +
+                                (sectorData.sector_ret_5d || 0) * 0.2
                         })
                     }
                 })
