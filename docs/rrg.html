@@ -464,19 +464,12 @@
         <!-- ═══ 주목 섹션 ═══ -->
         <div id="view-spotlight" class="mt-6" style="display:none;">
             <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 id="spotlight-title" class="text-sm font-semibold text-gray-800">🔍 주목 테마</h2>
-                        <p id="spotlight-desc" class="text-xs text-gray-400 mt-0.5">Improving 사분면 진입 + 상승 종목 비율 40% 이상
-                            기준</p>
-                    </div>
-                    <button onclick="generateSpotlight()" id="spotlight-btn"
-                        class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                        분석 보기
-                    </button>
+                <div class="mb-4">
+                    <h2 id="spotlight-title" class="text-sm font-semibold text-gray-800">🔍 주목 테마</h2>
+                    <p id="spotlight-desc" class="text-xs text-gray-400 mt-0.5">Improving 사분면 진입 기준</p>
                 </div>
                 <div id="spotlight-candidates" class="mb-4"></div>
-                <div id="spotlight-result" class="hidden">
+                <div id="spotlight-result">
                     <div class="border-t border-gray-100 pt-4">
                         <div id="spotlight-content" class="text-sm text-gray-700 leading-relaxed"></div>
                     </div>
@@ -527,11 +520,9 @@
             // index.html에서 넘어올 때 URL 파라미터로 섹터 자동 선택
             const params = new URLSearchParams(location.search)
             const sector = params.get('sector')
-            if (sector && allData?.sectors?.[sector]) {
+            if (sector && allData?.sectors?.[sector] && !currentSector) {
                 switchTab('stock')
                 selectSector(sector)
-                // 처리 후 URL에서 파라미터 제거 (새로고침 시 반복 실행 방지)
-                history.replaceState(null, '', location.pathname)
             }
         }
 
@@ -1043,21 +1034,19 @@
 
             const title = document.getElementById("spotlight-title")
             const desc = document.getElementById("spotlight-desc")
-            const resultEl = document.getElementById("spotlight-result")
-            const btn = document.getElementById("spotlight-btn")
-            resultEl.classList.add("hidden")
-            btn.style.display = "block"
-            btn.disabled = false
-            btn.className = "px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
 
             if (currentTab === "sector") {
                 title.textContent = "🔍 주목 테마"
-                desc.textContent = "Improving 사분면 진입 + 상승 종목 비율 40% 이상 기준"
+                desc.textContent = "Improving 사분면 진입 기준"
                 renderSpotlightSectors()
+                generateSpotlight()
             } else {
                 title.textContent = "🔍 주목 종목"
-                desc.textContent = "Improving 우선 선정, 없으면 Watch 종목으로 표시"
+                desc.textContent = currentSector
+                    ? `${currentSector} — Improving 우선, 없으면 Watch`
+                    : "Improving 우선 선정, 없으면 Watch 종목으로 표시"
                 renderSpotlightCandidates()
+                generateSpotlight()
             }
         }
 
@@ -1080,7 +1069,6 @@
 
             if (!result.length) {
                 el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 Improving 사분면에 있는 테마가 없습니다.</div>'
-                document.getElementById("spotlight-btn").style.display = "none"
                 return
             }
 
@@ -1123,7 +1111,13 @@
             const watch = []
             const sectors = allData.sectors || {}
 
-            Object.entries(sectors).forEach(([sectorName, sectorData]) => {
+            // 종목 RRG 탭이고 섹터가 선택된 경우 해당 섹터만, 아니면 전체
+            const targetSectors = (currentTab === "stock" && currentSector)
+                ? { [currentSector]: sectors[currentSector] }
+                : sectors
+
+            Object.entries(targetSectors).forEach(([sectorName, sectorData]) => {
+                if (!sectorData) return
                 const cands = sectorData.candidates || []
                 cands.forEach(s => {
                     if (s.rs_momentum == null || s.rs_ratio == null) return
@@ -1144,7 +1138,6 @@
             improving.sort((a, b) => b.score - a.score)
             watch.sort((a, b) => b.score - a.score)
 
-            // Improving 종목 우선, 없으면 Watch로 fallback
             return improving.length > 0 ? improving.slice(0, 3) : watch.slice(0, 3)
         }
 
@@ -1154,9 +1147,6 @@
 
             if (!cands.length) {
                 el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다.</div>'
-                const btn = document.getElementById("spotlight-btn")
-                btn.disabled = true
-                btn.className = "px-3 py-1.5 text-xs bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"
                 return
             }
 
@@ -1234,7 +1224,7 @@
         function generateSpotlight() {
             const resultEl = document.getElementById("spotlight-result")
             const contentEl = document.getElementById("spotlight-content")
-            resultEl.classList.remove("hidden")
+
 
             if (currentTab === "sector") {
                 const sectors = allData.sectors || {}
@@ -1244,7 +1234,7 @@
                         if (!cands.length) return false
                         const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
                         const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                        return getQuadrant(avgR, avgM) === "improving" && (d.rising_ratio || 0) > 0.4
+                        return getQuadrant(avgR, avgM) === "improving"
                     })
                     .map(([name, d]) => ({ name, d }))
                     .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
@@ -1329,7 +1319,6 @@
 
             if (!result.length) {
                 el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 Improving 사분면에 있는 테마가 없습니다.</div>'
-                document.getElementById("spotlight-btn").style.display = "none"
                 return
             }
 
