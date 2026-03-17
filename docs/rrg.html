@@ -59,10 +59,12 @@
             background: var(--improving);
             box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
         }
+
         .dot.watch {
             background: #9ca3af;
             box-shadow: 0 0 5px rgba(156, 163, 175, 0.4);
         }
+
         .dot.lagging {
             background: var(--lagging);
             box-shadow: 0 0 5px rgba(217, 119, 6, 0.4);
@@ -139,30 +141,6 @@
             color: #1d4ed8;
         }
 
-        .q-btn.active-improving {
-            background: #eff6ff;
-            border-color: #93c5fd;
-            color: #1d4ed8;
-        }
-
-        .q-btn.active-lagging {
-            background: #fffbeb;
-            border-color: #fcd34d;
-            color: #92400e;
-        }
-
-        .q-btn.active-leading {
-            background: #f0fdf4;
-            border-color: #86efac;
-            color: #14532d;
-        }
-
-        .q-btn.active-weakening {
-            background: #fef2f2;
-            border-color: #fca5a5;
-            color: #7f1d1d;
-        }
-
         .sector-chip {
             display: inline-flex;
             align-items: center;
@@ -213,9 +191,11 @@
         .stock-row.improving {
             border-left: 3px solid var(--improving);
         }
+
         .stock-row.watch {
             border-left: 3px solid #9ca3af;
         }
+
         .stock-row.lagging {
             border-left: 3px solid var(--lagging);
         }
@@ -291,7 +271,8 @@
         <header class="mb-6 flex items-center justify-between">
             <div>
                 <div class="flex items-center gap-3">
-                    <a href="./index.html" class="text-gray-400 hover:text-gray-600 text-sm transition-colors">◀ Momentum Board</a>
+                    <a href="./index.html" class="text-gray-400 hover:text-gray-600 text-sm transition-colors">◀
+                        Momentum Board</a>
                     <span class="text-gray-300">/</span>
                     <h1 class="text-xl font-semibold text-gray-800">RRG Chart</h1>
                 </div>
@@ -318,7 +299,10 @@
                     class="text-green-600 font-medium">Leading</span><span class="text-gray-400">상승 주도</span></span>
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
                     style="background:var(--weakening)"></span><span
-                    class="text-red-500 font-medium">Weakening</span><span class="text-gray-400">모멘텀 약화<span></span>
+                    class="text-red-500 font-medium">Weakening</span><span class="text-gray-400">모멘텀 약화</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:#9ca3af"></span><span class="text-gray-500 font-medium">Watch</span><span
+                    class="text-gray-400">거래량 미확인</span></span>
         </div>
 
         <!-- 탭 -->
@@ -336,7 +320,6 @@
         <!-- ═══ 테마 RRG ═══ -->
         <div id="view-sector">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-
                 <div class="lg:col-span-2">
                     <div class="flex gap-2 mb-3 flex-wrap">
                         <button class="q-btn active" onclick="filterSector('all')">ALL</button>
@@ -367,17 +350,16 @@
                         <div style="position:absolute;bottom:4px;left:8px;font-size:9px;color:#9ca3af;">소외</div>
                         <div style="position:absolute;bottom:4px;right:8px;font-size:9px;color:#9ca3af;">강세</div>
                         <div
-                            style="position:absolute;left:4px;top:12px;font-size:9px;color:#9ca3af;writing-mode:vertical-lr;transform:rotate(0deg);">
+                            style="position:absolute;left:4px;top:12px;font-size:9px;color:#9ca3af;writing-mode:vertical-lr;">
                             회복</div>
                         <div
-                            style="position:absolute;left:4px;bottom:24px;font-size:9px;color:#9ca3af;writing-mode:vertical-lr;transform:rotate(0deg);">
+                            style="position:absolute;left:4px;bottom:24px;font-size:9px;color:#9ca3af;writing-mode:vertical-lr;">
                             악화</div>
                         <svg class="tail-svg" id="sector-tail-svg"></svg>
                         <div id="sector-dots"></div>
                         <div id="sector-loading"
                             style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
-                            데이터 로딩 중...
-                        </div>
+                            데이터 로딩 중...</div>
                     </div>
                     <div class="text-xs text-gray-400 mt-2">* 점 클릭 시 해당 테마 종목 RRG로 이동 &nbsp;|&nbsp; 궤적은 최근 8주 이동 경로
                     </div>
@@ -395,14 +377,12 @@
 
         <!-- ═══ 종목 RRG ═══ -->
         <div id="view-stock" style="display:none;">
-
             <div class="mb-4">
                 <div class="text-xs text-gray-400 mb-2 font-medium">테마 선택</div>
                 <div id="sector-chips" class="flex flex-wrap gap-2"></div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-
                 <div class="lg:col-span-2">
                     <div class="text-sm font-medium text-gray-700 mb-3" id="stock-sector-label">테마를 선택하세요</div>
                     <div class="rrg-canvas" id="stock-rrg" style="height:480px;">
@@ -431,10 +411,10 @@
                         <div id="stock-dots"></div>
                         <div id="stock-loading"
                             style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
-                            테마를 선택하세요
-                        </div>
+                            테마를 선택하세요</div>
                     </div>
-                    <div class="text-xs text-gray-400 mt-2">* 궤적은 최근 8주 이동 경로 &nbsp;|&nbsp; 점 클릭/마우스 오버 > 상세 정보</div>
+                    <div class="text-xs text-gray-400 mt-2">* 궤적은 최근 8주 이동 경로 &nbsp;|&nbsp; 마우스 오버 시 궤적 표시 (시작 ○ → 현재 ●)
+                    </div>
                 </div>
 
                 <!-- 종목 테이블 -->
@@ -442,6 +422,28 @@
                     <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">종목 상세</div>
                     <div id="stock-table" class="overflow-y-auto" style="max-height:460px;">
                         <div class="text-gray-400 text-sm">테마를 선택하세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ 주목 종목 ═══ -->
+        <div id="view-spotlight" class="mt-6" style="display:none;">
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-sm font-semibold text-gray-800">🔍 오늘의 주목 종목</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">Improving + 테마 강세 + RS-M 100 돌파 + VOL ≥ 1.5 기준</p>
+                    </div>
+                    <button onclick="generateSpotlight()" id="spotlight-btn"
+                        class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                        분석 보기
+                    </button>
+                </div>
+                <div id="spotlight-candidates" class="mb-4"></div>
+                <div id="spotlight-result" class="hidden">
+                    <div class="border-t border-gray-100 pt-4">
+                        <div id="spotlight-content" class="text-sm text-gray-700 leading-relaxed"></div>
                     </div>
                 </div>
             </div>
@@ -485,10 +487,11 @@
             renderSectorList()
             renderSectorChips()
             if (currentSector) renderStockRRG(currentSector)
+            updateSpotlightVisibility()
         }
 
         function quadrantColor(q) {
-            return { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", neutral: "#9ca3af" }[q] || "#9ca3af"
+            return { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", watch: "#9ca3af", neutral: "#9ca3af" }[q] || "#9ca3af"
         }
         function quadrantLabel(q) {
             return { improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-" }[q] || "-"
@@ -603,8 +606,11 @@
 
         function moveTooltip(e) {
             const tip = document.getElementById("tooltip")
-            tip.style.left = Math.min(e.clientX + 12, window.innerWidth - 180) + "px"
-            tip.style.top = Math.min(e.clientY - 10, window.innerHeight - 180) + "px"
+            const x = e.clientX > window.innerWidth / 2
+                ? e.clientX - tip.offsetWidth - 16
+                : e.clientX + 16
+            tip.style.left = x + "px"
+            tip.style.top = Math.min(e.clientY - 10, window.innerHeight - 200) + "px"
         }
         function hideTooltip() { document.getElementById("tooltip").style.display = "none" }
         document.addEventListener("mousemove", e => {
@@ -613,20 +619,20 @@
 
         // ── 섹터 목록 ────────────────────────────────────────────────
         function renderSectorList() {
-                if (!allData) return
-                const list = document.getElementById("sector-list")
-                const sectors = allData.sectors || {}
-                const items = Object.entries(sectors).map(([name, d]) => {
-                    const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                    const avgR = cands.length ? cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length : 100
-                    const avgM = cands.length ? cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length : 100
-                    const quad = getQuadrant(avgR, avgM)
-                    return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }  // watch 추가
-                })
-                const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
-                items.sort((a, b) => order[a.quad] - order[b.quad])
+            if (!allData) return
+            const list = document.getElementById("sector-list")
+            const sectors = allData.sectors || {}
+            const items = Object.entries(sectors).map(([name, d]) => {
+                const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+                const avgR = cands.length ? cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length : 100
+                const avgM = cands.length ? cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length : 100
+                const quad = getQuadrant(avgR, avgM)
+                return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }
+            })
+            const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
+            items.sort((a, b) => order[a.quad] - order[b.quad])
 
-                list.innerHTML = items.map(item => `
+            list.innerHTML = items.map(item => `
                 <div class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
                     onclick="selectSector('${item.name}'); switchTab('stock')">
                 <div class="flex items-center gap-2">
@@ -635,16 +641,16 @@
                 </div>
                 <div class="flex items-center gap-2">
                     ${item.imp > 0
-                                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>`
-                                        : item.watch > 0
-                                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${item.watch}</span>`
-                                            : ''}
+                    ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>`
+                    : item.watch > 0
+                        ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${item.watch}</span>`
+                        : ''}
                     <span class="text-xs ${item.ret > 0 ? 'text-green-600' : item.ret < 0 ? 'text-red-500' : 'text-gray-400'}">
                     ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
                     </span>
                 </div>
                 </div>`).join("")
-            }
+        }
 
         // ── 섹터 칩 ─────────────────────────────────────────────────
         function renderSectorChips() {
@@ -661,10 +667,10 @@
       <span class="dot-sm" style="background:${quadrantColor(quad)};"></span>
       <span>${name}</span>
       ${d.improving_count > 0
-            ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>`
-            : d.watch_count > 0
-                ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${d.watch_count}</span>`
-                : ""}
+                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>`
+                        : d.watch_count > 0
+                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${d.watch_count}</span>`
+                            : ""}
     </div>`
             }).join("")
         }
@@ -713,18 +719,20 @@
                 const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
                 return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
             }
-            // 궤적
+
+            // 궤적 — 구간별 opacity로 방향 표현 + 주별 점
             cands.forEach(s => {
                 const tail = s.tail || []
                 if (tail.length < 2) return
                 const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
 
-                // 구간별로 나눠서 시작은 흐리게 → 끝으로 갈수록 진하게
                 tail.forEach((t, i) => {
                     if (i === 0) return
                     const p1 = toPos(tail[i - 1].rs_ratio, tail[i - 1].rs_momentum)
                     const p2 = toPos(t.rs_ratio, t.rs_momentum)
                     const opacity = 0.08 + (i / tail.length) * 0.7
+
+                    // 선
                     const seg = document.createElementNS("http://www.w3.org/2000/svg", "line")
                     seg.setAttribute("x1", p1.x.toFixed(1))
                     seg.setAttribute("y1", p1.y.toFixed(1))
@@ -736,8 +744,8 @@
                     seg.setAttribute("display", "none")
                     seg.setAttribute("data-code", s.code)
                     svg.appendChild(seg)
-                
-                    // 중간 포인트 — 작은 점
+
+                    // 주별 점
                     const midCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
                     midCircle.setAttribute("cx", p2.x.toFixed(1))
                     midCircle.setAttribute("cy", p2.y.toFixed(1))
@@ -749,7 +757,7 @@
                     svg.appendChild(midCircle)
                 })
 
-                // 시작점 — 작은 빈 원
+                // 시작점 — 빈 원
                 const firstPos = toPos(tail[0].rs_ratio, tail[0].rs_momentum)
                 const startCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
                 startCircle.setAttribute("cx", firstPos.x.toFixed(1))
@@ -763,7 +771,7 @@
                 startCircle.setAttribute("data-code", s.code)
                 svg.appendChild(startCircle)
 
-                // 끝점 — 채워진 원으로 현재 위치 강조
+                // 끝점 — 채워진 원
                 const endPos = toPos(tail[tail.length - 1].rs_ratio, tail[tail.length - 1].rs_momentum)
                 const endCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
                 endCircle.setAttribute("cx", endPos.x.toFixed(1))
@@ -779,7 +787,7 @@
             // 도트
             cands.forEach(s => {
                 const pos = toPos(s.rs_ratio, s.rs_momentum)
-                const size = s.quadrant === "improving" ? 10 : 8
+                const size = s.signal === 'improving' ? 10 : 8
 
                 const dot = document.createElement("div")
                 dot.className = `dot ${s.signal === 'watch' ? 'watch' : s.quadrant}`
@@ -787,12 +795,12 @@
                 dot.addEventListener("mouseenter", e => {
                     showStockTooltip(e, s)
                     svg.querySelectorAll(`[data-code="${s.code}"]`)
-                       .forEach(p => p.setAttribute("display", "block"))
+                        .forEach(p => p.setAttribute("display", "block"))
                 })
                 dot.addEventListener("mouseleave", () => {
                     hideTooltip()
                     svg.querySelectorAll("line, circle")
-                       .forEach(p => p.setAttribute("display", "none"))
+                        .forEach(p => p.setAttribute("display", "none"))
                 })
                 container.appendChild(dot)
 
@@ -814,8 +822,8 @@
                 return
             }
             const sorted = [...data.candidates].sort((a, b) => {
-                const o = { improving: 0, lagging: 1, weakening: 2, leading: 3, neutral: 4 }
-                return (o[a.quadrant] || 4) - (o[b.quadrant] || 4)
+                const o = { improving: 0, watch: 1, lagging: 2, weakening: 3, leading: 4, neutral: 5 }
+                return (o[a.signal] ?? o[a.quadrant] ?? 5) - (o[b.signal] ?? o[b.quadrant] ?? 5)
             })
             tableEl.innerHTML = `
     <table style="width:100%;border-collapse:collapse;font-size:11px;">
@@ -862,6 +870,128 @@
             document.querySelectorAll(".q-btn").forEach(b => b.classList.remove("active"))
             event.target.classList.add("active")
             renderSectorRRG()
+        }
+
+        // ── 주목 종목 ────────────────────────────────────────────────
+        function getSpotlightCandidates() {
+            if (!allData) return []
+            const result = []
+            const sectors = allData.sectors || {}
+
+            Object.entries(sectors).forEach(([sectorName, sectorData]) => {
+                const isStrong = sectorData.sector_ret_5d > 0 && sectorData.rising_ratio > 0.5
+                if (!isStrong) return
+
+                const cands = sectorData.candidates || []
+                cands.forEach(s => {
+                    if (
+                        s.signal === "improving" &&
+                        s.rs_momentum != null && s.rs_momentum >= 100 &&
+                        s.rs_ratio != null && s.rs_ratio < 100 &&
+                        s.vol_ratio != null && s.vol_ratio >= 1.5
+                    ) {
+                        result.push({
+                            ...s,
+                            sectorName,
+                            sectorRet: sectorData.sector_ret_5d,
+                            score: (s.rs_momentum - 100) * 0.4 +
+                                (s.vol_ratio || 0) * 0.3 +
+                                (sectorData.sector_ret_5d || 0) * 0.3
+                        })
+                    }
+                })
+            })
+
+            result.sort((a, b) => b.score - a.score)
+            return result.slice(0, 3)
+        }
+
+        function renderSpotlightCandidates() {
+            const cands = getSpotlightCandidates()
+            const el = document.getElementById("spotlight-candidates")
+
+            if (!cands.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다. (장중 데이터 축적 필요)</div>'
+                const btn = document.getElementById("spotlight-btn")
+                btn.disabled = true
+                btn.className = "px-3 py-1.5 text-xs bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"
+                return
+            }
+
+            el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
+                cands.map(s => `
+                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100">
+                    <div class="flex items-center justify-between mb-1">
+                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                           target="_blank"
+                           class="font-semibold text-sm text-gray-800 hover:text-blue-600">${s.name}</a>
+                        <span class="text-xs text-blue-600 font-medium">${s.sectorName}</span>
+                    </div>
+                    <div class="text-xs text-gray-500 space-y-0.5">
+                        <div>현재가 <span class="text-gray-800 font-medium">${s.price ? s.price.toLocaleString() : '-'}원</span></div>
+                        <div>RS-Ratio <span class="text-red-500 font-medium">${s.rs_ratio?.toFixed(2) ?? '-'}</span>
+                             &nbsp;RS-M <span class="text-blue-600 font-medium">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
+                        <div>5D <span class="${s.ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span>
+                             &nbsp;VOL <span class="text-purple-600 font-medium">${s.vol_ratio?.toFixed(2) ?? '-'}x</span></div>
+                        <div>테마 5D <span class="${s.sectorRet > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.sectorRet != null ? (s.sectorRet > 0 ? '+' : '') + s.sectorRet.toFixed(2) + '%' : '-'}</span></div>
+                    </div>
+                </div>`).join("") + `</div>`
+        }
+
+        function generateSpotlightComment(s) {
+            const lines = []
+            const momStr = s.rs_momentum > 101.5 ? "강한 모멘텀 전환" : "모멘텀 전환 초기"
+            lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 ${momStr} 신호입니다.`)
+
+            if (s.vol_ratio >= 2.0)
+                lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 급증 — 강한 매수세가 유입되고 있습니다.`)
+            else if (s.vol_ratio >= 1.5)
+                lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 증가 — 시장 관심이 확대되는 중입니다.`)
+
+            if (s.sectorRet > 1)
+                lines.push(`${s.sectorName} 테마 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 강세 — 테마 수혜가 기대됩니다.`)
+            else
+                lines.push(`${s.sectorName} 테마와 함께 회복 흐름을 보이고 있습니다.`)
+
+            if (s.rs_ratio < 98)
+                lines.push(`⚠ RS-Ratio ${s.rs_ratio?.toFixed(2)}로 아직 소외 구간 — 추세 전환 확인 후 진입을 권장합니다.`)
+            else
+                lines.push(`RS-Ratio가 100에 근접 — 조만간 주도 구간 진입이 가능합니다.`)
+
+            return lines.join(" ")
+        }
+
+        function generateSpotlight() {
+            const cands = getSpotlightCandidates()
+            if (!cands.length) return
+
+            const resultEl = document.getElementById("spotlight-result")
+            const contentEl = document.getElementById("spotlight-content")
+            resultEl.classList.remove("hidden")
+
+            contentEl.innerHTML = cands.map((s, i) => `
+                <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
+                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                           target="_blank"
+                           class="font-semibold text-gray-800 hover:text-blue-600">${s.name}</a>
+                        <span class="text-xs text-blue-500">${s.sectorName}</span>
+                    </div>
+                    <div class="text-sm text-gray-600 leading-relaxed">
+                        ${generateSpotlightComment(s)}
+                    </div>
+                </div>
+            `).join("") + `
+                <div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">
+                    * RRG 신호 기반 자동 분석 — 투자 판단은 본인 책임입니다
+                </div>`
+        }
+
+        function updateSpotlightVisibility() {
+            const el = document.getElementById("view-spotlight")
+            if (el) el.style.display = "block"
+            renderSpotlightCandidates()
         }
 
         loadData()
