@@ -7,6 +7,23 @@
   <title>Momentum Board</title>
   <link rel="icon" href="./favicon.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+  <style>
+    #sector-tooltip {
+      position: fixed;
+      z-index: 100;
+      background: #1e293b;
+      color: #f1f5f9;
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      max-width: 200px;
+      pointer-events: none;
+      display: none;
+      line-height: 1.5;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      white-space: normal;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100 min-h-screen">
@@ -139,9 +156,11 @@
           const ret = data.sector_ret_5d
           const impCount = data.improving_count || 0
           const lagCount = data.lagging_count || 0
+          const watchCount = data.watch_count || 0
           const badge = impCount > 0
-            ? `<span class="text-blue-600 font-medium">${impCount} ★</span>`
-            : lagCount > 0 ? `<span class="text-gray-500">${lagCount} 소외</span>` : "<span>-</span>"
+            ? `<span class="text-blue-600 font-medium">${impCount} Improving ★</span>`
+            : watchCount > 0 ? `<span class="text-gray-400 font-medium">${watchCount} Watch</span>`
+              : lagCount > 0 ? `<span class="text-orange-500 font-medium">${lagCount} Lagging</span>` : "<span>-</span>"
 
           card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
           card.dataset.sector = name
@@ -151,7 +170,7 @@
               ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
             </div>
             <div class="text-xs text-gray-500 flex justify-between">
-              <span>${data.rising_ratio ? Math.round(data.rising_ratio * 100) + "% 상승" : "-"}</span>
+              <span>${data.candidates?.length ?? "-"}종목</span>
               ${badge}
             </div>`
           card.onclick = () => selectSector(name, cardRow)
@@ -396,6 +415,81 @@
 
     loadData()
     setInterval(loadData, REFRESH_MS)
+  </script>
+
+  <div id="sector-tooltip"></div>
+  <script>
+    const SECTOR_DESC = {
+      "반도체_제조": "메모리 가격·HBM(High Bandwidth Memory) 수요",
+      "반도체_장비": "반도체 설비투자(CAPEX) 사이클",
+      "반도체_소재부품": "소재 가격·수율·반도체 업황",
+      "2차전지_셀": "전기차 수요·배터리 가격",
+      "2차전지_소재부품": "리튬·니켈 등 원자재 가격",
+      "전력기기": "AI 데이터센터·전력망 투자",
+      "신재생에너지": "신재생 정책·REC(Renewable Energy Certificate) 가격",
+      "조선": "선박 발주·LNG선 수요",
+      "방산": "국방예산·지정학 리스크",
+      "로봇": "로봇 도입 정책·자동화 수요",
+      "자동차_완성차": "글로벌 판매량·환율(달러·원)",
+      "자동차_부품": "완성차 생산량·부품 단가",
+      "타이어": "천연고무 가격·완성차 수요",
+      "IT부품": "스마트폰·가전 수요·부품 단가",
+      "빅플랫폼": "플랫폼 광고·커머스 실적",
+      "B2B_IT서비스": "기업 IT투자·디지털전환 수요",
+      "바이오_제약": "글로벌 제약사 위탁생산 수주",
+      "바이오_기술이전": "기술이전·라이선스 딜 뉴스",
+      "바이오_임상": "임상 결과·금리(성장주 할인율)",
+      "대형제약": "약가·건보 정책·실적",
+      "중소제약": "내수 약가·제네릭 정책",
+      "미용·에스테틱": "중국 소비심리·미용 시술 수요",
+      "은행": "금리·NIM(Net Interest Margin)·가계대출",
+      "증권": "증시 거래대금·IB 수수료",
+      "보험": "손해율·금리(자산운용)",
+      "비철금속": "LME 금속가격(아연·구리)",
+      "정유": "유가·정제마진",
+      "석유화학": "납사·에틸렌 스프레드",
+      "도시가스": "LNG 가격·도시가스 요금",
+      "전력": "전기요금·정부 에너지 정책",
+      "건설": "부동산 경기·수주잔고·금리",
+      "시멘트": "건설 착공량·시멘트 단가",
+      "건자재": "인테리어·리모델링 수요",
+      "해운": "컨테이너 운임(BDI·SCFI)",
+      "항공": "항공 여객수요·유가·환율",
+      "물류·육운": "택배 단가·내수 물동량",
+      "통신": "ARPU(Average Revenue/User)·설비투자·배당",
+      "엔터·음악": "아이돌 앨범·공연·일본 수출",
+      "게임": "신작 출시·게임 트래픽·MAU",
+      "미디어·콘텐츠": "OTT·드라마 제작·광고 시장",
+      "화장품_브랜드": "중국 관광객·K뷰티 수출",
+      "화장품_ODM": "ODM 수주·글로벌 브랜드 생산",
+      "K푸드_수출": "K푸드 수출·환율(달러)",
+      "중국내수식품": "중국 내수 소비·현지법인 실적",
+      "내수식품": "내수 소비경기·원자재(곡물) 가격",
+      "유통": "내수 소비경기·오프라인 유통",
+      "패션·의류": "글로벌 OEM 수주·달러 매출",
+      "레저·여행": "내국인 소비·중국 관광객 회복",
+      "생활용품": "내수 소비·주거 교체 수요",
+    }
+
+    const _tip = document.getElementById('sector-tooltip')
+
+    document.addEventListener('mouseover', e => {
+      const card = e.target.closest('[data-sector]')
+      if (!card) return
+      const desc = SECTOR_DESC[card.dataset.sector]
+      if (!desc) return
+      _tip.textContent = desc
+      _tip.style.display = 'block'
+    })
+
+    document.addEventListener('mousemove', e => {
+      _tip.style.left = (e.clientX + 14) + 'px'
+      _tip.style.top = (e.clientY + 14) + 'px'
+    })
+
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest('[data-sector]')) _tip.style.display = 'none'
+    })
   </script>
 </body>
 
