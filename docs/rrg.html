@@ -433,7 +433,7 @@
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <h2 class="text-sm font-semibold text-gray-800">🔍 오늘의 주목 종목</h2>
-                        <p class="text-xs text-gray-400 mt-0.5">Improving + 테마 강세 + RS-M 100 돌파 + VOL ≥ 1.5 기준</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Improving/Watch + RS-M 100 이상 + RS-Ratio 100 미만 기준</p>
                     </div>
                     <button onclick="generateSpotlight()" id="spotlight-btn"
                         class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
@@ -885,7 +885,7 @@
                 const cands = sectorData.candidates || []
                 cands.forEach(s => {
                     if (
-                        s.signal === "improving" &&
+                        (s.signal === "improving" || s.signal === "watch") &&
                         s.rs_momentum != null && s.rs_momentum >= 100 &&
                         s.rs_ratio != null && s.rs_ratio < 100
                     ) {
@@ -910,7 +910,7 @@
             const el = document.getElementById("spotlight-candidates")
 
             if (!cands.length) {
-                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다. (장중 데이터 축적 필요)</div>'
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다.</div>'
                 const btn = document.getElementById("spotlight-btn")
                 btn.disabled = true
                 btn.className = "px-3 py-1.5 text-xs bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"
@@ -938,27 +938,40 @@
         }
 
         function generateSpotlightComment(s) {
-            const lines = []
-            const momStr = s.rs_momentum > 101.5 ? "강한 모멘텀 전환" : "모멘텀 전환 초기"
-            lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 ${momStr} 신호입니다.`)
+                const lines = []
 
-            if (s.vol_ratio >= 2.0)
-                lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 급증 — 강한 매수세가 유입되고 있습니다.`)
-            else if (s.vol_ratio >= 1.5)
-                lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 증가 — 시장 관심이 확대되는 중입니다.`)
+                if (s.signal === 'improving') {
+                    // Improving — 거래량 확인된 모멘텀 전환
+                    const momStr = s.rs_momentum > 101.5 ? "강한 모멘텀 전환" : "모멘텀 전환 초기"
+                    lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 ${momStr} 신호이며 거래량이 뒷받침되고 있습니다.`)
 
-            if (s.sectorRet > 1)
-                lines.push(`${s.sectorName} 테마 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 강세 — 테마 수혜가 기대됩니다.`)
-            else
-                lines.push(`${s.sectorName} 테마와 함께 회복 흐름을 보이고 있습니다.`)
+                    if (s.vol_ratio >= 2.0)
+                        lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 급증 — 강한 매수세 유입 중입니다.`)
+                    else if (s.vol_ratio >= 1.0)
+                        lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준으로 관심이 확대되고 있습니다.`)
 
-            if (s.rs_ratio < 98)
-                lines.push(`⚠ RS-Ratio ${s.rs_ratio?.toFixed(2)}로 아직 소외 구간 — 추세 전환 확인 후 진입을 권장합니다.`)
-            else
-                lines.push(`RS-Ratio가 100에 근접 — 조만간 주도 구간 진입이 가능합니다.`)
+                    if (s.rs_ratio < 98)
+                        lines.push(`아직 RS-Ratio ${s.rs_ratio?.toFixed(2)}로 소외 구간이지만 모멘텀이 먼저 살아나는 전형적인 조기 신호입니다.`)
+                    else
+                        lines.push(`RS-Ratio가 100에 근접해 조만간 주도 구간 진입이 기대됩니다.`)
 
-            return lines.join(" ")
-        }
+                } else {
+                    // Watch — 방향은 맞지만 거래량 미확인
+                    lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 모멘텀 전환 방향은 맞지만 거래량이 아직 충분하지 않습니다.`)
+
+                    if (s.vol_ratio != null)
+                        lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준 — 거래량 증가 여부를 추가 확인하세요.`)
+
+                    lines.push(`⚠ 신호 강도가 약한 만큼 관망하거나 소량 관심 종목으로만 두는 것을 권장합니다.`)
+                }
+
+                if (s.sectorRet > 1)
+                    lines.push(`${s.sectorName} 테마 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 테마 흐름도 긍정적입니다.`)
+                else if (s.sectorRet < 0)
+                    lines.push(`${s.sectorName} 테마가 약세인 점은 부담 요인입니다.`)
+
+                return lines.join(" ")
+            }
 
         function generateSpotlight() {
             const cands = getSpotlightCandidates()
