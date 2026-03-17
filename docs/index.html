@@ -239,9 +239,9 @@
       panel.style.display = "block"
       document.getElementById(`panel-label-${rowStart}`).innerHTML =
         `<a href="./rrg.html?sector=${encodeURIComponent(name)}"
-     class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
-     ▸ ${name} 섹터 <span class="text-xs font-normal opacity-60">↗ RRG</span>
-   </a>`
+           class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
+           ▸ ${name} 섹터 <span class="text-xs font-normal opacity-60">→ RRG</span>
+         </a>`
 
       const data = allData.sectors?.[name]
       if (data?.candidates) {
