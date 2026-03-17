@@ -25,9 +25,10 @@ EMA_LONG   = 65
 TAIL_DAYS  = 16   # 8주 궤적 (주 2포인트 기준)
 CHART_DAYS = 120  # 주가 차트용 6개월
 
-ohlcv_store:   dict[str, dict]       = {}
-current_price: dict[str, float]      = {}
-rrg_history:   dict[str, list[dict]] = {}
+ohlcv_store:        dict[str, dict]       = {}
+current_price:      dict[str, float]      = {}
+rrg_history:        dict[str, list[dict]] = {}
+sector_rrg_history: dict[str, list[dict]] = {}  # 섹터 궤적
 
 
 def update_ohlcv(data: dict[str, dict | None]):
@@ -292,13 +293,94 @@ def _rrg_signal(quadrant: str, vol: float | None) -> str:
 
 def calc_all_signals() -> dict:
     from datetime import datetime
+
+    # ── 섹터 RRG 계산 ──────────────────────────────────────────
+    # 1. 각 섹터의 평균 종가 시계열 계산
+    min_req = EMA_LONG + EMA_SHORT + 5
+
+    sector_closes: dict[str, list[float]] = {}
+    for sector, codes in SECTORS.items():
+        code_list = [c for c, _ in codes]
+        valid_closes = []
+        for c in code_list:
+            if c not in ohlcv_store:
+                continue
+            closes = ohlcv_store[c]["closes"]
+            if c in current_price and current_price[c] is not None:
+                closes = closes[:-1]
+            if len(closes) >= min_req:
+                valid_closes.append(closes)
+        if len(valid_closes) < 2:
+            continue
+        min_len = min(len(v) for v in valid_closes)
+        # 섹터 평균 종가 시계열
+        sector_closes[sector] = [
+            sum(v[-min_len:][i] for v in valid_closes) / len(valid_closes)
+            for i in range(min_len)
+        ]
+
+    # 2. 전체 벤치마크 = 모든 섹터 평균의 평균
+    if sector_closes:
+        min_len_all = min(len(v) for v in sector_closes.values())
+        global_benchmark = [
+            sum(sector_closes[s][-min_len_all:][i] for s in sector_closes) / len(sector_closes)
+            for i in range(min_len_all)
+        ]
+
+        # 3. 섹터별 RS_Ratio / RS_Momentum 계산
+        for sector, sc in sector_closes.items():
+            aligned = sc[-min_len_all:]
+            rs_ratio    = _calc_rs_ratio(aligned, global_benchmark)
+            rs_momentum = _calc_rs_momentum(rs_ratio)
+
+            curr_ratio = rs_ratio[-1]
+            curr_mom   = rs_momentum[-1]
+
+            # 궤적 초기화
+            if sector not in sector_rrg_history or len(sector_rrg_history[sector]) == 0:
+                tail = []
+                for offset in range(TAIL_DAYS * 5, 0, -5):
+                    if offset >= min_len_all - EMA_LONG:
+                        continue
+                    h = aligned[:-offset]
+                    h_bm = global_benchmark[-min_len_all:][:-offset]
+                    h_ratio = _calc_rs_ratio(h, h_bm)
+                    h_mom   = _calc_rs_momentum(h_ratio)
+                    t_r = h_ratio[-1]
+                    t_m = h_mom[-1]
+                    if t_r != 0.0 and t_m != 0.0:
+                        tail.append({"rs_ratio": round(t_r, 3), "rs_momentum": round(t_m, 3)})
+                sector_rrg_history[sector] = tail
+
+            if curr_ratio != 0.0 and curr_mom != 0.0:
+                sector_rrg_history[sector].append({
+                    "rs_ratio":    round(curr_ratio, 3),
+                    "rs_momentum": round(curr_mom,   3),
+                })
+                sector_rrg_history[sector] = sector_rrg_history[sector][-TAIL_DAYS:]
+
+    # ── 종목 신호 계산 ──────────────────────────────────────────
     result = {
         "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "rrg_params": {"ema_short": EMA_SHORT, "ema_long": EMA_LONG},
         "sectors":    {}
     }
     for sector, codes in SECTORS.items():
-        result["sectors"][sector] = calc_sector_signals(sector, codes)
+        sector_data = calc_sector_signals(sector, codes)
+        # 섹터 RRG 데이터 주입
+        if sector in sector_rrg_history and sector_rrg_history[sector]:
+            last = sector_rrg_history[sector][-1]
+            sector_data["rs_ratio"]    = last["rs_ratio"]
+            sector_data["rs_momentum"] = last["rs_momentum"]
+            sector_data["quadrant"]    = _quadrant(last["rs_ratio"], last["rs_momentum"])
+            sector_data["tail"]        = sector_rrg_history[sector][-TAIL_DAYS:]
+        else:
+            sector_data["rs_ratio"]    = None
+            sector_data["rs_momentum"] = None
+            sector_data["quadrant"]    = "neutral"
+            sector_data["tail"]        = []
+        result["sectors"][sector] = sector_data
+
     return result
 
 
