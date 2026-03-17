@@ -503,12 +503,6 @@
             renderSectorChips()
             if (currentSector) renderStockRRG(currentSector)
             updateSpotlightVisibility()
-            const params = new URLSearchParams(location.search)
-            const sector = params.get('sector')
-            if (sector && allData?.sectors?.[sector]) {
-                switchTab('stock')
-                selectSector(sector)
-            }
         }
 
         function quadrantColor(q) {
@@ -914,7 +908,7 @@
                 renderSpotlightSectors()
             } else {
                 title.textContent = "🔍 주목 종목"
-                desc.textContent = "Improving/Watch + RS-M 100 이상 + RS-Ratio 100 미만 기준"
+                desc.textContent = "Improving 우선 선정, 없으면 Watch 종목으로 표시"
                 renderSpotlightCandidates()
             }
         }
@@ -930,14 +924,14 @@
                     if (!cands.length) return false
                     const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
                     const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                    return getQuadrant(avgR, avgM) === "improving" && (d.rising_ratio || 0) > 0.4
+                    return getQuadrant(avgR, avgM) === "improving"
                 })
                 .map(([name, d]) => ({ name, d }))
                 .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
                 .slice(0, 3)
 
             if (!result.length) {
-                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 테마가 없습니다.</div>'
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 Improving 사분면에 있는 테마가 없습니다.</div>'
                 document.getElementById("spotlight-btn").style.display = "none"
                 return
             }
@@ -949,9 +943,9 @@
                     <div class="font-semibold text-sm text-gray-800 mb-1">${name} <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>
                     <div class="text-xs text-gray-500 space-y-0.5">
                         <div>5D <span class="${d.sector_ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
-                        <div>상승비율 <span class="text-blue-600 font-medium">${d.rising_ratio != null ? Math.round(d.rising_ratio * 100) + '%' : '-'}</span></div>
                         <div>Improving <span class="text-blue-600 font-medium">${d.improving_count || 0}종목</span>
                              &nbsp;Watch <span class="text-gray-500 font-medium">${d.watch_count || 0}종목</span></div>
+                        <div>총 <span class="text-gray-700 font-medium">${(d.candidates || []).length}종목</span></div>
                     </div>
                 </div>`).join("") + `</div>`
         }
@@ -977,35 +971,33 @@
 
         function getSpotlightCandidates() {
             if (!allData) return []
-            const result = []
+            const improving = []
+            const watch = []
             const sectors = allData.sectors || {}
 
             Object.entries(sectors).forEach(([sectorName, sectorData]) => {
-                const isStrong = sectorData.sector_ret_5d > 0 && sectorData.rising_ratio > 0.5
-                if (!isStrong) return
-
                 const cands = sectorData.candidates || []
                 cands.forEach(s => {
-                    if (
-                        s.signal === "improving" &&
-                        s.rs_momentum != null && s.rs_momentum >= 100 &&
-                        s.rs_ratio != null && s.rs_ratio < 100 &&
-                        s.vol_ratio != null && s.vol_ratio >= 1.5
-                    ) {
-                        result.push({
-                            ...s,
-                            sectorName,
-                            sectorRet: sectorData.sector_ret_5d,
-                            score: (s.rs_momentum - 100) * 0.4 +
-                                (s.vol_ratio || 0) * 0.3 +
-                                (sectorData.sector_ret_5d || 0) * 0.3
-                        })
+                    if (s.rs_momentum == null || s.rs_ratio == null) return
+                    if (s.rs_momentum < 100 || s.rs_ratio >= 100) return
+                    const base = {
+                        ...s,
+                        sectorName,
+                        sectorRet: sectorData.sector_ret_5d,
+                        score: (s.rs_momentum - 100) * 0.5 +
+                            (100 - s.rs_ratio) * 0.3 +
+                            (sectorData.sector_ret_5d || 0) * 0.2
                     }
+                    if (s.signal === "improving") improving.push(base)
+                    else if (s.signal === "watch") watch.push(base)
                 })
             })
 
-            result.sort((a, b) => b.score - a.score)
-            return result.slice(0, 3)
+            improving.sort((a, b) => b.score - a.score)
+            watch.sort((a, b) => b.score - a.score)
+
+            // Improving 종목 우선, 없으면 Watch로 fallback
+            return improving.length > 0 ? improving.slice(0, 3) : watch.slice(0, 3)
         }
 
         function renderSpotlightCandidates() {
@@ -1013,7 +1005,7 @@
             const el = document.getElementById("spotlight-candidates")
 
             if (!cands.length) {
-                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다. (장중 데이터 축적 필요)</div>'
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다.</div>'
                 const btn = document.getElementById("spotlight-btn")
                 btn.disabled = true
                 btn.className = "px-3 py-1.5 text-xs bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"
@@ -1021,14 +1013,22 @@
             }
 
             el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
-                cands.map(s => `
-                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100">
+                cands.map(s => {
+                    const isWatch = s.signal === 'watch'
+                    const cardBg = isWatch ? 'bg-gray-50 border-gray-200' : 'bg-blue-50 border-blue-100'
+                    const nameCls = isWatch ? 'text-gray-700' : 'text-gray-800'
+                    const signalBadge = isWatch
+                        ? `<span class="text-xs bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded font-medium">◎ Watch</span>`
+                        : `<span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-medium">★ Improving</span>`
+                    return `
+                <div class="rounded-lg p-3 border ${cardBg}">
                     <div class="flex items-center justify-between mb-1">
                         <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
                            target="_blank"
-                           class="font-semibold text-sm text-gray-800 hover:text-blue-600">${s.name}</a>
-                        <span class="text-xs text-blue-600 font-medium">${s.sectorName}</span>
+                           class="font-semibold text-sm ${nameCls} hover:text-blue-600">${s.name}</a>
+                        ${signalBadge}
                     </div>
+                    <div class="text-xs text-gray-400 mb-1">${s.sectorName}</div>
                     <div class="text-xs text-gray-500 space-y-0.5">
                         <div>현재가 <span class="text-gray-800 font-medium">${s.price ? s.price.toLocaleString() : '-'}원</span></div>
                         <div>RS-Ratio <span class="text-red-500 font-medium">${s.rs_ratio?.toFixed(2) ?? '-'}</span>
@@ -1037,7 +1037,7 @@
                              &nbsp;VOL <span class="text-purple-600 font-medium">${s.vol_ratio?.toFixed(2) ?? '-'}x</span></div>
                         <div>테마 5D <span class="${s.sectorRet > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.sectorRet != null ? (s.sectorRet > 0 ? '+' : '') + s.sectorRet.toFixed(2) + '%' : '-'}</span></div>
                     </div>
-                </div>`).join("") + `</div>`
+                </div>`}).join("") + `</div>`
         }
 
         function generateSpotlightComment(s) {
@@ -1157,7 +1157,7 @@
                 renderSpotlightSectors()
             } else {
                 title.textContent = "🔍 주목 종목"
-                desc.textContent = "Improving/Watch + RS-M 100 이상 + RS-Ratio 100 미만 기준"
+                desc.textContent = "Improving 우선 선정, 없으면 Watch 종목으로 표시"
                 renderSpotlightCandidates()
             }
         }
@@ -1173,14 +1173,14 @@
                     if (!cands.length) return false
                     const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
                     const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                    return getQuadrant(avgR, avgM) === "improving" && (d.rising_ratio || 0) > 0.4
+                    return getQuadrant(avgR, avgM) === "improving"
                 })
                 .map(([name, d]) => ({ name, d }))
                 .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
                 .slice(0, 3)
 
             if (!result.length) {
-                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 테마가 없습니다.</div>'
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 Improving 사분면에 있는 테마가 없습니다.</div>'
                 document.getElementById("spotlight-btn").style.display = "none"
                 return
             }
@@ -1192,9 +1192,9 @@
                     <div class="font-semibold text-sm text-gray-800 mb-1">${name} <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>
                     <div class="text-xs text-gray-500 space-y-0.5">
                         <div>5D <span class="${d.sector_ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
-                        <div>상승비율 <span class="text-blue-600 font-medium">${d.rising_ratio != null ? Math.round(d.rising_ratio * 100) + '%' : '-'}</span></div>
                         <div>Improving <span class="text-blue-600 font-medium">${d.improving_count || 0}종목</span>
                              &nbsp;Watch <span class="text-gray-500 font-medium">${d.watch_count || 0}종목</span></div>
+                        <div>총 <span class="text-gray-700 font-medium">${(d.candidates || []).length}종목</span></div>
                     </div>
                 </div>`).join("") + `</div>`
         }
