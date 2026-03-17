@@ -1,11 +1,10 @@
 """
 sector_signal.py  —  RRG 기반 소외주 탐색
 
-계산 방식:
-  1. RS          = (종목 종가 / 테마 평균 종가) × 100
-  2. RS_Ratio    = 100 + (RS - RS_MA10) / RS_STD10
-  3. RS_Momentum = 100 + (ROC - ROC_MA10) / ROC_STD10
-     ROC = (RS_Ratio / RS_Ratio[10일전] - 1) × 100
+계산 방식 (JdK RS-Ratio / RS-Momentum):
+  1. raw_rs       = 종목 종가 / 섹터 평균 종가 × 100
+  2. RS_Ratio     = EMA(raw_rs, 10) / EMA(raw_rs, 65) × 100
+  3. RS_Momentum  = EMA(RS_Ratio, 10) / EMA(RS_Ratio, 65) × 100
 
 사분면:
   improving : RS_Ratio < 100, Momentum >= 100  ← 핵심 매수 타이밍
@@ -13,21 +12,22 @@ sector_signal.py  —  RRG 기반 소외주 탐색
   leading   : RS_Ratio >= 100, Momentum >= 100  ← 강하고 가속
   weakening : RS_Ratio >= 100, Momentum <  100  ← 강하지만 둔화
 
-최적 파라미터 (백테스트): MA=10, ROC=10
+EMA 파라미터: short=10, long=65 (JdK 원본과 동일)
+최소 데이터: 65일치 이상 필요
 """
 import logging
 from config import SECTORS
 
 logger = logging.getLogger(__name__)
 
-MA_PERIOD  = 10
-ROC_PERIOD = 10
-TAIL_DAYS  = 40   # 8주 궤적
+EMA_SHORT  = 10
+EMA_LONG   = 65
+TAIL_DAYS  = 16   # 8주 궤적 (주 2포인트 기준)
 CHART_DAYS = 120  # 주가 차트용 6개월
 
-ohlcv_store:    dict[str, dict]       = {}
-current_price:  dict[str, float]      = {}
-rrg_history:    dict[str, list[dict]] = {}
+ohlcv_store:   dict[str, dict]       = {}
+current_price: dict[str, float]      = {}
+rrg_history:   dict[str, list[dict]] = {}
 
 
 def update_ohlcv(data: dict[str, dict | None]):
@@ -42,52 +42,68 @@ def update_prices(prices: dict[str, float | None]):
             current_price[code] = price
 
 
-def _ma(values: list[float], period: int) -> list[float | None]:
-    result = [None] * len(values)
-    for i in range(period - 1, len(values)):
-        result[i] = sum(values[i - period + 1:i + 1]) / period
+# ── EMA ──────────────────────────────────────────────────────
+
+def _ema(values: list[float], period: int) -> list[float]:
+    """
+    Wilder 방식이 아닌 표준 EMA
+    k = 2 / (period + 1)
+    초기값: 첫 period개의 단순평균
+    """
+    result = [0.0] * len(values)
+    if len(values) < period:
+        return result
+
+    k = 2.0 / (period + 1)
+    # 초기 SMA
+    sma = sum(values[:period]) / period
+    result[period - 1] = sma
+
+    for i in range(period, len(values)):
+        result[i] = values[i] * k + result[i - 1] * (1 - k)
+
     return result
 
 
-def _std(values: list[float], period: int) -> list[float | None]:
-    result = [None] * len(values)
-    for i in range(period - 1, len(values)):
-        window = values[i - period + 1:i + 1]
-        mean   = sum(window) / period
-        result[i] = (sum((x - mean) ** 2 for x in window) / period) ** 0.5
-    return result
+# ── JdK RS-Ratio / RS-Momentum ───────────────────────────────
 
-
-def _calc_rs_ratio(closes: list[float], benchmark: list[float]) -> list[float | None]:
+def _calc_rs_ratio(closes: list[float], benchmark: list[float]) -> list[float]:
+    """
+    RS_Ratio = EMA(raw_rs, 10) / EMA(raw_rs, 65) × 100
+    65일 미만 구간은 0.0 반환
+    """
     n      = min(len(closes), len(benchmark))
-    raw_rs = [(closes[i] / benchmark[i] * 100) if benchmark[i] > 0 else 0.0 for i in range(n)]
-    ma     = _ma(raw_rs, MA_PERIOD)
-    std    = _std(raw_rs, MA_PERIOD)
-    return [
-        100.0 + (raw_rs[i] - ma[i]) / std[i]
-        if ma[i] is not None and std[i] and std[i] > 0 else None
+    raw_rs = [
+        closes[i] / benchmark[i] * 100.0 if benchmark[i] > 0 else 100.0
         for i in range(n)
     ]
+    ema_s = _ema(raw_rs, EMA_SHORT)
+    ema_l = _ema(raw_rs, EMA_LONG)
+
+    result = [0.0] * n
+    for i in range(EMA_LONG - 1, n):
+        result[i] = ema_s[i] / ema_l[i] * 100.0 if ema_l[i] != 0 else 100.0
+    return result
 
 
-def _calc_rs_momentum(rs_ratio: list[float | None]) -> list[float | None]:
-    n   = len(rs_ratio)
-    roc = [0.0] * n
-    for i in range(ROC_PERIOD, n):
-        a, b = rs_ratio[i], rs_ratio[i - ROC_PERIOD]
-        if a is not None and b and b != 0:
-            roc[i] = (a / b - 1) * 100
-    ma  = _ma(roc, ROC_PERIOD)
-    std = _std(roc, ROC_PERIOD)
-    return [
-        100.0 + (roc[i] - ma[i]) / std[i]
-        if ma[i] is not None and std[i] and std[i] > 0 else None
-        for i in range(n)
-    ]
+def _calc_rs_momentum(rs_ratio: list[float]) -> list[float]:
+    """
+    RS_Momentum = EMA(RS_Ratio, 10) / EMA(RS_Ratio, 65) × 100
+    """
+    ema_s = _ema(rs_ratio, EMA_SHORT)
+    ema_l = _ema(rs_ratio, EMA_LONG)
+
+    n      = len(rs_ratio)
+    result = [0.0] * n
+    for i in range(EMA_LONG - 1, n):
+        result[i] = ema_s[i] / ema_l[i] * 100.0 if ema_l[i] != 0 else 100.0
+    return result
 
 
-def _quadrant(ratio: float | None, mom: float | None) -> str:
-    if ratio is None or mom is None:
+# ── 유틸 ─────────────────────────────────────────────────────
+
+def _quadrant(ratio: float, mom: float) -> str:
+    if ratio == 0.0 or mom == 0.0:
         return "neutral"
     if ratio >= 100 and mom >= 100: return "leading"
     if ratio >= 100 and mom <  100: return "weakening"
@@ -95,17 +111,14 @@ def _quadrant(ratio: float | None, mom: float | None) -> str:
     return "improving"
 
 
-# 변경 — 오늘 장중 데이터를 closes에서 제외하고 전일 종가 기준으로 계산
 def _get_return(code: str, days: int) -> float | None:
     entry = ohlcv_store.get(code)
     if not entry:
         return None
     closes = entry["closes"]
 
-    # 장중에 오늘 데이터가 closes[-1]에 포함될 수 있으므로
-    # current_price가 있으면 closes[-1]은 오늘 임시값으로 보고 제외
     if code in current_price and current_price[code] is not None:
-        hist_closes = closes[:-1]  # 오늘 제외 → 순수 과거 종가만
+        hist_closes = closes[:-1]
         now = current_price[code]
     else:
         hist_closes = closes
@@ -139,21 +152,26 @@ def _get_closes_chart(code: str) -> list[float]:
     if not entry:
         return []
     closes = entry["closes"]
-    # 현재가 있으면 오늘 임시 종가 제외하고 현재가로 교체
     if code in current_price and current_price[code] is not None:
         hist = closes[:-1][-CHART_DAYS:]
         return [round(v, 0) for v in hist] + [round(current_price[code], 0)]
     return [round(v, 0) for v in closes[-CHART_DAYS:]]
 
 
+# ── 섹터 신호 계산 ────────────────────────────────────────────
+
 def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     code_list = [c for c, _ in codes]
     name_map  = {c: n for c, n in codes}
 
-    min_req = MA_PERIOD + ROC_PERIOD + 5
-    valid   = {
-        c: ohlcv_store[c]["closes"][:-1] if c in current_price and current_price[c] is not None
-        else ohlcv_store[c]["closes"]
+    # JdK는 EMA_LONG(65)일치가 필요
+    min_req = EMA_LONG + EMA_SHORT + 5  # 80일
+    valid = {
+        c: (
+            ohlcv_store[c]["closes"][:-1]
+            if c in current_price and current_price[c] is not None
+            else ohlcv_store[c]["closes"]
+        )
         for c in code_list
         if c in ohlcv_store and len(ohlcv_store[c]["closes"]) >= min_req
     }
@@ -163,7 +181,10 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
 
     min_len   = min(len(v) for v in valid.values())
     aligned   = {c: v[-min_len:] for c, v in valid.items()}
-    benchmark = [sum(aligned[c][i] for c in aligned) / len(aligned) for i in range(min_len)]
+    benchmark = [
+        sum(aligned[c][i] for c in aligned) / len(aligned)
+        for i in range(min_len)
+    ]
 
     returns_5d = {c: r for c in valid if (r := _get_return(c, 5)) is not None}
     if not returns_5d:
@@ -183,28 +204,31 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         rs_ratio    = _calc_rs_ratio(closes, benchmark)
         rs_momentum = _calc_rs_momentum(rs_ratio)
 
-        curr_ratio = next((v for v in reversed(rs_ratio)    if v is not None), None)
-        curr_mom   = next((v for v in reversed(rs_momentum) if v is not None), None)
+        curr_ratio = rs_ratio[-1]
+        curr_mom   = rs_momentum[-1]
         quad       = _quadrant(curr_ratio, curr_mom)
 
-        # 궤적 누적
+        # ── 궤적 누적 ──────────────────────────────────────────
+        # 초기화: 과거 데이터로 tail 채우기 (5일 간격)
         if code not in rrg_history or len(rrg_history[code]) == 0:
             tail = []
-            for offset in range(TAIL_DAYS, 0, -5):
-                if offset >= min_len:
+            for offset in range(TAIL_DAYS * 5, 0, -5):
+                if offset >= min_len - EMA_LONG:
                     continue
-                hist_closes    = aligned[code][:-offset] if offset > 0 else aligned[code]
-                hist_benchmark = [sum(aligned[c][i] for c in aligned) / len(aligned)
-                                for i in range(len(hist_closes))]
-                hist_ratio    = _calc_rs_ratio(hist_closes, hist_benchmark)
-                hist_momentum = _calc_rs_momentum(hist_ratio)
-                t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)
-                t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
-                if t_ratio is not None and t_mom is not None:
-                    tail.append({"rs_ratio": round(t_ratio, 3), "rs_momentum": round(t_mom, 3)})
+                h_closes    = aligned[code][:-offset]
+                h_benchmark = [
+                    sum(aligned[c][i] for c in aligned) / len(aligned)
+                    for i in range(len(h_closes))
+                ]
+                h_ratio = _calc_rs_ratio(h_closes, h_benchmark)
+                h_mom   = _calc_rs_momentum(h_ratio)
+                t_r = h_ratio[-1]
+                t_m = h_mom[-1]
+                if t_r != 0.0 and t_m != 0.0:
+                    tail.append({"rs_ratio": round(t_r, 3), "rs_momentum": round(t_m, 3)})
             rrg_history[code] = tail
 
-        if curr_ratio is not None and curr_mom is not None:
+        if curr_ratio != 0.0 and curr_mom != 0.0:
             rrg_history[code].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
@@ -221,30 +245,29 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         rs_20d = (r20 / sector_ret_20d) if r20 is not None and sector_ret_20d else None
         rs_60d = (r60 / sector_ret_60d) if r60 is not None and sector_ret_60d else None
 
-        # 주가 차트용 데이터 (6개월, 마지막 20일 강조는 프론트에서)
         closes_chart = _get_closes_chart(code)
 
         candidates.append({
-            "code":          code,
-            "name":          name_map[code],
-            "price":         now_price,
-            "ret_1d":        round(r1  * 100, 2) if r1  is not None else None,
-            "ret_5d":        round(r5  * 100, 2) if r5  is not None else None,
-            "rs_5d":         round(rs_5d,  3)    if rs_5d  is not None else None,
-            "rs_20d":        round(rs_20d, 3)    if rs_20d is not None else None,
-            "rs_60d":        round(rs_60d, 3)    if rs_60d is not None else None,
-            "vol_ratio":     round(vol,    3)    if vol    is not None else None,
-            "rs_ratio":      round(curr_ratio, 3) if curr_ratio is not None else None,
-            "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
-            "quadrant":      quad,
-            "tail":          rrg_history.get(code, [])[-TAIL_DAYS:],
-            "signal":        _rrg_signal(quad, vol),
-            "closes_chart":  closes_chart,   # 6개월 주가 (마지막 20일은 프론트에서 강조)
+            "code":         code,
+            "name":         name_map[code],
+            "price":        now_price,
+            "ret_1d":       round(r1  * 100, 2) if r1  is not None else None,
+            "ret_5d":       round(r5  * 100, 2) if r5  is not None else None,
+            "rs_5d":        round(rs_5d,  3)    if rs_5d  is not None else None,
+            "rs_20d":       round(rs_20d, 3)    if rs_20d is not None else None,
+            "rs_60d":       round(rs_60d, 3)    if rs_60d is not None else None,
+            "vol_ratio":    round(vol,    3)    if vol    is not None else None,
+            "rs_ratio":     round(curr_ratio, 3),
+            "rs_momentum":  round(curr_mom,   3),
+            "quadrant":     quad,
+            "tail":         rrg_history.get(code, [])[-TAIL_DAYS:],
+            "signal":       _rrg_signal(quad, vol),
+            "closes_chart": closes_chart,
         })
 
     def _sort_key(x):
         order = {"improving": 0, "lagging": 1, "weakening": 2, "leading": 3, "neutral": 4}
-        return (order.get(x["quadrant"], 4), x["rs_ratio"] if x["rs_ratio"] is not None else 999)
+        return (order.get(x["quadrant"], 4), x["rs_ratio"])
 
     candidates.sort(key=_sort_key)
 
@@ -270,9 +293,9 @@ def _rrg_signal(quadrant: str, vol: float | None) -> str:
 def calc_all_signals() -> dict:
     from datetime import datetime
     result = {
-        "updated_at":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "rrg_params":  {"ma_period": MA_PERIOD, "roc_period": ROC_PERIOD},
-        "sectors":     {}
+        "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "rrg_params": {"ema_short": EMA_SHORT, "ema_long": EMA_LONG},
+        "sectors":    {}
     }
     for sector, codes in SECTORS.items():
         result["sectors"][sector] = calc_sector_signals(sector, codes)
@@ -283,5 +306,5 @@ def _empty_sector(sector: str) -> dict:
     return {
         "sector": sector, "sector_ret_5d": None, "rising_ratio": None,
         "is_rising": False, "total": 0, "improving_count": 0,
-        "lagging_count": 0, "candidates": [],
+        "lagging_count": 0, "watch_count": 0, "candidates": [],
     }
