@@ -527,9 +527,11 @@
             // index.html에서 넘어올 때 URL 파라미터로 섹터 자동 선택
             const params = new URLSearchParams(location.search)
             const sector = params.get('sector')
-            if (sector && allData?.sectors?.[sector] && !currentSector) {
+            if (sector && allData?.sectors?.[sector]) {
                 switchTab('stock')
                 selectSector(sector)
+                // 처리 후 URL에서 파라미터 제거 (새로고침 시 반복 실행 방지)
+                history.replaceState(null, '', location.pathname)
             }
         }
 
