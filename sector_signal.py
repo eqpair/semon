@@ -253,6 +253,10 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     # ── 3. 동등가중 벤치마크 ──────────────────────────────────
     benchmark = _make_benchmark(rebased_full)
 
+    # 섹터 RRG용 — 이 섹터의 동등가중 rebased 시계열을 캐시에 저장
+    # (벤치마크 자체가 섹터의 동등가중 수익률 시계열이다)
+    _update_sector_rebased_cache(sector, rebased_full)
+
     returns_5d = {c: r for c in valid if (r := _get_return(c, 5)) is not None}
     if not returns_5d:
         return _empty_sector(sector)
@@ -375,6 +379,11 @@ def calc_all_signals() -> dict:
     }
     for sector, codes in SECTORS.items():
         result["sectors"][sector] = calc_sector_signals(sector, codes)
+
+    # 섹터 레벨 RRG — 전체 섹터 계산 완료 후 실행
+    # (각 섹터의 rebased 캐시가 채워진 뒤에야 시장 벤치마크를 만들 수 있다)
+    result["sector_rrg"] = calc_sector_rrg(result["sectors"])
+
     return result
 
 
@@ -384,3 +393,117 @@ def _empty_sector(sector: str) -> dict:
         "is_rising": False, "total": 0, "improving_count": 0,
         "lagging_count": 0, "candidates": [],
     }
+
+# ══════════════════════════════════════════════════════════════
+# 섹터 레벨 RRG
+# ══════════════════════════════════════════════════════════════
+# 각 섹터를 하나의 자산으로 취급.
+# 섹터의 동등가중 rebased 시계열을 구한 뒤,
+# 전체 섹터들의 평균을 시장 벤치마크로 삼아 RS_Ratio / RS_Momentum 계산.
+#
+# 종목 RRG와 완전히 동일한 수식을 사용하므로
+# _calc_rs_ratio / _calc_rs_momentum 을 그대로 재사용한다.
+# ──────────────────────────────────────────────────────────────
+
+# 섹터 RRG용 rrg_history 키 접두사
+_SECTOR_KEY_PREFIX = "sector:"
+
+# 섹터별 동등가중 rebased 시계열 캐시 (calc_sector_signals에서 채운다)
+# { sector_name: [rebased_avg_0, rebased_avg_1, ...] }
+_sector_rebased_cache: dict[str, list[float]] = {}
+
+
+def _update_sector_rebased_cache(sector: str, rebased_map: dict[str, list[float]]):
+    """
+    calc_sector_signals 내부에서 rebased_full이 만들어진 시점에 호출.
+    섹터의 동등가중 rebased 평균(= 내부 벤치마크 자체)을 캐시에 저장한다.
+    """
+    _sector_rebased_cache[sector] = _make_benchmark(rebased_map)
+
+
+def calc_sector_rrg(sector_results: dict) -> dict:
+    """
+    전체 섹터 RRG 계산.
+
+    sector_results: calc_all_signals()가 만든 result["sectors"] 전체.
+    반환: { sector_name: { rs_ratio, rs_momentum, quadrant, tail } }
+
+    흐름:
+      1. _sector_rebased_cache에서 섹터별 동등가중 시계열 수집
+      2. 가장 짧은 섹터에 맞춰 길이 정렬 (시장 벤치마크 일관성)
+      3. 전체 섹터 평균 → 시장 벤치마크
+      4. 섹터별 RS_Ratio / RS_Momentum 계산
+      5. tail 누적 (종목 tail과 동일 방식)
+    """
+    # 유효한 섹터만 (캐시에 있고 길이 충분한 것)
+    min_req = MA_PERIOD + ROC_PERIOD + 5
+    valid = {
+        s: v for s, v in _sector_rebased_cache.items()
+        if len(v) >= min_req
+    }
+
+    if len(valid) < 2:
+        return {}
+
+    # ── 1. 길이 정렬 ─────────────────────────────────────────
+    min_len  = min(len(v) for v in valid.values())
+    aligned  = {s: v[-min_len:] for s, v in valid.items()}
+
+    # ── 2. 이미 rebased 평균이므로 rebase 불필요
+    #       단, 시작점이 다를 수 있으므로 각 섹터 시계열을
+    #       aligned[0] 기준으로 다시 rebase한다
+    re_rebased = {s: _rebase(v) for s, v in aligned.items()}
+
+    # ── 3. 시장 벤치마크 = 전체 섹터 동등가중 평균 ────────────
+    market_bm = _make_benchmark(re_rebased)
+
+    result = {}
+    for sector in valid:
+        key = _SECTOR_KEY_PREFIX + sector
+
+        rs_ratio    = _calc_rs_ratio(re_rebased[sector], market_bm)
+        rs_momentum = _calc_rs_momentum(rs_ratio)
+
+        curr_ratio = next((v for v in reversed(rs_ratio)    if v is not None), None)
+        curr_mom   = next((v for v in reversed(rs_momentum) if v is not None), None)
+        quad       = _quadrant(curr_ratio, curr_mom)
+
+        # ── tail 누적 (종목 tail과 동일 방식) ─────────────────
+        if key not in rrg_history or len(rrg_history[key]) == 0:
+            tail = []
+            for offset in range(TAIL_DAYS, 0, -5):
+                if offset >= min_len:
+                    continue
+                hist_aligned   = {s: aligned[s][:-offset] for s in aligned}
+                hist_rebased   = {s: _rebase(hist_aligned[s]) for s in hist_aligned}
+                hist_market_bm = _make_benchmark(hist_rebased)
+                hist_ratio     = _calc_rs_ratio(hist_rebased[sector], hist_market_bm)
+                hist_momentum  = _calc_rs_momentum(hist_ratio)
+                t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)
+                t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
+                if t_ratio is not None and t_mom is not None:
+                    tail.append({"rs_ratio": round(t_ratio, 3), "rs_momentum": round(t_mom, 3)})
+            rrg_history[key] = tail
+
+        if curr_ratio is not None and curr_mom is not None:
+            rrg_history[key].append({
+                "rs_ratio":    round(curr_ratio, 3),
+                "rs_momentum": round(curr_mom,   3),
+            })
+            rrg_history[key] = rrg_history[key][-TAIL_DAYS:]
+
+        # sector_results에서 5D 수익률 가져오기
+        sec_data = sector_results.get(sector, {})
+
+        result[sector] = {
+            "rs_ratio":      round(curr_ratio, 3) if curr_ratio is not None else None,
+            "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
+            "quadrant":      quad,
+            "tail":          rrg_history.get(key, [])[-TAIL_DAYS:],
+            "sector_ret_5d": sec_data.get("sector_ret_5d"),
+            "improving_count": sec_data.get("improving_count", 0),
+            "watch_count":   sec_data.get("watch_count", 0),
+            "total":         sec_data.get("total", 0),
+        }
+
+    return result

@@ -329,32 +329,6 @@
                         <button class="q-btn" onclick="filterSector('weakening')">Weakening</button>
                     </div>
                     <div class="rrg-canvas" id="sector-rrg" style="height:480px;">
-                        <div style="position:absolute;left:0;top:0;width:50%;height:50%;" class="q-improving"></div>
-                        <div style="position:absolute;right:0;top:0;width:50%;height:50%;" class="q-leading"></div>
-                        <div style="position:absolute;left:0;bottom:0;width:50%;height:50%;" class="q-lagging"></div>
-                        <div style="position:absolute;right:0;bottom:0;width:50%;height:50%;" class="q-weakening"></div>
-                        <div
-                            style="position:absolute;top:8px;left:12px;font-size:10px;color:rgba(37,99,235,0.6);font-weight:600;">
-                            IMPROVING</div>
-                        <div
-                            style="position:absolute;top:8px;right:12px;font-size:10px;color:rgba(22,163,74,0.6);font-weight:600;">
-                            LEADING</div>
-                        <div
-                            style="position:absolute;bottom:8px;left:12px;font-size:10px;color:rgba(217,119,6,0.6);font-weight:600;">
-                            LAGGING</div>
-                        <div
-                            style="position:absolute;bottom:8px;right:12px;font-size:10px;color:rgba(220,38,38,0.6);font-weight:600;">
-                            WEAKENING</div>
-                        <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--axis);"></div>
-                        <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--axis);"></div>
-                        <div style="position:absolute;bottom:4px;left:8px;font-size:9px;color:#9ca3af;">소외</div>
-                        <div style="position:absolute;bottom:4px;right:8px;font-size:9px;color:#9ca3af;">강세</div>
-                        <div
-                            style="position:absolute;left:4px;top:12px;font-size:9px;color:#9ca3af;writing-mode:vertical-lr;">
-                            회복</div>
-                        <div
-                            style="position:absolute;left:4px;bottom:24px;font-size:9px;color:#9ca3af;writing-mode:vertical-lr;">
-                            악화</div>
                         <svg class="tail-svg" id="sector-tail-svg"></svg>
                         <div id="sector-dots"></div>
                         <div id="sector-loading"
@@ -400,27 +374,6 @@
                 <div class="lg:col-span-2">
                     <div class="text-sm font-medium text-gray-700 mb-3" id="stock-sector-label">섹터를 선택하세요</div>
                     <div class="rrg-canvas" id="stock-rrg" style="height:480px;">
-                        <div style="position:absolute;left:0;top:0;width:50%;height:50%;" class="q-improving"></div>
-                        <div style="position:absolute;right:0;top:0;width:50%;height:50%;" class="q-leading"></div>
-                        <div style="position:absolute;left:0;bottom:0;width:50%;height:50%;" class="q-lagging"></div>
-                        <div style="position:absolute;right:0;bottom:0;width:50%;height:50%;" class="q-weakening"></div>
-                        <div
-                            style="position:absolute;top:8px;left:12px;font-size:10px;color:rgba(37,99,235,0.6);font-weight:600;">
-                            IMPROVING<br><span style="font-size:8px;font-weight:400;">모멘텀 전환</span></div>
-                        <div
-                            style="position:absolute;top:8px;right:12px;font-size:10px;color:rgba(22,163,74,0.6);font-weight:600;">
-                            LEADING<br><span style="font-size:8px;font-weight:400;">상승 주도</span></div>
-                        <div
-                            style="position:absolute;bottom:8px;left:12px;font-size:10px;color:rgba(217,119,6,0.6);font-weight:600;">
-                            LAGGING<br><span style="font-size:8px;font-weight:400;">소외 지속</span></div>
-                        <div
-                            style="position:absolute;bottom:8px;right:12px;font-size:10px;color:rgba(220,38,38,0.6);font-weight:600;">
-                            WEAKENING<br><span style="font-size:8px;font-weight:400;">모멘텀 약화</span></div>
-                        <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--axis);"></div>
-                        <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--axis);"></div>
-                        <div
-                            style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-size:9px;color:#9ca3af;">
-                            ← RS-Ratio (약) &nbsp;&nbsp;&nbsp; RS-Ratio (강) →</div>
                         <svg class="tail-svg" id="stock-tail-svg"></svg>
                         <div id="stock-dots"></div>
                         <div id="stock-loading"
@@ -487,11 +440,8 @@
         let sectorFilter = "all"
 
         function getDataUrl() {
-            // 브라우저 로컬 TZ와 무관하게 항상 KST(UTC+9) 기준으로 판단
             const now = new Date()
-            const kstOffset = 9 * 60  // 분 단위
-            const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
-            const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
+            const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
             const isMarket = d >= 1 && d <= 5 &&
                 (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
             return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
@@ -552,6 +502,153 @@
             if (r < 100 && m < 100) return "lagging"
             return "improving"
         }
+        // ── 공통 축/그리드 렌더링 ────────────────────────────────────
+        // SVG에 사분면 배경, 100 기준선, 축 수치를 동적으로 그린다.
+        // 기준선 위치가 데이터 범위에 맞게 정확히 계산된다.
+        function drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax) {
+            const ns = "http://www.w3.org/2000/svg"
+
+            // 100 기준점 픽셀 좌표
+            const cx = pad + ((100 - rMin) / (rMax - rMin)) * (W - pad * 2)
+            const cy = (H - pad) - ((100 - mMin) / (mMax - mMin)) * (H - pad * 2)
+
+            // ── 사분면 배경 ──────────────────────────────────────────
+            const quads = [
+                { x: pad, y: pad, w: cx - pad, h: cy - pad, fill: "rgba(37,99,235,0.04)" }, // improving
+                { x: cx, y: pad, w: W - pad - cx, h: cy - pad, fill: "rgba(22,163,74,0.04)" }, // leading
+                { x: pad, y: cy, w: cx - pad, h: H - pad - cy, fill: "rgba(217,119,6,0.04)" }, // lagging
+                { x: cx, y: cy, w: W - pad - cx, h: H - pad - cy, fill: "rgba(220,38,38,0.04)" }, // weakening
+            ]
+            quads.forEach(q => {
+                const r = document.createElementNS(ns, "rect")
+                r.setAttribute("x", q.x.toFixed(1))
+                r.setAttribute("y", q.y.toFixed(1))
+                r.setAttribute("width", Math.max(0, q.w).toFixed(1))
+                r.setAttribute("height", Math.max(0, q.h).toFixed(1))
+                r.setAttribute("fill", q.fill)
+                svg.appendChild(r)
+            })
+
+            // ── 100 기준선 (X, Y) ────────────────────────────────────
+            const axisColor = "rgba(100,116,139,0.35)"
+            const vLine = document.createElementNS(ns, "line")
+            vLine.setAttribute("x1", cx.toFixed(1)); vLine.setAttribute("y1", pad)
+            vLine.setAttribute("x2", cx.toFixed(1)); vLine.setAttribute("y2", (H - pad).toFixed(1))
+            vLine.setAttribute("stroke", axisColor); vLine.setAttribute("stroke-width", "1")
+            svg.appendChild(vLine)
+
+            const hLine = document.createElementNS(ns, "line")
+            hLine.setAttribute("x1", pad); hLine.setAttribute("y1", cy.toFixed(1))
+            hLine.setAttribute("x2", (W - pad).toFixed(1)); hLine.setAttribute("y2", cy.toFixed(1))
+            hLine.setAttribute("stroke", axisColor); hLine.setAttribute("stroke-width", "1")
+            svg.appendChild(hLine)
+
+            // ── 사분면 라벨 ─────────────────────────────────────────
+            const labels = [
+                { x: pad + 8, y: pad + 14, text: "IMPROVING", color: "rgba(37,99,235,0.55)" },
+                { x: W - pad - 8, y: pad + 14, text: "LEADING", color: "rgba(22,163,74,0.55)", anchor: "end" },
+                { x: pad + 8, y: H - pad - 8, text: "LAGGING", color: "rgba(217,119,6,0.55)" },
+                { x: W - pad - 8, y: H - pad - 8, text: "WEAKENING", color: "rgba(220,38,38,0.55)", anchor: "end" },
+            ]
+            labels.forEach(l => {
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", l.x.toFixed(1))
+                t.setAttribute("y", l.y.toFixed(1))
+                t.setAttribute("font-size", "10")
+                t.setAttribute("font-weight", "600")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", l.color)
+                if (l.anchor) t.setAttribute("text-anchor", l.anchor)
+                t.textContent = l.text
+                svg.appendChild(t)
+            })
+
+            // ── X축 수치 (RS-Ratio) ──────────────────────────────────
+            const xTicks = getAxisTicks(rMin, rMax, 5)
+            xTicks.forEach(val => {
+                const px = pad + ((val - rMin) / (rMax - rMin)) * (W - pad * 2)
+                if (px < pad + 4 || px > W - pad - 4) return
+
+                // 눈금선
+                const tick = document.createElementNS(ns, "line")
+                tick.setAttribute("x1", px.toFixed(1)); tick.setAttribute("y1", (H - pad).toFixed(1))
+                tick.setAttribute("x2", px.toFixed(1)); tick.setAttribute("y2", (H - pad + 4).toFixed(1))
+                tick.setAttribute("stroke", "#cbd5e1"); tick.setAttribute("stroke-width", "1")
+                svg.appendChild(tick)
+
+                // 수치 텍스트
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", px.toFixed(1))
+                t.setAttribute("y", (H - pad + 14).toFixed(1))
+                t.setAttribute("font-size", "9")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", val === 100 ? "#64748b" : "#9ca3af")
+                t.setAttribute("font-weight", val === 100 ? "600" : "400")
+                t.setAttribute("text-anchor", "middle")
+                t.textContent = val.toFixed(1)
+                svg.appendChild(t)
+            })
+
+            // ── Y축 수치 (RS-Momentum) ───────────────────────────────
+            const yTicks = getAxisTicks(mMin, mMax, 5)
+            yTicks.forEach(val => {
+                const py = (H - pad) - ((val - mMin) / (mMax - mMin)) * (H - pad * 2)
+                if (py < pad + 4 || py > H - pad - 4) return
+
+                const tick = document.createElementNS(ns, "line")
+                tick.setAttribute("x1", (pad - 4).toFixed(1)); tick.setAttribute("y1", py.toFixed(1))
+                tick.setAttribute("x2", pad.toFixed(1)); tick.setAttribute("y2", py.toFixed(1))
+                tick.setAttribute("stroke", "#cbd5e1"); tick.setAttribute("stroke-width", "1")
+                svg.appendChild(tick)
+
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", (pad - 6).toFixed(1))
+                t.setAttribute("y", (py + 3).toFixed(1))
+                t.setAttribute("font-size", "9")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", val === 100 ? "#64748b" : "#9ca3af")
+                t.setAttribute("font-weight", val === 100 ? "600" : "400")
+                t.setAttribute("text-anchor", "end")
+                t.textContent = val.toFixed(1)
+                svg.appendChild(t)
+            })
+
+            // ── 축 레이블 ────────────────────────────────────────────
+            const xLabel = document.createElementNS(ns, "text")
+            xLabel.setAttribute("x", (W / 2).toFixed(1))
+            xLabel.setAttribute("y", (H - 2).toFixed(1))
+            xLabel.setAttribute("font-size", "9"); xLabel.setAttribute("font-family", "sans-serif")
+            xLabel.setAttribute("fill", "#9ca3af"); xLabel.setAttribute("text-anchor", "middle")
+            xLabel.textContent = "RS-Ratio →"
+            svg.appendChild(xLabel)
+
+            const yLabel = document.createElementNS(ns, "text")
+            yLabel.setAttribute("x", "10")
+            yLabel.setAttribute("y", (H / 2).toFixed(1))
+            yLabel.setAttribute("font-size", "9"); yLabel.setAttribute("font-family", "sans-serif")
+            yLabel.setAttribute("fill", "#9ca3af"); yLabel.setAttribute("text-anchor", "middle")
+            yLabel.setAttribute("transform", "rotate(-90, 10, " + (H / 2).toFixed(1) + ")")
+            yLabel.textContent = "RS-Mom →"
+            svg.appendChild(yLabel)
+        }
+
+        // 축 눈금 값 계산 — 항상 100 포함
+        function getAxisTicks(min, max, approxCount) {
+            const range = max - min
+            const rawStep = range / approxCount
+            // 0.5 단위로 반올림
+            const step = Math.max(0.5, Math.round(rawStep * 2) / 2)
+            const start = Math.ceil(min / step) * step
+            const ticks = []
+            for (let v = start; v <= max + 1e-9; v += step) {
+                ticks.push(Math.round(v * 10) / 10)
+            }
+            // 100이 없으면 추가
+            if (!ticks.some(t => Math.abs(t - 100) < 0.01)) ticks.push(100)
+            return ticks.sort((a, b) => a - b)
+        }
+
+
 
         // ── 섹터 RRG ────────────────────────────────────────────────
         function renderSectorRRG() {
@@ -563,35 +660,38 @@
             container.innerHTML = ""
             svg.innerHTML = ""
 
+            // sector_rrg: 시장 벤치마크 대비 각 섹터의 진짜 RS
+            const sectorRRG = allData.sector_rrg || {}
             const sectors = allData.sectors || {}
-            const entries = Object.entries(sectors)
-            if (!entries.length) return
+            const points = Object.entries(sectorRRG)
+                .filter(([, d]) => d.rs_ratio != null && d.rs_momentum != null)
+                .map(([name, d]) => ({
+                    name,
+                    ratio: d.rs_ratio,
+                    mom: d.rs_momentum,
+                    quad: d.quadrant,
+                    tail: d.tail || [],
+                    data: Object.assign({}, d, sectors[name] || {}),
+                }))
+
+            if (!points.length) {
+                loading.style.display = "flex"
+                loading.textContent = "장 시작 후 데이터가 생성됩니다"
+                return
+            }
             loading.style.display = "none"
 
             const W = el.offsetWidth || 600
             const H = el.offsetHeight || 480
             const pad = 50
 
-            const sectorPoints = entries.map(([name, d]) => {
-                const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                if (!cands.length) return null
-                const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
-                const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                return { name, ratio: avgR, mom: avgM, quad: getQuadrant(avgR, avgM), data: d }
-            }).filter(Boolean)
-
-            if (!sectorPoints.length) {
-                loading.style.display = "flex"
-                loading.textContent = "장 시작 후 데이터가 생성됩니다"
-                return
-            }
-
-            const ratios = sectorPoints.map(p => p.ratio)
-            const moms = sectorPoints.map(p => p.mom)
-            const rMin = Math.min(...ratios, 99) - 0.3
-            const rMax = Math.max(...ratios, 101) + 0.3
-            const mMin = Math.min(...moms, 99) - 0.3
-            const mMax = Math.max(...moms, 101) + 0.3
+            // 축 범위: 현재 점 + 전체 tail 포함해서 계산
+            const allR = points.flatMap(p => [p.ratio, ...p.tail.map(t => t.rs_ratio)])
+            const allM = points.flatMap(p => [p.mom, ...p.tail.map(t => t.rs_momentum)])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
 
             function toPos(r, m) {
                 const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
@@ -599,15 +699,37 @@
                 return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
             }
 
-            sectorPoints.forEach(pt => {
+            // 사분면 배경 + 기준선 + 축 수치 동적 렌더링
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
+
+            // tail 궤적 (SVG polyline)
+            points.forEach(pt => {
+                if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
+                if (pt.tail.length < 2) return
+                const pts = pt.tail.map(t => {
+                    const p = toPos(t.rs_ratio, t.rs_momentum)
+                    return p.x + "," + p.y
+                }).join(" ")
+                const pl = document.createElementNS("http://www.w3.org/2000/svg", "polyline")
+                pl.setAttribute("points", pts)
+                pl.setAttribute("fill", "none")
+                pl.setAttribute("stroke", quadrantColor(pt.quad))
+                pl.setAttribute("stroke-width", "1.5")
+                pl.setAttribute("stroke-opacity", "0.35")
+                pl.setAttribute("stroke-dasharray", "3,2")
+                svg.appendChild(pl)
+            })
+
+            // 점 + 라벨
+            points.forEach(pt => {
                 if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
                 const pos = toPos(pt.ratio, pt.mom)
                 const color = quadrantColor(pt.quad)
-                const size = pt.data.improving_count > 0 || pt.data.watch_count > 0 ? 12 : 9
+                const size = (pt.data.improving_count > 0 || pt.data.watch_count > 0) ? 13 : 9
 
                 const dot = document.createElement("div")
-                dot.className = `dot ${pt.quad}`
-                dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
+                dot.className = "dot " + pt.quad
+                dot.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;width:" + size + "px;height:" + size + "px;"
                 dot.addEventListener("mouseenter", e => showSectorTooltip(e, pt))
                 dot.addEventListener("mouseleave", hideTooltip)
                 dot.addEventListener("click", () => { switchTab("stock"); selectSector(pt.name) })
@@ -615,7 +737,7 @@
 
                 const lbl = document.createElement("div")
                 lbl.className = "dot-label"
-                lbl.style.cssText = `left:${pos.x}px;top:${pos.y}px;color:${color};`
+                lbl.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;color:" + color + ";"
                 lbl.textContent = pt.name.length > 8 ? pt.name.slice(0, 8) + "…" : pt.name
                 container.appendChild(lbl)
             })
@@ -671,11 +793,9 @@
             if (!allData) return
             const list = document.getElementById("sector-list")
             const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
             const items = Object.entries(sectors).map(([name, d]) => {
-                const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                const avgR = cands.length ? cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length : 100
-                const avgM = cands.length ? cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length : 100
-                const quad = getQuadrant(avgR, avgM)
+                const quad = sectorRRG[name]?.quadrant ?? "neutral"
                 return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }
             })
             const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
@@ -706,11 +826,9 @@
             if (!allData) return
             const chips = document.getElementById("sector-chips")
             const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
             chips.innerHTML = Object.entries(sectors).map(([name, d]) => {
-                const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                const avgR = cands.length ? cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length : 100
-                const avgM = cands.length ? cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length : 100
-                const quad = getQuadrant(avgR, avgM)
+                const quad = sectorRRG[name]?.quadrant ?? "neutral"
                 const sel = name === currentSector ? "selected" : ""
                 return `<div class="sector-chip ${sel}" onclick="selectSector('${name}')">
       <span class="dot-sm" style="background:${quadrantColor(quad)};"></span>
@@ -757,18 +875,22 @@
             const H = el.offsetHeight || 480
             const pad = 50
 
-            const ratios = cands.map(c => c.rs_ratio)
-            const moms = cands.map(c => c.rs_momentum)
-            const rMin = Math.min(...ratios, 99) - 0.3
-            const rMax = Math.max(...ratios, 101) + 0.3
-            const mMin = Math.min(...moms, 99) - 0.3
-            const mMax = Math.max(...moms, 101) + 0.3
+            // tail 포함 전체 범위로 축 계산 (tail 밖으로 점이 잘리는 문제 방지)
+            const allR = cands.flatMap(c => [c.rs_ratio, ...(c.tail || []).map(t => t.rs_ratio)])
+            const allM = cands.flatMap(c => [c.rs_momentum, ...(c.tail || []).map(t => t.rs_momentum)])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
 
             function toPos(r, m) {
                 const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
                 const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
                 return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
             }
+
+            // 사분면 배경 + 기준선 + 축 수치 동적 렌더링
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
 
             // 궤적 — 구간별 opacity로 방향 표현 + 주별 점
             cands.forEach(s => {
@@ -1068,15 +1190,10 @@
             if (!allData) return
             const el = document.getElementById("spotlight-candidates")
             const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
 
             const result = Object.entries(sectors)
-                .filter(([, d]) => {
-                    const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                    if (!cands.length) return false
-                    const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
-                    const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                    return getQuadrant(avgR, avgM) === "improving"
-                })
+                .filter(([name,]) => sectorRRG[name]?.quadrant === "improving")
                 .map(([name, d]) => ({ name, d }))
                 .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
                 .slice(0, 3)
@@ -1086,18 +1203,24 @@
                 return
             }
 
-            el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
-                result.map(({ name, d }) => `
-                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"
-                     onclick="selectSector('${name}'); switchTab('stock')">
-                    <div class="font-semibold text-sm text-gray-800 mb-1">${name} <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>
-                    <div class="text-xs text-gray-500 space-y-0.5">
-                        <div>5D <span class="${d.sector_ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
-                        <div>Improving <span class="text-blue-600 font-medium">${d.improving_count || 0}종목</span>
-                             &nbsp;Watch <span class="text-gray-500 font-medium">${d.watch_count || 0}종목</span></div>
-                        <div>총 <span class="text-gray-700 font-medium">${(d.candidates || []).length}종목</span></div>
-                    </div>
-                </div>`).join("") + `</div>`
+            el.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
+                result.map(function (item) {
+                    const name = item.name, d = item.d
+                    const rrg = sectorRRG[name] || {}
+                    const ret5d = d.sector_ret_5d
+                    return '<div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"' +
+                        ' onclick="selectSector(\'' + name + '\'); switchTab(\'stock\')">' +
+                        '<div class="font-semibold text-sm text-gray-800 mb-1">' + name +
+                        ' <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>' +
+                        '<div class="text-xs text-gray-500 space-y-0.5">' +
+                        '<div>RS-Ratio: <span class="font-medium text-gray-700">' + (rrg.rs_ratio != null ? rrg.rs_ratio.toFixed(2) : '-') + '</span>' +
+                        ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
+                        '<div>5D <span class="' + (ret5d > 0 ? 'text-green-600' : 'text-red-500') + ' font-medium">' +
+                        (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
+                        '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
+                        ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
+                        '</div></div>'
+                }).join("") + '</div>'
         }
 
         function generateSpotlightSectorComment(name, d) {
@@ -1241,14 +1364,9 @@
 
             if (currentTab === "sector") {
                 const sectors = allData.sectors || {}
+                const sectorRRG = allData.sector_rrg || {}
                 const result = Object.entries(sectors)
-                    .filter(([, d]) => {
-                        const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                        if (!cands.length) return false
-                        const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
-                        const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                        return getQuadrant(avgR, avgM) === "improving"
-                    })
+                    .filter(([name,]) => sectorRRG[name]?.quadrant === "improving")
                     .map(([name, d]) => ({ name, d }))
                     .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
                     .slice(0, 3)
@@ -1296,15 +1414,10 @@
             if (!allData) return
             const el = document.getElementById("spotlight-candidates")
             const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
 
             const result = Object.entries(sectors)
-                .filter(([, d]) => {
-                    const cands = (d.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                    if (!cands.length) return false
-                    const avgR = cands.reduce((s, c) => s + c.rs_ratio, 0) / cands.length
-                    const avgM = cands.reduce((s, c) => s + c.rs_momentum, 0) / cands.length
-                    return getQuadrant(avgR, avgM) === "improving"
-                })
+                .filter(([name,]) => sectorRRG[name]?.quadrant === "improving")
                 .map(([name, d]) => ({ name, d }))
                 .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
                 .slice(0, 3)
@@ -1314,18 +1427,24 @@
                 return
             }
 
-            el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
-                result.map(({ name, d }) => `
-                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"
-                     onclick="selectSector('${name}'); switchTab('stock')">
-                    <div class="font-semibold text-sm text-gray-800 mb-1">${name} <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>
-                    <div class="text-xs text-gray-500 space-y-0.5">
-                        <div>5D <span class="${d.sector_ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
-                        <div>Improving <span class="text-blue-600 font-medium">${d.improving_count || 0}종목</span>
-                             &nbsp;Watch <span class="text-gray-500 font-medium">${d.watch_count || 0}종목</span></div>
-                        <div>총 <span class="text-gray-700 font-medium">${(d.candidates || []).length}종목</span></div>
-                    </div>
-                </div>`).join("") + `</div>`
+            el.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
+                result.map(function (item) {
+                    const name = item.name, d = item.d
+                    const rrg = sectorRRG[name] || {}
+                    const ret5d = d.sector_ret_5d
+                    return '<div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"' +
+                        ' onclick="selectSector(' + JSON.stringify(name) + '); switchTab(\'stock\')">' +
+                        '<div class="font-semibold text-sm text-gray-800 mb-1">' + name +
+                        ' <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>' +
+                        '<div class="text-xs text-gray-500 space-y-0.5">' +
+                        '<div>RS-Ratio: <span class="font-medium text-gray-700">' + (rrg.rs_ratio != null ? rrg.rs_ratio.toFixed(2) : '-') + '</span>' +
+                        ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
+                        '<div>5D <span class="' + (ret5d > 0 ? 'text-green-600' : 'text-red-500') + ' font-medium">' +
+                        (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
+                        '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
+                        ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
+                        '</div></div>'
+                }).join("") + '</div>'
         }
 
         function searchStock(query) {
