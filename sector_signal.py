@@ -2,10 +2,16 @@
 sector_signal.py  —  RRG 기반 소외주 탐색
 
 계산 방식:
-  1. RS          = (종목 종가 / 테마 평균 종가) × 100
-  2. RS_Ratio    = 100 + (RS - RS_MA10) / RS_STD10
-  3. RS_Momentum = 100 + (ROC - ROC_MA10) / ROC_STD10
+  1. rebased[i]  = closes[i] / closes[0] * 100   (첫날 = 100으로 정규화)
+  2. benchmark   = mean(rebased) across all sector stocks  (동등가중 수익률 벤치마크)
+  3. RS          = rebased[i] / benchmark[i] * 100
+  4. RS_Ratio    = 100 + (RS - RS_MA10) / RS_STD10
+  5. RS_Momentum = 100 + (ROC - ROC_MA10) / ROC_STD10
      ROC = (RS_Ratio / RS_Ratio[10일전] - 1) × 100
+
+  ※ rebasing 이유: 주가 수준(삼성전자 6만원 vs 리노공업 20만원)이
+     다른 종목들의 평균 종가를 벤치마크로 쓰면 고가 종목이 벤치마크를
+     왜곡한다. 첫날 100 기준 수익률로 환산하면 모든 종목이 동등 가중된다.
 
 사분면:
   improving : RS_Ratio < 100, Momentum >= 100  ← 핵심 매수 타이밍
@@ -17,6 +23,7 @@ sector_signal.py  —  RRG 기반 소외주 탐색
 """
 import logging
 from config import SECTORS
+from utils import now_kst
 
 logger = logging.getLogger(__name__)
 
@@ -58,32 +65,105 @@ def _std(values: list[float], period: int) -> list[float | None]:
     return result
 
 
-def _calc_rs_ratio(closes: list[float], benchmark: list[float]) -> list[float | None]:
-    n      = min(len(closes), len(benchmark))
-    raw_rs = [(closes[i] / benchmark[i] * 100) if benchmark[i] > 0 else 0.0 for i in range(n)]
-    ma     = _ma(raw_rs, MA_PERIOD)
-    std    = _std(raw_rs, MA_PERIOD)
+MIN_STD = 0.01  # RS_Ratio 폭발 방지용 최소 표준편차 임계값
+
+
+def _rebase(closes: list[float]) -> list[float]:
+    """첫날 종가를 100으로 정규화한 수익률 시계열 반환"""
+    base = closes[0]
+    if base == 0:
+        return [0.0] * len(closes)
+    return [c / base * 100.0 for c in closes]
+
+
+def _make_benchmark(rebased_map: dict[str, list[float]]) -> list[float]:
+    """
+    섹터 내 전 종목의 rebased 시계열 동등가중 평균 → 벤치마크
+    모든 rebased 시계열은 동일 길이(min_len으로 정렬된 상태)여야 한다.
+    """
+    codes = list(rebased_map.keys())
+    n     = len(rebased_map[codes[0]])
+    return [
+        sum(rebased_map[c][i] for c in codes) / len(codes)
+        for i in range(n)
+    ]
+
+
+def _calc_rs_ratio(rebased: list[float], benchmark: list[float]) -> list[float | None]:
+    """
+    rebased: 해당 종목의 첫날=100 정규화 시계열
+    benchmark: 섹터 동등가중 rebased 평균
+    RS = rebased / benchmark * 100
+    RS_Ratio = 100 + (RS - MA) / STD  (STD < MIN_STD 이면 None)
+    """
+    n      = min(len(rebased), len(benchmark))
+    raw_rs = [
+        (rebased[i] / benchmark[i] * 100.0) if benchmark[i] > 0 else 0.0
+        for i in range(n)
+    ]
+    ma  = _ma(raw_rs, MA_PERIOD)
+    std = _std(raw_rs, MA_PERIOD)
     return [
         100.0 + (raw_rs[i] - ma[i]) / std[i]
-        if ma[i] is not None and std[i] and std[i] > 0 else None
+        if ma[i] is not None and std[i] is not None and std[i] >= MIN_STD
+        else None
         for i in range(n)
     ]
 
 
 def _calc_rs_momentum(rs_ratio: list[float | None]) -> list[float | None]:
-    n   = len(rs_ratio)
-    roc = [0.0] * n
+    """
+    ROC = (RS_Ratio[i] / RS_Ratio[i-ROC_PERIOD] - 1) * 100
+    RS_Momentum = 100 + (ROC - ROC_MA) / ROC_STD
+
+    ※ 수정 이유:
+       기존 코드는 ROC를 계산할 수 없는 초기 구간(rs_ratio가 None이거나
+       ROC_PERIOD 이전)을 0.0으로 채웠다. 이 0들이 MA/STD 윈도우에 섞이면
+       - STD가 실제보다 부풀려져 Momentum 값이 100 근처로 과도하게 눌리고
+       - MA가 실제보다 낮아져 초기 Momentum이 위쪽으로 편향된다.
+
+    수정: 유효한 ROC를 확보한 인덱스(roc_start)부터만 _ma/_std를 돌린 뒤
+          그 결과를 원래 길이 n의 배열에 다시 매핑한다.
+          roc_start 이전은 None으로 반환한다.
+    """
+    n = len(rs_ratio)
+
+    # 1. 유효 ROC 인덱스와 값 수집
+    roc_values: list[float] = []   # 유효 ROC 값들 (연속 시계열)
+    roc_start:  int | None  = None  # 유효 ROC가 처음 등장하는 n-인덱스
+
     for i in range(ROC_PERIOD, n):
-        a, b = rs_ratio[i], rs_ratio[i - ROC_PERIOD]
-        if a is not None and b and b != 0:
-            roc[i] = (a / b - 1) * 100
-    ma  = _ma(roc, ROC_PERIOD)
-    std = _std(roc, ROC_PERIOD)
-    return [
-        100.0 + (roc[i] - ma[i]) / std[i]
-        if ma[i] is not None and std[i] and std[i] > 0 else None
-        for i in range(n)
-    ]
+        a = rs_ratio[i]
+        b = rs_ratio[i - ROC_PERIOD]
+        if a is not None and b is not None and b != 0:
+            if roc_start is None:
+                roc_start = i
+            roc_values.append((a / b - 1) * 100)
+        else:
+            # 유효 시작점 이후에 None 구간이 생기면 시계열을 끊는다
+            if roc_start is not None:
+                roc_values.append(0.0)  # 연속성 유지용 — 길이 맞춤
+
+    if roc_start is None or len(roc_values) < ROC_PERIOD:
+        return [None] * n  # 유효 ROC 자체가 부족하면 전부 None
+
+    # 2. 유효 구간에서만 MA/STD 계산
+    ma_vals  = _ma(roc_values,  ROC_PERIOD)
+    std_vals = _std(roc_values, ROC_PERIOD)
+
+    # 3. 결과를 원래 길이 n의 배열에 매핑
+    result: list[float | None] = [None] * n
+    for j, i in enumerate(range(roc_start, roc_start + len(roc_values))):
+        if i >= n:
+            break
+        m_val = ma_vals[j]
+        s_val = std_vals[j]
+        r_val = roc_values[j]
+        if m_val is not None and s_val is not None and s_val >= MIN_STD:
+            result[i] = 100.0 + (r_val - m_val) / s_val
+        # else: result[i] remains None
+
+    return result
 
 
 def _quadrant(ratio: float | None, mom: float | None) -> str:
@@ -161,9 +241,17 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     if len(valid) < 2:
         return _empty_sector(sector)
 
-    min_len   = min(len(v) for v in valid.values())
-    aligned   = {c: v[-min_len:] for c, v in valid.items()}
-    benchmark = [sum(aligned[c][i] for c in aligned) / len(aligned) for i in range(min_len)]
+    # ── 1. 길이 정렬 ─────────────────────────────────────────
+    min_len = min(len(v) for v in valid.values())
+    aligned = {c: v[-min_len:] for c, v in valid.items()}
+
+    # ── 2. 전 종목 rebasing (첫날 = 100) ─────────────────────
+    #  aligned 시작 시점 기준으로 rebase. offset 슬라이싱 시에도
+    #  그 슬라이스의 [0]을 기준으로 재계산(_rebase 내부에서 처리).
+    rebased_full = {c: _rebase(aligned[c]) for c in aligned}
+
+    # ── 3. 동등가중 벤치마크 ──────────────────────────────────
+    benchmark = _make_benchmark(rebased_full)
 
     returns_5d = {c: r for c in valid if (r := _get_return(c, 5)) is not None}
     if not returns_5d:
@@ -177,26 +265,28 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
 
     candidates = []
     for code in valid:
-        closes    = aligned[code]
-        now_price = current_price.get(code) or closes[-1]
+        now_price = current_price.get(code) or aligned[code][-1]
 
-        rs_ratio    = _calc_rs_ratio(closes, benchmark)
+        rs_ratio    = _calc_rs_ratio(rebased_full[code], benchmark)
         rs_momentum = _calc_rs_momentum(rs_ratio)
 
         curr_ratio = next((v for v in reversed(rs_ratio)    if v is not None), None)
         curr_mom   = next((v for v in reversed(rs_momentum) if v is not None), None)
         quad       = _quadrant(curr_ratio, curr_mom)
 
-        # 궤적 누적
+        # ── 궤적(tail) 누적 ───────────────────────────────────
+        # 핵심: offset 슬라이싱 시 전 종목을 동시에 잘라야
+        #       벤치마크 길이와 종목 rebased 시계열이 일치한다.
         if code not in rrg_history or len(rrg_history[code]) == 0:
             tail = []
             for offset in range(TAIL_DAYS, 0, -5):
                 if offset >= min_len:
                     continue
-                hist_closes    = aligned[code][:-offset] if offset > 0 else aligned[code]
-                hist_benchmark = [sum(aligned[c][i] for c in aligned) / len(aligned)
-                                for i in range(len(hist_closes))]
-                hist_ratio    = _calc_rs_ratio(hist_closes, hist_benchmark)
+                # 전 종목을 동일하게 offset만큼 자름 → 벤치마크도 자동 일치
+                hist_aligned   = {c: aligned[c][:-offset] for c in aligned}
+                hist_rebased   = {c: _rebase(hist_aligned[c]) for c in hist_aligned}
+                hist_benchmark = _make_benchmark(hist_rebased)
+                hist_ratio    = _calc_rs_ratio(hist_rebased[code], hist_benchmark)
                 hist_momentum = _calc_rs_momentum(hist_ratio)
                 t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)
                 t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
@@ -268,9 +358,18 @@ def _rrg_signal(quadrant: str, vol: float | None) -> str:
 
 
 def calc_all_signals() -> dict:
-    from datetime import datetime
+    # ── rrg_history 정리: config에서 사라진 종목 코드 제거 ────
+    # SECTORS 변경 시 더 이상 사용하지 않는 코드가 메모리에
+    # 계속 쌓이는 것을 방지한다.
+    active_codes = {code for codes in SECTORS.values() for code, _ in codes}
+    stale = [c for c in list(rrg_history.keys()) if c not in active_codes]
+    for c in stale:
+        del rrg_history[c]
+    if stale:
+        logger.info(f"rrg_history 정리: {len(stale)}개 코드 삭제 {stale[:5]}{'...' if len(stale)>5 else ''}")
+
     result = {
-        "updated_at":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "updated_at":  now_kst().strftime("%Y-%m-%d %H:%M:%S"),
         "rrg_params":  {"ma_period": MA_PERIOD, "roc_period": ROC_PERIOD},
         "sectors":     {}
     }

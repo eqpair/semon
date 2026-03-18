@@ -4,6 +4,7 @@ import os
 import numpy as np
 from datetime import datetime, time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 logger = logging.getLogger(__name__)
 
@@ -12,12 +13,19 @@ REPO_PATH = Path(os.environ.get("SEMON_REPO_PATH", "/home/eq/semon"))
 DATA_PATH = REPO_PATH / "docs" / "data"
 SIGNALS_FILE = DATA_PATH / "signals.json"
 
+KST = ZoneInfo("Asia/Seoul")
+
+
+def now_kst() -> datetime:
+    """현재 KST 시각 반환 — 서버 TZ 설정과 무관하게 항상 한국 시간"""
+    return datetime.now(KST)
+
 
 # ── 시장 시간 확인 ────────────────────────────────────────────
 
 def is_market_time() -> bool:
-    """평일 09:00 ~ 15:30 여부 확인"""
-    now = datetime.now()
+    """평일 09:00 ~ 15:30 KST 여부 확인"""
+    now     = now_kst()
     weekday = now.weekday()
     current = now.time()
 
@@ -25,6 +33,18 @@ def is_market_time() -> bool:
     is_open_hour = time(9, 0) <= current <= time(15, 30)
 
     return is_weekday and is_open_hour
+
+
+def is_near_market_close() -> bool:
+    """
+    15:25 ~ 15:45 KST 여부 확인 — closing 스냅샷 저장용.
+    is_market_time()보다 넓게 잡아서 15:30 직후에도 감지한다.
+    """
+    now     = now_kst()
+    weekday = now.weekday()
+    current = now.time()
+
+    return 0 <= weekday <= 4 and time(15, 25) <= current <= time(15, 45)
 
 
 # ── JSON 저장 ─────────────────────────────────────────────────
@@ -88,7 +108,7 @@ def git_push(commit_msg: str = None) -> bool:
 
         repo.index.add(["docs/data/signals.json"])
 
-        msg = commit_msg or f"update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        msg = commit_msg or f"update {now_kst().strftime('%Y-%m-%d %H:%M')} KST"
         repo.index.commit(msg)
 
         origin = repo.remote(name="origin")
@@ -109,7 +129,9 @@ def save_and_push(data: dict) -> bool:
         return False
     return git_push()
 
+
 CLOSING_FILE = DATA_PATH / "signals_closing.json"
+
 
 def save_closing(data: dict) -> bool:
     """장 마감 시 closing 스냅샷 저장"""

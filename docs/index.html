@@ -74,7 +74,7 @@
 
       <!-- SECTOR HEATMAP -->
       <section class="mb-8">
-        <h2 class="text-lg font-bold text-gray-800 mb-4">※ 50 섹터 324 종목</h2>
+        <h2 id="sector-summary" class="text-lg font-bold text-gray-800 mb-4">섹터 로딩 중...</h2>
         <div id="heatmap"></div>
       </section>
 
@@ -88,8 +88,11 @@
     let allData = null
 
     function getDataUrl() {
+      // 브라우저 로컬 TZ와 무관하게 항상 KST(UTC+9) 기준으로 판단
       const now = new Date()
-      const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
+      const kstOffset = 9 * 60  // 분 단위
+      const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
+      const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
       const isMarket = d >= 1 && d <= 5 &&
         (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
       return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
@@ -117,13 +120,21 @@
           : "-"
       const badge = document.getElementById("market-badge")
       const now = new Date()
-      const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
+      const kstOffset = 9 * 60
+      const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
+      const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
       const isOpen = d >= 1 && d <= 5 &&
         (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
       badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
       badge.className = isOpen
         ? "px-3 py-1 text-xs rounded bg-green-100 text-green-700"
         : "px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
+      // 섹터·종목 수 동적 갱신
+      const _sectors = allData.sectors || {}
+      const _sectorCount = Object.keys(_sectors).length
+      const _stockCount = Object.values(_sectors).reduce((s, d) => s + (d.candidates?.length ?? 0), 0)
+      document.getElementById("sector-summary").textContent =
+        `※ ${_sectorCount} 섹터 ${_stockCount} 종목`
       renderHeatmap()
       if (currentSector) {
         const rows = document.querySelectorAll(".inline-panel")
@@ -381,26 +392,39 @@
 
     function goToStock(sectorName, code) {
       closeSearch()
-      const sectorCard = document.querySelector(`[data-sector="${sectorName}"]`)
-      if (!sectorCard) return
-      const cardRow = sectorCard.closest(".grid")
-      if (!cardRow) return
-      selectSector(sectorName, cardRow)
-      // 해당 종목 행 하이라이트
+
+      // DOM을 타고 올라가는 대신 allData에서 직접 rowStart 계산
+      // renderHeatmap() 재실행 후에도 안정적으로 동작한다
+      const sectorKeys = Object.keys(allData?.sectors || {})
+      const sectorIdx = sectorKeys.indexOf(sectorName)
+      if (sectorIdx === -1) return
+
+      const rowStart = Math.floor(sectorIdx / COLS) * COLS
+
+      // 패널이 이미 열려있지 않으면 섹터 선택 먼저 실행
+      const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+      if (!panel || panel.style.display === "none") {
+        // cardRow는 data-row 속성으로 직접 조회
+        const cardRow = document.querySelector(`.grid[data-row="${rowStart}"]`)
+        if (!cardRow) return
+        selectSector(sectorName, cardRow)
+      }
+
+      // 종목 행 하이라이트 (패널 렌더 완료 후 실행)
       setTimeout(() => {
-        const rows = document.querySelectorAll(`[data-code="${code}"], td`)
-        document.querySelectorAll(".highlight-row").forEach(r => r.classList.remove("highlight-row", "ring-1", "ring-blue-300"))
-        const panel = document.querySelector(`.inline-panel[data-row="${cardRow.dataset.row}"]`)
-        if (panel) {
-          const links = panel.querySelectorAll("a[href*='code=" + code + "']")
-          links.forEach(link => {
-            const row = link.closest("tr")
-            if (row) {
-              row.classList.add("ring-1", "ring-blue-300")
-              row.scrollIntoView({ behavior: "smooth", block: "nearest" })
-            }
-          })
-        }
+        document.querySelectorAll(".ring-1.ring-blue-300").forEach(r =>
+          r.classList.remove("ring-1", "ring-blue-300")
+        )
+        const activePanel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+        if (!activePanel) return
+        const links = activePanel.querySelectorAll(`a[href*="code=${code}"]`)
+        links.forEach(link => {
+          const row = link.closest("tr")
+          if (row) {
+            row.classList.add("ring-1", "ring-blue-300")
+            row.scrollIntoView({ behavior: "smooth", block: "nearest" })
+          }
+        })
       }, 300)
     }
 

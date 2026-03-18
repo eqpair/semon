@@ -487,8 +487,11 @@
         let sectorFilter = "all"
 
         function getDataUrl() {
+            // 브라우저 로컬 TZ와 무관하게 항상 KST(UTC+9) 기준으로 판단
             const now = new Date()
-            const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
+            const kstOffset = 9 * 60  // 분 단위
+            const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
+            const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
             const isMarket = d >= 1 && d <= 5 &&
                 (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
             return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
