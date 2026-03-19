@@ -81,32 +81,54 @@ def _rebase(closes: list[float]) -> list[float]:
 
 def _make_benchmark(rebased_map: dict[str, list[float]]) -> list[float]:
     """
-    섹터 벤치마크 = 시총 가중 rebased 평균
+    섹터 벤치마크 = 시총 상한선(cap) 적용 가중 rebased 평균
 
-    시총 데이터가 있는 종목은 시총 비례 가중치를 적용한다.
-    시총 데이터가 없는 종목은 동등가중으로 폴백한다.
-    삼성전자처럼 시총이 압도적인 종목이 벤치마크를 지배하도록 허용하여
-    실제 시장 구조를 반영한다.
+    단일 종목이 벤치마크를 지배하는 것을 방지하기 위해
+    개별 종목 가중치 상한을 CAP_WEIGHT(40%)로 제한한다.
+    삼성전자처럼 시총이 극단적으로 큰 종목이 있어도
+    최대 40%까지만 반영되며, 나머지는 다른 종목에 비례 재배분된다.
+
+    시총 데이터가 없으면 동등가중으로 폴백한다.
     """
-    codes = list(rebased_map.keys())
-    n     = len(rebased_map[codes[0]])
+    CAP_WEIGHT = 0.40  # 단일 종목 최대 가중치
 
-    # 시총 가중치 계산
-    caps   = {c: market_cap_store.get(c, 0) for c in codes}
-    total  = sum(caps.values())
+    codes  = list(rebased_map.keys())
+    n_code = len(codes)
+    n_data = len(rebased_map[codes[0]])
+
+    caps  = {c: market_cap_store.get(c, 0) for c in codes}
+    total = sum(caps.values())
 
     if total > 0:
-        # 시총 데이터 있는 종목만 가중 / 없는 종목은 최소 가중치(1억원 가정)
-        adj    = {c: caps[c] if caps[c] > 0 else 1 for c in codes}
+        adj       = {c: caps[c] if caps[c] > 0 else 1 for c in codes}
         adj_total = sum(adj.values())
-        weights = {c: adj[c] / adj_total for c in codes}
+        weights   = {c: adj[c] / adj_total for c in codes}
+
+        # cap 초과 종목을 40%로 제한하고 나머지 재배분 (수렴할 때까지 반복)
+        for _ in range(10):
+            capped  = {c: min(w, CAP_WEIGHT) for c, w in weights.items()}
+            excess  = 1.0 - sum(capped.values())
+
+            if excess < 1e-9:
+                weights = capped
+                break
+
+            free     = {c: w for c, w in capped.items() if w < CAP_WEIGHT}
+            free_sum = sum(free.values())
+            if free_sum < 1e-9:
+                weights = {c: 1.0 / n_code for c in codes}
+                break
+
+            for c in codes:
+                if capped[c] < CAP_WEIGHT:
+                    capped[c] += excess * (capped[c] / free_sum)
+            weights = capped
     else:
-        # 시총 데이터 전혀 없으면 동등가중
-        weights = {c: 1.0 / len(codes) for c in codes}
+        weights = {c: 1.0 / n_code for c in codes}
 
     return [
         sum(rebased_map[c][i] * weights[c] for c in codes)
-        for i in range(n)
+        for i in range(n_data)
     ]
 
 
