@@ -34,13 +34,11 @@ BASE        = "https://finance.naver.com"
 GROUP_URL   = BASE + "/sise/sise_group.naver?type=upjong"
 DETAIL_URL  = BASE + "/sise/sise_group_detail.naver?type=upjong&no={no}"
 PRICE_URL   = "https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:{code}"
-MSTOCK_URL  = "https://m.stock.naver.com/api/stock/{code}/basic"
 HEADERS     = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-M_HEADERS   = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 11; SM-G991B) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/120.0.0.0 Mobile Safari/537.36",
-    "Referer": "https://m.stock.naver.com/",
+SUMMARY_URL = "https://api.finance.naver.com/service/itemSummary.nhn?itemcode={code}"
+SUMMARY_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "Referer": "https://finance.naver.com/",
 }
 
 
@@ -105,21 +103,19 @@ async def fetch_price_info(session, code):
 
 async def fetch_market_cap(session, code) -> int:
     """
-    모바일 API: 시가총액 (억원)
-    m.stock.naver.com/api/stock/{code}/basic
-    → marketValue: 억원 단위 정수
-    폴링 API에 시총 필드가 없어 별도 호출한다.
+    시가총액 (억원) fetch
+    api.finance.naver.com/service/itemSummary.nhn
+    → marketSum 필드 (백만원 단위) // 100 = 억원
     """
-    url = MSTOCK_URL.format(code=code)
+    url = SUMMARY_URL.format(code=code)
     try:
-        async with session.get(url, headers=M_HEADERS,
+        async with session.get(url, headers=SUMMARY_HEADERS,
                                timeout=aiohttp.ClientTimeout(total=5)) as resp:
             if resp.status != 200:
                 return 0
             data = await resp.json(content_type=None)
-            # marketValue 는 억원 단위 문자열 또는 정수로 반환됨
-            val = data.get("marketValue") or data.get("marketCap") or 0
-            return int(str(val).replace(",", "") or 0)
+            val = data.get("marketSum") or 0
+            return int(val) // 100  # 백만원 → 억원
     except Exception:
         return 0
 
