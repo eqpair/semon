@@ -1,17 +1,20 @@
 """
 sector_signal.py  —  RRG 기반 소외주 탐색
 
-계산 방식:
-  1. rebased[i]  = closes[i] / closes[0] * 100   (첫날 = 100으로 정규화)
-  2. benchmark   = mean(rebased) across all sector stocks  (동등가중 수익률 벤치마크)
-  3. RS          = rebased[i] / benchmark[i] * 100
-  4. RS_Ratio    = 100 + (RS - RS_MA10) / RS_STD10
-  5. RS_Momentum = 100 + (ROC - ROC_MA10) / ROC_STD10
-     ROC = (RS_Ratio / RS_Ratio[10일전] - 1) × 100
+계산 방식 (블룸버그 RRG 방식):
+  1. rebased[i]  = closes[i] / closes[0] * 100        (첫날 = 100 정규화)
+  2. benchmark   = 섹터 내 전 종목 rebased 동등가중 평균
+  3. RS          = rebased / benchmark × 100           (상대강도 원시값)
+  4. RS_Ratio    = 100 × (RS_MA10 / RS_MA40)
+                   단기(10일) MA가 장기(40일) MA 대비 위에 있으면 > 100
+  5. RS_Momentum = 100 × (RS_Ratio_MA10 / RS_Ratio_MA40)
+                   RS_Ratio 자체의 단기/장기 MA 비율
 
-  ※ rebasing 이유: 주가 수준(삼성전자 6만원 vs 리노공업 20만원)이
-     다른 종목들의 평균 종가를 벤치마크로 쓰면 고가 종목이 벤치마크를
-     왜곡한다. 첫날 100 기준 수익률로 환산하면 모든 종목이 동등 가중된다.
+  ※ Z-score 방식 대비 장점:
+     - STD 분모가 없으므로 횡보 구간에서 값이 폭발하지 않음
+     - 장기 MA가 자연스러운 스무딩 역할 → 궤적이 부드러워짐
+     - 100 기준선이 명확한 의미 (단기=장기 추세이면 정확히 100)
+     - 블룸버그·스톡차트 등 실전 검증된 수십 년의 사용 이력
 
 사분면:
   improving : RS_Ratio < 100, Momentum >= 100  ← 핵심 매수 타이밍
@@ -19,7 +22,8 @@ sector_signal.py  —  RRG 기반 소외주 탐색
   leading   : RS_Ratio >= 100, Momentum >= 100  ← 강하고 가속
   weakening : RS_Ratio >= 100, Momentum <  100  ← 강하지만 둔화
 
-최적 파라미터 (백테스트): MA=10, ROC=10
+파라미터: MA_SHORT=10, MA_LONG=40 (블룸버그 기본값)
+최소 필요 데이터: 80일 (RS_Momentum 계산을 위해 RS_Ratio_MA40 필요)
 """
 import logging
 from config import SECTORS
@@ -27,14 +31,18 @@ from utils import now_kst
 
 logger = logging.getLogger(__name__)
 
-MA_PERIOD  = 10
-ROC_PERIOD = 10
+MA_SHORT   = 10   # 단기 이동평균 (블룸버그 기본값)
+MA_LONG    = 40   # 장기 이동평균 (블룸버그 기본값)
 TAIL_DAYS  = 40   # 8주 궤적
 CHART_DAYS = 120  # 주가 차트용 6개월
 
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
 rrg_history:    dict[str, list[dict]] = {}
+
+# 수식 버전 — 파라미터나 수식이 바뀌면 이 값을 올려서
+# 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
+RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
 
 
 def update_ohlcv(data: dict[str, dict | None]):
@@ -54,18 +62,6 @@ def _ma(values: list[float], period: int) -> list[float | None]:
     for i in range(period - 1, len(values)):
         result[i] = sum(values[i - period + 1:i + 1]) / period
     return result
-
-
-def _std(values: list[float], period: int) -> list[float | None]:
-    result = [None] * len(values)
-    for i in range(period - 1, len(values)):
-        window = values[i - period + 1:i + 1]
-        mean   = sum(window) / period
-        result[i] = (sum((x - mean) ** 2 for x in window) / period) ** 0.5
-    return result
-
-
-MIN_STD = 0.01  # RS_Ratio 폭발 방지용 최소 표준편차 임계값
 
 
 def _rebase(closes: list[float]) -> list[float]:
@@ -91,21 +87,23 @@ def _make_benchmark(rebased_map: dict[str, list[float]]) -> list[float]:
 
 def _calc_rs_ratio(rebased: list[float], benchmark: list[float]) -> list[float | None]:
     """
-    rebased: 해당 종목의 첫날=100 정규화 시계열
-    benchmark: 섹터 동등가중 rebased 평균
-    RS = rebased / benchmark * 100
-    RS_Ratio = 100 + (RS - MA) / STD  (STD < MIN_STD 이면 None)
+    RS_Ratio = 100 × (RS_MA_SHORT / RS_MA_LONG)
+
+    RS_MA_SHORT가 RS_MA_LONG 위에 있으면 100 초과 (상대적 강세)
+    RS_MA_SHORT가 RS_MA_LONG 아래에 있으면 100 미만 (상대적 약세)
+
+    STD 정규화 없음 → 횡보 구간에서 값 폭발 없음, 궤적 부드러움
     """
     n      = min(len(rebased), len(benchmark))
     raw_rs = [
         (rebased[i] / benchmark[i] * 100.0) if benchmark[i] > 0 else 0.0
         for i in range(n)
     ]
-    ma  = _ma(raw_rs, MA_PERIOD)
-    std = _std(raw_rs, MA_PERIOD)
+    ma_short = _ma(raw_rs, MA_SHORT)
+    ma_long  = _ma(raw_rs, MA_LONG)
     return [
-        100.0 + (raw_rs[i] - ma[i]) / std[i]
-        if ma[i] is not None and std[i] is not None and std[i] >= MIN_STD
+        100.0 * ma_short[i] / ma_long[i]
+        if ma_short[i] is not None and ma_long[i] is not None and ma_long[i] != 0
         else None
         for i in range(n)
     ]
@@ -113,55 +111,33 @@ def _calc_rs_ratio(rebased: list[float], benchmark: list[float]) -> list[float |
 
 def _calc_rs_momentum(rs_ratio: list[float | None]) -> list[float | None]:
     """
-    ROC = (RS_Ratio[i] / RS_Ratio[i-ROC_PERIOD] - 1) * 100
-    RS_Momentum = 100 + (ROC - ROC_MA) / ROC_STD
+    RS_Momentum = 100 × (RS_Ratio_MA_SHORT / RS_Ratio_MA_LONG)
 
-    ※ 수정 이유:
-       기존 코드는 ROC를 계산할 수 없는 초기 구간(rs_ratio가 None이거나
-       ROC_PERIOD 이전)을 0.0으로 채웠다. 이 0들이 MA/STD 윈도우에 섞이면
-       - STD가 실제보다 부풀려져 Momentum 값이 100 근처로 과도하게 눌리고
-       - MA가 실제보다 낮아져 초기 Momentum이 위쪽으로 편향된다.
+    RS_Ratio 자체의 단기/장기 MA 비율.
+    RS_Ratio가 가속하고 있으면(단기 MA > 장기 MA) 100 초과.
+    RS_Ratio가 감속하고 있으면(단기 MA < 장기 MA) 100 미만.
 
-    수정: 유효한 ROC를 확보한 인덱스(roc_start)부터만 _ma/_std를 돌린 뒤
-          그 결과를 원래 길이 n의 배열에 다시 매핑한다.
-          roc_start 이전은 None으로 반환한다.
+    None 값은 건너뛰고 유효한 값만으로 MA를 계산한다.
     """
     n = len(rs_ratio)
 
-    # 1. 유효 ROC 인덱스와 값 수집
-    roc_values: list[float] = []   # 유효 ROC 값들 (연속 시계열)
-    roc_start:  int | None  = None  # 유효 ROC가 처음 등장하는 n-인덱스
+    # None 제외한 유효값만 추출 (인덱스 보존)
+    valid_indices = [i for i, v in enumerate(rs_ratio) if v is not None]
+    valid_values  = [rs_ratio[i] for i in valid_indices]
 
-    for i in range(ROC_PERIOD, n):
-        a = rs_ratio[i]
-        b = rs_ratio[i - ROC_PERIOD]
-        if a is not None and b is not None and b != 0:
-            if roc_start is None:
-                roc_start = i
-            roc_values.append((a / b - 1) * 100)
-        else:
-            # 유효 시작점 이후에 None 구간이 생기면 시계열을 끊는다
-            if roc_start is not None:
-                roc_values.append(0.0)  # 연속성 유지용 — 길이 맞춤
+    if len(valid_values) < MA_LONG:
+        return [None] * n
 
-    if roc_start is None or len(roc_values) < ROC_PERIOD:
-        return [None] * n  # 유효 ROC 자체가 부족하면 전부 None
+    ma_short = _ma(valid_values, MA_SHORT)
+    ma_long  = _ma(valid_values, MA_LONG)
 
-    # 2. 유효 구간에서만 MA/STD 계산
-    ma_vals  = _ma(roc_values,  ROC_PERIOD)
-    std_vals = _std(roc_values, ROC_PERIOD)
-
-    # 3. 결과를 원래 길이 n의 배열에 매핑
+    # 결과를 원래 n 길이 배열에 매핑
     result: list[float | None] = [None] * n
-    for j, i in enumerate(range(roc_start, roc_start + len(roc_values))):
-        if i >= n:
-            break
-        m_val = ma_vals[j]
-        s_val = std_vals[j]
-        r_val = roc_values[j]
-        if m_val is not None and s_val is not None and s_val >= MIN_STD:
-            result[i] = 100.0 + (r_val - m_val) / s_val
-        # else: result[i] remains None
+    for j, orig_i in enumerate(valid_indices):
+        s = ma_short[j]
+        l = ma_long[j]
+        if s is not None and l is not None and l != 0:
+            result[orig_i] = 100.0 * s / l
 
     return result
 
@@ -230,7 +206,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     code_list = [c for c, _ in codes]
     name_map  = {c: n for c, n in codes}
 
-    min_req = MA_PERIOD + ROC_PERIOD + 5
+    min_req = MA_LONG * 2 + 5  # RS_Momentum 계산에 최소 MA_LONG*2 필요
     valid   = {
         c: ohlcv_store[c]["closes"][:-1] if c in current_price and current_price[c] is not None
         else ohlcv_store[c]["closes"]
@@ -279,31 +255,48 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         quad       = _quadrant(curr_ratio, curr_mom)
 
         # ── 궤적(tail) 누적 ───────────────────────────────────
-        # 핵심: offset 슬라이싱 시 전 종목을 동시에 잘라야
-        #       벤치마크 길이와 종목 rebased 시계열이 일치한다.
-        if code not in rrg_history or len(rrg_history[code]) == 0:
+        # 수식 버전 체크: 파라미터가 바뀌었으면 기존 history 무효화
+        stored = rrg_history.get(code)
+        if stored and stored[0].get("_v") != RRG_VERSION:
+            stored = None
+            rrg_history.pop(code, None)
+
+        if not stored:
+            # 1일 단위로 소급 계산 → 재시작 직후에도 TAIL_DAYS 포인트 전부 채움
             tail = []
-            for offset in range(TAIL_DAYS, 0, -5):
+            for offset in range(TAIL_DAYS, 0, -1):
                 if offset >= min_len:
                     continue
-                # 전 종목을 동일하게 offset만큼 자름 → 벤치마크도 자동 일치
                 hist_aligned   = {c: aligned[c][:-offset] for c in aligned}
                 hist_rebased   = {c: _rebase(hist_aligned[c]) for c in hist_aligned}
                 hist_benchmark = _make_benchmark(hist_rebased)
-                hist_ratio    = _calc_rs_ratio(hist_rebased[code], hist_benchmark)
-                hist_momentum = _calc_rs_momentum(hist_ratio)
+                hist_ratio     = _calc_rs_ratio(hist_rebased[code], hist_benchmark)
+                hist_momentum  = _calc_rs_momentum(hist_ratio)
                 t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)
                 t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
                 if t_ratio is not None and t_mom is not None:
-                    tail.append({"rs_ratio": round(t_ratio, 3), "rs_momentum": round(t_mom, 3)})
-            rrg_history[code] = tail
+                    tail.append({
+                        "rs_ratio":    round(t_ratio, 3),
+                        "rs_momentum": round(t_mom,   3),
+                        "_v":          RRG_VERSION,   # 버전 태그
+                    })
+            # 버전 태그를 마지막 항목에도 유지 (빈 tail이면 더미 삽입)
+            rrg_history[code] = tail if tail else [{"_v": RRG_VERSION}]
 
         if curr_ratio is not None and curr_mom is not None:
             rrg_history[code].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
+                "_v":          RRG_VERSION,
             })
             rrg_history[code] = rrg_history[code][-TAIL_DAYS:]
+
+        # 프론트엔드 출력 시 내부 버전 키(_v) 제거
+        clean_tail = [
+            {k: v for k, v in pt.items() if k != "_v"}
+            for pt in rrg_history.get(code, [])
+            if pt.get("rs_ratio") is not None
+        ]
 
         r1  = _get_return(code, 1)
         r5  = returns_5d.get(code)
@@ -331,8 +324,8 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "rs_ratio":      round(curr_ratio, 3) if curr_ratio is not None else None,
             "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
             "quadrant":      quad,
-            "tail":          rrg_history.get(code, [])[-TAIL_DAYS:],
-            "signal":        _improving_grade(quad, rrg_history.get(code, []), vol, curr_mom),
+            "tail":          clean_tail[-TAIL_DAYS:],
+            "signal":        _improving_grade(quad, clean_tail, vol, curr_mom),
             "combo_score":   0,   # calc_all_signals에서 섹터 RRG 완료 후 채워짐
             "closes_chart":  closes_chart,
         })
@@ -464,7 +457,7 @@ def calc_all_signals() -> dict:
 
     result = {
         "updated_at":  now_kst().strftime("%Y-%m-%d %H:%M:%S"),
-        "rrg_params":  {"ma_period": MA_PERIOD, "roc_period": ROC_PERIOD},
+        "rrg_params":  {"ma_short": MA_SHORT, "ma_long": MA_LONG},
         "sectors":     {}
     }
     for sector, codes in SECTORS.items():
@@ -535,7 +528,7 @@ def calc_sector_rrg(sector_results: dict) -> dict:
       5. tail 누적 (종목 tail과 동일 방식)
     """
     # 유효한 섹터만 (캐시에 있고 길이 충분한 것)
-    min_req = MA_PERIOD + ROC_PERIOD + 5
+    min_req = MA_LONG * 2 + 5  # RS_Momentum 계산에 최소 MA_LONG*2 필요
     valid = {
         s: v for s, v in _sector_rebased_cache.items()
         if len(v) >= min_req
@@ -568,9 +561,14 @@ def calc_sector_rrg(sector_results: dict) -> dict:
         quad       = _quadrant(curr_ratio, curr_mom)
 
         # ── tail 누적 (종목 tail과 동일 방식) ─────────────────
-        if key not in rrg_history or len(rrg_history[key]) == 0:
+        stored_key = rrg_history.get(key)
+        if stored_key and stored_key[0].get("_v") != RRG_VERSION:
+            stored_key = None
+            rrg_history.pop(key, None)
+
+        if not stored_key:
             tail = []
-            for offset in range(TAIL_DAYS, 0, -5):
+            for offset in range(TAIL_DAYS, 0, -1):
                 if offset >= min_len:
                     continue
                 hist_aligned   = {s: aligned[s][:-offset] for s in aligned}
@@ -581,28 +579,39 @@ def calc_sector_rrg(sector_results: dict) -> dict:
                 t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)
                 t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
                 if t_ratio is not None and t_mom is not None:
-                    tail.append({"rs_ratio": round(t_ratio, 3), "rs_momentum": round(t_mom, 3)})
-            rrg_history[key] = tail
+                    tail.append({
+                        "rs_ratio":    round(t_ratio, 3),
+                        "rs_momentum": round(t_mom,   3),
+                        "_v":          RRG_VERSION,
+                    })
+            rrg_history[key] = tail if tail else [{"_v": RRG_VERSION}]
 
         if curr_ratio is not None and curr_mom is not None:
             rrg_history[key].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
+                "_v":          RRG_VERSION,
             })
             rrg_history[key] = rrg_history[key][-TAIL_DAYS:]
+
+        clean_tail = [
+            {k: v for k, v in pt.items() if k != "_v"}
+            for pt in rrg_history.get(key, [])
+            if pt.get("rs_ratio") is not None
+        ]
 
         # sector_results에서 5D 수익률 가져오기
         sec_data = sector_results.get(sector, {})
 
         result[sector] = {
-            "rs_ratio":      round(curr_ratio, 3) if curr_ratio is not None else None,
-            "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
-            "quadrant":      quad,
-            "tail":          rrg_history.get(key, [])[-TAIL_DAYS:],
-            "sector_ret_5d": sec_data.get("sector_ret_5d"),
+            "rs_ratio":        round(curr_ratio, 3) if curr_ratio is not None else None,
+            "rs_momentum":     round(curr_mom,   3) if curr_mom   is not None else None,
+            "quadrant":        quad,
+            "tail":            clean_tail[-TAIL_DAYS:],
+            "sector_ret_5d":   sec_data.get("sector_ret_5d"),
             "improving_count": sec_data.get("improving_count", 0),
-            "watch_count":   sec_data.get("watch_count", 0),
-            "total":         sec_data.get("total", 0),
+            "watch_count":     sec_data.get("watch_count", 0),
+            "total":           sec_data.get("total", 0),
         }
 
     return result
