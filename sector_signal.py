@@ -39,6 +39,13 @@ CHART_DAYS = 120  # 주가 차트용 6개월
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
 rrg_history:    dict[str, list[dict]] = {}
+market_cap_store: dict[str, int]      = {}  # { code: 시총(억원) }
+
+
+def load_market_caps_into_store(caps: dict[str, int]) -> None:
+    """main.py에서 시총 데이터를 주입할 때 호출"""
+    market_cap_store.clear()
+    market_cap_store.update({k: v for k, v in caps.items() if v > 0})
 
 # 수식 버전 — 파라미터나 수식이 바뀌면 이 값을 올려서
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
@@ -74,13 +81,31 @@ def _rebase(closes: list[float]) -> list[float]:
 
 def _make_benchmark(rebased_map: dict[str, list[float]]) -> list[float]:
     """
-    섹터 내 전 종목의 rebased 시계열 동등가중 평균 → 벤치마크
-    모든 rebased 시계열은 동일 길이(min_len으로 정렬된 상태)여야 한다.
+    섹터 벤치마크 = 시총 가중 rebased 평균
+
+    시총 데이터가 있는 종목은 시총 비례 가중치를 적용한다.
+    시총 데이터가 없는 종목은 동등가중으로 폴백한다.
+    삼성전자처럼 시총이 압도적인 종목이 벤치마크를 지배하도록 허용하여
+    실제 시장 구조를 반영한다.
     """
     codes = list(rebased_map.keys())
     n     = len(rebased_map[codes[0]])
+
+    # 시총 가중치 계산
+    caps   = {c: market_cap_store.get(c, 0) for c in codes}
+    total  = sum(caps.values())
+
+    if total > 0:
+        # 시총 데이터 있는 종목만 가중 / 없는 종목은 최소 가중치(1억원 가정)
+        adj    = {c: caps[c] if caps[c] > 0 else 1 for c in codes}
+        adj_total = sum(adj.values())
+        weights = {c: adj[c] / adj_total for c in codes}
+    else:
+        # 시총 데이터 전혀 없으면 동등가중
+        weights = {c: 1.0 / len(codes) for c in codes}
+
     return [
-        sum(rebased_map[c][i] for c in codes) / len(codes)
+        sum(rebased_map[c][i] * weights[c] for c in codes)
         for i in range(n)
     ]
 

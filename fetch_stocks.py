@@ -221,3 +221,50 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+# ══════════════════════════════════════════════════════════════
+# SECTORS 종목 시총 자동 갱신 — main.py에서 하루 1회 호출
+# ══════════════════════════════════════════════════════════════
+
+async def fetch_all_market_caps(code_list: list[str]) -> dict[str, int]:
+    """
+    config.SECTORS 종목들의 시총(억원)을 비동기로 fetch.
+    반환: { code: market_cap_억원 }  실패 종목은 0
+    """
+    chunk = 20
+    results: dict[str, int] = {}
+
+    async with aiohttp.ClientSession() as session:
+        for i in range(0, len(code_list), chunk):
+            batch = code_list[i:i + chunk]
+            tasks = [fetch_market_cap(session, c) for c in batch]
+            caps  = await asyncio.gather(*tasks)
+            for code, cap in zip(batch, caps):
+                results[code] = cap
+            if i + chunk < len(code_list):
+                await asyncio.sleep(0.5)
+
+    success = sum(1 for v in results.values() if v > 0)
+    return results
+
+
+def save_market_caps(caps: dict[str, int], path: str) -> None:
+    """시총 데이터를 JSON으로 저장"""
+    import json, os
+    from pathlib import Path
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(caps, f, ensure_ascii=False)
+    os.replace(tmp, path)
+
+
+def load_market_caps(path: str) -> dict[str, int]:
+    """저장된 시총 JSON 로드. 파일 없으면 빈 dict 반환"""
+    import json
+    try:
+        with open(path, encoding="utf-8") as f:
+            return {k: int(v) for k, v in json.load(f).items()}
+    except Exception:
+        return {}

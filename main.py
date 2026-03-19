@@ -1,11 +1,13 @@
 import asyncio
 import logging
 import sys
+from pathlib import Path
 
 from config import SECTORS, WAIT_TIME
 from crawler import fetch_all_prices, fetch_all_ohlcv
-from sector_signal import update_prices, update_ohlcv, calc_all_signals
+from sector_signal import update_prices, update_ohlcv, calc_all_signals, load_market_caps_into_store
 from utils import is_market_time, is_near_market_close, now_kst, save_and_push, save_closing
+from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
 
 # ── 로깅 설정 ─────────────────────────────────────────────────
 
@@ -24,11 +26,16 @@ logger = logging.getLogger(__name__)
 ALL_CODES = list({code for codes in SECTORS.values() for code, _ in codes})
 logger.info(f"총 {len(ALL_CODES)}개 종목 로드")
 
-# ── OHLCV 갱신 주기 ───────────────────────────────────────────
+# ── 경로 설정 ─────────────────────────────────────────────────
+
+MARKET_CAP_PATH = "/home/eq/semon/data/market_cap.json"
+
+# ── 갱신 주기 ─────────────────────────────────────────────────
 
 OHLCV_REFRESH_INTERVAL = 3600  # 1시간마다
-_last_ohlcv_fetch = None
-_closing_saved: str | None = None  # 오늘 closing 저장 여부 (날짜 문자열)
+_last_ohlcv_fetch  = None
+_closing_saved: str | None = None
+_market_cap_date: str | None = None  # 오늘 시총 갱신 여부 (날짜 문자열)
 
 
 def _need_ohlcv_refresh() -> bool:
@@ -41,22 +48,23 @@ def _need_ohlcv_refresh() -> bool:
 # ── 메인 루프 ─────────────────────────────────────────────────
 
 async def run():
-    global _last_ohlcv_fetch, _closing_saved
+    global _last_ohlcv_fetch, _closing_saved, _market_cap_date
     logger.info("semon 시작")
+
+    # 시작 시 기존 시총 파일 로드 → sector_signal에 주입
+    caps = load_market_caps(MARKET_CAP_PATH)
+    if caps:
+        load_market_caps_into_store(caps)
+        logger.info(f"시총 파일 로드: {len(caps)}개 종목")
+    else:
+        logger.warning("시총 파일 없음 — 첫 장 시작 시 자동 갱신됩니다")
 
     while True:
         try:
-            # ── closing 저장 체크 ────────────────────────────────
-            # is_market_time() 블록 바깥에 위치시켜야 한다.
-            # 이유: is_market_time()은 15:30까지만 True이므로
-            #       15:30 이후 루프는 상단 continue에 걸려버린다.
-            #       is_near_market_close()는 15:25~15:45를 커버하므로
-            #       15:30 직후에도 안전하게 저장된다.
             today = now_kst().strftime("%Y-%m-%d")
+
+            # ── closing 저장 체크 ────────────────────────────────
             if is_near_market_close() and _closing_saved != today:
-                # 장중 마지막 signals가 아직 없을 수 있으므로
-                # 저장된 직전 signals를 재활용하지 않고
-                # 이 시점에 신호를 직접 계산해서 저장한다.
                 logger.info("장 마감 closing 스냅샷 계산 시작")
                 prices = await fetch_all_prices(ALL_CODES)
                 update_prices(prices)
@@ -73,23 +81,33 @@ async def run():
                 await asyncio.sleep(60)
                 continue
 
-            # 1. OHLCV 갱신 (1시간마다) — 과거 종가 + 거래량
+            # 1. 시총 갱신 — 하루 1회, 장 시작 후 첫 루프에서 실행
+            if _market_cap_date != today:
+                logger.info("시총 갱신 시작")
+                caps = await fetch_all_market_caps(ALL_CODES)
+                save_market_caps(caps, MARKET_CAP_PATH)
+                load_market_caps_into_store(caps)
+                _market_cap_date = today
+                success = sum(1 for v in caps.values() if v > 0)
+                logger.info(f"시총 갱신 완료: {success}/{len(ALL_CODES)}개")
+
+            # 2. OHLCV 갱신 (1시간마다) — 과거 종가 + 거래량
             if _need_ohlcv_refresh():
                 logger.info("OHLCV fetch 시작")
                 ohlcv = await fetch_all_ohlcv(ALL_CODES)
                 update_ohlcv(ohlcv)
                 _last_ohlcv_fetch = now_kst()
 
-            # 2. 현재가 fetch
+            # 3. 현재가 fetch
             logger.info("현재가 fetch 시작")
             prices = await fetch_all_prices(ALL_CODES)
             update_prices(prices)
 
-            # 3. 신호 계산
+            # 4. 신호 계산
             logger.info("신호 계산 시작")
             signals = calc_all_signals()
 
-            # 4. JSON 저장 + git push
+            # 5. JSON 저장 + git push
             save_and_push(signals)
 
             logger.info(f"완료 — {WAIT_TIME}초 후 재실행")
