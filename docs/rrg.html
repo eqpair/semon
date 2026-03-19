@@ -722,10 +722,14 @@
             // 사분면 배경 + 기준선 + 축 수치 동적 렌더링
             drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
 
-            // tail 궤적 (SVG polyline)
+            // tail 궤적 (SVG polyline) — 기본 숨김, hover 시만 표시
             points.forEach(pt => {
                 if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
                 if (pt.tail.length < 2) return
+
+                const color = quadrantColor(pt.quad)
+
+                // polyline (궤적 선)
                 const pts = pt.tail.map(t => {
                     const p = toPos(t.rs_ratio, t.rs_momentum)
                     return p.x + "," + p.y
@@ -733,11 +737,26 @@
                 const pl = document.createElementNS("http://www.w3.org/2000/svg", "polyline")
                 pl.setAttribute("points", pts)
                 pl.setAttribute("fill", "none")
-                pl.setAttribute("stroke", quadrantColor(pt.quad))
-                pl.setAttribute("stroke-width", "1.5")
-                pl.setAttribute("stroke-opacity", "0.35")
-                pl.setAttribute("stroke-dasharray", "3,2")
+                pl.setAttribute("stroke", color)
+                pl.setAttribute("stroke-width", "2")
+                pl.setAttribute("stroke-opacity", "0.7")
+                pl.setAttribute("stroke-dasharray", "4,2")
+                pl.setAttribute("visibility", "hidden")
+                pl.setAttribute("data-sector-tail", pt.name)
                 svg.appendChild(pl)
+
+                // 시작점 빈 원
+                const fp = toPos(pt.tail[0].rs_ratio, pt.tail[0].rs_momentum)
+                const startDot = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                startDot.setAttribute("cx", fp.x.toFixed(1))
+                startDot.setAttribute("cy", fp.y.toFixed(1))
+                startDot.setAttribute("r", "3")
+                startDot.setAttribute("fill", "none")
+                startDot.setAttribute("stroke", color)
+                startDot.setAttribute("stroke-width", "1.5")
+                startDot.setAttribute("visibility", "hidden")
+                startDot.setAttribute("data-sector-tail", pt.name)
+                svg.appendChild(startDot)
             })
 
             // 점 + 라벨
@@ -750,8 +769,16 @@
                 const dot = document.createElement("div")
                 dot.className = "dot " + pt.quad
                 dot.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;width:" + size + "px;height:" + size + "px;"
-                dot.addEventListener("mouseenter", e => showSectorTooltip(e, pt))
-                dot.addEventListener("mouseleave", hideTooltip)
+                dot.addEventListener("mouseenter", e => {
+                    // 해당 섹터 궤적만 표시
+                    svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    svg.querySelectorAll(`[data-sector-tail="${pt.name}"]`).forEach(el => el.setAttribute("visibility", "visible"))
+                    showSectorTooltip(e, pt)
+                })
+                dot.addEventListener("mouseleave", () => {
+                    svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    hideTooltip()
+                })
                 dot.addEventListener("click", () => { switchTab("stock"); selectSector(pt.name) })
                 container.appendChild(dot)
 
