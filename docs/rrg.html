@@ -493,7 +493,27 @@
             return { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", watch: "#9ca3af", neutral: "#9ca3af" }[q] || "#9ca3af"
         }
         function quadrantLabel(q) {
-            return { improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-" }[q] || "-"
+            return {
+                improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-",
+                prime: "PRIME 🔥", confirm: "Confirm ★"
+            }[q] || "-"
+        }
+        function signalPill(s) {
+            const map = {
+                prime: '<span class="pill improving" style="background:#fee2e2;color:#b91c1c;">PRIME 🔥</span>',
+                confirm: '<span class="pill improving">Confirm ★</span>',
+                watch: '<span class="pill watch">Watch</span>',
+                lagging: '<span class="pill lagging">Lagging</span>',
+                weakening: '<span class="pill weakening">Weakening</span>',
+                leading: '<span class="pill leading">Leading</span>',
+            }
+            return map[s] || '<span class="pill neutral">-</span>'
+        }
+        function comboStars(n) {
+            if (n >= 3) return '<span style="color:#b91c1c;font-weight:700;font-size:11px;">★★★</span>'
+            if (n === 2) return '<span style="color:#2563eb;font-size:11px;">★★</span>'
+            if (n === 1) return '<span style="color:#9ca3af;font-size:11px;">★</span>'
+            return '<span style="color:#e5e7eb;font-size:11px;">-</span>'
         }
         function getQuadrant(r, m) {
             if (r == null || m == null) return "neutral"
@@ -959,10 +979,13 @@
             // 도트
             cands.forEach(s => {
                 const pos = toPos(s.rs_ratio, s.rs_momentum)
-                const size = s.signal === 'improving' ? 10 : 8
+                const size = s.signal === 'prime' ? 13 : s.signal === 'confirm' ? 11 : 8
+                const dotClass = s.signal === 'prime' ? 'dot improving' :
+                    s.signal === 'confirm' ? 'dot improving' :
+                        s.signal === 'watch' ? 'dot watch' : `dot ${s.quadrant}`
 
                 const dot = document.createElement("div")
-                dot.className = `dot ${s.signal === 'watch' ? 'watch' : s.quadrant}`
+                dot.className = dotClass
                 dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
                 dot.addEventListener("mouseenter", e => {
                     showStockTooltip(e, s)
@@ -1008,6 +1031,7 @@
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-R</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-M</th>
           <th style="padding:6px 8px;text-align:right;font-weight:500;">신호</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;" title="섹터+종목 복합점수">⚡</th>
         </tr>
       </thead>
       <tbody>
@@ -1015,13 +1039,16 @@
                 const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
                 const r1c = s.ret_1d > 0 ? '#16a34a' : s.ret_1d < 0 ? '#dc2626' : '#9ca3af'
                 const r5c = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
-                return `<tr class="stock-row ${s.signal === 'watch' ? 'watch' : s.quadrant}">
-                <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">${s.name}</a></td>
+                const rowBg = s.signal === 'prime' ? 'background:#fff5f5;'
+                    : s.signal === 'confirm' ? 'background:#eff6ff;' : ''
+                return `<tr class="stock-row ${s.signal === 'prime' || s.signal === 'confirm' ? 'improving' : s.signal === 'watch' ? 'watch' : s.quadrant}" style="${rowBg}">
+                <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">${s.signal === 'prime' ? '🔥 ' : s.signal === 'confirm' ? '★ ' : ''}${s.name}</a></td>
                 <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
-                <td style="padding:7px 8px;text-align:right;"><span class="pill ${s.signal || s.quadrant}">${quadrantLabel(s.signal || s.quadrant)}</span></td>
+                <td style="padding:7px 8px;text-align:right;">${signalPill(s.signal || s.quadrant)}</td>
+                <td style="padding:7px 4px;text-align:right;">${comboStars(s.combo_score || 0)}</td>
             </tr>`
             }).join("")}
       </tbody>

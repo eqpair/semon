@@ -332,13 +332,16 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
             "quadrant":      quad,
             "tail":          rrg_history.get(code, [])[-TAIL_DAYS:],
-            "signal":        _rrg_signal(quad, vol),
-            "closes_chart":  closes_chart,   # 6개월 주가 (마지막 20일은 프론트에서 강조)
+            "signal":        _improving_grade(quad, rrg_history.get(code, []), vol, curr_mom),
+            "combo_score":   0,   # calc_all_signals에서 섹터 RRG 완료 후 채워짐
+            "closes_chart":  closes_chart,
         })
 
     def _sort_key(x):
-        order = {"improving": 0, "lagging": 1, "weakening": 2, "leading": 3, "neutral": 4}
-        return (order.get(x["quadrant"], 4), x["rs_ratio"] if x["rs_ratio"] is not None else 999)
+        # prime > confirm > watch > improving(구분 없음) > 나머지
+        sig_order = {"prime": 0, "confirm": 1, "watch": 2,
+                     "improving": 3, "lagging": 4, "weakening": 5, "leading": 6, "neutral": 7}
+        return (sig_order.get(x["signal"], 7), x["rs_ratio"] if x["rs_ratio"] is not None else 999)
 
     candidates.sort(key=_sort_key)
 
@@ -348,17 +351,104 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         "rising_ratio":    round(rising_ratio, 2),
         "is_rising":       is_rising,
         "total":           len(candidates),
-        "improving_count": sum(1 for c in candidates if c["signal"] == "improving"),
+        "prime_count":     sum(1 for c in candidates if c["signal"] == "prime"),
+        "confirm_count":   sum(1 for c in candidates if c["signal"] == "confirm"),
+        "improving_count": sum(1 for c in candidates if c["signal"] in ("prime", "confirm")),
         "watch_count":     sum(1 for c in candidates if c["signal"] == "watch"),
         "lagging_count":   sum(1 for c in candidates if c["quadrant"] == "lagging"),
         "candidates":      candidates,
     }
 
 
-def _rrg_signal(quadrant: str, vol: float | None) -> str:
-    if quadrant == "improving":
-        return "watch" if (vol is not None and vol < 0.5) else "improving"
-    return quadrant if quadrant in ("lagging", "weakening", "leading") else "neutral"
+def _improving_grade(quadrant: str, tail: list[dict], vol: float | None,
+                     curr_mom: float | None) -> str:
+    """
+    improving 사분면 종목의 품질을 3단계로 분류한다.
+
+    PRIME   : 직전 tail에서 lagging → improving 전환이 확인되고
+              RS_Momentum이 상승 중 (가장 이른 매수 타이밍)
+    CONFIRM : improving에 10일(2주) 이상 머물며 안정적으로 상승 중
+    WATCH   : improving이지만 전환 확인 불충분 또는 거래량 미확인
+
+    판정 기준:
+      - tail[-N:]의 사분면 이력에서 직전 lagging 구간을 탐지
+      - RS_Momentum 추세: tail 최근 3개 값이 상승하면 가속 확인
+    """
+    if quadrant != "improving":
+        return quadrant if quadrant in ("lagging", "weakening", "leading") else "neutral"
+
+    # 거래량 미확인이면 무조건 WATCH
+    if vol is not None and vol < 0.5:
+        return "watch"
+
+    if not tail or len(tail) < 2:
+        return "watch"
+
+    # tail의 사분면 이력 추출
+    def q(pt):
+        r, m = pt.get("rs_ratio"), pt.get("rs_momentum")
+        if r is None or m is None: return "neutral"
+        if r >= 100 and m >= 100: return "leading"
+        if r >= 100 and m < 100:  return "weakening"
+        if r < 100  and m < 100:  return "lagging"
+        return "improving"
+
+    tail_quads = [q(pt) for pt in tail]
+
+    # 직전 lagging 구간 탐지: 최근 10개 안에 lagging이 있었는가
+    recent = tail_quads[-10:]
+    had_lagging = "lagging" in recent
+
+    # RS_Momentum 가속 여부: 최근 3개 값이 단조 증가
+    moms = [pt.get("rs_momentum") for pt in tail[-3:] if pt.get("rs_momentum") is not None]
+    mom_rising = len(moms) >= 2 and all(moms[i] < moms[i+1] for i in range(len(moms)-1))
+
+    # improving 유지 기간: tail 뒤에서부터 연속 improving 카운트
+    improving_streak = 0
+    for pt in reversed(tail):
+        if q(pt) == "improving":
+            improving_streak += 1
+        else:
+            break
+
+    if had_lagging and mom_rising:
+        return "prime"           # 전환 직후 + 가속 확인
+    elif improving_streak >= 2:
+        return "confirm"         # 2회 이상 연속 improving
+    else:
+        return "watch"
+
+
+def _combo_score(stock_signal: str, sector_quadrant: str,
+                 curr_mom: float | None, tail: list[dict]) -> int:
+    """
+    섹터 상황과 종목 신호를 결합한 복합 점수 (0~3).
+
+    +1  섹터가 소외권(lagging / improving) — 아직 시장 대비 안 오른 섹터
+    +1  종목이 prime 또는 confirm improving
+    +1  종목 RS_Momentum이 상승 가속 중
+
+    3점 → 핵심 매수 후보 (소외 섹터 안에서 먼저 움직이는 종목)
+    2점 → 관심 후보
+    1점 이하 → 일반
+    """
+    score = 0
+
+    # 섹터 소외권 여부
+    if sector_quadrant in ("lagging", "improving"):
+        score += 1
+
+    # 종목 improving 품질
+    if stock_signal in ("prime", "confirm"):
+        score += 1
+
+    # 모멘텀 가속
+    moms = [pt.get("rs_momentum") for pt in tail[-3:] if pt.get("rs_momentum") is not None]
+    if len(moms) >= 2 and all(moms[i] < moms[i+1] for i in range(len(moms)-1)):
+        if curr_mom is not None and curr_mom >= 100:
+            score += 1
+
+    return score
 
 
 def calc_all_signals() -> dict:
@@ -381,8 +471,17 @@ def calc_all_signals() -> dict:
         result["sectors"][sector] = calc_sector_signals(sector, codes)
 
     # 섹터 레벨 RRG — 전체 섹터 계산 완료 후 실행
-    # (각 섹터의 rebased 캐시가 채워진 뒤에야 시장 벤치마크를 만들 수 있다)
     result["sector_rrg"] = calc_sector_rrg(result["sectors"])
+
+    # ── combo_score 사후 계산 ─────────────────────────────────
+    # 섹터 RRG가 완성된 뒤에야 섹터 사분면을 알 수 있으므로
+    # 여기서 각 종목의 combo_score를 채운다.
+    for sector_name, sec_data in result["sectors"].items():
+        sector_quad = result["sector_rrg"].get(sector_name, {}).get("quadrant", "neutral")
+        for c in sec_data.get("candidates", []):
+            c["combo_score"] = _combo_score(
+                c["signal"], sector_quad, c.get("rs_momentum"), c.get("tail", [])
+            )
 
     return result
 
