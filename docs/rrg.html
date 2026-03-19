@@ -892,6 +892,7 @@
         // ── 종목 RRG ────────────────────────────────────────────────
         function selectSector(name) {
             currentSector = name
+            switchTab('stock')      // 항상 종목 탭으로 전환
             renderSectorChips()
             renderStockRRG(name)
             updateSpotlightVisibility()
