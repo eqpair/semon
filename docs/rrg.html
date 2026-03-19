@@ -107,8 +107,10 @@
 
         #tooltip {
             position: fixed;
-            background: #fff;
-            border: 1px solid #e5e7eb;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
             border-radius: 8px;
             padding: 10px 14px;
             font-size: 12px;
@@ -116,7 +118,7 @@
             z-index: 100;
             min-width: 160px;
             display: none;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
         }
 
         .q-btn {
@@ -824,11 +826,24 @@
 
         function moveTooltip(e) {
             const tip = document.getElementById("tooltip")
-            const x = e.clientX > window.innerWidth / 2
-                ? e.clientX - tip.offsetWidth - 16
-                : e.clientX + 16
-            tip.style.left = x + "px"
-            tip.style.top = Math.min(e.clientY - 10, window.innerHeight - 200) + "px"
+            const tw = tip.offsetWidth || 180
+            const th = tip.offsetHeight || 160
+            const vw = window.innerWidth
+            const vh = window.innerHeight
+            const margin = 16
+
+            // 좌우: 오른쪽 공간이 충분하면 오른쪽, 아니면 왼쪽
+            const x = (e.clientX + margin + tw < vw)
+                ? e.clientX + margin
+                : e.clientX - tw - margin
+
+            // 상하: 아래 공간이 충분하면 아래, 아니면 위
+            const y = (e.clientY + margin + th < vh)
+                ? e.clientY + margin
+                : e.clientY - th - margin
+
+            tip.style.left = Math.max(0, x) + "px"
+            tip.style.top = Math.max(0, y) + "px"
         }
         function hideTooltip() { document.getElementById("tooltip").style.display = "none" }
         document.addEventListener("mousemove", e => {

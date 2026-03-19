@@ -32,7 +32,7 @@ from utils import now_kst
 logger = logging.getLogger(__name__)
 
 MA_SHORT   = 10   # 단기 이동평균 (블룸버그 기본값)
-MA_LONG    = 40   # 장기 이동평균 (블룸버그 기본값)
+MA_LONG    = 26   # 장기 이동평균 (블룸버그 기본값)
 TAIL_DAYS  = 40   # 8주 궤적
 CHART_DAYS = 120  # 주가 차트용 6개월
 
