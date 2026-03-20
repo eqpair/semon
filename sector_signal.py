@@ -32,7 +32,7 @@ from utils import now_kst
 logger = logging.getLogger(__name__)
 
 MA_SHORT   = 10   # 단기 이동평균 (블룸버그 기본값)
-MA_LONG    = 26   # 장기 이동평균 (블룸버그 기본값)
+MA_LONG    = 40   # 장기 이동평균 (블룸버그 기본값)
 TAIL_DAYS  = 40   # 8주 궤적
 CHART_DAYS = 120  # 주가 차트용 6개월
 
@@ -364,6 +364,8 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "price":         now_price,
             "ret_1d":        round(r1  * 100, 2) if r1  is not None else None,
             "ret_5d":        round(r5  * 100, 2) if r5  is not None else None,
+            "ret_20d":       round(r20 * 100, 2) if r20 is not None else None,
+            "ret_60d":       round(r60 * 100, 2) if r60 is not None else None,
             "rs_5d":         round(rs_5d,  3)    if rs_5d  is not None else None,
             "rs_20d":        round(rs_20d, 3)    if rs_20d is not None else None,
             "rs_60d":        round(rs_60d, 3)    if rs_60d is not None else None,

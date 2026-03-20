@@ -168,7 +168,7 @@
           const impCount = data.improving_count || 0
           const lagCount = data.lagging_count || 0
           const watchCount = data.watch_count || 0
-          const primeCount = data.prime_count || 0
+          const primeCount   = data.prime_count   || 0
           const confirmCount = data.confirm_count || 0
           const badge = primeCount > 0
             ? `<span class="text-red-600 font-bold">${primeCount} PRIME 🔥</span>`
@@ -225,7 +225,8 @@
                     <th class="px-3 py-2 text-right">코드</th>
                     <th class="px-3 py-2 text-right">현재가</th>
                     <th class="px-3 py-2 text-right">1D</th>
-                    <th class="px-3 py-2 text-right">5D</th>
+                    <th class="px-3 py-2 text-right">1W</th>
+                    <th class="px-3 py-2 text-right">1M</th>
                     <th class="px-3 py-2 text-right">RS-R</th>
                     <th class="px-3 py-2 text-right">RS-M</th>
                     <th class="px-3 py-2 text-right">VOL</th>
@@ -310,17 +311,18 @@
       }
       const fmt = v => v != null ? (v > 0 ? "+" : "") + v.toFixed(2) + "%" : "-"
       tbody.innerHTML = list.map(s => {
-        const isPrime = s.signal === "prime"
-        const isConfirm = s.signal === "confirm"
+        const isPrime     = s.signal === "prime"
+        const isConfirm   = s.signal === "confirm"
         const isImproving = isPrime || isConfirm
-        const isLagging = s.quadrant === "lagging"
-        const rowClass = isPrime ? "border-b bg-red-50 font-medium"
-          : isConfirm ? "border-b bg-blue-50 font-medium"
-            : isLagging ? "border-b bg-yellow-50"
-              : "border-b hover:bg-gray-50"
+        const isLagging   = s.quadrant === "lagging"
+        const rowClass = isPrime   ? "border-b bg-red-50 font-medium"
+          : isConfirm  ? "border-b bg-blue-50 font-medium"
+          : isLagging  ? "border-b bg-yellow-50"
+          : "border-b hover:bg-gray-50"
         const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
         const r1c = s.ret_1d > 0 ? "text-green-600" : "text-red-600"
         const r5c = s.ret_5d > 0 ? "text-green-600" : "text-red-600"
+        const r20c = s.ret_20d > 0 ? "text-green-600" : "text-red-600"
         return `
 <tr class="${rowClass}">
   <td class="px-3 py-2">
@@ -331,15 +333,16 @@
   <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
   <td class="px-3 py-2 text-right ${r1c}">${fmt(s.ret_1d)}</td>
   <td class="px-3 py-2 text-right ${r5c}">${fmt(s.ret_5d)}</td>
+  <td class="px-3 py-2 text-right ${r20c}">${fmt(s.ret_20d)}</td>
   <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right">${signalPill(s.signal || s.quadrant)}</td>
   <td class="px-3 py-2 text-right">
     ${s.combo_score >= 3 ? '<span class="text-red-600 font-bold text-xs">★★★</span>'
-            : s.combo_score === 2 ? '<span class="text-blue-500 font-medium text-xs">★★</span>'
-              : s.combo_score === 1 ? '<span class="text-gray-400 text-xs">★</span>'
-                : '<span class="text-gray-200 text-xs">-</span>'}
+    : s.combo_score === 2 ? '<span class="text-blue-500 font-medium text-xs">★★</span>'
+    : s.combo_score === 1 ? '<span class="text-gray-400 text-xs">★</span>'
+    : '<span class="text-gray-200 text-xs">-</span>'}
   </td>
 </tr>`
       }).join("")
@@ -347,12 +350,12 @@
 
     function signalPill(signal) {
       const map = {
-        prime: `<span class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded font-bold">PRIME 🔥</span>`,
-        confirm: `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">Confirm ★</span>`,
-        watch: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">Watch</span>`,
-        lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
-        weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
-        leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
+        prime:    `<span class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded font-bold">PRIME 🔥</span>`,
+        confirm:  `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">Confirm ★</span>`,
+        watch:    `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">Watch</span>`,
+        lagging:  `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
+        weakening:`<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
+        leading:  `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
       }
       return map[signal] || `<span class="text-gray-400">-</span>`
     }
@@ -411,7 +414,7 @@
       // DOM을 타고 올라가는 대신 allData에서 직접 rowStart 계산
       // renderHeatmap() 재실행 후에도 안정적으로 동작한다
       const sectorKeys = Object.keys(allData?.sectors || {})
-      const sectorIdx = sectorKeys.indexOf(sectorName)
+      const sectorIdx  = sectorKeys.indexOf(sectorName)
       if (sectorIdx === -1) return
 
       const rowStart = Math.floor(sectorIdx / COLS) * COLS
