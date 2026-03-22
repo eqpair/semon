@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Momentum Board</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <style>
+        #sector-tooltip {
+            position: fixed;
+            z-index: 100;
+            background: #1e293b;
+            color: #f1f5f9;
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            max-width: 200px;
+            pointer-events: none;
+            display: none;
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+            white-space: normal;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+
+        <!-- HEADER -->
+        <header class="mb-8">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Momentum Board</h1>
+                    <div class="text-sm text-gray-600 mt-1">
+                        Last Update (KST):
+                        <span id="updated" class="font-medium">-</span>
+                    </div>
+                </div>
+                <div class="text-right flex items-center gap-3">
+                    <a href="./index.html"
+                        class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">
+                        ▶ RRG Chart
+                    </a>
+                    <span id="market-badge" class="px-3 py-1 text-xs rounded bg-gray-200 text-gray-700">
+                        MARKET CLOSED
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- SEARCH -->
+        <div class="mb-6 relative" id="search-wrap">
+            <div class="relative inline-block w-full md:w-80">
+                <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
+                    class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
+                    oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}"
+                    autocomplete="off">
+                <button onclick="closeSearch()" id="search-clear"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">✕</button>
+            </div>
+            <div id="search-results"
+                class="absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 w-full md:w-80 hidden max-h-72 overflow-y-auto">
+            </div>
+        </div>
+
+        <!-- LOADING -->
+        <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
+            Loading Data...
+        </div>
+
+        <div id="content" style="display:none;">
+
+            <!-- SECTOR HEATMAP -->
+            <section class="mb-8">
+                <h2 id="sector-summary" class="text-lg font-bold text-gray-800 mb-4">섹터 로딩 중...</h2>
+                <div id="heatmap"></div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        const REFRESH_MS = 10 * 60 * 1000
+        let currentSector = null
+        let currentFilter = "all"
+        let allData = null
+
+        function getDataUrl() {
+            // 브라우저 로컬 TZ와 무관하게 항상 KST(UTC+9) 기준으로 판단
+            const now = new Date()
+            const kstOffset = 9 * 60  // 분 단위
+            const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
+            const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
+            const isMarket = d >= 1 && d <= 5 &&
+                (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
+            return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
+        }
+
+        async function loadData() {
+            try {
+                let res = await fetch(getDataUrl() + "?t=" + Date.now())
+                if (!res.ok) res = await fetch("./data/signals.json?t=" + Date.now())
+                if (!res.ok) throw new Error()
+                allData = await res.json()
+                render()
+            } catch (e) {
+                document.getElementById("loading").innerHTML =
+                    "<span class='text-red-500'>데이터 로드 실패</span>"
+            }
+        }
+
+        function render() {
+            document.getElementById("loading").style.display = "none"
+            document.getElementById("content").style.display = "block"
+            document.getElementById("updated").textContent =
+                allData.updated_at
+                    ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR")
+                    : "-"
+            const badge = document.getElementById("market-badge")
+            const now = new Date()
+            const kstOffset = 9 * 60
+            const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
+            const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
+            const isOpen = d >= 1 && d <= 5 &&
+                (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
+            badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
+            badge.className = isOpen
+                ? "px-3 py-1 text-xs rounded bg-green-100 text-green-700"
+                : "px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
+            // 섹터·종목 수 동적 갱신
+            const _sectors = allData.sectors || {}
+            const _sectorCount = Object.keys(_sectors).length
+            const _stockCount = Object.values(_sectors).reduce((s, d) => s + (d.candidates?.length ?? 0), 0)
+            document.getElementById("sector-summary").textContent =
+                `※ ${_sectorCount} 섹터 ${_stockCount} 종목`
+            renderHeatmap()
+            if (currentSector) {
+                const rows = document.querySelectorAll(".inline-panel")
+                rows.forEach(p => {
+                    if (p.style.display !== "none") {
+                        const rowStart = parseInt(p.dataset.row)
+                        renderPanelTable(rowStart, currentSector, currentFilter)
+                    }
+                })
+            }
+        }
+
+        const COLS = 6
+
+        function renderHeatmap() {
+            const heatmap = document.getElementById("heatmap")
+            heatmap.innerHTML = ""
+            const sectors = allData.sectors || {}
+            const entries = Object.entries(sectors)
+
+            for (let rowStart = 0; rowStart < entries.length; rowStart += COLS) {
+                const rowEntries = entries.slice(rowStart, rowStart + COLS)
+
+                const cardRow = document.createElement("div")
+                cardRow.className = "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-1"
+                cardRow.dataset.row = rowStart
+
+                rowEntries.forEach(([name, data]) => {
+                    const card = document.createElement("div")
+                    const ret = data.sector_ret_5d
+                    const impCount = data.improving_count || 0
+                    const lagCount = data.lagging_count || 0
+                    const watchCount = data.watch_count || 0
+                    const primeCount = data.prime_count || 0
+                    const confirmCount = data.confirm_count || 0
+                    const badge = primeCount > 0
+                        ? `<span class="text-red-600 font-bold">${primeCount} PRIME 🔥</span>`
+                        : confirmCount > 0
+                            ? `<span class="text-blue-600 font-medium">${confirmCount} Confirm ★</span>`
+                            : watchCount > 0 ? `<span class="text-gray-400 font-medium">${watchCount} Watch</span>`
+                                : lagCount > 0 ? `<span class="text-orange-500 font-medium">${lagCount} Lagging</span>` : "<span>-</span>"
+
+                    card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
+                    card.dataset.sector = name
+                    card.innerHTML = `
+            <div class="text-sm font-semibold text-gray-800">${name}</div>
+            <div class="text-lg font-bold ${ret > 0 ? "text-green-600" : ret < 0 ? "text-red-600" : "text-gray-500"}">
+              ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
+            </div>
+            <div class="text-xs text-gray-500 flex justify-between">
+              <span>${data.candidates?.length ?? "-"}종목</span>
+              ${badge}
+            </div>`
+                    card.onclick = () => selectSector(name, cardRow)
+                    cardRow.appendChild(card)
+                })
+
+                heatmap.appendChild(cardRow)
+
+                // 인라인 패널
+                const panel = document.createElement("div")
+                panel.className = "inline-panel mb-3"
+                panel.dataset.row = rowStart
+                panel.style.display = "none"
+                panel.innerHTML = `
+          <div class="bg-white rounded-lg shadow-md p-4 border-t-2 border-blue-400">
+            <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+              <div class="flex items-center gap-3">
+                <span id="panel-label-${rowStart}" class="text-sm font-semibold text-blue-600"></span>
+                <button onclick="togglePanelMembers(${rowStart})" class="text-xs text-gray-400 hover:text-gray-600">
+                  <span id="panel-members-arrow-${rowStart}">▶</span> 구성 종목
+                </button>
+              </div>
+              <div class="flex gap-1 flex-wrap items-center">
+                <button class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded" onclick="setPanelFilter(${rowStart},'all')">ALL</button>
+                <button class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">Improving ★</button>
+                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">Lagging</button>
+                <button class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">Weakening</button>
+                <button onclick="closePanel(${rowStart})" class="text-gray-400 hover:text-gray-600 ml-1 text-sm font-medium">✕</button>
+              </div>
+            </div>
+            <div id="panel-members-${rowStart}" style="display:none;" class="mb-3 p-2 bg-gray-50 rounded text-xs text-gray-600 leading-6"></div>
+            <div class="overflow-x-auto">
+              <table class="min-w-full text-sm text-gray-700">
+                <thead>
+                  <tr class="bg-gray-50 text-gray-600 text-xs">
+                    <th class="px-3 py-2 text-left">종목명</th>
+                    <th class="px-3 py-2 text-right">코드</th>
+                    <th class="px-3 py-2 text-right">현재가</th>
+                    <th class="px-3 py-2 text-right">1D</th>
+                    <th class="px-3 py-2 text-right">1W</th>
+                    <th class="px-3 py-2 text-right">1M</th>
+                    <th class="px-3 py-2 text-right">RS-R</th>
+                    <th class="px-3 py-2 text-right">RS-M</th>
+                    <th class="px-3 py-2 text-right">VOL</th>
+                    <th class="px-3 py-2 text-right">신호</th>
+                    <th class="px-3 py-2 text-right" title="섹터+종목 복합 점수 (0~3)">⚡</th>
+                  </tr>
+                </thead>
+                <tbody id="panel-tbody-${rowStart}"></tbody>
+              </table>
+            </div>
+          </div>`
+                heatmap.appendChild(panel)
+            }
+        }
+
+        function selectSector(name, cardRow) {
+            currentSector = name
+            currentFilter = "all"
+            const rowStart = parseInt(cardRow.dataset.row)
+
+            document.querySelectorAll(".inline-panel").forEach(p => p.style.display = "none")
+            document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
+
+            cardRow.querySelector(`[data-sector="${name}"]`).classList.add("ring-2", "ring-blue-400")
+
+            const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+            panel.style.display = "block"
+            document.getElementById(`panel-label-${rowStart}`).innerHTML =
+                `<a href="./index.html?sector=${encodeURIComponent(name)}"
+           class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
+           ▸ ${name} 섹터 <span class="text-xs font-normal opacity-60">→ RRG</span>
+         </a>`
+
+            const data = allData.sectors?.[name]
+            if (data?.candidates) {
+                document.getElementById(`panel-members-${rowStart}`).innerHTML =
+                    data.candidates.map(s =>
+                        `<span class="inline-block mr-3">
+              <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                 target="_blank" class="hover:underline text-gray-700">${s.name}</a>
+              <span class="text-gray-400">(${s.code})</span>
+            </span>`
+                    ).join("")
+            }
+
+            renderPanelTable(rowStart, name, "all")
+            setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50)
+        }
+
+        function closePanel(rowStart) {
+            document.querySelector(`.inline-panel[data-row="${rowStart}"]`).style.display = "none"
+            document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
+            currentSector = null
+        }
+
+        function togglePanelMembers(rowStart) {
+            const panel = document.getElementById(`panel-members-${rowStart}`)
+            const arrow = document.getElementById(`panel-members-arrow-${rowStart}`)
+            const isOpen = panel.style.display !== "none"
+            panel.style.display = isOpen ? "none" : "block"
+            arrow.textContent = isOpen ? "▶" : "▼"
+        }
+
+        function setPanelFilter(rowStart, filter) {
+            currentFilter = filter
+            renderPanelTable(rowStart, currentSector, filter)
+        }
+
+        function renderPanelTable(rowStart, sectorName, filter) {
+            const data = allData.sectors?.[sectorName]
+            const tbody = document.getElementById(`panel-tbody-${rowStart}`)
+            if (!data?.candidates) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-4 text-gray-400">데이터 없음</td></tr>'
+                return
+            }
+            let list = [...data.candidates]
+            if (filter !== "all")
+                list = list.filter(s => s.signal === filter || s.quadrant === filter)
+            if (!list.length) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-4 text-gray-400">신호 없음</td></tr>'
+                return
+            }
+            const fmt = v => v != null ? (v > 0 ? "+" : "") + v.toFixed(2) + "%" : "-"
+            tbody.innerHTML = list.map(s => {
+                const isPrime = s.signal === "prime"
+                const isConfirm = s.signal === "confirm"
+                const isImproving = isPrime || isConfirm
+                const isLagging = s.quadrant === "lagging"
+                const rowClass = isPrime ? "border-b bg-red-50 font-medium"
+                    : isConfirm ? "border-b bg-blue-50 font-medium"
+                        : isLagging ? "border-b bg-yellow-50"
+                            : "border-b hover:bg-gray-50"
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
+                const r1c = s.ret_1d > 0 ? "text-green-600" : "text-red-600"
+                const r5c = s.ret_5d > 0 ? "text-green-600" : "text-red-600"
+                const r20c = s.ret_20d > 0 ? "text-green-600" : "text-red-600"
+                return `
+<tr class="${rowClass}">
+  <td class="px-3 py-2">
+    ${isPrime ? '<span class="text-red-500 mr-1">🔥</span>' : isConfirm ? '<span class="text-blue-500 mr-1">★</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
+    <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
+  </td>
+  <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
+  <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
+  <td class="px-3 py-2 text-right ${r1c}">${fmt(s.ret_1d)}</td>
+  <td class="px-3 py-2 text-right ${r5c}">${fmt(s.ret_5d)}</td>
+  <td class="px-3 py-2 text-right ${r20c}">${fmt(s.ret_20d)}</td>
+  <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right">${signalPill(s.signal || s.quadrant)}</td>
+  <td class="px-3 py-2 text-right">
+    ${s.combo_score >= 3 ? '<span class="text-red-600 font-bold text-xs">★★★</span>'
+                        : s.combo_score === 2 ? '<span class="text-blue-500 font-medium text-xs">★★</span>'
+                            : s.combo_score === 1 ? '<span class="text-gray-400 text-xs">★</span>'
+                                : '<span class="text-gray-200 text-xs">-</span>'}
+  </td>
+</tr>`
+            }).join("")
+        }
+
+        function signalPill(signal) {
+            const map = {
+                prime: `<span class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded font-bold">PRIME 🔥</span>`,
+                confirm: `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">Confirm ★</span>`,
+                watch: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">Watch</span>`,
+                lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
+                weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
+                leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
+            }
+            return map[signal] || `<span class="text-gray-400">-</span>`
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter
+        }
+
+        function searchStock(query) {
+            const results = document.getElementById("search-results")
+            const clearBtn = document.getElementById("search-clear")
+            clearBtn.classList.toggle("hidden", !query)
+
+            if (!query || query.length < 1) { results.classList.add("hidden"); return }
+
+            const matches = []
+            const sectors = allData?.sectors || {}
+            Object.entries(sectors).forEach(([sectorName, data]) => {
+                (data.candidates || []).forEach(s => {
+                    if (s.name.includes(query) || s.code.includes(query))
+                        matches.push({ ...s, sectorName })
+                })
+            })
+
+            if (!matches.length) {
+                results.innerHTML = '<div class="px-4 py-3 text-sm text-gray-400">검색 결과 없음</div>'
+                results.classList.remove("hidden")
+                return
+            }
+
+            results.innerHTML = matches.slice(0, 10).map(s => {
+                const isImproving = s.signal === "improving"
+                const isWatch = s.signal === "watch"
+                const pill = signalPill(s.signal || s.quadrant)
+                return `
+        <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
+             onclick="goToStock('${s.sectorName}', '${s.code}')">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
+              ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
+            </span>
+            <span class="text-xs text-gray-400">${s.code}</span>
+          </div>
+          <div class="flex items-center gap-2 mt-0.5">
+            <span class="text-xs text-gray-400">${s.sectorName}</span>
+            ${pill}
+          </div>
+        </div>`
+            }).join("")
+            results.classList.remove("hidden")
+        }
+
+        function goToStock(sectorName, code) {
+            closeSearch()
+
+            // DOM을 타고 올라가는 대신 allData에서 직접 rowStart 계산
+            // renderHeatmap() 재실행 후에도 안정적으로 동작한다
+            const sectorKeys = Object.keys(allData?.sectors || {})
+            const sectorIdx = sectorKeys.indexOf(sectorName)
+            if (sectorIdx === -1) return
+
+            const rowStart = Math.floor(sectorIdx / COLS) * COLS
+
+            // 패널이 이미 열려있지 않으면 섹터 선택 먼저 실행
+            const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+            if (!panel || panel.style.display === "none") {
+                // cardRow는 data-row 속성으로 직접 조회
+                const cardRow = document.querySelector(`.grid[data-row="${rowStart}"]`)
+                if (!cardRow) return
+                selectSector(sectorName, cardRow)
+            }
+
+            // 종목 행 하이라이트 (패널 렌더 완료 후 실행)
+            setTimeout(() => {
+                document.querySelectorAll(".ring-1.ring-blue-300").forEach(r =>
+                    r.classList.remove("ring-1", "ring-blue-300")
+                )
+                const activePanel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+                if (!activePanel) return
+                const links = activePanel.querySelectorAll(`a[href*="code=${code}"]`)
+                links.forEach(link => {
+                    const row = link.closest("tr")
+                    if (row) {
+                        row.classList.add("ring-1", "ring-blue-300")
+                        row.scrollIntoView({ behavior: "smooth", block: "nearest" })
+                    }
+                })
+            }, 300)
+        }
+
+        function closeSearch() {
+            document.getElementById("stock-search").value = ""
+            document.getElementById("search-results").classList.add("hidden")
+            document.getElementById("search-clear").classList.add("hidden")
+        }
+
+        // 검색창 외부 클릭 시 닫기
+        document.addEventListener("click", e => {
+            if (!document.getElementById("search-wrap")?.contains(e.target)) {
+                document.getElementById("search-results")?.classList.add("hidden")
+            }
+        })
+
+        loadData()
+        setInterval(loadData, REFRESH_MS)
+    </script>
+
+    <div id="sector-tooltip"></div>
+    <script>
+        const SECTOR_DESC = {
+            "반도체_제조": "메모리 가격·HBM(High Bandwidth Memory) 수요",
+            "반도체_장비": "반도체 설비투자(CAPEX) 사이클",
+            "반도체_소재부품": "소재 가격·수율·반도체 업황",
+            "2차전지_셀": "전기차 수요·배터리 가격",
+            "2차전지_소재부품": "리튬·니켈 등 원자재 가격",
+            "전력기기": "AI 데이터센터·전력망 투자",
+            "신재생에너지": "신재생 정책·REC(Renewable Energy Certificate) 가격",
+            "조선": "선박 발주·LNG선 수요",
+            "방산": "국방예산·지정학 리스크",
+            "로봇": "로봇 도입 정책·자동화 수요",
+            "자동차_완성차": "글로벌 판매량·환율(달러·원)",
+            "자동차_부품": "완성차 생산량·부품 단가",
+            "타이어": "천연고무 가격·완성차 수요",
+            "IT부품": "스마트폰·가전 수요·부품 단가",
+            "빅플랫폼": "플랫폼 광고·커머스 실적",
+            "B2B_IT서비스": "기업 IT투자·디지털전환 수요",
+            "바이오_제약": "글로벌 제약사 위탁생산 수주",
+            "바이오_기술이전": "기술이전·라이선스 딜 뉴스",
+            "바이오_임상": "임상 결과·금리(성장주 할인율)",
+            "대형제약": "약가·건보 정책·실적",
+            "중소제약": "내수 약가·제네릭 정책",
+            "미용·에스테틱": "중국 소비심리·미용 시술 수요",
+            "은행": "금리·NIM(Net Interest Margin)·가계대출",
+            "증권": "증시 거래대금·IB 수수료",
+            "보험": "손해율·금리(자산운용)",
+            "비철금속": "LME 금속가격(아연·구리)",
+            "정유": "유가·정제마진",
+            "석유화학": "납사·에틸렌 스프레드",
+            "도시가스": "LNG 가격·도시가스 요금",
+            "전력": "전기요금·정부 에너지 정책",
+            "건설": "부동산 경기·수주잔고·금리",
+            "시멘트": "건설 착공량·시멘트 단가",
+            "건자재": "인테리어·리모델링 수요",
+            "해운": "컨테이너 운임(BDI·SCFI)",
+            "항공": "항공 여객수요·유가·환율",
+            "물류·육운": "택배 단가·내수 물동량",
+            "통신": "ARPU(Average Revenue/User)·설비투자·배당",
+            "엔터·음악": "아이돌 앨범·공연·일본 수출",
+            "게임": "신작 출시·게임 트래픽·MAU",
+            "미디어·콘텐츠": "OTT·드라마 제작·광고 시장",
+            "화장품_브랜드": "중국 관광객·K뷰티 수출",
+            "화장품_ODM": "ODM 수주·글로벌 브랜드 생산",
+            "K푸드_수출": "K푸드 수출·환율(달러)",
+            "중국내수식품": "중국 내수 소비·현지법인 실적",
+            "내수식품": "내수 소비경기·원자재(곡물) 가격",
+            "유통": "내수 소비경기·오프라인 유통",
+            "패션·의류": "글로벌 OEM 수주·달러 매출",
+            "레저·여행": "내국인 소비·중국 관광객 회복",
+            "생활용품": "내수 소비·주거 교체 수요",
+        }
+
+        const _tip = document.getElementById('sector-tooltip')
+
+        document.addEventListener('mouseover', e => {
+            const card = e.target.closest('[data-sector]')
+            if (!card) return
+            const desc = SECTOR_DESC[card.dataset.sector]
+            if (!desc) return
+            _tip.textContent = desc
+            _tip.style.display = 'block'
+        })
+
+        document.addEventListener('mousemove', e => {
+            _tip.style.left = (e.clientX + 14) + 'px'
+            _tip.style.top = (e.clientY + 14) + 'px'
+        })
+
+        document.addEventListener('mouseout', e => {
+            if (e.target.closest('[data-sector]')) _tip.style.display = 'none'
+        })
+    </script>
+</body>
+
+</html>

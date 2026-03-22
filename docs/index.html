@@ -2,541 +2,1622 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Momentum Board</title>
-  <link rel="icon" href="./favicon.svg" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
-  <style>
-    #sector-tooltip {
-      position: fixed;
-      z-index: 100;
-      background: #1e293b;
-      color: #f1f5f9;
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 6px;
-      max-width: 200px;
-      pointer-events: none;
-      display: none;
-      line-height: 1.5;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-      white-space: normal;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>RRG Chart — Momentum Board</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --improving: #2563eb;
+            --lagging: #d97706;
+            --leading: #16a34a;
+            --weakening: #dc2626;
+            --neutral: #9ca3af;
+            --axis: rgba(100, 116, 139, 0.3);
+        }
+
+        .rrg-canvas {
+            position: relative;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .q-improving {
+            background: rgba(37, 99, 235, 0.04);
+        }
+
+        .q-leading {
+            background: rgba(22, 163, 74, 0.04);
+        }
+
+        .q-lagging {
+            background: rgba(217, 119, 6, 0.04);
+        }
+
+        .q-weakening {
+            background: rgba(220, 38, 38, 0.04);
+        }
+
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 10;
+        }
+
+        .dot:hover {
+            transform: translate(-50%, -50%) scale(1.6);
+            z-index: 20;
+        }
+
+        .dot.improving {
+            background: var(--improving);
+            box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+        }
+
+        .dot.watch {
+            background: #9ca3af;
+            box-shadow: 0 0 5px rgba(156, 163, 175, 0.4);
+        }
+
+        .dot.lagging {
+            background: var(--lagging);
+            box-shadow: 0 0 5px rgba(217, 119, 6, 0.4);
+        }
+
+        .dot.leading {
+            background: var(--leading);
+            box-shadow: 0 0 5px rgba(22, 163, 74, 0.4);
+        }
+
+        .dot.weakening {
+            background: var(--weakening);
+            box-shadow: 0 0 5px rgba(220, 38, 38, 0.4);
+        }
+
+        .dot.neutral {
+            background: var(--neutral);
+        }
+
+        .dot-label {
+            position: absolute;
+            font-size: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 15;
+            transform: translate(-50%, 8px);
+            color: #374151;
+        }
+
+        .tail-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        #tooltip {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 100;
+            min-width: 160px;
+            display: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+        }
+
+        .q-btn {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: #f9fafb;
+            color: #6b7280;
+        }
+
+        .q-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .q-btn.active {
+            background: #eff6ff;
+            border-color: #93c5fd;
+            color: #1d4ed8;
+        }
+
+        .sector-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            transition: all 0.15s;
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .sector-chip:hover {
+            background: #f3f4f6;
+        }
+
+        .sector-chip.selected {
+            background: #eff6ff;
+            border-color: #93c5fd;
+            color: #1d4ed8;
+        }
+
+        .sector-chip .dot-sm {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .stock-row {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .stock-row:hover {
+            background: #f9fafb;
+        }
+
+        .stock-row.improving {
+            border-left: 3px solid var(--improving);
+        }
+
+        .stock-row.watch {
+            border-left: 3px solid #9ca3af;
+        }
+
+        .stock-row.lagging {
+            border-left: 3px solid var(--lagging);
+        }
+
+        .stock-row.leading {
+            border-left: 3px solid var(--leading);
+        }
+
+        .stock-row.weakening {
+            border-left: 3px solid var(--weakening);
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .pill.improving {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .pill.lagging {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .pill.leading {
+            background: #dcfce7;
+            color: #14532d;
+        }
+
+        .pill.weakening {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .pill.watch {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .pill.neutral {
+            background: #f3f4f6;
+            color: #9ca3af;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
-  <div class="container mx-auto px-4 py-8">
+<body class="bg-gray-50 min-h-screen">
 
-    <!-- HEADER -->
-    <header class="mb-8">
-      <div class="flex justify-between items-center">
-        <div>
-          <h1 class="text-3xl font-bold text-gray-800">Momentum Board</h1>
-          <div class="text-sm text-gray-600 mt-1">
-            Last Update (KST):
-            <span id="updated" class="font-medium">-</span>
-          </div>
+    <div id="tooltip"></div>
+
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+
+        <!-- 헤더 -->
+        <header class="mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">RRG Chart</h1>
+                    <div class="text-sm text-gray-600 mt-1">
+                        Relative Rotation Graph — 섹터 & 종목 사이클 추적 &nbsp;|&nbsp;
+                        Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
+                    </div>
+                </div>
+                <div class="text-right flex items-center gap-3">
+                    <a href="./momentum.html"
+                        class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">
+                        ▶ Momentum Board
+                    </a>
+                    <span id="market-badge" class="px-3 py-1 text-xs rounded bg-gray-200 text-gray-700">
+                        MARKET CLOSED
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 범례 -->
+        <div
+            class="flex flex-wrap gap-4 mb-5 items-center bg-white rounded-lg px-4 py-3 shadow-sm border border-gray-100">
+            <span class="text-xs text-gray-400 mr-1 font-medium">사분면</span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--improving)"></span><span class="text-blue-600 font-medium">Improving
+                    ★</span><span class="text-gray-400">모멘텀 전환</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--lagging)"></span><span
+                    class="text-amber-600 font-medium">Lagging</span><span class="text-gray-400">소외 지속</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--leading)"></span><span
+                    class="text-green-600 font-medium">Leading</span><span class="text-gray-400">상승 주도</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--weakening)"></span><span
+                    class="text-red-500 font-medium">Weakening</span><span class="text-gray-400">모멘텀 약화</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:#9ca3af"></span><span class="text-gray-500 font-medium">Watch</span><span
+                    class="text-gray-400">거래량 미확인</span></span>
         </div>
-        <div class="text-right flex items-center gap-3">
-          <a href="./rrg.html"
-            class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">
-            ▶ RRG Chart
-          </a>
-          <span id="market-badge" class="px-3 py-1 text-xs rounded bg-gray-200 text-gray-700">
-            MARKET CLOSED
-          </span>
+
+        <!-- 탭 -->
+        <div class="flex gap-2 mb-5">
+            <button id="tab-sector" onclick="switchTab('sector')"
+                class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-blue-600 text-white shadow-sm">
+                섹터 RRG
+            </button>
+            <button id="tab-stock" onclick="switchTab('stock')"
+                class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-white text-gray-500 border border-gray-200 hover:text-gray-700">
+                종목 RRG
+            </button>
         </div>
-      </div>
-    </header>
 
-    <!-- SEARCH -->
-    <div class="mb-6 relative" id="search-wrap">
-      <div class="relative inline-block w-full md:w-80">
-        <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
-          class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
-          oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}" autocomplete="off">
-        <button onclick="closeSearch()" id="search-clear"
-          class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">✕</button>
-      </div>
-      <div id="search-results"
-        class="absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 w-full md:w-80 hidden max-h-72 overflow-y-auto">
-      </div>
+        <!-- ═══ 섹터 RRG ═══ -->
+        <div id="view-sector">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="lg:col-span-2">
+                    <div class="flex gap-2 mb-3 flex-wrap">
+                        <button class="q-btn active" onclick="filterSector('all')">ALL</button>
+                        <button class="q-btn" onclick="filterSector('improving')">Improving</button>
+                        <button class="q-btn" onclick="filterSector('lagging')">Lagging</button>
+                        <button class="q-btn" onclick="filterSector('leading')">Leading</button>
+                        <button class="q-btn" onclick="filterSector('weakening')">Weakening</button>
+                    </div>
+                    <div class="rrg-canvas" id="sector-rrg" style="height:480px;">
+                        <svg class="tail-svg" id="sector-tail-svg"></svg>
+                        <div id="sector-dots"></div>
+                        <div id="sector-loading"
+                            style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
+                            데이터 로딩 중...</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-2">* 점 클릭 시 해당 섹터 종목 RRG로 이동 &nbsp;|&nbsp; 궤적은 최근 8주 이동 경로
+                    </div>
+                </div>
+
+                <!-- 섹터 목록 -->
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4">
+                    <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">섹터 현황</div>
+                    <div id="sector-list" class="space-y-0.5 overflow-y-auto" style="max-height:460px;">
+                        <div class="text-gray-400 text-sm">로딩 중...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ 종목 RRG ═══ -->
+        <div id="view-stock" style="display:none;">
+            <div class="mb-4">
+                <div class="text-xs text-gray-400 mb-2 font-medium">섹터 선택</div>
+                <!-- 검색 -->
+                <div class="relative mb-3" id="search-wrap">
+                    <div class="relative inline-block w-full md:w-72">
+                        <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
+                            class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
+                            oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}"
+                            autocomplete="off">
+                        <button onclick="closeSearch()" id="search-clear"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">✕</button>
+                    </div>
+                    <div id="search-results"
+                        class="absolute z-50 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 w-full md:w-72 hidden max-h-72 overflow-y-auto">
+                    </div>
+                </div>
+                <div id="sector-chips" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="lg:col-span-2">
+                    <div class="text-sm font-medium text-gray-700 mb-3" id="stock-sector-label">섹터를 선택하세요</div>
+                    <div class="rrg-canvas" id="stock-rrg" style="height:480px;">
+                        <svg class="tail-svg" id="stock-tail-svg"></svg>
+                        <div id="stock-dots"></div>
+                        <div id="stock-loading"
+                            style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
+                            섹터를 선택하세요</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-2">* 궤적은 최근 8주 이동 경로 &nbsp;|&nbsp; 마우스 오버 시 궤적 표시 (시작 ○ → 현재 ●)
+                    </div>
+                </div>
+
+                <!-- 종목 테이블 -->
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4">
+                    <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">종목 상세</div>
+                    <div id="stock-table" class="overflow-y-auto" style="max-height:460px;">
+                        <div class="text-gray-400 text-sm">섹터를 선택하세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ 주가 차트 ═══ -->
+        <div id="view-price-chart" class="mt-4" style="display:none;">
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <div>
+                        <h2 id="chart-title" class="text-sm font-semibold text-gray-800">종목별 주가</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">6개월 전체(연한선) · 최근 20일(진한선) 강조</p>
+                    </div>
+                    <div class="flex gap-2 text-xs text-gray-400 items-center">
+                        <span class="flex items-center gap-1"><span
+                                style="display:inline-block;width:20px;height:2px;background:#cbd5e1;"></span>6개월</span>
+                        <span class="flex items-center gap-1"><span
+                                style="display:inline-block;width:20px;height:2px;background:#2563eb;"></span>최근
+                            20일</span>
+                    </div>
+                </div>
+                <div id="price-charts" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+            </div>
+        </div>
+
+        <!-- ═══ 주목 섹션 ═══ -->
+        <div id="view-spotlight" class="mt-6" style="display:none;">
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                <div class="mb-4">
+                    <h2 id="spotlight-title" class="text-sm font-semibold text-gray-800">🔍 주목 섹터</h2>
+                    <p id="spotlight-desc" class="text-xs text-gray-400 mt-0.5">Improving 사분면 진입 기준</p>
+                </div>
+                <div id="spotlight-candidates" class="mb-4"></div>
+                <div id="spotlight-result">
+                    <div class="border-t border-gray-100 pt-4">
+                        <div id="spotlight-content" class="text-sm text-gray-700 leading-relaxed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- LOADING -->
-    <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
-      Loading Data...
-    </div>
+    <script>
+        const REFRESH_MS = 10 * 60 * 1000
+        let allData = null
+        let currentTab = "sector"
+        let currentSector = null
+        let sectorFilter = "all"
 
-    <div id="content" style="display:none;">
+        function getDataUrl() {
+            const now = new Date()
+            const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
+            const isMarket = d >= 1 && d <= 5 &&
+                (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
+            return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
+        }
 
-      <!-- SECTOR HEATMAP -->
-      <section class="mb-8">
-        <h2 id="sector-summary" class="text-lg font-bold text-gray-800 mb-4">섹터 로딩 중...</h2>
-        <div id="heatmap"></div>
-      </section>
+        async function loadData() {
+            try {
+                let res = await fetch(getDataUrl() + "?t=" + Date.now())
+                if (!res.ok) res = await fetch("./data/signals.json?t=" + Date.now())
+                if (!res.ok) throw new Error()
+                allData = await res.json()
+                render()
+            } catch (e) {
+                document.getElementById("sector-loading").textContent = "데이터 로드 실패"
+            }
+        }
 
-    </div>
-  </div>
+        function render() {
+            document.getElementById("updated").textContent =
+                allData.updated_at
+                    ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR")
+                    : "-"
 
-  <script>
-    const REFRESH_MS = 10 * 60 * 1000
-    let currentSector = null
-    let currentFilter = "all"
-    let allData = null
+            // market-badge 업데이트
+            const badge = document.getElementById("market-badge")
+            if (badge) {
+                const now = new Date()
+                const kst = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000)
+                const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
+                const isOpen = d >= 1 && d <= 5 &&
+                    (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
+                badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
+                badge.className = isOpen
+                    ? "px-3 py-1 text-xs rounded bg-green-100 text-green-700"
+                    : "px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
+            }
 
-    function getDataUrl() {
-      // 브라우저 로컬 TZ와 무관하게 항상 KST(UTC+9) 기준으로 판단
-      const now = new Date()
-      const kstOffset = 9 * 60  // 분 단위
-      const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
-      const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
-      const isMarket = d >= 1 && d <= 5 &&
-        (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
-      return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
-    }
+            // URL 파라미터 처리를 가장 먼저 — 섹터탭 렌더보다 앞서야 함
+            const params = new URLSearchParams(location.search)
+            const urlSector = params.get('sector')
+            if (urlSector && allData?.sectors?.[urlSector]) {
+                currentSector = urlSector
+                currentTab = "stock"
+                history.replaceState(null, '', location.pathname)
+            }
 
-    async function loadData() {
-      try {
-        let res = await fetch(getDataUrl() + "?t=" + Date.now())
-        if (!res.ok) res = await fetch("./data/signals.json?t=" + Date.now())
-        if (!res.ok) throw new Error()
-        allData = await res.json()
-        render()
-      } catch (e) {
-        document.getElementById("loading").innerHTML =
-          "<span class='text-red-500'>데이터 로드 실패</span>"
-      }
-    }
+            renderSectorRRG()
+            renderSectorList()
+            renderSectorChips()
 
-    function render() {
-      document.getElementById("loading").style.display = "none"
-      document.getElementById("content").style.display = "block"
-      document.getElementById("updated").textContent =
-        allData.updated_at
-          ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR")
-          : "-"
-      const badge = document.getElementById("market-badge")
-      const now = new Date()
-      const kstOffset = 9 * 60
-      const kst = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000)
-      const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
-      const isOpen = d >= 1 && d <= 5 &&
-        (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
-      badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
-      badge.className = isOpen
-        ? "px-3 py-1 text-xs rounded bg-green-100 text-green-700"
-        : "px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
-      // 섹터·종목 수 동적 갱신
-      const _sectors = allData.sectors || {}
-      const _sectorCount = Object.keys(_sectors).length
-      const _stockCount = Object.values(_sectors).reduce((s, d) => s + (d.candidates?.length ?? 0), 0)
-      document.getElementById("sector-summary").textContent =
-        `※ ${_sectorCount} 섹터 ${_stockCount} 종목`
-      renderHeatmap()
-      if (currentSector) {
-        const rows = document.querySelectorAll(".inline-panel")
-        rows.forEach(p => {
-          if (p.style.display !== "none") {
-            const rowStart = parseInt(p.dataset.row)
-            renderPanelTable(rowStart, currentSector, currentFilter)
-          }
+            // 탭 버튼 상태 동기화
+            const isStock = currentTab === "stock"
+            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!isStock ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${isStock ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("view-sector").style.display = isStock ? "none" : "block"
+            document.getElementById("view-stock").style.display = isStock ? "block" : "none"
+
+            if (currentSector) renderStockRRG(currentSector)
+            updateSpotlightVisibility()
+        }
+
+        function quadrantColor(q) {
+            return { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", watch: "#9ca3af", neutral: "#9ca3af" }[q] || "#9ca3af"
+        }
+        function quadrantLabel(q) {
+            return {
+                improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-",
+                prime: "PRIME 🔥", confirm: "Confirm ★"
+            }[q] || "-"
+        }
+        function signalPill(s) {
+            const map = {
+                prime: '<span class="pill improving" style="background:#fee2e2;color:#b91c1c;">PRIME 🔥</span>',
+                confirm: '<span class="pill improving">Confirm ★</span>',
+                watch: '<span class="pill watch">Watch</span>',
+                lagging: '<span class="pill lagging">Lagging</span>',
+                weakening: '<span class="pill weakening">Weakening</span>',
+                leading: '<span class="pill leading">Leading</span>',
+            }
+            return map[s] || '<span class="pill neutral">-</span>'
+        }
+        function comboStars(n) {
+            if (n >= 3) return '<span style="color:#b91c1c;font-weight:700;font-size:11px;">★★★</span>'
+            if (n === 2) return '<span style="color:#2563eb;font-size:11px;">★★</span>'
+            if (n === 1) return '<span style="color:#9ca3af;font-size:11px;">★</span>'
+            return '<span style="color:#e5e7eb;font-size:11px;">-</span>'
+        }
+        function getQuadrant(r, m) {
+            if (r == null || m == null) return "neutral"
+            if (r >= 100 && m >= 100) return "leading"
+            if (r >= 100 && m < 100) return "weakening"
+            if (r < 100 && m < 100) return "lagging"
+            return "improving"
+        }
+        // ── 공통 축/그리드 렌더링 ────────────────────────────────────
+        // SVG에 사분면 배경, 100 기준선, 축 수치를 동적으로 그린다.
+        // 기준선 위치가 데이터 범위에 맞게 정확히 계산된다.
+        function drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax) {
+            const ns = "http://www.w3.org/2000/svg"
+
+            // 100 기준점 픽셀 좌표
+            const cx = pad + ((100 - rMin) / (rMax - rMin)) * (W - pad * 2)
+            const cy = (H - pad) - ((100 - mMin) / (mMax - mMin)) * (H - pad * 2)
+
+            // ── 사분면 배경 ──────────────────────────────────────────
+            const quads = [
+                { x: pad, y: pad, w: cx - pad, h: cy - pad, fill: "rgba(37,99,235,0.04)" }, // improving
+                { x: cx, y: pad, w: W - pad - cx, h: cy - pad, fill: "rgba(22,163,74,0.04)" }, // leading
+                { x: pad, y: cy, w: cx - pad, h: H - pad - cy, fill: "rgba(217,119,6,0.04)" }, // lagging
+                { x: cx, y: cy, w: W - pad - cx, h: H - pad - cy, fill: "rgba(220,38,38,0.04)" }, // weakening
+            ]
+            quads.forEach(q => {
+                const r = document.createElementNS(ns, "rect")
+                r.setAttribute("x", q.x.toFixed(1))
+                r.setAttribute("y", q.y.toFixed(1))
+                r.setAttribute("width", Math.max(0, q.w).toFixed(1))
+                r.setAttribute("height", Math.max(0, q.h).toFixed(1))
+                r.setAttribute("fill", q.fill)
+                svg.appendChild(r)
+            })
+
+            // ── 100 기준선 (X, Y) ────────────────────────────────────
+            const axisColor = "rgba(100,116,139,0.35)"
+            const vLine = document.createElementNS(ns, "line")
+            vLine.setAttribute("x1", cx.toFixed(1)); vLine.setAttribute("y1", pad)
+            vLine.setAttribute("x2", cx.toFixed(1)); vLine.setAttribute("y2", (H - pad).toFixed(1))
+            vLine.setAttribute("stroke", axisColor); vLine.setAttribute("stroke-width", "1")
+            svg.appendChild(vLine)
+
+            const hLine = document.createElementNS(ns, "line")
+            hLine.setAttribute("x1", pad); hLine.setAttribute("y1", cy.toFixed(1))
+            hLine.setAttribute("x2", (W - pad).toFixed(1)); hLine.setAttribute("y2", cy.toFixed(1))
+            hLine.setAttribute("stroke", axisColor); hLine.setAttribute("stroke-width", "1")
+            svg.appendChild(hLine)
+
+            // ── 사분면 라벨 ─────────────────────────────────────────
+            const labels = [
+                { x: pad + 8, y: pad + 14, text: "IMPROVING", color: "rgba(37,99,235,0.55)" },
+                { x: W - pad - 8, y: pad + 14, text: "LEADING", color: "rgba(22,163,74,0.55)", anchor: "end" },
+                { x: pad + 8, y: H - pad - 8, text: "LAGGING", color: "rgba(217,119,6,0.55)" },
+                { x: W - pad - 8, y: H - pad - 8, text: "WEAKENING", color: "rgba(220,38,38,0.55)", anchor: "end" },
+            ]
+            labels.forEach(l => {
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", l.x.toFixed(1))
+                t.setAttribute("y", l.y.toFixed(1))
+                t.setAttribute("font-size", "10")
+                t.setAttribute("font-weight", "600")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", l.color)
+                if (l.anchor) t.setAttribute("text-anchor", l.anchor)
+                t.textContent = l.text
+                svg.appendChild(t)
+            })
+
+            // ── X축 수치 (RS-Ratio) ──────────────────────────────────
+            const xTicks = getAxisTicks(rMin, rMax, 5)
+            xTicks.forEach(val => {
+                const px = pad + ((val - rMin) / (rMax - rMin)) * (W - pad * 2)
+                if (px < pad + 4 || px > W - pad - 4) return
+
+                // 눈금선
+                const tick = document.createElementNS(ns, "line")
+                tick.setAttribute("x1", px.toFixed(1)); tick.setAttribute("y1", (H - pad).toFixed(1))
+                tick.setAttribute("x2", px.toFixed(1)); tick.setAttribute("y2", (H - pad + 4).toFixed(1))
+                tick.setAttribute("stroke", "#cbd5e1"); tick.setAttribute("stroke-width", "1")
+                svg.appendChild(tick)
+
+                // 수치 텍스트
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", px.toFixed(1))
+                t.setAttribute("y", (H - pad + 14).toFixed(1))
+                t.setAttribute("font-size", "9")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", val === 100 ? "#64748b" : "#9ca3af")
+                t.setAttribute("font-weight", val === 100 ? "600" : "400")
+                t.setAttribute("text-anchor", "middle")
+                t.textContent = val.toFixed(1)
+                svg.appendChild(t)
+            })
+
+            // ── Y축 수치 (RS-Momentum) ───────────────────────────────
+            const yTicks = getAxisTicks(mMin, mMax, 5)
+            yTicks.forEach(val => {
+                const py = (H - pad) - ((val - mMin) / (mMax - mMin)) * (H - pad * 2)
+                if (py < pad + 4 || py > H - pad - 4) return
+
+                const tick = document.createElementNS(ns, "line")
+                tick.setAttribute("x1", (pad - 4).toFixed(1)); tick.setAttribute("y1", py.toFixed(1))
+                tick.setAttribute("x2", pad.toFixed(1)); tick.setAttribute("y2", py.toFixed(1))
+                tick.setAttribute("stroke", "#cbd5e1"); tick.setAttribute("stroke-width", "1")
+                svg.appendChild(tick)
+
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", (pad - 6).toFixed(1))
+                t.setAttribute("y", (py + 3).toFixed(1))
+                t.setAttribute("font-size", "9")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", val === 100 ? "#64748b" : "#9ca3af")
+                t.setAttribute("font-weight", val === 100 ? "600" : "400")
+                t.setAttribute("text-anchor", "end")
+                t.textContent = val.toFixed(1)
+                svg.appendChild(t)
+            })
+
+            // ── 축 레이블 ────────────────────────────────────────────
+            const xLabel = document.createElementNS(ns, "text")
+            xLabel.setAttribute("x", (W / 2).toFixed(1))
+            xLabel.setAttribute("y", (H - 2).toFixed(1))
+            xLabel.setAttribute("font-size", "9"); xLabel.setAttribute("font-family", "sans-serif")
+            xLabel.setAttribute("fill", "#9ca3af"); xLabel.setAttribute("text-anchor", "middle")
+            xLabel.textContent = "RS-Ratio →"
+            svg.appendChild(xLabel)
+
+            const yLabel = document.createElementNS(ns, "text")
+            yLabel.setAttribute("x", "10")
+            yLabel.setAttribute("y", (H / 2).toFixed(1))
+            yLabel.setAttribute("font-size", "9"); yLabel.setAttribute("font-family", "sans-serif")
+            yLabel.setAttribute("fill", "#9ca3af"); yLabel.setAttribute("text-anchor", "middle")
+            yLabel.setAttribute("transform", "rotate(-90, 10, " + (H / 2).toFixed(1) + ")")
+            yLabel.textContent = "RS-Mom →"
+            svg.appendChild(yLabel)
+        }
+
+        // 축 눈금 값 계산 — 항상 100 포함
+        function getAxisTicks(min, max, approxCount) {
+            const range = max - min
+            const rawStep = range / approxCount
+            // 0.5 단위로 반올림
+            const step = Math.max(0.5, Math.round(rawStep * 2) / 2)
+            const start = Math.ceil(min / step) * step
+            const ticks = []
+            for (let v = start; v <= max + 1e-9; v += step) {
+                ticks.push(Math.round(v * 10) / 10)
+            }
+            // 100이 없으면 추가
+            if (!ticks.some(t => Math.abs(t - 100) < 0.01)) ticks.push(100)
+            return ticks.sort((a, b) => a - b)
+        }
+
+
+
+        // ── 섹터 RRG ────────────────────────────────────────────────
+        function renderSectorRRG() {
+            if (!allData) return
+            const container = document.getElementById("sector-dots")
+            const svg = document.getElementById("sector-tail-svg")
+            const loading = document.getElementById("sector-loading")
+            const el = document.getElementById("sector-rrg")
+            container.innerHTML = ""
+            svg.innerHTML = ""
+
+            // sector_rrg: 시장 벤치마크 대비 각 섹터의 진짜 RS
+            const sectorRRG = allData.sector_rrg || {}
+            const sectors = allData.sectors || {}
+            const points = Object.entries(sectorRRG)
+                .filter(([, d]) => d.rs_ratio != null && d.rs_momentum != null)
+                .map(([name, d]) => ({
+                    name,
+                    ratio: d.rs_ratio,
+                    mom: d.rs_momentum,
+                    quad: d.quadrant,
+                    tail: d.tail || [],
+                    data: Object.assign({}, d, sectors[name] || {}),
+                }))
+
+            if (!points.length) {
+                loading.style.display = "flex"
+                loading.textContent = "장 시작 후 데이터가 생성됩니다"
+                return
+            }
+            loading.style.display = "none"
+
+            const W = el.offsetWidth || 600
+            const H = el.offsetHeight || 480
+            const pad = 50
+
+            // 축 범위: 현재 점 + 전체 tail 포함해서 계산
+            const allR = points.flatMap(p => [p.ratio, ...p.tail.map(t => t.rs_ratio)])
+            const allM = points.flatMap(p => [p.mom, ...p.tail.map(t => t.rs_momentum)])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
+
+            function toPos(r, m) {
+                const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
+                const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
+                return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
+            }
+
+            // 사분면 배경 + 기준선 + 축 수치 동적 렌더링
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
+
+            // tail 궤적 (SVG polyline) — 기본 숨김, hover 시만 표시
+            points.forEach(pt => {
+                if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
+                if (pt.tail.length < 2) return
+
+                const color = quadrantColor(pt.quad)
+
+                // polyline (궤적 선)
+                const pts = pt.tail.map(t => {
+                    const p = toPos(t.rs_ratio, t.rs_momentum)
+                    return p.x + "," + p.y
+                }).join(" ")
+                const pl = document.createElementNS("http://www.w3.org/2000/svg", "polyline")
+                pl.setAttribute("points", pts)
+                pl.setAttribute("fill", "none")
+                pl.setAttribute("stroke", color)
+                pl.setAttribute("stroke-width", "2")
+                pl.setAttribute("stroke-opacity", "0.7")
+                pl.setAttribute("stroke-dasharray", "4,2")
+                pl.setAttribute("visibility", "hidden")
+                pl.setAttribute("data-sector-tail", pt.name)
+                svg.appendChild(pl)
+
+                // 시작점 빈 원
+                const fp = toPos(pt.tail[0].rs_ratio, pt.tail[0].rs_momentum)
+                const startDot = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                startDot.setAttribute("cx", fp.x.toFixed(1))
+                startDot.setAttribute("cy", fp.y.toFixed(1))
+                startDot.setAttribute("r", "3")
+                startDot.setAttribute("fill", "none")
+                startDot.setAttribute("stroke", color)
+                startDot.setAttribute("stroke-width", "1.5")
+                startDot.setAttribute("visibility", "hidden")
+                startDot.setAttribute("data-sector-tail", pt.name)
+                svg.appendChild(startDot)
+            })
+
+            // 점 + 라벨
+            points.forEach(pt => {
+                if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
+                const pos = toPos(pt.ratio, pt.mom)
+                const color = quadrantColor(pt.quad)
+                const size = (pt.data.improving_count > 0 || pt.data.watch_count > 0) ? 13 : 9
+
+                const dot = document.createElement("div")
+                dot.className = "dot " + pt.quad
+                dot.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;width:" + size + "px;height:" + size + "px;"
+                dot.addEventListener("mouseenter", e => {
+                    // 해당 섹터 궤적만 표시
+                    svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    svg.querySelectorAll(`[data-sector-tail="${pt.name}"]`).forEach(el => el.setAttribute("visibility", "visible"))
+                    showSectorTooltip(e, pt)
+                })
+                dot.addEventListener("mouseleave", () => {
+                    svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    hideTooltip()
+                })
+                dot.addEventListener("click", () => { switchTab("stock"); selectSector(pt.name) })
+                container.appendChild(dot)
+
+                const lbl = document.createElement("div")
+                lbl.className = "dot-label"
+                lbl.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;color:" + color + ";"
+                lbl.textContent = pt.name.length > 8 ? pt.name.slice(0, 8) + "…" : pt.name
+                container.appendChild(lbl)
+            })
+        }
+
+        function showSectorTooltip(e, pt) {
+            const d = pt.data
+            const tip = document.getElementById("tooltip")
+            tip.innerHTML = `
+    <div style="font-weight:600;margin-bottom:4px;color:#111827;">${pt.name}</div>
+    <div style="color:${quadrantColor(pt.quad)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(pt.quad)}</div>
+    <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${pt.ratio.toFixed(2)}</span></div>
+    <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${pt.mom.toFixed(2)}</span></div>
+    <div style="color:#6b7280;font-size:11px;margin-top:4px;">5D: <span style="color:${d.sector_ret_5d > 0 ? '#16a34a' : '#dc2626'};">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">Improving: <span style="color:#2563eb;">${d.improving_count || 0}종목</span></div>
+    <div style="color:#6b7280;font-size:11px;">Watch: <span style="color:#9ca3af;">${d.watch_count || 0}종목</span></div>
+    <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → 종목 RRG</div>`
+            tip.style.display = "block"
+            moveTooltip(e)
+        }
+
+        function showStockTooltip(e, s) {
+            const tip = document.getElementById("tooltip")
+            const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
+            tip.innerHTML = `
+    <div style="font-weight:600;margin-bottom:4px;color:#111827;">${s.name} <span style="font-weight:400;color:#9ca3af;font-size:11px;">${s.code}</span></div>
+    <div style="color:${quadrantColor(s.signal || s.quadrant)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(s.signal || s.quadrant)}</div>
+    <div style="color:#6b7280;font-size:11px;">현재가: <span style="color:#111827;">${s.price ? s.price.toLocaleString() : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${s.rs_ratio?.toFixed(2) ?? '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">1D: <span style="color:${s.ret_1d > 0 ? '#16a34a' : '#dc2626'};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">1W: <span style="color:${s.ret_5d > 0 ? '#16a34a' : '#dc2626'};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">1M: <span style="color:${(s.ret_20d || 0) > 0 ? '#16a34a' : '#dc2626'};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#9ca3af;font-size:10px;margin-top:4px;"><a href="${naverUrl}" target="_blank" style="color:#2563eb;">네이버 증권 →</a></div>`
+            tip.style.display = "block"
+            moveTooltip(e)
+        }
+
+        function moveTooltip(e) {
+            const tip = document.getElementById("tooltip")
+            const tw = tip.offsetWidth || 180
+            const th = tip.offsetHeight || 160
+            const vw = window.innerWidth
+            const vh = window.innerHeight
+            const margin = 16
+
+            // 좌우: 오른쪽 공간이 충분하면 오른쪽, 아니면 왼쪽
+            const x = (e.clientX + margin + tw < vw)
+                ? e.clientX + margin
+                : e.clientX - tw - margin
+
+            // 상하: 아래 공간이 충분하면 아래, 아니면 위
+            const y = (e.clientY + margin + th < vh)
+                ? e.clientY + margin
+                : e.clientY - th - margin
+
+            tip.style.left = Math.max(0, x) + "px"
+            tip.style.top = Math.max(0, y) + "px"
+        }
+        function hideTooltip() { document.getElementById("tooltip").style.display = "none" }
+        document.addEventListener("mousemove", e => {
+            if (document.getElementById("tooltip").style.display !== "none") moveTooltip(e)
         })
-      }
-    }
 
-    const COLS = 6
+        // ── 섹터 목록 ────────────────────────────────────────────────
+        function renderSectorList() {
+            if (!allData) return
+            const list = document.getElementById("sector-list")
+            const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
+            const items = Object.entries(sectors).map(([name, d]) => {
+                const quad = sectorRRG[name]?.quadrant ?? "neutral"
+                return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }
+            })
+            const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
+            items.sort((a, b) => order[a.quad] - order[b.quad])
 
-    function renderHeatmap() {
-      const heatmap = document.getElementById("heatmap")
-      heatmap.innerHTML = ""
-      const sectors = allData.sectors || {}
-      const entries = Object.entries(sectors)
+            list.innerHTML = items.map(item => `
+                <div class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                    onclick="selectSector('${item.name}'); switchTab('stock')">
+                <div class="flex items-center gap-2">
+                    <span style="width:7px;height:7px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;display:inline-block;"></span>
+                    <span class="text-xs text-gray-700">${item.name}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    ${item.imp > 0
+                    ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>`
+                    : item.watch > 0
+                        ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${item.watch}</span>`
+                        : ''}
+                    <span class="text-xs ${item.ret > 0 ? 'text-green-600' : item.ret < 0 ? 'text-red-500' : 'text-gray-400'}">
+                    ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
+                    </span>
+                </div>
+                </div>`).join("")
+        }
 
-      for (let rowStart = 0; rowStart < entries.length; rowStart += COLS) {
-        const rowEntries = entries.slice(rowStart, rowStart + COLS)
+        // ── 섹터 칩 ─────────────────────────────────────────────────
+        function renderSectorChips() {
+            if (!allData) return
+            const chips = document.getElementById("sector-chips")
+            const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
+            chips.innerHTML = Object.entries(sectors).map(([name, d]) => {
+                const quad = sectorRRG[name]?.quadrant ?? "neutral"
+                const sel = name === currentSector ? "selected" : ""
+                return `<div class="sector-chip ${sel}" onclick="selectSector('${name}')">
+      <span class="dot-sm" style="background:${quadrantColor(quad)};"></span>
+      <span>${name}</span>
+      ${d.improving_count > 0
+                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>`
+                        : d.watch_count > 0
+                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${d.watch_count}</span>`
+                            : ""}
+    </div>`
+            }).join("")
+        }
 
-        const cardRow = document.createElement("div")
-        cardRow.className = "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-1"
-        cardRow.dataset.row = rowStart
+        // ── 종목 RRG ────────────────────────────────────────────────
+        function selectSector(name) {
+            currentSector = name
+            switchTab('stock')      // 항상 종목 탭으로 전환
+            renderSectorChips()
+            renderStockRRG(name)
+            updateSpotlightVisibility()
+        }
 
-        rowEntries.forEach(([name, data]) => {
-          const card = document.createElement("div")
-          const ret = data.sector_ret_5d
-          const impCount = data.improving_count || 0
-          const lagCount = data.lagging_count || 0
-          const watchCount = data.watch_count || 0
-          const primeCount   = data.prime_count   || 0
-          const confirmCount = data.confirm_count || 0
-          const badge = primeCount > 0
-            ? `<span class="text-red-600 font-bold">${primeCount} PRIME 🔥</span>`
-            : confirmCount > 0
-              ? `<span class="text-blue-600 font-medium">${confirmCount} Confirm ★</span>`
-              : watchCount > 0 ? `<span class="text-gray-400 font-medium">${watchCount} Watch</span>`
-                : lagCount > 0 ? `<span class="text-orange-500 font-medium">${lagCount} Lagging</span>` : "<span>-</span>"
+        function renderStockRRG(sectorName) {
+            if (!allData) return
+            const data = allData.sectors?.[sectorName]
+            if (!data) return
 
-          card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
-          card.dataset.sector = name
-          card.innerHTML = `
-            <div class="text-sm font-semibold text-gray-800">${name}</div>
-            <div class="text-lg font-bold ${ret > 0 ? "text-green-600" : ret < 0 ? "text-red-600" : "text-gray-500"}">
-              ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
-            </div>
-            <div class="text-xs text-gray-500 flex justify-between">
-              <span>${data.candidates?.length ?? "-"}종목</span>
-              ${badge}
-            </div>`
-          card.onclick = () => selectSector(name, cardRow)
-          cardRow.appendChild(card)
+            document.getElementById("stock-sector-label").textContent = `▸ ${sectorName} 섹터`
+            const container = document.getElementById("stock-dots")
+            const svg = document.getElementById("stock-tail-svg")
+            const loading = document.getElementById("stock-loading")
+            container.innerHTML = ""
+            svg.innerHTML = ""
+            loading.style.display = "none"
+
+            const cands = (data.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+            if (!cands.length) {
+                loading.style.display = "flex"
+                loading.textContent = "RRG 데이터 없음 (장 시작 후 생성)"
+                return
+            }
+
+            const el = document.getElementById("stock-rrg")
+            const W = el.offsetWidth || 600
+            const H = el.offsetHeight || 480
+            const pad = 50
+
+            // tail 포함 전체 범위로 축 계산 (tail 밖으로 점이 잘리는 문제 방지)
+            const allR = cands.flatMap(c => [c.rs_ratio, ...(c.tail || []).map(t => t.rs_ratio)])
+            const allM = cands.flatMap(c => [c.rs_momentum, ...(c.tail || []).map(t => t.rs_momentum)])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
+
+            function toPos(r, m) {
+                const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
+                const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
+                return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
+            }
+
+            // 사분면 배경 + 기준선 + 축 수치 동적 렌더링
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
+
+            // 궤적 — 구간별 opacity로 방향 표현 + 주별 점
+            cands.forEach(s => {
+                const tail = s.tail || []
+                if (tail.length < 2) return
+                const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
+
+                tail.forEach((t, i) => {
+                    if (i === 0) return
+                    const p1 = toPos(tail[i - 1].rs_ratio, tail[i - 1].rs_momentum)
+                    const p2 = toPos(t.rs_ratio, t.rs_momentum)
+                    const opacity = 0.08 + (i / tail.length) * 0.7
+
+                    // 선
+                    const seg = document.createElementNS("http://www.w3.org/2000/svg", "line")
+                    seg.setAttribute("x1", p1.x.toFixed(1))
+                    seg.setAttribute("y1", p1.y.toFixed(1))
+                    seg.setAttribute("x2", p2.x.toFixed(1))
+                    seg.setAttribute("y2", p2.y.toFixed(1))
+                    seg.setAttribute("stroke", color)
+                    seg.setAttribute("stroke-width", "1.5")
+                    seg.setAttribute("stroke-opacity", opacity)
+                    seg.setAttribute("display", "none")
+                    seg.setAttribute("data-code", s.code)
+                    svg.appendChild(seg)
+
+                    // 주별 점
+                    const midCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                    midCircle.setAttribute("cx", p2.x.toFixed(1))
+                    midCircle.setAttribute("cy", p2.y.toFixed(1))
+                    midCircle.setAttribute("r", "2")
+                    midCircle.setAttribute("fill", color)
+                    midCircle.setAttribute("fill-opacity", opacity)
+                    midCircle.setAttribute("display", "none")
+                    midCircle.setAttribute("data-code", s.code)
+                    svg.appendChild(midCircle)
+                })
+
+                // 시작점 — 빈 원
+                const firstPos = toPos(tail[0].rs_ratio, tail[0].rs_momentum)
+                const startCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                startCircle.setAttribute("cx", firstPos.x.toFixed(1))
+                startCircle.setAttribute("cy", firstPos.y.toFixed(1))
+                startCircle.setAttribute("r", "3")
+                startCircle.setAttribute("fill", "none")
+                startCircle.setAttribute("stroke", color)
+                startCircle.setAttribute("stroke-width", "1.5")
+                startCircle.setAttribute("stroke-opacity", "0.4")
+                startCircle.setAttribute("display", "none")
+                startCircle.setAttribute("data-code", s.code)
+                svg.appendChild(startCircle)
+
+                // 끝점 — 채워진 원
+                const endPos = toPos(tail[tail.length - 1].rs_ratio, tail[tail.length - 1].rs_momentum)
+                const endCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                endCircle.setAttribute("cx", endPos.x.toFixed(1))
+                endCircle.setAttribute("cy", endPos.y.toFixed(1))
+                endCircle.setAttribute("r", "5")
+                endCircle.setAttribute("fill", color)
+                endCircle.setAttribute("fill-opacity", "0.9")
+                endCircle.setAttribute("display", "none")
+                endCircle.setAttribute("data-code", s.code)
+                svg.appendChild(endCircle)
+            })
+
+            // 도트
+            cands.forEach(s => {
+                const pos = toPos(s.rs_ratio, s.rs_momentum)
+                const size = s.signal === 'prime' ? 13 : s.signal === 'confirm' ? 11 : 8
+                const dotClass = s.signal === 'prime' ? 'dot improving' :
+                    s.signal === 'confirm' ? 'dot improving' :
+                        s.signal === 'watch' ? 'dot watch' : `dot ${s.quadrant}`
+
+                const dot = document.createElement("div")
+                dot.className = dotClass
+                dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
+                dot.addEventListener("mouseenter", e => {
+                    showStockTooltip(e, s)
+                    svg.querySelectorAll(`[data-code="${s.code}"]`)
+                        .forEach(p => p.setAttribute("display", "block"))
+                })
+                dot.addEventListener("mouseleave", () => {
+                    hideTooltip()
+                    svg.querySelectorAll("line, circle")
+                        .forEach(p => p.setAttribute("display", "none"))
+                })
+                container.appendChild(dot)
+
+                const lbl = document.createElement("div")
+                lbl.className = "dot-label"
+                lbl.style.cssText = `left:${pos.x}px;top:${pos.y}px;color:${s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)};font-size:9px;`
+                lbl.textContent = s.name
+                container.appendChild(lbl)
+            })
+
+            renderStockTable(sectorName)
+            renderPriceCharts(sectorName)
+        }
+
+        function renderStockTable(sectorName) {
+            const data = allData.sectors?.[sectorName]
+            const tableEl = document.getElementById("stock-table")
+            if (!data?.candidates?.length) {
+                tableEl.innerHTML = '<div class="text-gray-400 text-sm">데이터 없음</div>'
+                return
+            }
+            const sorted = [...data.candidates].sort((a, b) => {
+                const o = { improving: 0, watch: 1, lagging: 2, weakening: 3, leading: 4, neutral: 5 }
+                return (o[a.signal] ?? o[a.quadrant] ?? 5) - (o[b.signal] ?? o[b.quadrant] ?? 5)
+            })
+            tableEl.innerHTML = `
+    <table style="width:100%;border-collapse:collapse;font-size:11px;">
+      <thead>
+        <tr style="color:#9ca3af;border-bottom:1px solid #f3f4f6;">
+          <th style="padding:6px 8px;text-align:left;font-weight:500;">종목</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">1D</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">1W</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">1M</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-R</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-M</th>
+          <th style="padding:6px 8px;text-align:right;font-weight:500;">신호</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;" title="섹터+종목 복합점수">⚡</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${sorted.map(s => {
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
+                const r1c = s.ret_1d > 0 ? '#16a34a' : s.ret_1d < 0 ? '#dc2626' : '#9ca3af'
+                const r5c = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
+                const r20c = s.ret_20d > 0 ? '#16a34a' : s.ret_20d < 0 ? '#dc2626' : '#9ca3af'
+                const rowBg = s.signal === 'prime' ? 'background:#fff5f5;'
+                    : s.signal === 'confirm' ? 'background:#eff6ff;' : ''
+                return `<tr class="stock-row ${s.signal === 'prime' || s.signal === 'confirm' ? 'improving' : s.signal === 'watch' ? 'watch' : s.quadrant}" style="${rowBg}">
+                <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">${s.signal === 'prime' ? '🔥 ' : s.signal === 'confirm' ? '★ ' : ''}${s.name}</a></td>
+                <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${r20c};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 8px;text-align:right;">${signalPill(s.signal || s.quadrant)}</td>
+                <td style="padding:7px 4px;text-align:right;">${comboStars(s.combo_score || 0)}</td>
+            </tr>`
+            }).join("")}
+      </tbody>
+    </table>`
+        }
+
+        // ── 주가 차트 ────────────────────────────────────────────────
+        function renderPriceCharts(sectorName) {
+            const data = allData.sectors?.[sectorName]
+            const chartEl = document.getElementById("price-charts")
+            const section = document.getElementById("view-price-chart")
+            const titleEl = document.getElementById("chart-title")
+
+            if (!data?.candidates?.length) {
+                section.style.display = "none"
+                return
+            }
+
+            const cands = [...data.candidates].sort((a, b) => {
+                const o = { improving: 0, watch: 1, lagging: 2, weakening: 3, leading: 4, neutral: 5 }
+                return (o[a.signal] ?? o[a.quadrant] ?? 5) - (o[b.signal] ?? o[b.quadrant] ?? 5)
+            })
+
+            // closes_chart 없는 종목 제외
+            const charted = cands.filter(s => s.closes_chart && s.closes_chart.length > 5)
+            if (!charted.length) {
+                section.style.display = "none"
+                return
+            }
+
+            titleEl.textContent = `${sectorName} — 종목별 주가`
+            section.style.display = "block"
+
+            chartEl.innerHTML = charted.map(s => {
+                const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
+                const canvasId = `chart-${s.code}`
+                const ret5cls = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
+                const signalLabel = s.signal === 'improving' ? '★ Improving'
+                    : s.signal === 'watch' ? '◎ Watch'
+                        : quadrantLabel(s.quadrant)
+                return `
+                <div class="bg-gray-50 rounded-lg p-2 border border-gray-100">
+                    <div class="flex items-center justify-between mb-1">
+                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                           target="_blank"
+                           class="text-xs font-semibold text-gray-800 hover:text-blue-600 truncate"
+                           style="max-width:80px;">${s.name}</a>
+                        <span style="font-size:10px;color:${color};font-weight:600;">${signalLabel}</span>
+                    </div>
+                    <canvas id="${canvasId}" height="60" style="width:100%;display:block;"></canvas>
+                    <div class="flex justify-between mt-1" style="font-size:10px;">
+                        <span style="color:#6b7280;">${s.price ? s.price.toLocaleString() + '원' : '-'}</span>
+                        <span style="color:${ret5cls};font-weight:600;">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</span>
+                    </div>
+                </div>`
+            }).join("")
+
+            // 캔버스에 차트 그리기
+            requestAnimationFrame(() => {
+                charted.forEach(s => {
+                    if (!s.closes_chart || s.closes_chart.length < 2) return
+                    const canvas = document.getElementById(`chart-${s.code}`)
+                    if (!canvas) return
+                    const ctx = canvas.getContext("2d")
+                    const W = canvas.offsetWidth || 160
+                    const H = 60
+                    canvas.width = W
+                    canvas.height = H
+
+                    const prices = s.closes_chart
+                    const total = prices.length
+                    const splitIdx = Math.max(0, total - 20) // 마지막 20일 시작 인덱스
+                    const min = Math.min(...prices)
+                    const max = Math.max(...prices)
+                    const range = max - min || 1
+
+                    const toX = i => (i / (total - 1)) * W
+                    const toY = v => H - 4 - ((v - min) / range) * (H - 8)
+
+                    const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
+
+                    // 6개월 전체 — 연한선
+                    ctx.beginPath()
+                    ctx.strokeStyle = '#cbd5e1'
+                    ctx.lineWidth = 1
+                    prices.forEach((v, i) => {
+                        i === 0 ? ctx.moveTo(toX(i), toY(v)) : ctx.lineTo(toX(i), toY(v))
+                    })
+                    ctx.stroke()
+
+                    // 최근 20일 강조 — 진한선
+                    ctx.beginPath()
+                    ctx.strokeStyle = color
+                    ctx.lineWidth = 1.8
+                    prices.slice(splitIdx).forEach((v, i) => {
+                        const xi = splitIdx + i
+                        i === 0 ? ctx.moveTo(toX(xi), toY(v)) : ctx.lineTo(toX(xi), toY(v))
+                    })
+                    ctx.stroke()
+
+                    // 현재가 점
+                    const lastX = toX(total - 1)
+                    const lastY = toY(prices[total - 1])
+                    ctx.beginPath()
+                    ctx.arc(lastX, lastY, 2.5, 0, Math.PI * 2)
+                    ctx.fillStyle = color
+                    ctx.fill()
+
+                    // 20일 시작 수직선 (연한 구분선)
+                    ctx.beginPath()
+                    ctx.strokeStyle = 'rgba(100,116,139,0.2)'
+                    ctx.lineWidth = 1
+                    ctx.setLineDash([2, 2])
+                    const splitX = toX(splitIdx)
+                    ctx.moveTo(splitX, 0)
+                    ctx.lineTo(splitX, H)
+                    ctx.stroke()
+                    ctx.setLineDash([])
+                })
+            })
+        }
+
+        // ── 탭·필터 ──────────────────────────────────────────────────
+        function switchTab(tab) {
+            currentTab = tab
+            document.getElementById("view-sector").style.display = tab === "sector" ? "block" : "none"
+            document.getElementById("view-stock").style.display = tab === "stock" ? "block" : "none"
+            if (tab === "sector") document.getElementById("view-price-chart").style.display = "none"
+            const s = tab === "sector"
+            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            updateSpotlightVisibility()
+        }
+
+        function filterSector(q) {
+            sectorFilter = q
+            document.querySelectorAll(".q-btn").forEach(b => b.classList.remove("active"))
+            event.target.classList.add("active")
+            renderSectorRRG()
+        }
+
+        // ── 주목 섹션 ────────────────────────────────────────────────
+        function updateSpotlightVisibility() {
+            const el = document.getElementById("view-spotlight")
+            if (el) el.style.display = "block"
+
+            const title = document.getElementById("spotlight-title")
+            const desc = document.getElementById("spotlight-desc")
+
+            if (currentTab === "sector") {
+                title.textContent = "🔍 주목 섹터"
+                desc.textContent = "Improving 사분면 진입 기준"
+                renderSpotlightSectors()
+                generateSpotlight()
+            } else {
+                title.textContent = "🔍 주목 종목"
+                desc.textContent = currentSector
+                    ? `${currentSector} — Improving 우선, 없으면 Watch`
+                    : "Improving 우선 선정, 없으면 Watch 종목으로 표시"
+                renderSpotlightCandidates()
+                generateSpotlight()
+            }
+        }
+
+        function renderSpotlightSectors() {
+            if (!allData) return
+            const el = document.getElementById("spotlight-candidates")
+            const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
+
+            const result = Object.entries(sectors)
+                .filter(([name,]) => sectorRRG[name]?.quadrant === "improving")
+                .map(([name, d]) => ({ name, d }))
+                .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
+                .slice(0, 3)
+
+            if (!result.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 Improving 사분면에 있는 섹터가 없습니다.</div>'
+                return
+            }
+
+            el.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
+                result.map(function (item) {
+                    const name = item.name, d = item.d
+                    const rrg = sectorRRG[name] || {}
+                    const ret5d = d.sector_ret_5d
+                    return '<div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"' +
+                        ' onclick="selectSector(\'' + name + '\'); switchTab(\'stock\')">' +
+                        '<div class="font-semibold text-sm text-gray-800 mb-1">' + name +
+                        ' <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>' +
+                        '<div class="text-xs text-gray-500 space-y-0.5">' +
+                        '<div>RS-Ratio: <span class="font-medium text-gray-700">' + (rrg.rs_ratio != null ? rrg.rs_ratio.toFixed(2) : '-') + '</span>' +
+                        ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
+                        '<div>5D <span class="' + (ret5d > 0 ? 'text-green-600' : 'text-red-500') + ' font-medium">' +
+                        (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
+                        '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
+                        ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
+                        '</div></div>'
+                }).join("") + '</div>'
+        }
+
+        function generateSpotlightSectorComment(name, d) {
+            const lines = []
+            const impCount = d.improving_count || 0
+            const watchCount = d.watch_count || 0
+            const ret = d.sector_ret_5d
+
+            if (impCount > 0)
+                lines.push(`${name} 섹터에서 ${impCount}개 종목이 모멘텀 전환(Improving) 신호를 보이고 있습니다.`)
+            if (watchCount > 0)
+                lines.push(`추가로 ${watchCount}개 종목이 방향 전환 초기 단계(Watch)에 있습니다.`)
+            if (ret > 1)
+                lines.push(`섹터 5일 수익률 +${ret.toFixed(1)}%로 섹터 전체 흐름도 긍정적입니다.`)
+            else if (ret < 0)
+                lines.push(`섹터 전체 수익률은 아직 ${ret.toFixed(1)}%로 부진하지만 개별 종목 모멘텀이 먼저 살아나는 중입니다.`)
+
+            lines.push(`종목 RRG에서 개별 종목의 세부 신호를 확인하세요.`)
+            return lines.join(" ")
+        }
+
+        function getSpotlightCandidates() {
+            if (!allData) return []
+            const improving = []
+            const watch = []
+            const sectors = allData.sectors || {}
+
+            // 종목 RRG 탭이고 섹터가 선택된 경우 해당 섹터만, 아니면 전체
+            const targetSectors = (currentTab === "stock" && currentSector)
+                ? { [currentSector]: sectors[currentSector] }
+                : sectors
+
+            Object.entries(targetSectors).forEach(([sectorName, sectorData]) => {
+                if (!sectorData) return
+                const cands = sectorData.candidates || []
+                cands.forEach(s => {
+                    if (s.rs_momentum == null || s.rs_ratio == null) return
+                    if (s.rs_momentum < 100 || s.rs_ratio >= 100) return
+                    const base = {
+                        ...s,
+                        sectorName,
+                        sectorRet: sectorData.sector_ret_5d,
+                        score: (s.rs_momentum - 100) * 0.5 +
+                            (100 - s.rs_ratio) * 0.3 +
+                            (sectorData.sector_ret_5d || 0) * 0.2
+                    }
+                    if (s.signal === "improving") improving.push(base)
+                    else if (s.signal === "watch") watch.push(base)
+                })
+            })
+
+            improving.sort((a, b) => b.score - a.score)
+            watch.sort((a, b) => b.score - a.score)
+
+            return improving.length > 0 ? improving.slice(0, 3) : watch.slice(0, 3)
+        }
+
+        function renderSpotlightCandidates() {
+            const cands = getSpotlightCandidates()
+            const el = document.getElementById("spotlight-candidates")
+
+            if (!cands.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 조건을 충족하는 종목이 없습니다.</div>'
+                return
+            }
+
+            el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
+                cands.map(s => {
+                    const isWatch = s.signal === 'watch'
+                    const cardBg = isWatch ? 'bg-gray-50 border-gray-200' : 'bg-blue-50 border-blue-100'
+                    const nameCls = isWatch ? 'text-gray-700' : 'text-gray-800'
+                    const signalBadge = isWatch
+                        ? `<span class="text-xs bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded font-medium">◎ Watch</span>`
+                        : `<span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-medium">★ Improving</span>`
+                    return `
+                <div class="rounded-lg p-3 border ${cardBg}">
+                    <div class="flex items-center justify-between mb-1">
+                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                           target="_blank"
+                           class="font-semibold text-sm ${nameCls} hover:text-blue-600">${s.name}</a>
+                        ${signalBadge}
+                    </div>
+                    <div class="text-xs text-gray-400 mb-1">${s.sectorName}</div>
+                    <div class="text-xs text-gray-500 space-y-0.5">
+                        <div>현재가 <span class="text-gray-800 font-medium">${s.price ? s.price.toLocaleString() : '-'}원</span></div>
+                        <div>RS-Ratio <span class="text-red-500 font-medium">${s.rs_ratio?.toFixed(2) ?? '-'}</span>
+                             &nbsp;RS-M <span class="text-blue-600 font-medium">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
+                        <div>5D <span class="${s.ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span>
+                             &nbsp;VOL <span class="text-purple-600 font-medium">${s.vol_ratio?.toFixed(2) ?? '-'}x</span></div>
+                        <div>섹터 5D <span class="${s.sectorRet > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.sectorRet != null ? (s.sectorRet > 0 ? '+' : '') + s.sectorRet.toFixed(2) + '%' : '-'}</span></div>
+                    </div>
+                </div>`}).join("") + `</div>`
+        }
+
+        function generateSpotlightComment(s) {
+            const lines = []
+            if (s.signal === 'improving') {
+                const momStr = s.rs_momentum > 101.5 ? "강한 모멘텀 전환" : "모멘텀 전환 초기"
+                lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 ${momStr} 신호이며 거래량이 뒷받침되고 있습니다.`)
+                if (s.vol_ratio >= 2.0)
+                    lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배로 급증 — 강한 매수세 유입 중입니다.`)
+                else if (s.vol_ratio != null)
+                    lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준으로 관심이 확대되고 있습니다.`)
+                if (s.rs_ratio < 98)
+                    lines.push(`아직 RS-Ratio ${s.rs_ratio?.toFixed(2)}로 소외 구간이지만 모멘텀이 먼저 살아나는 전형적인 조기 신호입니다.`)
+                else
+                    lines.push(`RS-Ratio가 100에 근접해 조만간 주도 구간 진입이 기대됩니다.`)
+            } else {
+                lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 모멘텀 전환 방향은 맞지만 거래량이 아직 충분하지 않습니다.`)
+                if (s.vol_ratio != null)
+                    lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준 — 거래량 증가 여부를 추가 확인하세요.`)
+                lines.push(`⚠ 신호 강도가 약한 만큼 관망하거나 소량 관심 종목으로만 두는 것을 권장합니다.`)
+            }
+            if (s.sectorRet > 1)
+                lines.push(`${s.sectorName} 섹터 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 섹터 흐름도 긍정적입니다.`)
+            else if (s.sectorRet < 0)
+                lines.push(`${s.sectorName} 섹터가 약세인 점은 부담 요인입니다.`)
+            return lines.join(" ")
+        }
+
+        function generateSpotlightSectorComment(name, d) {
+            const lines = []
+            const impCount = d.improving_count || 0
+            const watchCount = d.watch_count || 0
+            const ret = d.sector_ret_5d
+            if (impCount > 0)
+                lines.push(`${name} 섹터에서 ${impCount}개 종목이 모멘텀 전환(Improving) 신호를 보이고 있습니다.`)
+            if (watchCount > 0)
+                lines.push(`추가로 ${watchCount}개 종목이 방향 전환 초기 단계(Watch)에 있습니다.`)
+            if (ret > 1)
+                lines.push(`섹터 5일 수익률 +${ret.toFixed(1)}%로 섹터 전체 흐름도 긍정적입니다.`)
+            else if (ret < 0)
+                lines.push(`섹터 전체 수익률은 아직 ${ret.toFixed(1)}%로 부진하지만 개별 종목 모멘텀이 먼저 살아나는 중입니다.`)
+            lines.push(`종목 RRG에서 개별 종목의 세부 신호를 확인하세요.`)
+            return lines.join(" ")
+        }
+
+        function generateSpotlight() {
+            const contentEl = document.getElementById("spotlight-content")
+            if (!contentEl) return
+
+            if (currentTab === "sector") {
+                const sectors = allData.sectors || {}
+                const sectorRRG = allData.sector_rrg || {}
+                const result = Object.entries(sectors)
+                    .filter(([name,]) => sectorRRG[name]?.quadrant === "improving")
+                    .map(([name, d]) => ({ name, d }))
+                    .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
+                    .slice(0, 3)
+
+                contentEl.innerHTML = result.map((item, i) => `
+                    <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
+                            <span class="font-semibold text-gray-800 cursor-pointer hover:text-blue-600"
+                                  onclick="selectSector('${item.name}'); switchTab('stock')">${item.name}</span>
+                            <span class="text-xs text-gray-400">→ 클릭시 종목보기</span>
+                        </div>
+                        <div class="text-sm text-gray-600 leading-relaxed">
+                            ${generateSpotlightSectorComment(item.name, item.d)}
+                        </div>
+                    </div>
+                `).join("") + `<div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">* RRG 신호 기반 자동 분석</div>`
+                return
+            }
+
+            // 종목 분석
+            const cands = getSpotlightCandidates()
+            if (!cands.length) {
+                contentEl.innerHTML = '<div class="text-sm text-gray-400 py-2">주목할 만한 종목 신호가 없습니다.</div>'
+                return
+            }
+
+            contentEl.innerHTML = cands.map((s, i) => `
+                <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
+                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                           target="_blank"
+                           class="font-semibold text-gray-800 hover:text-blue-600">${s.name}</a>
+                        <span class="text-xs text-blue-500">${s.sectorName}</span>
+                    </div>
+                    <div class="text-sm text-gray-600 leading-relaxed">
+                        ${generateSpotlightComment(s)}
+                    </div>
+                </div>
+            `).join("") + `<div class="text-xs text-gray-400 mt-2 pt-2 border-t border-gray-100">* RRG 신호 기반 자동 분석</div>`
+        }
+
+        function renderSpotlightSectors() {
+            if (!allData) return
+            const el = document.getElementById("spotlight-candidates")
+            const sectors = allData.sectors || {}
+            const sectorRRG = allData.sector_rrg || {}
+
+            const result = Object.entries(sectors)
+                .filter(([name,]) => sectorRRG[name]?.quadrant === "improving")
+                .map(([name, d]) => ({ name, d }))
+                .sort((a, b) => (b.d.improving_count || 0) - (a.d.improving_count || 0))
+                .slice(0, 3)
+
+            if (!result.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-2">현재 Improving 사분면에 있는 섹터가 없습니다.</div>'
+                return
+            }
+
+            el.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
+                result.map(function (item) {
+                    const name = item.name, d = item.d
+                    const rrg = sectorRRG[name] || {}
+                    const ret5d = d.sector_ret_5d
+                    return '<div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"' +
+                        ' onclick="selectSector(' + JSON.stringify(name) + '); switchTab(\'stock\')">' +
+                        '<div class="font-semibold text-sm text-gray-800 mb-1">' + name +
+                        ' <span class="text-xs text-gray-400 font-normal">→ 클릭시 종목보기</span></div>' +
+                        '<div class="text-xs text-gray-500 space-y-0.5">' +
+                        '<div>RS-Ratio: <span class="font-medium text-gray-700">' + (rrg.rs_ratio != null ? rrg.rs_ratio.toFixed(2) : '-') + '</span>' +
+                        ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
+                        '<div>5D <span class="' + (ret5d > 0 ? 'text-green-600' : 'text-red-500') + ' font-medium">' +
+                        (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
+                        '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
+                        ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
+                        '</div></div>'
+                }).join("") + '</div>'
+        }
+
+        function searchStock(query) {
+            const results = document.getElementById("search-results")
+            const clearBtn = document.getElementById("search-clear")
+            clearBtn.classList.toggle("hidden", !query)
+
+            if (!query || query.length < 1) { results.classList.add("hidden"); return }
+
+            const matches = []
+            const sectors = allData?.sectors || {}
+            Object.entries(sectors).forEach(([sectorName, data]) => {
+                (data.candidates || []).forEach(s => {
+                    if (s.name.includes(query) || s.code.includes(query))
+                        matches.push({ ...s, sectorName })
+                })
+            })
+
+            if (!matches.length) {
+                results.innerHTML = '<div class="px-4 py-3 text-sm text-gray-400">검색 결과 없음</div>'
+                results.classList.remove("hidden")
+                return
+            }
+
+            results.innerHTML = matches.slice(0, 10).map(s => {
+                const isImproving = s.signal === "improving"
+                const isWatch = s.signal === "watch"
+                return `
+                <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
+                     onclick="goToStock('${s.sectorName}', '${s.code}')">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
+                      ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
+                    </span>
+                    <span class="text-xs text-gray-400">${s.code}</span>
+                  </div>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    <span class="text-xs text-gray-400">${s.sectorName}</span>
+                    <span class="pill ${s.signal || s.quadrant}">${quadrantLabel(s.signal || s.quadrant)}</span>
+                  </div>
+                </div>`
+            }).join("")
+            results.classList.remove("hidden")
+        }
+
+        function goToStock(sectorName, code) {
+            closeSearch()
+            selectSector(sectorName)
+            switchTab('stock')
+            // 해당 종목 행 하이라이트
+            setTimeout(() => {
+                const table = document.getElementById("stock-table")
+                if (!table) return
+                const links = table.querySelectorAll(`a[href*='code=${code}']`)
+                links.forEach(link => {
+                    const row = link.closest("tr")
+                    if (row) {
+                        row.style.outline = "2px solid #3b82f6"
+                        row.scrollIntoView({ behavior: "smooth", block: "nearest" })
+                        setTimeout(() => row.style.outline = "", 2000)
+                    }
+                })
+            }, 400)
+        }
+
+        function closeSearch() {
+            document.getElementById("stock-search").value = ""
+            document.getElementById("search-results").classList.add("hidden")
+            document.getElementById("search-clear").classList.add("hidden")
+        }
+
+        document.addEventListener("click", e => {
+            if (!document.getElementById("search-wrap")?.contains(e.target)) {
+                document.getElementById("search-results")?.classList.add("hidden")
+            }
         })
 
-        heatmap.appendChild(cardRow)
-
-        // 인라인 패널
-        const panel = document.createElement("div")
-        panel.className = "inline-panel mb-3"
-        panel.dataset.row = rowStart
-        panel.style.display = "none"
-        panel.innerHTML = `
-          <div class="bg-white rounded-lg shadow-md p-4 border-t-2 border-blue-400">
-            <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-              <div class="flex items-center gap-3">
-                <span id="panel-label-${rowStart}" class="text-sm font-semibold text-blue-600"></span>
-                <button onclick="togglePanelMembers(${rowStart})" class="text-xs text-gray-400 hover:text-gray-600">
-                  <span id="panel-members-arrow-${rowStart}">▶</span> 구성 종목
-                </button>
-              </div>
-              <div class="flex gap-1 flex-wrap items-center">
-                <button class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded" onclick="setPanelFilter(${rowStart},'all')">ALL</button>
-                <button class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">Improving ★</button>
-                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">Lagging</button>
-                <button class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">Weakening</button>
-                <button onclick="closePanel(${rowStart})" class="text-gray-400 hover:text-gray-600 ml-1 text-sm font-medium">✕</button>
-              </div>
-            </div>
-            <div id="panel-members-${rowStart}" style="display:none;" class="mb-3 p-2 bg-gray-50 rounded text-xs text-gray-600 leading-6"></div>
-            <div class="overflow-x-auto">
-              <table class="min-w-full text-sm text-gray-700">
-                <thead>
-                  <tr class="bg-gray-50 text-gray-600 text-xs">
-                    <th class="px-3 py-2 text-left">종목명</th>
-                    <th class="px-3 py-2 text-right">코드</th>
-                    <th class="px-3 py-2 text-right">현재가</th>
-                    <th class="px-3 py-2 text-right">1D</th>
-                    <th class="px-3 py-2 text-right">1W</th>
-                    <th class="px-3 py-2 text-right">1M</th>
-                    <th class="px-3 py-2 text-right">RS-R</th>
-                    <th class="px-3 py-2 text-right">RS-M</th>
-                    <th class="px-3 py-2 text-right">VOL</th>
-                    <th class="px-3 py-2 text-right">신호</th>
-                    <th class="px-3 py-2 text-right" title="섹터+종목 복합 점수 (0~3)">⚡</th>
-                  </tr>
-                </thead>
-                <tbody id="panel-tbody-${rowStart}"></tbody>
-              </table>
-            </div>
-          </div>`
-        heatmap.appendChild(panel)
-      }
-    }
-
-    function selectSector(name, cardRow) {
-      currentSector = name
-      currentFilter = "all"
-      const rowStart = parseInt(cardRow.dataset.row)
-
-      document.querySelectorAll(".inline-panel").forEach(p => p.style.display = "none")
-      document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
-
-      cardRow.querySelector(`[data-sector="${name}"]`).classList.add("ring-2", "ring-blue-400")
-
-      const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
-      panel.style.display = "block"
-      document.getElementById(`panel-label-${rowStart}`).innerHTML =
-        `<a href="./rrg.html?sector=${encodeURIComponent(name)}"
-           class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
-           ▸ ${name} 섹터 <span class="text-xs font-normal opacity-60">→ RRG</span>
-         </a>`
-
-      const data = allData.sectors?.[name]
-      if (data?.candidates) {
-        document.getElementById(`panel-members-${rowStart}`).innerHTML =
-          data.candidates.map(s =>
-            `<span class="inline-block mr-3">
-              <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
-                 target="_blank" class="hover:underline text-gray-700">${s.name}</a>
-              <span class="text-gray-400">(${s.code})</span>
-            </span>`
-          ).join("")
-      }
-
-      renderPanelTable(rowStart, name, "all")
-      setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50)
-    }
-
-    function closePanel(rowStart) {
-      document.querySelector(`.inline-panel[data-row="${rowStart}"]`).style.display = "none"
-      document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
-      currentSector = null
-    }
-
-    function togglePanelMembers(rowStart) {
-      const panel = document.getElementById(`panel-members-${rowStart}`)
-      const arrow = document.getElementById(`panel-members-arrow-${rowStart}`)
-      const isOpen = panel.style.display !== "none"
-      panel.style.display = isOpen ? "none" : "block"
-      arrow.textContent = isOpen ? "▶" : "▼"
-    }
-
-    function setPanelFilter(rowStart, filter) {
-      currentFilter = filter
-      renderPanelTable(rowStart, currentSector, filter)
-    }
-
-    function renderPanelTable(rowStart, sectorName, filter) {
-      const data = allData.sectors?.[sectorName]
-      const tbody = document.getElementById(`panel-tbody-${rowStart}`)
-      if (!data?.candidates) {
-        tbody.innerHTML = '<tr><td colspan="9" class="text-center py-4 text-gray-400">데이터 없음</td></tr>'
-        return
-      }
-      let list = [...data.candidates]
-      if (filter !== "all")
-        list = list.filter(s => s.signal === filter || s.quadrant === filter)
-      if (!list.length) {
-        tbody.innerHTML = '<tr><td colspan="9" class="text-center py-4 text-gray-400">신호 없음</td></tr>'
-        return
-      }
-      const fmt = v => v != null ? (v > 0 ? "+" : "") + v.toFixed(2) + "%" : "-"
-      tbody.innerHTML = list.map(s => {
-        const isPrime     = s.signal === "prime"
-        const isConfirm   = s.signal === "confirm"
-        const isImproving = isPrime || isConfirm
-        const isLagging   = s.quadrant === "lagging"
-        const rowClass = isPrime   ? "border-b bg-red-50 font-medium"
-          : isConfirm  ? "border-b bg-blue-50 font-medium"
-          : isLagging  ? "border-b bg-yellow-50"
-          : "border-b hover:bg-gray-50"
-        const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
-        const r1c = s.ret_1d > 0 ? "text-green-600" : "text-red-600"
-        const r5c = s.ret_5d > 0 ? "text-green-600" : "text-red-600"
-        const r20c = s.ret_20d > 0 ? "text-green-600" : "text-red-600"
-        return `
-<tr class="${rowClass}">
-  <td class="px-3 py-2">
-    ${isPrime ? '<span class="text-red-500 mr-1">🔥</span>' : isConfirm ? '<span class="text-blue-500 mr-1">★</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
-    <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
-  </td>
-  <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
-  <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
-  <td class="px-3 py-2 text-right ${r1c}">${fmt(s.ret_1d)}</td>
-  <td class="px-3 py-2 text-right ${r5c}">${fmt(s.ret_5d)}</td>
-  <td class="px-3 py-2 text-right ${r20c}">${fmt(s.ret_20d)}</td>
-  <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right">${signalPill(s.signal || s.quadrant)}</td>
-  <td class="px-3 py-2 text-right">
-    ${s.combo_score >= 3 ? '<span class="text-red-600 font-bold text-xs">★★★</span>'
-    : s.combo_score === 2 ? '<span class="text-blue-500 font-medium text-xs">★★</span>'
-    : s.combo_score === 1 ? '<span class="text-gray-400 text-xs">★</span>'
-    : '<span class="text-gray-200 text-xs">-</span>'}
-  </td>
-</tr>`
-      }).join("")
-    }
-
-    function signalPill(signal) {
-      const map = {
-        prime:    `<span class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded font-bold">PRIME 🔥</span>`,
-        confirm:  `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">Confirm ★</span>`,
-        watch:    `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">Watch</span>`,
-        lagging:  `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
-        weakening:`<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
-        leading:  `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
-      }
-      return map[signal] || `<span class="text-gray-400">-</span>`
-    }
-
-    function setFilter(filter) {
-      currentFilter = filter
-    }
-
-    function searchStock(query) {
-      const results = document.getElementById("search-results")
-      const clearBtn = document.getElementById("search-clear")
-      clearBtn.classList.toggle("hidden", !query)
-
-      if (!query || query.length < 1) { results.classList.add("hidden"); return }
-
-      const matches = []
-      const sectors = allData?.sectors || {}
-      Object.entries(sectors).forEach(([sectorName, data]) => {
-        (data.candidates || []).forEach(s => {
-          if (s.name.includes(query) || s.code.includes(query))
-            matches.push({ ...s, sectorName })
-        })
-      })
-
-      if (!matches.length) {
-        results.innerHTML = '<div class="px-4 py-3 text-sm text-gray-400">검색 결과 없음</div>'
-        results.classList.remove("hidden")
-        return
-      }
-
-      results.innerHTML = matches.slice(0, 10).map(s => {
-        const isImproving = s.signal === "improving"
-        const isWatch = s.signal === "watch"
-        const pill = signalPill(s.signal || s.quadrant)
-        return `
-        <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
-             onclick="goToStock('${s.sectorName}', '${s.code}')">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
-              ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
-            </span>
-            <span class="text-xs text-gray-400">${s.code}</span>
-          </div>
-          <div class="flex items-center gap-2 mt-0.5">
-            <span class="text-xs text-gray-400">${s.sectorName}</span>
-            ${pill}
-          </div>
-        </div>`
-      }).join("")
-      results.classList.remove("hidden")
-    }
-
-    function goToStock(sectorName, code) {
-      closeSearch()
-
-      // DOM을 타고 올라가는 대신 allData에서 직접 rowStart 계산
-      // renderHeatmap() 재실행 후에도 안정적으로 동작한다
-      const sectorKeys = Object.keys(allData?.sectors || {})
-      const sectorIdx  = sectorKeys.indexOf(sectorName)
-      if (sectorIdx === -1) return
-
-      const rowStart = Math.floor(sectorIdx / COLS) * COLS
-
-      // 패널이 이미 열려있지 않으면 섹터 선택 먼저 실행
-      const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
-      if (!panel || panel.style.display === "none") {
-        // cardRow는 data-row 속성으로 직접 조회
-        const cardRow = document.querySelector(`.grid[data-row="${rowStart}"]`)
-        if (!cardRow) return
-        selectSector(sectorName, cardRow)
-      }
-
-      // 종목 행 하이라이트 (패널 렌더 완료 후 실행)
-      setTimeout(() => {
-        document.querySelectorAll(".ring-1.ring-blue-300").forEach(r =>
-          r.classList.remove("ring-1", "ring-blue-300")
-        )
-        const activePanel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
-        if (!activePanel) return
-        const links = activePanel.querySelectorAll(`a[href*="code=${code}"]`)
-        links.forEach(link => {
-          const row = link.closest("tr")
-          if (row) {
-            row.classList.add("ring-1", "ring-blue-300")
-            row.scrollIntoView({ behavior: "smooth", block: "nearest" })
-          }
-        })
-      }, 300)
-    }
-
-    function closeSearch() {
-      document.getElementById("stock-search").value = ""
-      document.getElementById("search-results").classList.add("hidden")
-      document.getElementById("search-clear").classList.add("hidden")
-    }
-
-    // 검색창 외부 클릭 시 닫기
-    document.addEventListener("click", e => {
-      if (!document.getElementById("search-wrap")?.contains(e.target)) {
-        document.getElementById("search-results")?.classList.add("hidden")
-      }
-    })
-
-    loadData()
-    setInterval(loadData, REFRESH_MS)
-  </script>
-
-  <div id="sector-tooltip"></div>
-  <script>
-    const SECTOR_DESC = {
-      "반도체_제조": "메모리 가격·HBM(High Bandwidth Memory) 수요",
-      "반도체_장비": "반도체 설비투자(CAPEX) 사이클",
-      "반도체_소재부품": "소재 가격·수율·반도체 업황",
-      "2차전지_셀": "전기차 수요·배터리 가격",
-      "2차전지_소재부품": "리튬·니켈 등 원자재 가격",
-      "전력기기": "AI 데이터센터·전력망 투자",
-      "신재생에너지": "신재생 정책·REC(Renewable Energy Certificate) 가격",
-      "조선": "선박 발주·LNG선 수요",
-      "방산": "국방예산·지정학 리스크",
-      "로봇": "로봇 도입 정책·자동화 수요",
-      "자동차_완성차": "글로벌 판매량·환율(달러·원)",
-      "자동차_부품": "완성차 생산량·부품 단가",
-      "타이어": "천연고무 가격·완성차 수요",
-      "IT부품": "스마트폰·가전 수요·부품 단가",
-      "빅플랫폼": "플랫폼 광고·커머스 실적",
-      "B2B_IT서비스": "기업 IT투자·디지털전환 수요",
-      "바이오_제약": "글로벌 제약사 위탁생산 수주",
-      "바이오_기술이전": "기술이전·라이선스 딜 뉴스",
-      "바이오_임상": "임상 결과·금리(성장주 할인율)",
-      "대형제약": "약가·건보 정책·실적",
-      "중소제약": "내수 약가·제네릭 정책",
-      "미용·에스테틱": "중국 소비심리·미용 시술 수요",
-      "은행": "금리·NIM(Net Interest Margin)·가계대출",
-      "증권": "증시 거래대금·IB 수수료",
-      "보험": "손해율·금리(자산운용)",
-      "비철금속": "LME 금속가격(아연·구리)",
-      "정유": "유가·정제마진",
-      "석유화학": "납사·에틸렌 스프레드",
-      "도시가스": "LNG 가격·도시가스 요금",
-      "전력": "전기요금·정부 에너지 정책",
-      "건설": "부동산 경기·수주잔고·금리",
-      "시멘트": "건설 착공량·시멘트 단가",
-      "건자재": "인테리어·리모델링 수요",
-      "해운": "컨테이너 운임(BDI·SCFI)",
-      "항공": "항공 여객수요·유가·환율",
-      "물류·육운": "택배 단가·내수 물동량",
-      "통신": "ARPU(Average Revenue/User)·설비투자·배당",
-      "엔터·음악": "아이돌 앨범·공연·일본 수출",
-      "게임": "신작 출시·게임 트래픽·MAU",
-      "미디어·콘텐츠": "OTT·드라마 제작·광고 시장",
-      "화장품_브랜드": "중국 관광객·K뷰티 수출",
-      "화장품_ODM": "ODM 수주·글로벌 브랜드 생산",
-      "K푸드_수출": "K푸드 수출·환율(달러)",
-      "중국내수식품": "중국 내수 소비·현지법인 실적",
-      "내수식품": "내수 소비경기·원자재(곡물) 가격",
-      "유통": "내수 소비경기·오프라인 유통",
-      "패션·의류": "글로벌 OEM 수주·달러 매출",
-      "레저·여행": "내국인 소비·중국 관광객 회복",
-      "생활용품": "내수 소비·주거 교체 수요",
-    }
-
-    const _tip = document.getElementById('sector-tooltip')
-
-    document.addEventListener('mouseover', e => {
-      const card = e.target.closest('[data-sector]')
-      if (!card) return
-      const desc = SECTOR_DESC[card.dataset.sector]
-      if (!desc) return
-      _tip.textContent = desc
-      _tip.style.display = 'block'
-    })
-
-    document.addEventListener('mousemove', e => {
-      _tip.style.left = (e.clientX + 14) + 'px'
-      _tip.style.top = (e.clientY + 14) + 'px'
-    })
-
-    document.addEventListener('mouseout', e => {
-      if (e.target.closest('[data-sector]')) _tip.style.display = 'none'
-    })
-  </script>
+        loadData()
+        setInterval(loadData, REFRESH_MS)
+    </script>
 </body>
 
 </html>
