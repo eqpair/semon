@@ -107,7 +107,7 @@
 
         #tooltip {
             position: fixed;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(229, 231, 235, 0.8);
@@ -1056,7 +1056,7 @@
                 })
                 dot.addEventListener("mouseleave", () => {
                     hideTooltip()
-                    svg.querySelectorAll("line, circle")
+                    svg.querySelectorAll("[data-code]")
                         .forEach(p => p.setAttribute("display", "none"))
                 })
                 container.appendChild(dot)
