@@ -25,7 +25,10 @@ sector_signal.py  —  RRG 기반 소외주 탐색
 파라미터: MA_SHORT=10, MA_LONG=40 (블룸버그 기본값)
 최소 필요 데이터: 80일 (RS_Momentum 계산을 위해 RS_Ratio_MA40 필요)
 """
+import json
 import logging
+import os
+from pathlib import Path
 from config import SECTORS
 from utils import now_kst
 
@@ -35,6 +38,8 @@ MA_SHORT   = 10   # 단기 이동평균 (블룸버그 기본값)
 MA_LONG    = 40   # 장기 이동평균 (블룸버그 기본값)
 TAIL_DAYS  = 40   # 8주 궤적
 CHART_DAYS = 120  # 주가 차트용 6개월
+
+RRG_HISTORY_PATH = "/home/eq/semon/data/rrg_history.json"
 
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
@@ -50,6 +55,45 @@ def load_market_caps_into_store(caps: dict[str, int]) -> None:
 # 수식 버전 — 파라미터나 수식이 바뀌면 이 값을 올려서
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
 RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
+
+
+# ── rrg_history 영속화 ────────────────────────────────────────
+
+def save_rrg_history(path: str = RRG_HISTORY_PATH) -> None:
+    """
+    rrg_history를 파일로 저장.
+    재시작 후에도 tail이 즉시 복원되어 장 외 시간에도 궤적이 표시된다.
+    """
+    try:
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        tmp = path + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(rrg_history, f, ensure_ascii=False)
+        os.replace(tmp, path)
+        logger.debug(f"rrg_history 저장: {len(rrg_history)}개 코드")
+    except Exception as e:
+        logger.warning(f"rrg_history 저장 실패: {e}")
+
+
+def load_rrg_history(path: str = RRG_HISTORY_PATH) -> None:
+    """
+    시작 시 rrg_history 복원.
+    버전 불일치(_v != RRG_VERSION) 항목은 자동 제거 → 소급 재계산됨.
+    """
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        loaded = 0
+        for code, tail in data.items():
+            # 첫 항목의 _v가 현재 버전과 같을 때만 복원
+            if tail and tail[0].get("_v") == RRG_VERSION:
+                rrg_history[code] = tail
+                loaded += 1
+        logger.info(f"rrg_history 복원: {loaded}개 코드")
+    except FileNotFoundError:
+        logger.info("rrg_history 파일 없음 — 소급 계산으로 채워집니다")
+    except Exception as e:
+        logger.warning(f"rrg_history 로드 실패: {e}")
 
 
 def update_ohlcv(data: dict[str, dict | None]):

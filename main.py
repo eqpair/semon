@@ -5,7 +5,9 @@ from pathlib import Path
 
 from config import SECTORS, WAIT_TIME
 from crawler import fetch_all_prices, fetch_all_ohlcv
-from sector_signal import update_prices, update_ohlcv, calc_all_signals, load_market_caps_into_store
+from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
+                           load_market_caps_into_store,
+                           save_rrg_history, load_rrg_history)
 from utils import is_market_time, is_near_market_close, now_kst, save_and_push, save_closing
 from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
 
@@ -59,6 +61,9 @@ async def run():
     else:
         logger.warning("시총 파일 없음 — 첫 장 시작 시 자동 갱신됩니다")
 
+    # 시작 시 rrg_history 복원 → 재시작 후에도 tail 즉시 사용 가능
+    load_rrg_history()
+
     while True:
         try:
             today = now_kst().strftime("%Y-%m-%d")
@@ -74,6 +79,8 @@ async def run():
                     logger.info(f"closing 스냅샷 저장 완료: {today}")
                 else:
                     logger.error("closing 스냅샷 저장 실패")
+                # closing 저장 시점에 rrg_history도 함께 영속화
+                save_rrg_history()
 
             # ── 장 중 루프 ───────────────────────────────────────
             if not is_market_time():
@@ -109,6 +116,9 @@ async def run():
 
             # 5. JSON 저장 + git push
             save_and_push(signals)
+
+            # 6. rrg_history 영속화 — 재시작 후 tail 즉시 복원 보장
+            save_rrg_history()
 
             logger.info(f"완료 — {WAIT_TIME}초 후 재실행")
             await asyncio.sleep(WAIT_TIME)
