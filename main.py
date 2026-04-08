@@ -38,6 +38,7 @@ OHLCV_REFRESH_INTERVAL = 3600  # 1시간마다
 _last_ohlcv_fetch  = None
 _closing_saved: str | None = None
 _market_cap_date: str | None = None  # 오늘 시총 갱신 여부 (날짜 문자열)
+_off_market_pushed: str | None = None  # 장 외 시간 tail push 완료 여부 (날짜 문자열)
 
 
 def _need_ohlcv_refresh() -> bool:
@@ -50,7 +51,7 @@ def _need_ohlcv_refresh() -> bool:
 # ── 메인 루프 ─────────────────────────────────────────────────
 
 async def run():
-    global _last_ohlcv_fetch, _closing_saved, _market_cap_date
+    global _last_ohlcv_fetch, _closing_saved, _market_cap_date, _off_market_pushed
     logger.info("semon 시작")
 
     # 시작 시 기존 시총 파일 로드 → sector_signal에 주입
@@ -84,7 +85,18 @@ async def run():
 
             # ── 장 중 루프 ───────────────────────────────────────
             if not is_market_time():
-                logger.info("장 외 시간 — 대기 중")
+                # 장 외 시간에도 rrg_history 기반 tail이 signals.json에
+                # 반영되도록 하루 1회 (closing 저장 이후) push한다.
+                # ohlcv_store / current_price가 없어도 rrg_history가 로드된
+                # 상태라면 calc_all_signals()는 tail을 정상 출력한다.
+                if _off_market_pushed != today and _closing_saved == today:
+                    logger.info("장 외 시간 — tail 포함 signals.json 갱신")
+                    signals = calc_all_signals()
+                    save_and_push(signals)
+                    _off_market_pushed = today
+                    logger.info("장 외 시간 tail push 완료")
+                else:
+                    logger.info("장 외 시간 — 대기 중")
                 await asyncio.sleep(60)
                 continue
 
