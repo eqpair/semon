@@ -63,12 +63,21 @@ def save_rrg_history(path: str = RRG_HISTORY_PATH) -> None:
     """
     rrg_history를 파일로 저장.
     재시작 후에도 tail이 즉시 복원되어 장 외 시간에도 궤적이 표시된다.
+
+    버전 정보는 각 포인트의 _v 태그가 아니라 최상위 __version__ 키로 관리한다.
+    tail 슬라이싱으로 _v가 있는 첫 항목이 잘려나가는 버그를 방지한다.
     """
     try:
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         tmp = path + ".tmp"
+        # tail 포인트에서 _v 제거 후 저장 (불필요한 내부 태그 배제)
+        clean = {
+            code: [{k: v for k, v in pt.items() if k != "_v"} for pt in tail]
+            for code, tail in rrg_history.items()
+        }
+        payload = {"__version__": RRG_VERSION, "data": clean}
         with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(rrg_history, f, ensure_ascii=False)
+            json.dump(payload, f, ensure_ascii=False)
         os.replace(tmp, path)
         logger.debug(f"rrg_history 저장: {len(rrg_history)}개 코드")
     except Exception as e:
@@ -78,15 +87,26 @@ def save_rrg_history(path: str = RRG_HISTORY_PATH) -> None:
 def load_rrg_history(path: str = RRG_HISTORY_PATH) -> None:
     """
     시작 시 rrg_history 복원.
-    버전 불일치(_v != RRG_VERSION) 항목은 자동 제거 → 소급 재계산됨.
+    최상위 __version__ 키로 버전을 확인한다. 버전 불일치 시 전체 재계산.
+    구형 포맷(_v 태그 방식)은 자동으로 무효화된다.
     """
     try:
         with open(path, encoding="utf-8") as f:
-            data = json.load(f)
+            raw = json.load(f)
+
+        # 구형 포맷 감지 (최상위 키가 code 문자열인 경우)
+        if "__version__" not in raw:
+            logger.info("rrg_history 구형 포맷 감지 — 소급 재계산합니다")
+            return
+
+        if raw.get("__version__") != RRG_VERSION:
+            logger.info(f"rrg_history 버전 불일치 ({raw.get('__version__')} → {RRG_VERSION}) — 소급 재계산합니다")
+            return
+
+        data = raw.get("data", {})
         loaded = 0
         for code, tail in data.items():
-            # 첫 항목의 _v가 현재 버전과 같을 때만 복원
-            if tail and tail[0].get("_v") == RRG_VERSION:
+            if tail:
                 rrg_history[code] = tail
                 loaded += 1
         logger.info(f"rrg_history 복원: {loaded}개 코드")
@@ -346,11 +366,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         quad       = _quadrant(curr_ratio, curr_mom)
 
         # ── 궤적(tail) 누적 ───────────────────────────────────
-        # 수식 버전 체크: 파라미터가 바뀌었으면 기존 history 무효화
         stored = rrg_history.get(code)
-        if stored and stored[0].get("_v") != RRG_VERSION:
-            stored = None
-            rrg_history.pop(code, None)
 
         if not stored:
             # 1일 단위로 소급 계산 → 재시작 직후에도 TAIL_DAYS 포인트 전부 채움
@@ -369,23 +385,19 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
                     tail.append({
                         "rs_ratio":    round(t_ratio, 3),
                         "rs_momentum": round(t_mom,   3),
-                        "_v":          RRG_VERSION,   # 버전 태그
                     })
-            # 버전 태그를 마지막 항목에도 유지 (빈 tail이면 더미 삽입)
-            rrg_history[code] = tail if tail else [{"_v": RRG_VERSION}]
+            rrg_history[code] = tail if tail else []
 
         if curr_ratio is not None and curr_mom is not None:
             rrg_history[code].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
-                "_v":          RRG_VERSION,
             })
             rrg_history[code] = rrg_history[code][-TAIL_DAYS:]
 
-        # 프론트엔드 출력 시 내부 버전 키(_v) 제거
+        # 프론트엔드 출력용 (내부 태그 없으므로 그대로 사용)
         clean_tail = [
-            {k: v for k, v in pt.items() if k != "_v"}
-            for pt in rrg_history.get(code, [])
+            pt for pt in rrg_history.get(code, [])
             if pt.get("rs_ratio") is not None
         ]
 
@@ -655,9 +667,6 @@ def calc_sector_rrg(sector_results: dict) -> dict:
 
         # ── tail 누적 (종목 tail과 동일 방식) ─────────────────
         stored_key = rrg_history.get(key)
-        if stored_key and stored_key[0].get("_v") != RRG_VERSION:
-            stored_key = None
-            rrg_history.pop(key, None)
 
         if not stored_key:
             tail = []
@@ -675,21 +684,18 @@ def calc_sector_rrg(sector_results: dict) -> dict:
                     tail.append({
                         "rs_ratio":    round(t_ratio, 3),
                         "rs_momentum": round(t_mom,   3),
-                        "_v":          RRG_VERSION,
                     })
-            rrg_history[key] = tail if tail else [{"_v": RRG_VERSION}]
+            rrg_history[key] = tail if tail else []
 
         if curr_ratio is not None and curr_mom is not None:
             rrg_history[key].append({
                 "rs_ratio":    round(curr_ratio, 3),
                 "rs_momentum": round(curr_mom,   3),
-                "_v":          RRG_VERSION,
             })
             rrg_history[key] = rrg_history[key][-TAIL_DAYS:]
 
         clean_tail = [
-            {k: v for k, v in pt.items() if k != "_v"}
-            for pt in rrg_history.get(key, [])
+            pt for pt in rrg_history.get(key, [])
             if pt.get("rs_ratio") is not None
         ]
 
