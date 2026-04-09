@@ -316,10 +316,12 @@
                 const isConfirm = s.signal === "confirm"
                 const isImproving = isPrime || isConfirm
                 const isLagging = s.quadrant === "lagging"
+                const isBreakout = s.short_rs_grade === "breakout"
                 const rowClass = isPrime ? "border-b bg-red-50 font-medium"
                     : isConfirm ? "border-b bg-blue-50 font-medium"
-                        : isLagging ? "border-b bg-yellow-50"
-                            : "border-b hover:bg-gray-50"
+                        : isBreakout ? "border-b bg-purple-50 font-medium"
+                            : isLagging ? "border-b bg-yellow-50"
+                                : "border-b hover:bg-gray-50"
                 const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
                 const r1c = s.ret_1d > 0 ? "text-green-600" : "text-red-600"
                 const r5c = s.ret_5d > 0 ? "text-green-600" : "text-red-600"
@@ -327,7 +329,10 @@
                 return `
 <tr class="${rowClass}">
   <td class="px-3 py-2">
-    ${isPrime ? '<span class="text-red-500 mr-1">🔥</span>' : isConfirm ? '<span class="text-blue-500 mr-1">★</span>' : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
+    ${isPrime ? '<span class="text-red-500 mr-1">🔥</span>'
+                        : isConfirm ? '<span class="text-blue-500 mr-1">★</span>'
+                            : isBreakout ? '<span class="text-purple-500 mr-1">⚡</span>'
+                                : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
     <a href="${naverUrl}" target="_blank" class="hover:underline ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
   </td>
   <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
@@ -338,7 +343,7 @@
   <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right">${signalPill(s.signal || s.quadrant)}</td>
+  <td class="px-3 py-2 text-right">${s.short_rs_grade === 'breakout' ? signalPill('breakout') : signalPill(s.signal || s.quadrant)}</td>
   <td class="px-3 py-2 text-right">
     ${s.combo_score >= 3 ? '<span class="text-red-600 font-bold text-xs">★★★</span>'
                         : s.combo_score === 2 ? '<span class="text-blue-500 font-medium text-xs">★★</span>'
@@ -357,6 +362,7 @@
                 lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
                 weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
                 leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
+                breakout: `<span class="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded font-bold">⚡ Breakout</span>`,
             }
             return map[signal] || `<span class="text-gray-400">-</span>`
         }
