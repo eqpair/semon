@@ -1094,6 +1094,8 @@
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1M</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-R</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-M</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">RS5</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">VOL</th>
           <th style="padding:6px 8px;text-align:right;font-weight:500;">신호</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;" title="섹터+종목 복합점수">⚡</th>
         </tr>
@@ -1116,6 +1118,9 @@
                 <td style="padding:7px 4px;text-align:right;color:${r20c};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${s.rs_5d >= 2 ? '#7c3aed' : '#6b7280'};">
+                        ${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}
+                    </td>
                 <td style="padding:7px 8px;text-align:right;">${s.short_rs_grade === 'breakout'
                         ? signalPill('breakout')
                         : signalPill(s.signal || s.quadrant) }</td>
