@@ -54,7 +54,8 @@ def load_market_caps_into_store(caps: dict[str, int]) -> None:
 
 # 수식 버전 — 파라미터나 수식이 바뀌면 이 값을 올려서
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
-RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
+#RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
+RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_cap20"
 
 
 # ── rrg_history 영속화 ────────────────────────────────────────
@@ -154,7 +155,7 @@ def _make_benchmark(rebased_map: dict[str, list[float]]) -> list[float]:
 
     시총 데이터가 없으면 동등가중으로 폴백한다.
     """
-    CAP_WEIGHT = 0.40  # 단일 종목 최대 가중치
+    CAP_WEIGHT = 0.20  # 단일 종목 최대 가중치
 
     codes  = list(rebased_map.keys())
     n_code = len(codes)
@@ -312,6 +313,27 @@ def _get_closes_chart(code: str) -> list[float]:
         return [round(v, 0) for v in hist] + [round(current_price[code], 0)]
     return [round(v, 0) for v in closes[-CHART_DAYS:]]
 
+def _short_rs_grade(rs_5d, rs_20d, quadrant):
+    """
+    단기 상대강도 등급
+    장기(RS_Ratio)와 단기(rs_5d, rs_20d) 괴리를 포착
+
+    breakout : Lagging/Improving인데 단기 급강세 → 전환 초기 신호
+    rising   : 단기 섹터 대비 우세
+    neutral  : 섹터 수준
+    weak     : 단기 섹터 대비 열세
+    """
+    if rs_5d is None:
+        return "neutral"
+
+    if quadrant in ("lagging", "improving") and rs_5d >= 2.0:
+        return "breakout"
+    elif rs_5d >= 1.3:
+        return "rising"
+    elif rs_5d >= 0.7:
+        return "neutral"
+    else:
+        return "weak"
 
 def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     code_list = [c for c, _ in codes]
@@ -431,6 +453,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "quadrant":      quad,
             "tail":          clean_tail[-TAIL_DAYS:],
             "signal":        _improving_grade(quad, clean_tail, vol, curr_mom),
+            "short_rs_grade":  _short_rs_grade(rs_5d, rs_20d, quad),  # ← 추가
             "combo_score":   0,   # calc_all_signals에서 섹터 RRG 완료 후 채워짐
             "closes_chart":  closes_chart,
         })
