@@ -313,21 +313,18 @@ def _get_closes_chart(code: str) -> list[float]:
         return [round(v, 0) for v in hist] + [round(current_price[code], 0)]
     return [round(v, 0) for v in closes[-CHART_DAYS:]]
 
-def _short_rs_grade(rs_5d, rs_20d, quadrant):
-    """
-    단기 상대강도 등급
-    장기(RS_Ratio)와 단기(rs_5d, rs_20d) 괴리를 포착
-
-    breakout : Lagging/Improving인데 단기 급강세 → 전환 초기 신호
-    rising   : 단기 섹터 대비 우세
-    neutral  : 섹터 수준
-    weak     : 단기 섹터 대비 열세
-    """
+def _short_rs_grade(rs_5d, rs_20d, quadrant, gap_1d=None, ret_5d=None):
     if rs_5d is None:
         return "neutral"
 
-    if quadrant in ("lagging", "improving") and rs_5d >= 2.0:
+    # 당일 디커플링 감지 (오늘 튄 것) — 섹터 대비 3%p 이상 이탈
+    if gap_1d is not None and gap_1d >= 0.03:
         return "breakout"
+
+    # 5일 누적 디커플링 (최근 강세) — 절대 상승 + 섹터 대비 2배
+    if quadrant in ("lagging", "improving") and rs_5d >= 2.0 and ret_5d is not None and ret_5d > 0:
+        return "breakout"
+
     elif rs_5d >= 1.3:
         return "rising"
     elif rs_5d >= 0.7:
@@ -371,6 +368,8 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         return _empty_sector(sector)
 
     sector_ret_5d  = sum(returns_5d.values()) / len(returns_5d)
+    returns_1d    = {c: r for c in valid if (r := _get_return(c, 1)) is not None}
+    sector_ret_1d = sum(returns_1d.values()) / len(returns_1d) if returns_1d else None
     rising_ratio   = sum(1 for r in returns_5d.values() if r > 0) / len(returns_5d)
     is_rising      = sector_ret_5d > 0 and rising_ratio > 0.5
     sector_ret_20d = _sector_avg(code_list, 20)
@@ -430,6 +429,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         vol = _get_vol_ratio(code)
 
         rs_5d  = (r5  / sector_ret_5d)  if r5  is not None and sector_ret_5d  else None
+        gap_1d = (r1 - sector_ret_1d) if r1 is not None and sector_ret_1d is not None else None
         rs_20d = (r20 / sector_ret_20d) if r20 is not None and sector_ret_20d else None
         rs_60d = (r60 / sector_ret_60d) if r60 is not None and sector_ret_60d else None
 
@@ -450,6 +450,8 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "vol_ratio":     round(vol,    3)    if vol    is not None else None,
             "rs_ratio":      round(curr_ratio, 3) if curr_ratio is not None else None,
             "rs_momentum":   round(curr_mom,   3) if curr_mom   is not None else None,
+            "gap_1d": round(gap_1d * 100, 2) if gap_1d is not None else None,
+            "short_rs_grade": _short_rs_grade(rs_5d, rs_20d, quad, gap_1d, r5),
             "quadrant":      quad,
             "tail":          clean_tail[-TAIL_DAYS:],
             "signal":        _improving_grade(quad, clean_tail, vol, curr_mom),

@@ -1096,6 +1096,7 @@
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1D</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1W</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1M</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">GAP</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-R</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-M</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-5</th>
@@ -1118,6 +1119,7 @@
                 <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r20c};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${s.gap_1d >= 3 ? '#7c3aed' : s.gap_1d < 0 ? '#dc2626' : '#6b7280'};">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${s.rs_5d >= 2 ? '#7c3aed' : '#6b7280'};">${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}</td>
