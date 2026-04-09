@@ -1121,7 +1121,7 @@
                 <td style="padding:7px 4px;text-align:right;color:${s.rs_5d >= 2 ? '#7c3aed' : '#6b7280'};">${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
-                <td style="padding:7px 4px;text-align:right;color:${s.vol_ratio != null && s.vol_ratio >= 1.5 ? '#d97706' : '#6b7280'};">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) + 'x' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${s.vol_ratio != null && s.vol_ratio >= 1.5 ? '#d97706' : '#6b7280'};">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : '-'}</td>
                 <td style="padding:7px 8px;text-align:right;">${s.short_rs_grade === 'breakout' ? signalPill('breakout') : signalPill(s.signal || s.quadrant) }</td>
                 <td style="padding:7px 4px;text-align:right;">${comboStars(s.combo_score || 0)}</td>
             </tr>`
