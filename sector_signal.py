@@ -31,6 +31,7 @@ import os
 from pathlib import Path
 from config import SECTORS
 from utils import now_kst
+from datetime import timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -55,8 +56,8 @@ def load_market_caps_into_store(caps: dict[str, int]) -> None:
 # 수식 버전 — 파라미터나 수식이 바뀌면 이 값을 올려서
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
 #RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
-RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_cap20"
-
+#RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_cap20"
+RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_daily"
 
 # ── rrg_history 영속화 ────────────────────────────────────────
 
@@ -404,21 +405,27 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
                 t_mom   = next((v for v in reversed(hist_momentum) if v is not None), None)
                 if t_ratio is not None and t_mom is not None:
                     tail.append({
+                        "date":        (now_kst() - timedelta(days=offset)).strftime("%Y-%m-%d"),
                         "rs_ratio":    round(t_ratio, 3),
                         "rs_momentum": round(t_mom,   3),
                     })
             rrg_history[code] = tail if tail else []
 
         if curr_ratio is not None and curr_mom is not None:
-            rrg_history[code].append({
-                "rs_ratio":    round(curr_ratio, 3),
-                "rs_momentum": round(curr_mom,   3),
-            })
-            rrg_history[code] = rrg_history[code][-TAIL_DAYS:]
+            today = now_kst().strftime("%Y-%m-%d")
+            last = rrg_history[code][-1] if rrg_history[code] else {}
+            if last.get("date") != today:
+                rrg_history[code].append({
+                    "date":        today,
+                    "rs_ratio":    round(curr_ratio, 3),
+                    "rs_momentum": round(curr_mom,   3),
+                })
+                rrg_history[code] = rrg_history[code][-TAIL_DAYS:]
 
         # 프론트엔드 출력용 (내부 태그 없으므로 그대로 사용)
         clean_tail = [
-            pt for pt in rrg_history.get(code, [])
+            {"rs_ratio": pt["rs_ratio"], "rs_momentum": pt["rs_momentum"]}
+            for pt in rrg_history.get(code, [])
             if pt.get("rs_ratio") is not None
         ]
 
@@ -713,14 +720,19 @@ def calc_sector_rrg(sector_results: dict) -> dict:
             rrg_history[key] = tail if tail else []
 
         if curr_ratio is not None and curr_mom is not None:
-            rrg_history[key].append({
-                "rs_ratio":    round(curr_ratio, 3),
-                "rs_momentum": round(curr_mom,   3),
-            })
-            rrg_history[key] = rrg_history[key][-TAIL_DAYS:]
+            today = now_kst().strftime("%Y-%m-%d")
+            last = rrg_history[key][-1] if rrg_history[key] else {}
+            if last.get("date") != today:
+                rrg_history[key].append({
+                    "date":        today,
+                    "rs_ratio":    round(curr_ratio, 3),
+                    "rs_momentum": round(curr_mom,   3),
+                })
+                rrg_history[key] = rrg_history[key][-TAIL_DAYS:]
 
         clean_tail = [
-            pt for pt in rrg_history.get(key, [])
+            {"rs_ratio": pt["rs_ratio"], "rs_momentum": pt["rs_momentum"]}
+            for pt in rrg_history.get(key, [])
             if pt.get("rs_ratio") is not None
         ]
 
