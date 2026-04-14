@@ -325,8 +325,8 @@
 
         <!-- ═══ 섹터 RRG ═══ -->
         <div id="view-sector">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
-                <div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 items-stretch">
+                <div class="lg:col-span-3">
                     <div class="flex gap-2 mb-3 flex-wrap">
                         <button class="q-btn active" onclick="filterSector('all')">ALL</button>
                         <button class="q-btn" onclick="filterSector('improving')">Improving</button>
@@ -376,8 +376,8 @@
                 <div id="sector-chips" class="flex flex-wrap gap-2"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
-                <div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 items-stretch">
+                <div class="lg:col-span-3">
                     <div class="text-sm font-medium text-gray-700 mb-3" id="stock-sector-label">섹터를 선택하세요</div>
                     <div class="rrg-canvas" id="stock-rrg" style="height:480px;">
                         <svg class="tail-svg" id="stock-tail-svg"></svg>
@@ -938,142 +938,144 @@
         }
 
         function renderStockRRG(sectorName) {
-                if (!allData) return
-                const data = allData.sectors?.[sectorName]
-                if (!data) return
+            if (!allData) return
+            const data = allData.sectors?.[sectorName]
+            if (!data) return
 
-                document.getElementById("stock-sector-label").textContent = `▸ ${sectorName} 섹터`
-                const container = document.getElementById("stock-dots")
-                const svg = document.getElementById("stock-tail-svg")
-                const loading = document.getElementById("stock-loading")
-                container.innerHTML = ""
-                svg.innerHTML = ""
-                loading.style.display = "none"
+            document.getElementById("stock-sector-label").textContent = `▸ ${sectorName} 섹터`
+            const container = document.getElementById("stock-dots")
+            const svg = document.getElementById("stock-tail-svg")
+            const loading = document.getElementById("stock-loading")
+            container.innerHTML = ""
+            svg.innerHTML = ""
+            loading.style.display = "none"
 
-                const cands = (data.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
-                if (!cands.length) {
-                    loading.style.display = "flex"
-                    loading.textContent = "RRG 데이터 없음 (장 시작 후 생성)"
-                    return
-                }
-
-                const el = document.getElementById("stock-rrg")
-                const W = el.offsetWidth || 600
-                const H = el.offsetHeight || 480
-                const pad = 50
-
-                const allR = cands.flatMap(c => [c.rs_ratio, ...(c.tail || []).map(t => t.rs_ratio)])
-                const allM = cands.flatMap(c => [c.rs_momentum, ...(c.tail || []).map(t => t.rs_momentum)])
-                const rMin = Math.min(...allR, 99) - 0.5
-                const rMax = Math.max(...allR, 101) + 0.5
-                const mMin = Math.min(...allM, 99) - 0.5
-                const mMax = Math.max(...allM, 101) + 0.5
-
-                function toPos(r, m) {
-                    const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
-                    const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
-                    return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
-                }
-
-                drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
-
-                // 궤적 — visibility 방식으로 변경
-                cands.forEach(s => {
-                    const tail = s.tail || []
-                    if (tail.length < 2) return
-                    const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
-
-                    tail.forEach((t, i) => {
-                        if (i === 0) return
-                        const p1 = toPos(tail[i - 1].rs_ratio, tail[i - 1].rs_momentum)
-                        const p2 = toPos(t.rs_ratio, t.rs_momentum)
-                        const opacity = 0.08 + (i / tail.length) * 0.7
-
-                        // 선
-                        const seg = document.createElementNS("http://www.w3.org/2000/svg", "line")
-                        seg.setAttribute("x1", p1.x.toFixed(1))
-                        seg.setAttribute("y1", p1.y.toFixed(1))
-                        seg.setAttribute("x2", p2.x.toFixed(1))
-                        seg.setAttribute("y2", p2.y.toFixed(1))
-                        seg.setAttribute("stroke", color)
-                        seg.setAttribute("stroke-width", "1.5")
-                        seg.setAttribute("stroke-opacity", opacity)
-                        seg.setAttribute("visibility", "hidden")
-                        seg.setAttribute("data-code", s.code)
-                        svg.appendChild(seg)
-
-                        // 주별 점
-                        const midCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-                        midCircle.setAttribute("cx", p2.x.toFixed(1))
-                        midCircle.setAttribute("cy", p2.y.toFixed(1))
-                        midCircle.setAttribute("r", "2")
-                        midCircle.setAttribute("fill", color)
-                        midCircle.setAttribute("fill-opacity", opacity)
-                        midCircle.setAttribute("visibility", "hidden")
-                        midCircle.setAttribute("data-code", s.code)
-                        svg.appendChild(midCircle)
-                    })
-
-                    // 시작점 — 빈 원
-                    const firstPos = toPos(tail[0].rs_ratio, tail[0].rs_momentum)
-                    const startCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-                    startCircle.setAttribute("cx", firstPos.x.toFixed(1))
-                    startCircle.setAttribute("cy", firstPos.y.toFixed(1))
-                    startCircle.setAttribute("r", "3")
-                    startCircle.setAttribute("fill", "none")
-                    startCircle.setAttribute("stroke", color)
-                    startCircle.setAttribute("stroke-width", "1.5")
-                    startCircle.setAttribute("stroke-opacity", "0.4")
-                    startCircle.setAttribute("visibility", "hidden")
-                    startCircle.setAttribute("data-code", s.code)
-                    svg.appendChild(startCircle)
-
-                    // 끝점 — 채워진 원
-                    const endPos = toPos(tail[tail.length - 1].rs_ratio, tail[tail.length - 1].rs_momentum)
-                    const endCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-                    endCircle.setAttribute("cx", endPos.x.toFixed(1))
-                    endCircle.setAttribute("cy", endPos.y.toFixed(1))
-                    endCircle.setAttribute("r", "5")
-                    endCircle.setAttribute("fill", color)
-                    endCircle.setAttribute("fill-opacity", "0.9")
-                    endCircle.setAttribute("visibility", "hidden")
-                    endCircle.setAttribute("data-code", s.code)
-                    svg.appendChild(endCircle)
-                })
-
-                // 도트
-                cands.forEach(s => {
-                    const pos = toPos(s.rs_ratio, s.rs_momentum)
-                    const size = s.signal === 'prime' ? 13 : s.signal === 'confirm' ? 11 : 8
-                    const dotClass = s.signal === 'prime' ? 'dot improving' :
-                        s.signal === 'confirm' ? 'dot improving' :
-                            s.signal === 'watch' ? 'dot watch' : `dot ${s.quadrant}`
-
-                    const dot = document.createElement("div")
-                    dot.className = dotClass
-                    dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
-                    dot.addEventListener("mouseenter", e => {
-                        showStockTooltip(e, s)
-                        svg.querySelectorAll(`[data-code="${s.code}"]`)
-                            .forEach(p => p.setAttribute("visibility", "visible"))
-                    })
-                    dot.addEventListener("mouseleave", () => {
-                        hideTooltip()
-                        svg.querySelectorAll("[data-code]")
-                            .forEach(p => p.setAttribute("visibility", "hidden"))
-                    })
-                    container.appendChild(dot)
-
-                    const lbl = document.createElement("div")
-                    lbl.className = "dot-label"
-                    lbl.style.cssText = `left:${pos.x}px;top:${pos.y}px;color:${s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)};font-size:9px;`
-                    lbl.textContent = s.name
-                    container.appendChild(lbl)
-                })
-
-                renderStockTable(sectorName)
-                renderPriceCharts(sectorName)
+            const cands = (data.candidates || []).filter(s => s.rs_ratio != null && s.rs_momentum != null)
+            if (!cands.length) {
+                loading.style.display = "flex"
+                loading.textContent = "RRG 데이터 없음 (장 시작 후 생성)"
+                return
             }
+
+            const el = document.getElementById("stock-rrg")
+            const W = el.offsetWidth || 600
+            const H = el.offsetHeight || 480
+            const pad = 50
+
+            // tail 포함 전체 범위로 축 계산 (tail 밖으로 점이 잘리는 문제 방지)
+            const allR = cands.flatMap(c => [c.rs_ratio, ...(c.tail || []).map(t => t.rs_ratio)])
+            const allM = cands.flatMap(c => [c.rs_momentum, ...(c.tail || []).map(t => t.rs_momentum)])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
+
+            function toPos(r, m) {
+                const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
+                const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
+                return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
+            }
+
+            // 사분면 배경 + 기준선 + 축 수치 동적 렌더링
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
+
+            // 궤적 — 구간별 opacity로 방향 표현 + 주별 점
+            cands.forEach(s => {
+                const tail = s.tail || []
+                if (tail.length < 2) return
+                const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
+
+                tail.forEach((t, i) => {
+                    if (i === 0) return
+                    const p1 = toPos(tail[i - 1].rs_ratio, tail[i - 1].rs_momentum)
+                    const p2 = toPos(t.rs_ratio, t.rs_momentum)
+                    const opacity = 0.08 + (i / tail.length) * 0.7
+
+                    // 선
+                    const seg = document.createElementNS("http://www.w3.org/2000/svg", "line")
+                    seg.setAttribute("x1", p1.x.toFixed(1))
+                    seg.setAttribute("y1", p1.y.toFixed(1))
+                    seg.setAttribute("x2", p2.x.toFixed(1))
+                    seg.setAttribute("y2", p2.y.toFixed(1))
+                    seg.setAttribute("stroke", color)
+                    seg.setAttribute("stroke-width", "1.5")
+                    seg.setAttribute("stroke-opacity", opacity)
+                    seg.setAttribute("display", "none")
+                    seg.setAttribute("data-code", s.code)
+                    svg.appendChild(seg)
+
+                    // 주별 점
+                    const midCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                    midCircle.setAttribute("cx", p2.x.toFixed(1))
+                    midCircle.setAttribute("cy", p2.y.toFixed(1))
+                    midCircle.setAttribute("r", "2")
+                    midCircle.setAttribute("fill", color)
+                    midCircle.setAttribute("fill-opacity", opacity)
+                    midCircle.setAttribute("display", "none")
+                    midCircle.setAttribute("data-code", s.code)
+                    svg.appendChild(midCircle)
+                })
+
+                // 시작점 — 빈 원
+                const firstPos = toPos(tail[0].rs_ratio, tail[0].rs_momentum)
+                const startCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                startCircle.setAttribute("cx", firstPos.x.toFixed(1))
+                startCircle.setAttribute("cy", firstPos.y.toFixed(1))
+                startCircle.setAttribute("r", "3")
+                startCircle.setAttribute("fill", "none")
+                startCircle.setAttribute("stroke", color)
+                startCircle.setAttribute("stroke-width", "1.5")
+                startCircle.setAttribute("stroke-opacity", "0.4")
+                startCircle.setAttribute("display", "none")
+                startCircle.setAttribute("data-code", s.code)
+                svg.appendChild(startCircle)
+
+                // 끝점 — 채워진 원
+                const endPos = toPos(tail[tail.length - 1].rs_ratio, tail[tail.length - 1].rs_momentum)
+                const endCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                endCircle.setAttribute("cx", endPos.x.toFixed(1))
+                endCircle.setAttribute("cy", endPos.y.toFixed(1))
+                endCircle.setAttribute("r", "5")
+                endCircle.setAttribute("fill", color)
+                endCircle.setAttribute("fill-opacity", "0.9")
+                endCircle.setAttribute("display", "none")
+                endCircle.setAttribute("data-code", s.code)
+                svg.appendChild(endCircle)
+            })
+
+            // 도트
+            cands.forEach(s => {
+                const pos = toPos(s.rs_ratio, s.rs_momentum)
+                const size = s.signal === 'prime' ? 13 : s.signal === 'confirm' ? 11 : 8
+                const dotClass = s.signal === 'prime' ? 'dot improving' :
+                    s.signal === 'confirm' ? 'dot improving' :
+                        s.signal === 'watch' ? 'dot watch' : `dot ${s.quadrant}`
+
+                const dot = document.createElement("div")
+                dot.className = dotClass
+                dot.style.cssText = `left:${pos.x}px;top:${pos.y}px;width:${size}px;height:${size}px;`
+                dot.addEventListener("mouseenter", e => {
+                    showStockTooltip(e, s)
+                    svg.querySelectorAll(`[data-code="${s.code}"]`)
+                        .forEach(p => p.setAttribute("display", "block"))
+                })
+                dot.addEventListener("mouseleave", () => {
+                    hideTooltip()
+                    svg.querySelectorAll("[data-code]")
+                        .forEach(p => p.setAttribute("display", "none"))
+                })
+                container.appendChild(dot)
+
+                const lbl = document.createElement("div")
+                lbl.className = "dot-label"
+                lbl.style.cssText = `left:${pos.x}px;top:${pos.y}px;color:${s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)};font-size:9px;`
+                lbl.textContent = s.name
+                container.appendChild(lbl)
+            })
+
+            renderStockTable(sectorName)
+            renderPriceCharts(sectorName)
+        }
 
         function renderStockTable(sectorName) {
             const data = allData.sectors?.[sectorName]
@@ -1100,7 +1102,7 @@
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-5</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">VOL</th>
           <th style="padding:6px 8px;text-align:right;font-weight:500;">신호</th>
-          <th style="padding:6px 4px;text-align:right;font-weight:500;">⚡</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;" title="섹터+종목 복합점수">⚡</th>
         </tr>
       </thead>
       <tbody>
@@ -1111,18 +1113,24 @@
                 const r20c = s.ret_20d > 0 ? '#16a34a' : s.ret_20d < 0 ? '#dc2626' : '#9ca3af'
                 const rowBg = s.signal === 'prime' ? 'background:#fff5f5;'
                     : s.signal === 'confirm' ? 'background:#eff6ff;'
-                    : s.short_rs_grade === 'breakout' ? 'background:#faf5ff;' : ''
+                        : s.short_rs_grade === 'breakout' ? 'background:#faf5ff;' : ''
                 return `<tr class="stock-row ${s.signal === 'prime' || s.signal === 'confirm' ? 'improving' : s.signal === 'watch' ? 'watch' : s.quadrant}" style="${rowBg}">
-                <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">${s.signal === 'prime' ? '🔥 ' : s.signal === 'confirm' ? '★ ' : s.short_rs_grade === 'breakout' ? '⚡ ' : ''}${s.name}
+                <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">
+                    ${s.signal === 'prime' ? '🔥 ' : s.signal === 'confirm' ? '★ '
+                        : s.short_rs_grade === 'breakout' ? '⚡ ' : ''}${s.name}
                 <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r20c};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(1) + '%' : '-'}</td>
-                <td style="padding:7px 4px;text-align:right;color:${s.gap_1d >= 3 ? '#7c3aed' : s.gap_1d < 0 ? '#dc2626' : '#6b7280'};">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${s.gap_1d >= 3 ? '#7c3aed' : s.gap_1d != null && s.gap_1d < 0 ? '#dc2626' : '#6b7280'};">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
-                <td style="padding:7px 4px;text-align:right;color:${s.rs_5d >= 2 ? '#7c3aed' : '#6b7280'};">${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}</td>
-                <td style="padding:7px 4px;text-align:right;color:${s.vol_ratio != null && s.vol_ratio >= 1.5 ? '#d97706' : '#6b7280'};">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : '-'}</td>
-                <td style="padding:7px 8px;text-align:right;">${s.short_rs_grade === 'breakout' ? signalPill('breakout') : signalPill(s.signal || s.quadrant) }</td>
+                <td style="padding:7px 4px;text-align:right;color:${s.rs_5d >= 2 ? '#7c3aed' : '#6b7280'};">
+                        ${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}
+                    </td>
+                <td style="padding:7px 4px;text-align:right;color:${s.vol_ratio != null && s.vol_ratio >= 1.5 ? '#d97706' : '#6b7280'}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) + 'x' : '-'}</td>
+                <td style="padding:7px 8px;text-align:right;">${s.short_rs_grade === 'breakout'
+                        ? signalPill('breakout')
+                        : signalPill(s.signal || s.quadrant)}</td>
                 <td style="padding:7px 4px;text-align:right;">${comboStars(s.combo_score || 0)}</td>
             </tr>`
             }).join("")}
