@@ -585,8 +585,11 @@ def calc_all_signals() -> dict:
     # ── rrg_history 정리: config에서 사라진 종목 코드 제거 ────
     # SECTORS 변경 시 더 이상 사용하지 않는 코드가 메모리에
     # 계속 쌓이는 것을 방지한다.
+    #active_codes = {code for codes in SECTORS.values() for code, _ in codes}
+    #stale = [c for c in list(rrg_history.keys()) if c not in active_codes]
     active_codes = {code for codes in SECTORS.values() for code, _ in codes}
-    stale = [c for c in list(rrg_history.keys()) if c not in active_codes]
+    stale = [c for c in list(rrg_history.keys()) 
+            if c not in active_codes and not c.startswith(_SECTOR_KEY_PREFIX)]
     for c in stale:
         del rrg_history[c]
     if stale:
