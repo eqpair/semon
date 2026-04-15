@@ -450,6 +450,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     return {
         "sector":          sector,
         "sector_ret_5d":   round(sector_ret_5d * 100, 2),
+        "sector_ret_1d":   round(sector_ret_1d * 100, 2) if sector_ret_1d is not None else None,
         "rising_ratio":    round(rising_ratio, 2),
         "is_rising":       is_rising,
         "total":           len(candidates),
