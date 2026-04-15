@@ -121,7 +121,7 @@ def _make_reason(signal: str, grade: str, gap, vol, rs5, rs_ratio, rs_momentum) 
 
 def _sector_tag(quadrant: str) -> str:
     return {
-        "improving": "📈 Improving",
+        "improving": "☑️ Improving",
         "leading":   "🟢 Leading",
         "lagging":   "🟠 Lagging",
         "weakening": "🔴 Weakening",
@@ -139,7 +139,7 @@ def _format_alert(sector_name: str, sector_rrg: dict,
     lines = []
 
     # 섹터 헤더
-    lines.append(f"📡 <b>[{sector_name}]</b> {_sector_tag(quad)}")
+    lines.append(f"<b>[{sector_name}]</b> {_sector_tag(quad)}")
     if rs_r and rs_m:
         lines.append(f"RS-R {rs_r:.1f} / RS-M {rs_m:.1f}")
     ret_parts = []
@@ -166,7 +166,7 @@ def _format_alert(sector_name: str, sector_rrg: dict,
         ret1d_s = s.get("ret_1d")
 
         # 아이콘
-        icon = "🔥" if signal == "prime" else "⚡"
+        icon = "📈" if signal == "prime" else "⚡"
         lines.append(f"{icon} <b>{name}</b> ({code})")
 
         # 수치
