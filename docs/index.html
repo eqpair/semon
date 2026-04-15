@@ -325,8 +325,8 @@
 
         <!-- ═══ 섹터 RRG ═══ -->
         <div id="view-sector">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-                <div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 items-stretch">
+                <div class="lg:col-span-3">
                     <div class="flex gap-2 mb-3 flex-wrap">
                         <button class="q-btn active" onclick="filterSector('all')">ALL</button>
                         <button class="q-btn" onclick="filterSector('improving')">Improving</button>
@@ -334,7 +334,7 @@
                         <button class="q-btn" onclick="filterSector('leading')">Leading</button>
                         <button class="q-btn" onclick="filterSector('weakening')">Weakening</button>
                     </div>
-                    <div class="rrg-canvas" id="sector-rrg" style="height:540px;">
+                    <div class="rrg-canvas" id="sector-rrg" style="height:480px;">
                         <svg class="tail-svg" id="sector-tail-svg"></svg>
                         <div id="sector-dots"></div>
                         <div id="sector-loading"
@@ -346,9 +346,9 @@
                 </div>
 
                 <!-- 섹터 목록 -->
-                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col">
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4">
                     <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">섹터 현황</div>
-                    <div id="sector-list" class="overflow-y-auto" style="height:540px;max-height:540px;">
+                    <div id="sector-list" class="overflow-y-auto" style="height:424px;max-height:424px;">
                         <div class="text-gray-400 text-sm">로딩 중...</div>
                     </div>
                 </div>
@@ -376,10 +376,10 @@
                 <div id="sector-chips" class="flex flex-wrap gap-2"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-                <div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 items-stretch">
+                <div class="lg:col-span-3">
                     <div class="text-sm font-medium text-gray-700 mb-3" id="stock-sector-label">섹터를 선택하세요</div>
-                    <div class="rrg-canvas" id="stock-rrg" style="height:540px;">
+                    <div class="rrg-canvas" id="stock-rrg" style="height:480px;">
                         <svg class="tail-svg" id="stock-tail-svg"></svg>
                         <div id="stock-dots"></div>
                         <div id="stock-loading"
@@ -391,9 +391,9 @@
                 </div>
 
                 <!-- 종목 테이블 -->
-                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col">
+                <div class="lg:col-span-2 bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col">
                     <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">종목 상세</div>
-                    <div id="stock-table" class="overflow-y-auto" style="height:540px;max-height:540px;">
+                    <div id="stock-table" class="overflow-y-auto" style="height:424px;max-height:424px;">
                         <div class="text-gray-400 text-sm">섹터를 선택하세요</div>
                     </div>
                 </div>
@@ -446,17 +446,12 @@
         let sectorFilter = "all"
 
         function getDataUrl() {
-            const now = new Date()
-            const h = now.getHours(), m = now.getMinutes(), d = now.getDay()
-            const isMarket = d >= 1 && d <= 5 &&
-                (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
-            return isMarket ? "./data/signals.json" : "./data/signals_closing.json"
+            return "./data/signals.json"
         }
 
         async function loadData() {
             try {
-                let res = await fetch(getDataUrl() + "?t=" + Date.now())
-                if (!res.ok) res = await fetch("./data/signals.json?t=" + Date.now())
+                let res = await fetch("./data/signals.json?t=" + Date.now())
                 if (!res.ok) throw new Error()
                 allData = await res.json()
                 render()
@@ -1000,7 +995,7 @@
                     seg.setAttribute("stroke", color)
                     seg.setAttribute("stroke-width", "1.5")
                     seg.setAttribute("stroke-opacity", opacity)
-                    seg.setAttribute("visibility", "hidden")
+                    seg.setAttribute("display", "none")
                     seg.setAttribute("data-code", s.code)
                     svg.appendChild(seg)
 
@@ -1011,7 +1006,7 @@
                     midCircle.setAttribute("r", "2")
                     midCircle.setAttribute("fill", color)
                     midCircle.setAttribute("fill-opacity", opacity)
-                    midCircle.setAttribute("visibility", "hidden")
+                    midCircle.setAttribute("display", "none")
                     midCircle.setAttribute("data-code", s.code)
                     svg.appendChild(midCircle)
                 })
@@ -1026,7 +1021,7 @@
                 startCircle.setAttribute("stroke", color)
                 startCircle.setAttribute("stroke-width", "1.5")
                 startCircle.setAttribute("stroke-opacity", "0.4")
-                startCircle.setAttribute("visibility", "hidden")
+                startCircle.setAttribute("display", "none")
                 startCircle.setAttribute("data-code", s.code)
                 svg.appendChild(startCircle)
 
@@ -1038,7 +1033,7 @@
                 endCircle.setAttribute("r", "5")
                 endCircle.setAttribute("fill", color)
                 endCircle.setAttribute("fill-opacity", "0.9")
-                endCircle.setAttribute("visibility", "hidden")
+                endCircle.setAttribute("display", "none")
                 endCircle.setAttribute("data-code", s.code)
                 svg.appendChild(endCircle)
             })
@@ -1057,12 +1052,12 @@
                 dot.addEventListener("mouseenter", e => {
                     showStockTooltip(e, s)
                     svg.querySelectorAll(`[data-code="${s.code}"]`)
-                        .forEach(p => p.setAttribute("visibility", "visible"))
+                        .forEach(p => p.setAttribute("display", "block"))
                 })
                 dot.addEventListener("mouseleave", () => {
                     hideTooltip()
                     svg.querySelectorAll("[data-code]")
-                        .forEach(p => p.setAttribute("visibility", "hidden"))
+                        .forEach(p => p.setAttribute("display", "none"))
                 })
                 container.appendChild(dot)
 
@@ -1092,7 +1087,7 @@
     <table style="width:100%;border-collapse:collapse;font-size:11px;">
       <thead>
         <tr style="color:#9ca3af;border-bottom:1px solid #f3f4f6;">
-          <th style="padding:6px 8px;text-align:left;font-weight:500;min-width:80px;">종목</th>
+          <th style="padding:6px 8px;text-align:left;font-weight:500;">종목</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1D</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1W</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">1M</th>
