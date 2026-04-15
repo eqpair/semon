@@ -103,7 +103,7 @@ def _make_reason(signal: str, grade: str, gap, vol, rs5, rs_ratio, rs_momentum) 
             lines.append("   " + " · ".join(detail))
 
     elif grade == "breakout":
-        reason = "→ <b>Breakout</b>:"
+        reason = "<b>Breakout</b>:"
         if gap is not None and gap >= 3:
             reason += f" 섹터 대비 +{gap:.1f}%p 이탈"
         elif rs5 is not None and rs5 >= 2.0:
