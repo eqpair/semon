@@ -91,7 +91,7 @@ def _make_reason(signal: str, grade: str, gap, vol, rs5, rs_ratio, rs_momentum) 
     lines = []
 
     if signal == "prime":
-        lines.append("→ <b>PRIME</b>: Lagging→Improving 전환 + 모멘텀 가속")
+        lines.append("<b>PRIME</b>: Lagging→Improving 전환 + 모멘텀 가속")
         detail = []
         if gap is not None and gap >= 3:
             detail.append("오늘 섹터 대비 단독 강세")
