@@ -220,6 +220,7 @@
                     <th class="px-3 py-2 text-right">1D</th>
                     <th class="px-3 py-2 text-right">1W</th>
                     <th class="px-3 py-2 text-right">1M</th>
+                    <th class="px-3 py-2 text-right">GAP</th>
                     <th class="px-3 py-2 text-right">RS-R</th>
                     <th class="px-3 py-2 text-right">RS-M</th>
                     <th class="px-3 py-2 text-right">RS-5</th>
@@ -333,11 +334,12 @@
   <td class="px-3 py-2 text-right ${r1c}">${fmt(s.ret_1d)}</td>
   <td class="px-3 py-2 text-right ${r5c}">${fmt(s.ret_5d)}</td>
   <td class="px-3 py-2 text-right ${r20c}">${fmt(s.ret_20d)}</td>
+  <td class="px-3 py-2 text-right ${s.gap_1d >= 3 ? 'text-purple-600 font-medium' : s.gap_1d != null && s.gap_1d < 0 ? 'text-red-500' : 'text-gray-600'}">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
   <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
   <td class="px-3 py-2 text-right ${s.rs_5d >= 2 ? 'text-purple-600 font-medium' : 'text-gray-600'}">
     ${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}</td>
-  <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) + 'x' : "-"}</td>
   <td class="px-3 py-2 text-right">${s.short_rs_grade === 'breakout' ? signalPill('breakout') : signalPill(s.signal || s.quadrant)}</td>
   <td class="px-3 py-2 text-right">
     ${s.combo_score >= 3 ? '<span class="text-red-600 font-bold text-xs">★★★</span>'
