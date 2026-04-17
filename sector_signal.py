@@ -430,6 +430,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "rs_20d":         round(rs_20d, 3)    if rs_20d is not None else None,
             "rs_60d":         round(rs_60d, 3)    if rs_60d is not None else None,
             "vol_ratio":      round(vol,    3)    if vol    is not None else None,
+            "market_cap":     market_cap_store.get(code, 0),
             "rs_ratio":       round(curr_ratio, 3) if curr_ratio is not None else None,
             "rs_momentum":    round(curr_mom,   3) if curr_mom   is not None else None,
             "quadrant":       quad,
