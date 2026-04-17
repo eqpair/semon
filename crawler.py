@@ -18,22 +18,24 @@ SISE_URL = (
 )
 
 
-async def fetch_price(session: aiohttp.ClientSession, code: str) -> tuple[str, float | None]:
-    """현재가 fetch"""
+async def fetch_price(session: aiohttp.ClientSession, code: str) -> tuple[str, float | None, float | None]:
+    """현재가 + 장중 누적거래량 fetch"""
     url = PRICE_URL.format(code=code)
     try:
         async with session.get(url, timeout=aiohttp.ClientTimeout(total=5)) as resp:
             if resp.status != 200:
-                return code, None
+                return code, None, None
             data = await resp.json(content_type=None)
             areas = data.get("result", {}).get("areas", [])
             if not areas or not areas[0].get("datas"):
-                return code, None
-            price = areas[0]["datas"][0].get("nv")
-            return code, float(price) if price is not None else None
+                return code, None, None
+            datas = areas[0]["datas"][0]
+            price = datas.get("nv")
+            aq = datas.get("aq")  # 장중 누적 거래량
+            return code, float(price) if price is not None else None, float(aq) if aq is not None else None
     except Exception as e:
         logger.warning(f"현재가 오류 ({code}): {e}")
-        return code, None
+        return code, None, None
 
 
 async def fetch_ohlcv(
@@ -77,8 +79,10 @@ async def fetch_ohlcv(
         return code, None, None
 
 
-async def fetch_all_prices(code_list: list[str]) -> dict[str, float | None]:
-    """전체 종목 현재가 비동기 fetch"""
+async def fetch_all_prices(code_list: list[str]) -> dict[str, tuple[float | None, float | None]]:
+    """전체 종목 현재가 + 장중 누적거래량 비동기 fetch
+    반환: {code: (price, volume)}
+    """
     chunk_size = 50
     results = {}
 
@@ -87,12 +91,12 @@ async def fetch_all_prices(code_list: list[str]) -> dict[str, float | None]:
             chunk = code_list[i:i + chunk_size]
             tasks = [fetch_price(session, code) for code in chunk]
             responses = await asyncio.gather(*tasks)
-            for code, price in responses:
-                results[code] = price
+            for code, price, volume in responses:
+                results[code] = (price, volume)
             if i + chunk_size < len(code_list):
                 await asyncio.sleep(0.3)
 
-    success = sum(1 for v in results.values() if v is not None)
+    success = sum(1 for v in results.values() if v[0] is not None)
     logger.info(f"현재가 fetch: {success}/{len(code_list)}개 성공")
     return results
 

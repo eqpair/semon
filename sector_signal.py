@@ -44,6 +44,7 @@ RRG_HISTORY_PATH = "/home/eq/semon/data/rrg_history.json"
 
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
+current_volume: dict[str, float]      = {}  # 장중 누적 거래량
 rrg_history:    dict[str, list[dict]] = {}
 market_cap_store: dict[str, int]      = {}  # { code: 시총(억원) }
 
@@ -117,10 +118,12 @@ def update_ohlcv(data: dict[str, dict | None]):
             ohlcv_store[code] = val
 
 
-def update_prices(prices: dict[str, float | None]):
-    for code, price in prices.items():
+def update_prices(prices: dict[str, tuple]):
+    for code, (price, volume) in prices.items():
         if price is not None:
             current_price[code] = price
+        if volume is not None:
+            current_volume[code] = volume
 
 
 def _ma(values: list[float], period: int) -> list[float | None]:
@@ -254,7 +257,11 @@ def _get_vol_ratio(code: str) -> float | None:
     if len(vols) < 2:
         return None
     avg = sum(vols[-22:-2]) / len(vols[-22:-2]) if vols[-22:-2] else 0
-    return vols[-2] / avg if avg > 0 else None
+    if avg <= 0:
+        return None
+    # 장중이면 실시간 누적 거래량 사용, 없으면 전일 기준
+    today_vol = current_volume.get(code)
+    return (today_vol / avg) if today_vol else (vols[-2] / avg)
 
 
 def _sector_avg(code_list: list[str], days: int) -> float | None:
