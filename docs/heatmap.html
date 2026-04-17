@@ -130,16 +130,18 @@
     <div id="heatmap-container">
         <div id="loading" style="text-align:center;padding:80px;color:#475569;font-size:14px;">데이터 로딩 중...</div>
         <div id="view-sector" style="display:none;">
-            <div id="sector-treemap" class="treemap-wrapper"></div>
-        </div>
-        <div id="view-drill" style="display:none;">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                <button onclick="closeDrill()"
-                    style="font-size:12px;color:#60a5fa;background:none;border:1px solid #1e3a5f;border-radius:6px;cursor:pointer;padding:4px 12px;">←
-                    섹터로</button>
-                <div id="drill-title" style="font-size:15px;font-weight:700;color:#f1f5f9;"></div>
+            <div id="sector-split" style="display:flex;gap:12px;">
+                <div id="sector-treemap" class="treemap-wrapper" style="flex:1;min-width:0;"></div>
+                <div id="sector-drill" style="display:none;flex-shrink:0;width:40%;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                        <div id="drill-title" style="font-size:14px;font-weight:700;color:#f1f5f9;"></div>
+                        <button onclick="closeDrill()"
+                            style="font-size:11px;color:#64748b;background:none;border:1px solid #2d3748;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
+                            닫기</button>
+                    </div>
+                    <div id="drill-treemap" class="treemap-wrapper"></div>
+                </div>
             </div>
-            <div id="drill-treemap" class="treemap-wrapper"></div>
         </div>
         <div id="view-stock" style="display:none;">
             <div id="stock-treemap" class="treemap-wrapper"></div>
@@ -158,7 +160,6 @@
             document.getElementById('btn-stock').className = 'tab-btn' + (tab === 'stock' ? ' active' : '');
             document.getElementById('view-sector').style.display = tab === 'sector' ? 'block' : 'none';
             document.getElementById('view-stock').style.display = tab === 'stock' ? 'block' : 'none';
-            document.getElementById('view-drill').style.display = 'none';
             render();
         }
 
@@ -280,7 +281,8 @@
         function renderSector() {
             var container = document.getElementById('sector-treemap');
             var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
-            var W = container.offsetWidth || window.innerWidth - 48;
+            var drillOpen = document.getElementById('sector-drill').style.display !== 'none';
+            var W = container.offsetWidth || (window.innerWidth - 48 - (drillOpen ? window.innerWidth * 0.4 + 12 : 0));
             var H = Math.max(500, window.innerHeight - 180);
 
             var items = Object.keys(sectors).map(function (name) {
@@ -424,12 +426,12 @@
             var sdata = sectors[sectorName];
             if (!sdata) return;
 
-            document.getElementById('view-sector').style.display = 'none';
-            document.getElementById('view-drill').style.display = 'block';
+            document.getElementById('sector-drill').style.display = 'block';
+            renderSector();
             document.getElementById('drill-title').textContent = sectorName + ' 섹터';
 
             var container = document.getElementById('drill-treemap');
-            var W = container.offsetWidth || window.innerWidth - 48;
+            var W = container.offsetWidth || window.innerWidth * 0.4;
             var H = Math.max(500, window.innerHeight - 220);
 
             // 시총 있으면 시총 기준, 없으면 동등가중
@@ -486,8 +488,7 @@
 
         function closeDrill() {
             currentDrill = null;
-            document.getElementById('view-drill').style.display = 'none';
-            document.getElementById('view-sector').style.display = 'block';
+            document.getElementById('sector-drill').style.display = 'none';
             renderSector();
         }
 
