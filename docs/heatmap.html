@@ -441,29 +441,16 @@
             var W = container.offsetWidth || 400;
             var H = Math.max(500, window.innerHeight - 220);
 
-            var stocks = sdata.candidates.filter(function (c) { return c.market_cap; }).map(function (c) {
+            var stocks = sdata.candidates.map(function (c) {
                 return {
-                    name: c.name, code: c.code, value: c.market_cap,
-                    ret: c[currentRet], cap: c.market_cap,
+                    name: c.name, code: c.code, value: c.market_cap || 1,
+                    ret: c[currentRet], cap: c.market_cap || 0,
                     signal: c.signal, grade: c.short_rs_grade,
                     gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
                     price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
                     quad: (sectorRRG[sectorName] || {}).quadrant || 'neutral'
                 };
             });
-
-            // 시총 없으면 동등가중
-            if (!stocks.length) {
-                stocks = sdata.candidates.map(function (c) {
-                    return {
-                        name: c.name, code: c.code, value: 1,
-                        ret: c[currentRet], cap: 0,
-                        signal: c.signal, grade: c.short_rs_grade,
-                        gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
-                        price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
-                    };
-                });
-            }
 
             stocks.sort(function (a, b) { return b.value - a.value; });
             var cells = squarify(stocks, 0, 0, W, H);
