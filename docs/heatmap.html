@@ -287,6 +287,7 @@
             var items = Object.keys(sectors).map(function (name) {
                 var d = sectors[name];
                 var cap = d.candidates.reduce(function (s, c) { return s + (c.market_cap || 0); }, 0);
+                var logCap = Math.log(cap + 1) * 1000;
                 var ret;
                 if (currentRet === 'ret_1d') {
                     ret = d.sector_ret_1d != null ? d.sector_ret_1d :
@@ -301,7 +302,7 @@
                     ret = vals20.length ? vals20.reduce(function (s, c) { return s + c.ret_20d; }, 0) / vals20.length : null;
                 }
                 return {
-                    name: name, value: cap || 1, ret: ret, cap: cap,
+                    name: name, value: logCap || 1, ret: ret, cap: cap,
                     quad: (sectorRRG[name] || {}).quadrant || 'neutral',
                     improving: d.improving_count || 0,
                     ret5d: d.sector_ret_5d, ret1d: d.sector_ret_1d,
@@ -360,7 +361,7 @@
                 sdata.candidates.forEach(function (c) {
                     if (!c.market_cap) return;
                     allStocks.push({
-                        name: c.name, code: c.code, value: c.market_cap,
+                        name: c.name, code: c.code, value: Math.log(c.market_cap + 1) * 1000,
                         ret: c[currentRet], cap: c.market_cap, sector: sname,
                         signal: c.signal, grade: c.short_rs_grade,
                         gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
@@ -436,7 +437,7 @@
             // 시총 있으면 시총 기준, 없으면 동등가중
             var stocks = sdata.candidates.map(function (c) {
                 return {
-                    name: c.name, code: c.code, value: c.market_cap || 1,
+                    name: c.name, code: c.code, value: Math.log((c.market_cap || 1) + 1) * 1000,
                     ret: c[currentRet], cap: c.market_cap || 0,
                     signal: c.signal, grade: c.short_rs_grade,
                     gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
