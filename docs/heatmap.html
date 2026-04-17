@@ -8,89 +8,18 @@
     <link rel="icon" href="./favicon.svg" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background: #0f1117;
-            color: #e2e8f0;
-            font-family: -apple-system, sans-serif;
-            min-height: 100vh;
-        }
-
-        .header {
-            padding: 20px 24px 16px;
-            border-bottom: 1px solid #1e2535;
-            background: #0f1117;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .tab-btn {
-            padding: 6px 18px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            border: 1px solid #2d3748;
-            background: transparent;
-            color: #64748b;
-            transition: all 0.15s;
-        }
-
-        .tab-btn:hover {
-            border-color: #4b5563;
-            color: #94a3b8;
-        }
-
-        .tab-btn.active {
-            background: #1e40af;
-            border-color: #1e40af;
-            color: #fff;
-        }
-
-        #heatmap-container {
-            padding: 16px 24px;
-        }
-
-        .treemap-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        #hm-tooltip {
-            position: fixed;
-            background: rgba(15, 17, 23, 0.97);
-            border: 1px solid #2d3748;
-            border-radius: 10px;
-            padding: 12px 16px;
-            font-size: 12px;
-            pointer-events: none;
-            z-index: 200;
-            display: none;
-            min-width: 180px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-        }
-
-        .legend-bar {
-            width: 180px;
-            height: 10px;
-            border-radius: 5px;
-            background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d);
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #2d3748;
-            border-radius: 2px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0f1117; color: #e2e8f0; font-family: -apple-system, sans-serif; min-height: 100vh; }
+        .header { padding: 20px 24px 16px; border-bottom: 1px solid #1e2535; background: #0f1117; position: sticky; top: 0; z-index: 100; }
+        .tab-btn { padding: 6px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #2d3748; background: transparent; color: #64748b; transition: all 0.15s; }
+        .tab-btn:hover { border-color: #4b5563; color: #94a3b8; }
+        .tab-btn.active { background: #1e40af; border-color: #1e40af; color: #fff; }
+        #heatmap-container { padding: 16px 24px; }
+        .treemap-wrapper { position: relative; width: 100%; }
+        #hm-tooltip { position: fixed; background: rgba(15,17,23,0.97); border: 1px solid #2d3748; border-radius: 10px; padding: 12px 16px; font-size: 12px; pointer-events: none; z-index: 200; display: none; min-width: 180px; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+        .legend-bar { width: 180px; height: 10px; border-radius: 5px; background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 2px; }
     </style>
 </head>
 
@@ -109,12 +38,8 @@
                     <div class="legend-bar"></div>
                     <span style="font-size:10px;color:#16a34a;">+3%</span>
                 </div>
-                <a href="./index.html"
-                    style="font-size:12px;color:#60a5fa;text-decoration:none;padding:4px 10px;border:1px solid #1e3a5f;border-radius:6px;">✳️
-                    Relative Rotation Graph</a>
-                <a href="./momentum.html"
-                    style="font-size:12px;color:#60a5fa;text-decoration:none;padding:4px 10px;border:1px solid #1e3a5f;border-radius:6px;">▶
-                    Momentum Board</a>
+                <a href="./index.html" style="font-size:12px;color:#60a5fa;text-decoration:none;padding:4px 10px;border:1px solid #1e3a5f;border-radius:6px;">✳️ Relative Rotation Graph</a>
+                <a href="./momentum.html" style="font-size:12px;color:#60a5fa;text-decoration:none;padding:4px 10px;border:1px solid #1e3a5f;border-radius:6px;">▶ Momentum Board</a>
             </div>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -135,9 +60,7 @@
                 <div id="sector-drill" style="display:none;width:420px;flex-shrink:0;">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
                         <div id="drill-title" style="font-size:14px;font-weight:700;color:#f1f5f9;"></div>
-                        <button onclick="closeDrill()"
-                            style="font-size:11px;color:#64748b;background:none;border:1px solid #2d3748;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
-                            닫기</button>
+                        <button onclick="closeDrill()" style="font-size:11px;color:#64748b;background:none;border:1px solid #2d3748;border-radius:4px;cursor:pointer;padding:2px 8px;">✕ 닫기</button>
                     </div>
                     <div id="drill-treemap" class="treemap-wrapper"></div>
                 </div>
@@ -148,354 +71,353 @@
         </div>
     </div>
 
-    <script>
-        var allData = null;
-        var currentTab = 'sector';
-        var currentRet = 'ret_1d';
+<script>
+var allData = null;
+var currentTab = 'sector';
+var currentRet = 'ret_1d';
 
-        function switchTab(tab) {
-            currentTab = tab;
-            document.getElementById('btn-sector').className = 'tab-btn' + (tab === 'sector' ? ' active' : '');
-            document.getElementById('btn-stock').className = 'tab-btn' + (tab === 'stock' ? ' active' : '');
-            document.getElementById('view-sector').style.display = tab === 'sector' ? 'block' : 'none';
-            document.getElementById('view-stock').style.display = tab === 'stock' ? 'block' : 'none';
-            render();
+function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('btn-sector').className = 'tab-btn' + (tab === 'sector' ? ' active' : '');
+    document.getElementById('btn-stock').className = 'tab-btn' + (tab === 'stock' ? ' active' : '');
+    document.getElementById('view-sector').style.display = tab === 'sector' ? 'block' : 'none';
+    document.getElementById('view-stock').style.display = tab === 'stock' ? 'block' : 'none';
+    render();
+}
+
+function switchRet(ret) {
+    currentRet = ret;
+    document.getElementById('btn-1d').className = 'tab-btn' + (ret === 'ret_1d' ? ' active' : '');
+    document.getElementById('btn-5d').className = 'tab-btn' + (ret === 'ret_5d' ? ' active' : '');
+    document.getElementById('btn-1m').className = 'tab-btn' + (ret === 'ret_20d' ? ' active' : '');
+    render();
+}
+
+async function loadData() {
+    try {
+        var res = await fetch('./data/signals.json?t=' + Date.now());
+        if (!res.ok) throw new Error();
+        allData = await res.json();
+        document.getElementById('updated').textContent =
+            allData.updated_at ? new Date(allData.updated_at.replace(' ','T')).toLocaleString('ko-KR') : '-';
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('view-sector').style.display = 'block';
+        render();
+    } catch(e) {
+        document.getElementById('loading').textContent = '데이터 로드 실패';
+    }
+}
+
+function retColor(v) {
+    if (v == null) return '#374151';
+    var capped = Math.max(-5, Math.min(5, v));
+    if (capped > 0) return lerpColor('#374151', '#16a34a', capped / 5);
+    else return lerpColor('#374151', '#dc2626', Math.abs(capped) / 5);
+}
+
+function lerpColor(a, b, t) {
+    var ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16);
+    var ar = (ah >> 16) & 0xff, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+    var br = (bh >> 16) & 0xff, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+    var r = Math.round(ar + (br-ar)*t), g = Math.round(ag + (bg-ag)*t), bv = Math.round(ab + (bb-ab)*t);
+    return '#' + ((1<<24)+(r<<16)+(g<<8)+bv).toString(16).slice(1);
+}
+
+function quadColor(q) {
+    return {improving:'#2563eb', leading:'#16a34a', lagging:'#d97706', weakening:'#dc2626'}[q] || '#64748b';
+}
+
+function fmtRet(v) {
+    if (v == null) return '-';
+    return (v > 0 ? '+' : '') + v.toFixed(2) + '%';
+}
+
+function fmtCap(v) {
+    if (!v) return '-';
+    return v >= 10000 ? (v/10000).toFixed(1) + '조' : v + '억';
+}
+
+function squarify(data, x, y, w, h) {
+    if (!data.length) return [];
+    var total = data.reduce(function(s,d){return s+d.value;}, 0);
+    if (total === 0) return [];
+    var results = [], remaining = data.slice(), cx = x, cy = y, cw = w, ch = h;
+    while (remaining.length) {
+        var shortSide = Math.min(cw, ch);
+        var totalRem = remaining.reduce(function(s,d){return s+d.value;}, 0);
+        var bestRow = [remaining[0]], bestRatio = Infinity;
+        for (var i = 1; i <= remaining.length; i++) {
+            var row = remaining.slice(0, i);
+            var rowSum = row.reduce(function(s,d){return s+d.value;}, 0);
+            var rowH = (rowSum / totalRem) * shortSide;
+            var longSide = Math.max(cw, ch);
+            var maxRatio = Math.max.apply(null, row.map(function(d) {
+                var rw = (d.value / rowSum) * longSide;
+                return Math.max(rowH/rw, rw/rowH);
+            }));
+            if (maxRatio < bestRatio) { bestRatio = maxRatio; bestRow = row; }
+            else break;
         }
-
-        function switchRet(ret) {
-            currentRet = ret;
-            document.getElementById('btn-1d').className = 'tab-btn' + (ret === 'ret_1d' ? ' active' : '');
-            document.getElementById('btn-5d').className = 'tab-btn' + (ret === 'ret_5d' ? ' active' : '');
-            document.getElementById('btn-1m').className = 'tab-btn' + (ret === 'ret_20d' ? ' active' : '');
-            render();
-        }
-
-        async function loadData() {
-            try {
-                var res = await fetch('./data/signals.json?t=' + Date.now());
-                if (!res.ok) throw new Error();
-                allData = await res.json();
-                document.getElementById('updated').textContent =
-                    allData.updated_at ? new Date(allData.updated_at.replace(' ', 'T')).toLocaleString('ko-KR') : '-';
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('view-sector').style.display = 'block';
-                render();
-            } catch (e) {
-                document.getElementById('loading').textContent = '데이터 로드 실패';
-            }
-        }
-
-        function retColor(v) {
-            if (v == null) return '#374151';
-            var capped = Math.max(-5, Math.min(5, v));
-            if (capped > 0) return lerpColor('#374151', '#16a34a', capped / 5);
-            else return lerpColor('#374151', '#dc2626', Math.abs(capped) / 5);
-        }
-
-        function lerpColor(a, b, t) {
-            var ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16);
-            var ar = (ah >> 16) & 0xff, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
-            var br = (bh >> 16) & 0xff, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
-            var r = Math.round(ar + (br - ar) * t), g = Math.round(ag + (bg - ag) * t), bv = Math.round(ab + (bb - ab) * t);
-            return '#' + ((1 << 24) + (r << 16) + (g << 8) + bv).toString(16).slice(1);
-        }
-
-        function quadColor(q) {
-            return { improving: '#2563eb', leading: '#16a34a', lagging: '#d97706', weakening: '#dc2626' }[q] || '#64748b';
-        }
-
-        function fmtRet(v) {
-            if (v == null) return '-';
-            return (v > 0 ? '+' : '') + v.toFixed(2) + '%';
-        }
-
-        function fmtCap(v) {
-            if (!v) return '-';
-            return v >= 10000 ? (v / 10000).toFixed(1) + '조' : v + '억';
-        }
-
-        function squarify(data, x, y, w, h) {
-            if (!data.length) return [];
-            var total = data.reduce(function (s, d) { return s + d.value; }, 0);
-            if (total === 0) return [];
-            var results = [], remaining = data.slice(), cx = x, cy = y, cw = w, ch = h;
-            while (remaining.length) {
-                var shortSide = Math.min(cw, ch);
-                var totalRem = remaining.reduce(function (s, d) { return s + d.value; }, 0);
-                var bestRow = [remaining[0]], bestRatio = Infinity;
-                for (var i = 1; i <= remaining.length; i++) {
-                    var row = remaining.slice(0, i);
-                    var rowSum = row.reduce(function (s, d) { return s + d.value; }, 0);
-                    var rowH = (rowSum / totalRem) * shortSide;
-                    var longSide = Math.max(cw, ch);
-                    var maxRatio = Math.max.apply(null, row.map(function (d) {
-                        var rw = (d.value / rowSum) * longSide;
-                        return Math.max(rowH / rw, rw / rowH);
-                    }));
-                    if (maxRatio < bestRatio) { bestRatio = maxRatio; bestRow = row; }
-                    else break;
-                }
-                var rowSum2 = bestRow.reduce(function (s, d) { return s + d.value; }, 0);
-                var rowFrac = rowSum2 / totalRem;
-                if (cw <= ch) {
-                    var rowH2 = rowFrac * ch, rx = cx;
-                    bestRow.forEach(function (d) {
-                        var rw = (d.value / rowSum2) * cw;
-                        results.push(Object.assign({}, d, { x: rx, y: cy, w: rw, h: rowH2 }));
-                        rx += rw;
-                    });
-                    cy += rowH2; ch -= rowH2;
-                } else {
-                    var rowW = rowFrac * cw, ry = cy;
-                    bestRow.forEach(function (d) {
-                        var rh = (d.value / rowSum2) * ch;
-                        results.push(Object.assign({}, d, { x: cx, y: ry, w: rowW, h: rh }));
-                        ry += rh;
-                    });
-                    cx += rowW; cw -= rowW;
-                }
-                remaining = remaining.slice(bestRow.length);
-            }
-            return results;
-        }
-
-        var tipEl = document.getElementById('hm-tooltip');
-
-        function showTip(html, e) { tipEl.innerHTML = html; tipEl.style.display = 'block'; moveTip(e); }
-        function moveTip(e) {
-            var tw = tipEl.offsetWidth || 200, th = tipEl.offsetHeight || 150;
-            var x = (e.clientX + 16 + tw > window.innerWidth) ? e.clientX - tw - 16 : e.clientX + 16;
-            var y = (e.clientY + 16 + th > window.innerHeight) ? e.clientY - th - 16 : e.clientY + 16;
-            tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
-        }
-        function hideTip() { tipEl.style.display = 'none'; }
-        document.addEventListener('mousemove', function (e) { if (tipEl.style.display !== 'none') moveTip(e); });
-
-        function render() {
-            if (!allData) return;
-            if (currentTab === 'sector') renderSector();
-            else renderStock();
-        }
-
-        function renderSector() {
-            var container = document.getElementById('sector-treemap');
-            var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
-            var drillOpen = document.getElementById('sector-drill').style.display !== 'none';
-            var W = container.offsetWidth || (window.innerWidth - 48 - (drillOpen ? 432 : 0));
-            var H = Math.max(500, window.innerHeight - 180);
-
-            var items = Object.keys(sectors).map(function (name) {
-                var d = sectors[name];
-                var cap = d.candidates.reduce(function (s, c) { return s + (c.market_cap || 0); }, 0);
-                var logCap = Math.log(cap + 1) * 1000;
-                var ret;
-                if (currentRet === 'ret_1d') {
-                    ret = d.sector_ret_1d != null ? d.sector_ret_1d :
-                        (function () {
-                            var vals = d.candidates.filter(function (c) { return c.ret_1d != null; });
-                            return vals.length ? vals.reduce(function (s, c) { return s + c.ret_1d; }, 0) / vals.length : null;
-                        })();
-                } else if (currentRet === 'ret_5d') {
-                    ret = d.sector_ret_5d;
-                } else {
-                    var vals20 = d.candidates.filter(function (c) { return c.ret_20d != null; });
-                    ret = vals20.length ? vals20.reduce(function (s, c) { return s + c.ret_20d; }, 0) / vals20.length : null;
-                }
-                return {
-                    name: name, value: logCap || 1, ret: ret, cap: cap,
-                    quad: (sectorRRG[name] || {}).quadrant || 'neutral',
-                    improving: d.improving_count || 0,
-                    ret5d: d.sector_ret_5d, ret1d: d.sector_ret_1d,
-                    total: d.total || 0
-                };
-            }).filter(function (d) { return d.value > 0; })
-                .sort(function (a, b) { return b.value - a.value; });
-
-            var cells = squarify(items, 0, 0, W, H);
-            var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
-
-            cells.forEach(function (cell) {
-                var col = retColor(cell.ret);
-                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
-                var fs = Math.min(16, Math.max(10, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.8));
-                var retStr = fmtRet(cell.ret);
-                var qc = quadColor(cell.quad);
-                var shortName = cell.name.length > 8 ? cell.name.slice(0, 7) + '…' : cell.name;
-
-                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
-                    '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">5D <span style="color:' + ((cell.ret5d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret5d) + '</span></div>' +
-                    (cell.improving > 0 ? '<div style="color:#60a5fa;font-size:11px;margin-top:4px;">★ Improving ' + cell.improving + '종목</div>' : '') +
-                    '<div style="color:#64748b;font-size:11px;">총 ' + cell.total + '종목</div>';
-
-                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" onclick="drillDown(\'' + cell.name + '\')" style="cursor:pointer;">';
-                var clipId = 'sc' + Math.round(cell.x) + '_' + Math.round(cell.y);
-                svg += '<clipPath id="' + clipId + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
-                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="4"/>';
-                svg += '<circle cx="' + (cell.x + PAD + 10) + '" cy="' + (cell.y + PAD + 10) + '" r="5" fill="' + qc + '" opacity="0.9"/>';
-                var tfs = Math.max(9, fs);
-                var retVisible = th > 28;
-                var nameY = cell.y + PAD + th / 2 - (retVisible ? 7 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + shortName + '</text>';
-                if (retVisible) {
-                    var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
-                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 9) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + retStr + '</text>';
-                }
-                svg += '</g>';
+        var rowSum2 = bestRow.reduce(function(s,d){return s+d.value;}, 0);
+        var rowFrac = rowSum2 / totalRem;
+        if (cw <= ch) {
+            var rowH2 = rowFrac * ch, rx = cx;
+            bestRow.forEach(function(d) {
+                var rw = (d.value / rowSum2) * cw;
+                results.push(Object.assign({}, d, {x:rx, y:cy, w:rw, h:rowH2}));
+                rx += rw;
             });
-            svg += '</svg>';
-            container.innerHTML = svg;
-        }
-
-        function renderStock() {
-            var container = document.getElementById('stock-treemap');
-            var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
-            var W = container.offsetWidth || window.innerWidth - 48;
-            var H = Math.max(600, window.innerHeight - 180);
-
-            var allStocks = [];
-            Object.keys(sectors).forEach(function (sname) {
-                var sdata = sectors[sname];
-                sdata.candidates.forEach(function (c) {
-                    if (!c.market_cap) return;
-                    allStocks.push({
-                        name: c.name, code: c.code, value: Math.log(c.market_cap + 1) * 1000,
-                        ret: c[currentRet], cap: c.market_cap, sector: sname,
-                        signal: c.signal, grade: c.short_rs_grade,
-                        gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
-                        price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
-                        quad: (sectorRRG[sname] || {}).quadrant || 'neutral'
-                    });
-                });
+            cy += rowH2; ch -= rowH2;
+        } else {
+            var rowW = rowFrac * cw, ry = cy;
+            bestRow.forEach(function(d) {
+                var rh = (d.value / rowSum2) * ch;
+                results.push(Object.assign({}, d, {x:cx, y:ry, w:rowW, h:rh}));
+                ry += rh;
             });
-
-            if (!allStocks.length) {
-                container.innerHTML = '<div style="text-align:center;padding:60px;color:#475569;">시총 데이터 없음</div>';
-                return;
-            }
-
-            allStocks.sort(function (a, b) { return b.value - a.value; });
-            var cells = squarify(allStocks, 0, 0, W, H);
-            var PAD = 1, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
-
-            cells.forEach(function (cell) {
-                var col = retColor(cell.ret);
-                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
-                if (tw < 2 || th < 2) return;
-                var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
-                var retStr = fmtRet(cell.ret);
-                var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
-                var shortName = cell.name.length > 6 ? cell.name.slice(0, 5) + '…' : cell.name;
-
-                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
-                    '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
-                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
-                    (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
-                    (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5 >= 2 ? '#c084fc' : '#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
-                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
-
-                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
-                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="2"/>';
-                var clipId2 = 'st' + Math.round(cell.x) + '_' + Math.round(cell.y);
-                svg += '<clipPath id="' + clipId2 + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
-                var tfs2 = Math.max(9, fs);
-                var retVisible2 = th > 24;
-                var nameY2 = cell.y + PAD + th / 2 - (retVisible2 ? 6 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + shortName + '</text>';
-                if (retVisible2) {
-                    var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
-                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs2 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + retStr + '</text>';
-                }
-                svg += '</g>';
-            });
-            svg += '</svg>';
-            container.innerHTML = svg;
+            cx += rowW; cw -= rowW;
         }
+        remaining = remaining.slice(bestRow.length);
+    }
+    return results;
+}
 
-        var currentDrill = null;
+var tipEl = document.getElementById('hm-tooltip');
 
-        function drillDown(sectorName) {
-            currentDrill = sectorName;
-            var sectors = allData.sectors || {};
-            var sectorRRG = allData.sector_rrg || {};
-            var sdata = sectors[sectorName];
-            if (!sdata) return;
+function showTip(html, e) { tipEl.innerHTML = html; tipEl.style.display = 'block'; moveTip(e); }
+function moveTip(e) {
+    var tw = tipEl.offsetWidth || 200, th = tipEl.offsetHeight || 150;
+    var x = (e.clientX + 16 + tw > window.innerWidth) ? e.clientX - tw - 16 : e.clientX + 16;
+    var y = (e.clientY + 16 + th > window.innerHeight) ? e.clientY - th - 16 : e.clientY + 16;
+    tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
+}
+function hideTip() { tipEl.style.display = 'none'; }
+document.addEventListener('mousemove', function(e) { if (tipEl.style.display !== 'none') moveTip(e); });
 
-            document.getElementById('sector-drill').style.display = 'block';
-            renderSector();
-            document.getElementById('drill-title').textContent = sectorName + ' 섹터';
+function render() {
+    if (!allData) return;
+    if (currentTab === 'sector') renderSector();
+    else renderStock();
+}
 
-            var container = document.getElementById('drill-treemap');
-            var W = container.offsetWidth || 400;
-            var H = Math.max(500, window.innerHeight - 220);
+function renderSector() {
+    var container = document.getElementById('sector-treemap');
+    var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
+    var drillOpen = document.getElementById('sector-drill').style.display !== 'none';
+    var W = container.offsetWidth || (window.innerWidth - 48 - (drillOpen ? 432 : 0));
+    var H = Math.max(500, window.innerHeight - 180);
 
-            // 시총 있으면 시총 기준, 없으면 동등가중
-            var stocks = sdata.candidates.map(function (c) {
-                return {
-                    name: c.name, code: c.code, value: Math.log((c.market_cap || 1) + 1) * 1000,
-                    ret: c[currentRet], cap: c.market_cap || 0,
-                    signal: c.signal, grade: c.short_rs_grade,
-                    gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
-                    price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
-                    quad: (sectorRRG[sectorName] || {}).quadrant || 'neutral'
-                };
-            });
-
-            stocks.sort(function (a, b) { return b.value - a.value; });
-            var cells = squarify(stocks, 0, 0, W, H);
-            var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
-
-            cells.forEach(function (cell) {
-                var col = retColor(cell.ret);
-                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
-                if (tw < 2 || th < 2) return;
-                var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
-                var retStr = fmtRet(cell.ret);
-                var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
-                var shortName = cell.name.length > 6 ? cell.name.slice(0, 5) + '…' : cell.name;
-
-                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
-                    (cell.cap ? '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' : '') +
-                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
-                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
-                    (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
-                    (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5 >= 2 ? '#c084fc' : '#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
-                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
-
-                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
-                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="3"/>';
-                var clipId3 = 'dr' + Math.round(cell.x) + '_' + Math.round(cell.y);
-                svg += '<clipPath id="' + clipId3 + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
-                var tfs3 = Math.max(9, fs);
-                var retVisible3 = th > 24;
-                var nameY3 = cell.y + PAD + th / 2 - (retVisible3 ? 6 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + shortName + '</text>';
-                if (retVisible3) {
-                    var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
-                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs3 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + retStr + '</text>';
-                }
-                svg += '</g>';
-            });
-            svg += '</svg>';
-            container.innerHTML = svg;
+    var items = Object.keys(sectors).map(function(name) {
+        var d = sectors[name];
+        var cap = d.candidates.reduce(function(s,c){return s+(c.market_cap||0);}, 0);
+        var logCap = Math.log(cap + 1) * 1000;
+        var ret;
+        if (currentRet === 'ret_1d') {
+            ret = d.sector_ret_1d != null ? d.sector_ret_1d :
+                (function() {
+                    var vals = d.candidates.filter(function(c){return c.ret_1d!=null;});
+                    return vals.length ? vals.reduce(function(s,c){return s+c.ret_1d;},0)/vals.length : null;
+                })();
+        } else if (currentRet === 'ret_5d') {
+            ret = d.sector_ret_5d;
+        } else {
+            var vals20 = d.candidates.filter(function(c){return c.ret_20d!=null;});
+            ret = vals20.length ? vals20.reduce(function(s,c){return s+c.ret_20d;},0)/vals20.length : null;
         }
+        return {
+            name: name, value: logCap || 1, ret: ret, cap: cap,
+            quad: (sectorRRG[name]||{}).quadrant || 'neutral',
+            improving: d.improving_count || 0,
+            ret5d: d.sector_ret_5d, ret1d: d.sector_ret_1d,
+            total: d.total || 0
+        };
+    }).filter(function(d){return d.value > 0;})
+      .sort(function(a,b){return b.value - a.value;});
 
-        function closeDrill() {
-            currentDrill = null;
-            document.getElementById('sector-drill').style.display = 'none';
-            renderSector();
+    var cells = squarify(items, 0, 0, W, H);
+    var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+    cells.forEach(function(cell) {
+        var col = retColor(cell.ret);
+        var tw = cell.w - PAD*2, th = cell.h - PAD*2;
+        var fs = Math.min(16, Math.max(10, Math.sqrt(tw*th) / (cell.name.length||1) * 0.8));
+        var retStr = fmtRet(cell.ret);
+        var qc = quadColor(cell.quad);
+        var shortName = cell.name.length > 8 ? cell.name.slice(0,7)+'…' : cell.name;
+
+        var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
+            '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
+            '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
+            '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d||0)>=0?'#4ade80':'#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+            '<div style="color:#94a3b8;font-size:11px;">5D <span style="color:' + ((cell.ret5d||0)>=0?'#4ade80':'#f87171') + ';font-weight:600;">' + fmtRet(cell.ret5d) + '</span></div>' +
+            (cell.improving > 0 ? '<div style="color:#60a5fa;font-size:11px;margin-top:4px;">★ Improving ' + cell.improving + '종목</div>' : '') +
+            '<div style="color:#64748b;font-size:11px;">총 ' + cell.total + '종목</div>';
+
+        svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" onclick="drillDown(\'' + cell.name + '\')" style="cursor:pointer;">';
+        var clipId = 'sc' + Math.round(cell.x) + '_' + Math.round(cell.y);
+        svg += '<clipPath id="' + clipId + '"><rect x="' + (cell.x+PAD) + '" y="' + (cell.y+PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
+        svg += '<rect x="' + (cell.x+PAD) + '" y="' + (cell.y+PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="4"/>';
+        svg += '<circle cx="' + (cell.x+PAD+10) + '" cy="' + (cell.y+PAD+10) + '" r="5" fill="' + qc + '" opacity="0.9"/>';
+        var tfs = Math.max(9, fs);
+        var retVisible = th > 28;
+        var nameY = cell.y+PAD+th/2 - (retVisible ? 7 : 0);
+        svg += '<text x="' + (cell.x+PAD+tw/2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + shortName + '</text>';
+        if (retVisible) {
+            var tc = (cell.ret||0) >= 0 ? '#86efac' : '#fca5a5';
+            svg += '<text x="' + (cell.x+PAD+tw/2) + '" y="' + (cell.y+PAD+th/2+9) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8,tfs-2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + retStr + '</text>';
         }
+        svg += '</g>';
+    });
+    svg += '</svg>';
+    container.innerHTML = svg;
+}
 
-        window.addEventListener('resize', function () { render(); });
-        loadData();
-        setInterval(loadData, 10 * 60 * 1000);
-    </script>
+function renderStock() {
+    var container = document.getElementById('stock-treemap');
+    var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
+    var W = container.offsetWidth || window.innerWidth - 48;
+    var H = Math.max(600, window.innerHeight - 180);
+
+    var allStocks = [];
+    Object.keys(sectors).forEach(function(sname) {
+        var sdata = sectors[sname];
+        sdata.candidates.forEach(function(c) {
+            if (!c.market_cap) return;
+            allStocks.push({
+                name: c.name, code: c.code, value: Math.log(c.market_cap + 1) * 1000,
+                ret: c[currentRet], cap: c.market_cap, sector: sname,
+                signal: c.signal, grade: c.short_rs_grade,
+                gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
+                price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
+                quad: (sectorRRG[sname]||{}).quadrant || 'neutral'
+            });
+        });
+    });
+
+    if (!allStocks.length) {
+        container.innerHTML = '<div style="text-align:center;padding:60px;color:#475569;">시총 데이터 없음</div>';
+        return;
+    }
+
+    allStocks.sort(function(a,b){return b.value - a.value;});
+    var cells = squarify(allStocks, 0, 0, W, H);
+    var PAD = 1, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+    cells.forEach(function(cell) {
+        var col = retColor(cell.ret);
+        var tw = cell.w - PAD*2, th = cell.h - PAD*2;
+        if (tw < 2 || th < 2) return;
+        var fs = Math.min(14, Math.max(9, Math.sqrt(tw*th) / (cell.name.length||1) * 0.75));
+        var retStr = fmtRet(cell.ret);
+        var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
+        var shortName = cell.name.length > 6 ? cell.name.slice(0,5)+'…' : cell.name;
+
+        var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
+            '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
+            '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString()+'원' : '-') + '</span></div>' +
+            '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' +
+            '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d||0)>=0?'#4ade80':'#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+            (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap>=3?'#c084fc':(cell.gap<0?'#f87171':'#94a3b8')) + ';font-weight:600;">' + (cell.gap>=0?'+':'') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+            (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol>=1.5?'#fb923c':'#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
+            (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5>=2?'#c084fc':'#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
+            (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal==='prime'?'PRIME':cell.grade==='breakout'?'Breakout':'Confirm') + '</div>' : '');
+
+        svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
+        svg += '<rect x="' + (cell.x+PAD) + '" y="' + (cell.y+PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="2"/>';
+        var clipId2 = 'st' + Math.round(cell.x) + '_' + Math.round(cell.y);
+        svg += '<clipPath id="' + clipId2 + '"><rect x="' + (cell.x+PAD) + '" y="' + (cell.y+PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
+        var tfs2 = Math.max(9, fs);
+        var retVisible2 = th > 24;
+        var nameY2 = cell.y+PAD+th/2 - (retVisible2 ? 6 : 0);
+        svg += '<text x="' + (cell.x+PAD+tw/2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + shortName + '</text>';
+        if (retVisible2) {
+            var tc = (cell.ret||0) >= 0 ? '#86efac' : '#fca5a5';
+            svg += '<text x="' + (cell.x+PAD+tw/2) + '" y="' + (cell.y+PAD+th/2+8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8,tfs2-2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + retStr + '</text>';
+        }
+        svg += '</g>';
+    });
+    svg += '</svg>';
+    container.innerHTML = svg;
+}
+
+var currentDrill = null;
+
+function drillDown(sectorName) {
+    currentDrill = sectorName;
+    var sectors = allData.sectors || {};
+    var sectorRRG = allData.sector_rrg || {};
+    var sdata = sectors[sectorName];
+    if (!sdata) return;
+
+    document.getElementById('sector-drill').style.display = 'block';
+    renderSector();
+    document.getElementById('drill-title').textContent = sectorName + ' 섹터';
+
+    var container = document.getElementById('drill-treemap');
+    var W = container.offsetWidth || 400;
+    var H = Math.max(500, window.innerHeight - 220);
+
+    // 시총 있으면 시총 기준, 없으면 동등가중
+    var stocks = sdata.candidates.map(function(c) {
+        return {
+            name: c.name, code: c.code, value: Math.log((c.market_cap || 1) + 1) * 1000,
+            ret: c[currentRet], cap: c.market_cap || 0,
+            signal: c.signal, grade: c.short_rs_grade,
+            gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
+            price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
+            quad: (sectorRRG[sectorName]||{}).quadrant || 'neutral'
+        };
+    });
+
+    stocks.sort(function(a,b){return b.value - a.value;});
+    var cells = squarify(stocks, 0, 0, W, H);
+    var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+    cells.forEach(function(cell) {
+        var col = retColor(cell.ret);
+        var tw = cell.w - PAD*2, th = cell.h - PAD*2;
+        if (tw < 2 || th < 2) return;
+        var fs = Math.min(14, Math.max(9, Math.sqrt(tw*th) / (cell.name.length||1) * 0.75));
+        var retStr = fmtRet(cell.ret);
+        var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
+        var shortName = cell.name.length > 6 ? cell.name.slice(0,5)+'…' : cell.name;
+
+        var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
+            '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString()+'원' : '-') + '</span></div>' +
+            (cell.cap ? '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' : '') +
+            '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d||0)>=0?'#4ade80':'#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+            (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap>=3?'#c084fc':(cell.gap<0?'#f87171':'#94a3b8')) + ';font-weight:600;">' + (cell.gap>=0?'+':'') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+            (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol>=1.5?'#fb923c':'#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
+            (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5>=2?'#c084fc':'#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
+            (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal==='prime'?'PRIME':cell.grade==='breakout'?'Breakout':'Confirm') + '</div>' : '');
+
+        svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
+        svg += '<rect x="' + (cell.x+PAD) + '" y="' + (cell.y+PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="3"/>';
+        var clipId3 = 'dr' + Math.round(cell.x) + '_' + Math.round(cell.y);
+        svg += '<clipPath id="' + clipId3 + '"><rect x="' + (cell.x+PAD) + '" y="' + (cell.y+PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
+        var tfs3 = Math.max(9, fs);
+        var retVisible3 = th > 24;
+        var nameY3 = cell.y+PAD+th/2 - (retVisible3 ? 6 : 0);
+        svg += '<text x="' + (cell.x+PAD+tw/2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + shortName + '</text>';
+        if (retVisible3) {
+            var tc = (cell.ret||0) >= 0 ? '#86efac' : '#fca5a5';
+            svg += '<text x="' + (cell.x+PAD+tw/2) + '" y="' + (cell.y+PAD+th/2+8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8,tfs3-2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + retStr + '</text>';
+        }
+        svg += '</g>';
+    });
+    svg += '</svg>';
+    container.innerHTML = svg;
+}
+
+function closeDrill() {
+    currentDrill = null;
+    document.getElementById('sector-drill').style.display = 'none';
+    renderSector();
+}
+
+window.addEventListener('resize', function() { render(); });
+loadData();
+setInterval(loadData, 10 * 60 * 1000);
+</script>
 </body>
-
 </html>
