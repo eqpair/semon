@@ -17,7 +17,7 @@
         body {
             background: #0f1117;
             color: #e2e8f0;
-            font-family: 'SF Pro Display', -apple-system, sans-serif;
+            font-family: -apple-system, sans-serif;
             min-height: 100vh;
         }
 
@@ -42,6 +42,11 @@
             transition: all 0.15s;
         }
 
+        .tab-btn:hover {
+            border-color: #4b5563;
+            color: #94a3b8;
+        }
+
         .tab-btn.active {
             background: #1e40af;
             border-color: #1e40af;
@@ -57,29 +62,9 @@
             width: 100%;
         }
 
-        .treemap-svg {
-            width: 100%;
-            display: block;
-        }
-
-        /* 셀 스타일 */
-        .hm-cell {
-            cursor: pointer;
-            transition: opacity 0.15s;
-        }
-
-        .hm-cell:hover {
-            opacity: 0.85;
-        }
-
-        .hm-cell rect {
-            rx: 3;
-        }
-
-        /* 툴팁 */
         #hm-tooltip {
             position: fixed;
-            background: rgba(15, 17, 23, 0.95);
+            background: rgba(15, 17, 23, 0.97);
             border: 1px solid #2d3748;
             border-radius: 10px;
             padding: 12px 16px;
@@ -88,19 +73,13 @@
             z-index: 200;
             display: none;
             min-width: 180px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        .legend {
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
         }
 
         .legend-bar {
-            width: 200px;
-            height: 12px;
-            border-radius: 6px;
+            width: 180px;
+            height: 10px;
+            border-radius: 5px;
             background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d);
         }
 
@@ -116,7 +95,6 @@
 </head>
 
 <body>
-
     <div id="hm-tooltip"></div>
 
     <div class="header">
@@ -126,7 +104,7 @@
                 <div style="font-size:11px;color:#475569;margin-top:2px;">Last Update: <span id="updated">-</span></div>
             </div>
             <div style="display:flex;align-items:center;gap:12px;">
-                <div class="legend">
+                <div style="display:flex;align-items:center;gap:6px;">
                     <span style="font-size:10px;color:#dc2626;">-3%</span>
                     <div class="legend-bar"></div>
                     <span style="font-size:10px;color:#16a34a;">+3%</span>
@@ -134,19 +112,18 @@
                 <a href="./index.html" style="font-size:12px;color:#60a5fa;text-decoration:none;">← RRG</a>
             </div>
         </div>
-        <div style="display:flex;gap:8px;align-items:center;">
-            <button class="tab-btn active" onclick="switchTab('sector')">섹터 히트맵</button>
-            <button class="tab-btn" onclick="switchTab('stock')">종목 히트맵</button>
-            <div style="margin-left:12px;display:flex;gap:6px;" id="ret-selector">
-                <button class="tab-btn active" onclick="switchRet('ret_1d')" id="btn-1d">당일</button>
-                <button class="tab-btn" onclick="switchRet('ret_5d')" id="btn-5d">1주</button>
-                <button class="tab-btn" onclick="switchRet('ret_20d')" id="btn-1m">1달</button>
-            </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <button class="tab-btn active" id="btn-sector" onclick="switchTab('sector')">섹터 히트맵</button>
+            <button class="tab-btn" id="btn-stock" onclick="switchTab('stock')">종목 히트맵</button>
+            <div style="width:1px;height:20px;background:#2d3748;margin:0 4px;"></div>
+            <button class="tab-btn active" id="btn-1d" onclick="switchRet('ret_1d')">당일</button>
+            <button class="tab-btn" id="btn-5d" onclick="switchRet('ret_5d')">1주</button>
+            <button class="tab-btn" id="btn-1m" onclick="switchRet('ret_20d')">1달</button>
         </div>
     </div>
 
     <div id="heatmap-container">
-        <div id="loading" style="text-align:center;padding:80px;color:#475569;">데이터 로딩 중...</div>
+        <div id="loading" style="text-align:center;padding:80px;color:#475569;font-size:14px;">데이터 로딩 중...</div>
         <div id="view-sector" style="display:none;">
             <div id="sector-treemap" class="treemap-wrapper"></div>
         </div>
@@ -156,332 +133,277 @@
     </div>
 
     <script>
-let allData = null
-let currentTab = 'sector'
-let currentRet = 'ret_1d'
+        var allData = null;
+        var currentTab = 'sector';
+        var currentRet = 'ret_1d';
 
-async function loadData() {
-    try {
-        const res = await fetch('./data/signals.json?t=' + Date.now())
-        if (!res.ok) throw new Error()
-        allData = await res.json()
-        document.getElementById('updated').textContent =
-            allData.updated_at ? new Date(allData.updated_at.replace(' ','T')).toLocaleString('ko-KR') : '-'
-        document.getElementById('loading').style.display = 'none'
-        render()
-    } catch(e) {
-        document.getElementById('loading').textContent = '데이터 로드 실패'
-    }
-}
-
-function switchTab(tab) {
-    currentTab = tab
-    document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        if (i < 2) b.classList.toggle('active', (i === 0 && tab === 'sector') || (i === 1 && tab === 'stock'))
-    })
-    document.getElementById('view-sector').style.display = tab === 'sector' ? 'block' : 'none'
-    document.getElementById('view-stock').style.display = tab === 'stock' ? 'block' : 'none'
-    render()
-}
-
-function switchRet(ret) {
-    currentRet = ret
-    document.getElementById('btn-1d').classList.toggle('active', ret === 'ret_1d')
-    document.getElementById('btn-5d').classList.toggle('active', ret === 'ret_5d')
-    document.getElementById('btn-1m').classList.toggle('active', ret === 'ret_20d')
-    render()
-}
-
-function retColor(v) {
-    if (v == null) return '#374151'
-    const capped = Math.max(-5, Math.min(5, v))
-    if (capped > 0) {
-        const t = capped / 5
-        return lerpColor('#374151', '#16a34a', t)
-    } else {
-        const t = Math.abs(capped) / 5
-        return lerpColor('#374151', '#dc2626', t)
-    }
-}
-
-function lerpColor(a, b, t) {
-    const ah = parseInt(a.slice(1), 16)
-    const bh = parseInt(b.slice(1), 16)
-    const ar = (ah >> 16) & 0xff, ag = (ah >> 8) & 0xff, ab = ah & 0xff
-    const br = (bh >> 16) & 0xff, bg = (bh >> 8) & 0xff, bb = bh & 0xff
-    const r = Math.round(ar + (br - ar) * t)
-    const g = Math.round(ag + (bg - ag) * t)
-    const bv = Math.round(ab + (bb - ab) * t)
-    return '#' + ((1 << 24) + (r << 16) + (g << 8) + bv).toString(16).slice(1)
-}
-
-// Squarified Treemap
-function squarify(data, x, y, w, h) {
-    if (!data.length) return []
-    const total = data.reduce((s, d) => s + d.value, 0)
-    if (total === 0) return []
-
-    const results = []
-    let remaining = [...data]
-    let cx = x, cy = y, cw = w, ch = h
-
-    while (remaining.length) {
-        const shortSide = Math.min(cw, ch)
-        const longSide = Math.max(cw, ch)
-        const totalRemaining = remaining.reduce((s, d) => s + d.value, 0)
-
-        let bestRow = [remaining[0]]
-        let bestRatio = Infinity
-
-        for (let i = 1; i <= remaining.length; i++) {
-            const row = remaining.slice(0, i)
-            const rowSum = row.reduce((s, d) => s + d.value, 0)
-            const rowH = (rowSum / totalRemaining) * shortSide
-            const maxRatio = Math.max(...row.map(d => {
-                const rw = (d.value / rowSum) * longSide
-                return Math.max(rowH / rw, rw / rowH)
-            }))
-            if (maxRatio < bestRatio) {
-                bestRatio = maxRatio
-                bestRow = row
-            } else break
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('btn-sector').className = 'tab-btn' + (tab === 'sector' ? ' active' : '');
+            document.getElementById('btn-stock').className = 'tab-btn' + (tab === 'stock' ? ' active' : '');
+            document.getElementById('view-sector').style.display = tab === 'sector' ? 'block' : 'none';
+            document.getElementById('view-stock').style.display = tab === 'stock' ? 'block' : 'none';
+            render();
         }
 
-        const rowSum = bestRow.reduce((s, d) => s + d.value, 0)
-        const rowFrac = rowSum / totalRemaining
-
-        if (cw <= ch) {
-            // 가로 분할
-            const rowH = rowFrac * ch
-            let rx = cx
-            bestRow.forEach(d => {
-                const rw = (d.value / rowSum) * cw
-                results.push({ ...d, x: rx, y: cy, w: rw, h: rowH })
-                rx += rw
-            })
-            cy += rowH
-            ch -= rowH
-        } else {
-            // 세로 분할
-            const rowW = rowFrac * cw
-            let ry = cy
-            bestRow.forEach(d => {
-                const rh = (d.value / rowSum) * ch
-                results.push({ ...d, x: cx, y: ry, w: rowW, h: rh })
-                ry += rh
-            })
-            cx += rowW
-            cw -= rowW
+        function switchRet(ret) {
+            currentRet = ret;
+            document.getElementById('btn-1d').className = 'tab-btn' + (ret === 'ret_1d' ? ' active' : '');
+            document.getElementById('btn-5d').className = 'tab-btn' + (ret === 'ret_5d' ? ' active' : '');
+            document.getElementById('btn-1m').className = 'tab-btn' + (ret === 'ret_20d' ? ' active' : '');
+            render();
         }
 
-        remaining = remaining.slice(bestRow.length)
-    }
-    return results
-}
-
-function showTooltip(e, html) {
-    const tip = document.getElementById('hm-tooltip')
-    tip.innerHTML = html
-    tip.style.display = 'block'
-    moveTip(e)
-}
-
-function moveTip(e) {
-    const tip = document.getElementById('hm-tooltip')
-    const tw = tip.offsetWidth || 200
-    const th = tip.offsetHeight || 150
-    const x = e.clientX + 16 + tw > window.innerWidth ? e.clientX - tw - 16 : e.clientX + 16
-    const y = e.clientY + 16 + th > window.innerHeight ? e.clientY - th - 16 : e.clientY + 16
-    tip.style.left = x + 'px'
-    tip.style.top = y + 'px'
-}
-
-function hideTip() { document.getElementById('hm-tooltip').style.display = 'none' }
-
-document.addEventListener('mousemove', e => {
-    if (document.getElementById('hm-tooltip').style.display !== 'none') moveTip(e)
-})
-
-function quadColor(q) {
-    return { improving:'#2563eb', leading:'#16a34a', lagging:'#d97706', weakening:'#dc2626' }[q] || '#64748b'
-}
-
-function render() {
-    if (!allData) return
-    if (currentTab === 'sector') renderSector()
-    else renderStock()
-}
-
-function renderSector() {
-    const container = document.getElementById('sector-treemap')
-    const sectors = allData.sectors || {}
-    const sectorRRG = allData.sector_rrg || {}
-    const W = container.offsetWidth || window.innerWidth - 48
-    const H = Math.max(500, window.innerHeight - 160)
-
-    // 섹터별 시총 합계
-    const items = Object.entries(sectors).map(([name, d]) => {
-        const cap = d.candidates.reduce((s, c) => s + (c.market_cap || 0), 0)
-        const ret = currentRet === 'ret_1d' ? d.sector_ret_1d :
-                    currentRet === 'ret_5d' ? d.sector_ret_5d :
-                    d.candidates.reduce((s,c,_,a) => s + (c.ret_20d || 0)/a.length, 0)
-        return {
-            name, value: cap || 1,
-            ret, cap,
-            quad: sectorRRG[name]?.quadrant || 'neutral',
-            improving: d.improving_count || 0,
-            total: d.total || 0,
-            ret5d: d.sector_ret_5d
-        }
-    }).filter(d => d.value > 0)
-    .sort((a, b) => b.value - a.value)
-
-    const cells = squarify(items, 0, 0, W, H)
-    const PAD = 2
-
-    let svg = `<svg class="treemap-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`
-
-    cells.forEach(cell => {
-        const col = retColor(cell.ret)
-        const tw = cell.w - PAD * 2
-        const th = cell.h - PAD * 2
-        const fontSize = Math.min(14, Math.max(9, tw / cell.name.length * 1.4))
-        const showText = tw > 40 && th > 20
-        const retStr = cell.ret != null ? (cell.ret > 0 ? '+' : '') + cell.ret.toFixed(2) + '%' : '-'
-        const qc = quadColor(cell.quad)
-
-        const id = 'sc-' + cell.name.replace(/[^a-zA-Z0-9]/g, '_')
-
-        svg += `<g class="hm-cell" id="${id}"
-            onmouseenter="showTooltip(event, \`
-                <div style='font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;'>${cell.name}</div>
-                <div style='color:${qc};font-size:11px;font-weight:600;margin-bottom:4px;'>${cell.quad}</div>
-                <div style='color:#94a3b8;font-size:11px;'>시총 <span style='color:#e2e8f0;font-weight:600;'>${(cell.cap/10000).toFixed(1)}조</span></div>
-                <div style='color:#94a3b8;font-size:11px;'>당일 <span style='color:${(cell.ret||0)>=0?'#4ade80':'#f87171'};font-weight:600;'>${retStr}</span></div>
-                <div style='color:#94a3b8;font-size:11px;'>5D <span style='color:${(cell.ret5d||0)>=0?'#4ade80':'#f87171'};font-weight:600;'>${cell.ret5d != null ? (cell.ret5d>0?'+':'') + cell.ret5d.toFixed(2)+'%' : '-'}</span></div>
-                ${cell.improving > 0 ? \`<div style='color:#60a5fa;font-size:11px;margin-top:4px;'>★ Improving ${cell.improving}종목</div>\` : ''}
-            \`)"
-            onmouseleave="hideTip()">`
-
-        svg += `<rect x="${cell.x+PAD}" y="${cell.y+PAD}" width="${tw}" height="${th}"
-            fill="${col}" rx="4"/>`
-
-        // 섹터 사분면 표시 (좌상단 작은 점)
-        svg += `<circle cx="${cell.x+PAD+8}" cy="${cell.y+PAD+8}" r="4" fill="${qc}" opacity="0.9"/>`
-
-        if (showText) {
-            const shortName = cell.name.length > 8 ? cell.name.slice(0,7)+'…' : cell.name
-            svg += `<text x="${cell.x+PAD+tw/2}" y="${cell.y+PAD+th/2 - (th>50?8:0)}"
-                text-anchor="middle" dominant-baseline="middle"
-                font-size="${fontSize}" font-weight="600" fill="rgba(255,255,255,0.95)"
-                font-family="sans-serif">${shortName}</text>`
-            if (th > 50) {
-                const textCol = (cell.ret||0) >= 0 ? '#86efac' : '#fca5a5'
-                svg += `<text x="${cell.x+PAD+tw/2}" y="${cell.y+PAD+th/2+12}"
-                    text-anchor="middle" dominant-baseline="middle"
-                    font-size="${Math.max(9, fontSize-2)}" fill="${textCol}"
-                    font-family="sans-serif">${retStr}</text>`
+        async function loadData() {
+            try {
+                var res = await fetch('./data/signals.json?t=' + Date.now());
+                if (!res.ok) throw new Error();
+                allData = await res.json();
+                document.getElementById('updated').textContent =
+                    allData.updated_at ? new Date(allData.updated_at.replace(' ', 'T')).toLocaleString('ko-KR') : '-';
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('view-sector').style.display = 'block';
+                render();
+            } catch (e) {
+                document.getElementById('loading').textContent = '데이터 로드 실패';
             }
         }
-        svg += `</g>`
-    })
 
-    svg += `</svg>`
-    container.innerHTML = svg
-}
-
-function renderStock() {
-    const container = document.getElementById('stock-treemap')
-    const sectors = allData.sectors || {}
-    const sectorRRG = allData.sector_rrg || {}
-    const W = container.offsetWidth || window.innerWidth - 48
-    const H = Math.max(600, window.innerHeight - 160)
-    const PAD = 1
-
-    // 전체 종목 플랫 리스트
-    const allStocks = []
-    Object.entries(sectors).forEach(([sname, sdata]) => {
-        sdata.candidates.forEach(c => {
-            if (!c.market_cap) return
-            const ret = c[currentRet]
-            allStocks.push({
-                name: c.name, code: c.code,
-                value: c.market_cap,
-                ret, cap: c.market_cap,
-                sector: sname,
-                signal: c.signal,
-                grade: c.short_rs_grade,
-                gap: c.gap_1d,
-                vol: c.vol_ratio,
-                rs5: c.rs_5d,
-                price: c.price,
-                quad: sectorRRG[sname]?.quadrant || 'neutral'
-            })
-        })
-    })
-
-    if (!allStocks.length) {
-        container.innerHTML = '<div style="text-align:center;padding:60px;color:#475569;">시총 데이터 없음</div>'
-        return
-    }
-
-    allStocks.sort((a, b) => b.value - a.value)
-    const cells = squarify(allStocks, 0, 0, W, H)
-
-    let svg = `<svg class="treemap-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`
-
-    cells.forEach(cell => {
-        const col = retColor(cell.ret)
-        const tw = cell.w - PAD * 2
-        const th = cell.h - PAD * 2
-        if (tw < 2 || th < 2) return
-
-        const retStr = cell.ret != null ? (cell.ret > 0 ? '+' : '') + cell.ret.toFixed(1) + '%' : '-'
-        const fontSize = Math.min(13, Math.max(8, tw / (cell.name.length || 1) * 1.3))
-        const showText = tw > 30 && th > 16
-        const signalIcon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : ''
-
-        svg += `<g class="hm-cell"
-            onmouseenter="showTooltip(event, \`
-                <div style='font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;'>${signalIcon} ${cell.name} <span style='color:#64748b;font-size:11px;font-weight:400;'>${cell.code}</span></div>
-                <div style='color:#64748b;font-size:11px;margin-bottom:6px;'>${cell.sector}</div>
-                <div style='color:#94a3b8;font-size:11px;'>현재가 <span style='color:#e2e8f0;font-weight:600;'>${cell.price ? cell.price.toLocaleString()+'원' : '-'}</span></div>
-                <div style='color:#94a3b8;font-size:11px;'>시총 <span style='color:#e2e8f0;'>${cell.cap >= 10000 ? (cell.cap/10000).toFixed(1)+'조' : cell.cap+'억'}</span></div>
-                <div style='color:#94a3b8;font-size:11px;'>당일 <span style='color:${(cell.ret||0)>=0?'#4ade80':'#f87171'};font-weight:600;'>${retStr}</span></div>
-                ${cell.gap != null ? \`<div style='color:#94a3b8;font-size:11px;'>GAP <span style='color:${cell.gap>=3?'#c084fc':(cell.gap<0?'#f87171':'#94a3b8')};font-weight:600;'>${cell.gap>=0?'+':''}${cell.gap.toFixed(1)}%p</span></div>\` : ''}
-                ${cell.vol != null ? \`<div style='color:#94a3b8;font-size:11px;'>VOL <span style='color:${cell.vol>=1.5?'#fb923c':'#94a3b8'};font-weight:600;'>${cell.vol.toFixed(1)}x</span></div>\` : ''}
-                ${cell.rs5 != null ? \`<div style='color:#94a3b8;font-size:11px;'>RS-5 <span style='color:${cell.rs5>=2?'#c084fc':'#94a3b8'};font-weight:600;'>${cell.rs5.toFixed(1)}x</span></div>\` : ''}
-                ${signalIcon ? \`<div style='margin-top:4px;font-size:11px;color:#60a5fa;'>${signalIcon} ${cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm'}</div>\` : ''}
-            \`)"
-            onmouseleave="hideTip()">`
-
-        svg += `<rect x="${cell.x+PAD}" y="${cell.y+PAD}" width="${tw}" height="${th}"
-            fill="${col}" rx="2"/>`
-
-        if (showText) {
-            const shortName = cell.name.length > 6 ? cell.name.slice(0,5)+'…' : cell.name
-            svg += `<text x="${cell.x+PAD+tw/2}" y="${cell.y+PAD+th/2 - (th>40?6:0)}"
-                text-anchor="middle" dominant-baseline="middle"
-                font-size="${fontSize}" font-weight="600" fill="rgba(255,255,255,0.92)"
-                font-family="sans-serif">${shortName}</text>`
-            if (th > 40) {
-                const textCol = (cell.ret||0) >= 0 ? '#86efac' : '#fca5a5'
-                svg += `<text x="${cell.x+PAD+tw/2}" y="${cell.y+PAD+th/2+10}"
-                    text-anchor="middle" dominant-baseline="middle"
-                    font-size="${Math.max(8,fontSize-2)}" fill="${textCol}"
-                    font-family="sans-serif">${retStr}</text>`
-            }
+        function retColor(v) {
+            if (v == null) return '#374151';
+            var capped = Math.max(-5, Math.min(5, v));
+            if (capped > 0) return lerpColor('#374151', '#16a34a', capped / 5);
+            else return lerpColor('#374151', '#dc2626', Math.abs(capped) / 5);
         }
-        svg += `</g>`
-    })
 
-    svg += `</svg>`
-    container.innerHTML = svg
-}
+        function lerpColor(a, b, t) {
+            var ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16);
+            var ar = (ah >> 16) & 0xff, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+            var br = (bh >> 16) & 0xff, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+            var r = Math.round(ar + (br - ar) * t), g = Math.round(ag + (bg - ag) * t), bv = Math.round(ab + (bb - ab) * t);
+            return '#' + ((1 << 24) + (r << 16) + (g << 8) + bv).toString(16).slice(1);
+        }
 
-window.addEventListener('resize', () => render())
-loadData()
-setInterval(loadData, 10 * 60 * 1000)
+        function quadColor(q) {
+            return { improving: '#2563eb', leading: '#16a34a', lagging: '#d97706', weakening: '#dc2626' }[q] || '#64748b';
+        }
+
+        function fmtRet(v) {
+            if (v == null) return '-';
+            return (v > 0 ? '+' : '') + v.toFixed(2) + '%';
+        }
+
+        function fmtCap(v) {
+            if (!v) return '-';
+            return v >= 10000 ? (v / 10000).toFixed(1) + '조' : v + '억';
+        }
+
+        // Squarified Treemap
+        function squarify(data, x, y, w, h) {
+            if (!data.length) return [];
+            var total = data.reduce(function (s, d) { return s + d.value; }, 0);
+            if (total === 0) return [];
+            var results = [], remaining = data.slice(), cx = x, cy = y, cw = w, ch = h;
+
+            while (remaining.length) {
+                var shortSide = Math.min(cw, ch);
+                var totalRem = remaining.reduce(function (s, d) { return s + d.value; }, 0);
+                var bestRow = [remaining[0]], bestRatio = Infinity;
+
+                for (var i = 1; i <= remaining.length; i++) {
+                    var row = remaining.slice(0, i);
+                    var rowSum = row.reduce(function (s, d) { return s + d.value; }, 0);
+                    var rowH = (rowSum / totalRem) * shortSide;
+                    var longSide = Math.max(cw, ch);
+                    var maxRatio = Math.max.apply(null, row.map(function (d) {
+                        var rw = (d.value / rowSum) * longSide;
+                        return Math.max(rowH / rw, rw / rowH);
+                    }));
+                    if (maxRatio < bestRatio) { bestRatio = maxRatio; bestRow = row; }
+                    else break;
+                }
+
+                var rowSum2 = bestRow.reduce(function (s, d) { return s + d.value; }, 0);
+                var rowFrac = rowSum2 / totalRem;
+
+                if (cw <= ch) {
+                    var rowH2 = rowFrac * ch, rx = cx;
+                    bestRow.forEach(function (d) {
+                        var rw = (d.value / rowSum2) * cw;
+                        results.push(Object.assign({}, d, { x: rx, y: cy, w: rw, h: rowH2 }));
+                        rx += rw;
+                    });
+                    cy += rowH2; ch -= rowH2;
+                } else {
+                    var rowW = rowFrac * cw, ry = cy;
+                    bestRow.forEach(function (d) {
+                        var rh = (d.value / rowSum2) * ch;
+                        results.push(Object.assign({}, d, { x: cx, y: ry, w: rowW, h: rh }));
+                        ry += rh;
+                    });
+                    cx += rowW; cw -= rowW;
+                }
+                remaining = remaining.slice(bestRow.length);
+            }
+            return results;
+        }
+
+        var tipEl = document.getElementById('hm-tooltip');
+
+        function showTip(html, e) {
+            tipEl.innerHTML = html;
+            tipEl.style.display = 'block';
+            moveTip(e);
+        }
+
+        function moveTip(e) {
+            var tw = tipEl.offsetWidth || 200, th = tipEl.offsetHeight || 150;
+            var x = (e.clientX + 16 + tw > window.innerWidth) ? e.clientX - tw - 16 : e.clientX + 16;
+            var y = (e.clientY + 16 + th > window.innerHeight) ? e.clientY - th - 16 : e.clientY + 16;
+            tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
+        }
+
+        function hideTip() { tipEl.style.display = 'none'; }
+
+        document.addEventListener('mousemove', function (e) {
+            if (tipEl.style.display !== 'none') moveTip(e);
+        });
+
+        function render() {
+            if (!allData) return;
+            if (currentTab === 'sector') renderSector();
+            else renderStock();
+        }
+
+        function renderSector() {
+            var container = document.getElementById('sector-treemap');
+            var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
+            var W = container.offsetWidth || window.innerWidth - 48;
+            var H = Math.max(500, window.innerHeight - 180);
+
+            var items = Object.keys(sectors).map(function (name) {
+                var d = sectors[name];
+                var cap = d.candidates.reduce(function (s, c) { return s + (c.market_cap || 0); }, 0);
+                var ret = d[currentRet];
+                if (currentRet === 'ret_20d') {
+                    var vals = d.candidates.filter(function (c) { return c.ret_20d != null; });
+                    ret = vals.length ? vals.reduce(function (s, c) { return s + c.ret_20d; }, 0) / vals.length : null;
+                }
+                return {
+                    name: name, value: cap || 1, ret: ret, cap: cap,
+                    quad: (sectorRRG[name] || {}).quadrant || 'neutral',
+                    improving: d.improving_count || 0,
+                    ret5d: d.sector_ret_5d, ret1d: d.sector_ret_1d,
+                    total: d.total || 0
+                };
+            }).filter(function (d) { return d.value > 0; })
+                .sort(function (a, b) { return b.value - a.value; });
+
+            var cells = squarify(items, 0, 0, W, H);
+            var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+            cells.forEach(function (cell) {
+                var col = retColor(cell.ret);
+                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
+                var fs = Math.min(13, Math.max(9, tw / (cell.name.length || 1) * 1.3));
+                var retStr = fmtRet(cell.ret);
+                var qc = quadColor(cell.quad);
+                var shortName = cell.name.length > 8 ? cell.name.slice(0, 7) + '…' : cell.name;
+
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
+                    '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">5D <span style="color:' + ((cell.ret5d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret5d) + '</span></div>' +
+                    (cell.improving > 0 ? '<div style="color:#60a5fa;font-size:11px;margin-top:4px;">★ Improving ' + cell.improving + '종목</div>' : '') +
+                    '<div style="color:#64748b;font-size:11px;">총 ' + cell.total + '종목</div>';
+
+                var tipAttr = tipHtml.replace(/"/g, '&quot;');
+
+                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
+                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="4"/>';
+                svg += '<circle cx="' + (cell.x + PAD + 10) + '" cy="' + (cell.y + PAD + 10) + '" r="5" fill="' + qc + '" opacity="0.9"/>';
+                if (tw > 40 && th > 20) {
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 - (th > 50 ? 8 : 0)) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif">' + shortName + '</text>';
+                    if (th > 50) {
+                        var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
+                        svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 12) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(9, fs - 2) + '" fill="' + tc + '" font-family="sans-serif">' + retStr + '</text>';
+                    }
+                }
+                svg += '</g>';
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+        }
+
+        function renderStock() {
+            var container = document.getElementById('stock-treemap');
+            var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
+            var W = container.offsetWidth || window.innerWidth - 48;
+            var H = Math.max(600, window.innerHeight - 180);
+
+            var allStocks = [];
+            Object.keys(sectors).forEach(function (sname) {
+                var sdata = sectors[sname];
+                sdata.candidates.forEach(function (c) {
+                    if (!c.market_cap) return;
+                    allStocks.push({
+                        name: c.name, code: c.code, value: c.market_cap,
+                        ret: c[currentRet], cap: c.market_cap, sector: sname,
+                        signal: c.signal, grade: c.short_rs_grade,
+                        gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
+                        price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
+                        quad: (sectorRRG[sname] || {}).quadrant || 'neutral'
+                    });
+                });
+            });
+
+            if (!allStocks.length) {
+                container.innerHTML = '<div style="text-align:center;padding:60px;color:#475569;">시총 데이터 없음</div>';
+                return;
+            }
+
+            allStocks.sort(function (a, b) { return b.value - a.value; });
+            var cells = squarify(allStocks, 0, 0, W, H);
+            var PAD = 1, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+            cells.forEach(function (cell) {
+                var col = retColor(cell.ret);
+                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
+                if (tw < 2 || th < 2) return;
+                var fs = Math.min(12, Math.max(8, tw / (cell.name.length || 1) * 1.2));
+                var retStr = fmtRet(cell.ret);
+                var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
+                var shortName = cell.name.length > 6 ? cell.name.slice(0, 5) + '…' : cell.name;
+
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
+                    '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+                    (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
+                    (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5 >= 2 ? '#c084fc' : '#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
+                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
+
+                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
+                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="2"/>';
+                if (tw > 30 && th > 16) {
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 - (th > 40 ? 6 : 0)) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif">' + shortName + '</text>';
+                    if (th > 40) {
+                        var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
+                        svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 10) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, fs - 2) + '" fill="' + tc + '" font-family="sans-serif">' + retStr + '</text>';
+                    }
+                }
+                svg += '</g>';
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+        }
+
+        window.addEventListener('resize', function () { render(); });
+        loadData();
+        setInterval(loadData, 10 * 60 * 1000);
     </script>
 </body>
 
