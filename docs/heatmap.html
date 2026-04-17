@@ -125,22 +125,16 @@
     <div id="heatmap-container">
         <div id="loading" style="text-align:center;padding:80px;color:#475569;font-size:14px;">데이터 로딩 중...</div>
         <div id="view-sector" style="display:none;">
-            <div style="display:flex;gap:12px;">
-                <div id="sector-treemap" class="treemap-wrapper" style="flex:1;min-width:0;"></div>
-                <div id="sector-drill" style="width:420px;flex-shrink:0;">
-                    <div id="drill-placeholder"
-                        style="display:flex;align-items:center;justify-content:center;height:100%;color:#374151;font-size:13px;border:1px dashed #1e2535;border-radius:8px;min-height:400px;">
-                        ← 섹터를 클릭하면<br>종목 히트맵이 표시됩니다
+            <div id="sector-split" style="display:flex;gap:12px;">
+                <div id="sector-treemap" class="treemap-wrapper" style="flex:1;min-width:0;transition:all 0.2s;"></div>
+                <div id="sector-drill" style="display:none;width:420px;flex-shrink:0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                        <div id="drill-title" style="font-size:14px;font-weight:700;color:#f1f5f9;"></div>
+                        <button onclick="closeDrill()"
+                            style="font-size:11px;color:#64748b;background:none;border:1px solid #2d3748;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
+                            닫기</button>
                     </div>
-                    <div id="drill-content" style="display:none;">
-                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                            <div id="drill-title" style="font-size:14px;font-weight:700;color:#f1f5f9;"></div>
-                            <button onclick="closeDrill()"
-                                style="font-size:11px;color:#64748b;background:none;border:none;cursor:pointer;">✕
-                                닫기</button>
-                        </div>
-                        <div id="drill-treemap" class="treemap-wrapper"></div>
-                    </div>
+                    <div id="drill-treemap" class="treemap-wrapper"></div>
                 </div>
             </div>
         </div>
@@ -295,7 +289,8 @@
         function renderSector() {
             var container = document.getElementById('sector-treemap');
             var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
-            var W = container.offsetWidth || window.innerWidth - 48;
+            var drillOpen = document.getElementById('sector-drill').style.display !== 'none';
+            var W = container.offsetWidth || (window.innerWidth - 48 - (drillOpen ? 432 : 0));
             var H = Math.max(500, window.innerHeight - 180);
 
             var items = Object.keys(sectors).map(function (name) {
@@ -435,8 +430,8 @@
             var sdata = sectors[sectorName];
             if (!sdata) return;
 
-            document.getElementById('drill-placeholder').style.display = 'none';
-            document.getElementById('drill-content').style.display = 'block';
+            document.getElementById('sector-drill').style.display = 'block';
+            renderSector();
             document.getElementById('drill-title').textContent = sectorName + ' 섹터';
 
             var container = document.getElementById('drill-treemap');
@@ -505,8 +500,8 @@
 
         function closeDrill() {
             currentDrill = null;
-            document.getElementById('drill-placeholder').style.display = 'flex';
-            document.getElementById('drill-content').style.display = 'none';
+            document.getElementById('sector-drill').style.display = 'none';
+            renderSector();
         }
 
         window.addEventListener('resize', function () { render(); });
