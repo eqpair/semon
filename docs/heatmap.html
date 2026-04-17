@@ -320,7 +320,7 @@
                 var fs = Math.min(16, Math.max(10, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.8));
                 var retStr = fmtRet(cell.ret);
                 var qc = quadColor(cell.quad);
-                var shortName = cell.name.length > 8 ? cell.name.slice(0, 7) + '…' : cell.name;
+                var shortName = cell.name;
 
                 var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
                     '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
@@ -387,7 +387,7 @@
                 var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
                 var retStr = fmtRet(cell.ret);
                 var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
-                var shortName = cell.name.length > 6 ? cell.name.slice(0, 5) + '…' : cell.name;
+                var shortName = cell.name;
 
                 var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
                     '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
@@ -457,7 +457,7 @@
                 var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
                 var retStr = fmtRet(cell.ret);
                 var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
-                var shortName = cell.name.length > 6 ? cell.name.slice(0, 5) + '…' : cell.name;
+                var shortName = cell.name;
 
                 var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
                     '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
