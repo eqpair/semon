@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -7,22 +8,73 @@
     <link rel="icon" href="./favicon.svg" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0f1117; color: #e2e8f0; font-family: 'SF Pro Display', -apple-system, sans-serif; min-height: 100vh; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        .header { padding: 20px 24px 16px; border-bottom: 1px solid #1e2535; background: #0f1117; position: sticky; top: 0; z-index: 100; }
-        .tab-btn { padding: 6px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #2d3748; background: transparent; color: #64748b; transition: all 0.15s; }
-        .tab-btn.active { background: #1e40af; border-color: #1e40af; color: #fff; }
+        body {
+            background: #0f1117;
+            color: #e2e8f0;
+            font-family: 'SF Pro Display', -apple-system, sans-serif;
+            min-height: 100vh;
+        }
 
-        #heatmap-container { padding: 16px 24px; }
+        .header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid #1e2535;
+            background: #0f1117;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-        .treemap-wrapper { position: relative; width: 100%; }
-        .treemap-svg { width: 100%; display: block; }
+        .tab-btn {
+            padding: 6px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid #2d3748;
+            background: transparent;
+            color: #64748b;
+            transition: all 0.15s;
+        }
+
+        .tab-btn.active {
+            background: #1e40af;
+            border-color: #1e40af;
+            color: #fff;
+        }
+
+        #heatmap-container {
+            padding: 16px 24px;
+        }
+
+        .treemap-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .treemap-svg {
+            width: 100%;
+            display: block;
+        }
 
         /* 셀 스타일 */
-        .hm-cell { cursor: pointer; transition: opacity 0.15s; }
-        .hm-cell:hover { opacity: 0.85; }
-        .hm-cell rect { rx: 3; }
+        .hm-cell {
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+
+        .hm-cell:hover {
+            opacity: 0.85;
+        }
+
+        .hm-cell rect {
+            rx: 3;
+        }
 
         /* 툴팁 */
         #hm-tooltip {
@@ -36,58 +88,74 @@
             z-index: 200;
             display: none;
             min-width: 180px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
 
-        .legend { display: flex; align-items: center; gap: 4px; }
-        .legend-bar { width: 200px; height: 12px; border-radius: 6px;
-            background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d); }
+        .legend {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 2px; }
+        .legend-bar {
+            width: 200px;
+            height: 12px;
+            border-radius: 6px;
+            background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2d3748;
+            border-radius: 2px;
+        }
     </style>
 </head>
+
 <body>
 
-<div id="hm-tooltip"></div>
+    <div id="hm-tooltip"></div>
 
-<div class="header">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <div>
-            <h1 style="font-size:20px;font-weight:700;color:#f1f5f9;">📊 Heatmap</h1>
-            <div style="font-size:11px;color:#475569;margin-top:2px;">Last Update: <span id="updated">-</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;">
-            <div class="legend">
-                <span style="font-size:10px;color:#dc2626;">-3%</span>
-                <div class="legend-bar"></div>
-                <span style="font-size:10px;color:#16a34a;">+3%</span>
+    <div class="header">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+                <h1 style="font-size:20px;font-weight:700;color:#f1f5f9;">📊 Heatmap</h1>
+                <div style="font-size:11px;color:#475569;margin-top:2px;">Last Update: <span id="updated">-</span></div>
             </div>
-            <a href="./index.html" style="font-size:12px;color:#60a5fa;text-decoration:none;">← RRG</a>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="legend">
+                    <span style="font-size:10px;color:#dc2626;">-3%</span>
+                    <div class="legend-bar"></div>
+                    <span style="font-size:10px;color:#16a34a;">+3%</span>
+                </div>
+                <a href="./index.html" style="font-size:12px;color:#60a5fa;text-decoration:none;">← RRG</a>
+            </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+            <button class="tab-btn active" onclick="switchTab('sector')">섹터 히트맵</button>
+            <button class="tab-btn" onclick="switchTab('stock')">종목 히트맵</button>
+            <div style="margin-left:12px;display:flex;gap:6px;" id="ret-selector">
+                <button class="tab-btn active" onclick="switchRet('ret_1d')" id="btn-1d">당일</button>
+                <button class="tab-btn" onclick="switchRet('ret_5d')" id="btn-5d">1주</button>
+                <button class="tab-btn" onclick="switchRet('ret_20d')" id="btn-1m">1달</button>
+            </div>
         </div>
     </div>
-    <div style="display:flex;gap:8px;align-items:center;">
-        <button class="tab-btn active" onclick="switchTab('sector')">섹터 히트맵</button>
-        <button class="tab-btn" onclick="switchTab('stock')">종목 히트맵</button>
-        <div style="margin-left:12px;display:flex;gap:6px;" id="ret-selector">
-            <button class="tab-btn active" onclick="switchRet('ret_1d')" id="btn-1d">당일</button>
-            <button class="tab-btn" onclick="switchRet('ret_5d')" id="btn-5d">1주</button>
-            <button class="tab-btn" onclick="switchRet('ret_20d')" id="btn-1m">1달</button>
+
+    <div id="heatmap-container">
+        <div id="loading" style="text-align:center;padding:80px;color:#475569;">데이터 로딩 중...</div>
+        <div id="view-sector" style="display:none;">
+            <div id="sector-treemap" class="treemap-wrapper"></div>
+        </div>
+        <div id="view-stock" style="display:none;">
+            <div id="stock-treemap" class="treemap-wrapper"></div>
         </div>
     </div>
-</div>
 
-<div id="heatmap-container">
-    <div id="loading" style="text-align:center;padding:80px;color:#475569;">데이터 로딩 중...</div>
-    <div id="view-sector" style="display:none;">
-        <div id="sector-treemap" class="treemap-wrapper"></div>
-    </div>
-    <div id="view-stock" style="display:none;">
-        <div id="stock-treemap" class="treemap-wrapper"></div>
-    </div>
-</div>
-
-<script>
+    <script>
 let allData = null
 let currentTab = 'sector'
 let currentRet = 'ret_1d'
@@ -414,6 +482,7 @@ function renderStock() {
 window.addEventListener('resize', () => render())
 loadData()
 setInterval(loadData, 10 * 60 * 1000)
-</script>
+    </script>
 </body>
+
 </html>
