@@ -169,6 +169,7 @@
             document.getElementById('btn-5d').className = 'tab-btn' + (ret === 'ret_5d' ? ' active' : '');
             document.getElementById('btn-1m').className = 'tab-btn' + (ret === 'ret_20d' ? ' active' : '');
             render();
+            if (currentDrill) drillDown(currentDrill);
         }
 
         async function loadData() {
