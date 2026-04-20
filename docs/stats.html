@@ -12,9 +12,9 @@
             --bg: #0a0c12;
             --surface: #111520;
             --border: #1e2535;
-            --text: #e2e8f0;
-            --muted: #475569;
-            --dim: #64748b;
+            --text: #f1f5f9;
+            --muted: #cbd5e1;
+            --dim: #94a3b8;
             --prime: #f97316;
             --confirm: #3b82f6;
             --breakout: #a855f7;
@@ -101,7 +101,7 @@
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--dim);
+            color: #94a3b8;
             margin-bottom: 12px;
         }
 
@@ -113,7 +113,7 @@
 
         .stat-sub {
             font-size: 12px;
-            color: var(--dim);
+            color: #94a3b8;
             margin-top: 6px;
         }
 
@@ -126,7 +126,7 @@
             cursor: pointer;
             border: 1px solid var(--border);
             background: transparent;
-            color: var(--dim);
+            color: #94a3b8;
             transition: all 0.15s;
         }
 
@@ -145,7 +145,7 @@
             cursor: pointer;
             border: 1px solid var(--border);
             background: transparent;
-            color: var(--dim);
+            color: #94a3b8;
             transition: all 0.15s;
         }
 
@@ -184,7 +184,7 @@
             padding: 10px 12px;
             text-align: right;
             font-weight: 500;
-            color: var(--dim);
+            color: #94a3b8;
             border-bottom: 1px solid var(--border);
             white-space: nowrap;
         }
@@ -262,7 +262,7 @@
         }
 
         .quad-badge.null {
-            color: var(--dim);
+            color: #94a3b8;
             background: #1e2535;
         }
 
@@ -283,7 +283,7 @@
         .analysis-title {
             font-size: 11px;
             font-weight: 600;
-            color: var(--dim);
+            color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 12px;
@@ -304,7 +304,7 @@
 
         /* 빈값 */
         .null-val {
-            color: #1e2535;
+            color: #334155;
         }
 
         ::-webkit-scrollbar {
@@ -328,7 +328,7 @@
         }
 
         .ret-null {
-            color: #1e2535;
+            color: #334155;
         }
 
         .section-title {
@@ -340,7 +340,7 @@
 
         .section-sub {
             font-size: 11px;
-            color: var(--dim);
+            color: #94a3b8;
             margin-left: 8px;
             font-weight: 400;
         }
@@ -357,8 +357,7 @@
                 </div>
             </div>
             <div style="display:flex;gap:8px;">
-                <a href="./index.html" class="nav-link">✳️
-                Relative Rotation Graph</a>
+                <a href="./index.html" class="nav-link">✳️ Relative Rotation Graph</a>
                 <a href="./momentum.html" class="nav-link">▶ Momentum Board</a>
                 <a href="./heatmap.html" class="nav-link">📊 Heatmap</a>
             </div>
@@ -500,224 +499,224 @@
     </div>
 
     <script>
-var logData = [];
-var filteredData = [];
-var currentFilter = 'all';
-var currentSort = 'date';
+        var logData = [];
+        var filteredData = [];
+        var currentFilter = 'all';
+        var currentSort = 'date';
 
-async function loadData() {
-    try {
-        var res = await fetch('./data/signal_log.json?t=' + Date.now());
-        if (!res.ok) throw new Error();
-        logData = await res.json();
+        async function loadData() {
+            try {
+                var res = await fetch('./data/signal_log.json?t=' + Date.now());
+                if (!res.ok) throw new Error();
+                logData = await res.json();
 
-        // 최신순 정렬
-        logData.sort(function(a, b) {
-            return b.logged_at.localeCompare(a.logged_at);
-        });
+                // 최신순 정렬
+                logData.sort(function (a, b) {
+                    return b.logged_at.localeCompare(a.logged_at);
+                });
 
-        document.getElementById('updated').textContent =
-            new Date().toLocaleString('ko-KR') + ' 기준 ' + logData.length + '건';
+                document.getElementById('updated').textContent =
+                    new Date().toLocaleString('ko-KR') + ' 기준 ' + logData.length + '건';
 
-        renderStats();
-        renderAnalysis();
-        renderTable();
-    } catch(e) {
-        document.getElementById('updated').textContent = '데이터 없음';
-    }
-}
-
-function getSignalKey(e) {
-    if (e.signal === 'prime') return 'prime';
-    if (e.signal === 'confirm') return 'confirm';
-    if (e.short_rs_grade === 'breakout') return 'breakout';
-    return 'other';
-}
-
-function fmtRet(v, suffix) {
-    if (v == null) return '<span class="ret-null">-</span>';
-    var cls = v > 0 ? 'ret-pos' : v < 0 ? 'ret-neg' : '';
-    var s = (v > 0 ? '+' : '') + v.toFixed(2) + (suffix || '%');
-    return '<span class="' + cls + '">' + s + '</span>';
-}
-
-function fmtVal(v, digits, suffix) {
-    if (v == null) return '<span class="null-val">-</span>';
-    return (v > 0 && suffix !== 'x' ? '' : '') + v.toFixed(digits || 1) + (suffix || '');
-}
-
-function quadBadge(q) {
-    if (!q) return '<span class="quad-badge null">-</span>';
-    return '<span class="quad-badge ' + q + '">' + q + '</span>';
-}
-
-function renderStats() {
-    var groups = { prime: [], confirm: [], breakout: [] };
-    logData.forEach(function(e) {
-        var k = getSignalKey(e);
-        if (groups[k]) groups[k].push(e);
-    });
-
-    Object.keys(groups).forEach(function(sig) {
-        var items = groups[sig];
-        document.getElementById(sig + '-count').textContent = items.length + '건';
-
-        // 5D
-        var r5 = items.map(function(e) { return e.ret_5d; }).filter(function(v) { return v != null; });
-        if (r5.length > 0) {
-            var avg5 = r5.reduce(function(s,v) { return s+v; }, 0) / r5.length;
-            var wr5 = r5.filter(function(v) { return v > 0; }).length / r5.length * 100;
-            document.getElementById(sig + '-avg5').textContent = avg5.toFixed(2) + '%';
-            document.getElementById(sig + '-wr5').textContent = wr5.toFixed(0) + '%';
-            document.getElementById(sig + '-avg5').style.color = avg5 >= 0 ? 'var(--green)' : 'var(--red)';
-        } else {
-            document.getElementById(sig + '-avg5').textContent = '-';
-            document.getElementById(sig + '-wr5').textContent = '-';
+                renderStats();
+                renderAnalysis();
+                renderTable();
+            } catch (e) {
+                document.getElementById('updated').textContent = '데이터 없음';
+            }
         }
 
-        // 20D
-        var r20 = items.map(function(e) { return e.ret_20d; }).filter(function(v) { return v != null; });
-        if (r20.length > 0) {
-            var avg20 = r20.reduce(function(s,v) { return s+v; }, 0) / r20.length;
-            var wr20 = r20.filter(function(v) { return v > 0; }).length / r20.length * 100;
-            document.getElementById(sig + '-avg20').textContent = avg20.toFixed(2) + '%';
-            document.getElementById(sig + '-wr20').textContent = wr20.toFixed(0) + '%';
-            document.getElementById(sig + '-avg20').style.color = avg20 >= 0 ? 'var(--green)' : 'var(--red)';
-        } else {
-            document.getElementById(sig + '-avg20').textContent = '-';
-            document.getElementById(sig + '-wr20').textContent = '-';
+        function getSignalKey(e) {
+            if (e.signal === 'prime') return 'prime';
+            if (e.signal === 'confirm') return 'confirm';
+            if (e.short_rs_grade === 'breakout') return 'breakout';
+            return 'other';
         }
-    });
-}
 
-function renderAnalGroup(elId, groups) {
-    var el = document.getElementById(elId);
-    var html = '';
-    Object.keys(groups).forEach(function(label) {
-        var items = groups[label];
-        var r5 = items.map(function(e) { return e.ret_5d; }).filter(function(v) { return v != null; });
-        var avg = r5.length > 0 ? r5.reduce(function(s,v){return s+v;},0)/r5.length : null;
-        var wr = r5.length > 0 ? r5.filter(function(v){return v>0;}).length/r5.length*100 : null;
-        html += '<div class="analysis-row">' +
-            '<span style="color:var(--dim);">' + label + ' <span style="color:var(--muted);font-size:10px;">(' + items.length + ')</span></span>' +
-            '<span>' +
-            (avg != null ? '<span style="color:' + (avg>=0?'var(--green)':'var(--red)') + ';font-weight:600;">' + (avg>=0?'+':'') + avg.toFixed(1) + '%</span>' : '<span style="color:#1e2535;">-</span>') +
-            (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '') +
-            '</span>' +
-            '</div>';
-    });
-    el.innerHTML = html || '<div style="color:var(--dim);font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
-}
+        function fmtRet(v, suffix) {
+            if (v == null) return '<span class="ret-null">-</span>';
+            var cls = v > 0 ? 'ret-pos' : v < 0 ? 'ret-neg' : '';
+            var s = (v > 0 ? '+' : '') + v.toFixed(2) + (suffix || '%');
+            return '<span class="' + cls + '">' + s + '</span>';
+        }
 
-function renderAnalysis() {
-    // 섹터 사분면별
-    var quadGroups = {};
-    logData.forEach(function(e) {
-        var q = e.sector_quadrant || 'neutral';
-        if (!quadGroups[q]) quadGroups[q] = [];
-        quadGroups[q].push(e);
-    });
-    renderAnalGroup('anal-sector-quad', quadGroups);
+        function fmtVal(v, digits, suffix) {
+            if (v == null) return '<span class="null-val">-</span>';
+            return (v > 0 && suffix !== 'x' ? '' : '') + v.toFixed(digits || 1) + (suffix || '');
+        }
 
-    // GAP별
-    renderAnalGroup('anal-gap', {
-        'GAP ≥ 3%': logData.filter(function(e) { return e.gap_1d != null && e.gap_1d >= 3; }),
-        'GAP 1~3%': logData.filter(function(e) { return e.gap_1d != null && e.gap_1d >= 1 && e.gap_1d < 3; }),
-        'GAP < 1%': logData.filter(function(e) { return e.gap_1d != null && e.gap_1d < 1; }),
-    });
+        function quadBadge(q) {
+            if (!q) return '<span class="quad-badge null">-</span>';
+            return '<span class="quad-badge ' + q + '">' + q + '</span>';
+        }
 
-    // VOL별
-    renderAnalGroup('anal-vol', {
-        'VOL ≥ 2x': logData.filter(function(e) { return e.vol_ratio != null && e.vol_ratio >= 2; }),
-        'VOL 1.5~2x': logData.filter(function(e) { return e.vol_ratio != null && e.vol_ratio >= 1.5 && e.vol_ratio < 2; }),
-        'VOL < 1.5x': logData.filter(function(e) { return e.vol_ratio != null && e.vol_ratio < 1.5; }),
-    });
+        function renderStats() {
+            var groups = { prime: [], confirm: [], breakout: [] };
+            logData.forEach(function (e) {
+                var k = getSignalKey(e);
+                if (groups[k]) groups[k].push(e);
+            });
 
-    // 복합점수별
-    renderAnalGroup('anal-combo', {
-        '★★★ (3점)': logData.filter(function(e) { return e.combo_score >= 3; }),
-        '★★ (2점)': logData.filter(function(e) { return e.combo_score === 2; }),
-        '★ (1점)': logData.filter(function(e) { return e.combo_score === 1; }),
-    });
+            Object.keys(groups).forEach(function (sig) {
+                var items = groups[sig];
+                document.getElementById(sig + '-count').textContent = items.length + '건';
 
-    // RS-Ratio별
-    renderAnalGroup('anal-rsr', {
-        'RS-R < 95': logData.filter(function(e) { return e.rs_ratio != null && e.rs_ratio < 95; }),
-        'RS-R 95~100': logData.filter(function(e) { return e.rs_ratio != null && e.rs_ratio >= 95 && e.rs_ratio < 100; }),
-        'RS-R ≥ 100': logData.filter(function(e) { return e.rs_ratio != null && e.rs_ratio >= 100; }),
-    });
+                // 5D
+                var r5 = items.map(function (e) { return e.ret_5d; }).filter(function (v) { return v != null; });
+                if (r5.length > 0) {
+                    var avg5 = r5.reduce(function (s, v) { return s + v; }, 0) / r5.length;
+                    var wr5 = r5.filter(function (v) { return v > 0; }).length / r5.length * 100;
+                    document.getElementById(sig + '-avg5').textContent = avg5.toFixed(2) + '%';
+                    document.getElementById(sig + '-wr5').textContent = wr5.toFixed(0) + '%';
+                    document.getElementById(sig + '-avg5').style.color = avg5 >= 0 ? 'var(--green)' : 'var(--red)';
+                } else {
+                    document.getElementById(sig + '-avg5').textContent = '-';
+                    document.getElementById(sig + '-wr5').textContent = '-';
+                }
 
-    // RS-Momentum별
-    renderAnalGroup('anal-rsm', {
-        'RS-M ≥ 105': logData.filter(function(e) { return e.rs_momentum != null && e.rs_momentum >= 105; }),
-        'RS-M 100~105': logData.filter(function(e) { return e.rs_momentum != null && e.rs_momentum >= 100 && e.rs_momentum < 105; }),
-        'RS-M < 100': logData.filter(function(e) { return e.rs_momentum != null && e.rs_momentum < 100; }),
-    });
-}
+                // 20D
+                var r20 = items.map(function (e) { return e.ret_20d; }).filter(function (v) { return v != null; });
+                if (r20.length > 0) {
+                    var avg20 = r20.reduce(function (s, v) { return s + v; }, 0) / r20.length;
+                    var wr20 = r20.filter(function (v) { return v > 0; }).length / r20.length * 100;
+                    document.getElementById(sig + '-avg20').textContent = avg20.toFixed(2) + '%';
+                    document.getElementById(sig + '-wr20').textContent = wr20.toFixed(0) + '%';
+                    document.getElementById(sig + '-avg20').style.color = avg20 >= 0 ? 'var(--green)' : 'var(--red)';
+                } else {
+                    document.getElementById(sig + '-avg20').textContent = '-';
+                    document.getElementById(sig + '-wr20').textContent = '-';
+                }
+            });
+        }
 
-function filterSignal(f) {
-    currentFilter = f;
-    document.querySelectorAll('.filter-btn').forEach(function(b) {
-        b.classList.remove('active');
-    });
-    event.target.classList.add('active');
-    renderTable();
-}
+        function renderAnalGroup(elId, groups) {
+            var el = document.getElementById(elId);
+            var html = '';
+            Object.keys(groups).forEach(function (label) {
+                var items = groups[label];
+                var r5 = items.map(function (e) { return e.ret_5d; }).filter(function (v) { return v != null; });
+                var avg = r5.length > 0 ? r5.reduce(function (s, v) { return s + v; }, 0) / r5.length : null;
+                var wr = r5.length > 0 ? r5.filter(function (v) { return v > 0; }).length / r5.length * 100 : null;
+                html += '<div class="analysis-row">' +
+                    '<span style="color:#cbd5e1;">' + label + ' <span style="color:var(--muted);font-size:10px;">(' + items.length + ')</span></span>' +
+                    '<span>' +
+                    (avg != null ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' : '<span style="color:#1e2535;">-</span>') +
+                    (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '') +
+                    '</span>' +
+                    '</div>';
+            });
+            el.innerHTML = html || '<div style="color:var(--dim);font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
+        }
 
-function sortBy(key) {
-    currentSort = key;
-    renderTable();
-}
+        function renderAnalysis() {
+            // 섹터 사분면별
+            var quadGroups = {};
+            logData.forEach(function (e) {
+                var q = e.sector_quadrant || 'neutral';
+                if (!quadGroups[q]) quadGroups[q] = [];
+                quadGroups[q].push(e);
+            });
+            renderAnalGroup('anal-sector-quad', quadGroups);
 
-function renderTable() {
-    filteredData = logData.filter(function(e) {
-        if (currentFilter === 'all') return true;
-        return getSignalKey(e) === currentFilter;
-    });
+            // GAP별
+            renderAnalGroup('anal-gap', {
+                'GAP ≥ 3%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d >= 3; }),
+                'GAP 1~3%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d >= 1 && e.gap_1d < 3; }),
+                'GAP < 1%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d < 1; }),
+            });
 
-    filteredData.sort(function(a, b) {
-        if (currentSort === 'date') return b.logged_at.localeCompare(a.logged_at);
-        if (currentSort === 'ret5') return (b.ret_5d || -999) - (a.ret_5d || -999);
-        if (currentSort === 'ret20') return (b.ret_20d || -999) - (a.ret_20d || -999);
-        return 0;
-    });
+            // VOL별
+            renderAnalGroup('anal-vol', {
+                'VOL ≥ 2x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio >= 2; }),
+                'VOL 1.5~2x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio >= 1.5 && e.vol_ratio < 2; }),
+                'VOL < 1.5x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio < 1.5; }),
+            });
 
-    var tbody = document.getElementById('log-tbody');
-    tbody.innerHTML = filteredData.map(function(e) {
-        var sigKey = getSignalKey(e);
-        var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : sigKey === 'confirm' ? '★ Confirm' : '⚡ Breakout';
-        var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
-        return '<tr>' +
-            '<td style="color:var(--dim);">' + e.logged_at + '</td>' +
-            '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:var(--muted);font-size:10px;">' + e.code + '</span></td>' +
-            '<td style="color:var(--dim);">' + (e.sector || '-') + '</td>' +
-            '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
-            '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
-            '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
-            '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
-            '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
-            '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : 'var(--dim)') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
-            '<td style="color:' + (e.vol_ratio >= 1.5 ? '#fb923c' : 'var(--dim)') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
-            '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
-            '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
-            '<td>' + fmtRet(e.ret_1d) + '</td>' +
-            '<td>' + fmtRet(e.ret_5d) + '</td>' +
-            '<td>' + fmtRet(e.ret_20d) + '</td>' +
-            '<td>' + fmtRet(e.ret_60d) + '</td>' +
-            '<td>' + fmtRet(e.max_ret_5d) + '</td>' +
-            '<td>' + fmtRet(e.min_ret_5d) + '</td>' +
-            '<td>' + quadBadge(e.quadrant_5d) + '</td>' +
-            '<td>' + quadBadge(e.quadrant_20d) + '</td>' +
-            '</tr>';
-    }).join('');
+            // 복합점수별
+            renderAnalGroup('anal-combo', {
+                '★★★ (3점)': logData.filter(function (e) { return e.combo_score >= 3; }),
+                '★★ (2점)': logData.filter(function (e) { return e.combo_score === 2; }),
+                '★ (1점)': logData.filter(function (e) { return e.combo_score === 1; }),
+            });
 
-    if (!filteredData.length) {
-        tbody.innerHTML = '<tr><td colspan="20" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
-    }
-}
+            // RS-Ratio별
+            renderAnalGroup('anal-rsr', {
+                'RS-R < 95': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio < 95; }),
+                'RS-R 95~100': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio >= 95 && e.rs_ratio < 100; }),
+                'RS-R ≥ 100': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio >= 100; }),
+            });
 
-loadData();
-setInterval(loadData, 5 * 60 * 1000);
+            // RS-Momentum별
+            renderAnalGroup('anal-rsm', {
+                'RS-M ≥ 105': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum >= 105; }),
+                'RS-M 100~105': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum >= 100 && e.rs_momentum < 105; }),
+                'RS-M < 100': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum < 100; }),
+            });
+        }
+
+        function filterSignal(f) {
+            currentFilter = f;
+            document.querySelectorAll('.filter-btn').forEach(function (b) {
+                b.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderTable();
+        }
+
+        function sortBy(key) {
+            currentSort = key;
+            renderTable();
+        }
+
+        function renderTable() {
+            filteredData = logData.filter(function (e) {
+                if (currentFilter === 'all') return true;
+                return getSignalKey(e) === currentFilter;
+            });
+
+            filteredData.sort(function (a, b) {
+                if (currentSort === 'date') return b.logged_at.localeCompare(a.logged_at);
+                if (currentSort === 'ret5') return (b.ret_5d || -999) - (a.ret_5d || -999);
+                if (currentSort === 'ret20') return (b.ret_20d || -999) - (a.ret_20d || -999);
+                return 0;
+            });
+
+            var tbody = document.getElementById('log-tbody');
+            tbody.innerHTML = filteredData.map(function (e) {
+                var sigKey = getSignalKey(e);
+                var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : sigKey === 'confirm' ? '★ Confirm' : '⚡ Breakout';
+                var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
+                return '<tr>' +
+                    '<td style="color:#cbd5e1;">' + e.logged_at + '</td>' +
+                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:var(--muted);font-size:10px;">' + e.code + '</span></td>' +
+                    '<td style="color:#cbd5e1;">' + (e.sector || '-') + '</td>' +
+                    '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
+                    '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
+                    '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
+                    '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
+                    '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
+                    '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : 'var(--dim)') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
+                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#fb923c' : 'var(--dim)') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
+                    '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
+                    '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
+                    '<td>' + fmtRet(e.ret_1d) + '</td>' +
+                    '<td>' + fmtRet(e.ret_5d) + '</td>' +
+                    '<td>' + fmtRet(e.ret_20d) + '</td>' +
+                    '<td>' + fmtRet(e.ret_60d) + '</td>' +
+                    '<td>' + fmtRet(e.max_ret_5d) + '</td>' +
+                    '<td>' + fmtRet(e.min_ret_5d) + '</td>' +
+                    '<td>' + quadBadge(e.quadrant_5d) + '</td>' +
+                    '<td>' + quadBadge(e.quadrant_20d) + '</td>' +
+                    '</tr>';
+            }).join('');
+
+            if (!filteredData.length) {
+                tbody.innerHTML = '<tr><td colspan="20" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
+            }
+        }
+
+        loadData();
+        setInterval(loadData, 5 * 60 * 1000);
     </script>
 </body>
 
