@@ -65,7 +65,6 @@
             padding: 24px 28px;
         }
 
-        /* 요약 카드 */
         .stat-card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -117,26 +116,6 @@
             margin-top: 6px;
         }
 
-        /* 탭 */
-        .tab-btn {
-            padding: 6px 16px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: #94a3b8;
-            transition: all 0.15s;
-        }
-
-        .tab-btn.active {
-            background: #1e3a5f;
-            border-color: #2563eb;
-            color: #93c5fd;
-        }
-
-        /* 필터 */
         .filter-btn {
             padding: 4px 12px;
             border-radius: 20px;
@@ -173,7 +152,6 @@
             border-color: var(--breakout);
         }
 
-        /* 테이블 */
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -266,7 +244,6 @@
             background: #1e2535;
         }
 
-        /* 조건별 분석 */
         .analysis-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -302,7 +279,6 @@
             border-bottom: none;
         }
 
-        /* 빈값 */
         .null-val {
             color: #334155;
         }
@@ -344,11 +320,19 @@
             margin-left: 8px;
             font-weight: 400;
         }
+
+        .active-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #0f1520;
+        }
+
+        .active-item:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 
 <body>
-
     <div class="header">
         <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
@@ -367,41 +351,60 @@
     <div class="container">
 
         <!-- 요약 카드 -->
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;" id="summary-cards">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;">
             <div class="stat-card prime">
                 <div class="stat-label">🔥 PRIME</div>
                 <div class="stat-value" id="prime-count">-</div>
-                <div class="stat-sub">
-                    5D 적중률 <span id="prime-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 +<span id="prime-avg5" style="color:var(--green);">-</span>
-                </div>
-                <div class="stat-sub" style="margin-top:4px;">
-                    20D 적중률 <span id="prime-wr20" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 +<span id="prime-avg20" style="color:var(--green);">-</span>
-                </div>
+                <div class="stat-sub">5D 적중률 <span id="prime-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균
+                    <span id="prime-avg5">-</span></div>
+                <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="prime-wr20"
+                        style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
             </div>
             <div class="stat-card confirm">
                 <div class="stat-label">★ Confirm</div>
                 <div class="stat-value" id="confirm-count">-</div>
-                <div class="stat-sub">
-                    5D 적중률 <span id="confirm-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 +<span id="confirm-avg5" style="color:var(--green);">-</span>
-                </div>
-                <div class="stat-sub" style="margin-top:4px;">
-                    20D 적중률 <span id="confirm-wr20" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 +<span id="confirm-avg20" style="color:var(--green);">-</span>
-                </div>
+                <div class="stat-sub">5D 적중률 <span id="confirm-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균
+                    <span id="confirm-avg5">-</span></div>
+                <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="confirm-wr20"
+                        style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="confirm-avg20">-</span></div>
             </div>
             <div class="stat-card breakout">
                 <div class="stat-label">⚡ Breakout</div>
                 <div class="stat-value" id="breakout-count">-</div>
-                <div class="stat-sub">
-                    5D 적중률 <span id="breakout-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 +<span id="breakout-avg5" style="color:var(--green);">-</span>
+                <div class="stat-sub">5D 적중률 <span id="breakout-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
+                    평균 <span id="breakout-avg5">-</span></div>
+                <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="breakout-wr20"
+                        style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="breakout-avg20">-</span></div>
+            </div>
+        </div>
+
+        <!-- 종목 매매 현황 -->
+        <div style="margin-bottom:28px;">
+            <div class="section-title">종목 매매 현황 <span class="section-sub">5D 추적 완료 전 진행 중인 신호</span></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+                    <div
+                        style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #431407;">
+                        🔥 PRIME</div>
+                    <div id="active-prime">
+                        <div style="color:#334155;font-size:12px;">없음</div>
+                    </div>
                 </div>
-                <div class="stat-sub" style="margin-top:4px;">
-                    20D 적중률 <span id="breakout-wr20" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 +<span id="breakout-avg20" style="color:var(--green);">-</span>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+                    <div
+                        style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #0c1a3a;">
+                        ★ Confirm</div>
+                    <div id="active-confirm">
+                        <div style="color:#334155;font-size:12px;">없음</div>
+                    </div>
+                </div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+                    <div
+                        style="font-size:11px;font-weight:600;color:var(--breakout);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #2d1a45;">
+                        ⚡ Breakout</div>
+                    <div id="active-breakout">
+                        <div style="color:#334155;font-size:12px;">없음</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -410,38 +413,26 @@
         <div style="margin-bottom:28px;">
             <div class="section-title">조건별 분석 <span class="section-sub">5D 수익률 기준 (데이터 누적 후 유효)</span></div>
             <div class="analysis-grid">
-
-                <!-- 섹터 사분면 -->
                 <div class="analysis-card">
                     <div class="analysis-title">섹터 사분면별</div>
                     <div id="anal-sector-quad"></div>
                 </div>
-
-                <!-- GAP -->
                 <div class="analysis-card">
                     <div class="analysis-title">GAP 수준별</div>
                     <div id="anal-gap"></div>
                 </div>
-
-                <!-- VOL -->
                 <div class="analysis-card">
                     <div class="analysis-title">거래량 수준별</div>
                     <div id="anal-vol"></div>
                 </div>
-
-                <!-- combo_score -->
                 <div class="analysis-card">
                     <div class="analysis-title">복합점수별</div>
                     <div id="anal-combo"></div>
                 </div>
-
-                <!-- RS-Ratio -->
                 <div class="analysis-card">
                     <div class="analysis-title">RS-Ratio 수준별</div>
                     <div id="anal-rsr"></div>
                 </div>
-
-                <!-- RS-Momentum -->
                 <div class="analysis-card">
                     <div class="analysis-title">RS-Momentum 수준별</div>
                     <div id="anal-rsm"></div>
@@ -455,14 +446,14 @@
                 style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
                 <div class="section-title" style="margin-bottom:0;">상세 기록</div>
                 <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                    <button class="filter-btn all active" onclick="filterSignal('all')">ALL</button>
-                    <button class="filter-btn prime" onclick="filterSignal('prime')">🔥 PRIME</button>
-                    <button class="filter-btn confirm" onclick="filterSignal('confirm')">★ Confirm</button>
-                    <button class="filter-btn breakout" onclick="filterSignal('breakout')">⚡ Breakout</button>
+                    <button class="filter-btn all active" onclick="filterSignal('all', event)">ALL</button>
+                    <button class="filter-btn prime" onclick="filterSignal('prime', event)">🔥 PRIME</button>
+                    <button class="filter-btn confirm" onclick="filterSignal('confirm', event)">★ Confirm</button>
+                    <button class="filter-btn breakout" onclick="filterSignal('breakout', event)">⚡ Breakout</button>
                     <div style="width:1px;background:var(--border);margin:0 4px;"></div>
-                    <button class="filter-btn all" onclick="sortBy('date')">날짜↓</button>
-                    <button class="filter-btn all" onclick="sortBy('ret5')">5D수익률↓</button>
-                    <button class="filter-btn all" onclick="sortBy('ret20')">20D수익률↓</button>
+                    <button class="filter-btn all" onclick="sortBy('date', event)">날짜↓</button>
+                    <button class="filter-btn all" onclick="sortBy('ret5', event)">5D수익률↓</button>
+                    <button class="filter-btn all" onclick="sortBy('ret20', event)">20D수익률↓</button>
                 </div>
             </div>
             <div style="overflow-x:auto;">
@@ -500,32 +491,10 @@
 
     <script>
         var logData = [];
-        var filteredData = [];
         var currentFilter = 'all';
         var currentSort = 'date';
 
-        async function loadData() {
-            try {
-                var res = await fetch('./data/signal_log.json?t=' + Date.now());
-                if (!res.ok) throw new Error();
-                logData = await res.json();
-
-                // 최신순 정렬
-                logData.sort(function (a, b) {
-                    return b.logged_at.localeCompare(a.logged_at);
-                });
-
-                document.getElementById('updated').textContent =
-                    new Date().toLocaleString('ko-KR') + ' 기준 ' + logData.length + '건';
-
-                renderStats();
-                renderAnalysis();
-                renderTable();
-            } catch (e) {
-                document.getElementById('updated').textContent = '데이터 없음';
-            }
-        }
-
+        // 우선순위 기반 신호 분류 (중복 없이 1개로)
         function getSignalKey(e) {
             if (e.signal === 'prime') return 'prime';
             if (e.signal === 'confirm') return 'confirm';
@@ -533,16 +502,32 @@
             return 'other';
         }
 
-        function fmtRet(v, suffix) {
+        async function loadData() {
+            try {
+                var res = await fetch('./data/signal_log.json?t=' + Date.now());
+                if (!res.ok) throw new Error();
+                logData = await res.json();
+                logData.sort(function (a, b) { return b.logged_at.localeCompare(a.logged_at); });
+                document.getElementById('updated').textContent =
+                    new Date().toLocaleString('ko-KR') + ' 기준 ' + logData.length + '건';
+                renderStats();
+                renderActive();
+                renderAnalysis();
+                renderTable();
+            } catch (e) {
+                document.getElementById('updated').textContent = '데이터 없음';
+            }
+        }
+
+        function fmtRet(v) {
             if (v == null) return '<span class="ret-null">-</span>';
             var cls = v > 0 ? 'ret-pos' : v < 0 ? 'ret-neg' : '';
-            var s = (v > 0 ? '+' : '') + v.toFixed(2) + (suffix || '%');
-            return '<span class="' + cls + '">' + s + '</span>';
+            return '<span class="' + cls + '">' + (v > 0 ? '+' : '') + v.toFixed(2) + '%</span>';
         }
 
         function fmtVal(v, digits, suffix) {
             if (v == null) return '<span class="null-val">-</span>';
-            return (v > 0 && suffix !== 'x' ? '' : '') + v.toFixed(digits || 1) + (suffix || '');
+            return v.toFixed(digits || 1) + (suffix || '');
         }
 
         function quadBadge(q) {
@@ -561,31 +546,72 @@
                 var items = groups[sig];
                 document.getElementById(sig + '-count').textContent = items.length + '건';
 
-                // 5D
                 var r5 = items.map(function (e) { return e.ret_5d; }).filter(function (v) { return v != null; });
                 if (r5.length > 0) {
                     var avg5 = r5.reduce(function (s, v) { return s + v; }, 0) / r5.length;
                     var wr5 = r5.filter(function (v) { return v > 0; }).length / r5.length * 100;
-                    document.getElementById(sig + '-avg5').textContent = avg5.toFixed(2) + '%';
+                    var el = document.getElementById(sig + '-avg5');
+                    el.textContent = (avg5 >= 0 ? '+' : '') + avg5.toFixed(2) + '%';
+                    el.style.color = avg5 >= 0 ? 'var(--green)' : 'var(--red)';
                     document.getElementById(sig + '-wr5').textContent = wr5.toFixed(0) + '%';
-                    document.getElementById(sig + '-avg5').style.color = avg5 >= 0 ? 'var(--green)' : 'var(--red)';
-                } else {
-                    document.getElementById(sig + '-avg5').textContent = '-';
-                    document.getElementById(sig + '-wr5').textContent = '-';
                 }
 
-                // 20D
                 var r20 = items.map(function (e) { return e.ret_20d; }).filter(function (v) { return v != null; });
                 if (r20.length > 0) {
                     var avg20 = r20.reduce(function (s, v) { return s + v; }, 0) / r20.length;
                     var wr20 = r20.filter(function (v) { return v > 0; }).length / r20.length * 100;
-                    document.getElementById(sig + '-avg20').textContent = avg20.toFixed(2) + '%';
+                    var el20 = document.getElementById(sig + '-avg20');
+                    el20.textContent = (avg20 >= 0 ? '+' : '') + avg20.toFixed(2) + '%';
+                    el20.style.color = avg20 >= 0 ? 'var(--green)' : 'var(--red)';
                     document.getElementById(sig + '-wr20').textContent = wr20.toFixed(0) + '%';
-                    document.getElementById(sig + '-avg20').style.color = avg20 >= 0 ? 'var(--green)' : 'var(--red)';
-                } else {
-                    document.getElementById(sig + '-avg20').textContent = '-';
-                    document.getElementById(sig + '-wr20').textContent = '-';
                 }
+            });
+        }
+
+        function renderActive() {
+            var now = new Date();
+            var groups = { prime: [], confirm: [], breakout: [] };
+
+            logData.forEach(function (e) {
+                var k = getSignalKey(e);
+                if (k === 'other') return;
+                if (!e.tracked_5d) groups[k].push(e);
+            });
+
+            ['prime', 'confirm', 'breakout'].forEach(function (sig) {
+                var el = document.getElementById('active-' + sig);
+                var items = groups[sig];
+
+                if (!items.length) {
+                    el.innerHTML = '<div style="color:#334155;font-size:12px;padding:4px 0;">없음</div>';
+                    return;
+                }
+
+                items.sort(function (a, b) { return b.logged_at.localeCompare(a.logged_at); });
+
+                el.innerHTML = items.map(function (e) {
+                    var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
+                    var d1 = new Date(e.logged_at);
+                    var diffDays = Math.floor((now - d1) / (1000 * 60 * 60 * 24));
+                    var maxRet = e.max_ret_5d;
+                    var minRet = e.min_ret_5d;
+                    var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#334155';
+                    var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#334155';
+
+                    return '<div class="active-item">' +
+                        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
+                        '<a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-size:12px;font-weight:600;">' + e.name + '</a>' +
+                        '<span style="font-size:10px;color:#475569;">D+' + diffDays + '</span>' +
+                        '</div>' +
+                        '<div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">' + e.sector + ' · ' + (e.price_at_signal ? e.price_at_signal.toLocaleString() + '원' : '-') + '</div>' +
+                        '<div style="display:flex;gap:10px;font-size:11px;">' +
+                        '<span>MAX <span style="color:' + maxCol + ';font-weight:600;">' + (maxRet != null ? (maxRet > 0 ? '+' : '') + maxRet.toFixed(2) + '%' : '-') + '</span></span>' +
+                        '<span>MIN <span style="color:' + minCol + ';font-weight:600;">' + (minRet != null ? (minRet > 0 ? '+' : '') + minRet.toFixed(2) + '%' : '-') + '</span></span>' +
+                        '<span style="color:#94a3b8;">GAP ' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</span>' +
+                        '<span style="color:#94a3b8;">VOL ' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</span>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
             });
         }
 
@@ -598,18 +624,18 @@
                 var avg = r5.length > 0 ? r5.reduce(function (s, v) { return s + v; }, 0) / r5.length : null;
                 var wr = r5.length > 0 ? r5.filter(function (v) { return v > 0; }).length / r5.length * 100 : null;
                 html += '<div class="analysis-row">' +
-                    '<span style="color:#cbd5e1;">' + label + ' <span style="color:var(--muted);font-size:10px;">(' + items.length + ')</span></span>' +
+                    '<span style="color:#cbd5e1;">' + label + ' <span style="color:#475569;font-size:10px;">(' + items.length + ')</span></span>' +
                     '<span>' +
-                    (avg != null ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' : '<span style="color:#1e2535;">-</span>') +
-                    (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '') +
-                    '</span>' +
-                    '</div>';
+                    (avg != null
+                        ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
+                        (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '')
+                        : '<span style="color:#1e2535;">-</span>') +
+                    '</span></div>';
             });
             el.innerHTML = html || '<div style="color:var(--dim);font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
         }
 
         function renderAnalysis() {
-            // 섹터 사분면별
             var quadGroups = {};
             logData.forEach(function (e) {
                 var q = e.sector_quadrant || 'neutral';
@@ -617,36 +643,26 @@
                 quadGroups[q].push(e);
             });
             renderAnalGroup('anal-sector-quad', quadGroups);
-
-            // GAP별
             renderAnalGroup('anal-gap', {
                 'GAP ≥ 3%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d >= 3; }),
                 'GAP 1~3%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d >= 1 && e.gap_1d < 3; }),
                 'GAP < 1%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d < 1; }),
             });
-
-            // VOL별
             renderAnalGroup('anal-vol', {
                 'VOL ≥ 2x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio >= 2; }),
                 'VOL 1.5~2x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio >= 1.5 && e.vol_ratio < 2; }),
                 'VOL < 1.5x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio < 1.5; }),
             });
-
-            // 복합점수별
             renderAnalGroup('anal-combo', {
                 '★★★ (3점)': logData.filter(function (e) { return e.combo_score >= 3; }),
                 '★★ (2점)': logData.filter(function (e) { return e.combo_score === 2; }),
                 '★ (1점)': logData.filter(function (e) { return e.combo_score === 1; }),
             });
-
-            // RS-Ratio별
             renderAnalGroup('anal-rsr', {
                 'RS-R < 95': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio < 95; }),
                 'RS-R 95~100': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio >= 95 && e.rs_ratio < 100; }),
                 'RS-R ≥ 100': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio >= 100; }),
             });
-
-            // RS-Momentum별
             renderAnalGroup('anal-rsm', {
                 'RS-M ≥ 105': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum >= 105; }),
                 'RS-M 100~105': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum >= 100 && e.rs_momentum < 105; }),
@@ -654,27 +670,25 @@
             });
         }
 
-        function filterSignal(f) {
+        function filterSignal(f, ev) {
             currentFilter = f;
-            document.querySelectorAll('.filter-btn').forEach(function (b) {
-                b.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+            if (ev && ev.target) ev.target.classList.add('active');
             renderTable();
         }
 
-        function sortBy(key) {
+        function sortBy(key, ev) {
             currentSort = key;
             renderTable();
         }
 
         function renderTable() {
-            filteredData = logData.filter(function (e) {
+            var filtered = logData.filter(function (e) {
                 if (currentFilter === 'all') return true;
                 return getSignalKey(e) === currentFilter;
             });
 
-            filteredData.sort(function (a, b) {
+            filtered.sort(function (a, b) {
                 if (currentSort === 'date') return b.logged_at.localeCompare(a.logged_at);
                 if (currentSort === 'ret5') return (b.ret_5d || -999) - (a.ret_5d || -999);
                 if (currentSort === 'ret20') return (b.ret_20d || -999) - (a.ret_20d || -999);
@@ -682,21 +696,26 @@
             });
 
             var tbody = document.getElementById('log-tbody');
-            tbody.innerHTML = filteredData.map(function (e) {
+            if (!filtered.length) {
+                tbody.innerHTML = '<tr><td colspan="20" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(function (e) {
                 var sigKey = getSignalKey(e);
                 var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : sigKey === 'confirm' ? '★ Confirm' : '⚡ Breakout';
                 var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
                 return '<tr>' +
                     '<td style="color:#cbd5e1;">' + e.logged_at + '</td>' +
-                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:var(--muted);font-size:10px;">' + e.code + '</span></td>' +
+                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:#475569;font-size:10px;">' + e.code + '</span></td>' +
                     '<td style="color:#cbd5e1;">' + (e.sector || '-') + '</td>' +
                     '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
                     '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
                     '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
                     '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
                     '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
-                    '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : 'var(--dim)') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
-                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#fb923c' : 'var(--dim)') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
+                    '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : '#94a3b8') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
+                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#fb923c' : '#94a3b8') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
                     '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
                     '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
                     '<td>' + fmtRet(e.ret_1d) + '</td>' +
@@ -709,10 +728,6 @@
                     '<td>' + quadBadge(e.quadrant_20d) + '</td>' +
                     '</tr>';
             }).join('');
-
-            if (!filteredData.length) {
-                tbody.innerHTML = '<tr><td colspan="20" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
-            }
         }
 
         loadData();
