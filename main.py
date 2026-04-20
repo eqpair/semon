@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 load_dotenv("/home/eq/semon/.env")
 
 from config import SECTORS, WAIT_TIME
-from crawler import fetch_all_prices, fetch_all_ohlcv
+from crawler import fetch_all_prices, fetch_all_ohlcv, fetch_kospi_ohlcv
 from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
-                           load_market_caps_into_store,
+                           load_market_caps_into_store, update_kospi,
                            save_rrg_history, load_rrg_history)
 from utils import is_market_time, is_near_market_close, now_kst, save_and_push, save_closing
 from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
@@ -44,6 +44,7 @@ _last_ohlcv_fetch  = None
 _closing_saved: str | None = None
 _market_cap_date: str | None = None
 _off_market_pushed: str | None = None
+_kospi_date: str | None = None
 
 
 def _need_ohlcv_refresh() -> bool:
@@ -56,7 +57,7 @@ def _need_ohlcv_refresh() -> bool:
 # ── 메인 루프 ─────────────────────────────────────────────────
 
 async def run():
-    global _last_ohlcv_fetch, _closing_saved, _market_cap_date, _off_market_pushed
+    global _last_ohlcv_fetch, _closing_saved, _market_cap_date, _off_market_pushed, _kospi_date
     logger.info("semon 시작")
 
     # 시작 시 기존 시총 파일 로드
@@ -110,29 +111,39 @@ async def run():
                 success = sum(1 for v in caps.values() if v > 0)
                 logger.info(f"시총 갱신 완료: {success}/{len(ALL_CODES)}개")
 
-            # 2. OHLCV 갱신 (1시간마다)
+            # 2. KOSPI 갱신 — 하루 1회
+            if _kospi_date != today:
+                logger.info("KOSPI 일봉 fetch 시작")
+                kospi_closes = await fetch_kospi_ohlcv()
+                if kospi_closes:
+                    update_kospi(kospi_closes)
+                    _kospi_date = today
+                else:
+                    logger.warning("KOSPI fetch 실패 — 섹터 평균으로 폴백")
+
+            # 3. OHLCV 갱신 (1시간마다)
             if _need_ohlcv_refresh():
                 logger.info("OHLCV fetch 시작")
                 ohlcv = await fetch_all_ohlcv(ALL_CODES)
                 update_ohlcv(ohlcv)
                 _last_ohlcv_fetch = now_kst()
 
-            # 3. 현재가 fetch
+            # 4. 현재가 fetch
             logger.info("현재가 fetch 시작")
             prices = await fetch_all_prices(ALL_CODES)
             update_prices(prices)
 
-            # 4. 신호 계산
+            # 5. 신호 계산
             logger.info("신호 계산 시작")
             signals = calc_all_signals()
 
-            # 5. JSON 저장 + git push
+            # 6. JSON 저장 + git push
             save_and_push(signals)
 
-            # 6. rrg_history 영속화
+            # 7. rrg_history 영속화
             save_rrg_history()
 
-            # 7. radar 감지 + 텔레그램 알림
+            # 8. radar 감지 + 텔레그램 알림
             await run_radar(signals)
 
             logger.info(f"완료 — {WAIT_TIME}초 후 재실행")

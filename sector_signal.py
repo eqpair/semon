@@ -47,6 +47,7 @@ current_price:  dict[str, float]      = {}
 current_volume: dict[str, float]      = {}  # 장중 누적 거래량
 rrg_history:    dict[str, list[dict]] = {}
 market_cap_store: dict[str, int]      = {}  # { code: 시총(억원) }
+kospi_store:      list[float]          = []   # KOSPI 지수 일봉 closes
 
 
 def load_market_caps_into_store(caps: dict[str, int]) -> None:
@@ -54,11 +55,18 @@ def load_market_caps_into_store(caps: dict[str, int]) -> None:
     market_cap_store.clear()
     market_cap_store.update({k: v for k, v in caps.items() if v > 0})
 
+def update_kospi(closes: list[float]) -> None:
+    """main.py에서 KOSPI 일봉 데이터를 주입할 때 호출"""
+    kospi_store.clear()
+    kospi_store.extend(closes)
+    logger.info(f"KOSPI 업데이트: {len(closes)}일치")
+
+
 # 수식 버전 — 파라미터나 수식이 바뀌면 이 값을 올려서
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
 #RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
 #RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_cap20"
-RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_daily"
+RRG_VERSION = f"bloomberg_v3_s{MA_SHORT}_l{MA_LONG}_kospi"
 
 # 섹터 RRG용 rrg_history 키 접두사
 _SECTOR_KEY_PREFIX = "sector:"
@@ -582,7 +590,15 @@ def calc_sector_rrg(sector_results: dict) -> dict:
     min_len  = min(len(v) for v in valid.values())
     aligned  = {s: v[-min_len:] for s, v in valid.items()}
     re_rebased = {s: _rebase(v) for s, v in aligned.items()}
-    market_bm = _make_benchmark(re_rebased)
+
+    # KOSPI 벤치마크 사용 (없으면 섹터 자체 평균으로 폴백)
+    if len(kospi_store) >= min_len:
+        kospi_aligned = kospi_store[-min_len:]
+        market_bm = _rebase(kospi_aligned)
+        logger.debug(f"섹터 RRG 벤치마크: KOSPI ({min_len}일)")
+    else:
+        market_bm = _make_benchmark(re_rebased)
+        logger.debug(f"섹터 RRG 벤치마크: 섹터 평균 (KOSPI 데이터 부족)")
 
     result = {}
     for sector in valid:
@@ -605,7 +621,12 @@ def calc_sector_rrg(sector_results: dict) -> dict:
                     continue
                 hist_aligned   = {s: aligned[s][:-offset] for s in aligned}
                 hist_rebased   = {s: _rebase(hist_aligned[s]) for s in hist_aligned}
-                hist_market_bm = _make_benchmark(hist_rebased)
+                hist_len = len(list(hist_aligned.values())[0])
+                if len(kospi_store) >= hist_len + offset:
+                    hist_kospi = kospi_store[-(hist_len + offset):-offset]
+                    hist_market_bm = _rebase(hist_kospi)
+                else:
+                    hist_market_bm = _make_benchmark(hist_rebased)
                 hist_ratio     = _calc_rs_ratio(hist_rebased[sector], hist_market_bm)
                 hist_momentum  = _calc_rs_momentum(hist_ratio)
                 t_ratio = next((v for v in reversed(hist_ratio)    if v is not None), None)

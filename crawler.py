@@ -17,6 +17,13 @@ SISE_URL = (
     "?symbol={code}&timeframe=day&count=500&requestType=0"
 )
 
+# KOSPI 지수 코드 (네이버 증권)
+KOSPI_CODE = "KOSPI"
+KOSPI_URL = (
+    "https://fchart.stock.naver.com/sise.nhn"
+    "?symbol=KOSPI&timeframe=day&count=500&requestType=0"
+)
+
 
 async def fetch_price(session: aiohttp.ClientSession, code: str) -> tuple[str, float | None, float | None]:
     """현재가 + 장중 누적거래량 fetch"""
@@ -42,7 +49,7 @@ async def fetch_ohlcv(
     session: aiohttp.ClientSession, code: str
 ) -> tuple[str, list[float] | None, list[float] | None]:
     """
-    최근 62일치 일봉 fetch
+    최근 500일치 일봉 fetch
     반환: (code, closes, volumes)  — 오래된 순 → 최신 순
     data 형식: 날짜|시가|고가|저가|종가|거래량
     """
@@ -77,6 +84,45 @@ async def fetch_ohlcv(
     except Exception as e:
         logger.warning(f"OHLCV 오류 ({code}): {e.__class__.__name__}: {e}")
         return code, None, None
+
+
+async def fetch_kospi_ohlcv() -> list[float] | None:
+    """
+    KOSPI 지수 일봉 fetch
+    반환: closes 리스트 (오래된 순 → 최신 순)
+    """
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(KOSPI_URL, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+                if resp.status != 200:
+                    logger.warning(f"KOSPI fetch 실패: {resp.status}")
+                    return None
+                text = await resp.text(encoding="euc-kr")
+
+        soup = BeautifulSoup(text, "html.parser")
+        items = soup.find_all("item")
+        if not items:
+            return None
+
+        closes = []
+        for item in items:
+            raw = item.get("data", "")
+            parts = raw.split("|")
+            if len(parts) >= 5:
+                try:
+                    closes.append(float(parts[4]))  # 종가
+                except ValueError:
+                    continue
+
+        if not closes:
+            return None
+
+        logger.info(f"KOSPI fetch 완료: {len(closes)}일치")
+        return closes
+
+    except Exception as e:
+        logger.warning(f"KOSPI OHLCV 오류: {e}")
+        return None
 
 
 async def fetch_all_prices(code_list: list[str]) -> dict[str, tuple[float | None, float | None]]:
