@@ -15,6 +15,7 @@ from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
 from utils import is_market_time, is_near_market_close, now_kst, save_and_push, save_closing
 from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
 from radar import run_radar
+from signal_logger import log_signals, update_tracking
 
 # ── 로깅 설정 ─────────────────────────────────────────────────
 
@@ -145,6 +146,17 @@ async def run():
 
             # 8. radar 감지 + 텔레그램 알림
             await run_radar(signals)
+
+            # 9. 신호 검증 로그
+            log_signals(signals)
+            update_tracking(signals)
+
+            # 10. signal_log → docs/data/ 복사 (GitHub Pages 접근용)
+            import shutil, os
+            src = "/home/eq/semon/data/signal_log.json"
+            dst = "/home/eq/semon/docs/data/signal_log.json"
+            if os.path.exists(src):
+                shutil.copy2(src, dst)
 
             logger.info(f"완료 — {WAIT_TIME}초 후 재실행")
             await asyncio.sleep(WAIT_TIME)
