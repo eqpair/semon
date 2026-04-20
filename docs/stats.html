@@ -14,7 +14,7 @@
             --border: #1e2535;
             --text: #f1f5f9;
             --muted: #cbd5e1;
-            --dim: #cbd5e1;
+            --dim: #94a3b8;
             --prime: #f97316;
             --confirm: #3b82f6;
             --breakout: #a855f7;
@@ -304,7 +304,7 @@
         }
 
         .ret-null {
-            color: #334155;
+            color: #64748b;
         }
 
         .section-title {
@@ -382,8 +382,8 @@
         <div style="margin-bottom:28px;">
             <div class="section-title" onclick="toggleSection('active-section')"
                 style="cursor:pointer;user-select:none;">
-                종목 매매 현황 <span class="section-sub">진행 중인 신호 (5일 후 자동 완료)</span>
-                <span id="active-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ Show</span>
+                종목 매매 현황 <span class="section-sub">5D 추적 완료 전 진행 중인 신호</span>
+                <span id="active-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ 펼치기</span>
             </div>
             <div id="active-section" style="display:none;">
                 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
@@ -423,7 +423,7 @@
             <div class="section-title" onclick="toggleSection('analysis-section')"
                 style="cursor:pointer;user-select:none;">
                 조건별 분석 <span class="section-sub">5D 수익률 기준 (데이터 누적 후 유효)</span>
-                <span id="analysis-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ Show</span>
+                <span id="analysis-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ 펼치기</span>
             </div>
             <div id="analysis-section" style="display:none;">
                 <div class="analysis-grid">
@@ -515,10 +515,10 @@
             var icon = document.getElementById(id + '-icon');
             if (el.style.display === 'none') {
                 el.style.display = 'block';
-                icon.textContent = '▼ Hide';
+                icon.textContent = '▼ 접기';
             } else {
                 el.style.display = 'none';
-                icon.textContent = '▶ Show';
+                icon.textContent = '▶ 펼치기';
             }
         }
 
@@ -622,8 +622,8 @@
                     var diffDays = Math.floor((now - d1) / (1000 * 60 * 60 * 24));
                     var maxRet = e.max_ret_5d;
                     var minRet = e.min_ret_5d;
-                    var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#334155';
-                    var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#334155';
+                    var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#94a3b8';
+                    var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#94a3b8';
 
                     return '<div class="active-item">' +
                         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
