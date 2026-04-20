@@ -380,30 +380,39 @@
 
         <!-- 종목 매매 현황 -->
         <div style="margin-bottom:28px;">
-            <div class="section-title">종목 매매 현황 <span class="section-sub">5D 추적 완료 전 진행 중인 신호</span></div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+            <div class="section-title" onclick="toggleSection('active-section')"
+                style="cursor:pointer;user-select:none;">
+                종목 매매 현황 <span class="section-sub">5D 추적 완료 전 진행 중인 신호</span>
+                <span id="active-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ Show</span>
+            </div>
+            <div id="active-section" style="display:none;">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
                     <div
-                        style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #431407;">
-                        🔥 PRIME</div>
-                    <div id="active-prime">
-                        <div style="color:#334155;font-size:12px;">없음</div>
+                        style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+                        <div
+                            style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #431407;">
+                            🔥 PRIME</div>
+                        <div id="active-prime">
+                            <div style="color:#334155;font-size:12px;">없음</div>
+                        </div>
                     </div>
-                </div>
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
                     <div
-                        style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #0c1a3a;">
-                        ★ Confirm</div>
-                    <div id="active-confirm">
-                        <div style="color:#334155;font-size:12px;">없음</div>
+                        style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+                        <div
+                            style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #0c1a3a;">
+                            ★ Confirm</div>
+                        <div id="active-confirm">
+                            <div style="color:#334155;font-size:12px;">없음</div>
+                        </div>
                     </div>
-                </div>
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
                     <div
-                        style="font-size:11px;font-weight:600;color:var(--breakout);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #2d1a45;">
-                        ⚡ Breakout</div>
-                    <div id="active-breakout">
-                        <div style="color:#334155;font-size:12px;">없음</div>
+                        style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
+                        <div
+                            style="font-size:11px;font-weight:600;color:var(--breakout);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #2d1a45;">
+                            ⚡ Breakout</div>
+                        <div id="active-breakout">
+                            <div style="color:#334155;font-size:12px;">없음</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -411,31 +420,37 @@
 
         <!-- 조건별 분석 -->
         <div style="margin-bottom:28px;">
-            <div class="section-title">조건별 분석 <span class="section-sub">5D 수익률 기준 (데이터 누적 후 유효)</span></div>
-            <div class="analysis-grid">
-                <div class="analysis-card">
-                    <div class="analysis-title">섹터 사분면별</div>
-                    <div id="anal-sector-quad"></div>
-                </div>
-                <div class="analysis-card">
-                    <div class="analysis-title">GAP 수준별</div>
-                    <div id="anal-gap"></div>
-                </div>
-                <div class="analysis-card">
-                    <div class="analysis-title">거래량 수준별</div>
-                    <div id="anal-vol"></div>
-                </div>
-                <div class="analysis-card">
-                    <div class="analysis-title">복합점수별</div>
-                    <div id="anal-combo"></div>
-                </div>
-                <div class="analysis-card">
-                    <div class="analysis-title">RS-Ratio 수준별</div>
-                    <div id="anal-rsr"></div>
-                </div>
-                <div class="analysis-card">
-                    <div class="analysis-title">RS-Momentum 수준별</div>
-                    <div id="anal-rsm"></div>
+            <div class="section-title" onclick="toggleSection('analysis-section')"
+                style="cursor:pointer;user-select:none;">
+                조건별 분석 <span class="section-sub">5D 수익률 기준 (데이터 누적 후 유효)</span>
+                <span id="analysis-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ Show</span>
+            </div>
+            <div id="analysis-section" style="display:none;">
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <div class="analysis-title">섹터 사분면별</div>
+                        <div id="anal-sector-quad"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-title">GAP 수준별</div>
+                        <div id="anal-gap"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-title">거래량 수준별</div>
+                        <div id="anal-vol"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-title">복합점수별</div>
+                        <div id="anal-combo"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-title">RS-Ratio 수준별</div>
+                        <div id="anal-rsr"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-title">RS-Momentum 수준별</div>
+                        <div id="anal-rsm"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -495,6 +510,18 @@
         var currentSort = 'date';
 
         // 우선순위 기반 신호 분류 (중복 없이 1개로)
+        function toggleSection(id) {
+            var el = document.getElementById(id);
+            var icon = document.getElementById(id + '-icon');
+            if (el.style.display === 'none') {
+                el.style.display = 'block';
+                icon.textContent = '▼ Hide';
+            } else {
+                el.style.display = 'none';
+                icon.textContent = '▶ Show';
+            }
+        }
+
         function getSignalKey(e) {
             if (e.signal === 'prime') return 'prime';
             if (e.signal === 'confirm') return 'confirm';
@@ -624,7 +651,7 @@
                 var avg = r5.length > 0 ? r5.reduce(function (s, v) { return s + v; }, 0) / r5.length : null;
                 var wr = r5.length > 0 ? r5.filter(function (v) { return v > 0; }).length / r5.length * 100 : null;
                 html += '<div class="analysis-row">' +
-                    '<span style="color:#cbd5e1;">' + label + ' <span style="color:#475569;font-size:10px;">(' + items.length + ')</span></span>' +
+                    '<span style="color:#e2e8f0;">' + label + ' <span style="color:#94a3b8;font-size:10px;">(' + items.length + ')</span></span>' +
                     '<span>' +
                     (avg != null
                         ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
@@ -706,9 +733,9 @@
                 var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : sigKey === 'confirm' ? '★ Confirm' : '⚡ Breakout';
                 var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
                 return '<tr>' +
-                    '<td style="color:#cbd5e1;">' + e.logged_at + '</td>' +
-                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:#475569;font-size:10px;">' + e.code + '</span></td>' +
-                    '<td style="color:#cbd5e1;">' + (e.sector || '-') + '</td>' +
+                    '<td style="color:#e2e8f0;">' + e.logged_at + '</td>' +
+                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:#94a3b8;font-size:10px;">' + e.code + '</span></td>' +
+                    '<td style="color:#e2e8f0;">' + (e.sector || '-') + '</td>' +
                     '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
                     '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
                     '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
