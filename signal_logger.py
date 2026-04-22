@@ -1,13 +1,13 @@
 """
 signal_logger.py — PRIME/Confirm/Breakout 신호 검증 로그
 
-기록 시점: 신호 최초 발생 시 (당일 중복 방지)
-추적 주기: 매 루프마다 1d/5d/20d/60d 수익률 + 사후 사분면 채우기
-저장 경로: /home/eq/semon/data/signal_log.json
+기록 시점: 신호 최초 발생 시 (조건 충족 시작)
+종료 시점: 신호 조건이 사라진 날 (exit 처리)
+재진입: 종료 후 다시 조건 충족하면 새 기록
 
 기록 조건 (엄격):
-  PRIME   : 섹터 Improving일 때만
-  Confirm : 섹터 Improving + combo_score >= 3
+  PRIME   : 섹터 Improving + signal == 'prime'
+  Confirm : 섹터 Improving + signal == 'confirm' + combo_score >= 3
   Breakout: GAP >= 5%p + VOL >= 2x + 섹터 Improving/Lagging
 """
 
@@ -19,8 +19,6 @@ from utils import now_kst
 logger = logging.getLogger(__name__)
 
 SIGNAL_LOG_PATH = "/home/eq/semon/data/signal_log.json"
-
-TRACK_DAYS = [1, 5, 20, 60]
 
 
 # ── 파일 I/O ─────────────────────────────────────────────────
@@ -47,94 +45,162 @@ def _save(log: list[dict]) -> None:
         logger.warning(f"signal_log 저장 실패: {e}")
 
 
-# ── 신호 기록 ─────────────────────────────────────────────────
+# ── 조건 판별 ─────────────────────────────────────────────────
 
-def log_signals(signals: dict) -> int:
-    today = now_kst().strftime("%Y-%m-%d")
-    log   = _load()
+def _get_signal_key(s: dict, sector_quad: str) -> str | None:
+    """
+    종목이 기록 조건을 충족하면 신호 키 반환, 아니면 None
+    """
+    sig   = s.get("signal", "")
+    grade = s.get("short_rs_grade", "")
+    combo = s.get("combo_score", 0)
+    vol   = s.get("vol_ratio") or 0
+    gap   = s.get("gap_1d") or 0
 
-    logged_today = {
-        e["code"] for e in log
-        if e.get("logged_at") == today
-    }
+    if sig == "prime" and sector_quad == "improving":
+        return "prime"
+    if sig == "confirm" and sector_quad == "improving" and combo >= 3:
+        return "confirm"
+    if grade == "breakout" and gap >= 5.0 and vol >= 2.0 and sector_quad in ("improving", "lagging"):
+        return "breakout"
+    return None
 
-    new_entries = []
-    sectors     = signals.get("sectors", {})
-    sector_rrg  = signals.get("sector_rrg", {})
+
+# ── 현재 조건 충족 종목 추출 ──────────────────────────────────
+
+def _get_active_codes(signals: dict) -> dict[str, dict]:
+    """
+    현재 signals에서 조건 충족 종목 추출
+    반환: {code: {signal_key, price, ...}}
+    """
+    active = {}
+    sectors    = signals.get("sectors", {})
+    sector_rrg = signals.get("sector_rrg", {})
 
     for sector_name, sector_data in sectors.items():
         sector_quad   = sector_rrg.get(sector_name, {}).get("quadrant", "neutral")
         sector_ret_1d = sector_data.get("sector_ret_1d")
 
         for s in sector_data.get("candidates", []):
-            code  = s.get("code", "")
-            sig   = s.get("signal", "")
-            grade = s.get("short_rs_grade", "")
-            combo = s.get("combo_score", 0)
-            vol   = s.get("vol_ratio") or 0
-            gap   = s.get("gap_1d") or 0
-
-            # ── 엄격한 기록 조건 ──────────────────────────────
-            # PRIME: 섹터 Improving일 때만
-            is_prime    = (sig == "prime" and sector_quad == "improving")
-
-            # Confirm: 섹터 Improving + combo_score >= 3
-            is_confirm  = (sig == "confirm" and sector_quad == "improving" and combo >= 3)
-
-            # Breakout: GAP >= 5%p + VOL >= 2x + 섹터 Improving/Lagging
-            is_breakout = (
-                grade == "breakout"
-                and gap >= 5.0
-                and vol >= 2.0
-                and sector_quad in ("improving", "lagging")
-            )
-
-            is_track = is_prime or is_confirm or is_breakout
-            if not is_track:
+            code = s.get("code", "")
+            key  = _get_signal_key(s, sector_quad)
+            if not key:
                 continue
-
-            if code in logged_today:
-                continue
-
-            entry = {
-                "logged_at":       today,
-                "code":            code,
-                "name":            s.get("name", ""),
-                "sector":          sector_name,
-                "signal":          sig,
-                "short_rs_grade":  grade,
-                "combo_score":     combo,
-                "price_at_signal": s.get("price"),
-                "rs_ratio":        s.get("rs_ratio"),
-                "rs_momentum":     s.get("rs_momentum"),
-                "quadrant":        s.get("quadrant"),
-                "sector_quadrant": sector_quad,
-                "sector_ret_1d":   sector_ret_1d,
-                "gap_1d":          s.get("gap_1d"),
-                "vol_ratio":       s.get("vol_ratio"),
-                "rs_5d":           s.get("rs_5d"),
-                "ret_1d":          None,
-                "ret_5d":          None,
-                "ret_20d":         None,
-                "ret_60d":         None,
-                "max_ret_5d":      None,
-                "min_ret_5d":      None,
-                "quadrant_5d":     None,
-                "quadrant_20d":    None,
-                "tracked_1d":      False,
-                "tracked_5d":      False,
-                "tracked_20d":     False,
-                "tracked_60d":     False,
+            active[code] = {
+                "signal_key":    key,
+                "sector_name":   sector_name,
+                "sector_quad":   sector_quad,
+                "sector_ret_1d": sector_ret_1d,
+                "signal":        s.get("signal", ""),
+                "grade":         s.get("short_rs_grade", ""),
+                "combo_score":   s.get("combo_score", 0),
+                "price":         s.get("price"),
+                "rs_ratio":      s.get("rs_ratio"),
+                "rs_momentum":   s.get("rs_momentum"),
+                "quadrant":      s.get("quadrant"),
+                "gap_1d":        s.get("gap_1d"),
+                "vol_ratio":     s.get("vol_ratio"),
+                "rs_5d":         s.get("rs_5d"),
             }
-            new_entries.append(entry)
-            logged_today.add(code)
+    return active
 
-    if new_entries:
-        log.extend(new_entries)
+
+# ── 신호 기록 + 종료 처리 ─────────────────────────────────────
+
+def log_signals(signals: dict) -> int:
+    today  = now_kst().strftime("%Y-%m-%d")
+    log    = _load()
+    active = _get_active_codes(signals)
+
+    # 현재 추적 중인 항목 (exited=False)
+    tracking = {
+        e["code"]: e for e in log
+        if not e.get("exited", False)
+    }
+
+    new_count = 0
+
+    # ── 1. 종료 처리: 추적 중인데 오늘 조건 미충족 ──────────
+    for code, entry in tracking.items():
+        if code not in active:
+            entry["exited"]     = True
+            entry["exit_at"]    = today
+            entry["exit_price"] = None  # update_tracking에서 채워짐
+            entry["ret_exit"]   = None
+
+    # ── 2. 신규 기록: 조건 충족인데 추적 중이 아닌 것 ────────
+    for code, info in active.items():
+        if code in tracking:
+            continue  # 이미 추적 중
+
+        entry = {
+            # 기본
+            "logged_at":       today,
+            "code":            code,
+            "name":            _get_name(signals, code),
+            "sector":          info["sector_name"],
+
+            # 신호
+            "signal":          info["signal"],
+            "short_rs_grade":  info["grade"],
+            "combo_score":     info["combo_score"],
+
+            # 진입가
+            "price_at_signal": info["price"],
+
+            # RRG 위치
+            "rs_ratio":        info["rs_ratio"],
+            "rs_momentum":     info["rs_momentum"],
+            "quadrant":        info["quadrant"],
+
+            # 섹터
+            "sector_quadrant": info["sector_quad"],
+            "sector_ret_1d":   info["sector_ret_1d"],
+
+            # 단기 지표
+            "gap_1d":          info["gap_1d"],
+            "vol_ratio":       info["vol_ratio"],
+            "rs_5d":           info["rs_5d"],
+
+            # 수익률 추적
+            "ret_1d":          None,
+            "ret_5d":          None,
+            "ret_20d":         None,
+            "ret_60d":         None,
+            "max_ret_5d":      None,
+            "min_ret_5d":      None,
+            "quadrant_5d":     None,
+            "quadrant_20d":    None,
+
+            # 추적 플래그
+            "tracked_1d":      False,
+            "tracked_5d":      False,
+            "tracked_20d":     False,
+            "tracked_60d":     False,
+
+            # 종료
+            "exited":          False,
+            "exit_at":         None,
+            "exit_price":      None,
+            "ret_exit":        None,
+        }
+        log.append(entry)
+        new_count += 1
+
+    if new_count > 0 or any(e.get("exit_at") == today for e in log):
         _save(log)
-        logger.info(f"signal_log 신규 기록: {len(new_entries)}건")
+        if new_count > 0:
+            logger.info(f"signal_log 신규 기록: {new_count}건")
 
-    return len(new_entries)
+    return new_count
+
+
+def _get_name(signals: dict, code: str) -> str:
+    for sector_data in signals.get("sectors", {}).values():
+        for s in sector_data.get("candidates", []):
+            if s.get("code") == code:
+                return s.get("name", "")
+    return ""
 
 
 # ── 사후 수익률 추적 ──────────────────────────────────────────
@@ -180,6 +246,13 @@ def update_tracking(signals: dict) -> int:
 
         changed = False
 
+        # 종료 시점 가격 채우기
+        if entry.get("exited") and entry.get("exit_at") == today and entry.get("exit_price") is None:
+            entry["exit_price"] = price_now
+            entry["ret_exit"]   = _calc_ret(price_then, price_now)
+            changed = True
+
+        # 기간별 수익률
         if not entry.get("tracked_1d") and days_elapsed >= 1:
             entry["ret_1d"]     = _calc_ret(price_then, price_now)
             entry["tracked_1d"] = True
@@ -202,6 +275,7 @@ def update_tracking(signals: dict) -> int:
             entry["tracked_60d"]  = True
             changed = True
 
+        # 5D 내 최고/최저
         if days_elapsed < 7 and price_now:
             ret_now = _calc_ret(price_then, price_now)
             if ret_now is not None:

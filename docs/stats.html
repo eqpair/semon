@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>SEMon Stats</title>
+    <title>semon Stats</title>
     <link rel="icon" href="./favicon.svg" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
@@ -336,7 +336,7 @@
     <div class="header">
         <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
-                <h1 style="font-size:18px;font-weight:700;color:#f1f5f9;">📈 Signal Statistics</h1>
+                <h1 style="font-size:18px;font-weight:700;color:#f1f5f9;">📈 Signal Stats</h1>
                 <div style="font-size:11px;color:var(--dim);margin-top:2px;">신호 검증 로그 · <span id="updated">-</span>
                 </div>
             </div>
@@ -359,6 +359,10 @@
                     <span id="prime-avg5">-</span></div>
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="prime-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
+                <div
+                    style="margin-top:12px;padding-top:10px;border-top:1px solid #2d1a1a;font-size:11px;color:#94a3b8;line-height:1.6;">
+                    섹터가 KOSPI 대비 살아나는 중, 그 안에서 Lagging→Improving 전환 + 모멘텀 가속<br><span style="color:var(--prime);">→ 가장
+                        이른 매수 타이밍</span></div>
             </div>
             <div class="stat-card confirm">
                 <div class="stat-label">★ Confirm</div>
@@ -367,6 +371,10 @@
                     <span id="confirm-avg5">-</span></div>
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="confirm-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="confirm-avg20">-</span></div>
+                <div
+                    style="margin-top:12px;padding-top:10px;border-top:1px solid #0c1a3a;font-size:11px;color:#94a3b8;line-height:1.6;">
+                    섹터 Improving + Improving 2회 이상 확인 + 복합점수 3점 만점<br><span style="color:var(--confirm);">→ 전환이 확인된 안정적
+                        종목</span></div>
             </div>
             <div class="stat-card breakout">
                 <div class="stat-label">⚡ Breakout</div>
@@ -375,6 +383,10 @@
                     평균 <span id="breakout-avg5">-</span></div>
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="breakout-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="breakout-avg20">-</span></div>
+                <div
+                    style="margin-top:12px;padding-top:10px;border-top:1px solid #2d1a45;font-size:11px;color:#94a3b8;line-height:1.6;">
+                    GAP 5%p 이상 + 거래량 2배 이상, 섹터 Improving/Lagging 국면<br><span style="color:var(--breakout);">→ 수급 동반 단기
+                        급등, 이유 파악 필요</span></div>
             </div>
         </div>
 
