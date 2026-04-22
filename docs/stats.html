@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>semon Stats</title>
+    <title>SEMon Stats</title>
     <link rel="icon" href="./favicon.svg" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
@@ -188,6 +188,10 @@
             background: #ffffff08;
         }
 
+        .exited-row td {
+            opacity: 0.45;
+        }
+
         .signal-badge {
             display: inline-block;
             padding: 2px 8px;
@@ -209,6 +213,17 @@
         .signal-badge.breakout {
             background: #2d1a45;
             color: var(--breakout);
+        }
+
+        .exit-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            background: #1e2535;
+            color: #64748b;
+            margin-left: 4px;
         }
 
         .quad-badge {
@@ -361,7 +376,7 @@
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
                 <div
                     style="margin-top:12px;padding-top:10px;border-top:1px solid #2d1a1a;font-size:11px;color:#94a3b8;line-height:1.6;">
-                    섹터가 KOSPI 대비 살아나는 중, 그 안에서 Lagging→Improving 전환 + 모멘텀 가속<br><span style="color:var(--prime);">→ 가장
+                    섹터가 KOSPI 대비 살아나는 중, Lagging→Improving 전환 + 모멘텀 가속<br><span style="color:var(--prime);">→ 가장
                         이른 매수 타이밍</span></div>
             </div>
             <div class="stat-card confirm">
@@ -394,7 +409,7 @@
         <div style="margin-bottom:28px;">
             <div class="section-title" onclick="toggleSection('active-section')"
                 style="cursor:pointer;user-select:none;">
-                종목 매매 현황 <span class="section-sub">5D 추적 완료 전 진행 중인 신호</span>
+                종목 매매 현황 <span class="section-sub">진행 중인 신호 (조건 사라지면 자동 종료)</span>
                 <span id="active-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ 펼치기</span>
             </div>
             <div id="active-section" style="display:none;">
@@ -507,6 +522,8 @@
                             <th>MIN5D</th>
                             <th>Q→5D</th>
                             <th>Q→20D</th>
+                            <th>종료일</th>
+                            <th>종료수익</th>
                         </tr>
                     </thead>
                     <tbody id="log-tbody"></tbody>
@@ -521,17 +538,11 @@
         var currentFilter = 'all';
         var currentSort = 'date';
 
-        // 우선순위 기반 신호 분류 (중복 없이 1개로)
         function toggleSection(id) {
             var el = document.getElementById(id);
             var icon = document.getElementById(id + '-icon');
-            if (el.style.display === 'none') {
-                el.style.display = 'block';
-                icon.textContent = '▼ 접기';
-            } else {
-                el.style.display = 'none';
-                icon.textContent = '▶ 펼치기';
-            }
+            if (el.style.display === 'none') { el.style.display = 'block'; icon.textContent = '▼ 접기'; }
+            else { el.style.display = 'none'; icon.textContent = '▶ 펼치기'; }
         }
 
         function getSignalKey(e) {
@@ -580,11 +591,9 @@
                 var k = getSignalKey(e);
                 if (groups[k]) groups[k].push(e);
             });
-
             Object.keys(groups).forEach(function (sig) {
                 var items = groups[sig];
                 document.getElementById(sig + '-count').textContent = items.length + '건';
-
                 var r5 = items.map(function (e) { return e.ret_5d; }).filter(function (v) { return v != null; });
                 if (r5.length > 0) {
                     var avg5 = r5.reduce(function (s, v) { return s + v; }, 0) / r5.length;
@@ -594,7 +603,6 @@
                     el.style.color = avg5 >= 0 ? 'var(--green)' : 'var(--red)';
                     document.getElementById(sig + '-wr5').textContent = wr5.toFixed(0) + '%';
                 }
-
                 var r20 = items.map(function (e) { return e.ret_20d; }).filter(function (v) { return v != null; });
                 if (r20.length > 0) {
                     var avg20 = r20.reduce(function (s, v) { return s + v; }, 0) / r20.length;
@@ -610,33 +618,26 @@
         function renderActive() {
             var now = new Date();
             var groups = { prime: [], confirm: [], breakout: [] };
-
             logData.forEach(function (e) {
                 var k = getSignalKey(e);
                 if (k === 'other') return;
-                if (!e.tracked_5d) groups[k].push(e);
+                if (!e.exited) groups[k].push(e);  // 진행 중인 것만
             });
-
             ['prime', 'confirm', 'breakout'].forEach(function (sig) {
                 var el = document.getElementById('active-' + sig);
                 var items = groups[sig];
-
                 if (!items.length) {
                     el.innerHTML = '<div style="color:#334155;font-size:12px;padding:4px 0;">없음</div>';
                     return;
                 }
-
                 items.sort(function (a, b) { return b.logged_at.localeCompare(a.logged_at); });
-
                 el.innerHTML = items.map(function (e) {
                     var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
                     var d1 = new Date(e.logged_at);
                     var diffDays = Math.floor((now - d1) / (1000 * 60 * 60 * 24));
-                    var maxRet = e.max_ret_5d;
-                    var minRet = e.min_ret_5d;
+                    var maxRet = e.max_ret_5d, minRet = e.min_ret_5d;
                     var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#94a3b8';
                     var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#94a3b8';
-
                     return '<div class="active-item">' +
                         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
                         '<a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-size:12px;font-weight:600;">' + e.name + '</a>' +
@@ -648,8 +649,7 @@
                         '<span>MIN <span style="color:' + minCol + ';font-weight:600;">' + (minRet != null ? (minRet > 0 ? '+' : '') + minRet.toFixed(2) + '%' : '-') + '</span></span>' +
                         '<span style="color:#94a3b8;">GAP ' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</span>' +
                         '<span style="color:#94a3b8;">VOL ' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</span>' +
-                        '</div>' +
-                        '</div>';
+                        '</div></div>';
                 }).join('');
             });
         }
@@ -664,12 +664,7 @@
                 var wr = r5.length > 0 ? r5.filter(function (v) { return v > 0; }).length / r5.length * 100 : null;
                 html += '<div class="analysis-row">' +
                     '<span style="color:#e2e8f0;">' + label + ' <span style="color:#94a3b8;font-size:10px;">(' + items.length + ')</span></span>' +
-                    '<span>' +
-                    (avg != null
-                        ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
-                        (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '')
-                        : '<span style="color:#1e2535;">-</span>') +
-                    '</span></div>';
+                    '<span>' + (avg != null ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' + (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '') : '<span style="color:#1e2535;">-</span>') + '</span></div>';
             });
             el.innerHTML = html || '<div style="color:var(--dim);font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
         }
@@ -716,44 +711,41 @@
             renderTable();
         }
 
-        function sortBy(key, ev) {
-            currentSort = key;
-            renderTable();
-        }
+        function sortBy(key, ev) { currentSort = key; renderTable(); }
 
         function renderTable() {
             var filtered = logData.filter(function (e) {
                 if (currentFilter === 'all') return true;
                 return getSignalKey(e) === currentFilter;
             });
-
             filtered.sort(function (a, b) {
                 if (currentSort === 'date') return b.logged_at.localeCompare(a.logged_at);
                 if (currentSort === 'ret5') return (b.ret_5d || -999) - (a.ret_5d || -999);
                 if (currentSort === 'ret20') return (b.ret_20d || -999) - (a.ret_20d || -999);
                 return 0;
             });
-
             var tbody = document.getElementById('log-tbody');
             if (!filtered.length) {
-                tbody.innerHTML = '<tr><td colspan="20" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="22" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
                 return;
             }
-
             tbody.innerHTML = filtered.map(function (e) {
                 var sigKey = getSignalKey(e);
                 var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : sigKey === 'confirm' ? '★ Confirm' : '⚡ Breakout';
                 var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
-                return '<tr>' +
+                var isExited = e.exited === true;
+                var trClass = isExited ? ' class="exited-row"' : '';
+                var exitBadge = isExited ? '<span class="exit-badge">종료 ' + (e.exit_at || '') + '</span>' : '';
+                return '<tr' + trClass + '>' +
                     '<td style="color:#e2e8f0;">' + e.logged_at + '</td>' +
-                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:#94a3b8;font-size:10px;">' + e.code + '</span></td>' +
+                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:#94a3b8;font-size:10px;">' + e.code + '</span>' + exitBadge + '</td>' +
                     '<td style="color:#e2e8f0;">' + (e.sector || '-') + '</td>' +
                     '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
                     '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
                     '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
                     '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
                     '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
-                    '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : '#94a3b8') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
+                    '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : '#94a3b8') + ';"> ' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
                     '<td style="color:' + (e.vol_ratio >= 1.5 ? '#fb923c' : '#94a3b8') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
                     '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
                     '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
@@ -765,6 +757,8 @@
                     '<td>' + fmtRet(e.min_ret_5d) + '</td>' +
                     '<td>' + quadBadge(e.quadrant_5d) + '</td>' +
                     '<td>' + quadBadge(e.quadrant_20d) + '</td>' +
+                    '<td style="color:#64748b;font-size:11px;">' + (e.exit_at || '-') + '</td>' +
+                    '<td>' + fmtRet(e.ret_exit) + '</td>' +
                     '</tr>';
             }).join('');
         }
