@@ -138,25 +138,26 @@ async def run():
             logger.info("신호 계산 시작")
             signals = calc_all_signals()
 
-            # 6. JSON 저장 + git push
-            save_and_push(signals)
-
-            # 7. rrg_history 영속화
-            save_rrg_history()
-
-            # 8. radar 감지 + 텔레그램 알림
-            await run_radar(signals)
-
-            # 9. 신호 검증 로그
+            # 6. 신호 검증 로그 (push 전에 먼저 처리)
             log_signals(signals)
             update_tracking(signals)
 
-            # 10. signal_log → docs/data/ 복사 (GitHub Pages 접근용)
-            import shutil, os
+            # 7. signal_log → docs/data/ 복사 + staged
+            import shutil, os, subprocess
             src = "/home/eq/semon/data/signal_log.json"
             dst = "/home/eq/semon/docs/data/signal_log.json"
             if os.path.exists(src):
                 shutil.copy2(src, dst)
+                subprocess.run(["git", "add", dst], cwd="/home/eq/semon", capture_output=True)
+
+            # 8. JSON 저장 + git push (signal_log 포함)
+            save_and_push(signals)
+
+            # 9. rrg_history 영속화
+            save_rrg_history()
+
+            # 10. radar 감지 + 텔레그램 알림
+            await run_radar(signals)
 
             logger.info(f"완료 — {WAIT_TIME}초 후 재실행")
             await asyncio.sleep(WAIT_TIME)
