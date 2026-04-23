@@ -61,8 +61,6 @@ def _get_signal_key(s: dict, sector_quad: str) -> str | None:
         return "prime"
     if sig == "confirm" and sector_quad == "improving" and combo >= 3:
         return "confirm"
-    if grade == "breakout" and gap >= 5.0 and vol >= 2.0 and sector_quad in ("improving", "lagging"):
-        return "breakout"
     return None
 
 
