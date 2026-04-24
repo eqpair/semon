@@ -17,7 +17,6 @@
             --dim: #94a3b8;
             --prime: #f97316;
             --confirm: #3b82f6;
-            --breakout: #a855f7;
             --green: #22c55e;
             --red: #ef4444;
             --gold: #f59e0b;
@@ -91,10 +90,6 @@
             background: var(--confirm);
         }
 
-        .stat-card.breakout::before {
-            background: var(--breakout);
-        }
-
         .stat-label {
             font-size: 11px;
             font-weight: 600;
@@ -145,11 +140,6 @@
         .filter-btn.confirm.active {
             color: var(--confirm);
             border-color: var(--confirm);
-        }
-
-        .filter-btn.breakout.active {
-            color: var(--breakout);
-            border-color: var(--breakout);
         }
 
         .data-table {
@@ -208,11 +198,6 @@
         .signal-badge.confirm {
             background: #0c1a3a;
             color: var(--confirm);
-        }
-
-        .signal-badge.breakout {
-            background: #2d1a45;
-            color: var(--breakout);
         }
 
         .exit-badge {
@@ -366,7 +351,7 @@
     <div class="container">
 
         <!-- 요약 카드 -->
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px;">
             <div class="stat-card prime">
                 <div class="stat-label">🔥 PRIME</div>
                 <div class="stat-value" id="prime-count">-</div>
@@ -376,8 +361,8 @@
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
                 <div
                     style="margin-top:12px;padding-top:10px;border-top:1px solid #2d1a1a;font-size:11px;color:#94a3b8;line-height:1.6;">
-                    섹터가 KOSPI 대비 살아나는 중, Lagging→Improving 전환 + 모멘텀 가속<br><span style="color:var(--prime);">→ 가장
-                        이른 매수 타이밍</span></div>
+                    섹터가 KOSPI 대비 살아나는 중, Lagging→Improving 전환 + 모멘텀 가속<br><span style="color:var(--prime);">→ 가장 이른 매수
+                        타이밍</span></div>
             </div>
             <div class="stat-card confirm">
                 <div class="stat-label">★ Confirm</div>
@@ -391,18 +376,6 @@
                     섹터 Improving + Improving 2회 이상 확인 + 복합점수 3점 만점<br><span style="color:var(--confirm);">→ 전환이 확인된 안정적
                         종목</span></div>
             </div>
-            <div class="stat-card breakout">
-                <div class="stat-label">⚡ Breakout</div>
-                <div class="stat-value" id="breakout-count">-</div>
-                <div class="stat-sub">5D 적중률 <span id="breakout-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp;
-                    평균 <span id="breakout-avg5">-</span></div>
-                <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="breakout-wr20"
-                        style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="breakout-avg20">-</span></div>
-                <div
-                    style="margin-top:12px;padding-top:10px;border-top:1px solid #2d1a45;font-size:11px;color:#94a3b8;line-height:1.6;">
-                    GAP 5%p 이상 + 거래량 2배 이상, 섹터 Improving/Lagging 국면<br><span style="color:var(--breakout);">→ 수급 동반 단기
-                        급등, 이유 파악 필요</span></div>
-            </div>
         </div>
 
         <!-- 종목 매매 현황 -->
@@ -413,7 +386,7 @@
                 <span id="active-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ 펼치기</span>
             </div>
             <div id="active-section" style="display:none;">
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
                     <div
                         style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
                         <div
@@ -429,15 +402,6 @@
                             style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #0c1a3a;">
                             ★ Confirm</div>
                         <div id="active-confirm">
-                            <div style="color:#334155;font-size:12px;">없음</div>
-                        </div>
-                    </div>
-                    <div
-                        style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;">
-                        <div
-                            style="font-size:11px;font-weight:600;color:var(--breakout);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #2d1a45;">
-                            ⚡ Breakout</div>
-                        <div id="active-breakout">
                             <div style="color:#334155;font-size:12px;">없음</div>
                         </div>
                     </div>
@@ -491,7 +455,6 @@
                     <button class="filter-btn all active" onclick="filterSignal('all', event)">ALL</button>
                     <button class="filter-btn prime" onclick="filterSignal('prime', event)">🔥 PRIME</button>
                     <button class="filter-btn confirm" onclick="filterSignal('confirm', event)">★ Confirm</button>
-                    <button class="filter-btn breakout" onclick="filterSignal('breakout', event)">⚡ Breakout</button>
                     <div style="width:1px;background:var(--border);margin:0 4px;"></div>
                     <button class="filter-btn all" onclick="sortBy('date', event)">날짜↓</button>
                     <button class="filter-btn all" onclick="sortBy('ret5', event)">5D수익률↓</button>
@@ -530,7 +493,6 @@
                 </table>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -548,7 +510,6 @@
         function getSignalKey(e) {
             if (e.signal === 'prime') return 'prime';
             if (e.signal === 'confirm') return 'confirm';
-            if (e.short_rs_grade === 'breakout') return 'breakout';
             return 'other';
         }
 
@@ -586,7 +547,7 @@
         }
 
         function renderStats() {
-            var groups = { prime: [], confirm: [], breakout: [] };
+            var groups = { prime: [], confirm: [] };
             logData.forEach(function (e) {
                 var k = getSignalKey(e);
                 if (groups[k]) groups[k].push(e);
@@ -617,13 +578,13 @@
 
         function renderActive() {
             var now = new Date();
-            var groups = { prime: [], confirm: [], breakout: [] };
+            var groups = { prime: [], confirm: [] };
             logData.forEach(function (e) {
                 var k = getSignalKey(e);
                 if (k === 'other') return;
-                if (!e.exited) groups[k].push(e);  // 진행 중인 것만
+                if (!e.exited) groups[k].push(e);
             });
-            ['prime', 'confirm', 'breakout'].forEach(function (sig) {
+            ['prime', 'confirm'].forEach(function (sig) {
                 var el = document.getElementById('active-' + sig);
                 var items = groups[sig];
                 if (!items.length) {
@@ -731,7 +692,7 @@
             }
             tbody.innerHTML = filtered.map(function (e) {
                 var sigKey = getSignalKey(e);
-                var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : sigKey === 'confirm' ? '★ Confirm' : '⚡ Breakout';
+                var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : '★ Confirm';
                 var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
                 var isExited = e.exited === true;
                 var trClass = isExited ? ' class="exited-row"' : '';
