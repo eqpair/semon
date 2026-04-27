@@ -22,7 +22,7 @@
         }
 
         .header {
-            padding: 20px 24px 16px;
+            padding: 14px 16px 12px;
             border-bottom: 1px solid #1e2535;
             background: #0f1117;
             position: sticky;
@@ -30,16 +30,64 @@
             z-index: 100;
         }
 
-        .tab-btn {
-            padding: 6px 18px;
+        /* ── 헤더 상단 행 ── */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ── 네비게이션 링크 묶음 ── */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link-btn {
+            font-size: 11px;
+            color: #60a5fa;
+            text-decoration: none;
+            padding: 4px 8px;
+            border: 1px solid #1e3a5f;
             border-radius: 6px;
-            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .nav-link-btn.purple {
+            color: #a78bfa;
+            border-color: #3b1f6e;
+        }
+
+        /* 범례 */
+        .legend-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-bar {
+            width: 120px;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d);
+        }
+
+        .tab-btn {
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 500;
             cursor: pointer;
             border: 1px solid #2d3748;
             background: transparent;
             color: #64748b;
             transition: all 0.15s;
+            white-space: nowrap;
         }
 
         .tab-btn:hover {
@@ -53,8 +101,23 @@
             color: #fff;
         }
 
+        /* ── 탭 행 ── */
+        .tab-row {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-divider {
+            width: 1px;
+            height: 18px;
+            background: #2d3748;
+            margin: 0 2px;
+        }
+
         #heatmap-container {
-            padding: 16px 24px;
+            padding: 12px 16px;
         }
 
         .treemap-wrapper {
@@ -67,20 +130,13 @@
             background: rgba(15, 17, 23, 0.97);
             border: 1px solid #2d3748;
             border-radius: 10px;
-            padding: 12px 16px;
+            padding: 10px 14px;
             font-size: 12px;
             pointer-events: none;
             z-index: 200;
             display: none;
-            min-width: 180px;
+            min-width: 160px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-        }
-
-        .legend-bar {
-            width: 180px;
-            height: 10px;
-            border-radius: 5px;
-            background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d);
         }
 
         ::-webkit-scrollbar {
@@ -91,6 +147,45 @@
             background: #2d3748;
             border-radius: 2px;
         }
+
+        /* ── 모바일 ── */
+        @media (max-width: 640px) {
+            .header {
+                padding: 10px 12px 8px;
+            }
+
+            .nav-links {
+                gap: 4px;
+            }
+
+            .nav-link-btn {
+                font-size: 10px;
+                padding: 3px 6px;
+            }
+
+            .legend-wrap {
+                display: none;
+            }
+
+            /* 범례는 좁은 화면에서 숨김 */
+            .tab-btn {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+
+            #heatmap-container {
+                padding: 8px 10px;
+            }
+
+            /* 섹터 드릴다운: 모바일에서는 위아래로 */
+            #sector-split {
+                flex-direction: column !important;
+            }
+
+            #sector-drill {
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 
@@ -98,30 +193,28 @@
     <div id="hm-tooltip"></div>
 
     <div class="header">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div class="header-top">
             <div>
-                <h1 style="font-size:20px;font-weight:700;color:#f1f5f9;">📊 Heatmap</h1>
+                <h1 style="font-size:18px;font-weight:700;color:#f1f5f9;">📊 Heatmap</h1>
                 <div style="font-size:11px;color:#475569;margin-top:2px;">Last Update: <span id="updated">-</span></div>
             </div>
-            <div style="display:flex;align-items:center;gap:12px;">
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span style="font-size:10px;color:#dc2626;">-3%</span>
-                    <div class="legend-bar"></div>
-                    <span style="font-size:10px;color:#16a34a;">+3%</span>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                <div class="nav-links">
+                    <div class="legend-wrap">
+                        <span style="font-size:10px;color:#dc2626;">-3%</span>
+                        <div class="legend-bar"></div>
+                        <span style="font-size:10px;color:#16a34a;">+3%</span>
+                    </div>
+                    <a href="./index.html" class="nav-link-btn">✳️ RRG</a>
+                    <a href="./momentum.html" class="nav-link-btn">▶ Momentum</a>
+                    <a href="./stats.html" class="nav-link-btn purple">📈 Stats</a>
                 </div>
-                <a href="./index.html"
-                    style="font-size:12px;color:#60a5fa;text-decoration:none;padding:4px 10px;border:1px solid #1e3a5f;border-radius:6px;">✳️
-                    Relative Rotation Graph</a>
-                <a href="./momentum.html"
-                    style="font-size:12px;color:#60a5fa;text-decoration:none;padding:4px 10px;border:1px solid #1e3a5f;border-radius:6px;">▶
-                    Momentum Board</a>
-                <a href="./stats.html" style="font-size:12px;color:#a78bfa;text-decoration:none;padding:4px 10px;border:1px solid #3b1f6e;border-radius:6px;">📈 Stats</a>
             </div>
         </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <div class="tab-row">
             <button class="tab-btn active" id="btn-sector" onclick="switchTab('sector')">섹터 히트맵</button>
             <button class="tab-btn" id="btn-stock" onclick="switchTab('stock')">종목 히트맵</button>
-            <div style="width:1px;height:20px;background:#2d3748;margin:0 4px;"></div>
+            <div class="tab-divider"></div>
             <button class="tab-btn active" id="btn-1d" onclick="switchRet('ret_1d')">당일</button>
             <button class="tab-btn" id="btn-5d" onclick="switchRet('ret_5d')">1주</button>
             <button class="tab-btn" id="btn-1m" onclick="switchRet('ret_20d')">1달</button>
@@ -129,13 +222,13 @@
     </div>
 
     <div id="heatmap-container">
-        <div id="loading" style="text-align:center;padding:80px;color:#475569;font-size:14px;">데이터 로딩 중...</div>
+        <div id="loading" style="text-align:center;padding:60px;color:#475569;font-size:14px;">데이터 로딩 중...</div>
         <div id="view-sector" style="display:none;">
             <div id="sector-split" style="display:flex;gap:12px;">
                 <div id="sector-treemap" class="treemap-wrapper" style="flex:1;min-width:0;"></div>
                 <div id="sector-drill" style="display:none;flex-shrink:0;width:40%;">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                        <div id="drill-title" style="font-size:14px;font-weight:700;color:#f1f5f9;"></div>
+                        <div id="drill-title" style="font-size:13px;font-weight:700;color:#f1f5f9;"></div>
                         <button onclick="closeDrill()"
                             style="font-size:11px;color:#64748b;background:none;border:1px solid #2d3748;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
                             닫기</button>
@@ -207,15 +300,8 @@
             return { improving: '#2563eb', leading: '#16a34a', lagging: '#d97706', weakening: '#dc2626' }[q] || '#64748b';
         }
 
-        function fmtRet(v) {
-            if (v == null) return '-';
-            return (v > 0 ? '+' : '') + v.toFixed(2) + '%';
-        }
-
-        function fmtCap(v) {
-            if (!v) return '-';
-            return v >= 10000 ? (v / 10000).toFixed(1) + '조' : v + '억';
-        }
+        function fmtRet(v) { if (v == null) return '-'; return (v > 0 ? '+' : '') + v.toFixed(2) + '%'; }
+        function fmtCap(v) { if (!v) return '-'; return v >= 10000 ? (v / 10000).toFixed(1) + '조' : v + '억'; }
 
         function squarify(data, x, y, w, h) {
             if (!data.length) return [];
@@ -263,7 +349,6 @@
         }
 
         var tipEl = document.getElementById('hm-tooltip');
-
         function showTip(html, e) { tipEl.innerHTML = html; tipEl.style.display = 'block'; moveTip(e); }
         function moveTip(e) {
             var tw = tipEl.offsetWidth || 200, th = tipEl.offsetHeight || 150;
@@ -284,8 +369,8 @@
             var container = document.getElementById('sector-treemap');
             var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
             var drillOpen = document.getElementById('sector-drill').style.display !== 'none';
-            var W = container.offsetWidth || (window.innerWidth - 48 - (drillOpen ? window.innerWidth * 0.4 + 12 : 0));
-            var H = Math.max(500, window.innerHeight - 180);
+            var W = container.offsetWidth || (window.innerWidth - 32 - (drillOpen ? window.innerWidth * 0.4 + 12 : 0));
+            var H = Math.max(400, window.innerHeight - 200);
 
             var items = Object.keys(sectors).map(function (name) {
                 var d = sectors[name];
@@ -322,8 +407,6 @@
                 var fs = Math.min(16, Math.max(10, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.8));
                 var retStr = fmtRet(cell.ret);
                 var qc = quadColor(cell.quad);
-                var shortName = cell.name;
-
                 var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
                     '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
                     '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
@@ -340,7 +423,7 @@
                 var tfs = Math.max(9, fs);
                 var retVisible = th > 28;
                 var nameY = cell.y + PAD + th / 2 - (retVisible ? 7 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + shortName + '</text>';
+                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + cell.name + '</text>';
                 if (retVisible) {
                     var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 9) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + retStr + '</text>';
@@ -354,13 +437,12 @@
         function renderStock() {
             var container = document.getElementById('stock-treemap');
             var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
-            var W = container.offsetWidth || window.innerWidth - 48;
-            var H = Math.max(600, window.innerHeight - 180);
+            var W = container.offsetWidth || window.innerWidth - 32;
+            var H = Math.max(500, window.innerHeight - 200);
 
             var allStocks = [];
             Object.keys(sectors).forEach(function (sname) {
-                var sdata = sectors[sname];
-                sdata.candidates.forEach(function (c) {
+                sectors[sname].candidates.forEach(function (c) {
                     if (!c.market_cap) return;
                     allStocks.push({
                         name: c.name, code: c.code, value: c.market_cap,
@@ -389,16 +471,13 @@
                 var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
                 var retStr = fmtRet(cell.ret);
                 var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
-                var shortName = cell.name;
 
-                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;">' + cell.code + '</span></div>' +
                     '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
                     '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' +
                     '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
                     (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
                     (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
-                    (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5 >= 2 ? '#c084fc' : '#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
                     (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
 
                 svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
@@ -408,7 +487,7 @@
                 var tfs2 = Math.max(9, fs);
                 var retVisible2 = th > 24;
                 var nameY2 = cell.y + PAD + th / 2 - (retVisible2 ? 6 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + shortName + '</text>';
+                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + cell.name + '</text>';
                 if (retVisible2) {
                     var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs2 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + retStr + '</text>';
@@ -433,18 +512,17 @@
             document.getElementById('drill-title').textContent = sectorName + ' 섹터';
 
             var container = document.getElementById('drill-treemap');
-            var W = container.offsetWidth || window.innerWidth * 0.4;
-            var H = Math.max(500, window.innerHeight - 220);
+            var isMobile = window.innerWidth <= 640;
+            var W = container.offsetWidth || (isMobile ? window.innerWidth - 32 : window.innerWidth * 0.4);
+            var H = Math.max(400, window.innerHeight - 240);
 
-            // 시총 있으면 시총 기준, 없으면 동등가중
             var stocks = sdata.candidates.map(function (c) {
                 return {
                     name: c.name, code: c.code, value: c.market_cap || 1,
                     ret: c[currentRet], cap: c.market_cap || 0,
                     signal: c.signal, grade: c.short_rs_grade,
                     gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
-                    price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
-                    quad: (sectorRRG[sectorName] || {}).quadrant || 'neutral'
+                    price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d
                 };
             });
 
@@ -459,16 +537,12 @@
                 var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
                 var retStr = fmtRet(cell.ret);
                 var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
-                var shortName = cell.name;
 
-                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;font-weight:400;">' + cell.code + '</span></div>' +
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;">' + cell.code + '</span></div>' +
                     '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
-                    (cell.cap ? '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;">' + fmtCap(cell.cap) + '</span></div>' : '') +
                     '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
                     (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
-                    (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
-                    (cell.rs5 != null ? '<div style="color:#94a3b8;font-size:11px;">RS-5 <span style="color:' + (cell.rs5 >= 2 ? '#c084fc' : '#94a3b8') + ';font-weight:600;">' + cell.rs5.toFixed(1) + 'x</span></div>' : '') +
-                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
+                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + '</div>' : '');
 
                 svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
                 svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="3"/>';
@@ -477,7 +551,7 @@
                 var tfs3 = Math.max(9, fs);
                 var retVisible3 = th > 24;
                 var nameY3 = cell.y + PAD + th / 2 - (retVisible3 ? 6 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + shortName + '</text>';
+                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + cell.name + '</text>';
                 if (retVisible3) {
                     var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs3 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + retStr + '</text>';
