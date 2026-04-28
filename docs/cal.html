@@ -128,7 +128,6 @@
             transition: all .15s
         }
 
-        /* 패널 */
         .day-panel {
             background: #fff;
             border: 1px solid #e0e7ff;
@@ -189,7 +188,6 @@
             color: #534AB7
         }
 
-        /* 하단 전체 목록 */
         .list-item {
             display: flex;
             align-items: center;
@@ -239,10 +237,8 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen">
-
     <div class="container mx-auto px-4 py-6 max-w-4xl">
 
-        <!-- 헤더 -->
         <header class="mb-6">
             <div class="flex justify-between items-start flex-wrap gap-3">
                 <div>
@@ -264,7 +260,6 @@
             </div>
         </header>
 
-        <!-- 월 네비 + 통계 -->
         <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 mb-4">
             <div class="flex items-center justify-between mb-4">
                 <button onclick="changeMonth(-1)"
@@ -278,7 +273,7 @@
             <div class="grid grid-cols-3 gap-3">
                 <div class="text-center bg-gray-50 rounded-lg py-2 px-3">
                     <div class="text-xl font-bold text-gray-800" id="s-total">-</div>
-                    <div class="text-xs text-gray-400 mt-0.5">이번달 종목</div>
+                    <div class="text-xs text-gray-400 mt-0.5">이번달 발표</div>
                 </div>
                 <div class="text-center bg-blue-50 rounded-lg py-2 px-3">
                     <div class="text-xl font-bold text-blue-700" id="s-yeon">-</div>
@@ -291,7 +286,6 @@
             </div>
         </div>
 
-        <!-- 범례 -->
         <div class="flex gap-4 mb-3 px-1 flex-wrap">
             <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-y">연결</span> 연결재무제표</span>
             <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-g">개별</span> 개별재무제표</span>
@@ -300,7 +294,6 @@
             <span class="text-xs text-gray-400 ml-auto">날짜 클릭 → 종목 상세</span>
         </div>
 
-        <!-- 달력 + 인라인 패널 -->
         <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 mb-4">
             <div class="dow-hdr">
                 <div>월</div>
@@ -310,11 +303,9 @@
                 <div>금</div>
             </div>
             <div class="cal-grid" id="cal"></div>
-            <!-- 날짜 클릭 시 패널이 여기 삽입됨 -->
             <div id="day-panel-wrap"></div>
         </div>
 
-        <!-- 하단 전체 목록 -->
         <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
             <div class="flex items-center justify-between mb-3">
                 <div class="text-sm font-semibold text-gray-700" id="list-title">전체 목록</div>
@@ -326,7 +317,6 @@
         <div class="text-xs text-gray-400 text-center mt-4 pb-4">
             데이터 출처: WiseReport 어닝스캘린더 · 매일 오전 7시 자동 갱신
         </div>
-
     </div>
 
     <script>
@@ -355,7 +345,6 @@
             document.getElementById('day-panel-wrap').innerHTML = '';
             render();
         }
-
         function render() {
             const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             document.getElementById('hdr-title').textContent = `${curY}년 ${MN[curM]}`;
@@ -383,7 +372,6 @@
                 const el = document.createElement('div');
                 const isToday = today.getFullYear() === curY && today.getMonth() === curM && today.getDate() === d;
                 el.className = 'cell' + (isToday ? ' today' : '') + (selDay === d ? ' active' : '');
-
                 const MAX = 3;
                 let html = `<div class="cell-num">${d}</div>`;
                 items.slice(0, MAX).forEach(e => {
@@ -396,7 +384,6 @@
             }
             renderList();
         }
-
         function selectDay(d) {
             if (selDay === d) {
                 selDay = null;
@@ -407,12 +394,10 @@
             selDay = d;
             render();
             renderDayPanel(d);
-            // 패널로 스크롤
             setTimeout(() => {
                 document.getElementById('day-panel-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 50);
         }
-
         function renderDayPanel(d) {
             const items = byDay(curY, curM, d);
             const wrap = document.getElementById('day-panel-wrap');
@@ -420,7 +405,6 @@
                 wrap.innerHTML = `<div class="day-panel"><div class="text-sm text-gray-400 text-center py-4">이 날 실적발표 종목이 없습니다</div></div>`;
                 return;
             }
-
             const dateStr = `${curY}년 ${curM + 1}월 ${d}일`;
             let html = `<div class="day-panel">
     <div class="flex items-center justify-between mb-3">
@@ -428,7 +412,6 @@
       <button onclick="selectDay(${d})" class="text-xs text-gray-400 hover:text-gray-600">✕ 닫기</button>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
-
             items.forEach(e => {
                 const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code}`;
                 html += `<a href="${naverUrl}" target="_blank" class="stock-item">
@@ -440,11 +423,9 @@
       <span class="stock-arrow">→</span>
     </a>`;
             });
-
             html += `</div></div>`;
             wrap.innerHTML = html;
         }
-
         function renderList() {
             const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             const items = byMonth(curY, curM);
@@ -466,16 +447,15 @@
     </a>`;
             }).join('');
         }
-
         async function init() {
             try {
                 const res = await fetch('data/earnings.json');
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 DATA = await res.json();
                 document.getElementById('updated').textContent = DATA.updated || '-';
-                const tracked = DATA.earnings.filter(e => e.code);
+                DATA.earnings = DATA.earnings.filter(e => e.code);
                 document.getElementById('sig-note').textContent =
-                    `전체 ${DATA.earnings.length}개 · semon 추적 ${tracked.length}개`;
+                    `${DATA.sectors || '-'}섹터 ${DATA.tracked || '-'}종목 추적 중`;
                 curY = today.getFullYear();
                 curM = today.getMonth();
             } catch (e) {
