@@ -68,7 +68,7 @@ for yyyymm in months:
 all_data.sort(key=lambda x: x["date"])
 
 with open("docs/data/earnings.json", "w", encoding="utf-8") as f:
-    json.dump({"updated": today.isoformat(), "count": len(all_data), "earnings": all_data}, f, ensure_ascii=False, indent=2)
+    json.dump({"updated": today.isoformat(), "count": len(all_data), "sectors": len(SECTORS), "tracked": sum(len(v) for v in SECTORS.values()), "earnings": all_data}, f, ensure_ascii=False, indent=2)
 
 matched = sum(1 for e in all_data if "code" in e)
 log.info(f"  총 {len(all_data)}개 저장 / 코드 매칭 {matched}개")
