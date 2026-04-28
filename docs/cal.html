@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>SEMon Earnings Calendar</title>
+    <title>SEMon Earning Calendar</title>
     <link rel="icon" href="./favicon.svg" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
@@ -246,9 +246,10 @@
         <header class="mb-6">
             <div class="flex justify-between items-start flex-wrap gap-3">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-800">Earnings Calendar</h1>
+                    <h1 class="text-2xl font-bold text-gray-800">Earning Calendar</h1>
                     <div class="text-sm text-gray-500 mt-1">Last Update: <span id="updated"
-                            class="font-medium text-gray-700">-</span></div>
+                            class="font-medium text-gray-700">-</span> &nbsp;·&nbsp; <span id="sig-note"
+                            class="text-indigo-500"></span></div>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
                     <a href="./index.html" class="nav-link bg-blue-100 text-blue-700 hover:bg-blue-200">✳️ RRG</a>
@@ -429,7 +430,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
 
             items.forEach(e => {
-                const naverUrl = `https://finance.naver.com/search/searchResult.naver?query=${encodeURIComponent(e.name)}`;
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code}`;
                 html += `<a href="${naverUrl}" target="_blank" class="stock-item">
       <div class="flex-1">
         <div class="stock-name">${e.name}</div>
@@ -456,7 +457,7 @@
             }
             list.innerHTML = items.map(e => {
                 const d = new Date(e.date);
-                const naverUrl = `https://finance.naver.com/search/searchResult.naver?query=${encodeURIComponent(e.name)}`;
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code}`;
                 return `<a href="${naverUrl}" target="_blank" class="list-item">
       <div class="li-date">${d.getMonth() + 1}/${d.getDate()}</div>
       <div class="li-name">${e.name}</div>
@@ -472,6 +473,9 @@
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 DATA = await res.json();
                 document.getElementById('updated').textContent = DATA.updated || '-';
+                const tracked = DATA.earnings.filter(e => e.code);
+                document.getElementById('sig-note').textContent =
+                    `전체 ${DATA.earnings.length}개 · semon 추적 ${tracked.length}개`;
                 curY = today.getFullYear();
                 curM = today.getMonth();
             } catch (e) {
