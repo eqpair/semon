@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실적발표 캘린더</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f8f6;
+            color: #1a1a1a;
+            padding: 1.5rem
+        }
+
+        .wrap {
+            max-width: 780px;
+            margin: 0 auto
+        }
+
+        .hdr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem
+        }
+
+        .hdr-title {
+            font-size: 20px;
+            font-weight: 500
+        }
+
+        .hdr-meta {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px
+        }
+
+        .nav {
+            display: flex;
+            gap: 6px
+        }
+
+        .nav button {
+            background: #fff;
+            border: 0.5px solid #ccc;
+            border-radius: 8px;
+            padding: 5px 14px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #555
+        }
+
+        .nav button:hover {
+            background: #f0f0ee
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 1rem
+        }
+
+        .stat {
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+            border: 0.5px solid #e8e8e4
+        }
+
+        .stat-n {
+            font-size: 22px;
+            font-weight: 500
+        }
+
+        .stat-l {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px
+        }
+
+        .dow-hdr {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+            margin-bottom: 3px
+        }
+
+        .dow-hdr div {
+            text-align: center;
+            font-size: 11px;
+            color: #aaa;
+            padding: 3px 0;
+            font-weight: 500
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px
+        }
+
+        .cell {
+            min-height: 84px;
+            background: #fff;
+            border: 0.5px solid #e8e8e4;
+            border-radius: 8px;
+            padding: 5px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: border-color .12s
+        }
+
+        .cell:hover {
+            border-color: #aaa
+        }
+
+        .cell.today {
+            border: 1.5px solid #534AB7
+        }
+
+        .cell.active {
+            background: #f4f3ff;
+            border-color: #534AB7
+        }
+
+        .cell.empty {
+            background: transparent;
+            border-color: transparent;
+            cursor: default
+        }
+
+        .cell-num {
+            font-size: 11px;
+            font-weight: 500;
+            color: #aaa;
+            margin-bottom: 3px
+        }
+
+        .cell.today .cell-num {
+            color: #534AB7
+        }
+
+        .pill {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 500;
+            border-radius: 3px;
+            padding: 1px 4px;
+            margin: 1px 1px 0 0;
+            line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 100%;
+            text-overflow: ellipsis
+        }
+
+        .p-y {
+            background: #E6F1FB;
+            color: #0C447C
+        }
+
+        .p-g {
+            background: #EAF3DE;
+            color: #27500A
+        }
+
+        .p-b {
+            background: #EEEDFE;
+            color: #3C3489
+        }
+
+        .more {
+            font-size: 9px;
+            color: #aaa;
+            margin-top: 2px
+        }
+
+        hr {
+            border: none;
+            border-top: 0.5px solid #e8e8e4;
+            margin: 1.2rem 0
+        }
+
+        .list-hdr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .list-title {
+            font-size: 14px;
+            font-weight: 500
+        }
+
+        .list-count {
+            font-size: 12px;
+            color: #aaa
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 0.5px solid #e8e8e4;
+            margin-bottom: 5px;
+            background: #fff
+        }
+
+        .list-item:hover {
+            background: #f8f8f6
+        }
+
+        .li-date {
+            font-size: 11px;
+            color: #aaa;
+            min-width: 36px
+        }
+
+        .li-name {
+            font-size: 13px;
+            font-weight: 500;
+            flex: 1
+        }
+
+        .empty-msg {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 13px;
+            color: #aaa
+        }
+
+        .err {
+            text-align: center;
+            padding: 2rem;
+            font-size: 13px;
+            color: #c0392b;
+            background: #fff5f5;
+            border-radius: 8px;
+            border: 0.5px solid #f5c6c6
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="hdr">
+            <div>
+                <div class="hdr-title" id="hdr-title">-</div>
+                <div class="hdr-meta" id="hdr-meta">로딩 중...</div>
+            </div>
+            <div class="nav">
+                <button onclick="changeMonth(-1)">← 이전</button>
+                <button onclick="changeMonth(1)">다음 →</button>
+            </div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat">
+                <div class="stat-n" id="s-total">-</div>
+                <div class="stat-l">이번달 종목</div>
+            </div>
+            <div class="stat">
+                <div class="stat-n" id="s-yeon">-</div>
+                <div class="stat-l">연결</div>
+            </div>
+            <div class="stat">
+                <div class="stat-n" id="s-gae">-</div>
+                <div class="stat-l">개별</div>
+            </div>
+        </div>
+
+        <div class="dow-hdr">
+            <div>월</div>
+            <div>화</div>
+            <div>수</div>
+            <div>목</div>
+            <div>금</div>
+        </div>
+        <div class="cal-grid" id="cal"></div>
+
+        <hr>
+
+        <div class="list-hdr">
+            <div class="list-title" id="list-title">전체 목록</div>
+            <div class="list-count" id="list-count"></div>
+        </div>
+        <div id="list"></div>
+    </div>
+
+    <script>
+        let DATA = null;
+        let curY, curM, selDay = null;
+        const today = new Date();
+
+        function pillClass(type) {
+            if (type.includes('연결') && type.includes('개별')) return 'p-b';
+            if (type.includes('연결')) return 'p-y';
+            return 'p-g';
+        }
+
+        function byMonth(y, m) {
+            if (!DATA) return [];
+            return DATA.earnings.filter(e => {
+                const d = new Date(e.date);
+                return d.getFullYear() === y && d.getMonth() === m;
+            });
+        }
+
+        function byDay(y, m, d) {
+            if (!DATA) return [];
+            const key = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            return DATA.earnings.filter(e => e.date === key);
+        }
+
+        function changeMonth(dir) {
+            curM += dir;
+            if (curM > 11) { curM = 0; curY++; }
+            if (curM < 0) { curM = 11; curY--; }
+            selDay = null;
+            render();
+        }
+
+        function render() {
+            const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+            document.getElementById('hdr-title').textContent = `${curY}년 ${MN[curM]}`;
+            document.getElementById('hdr-meta').textContent = DATA ? `업데이트: ${DATA.updated}` : '';
+
+            const monthData = byMonth(curY, curM);
+            const yeon = monthData.filter(e => e.type.includes('연결')).length;
+            document.getElementById('s-total').textContent = monthData.length;
+            document.getElementById('s-yeon').textContent = yeon;
+            document.getElementById('s-gae').textContent = monthData.length - yeon;
+
+            const cal = document.getElementById('cal');
+            cal.innerHTML = '';
+
+            const first = new Date(curY, curM, 1).getDay();
+            const offset = first === 0 ? 4 : first - 1;
+            const dim = new Date(curY, curM + 1, 0).getDate();
+
+            for (let i = 0; i < Math.min(offset, 4); i++) {
+                const el = document.createElement('div');
+                el.className = 'cell empty';
+                cal.appendChild(el);
+            }
+
+            for (let d = 1; d <= dim; d++) {
+                const dow = new Date(curY, curM, d).getDay();
+                if (dow === 0 || dow === 6) continue;
+                const items = byDay(curY, curM, d);
+                const el = document.createElement('div');
+                const isToday = today.getFullYear() === curY && today.getMonth() === curM && today.getDate() === d;
+                el.className = 'cell' + (isToday ? ' today' : '') + (selDay === d ? ' active' : '');
+
+                const MAX = 3;
+                let html = `<div class="cell-num">${d}</div>`;
+                items.slice(0, MAX).forEach(e => {
+                    html += `<span class="pill ${pillClass(e.type)}">${e.name}</span>`;
+                });
+                if (items.length > MAX) html += `<div class="more">+${items.length - MAX}개</div>`;
+                el.innerHTML = html;
+                el.onclick = () => { selDay = (selDay === d) ? null : d; render(); };
+                cal.appendChild(el);
+            }
+
+            renderList();
+        }
+
+        function renderList() {
+            const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+            const items = selDay ? byDay(curY, curM, selDay) : byMonth(curY, curM);
+            document.getElementById('list-title').textContent = selDay ? `${curM + 1}월 ${selDay}일 실적발표` : `${MN[curM]} 전체 목록`;
+            document.getElementById('list-count').textContent = `${items.length}개`;
+
+            const list = document.getElementById('list');
+            if (items.length === 0) {
+                list.innerHTML = `<div class="empty-msg">일정이 없습니다</div>`;
+                return;
+            }
+            list.innerHTML = items.map(e => {
+                const d = new Date(e.date);
+                return `<div class="list-item">
+      <div class="li-date">${d.getMonth() + 1}/${d.getDate()}</div>
+      <div class="li-name">${e.name}</div>
+      <span class="pill ${pillClass(e.type)}">${e.type}</span>
+    </div>`;
+            }).join('');
+        }
+
+        async function init() {
+            try {
+                const res = await fetch('data/earnings.json');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                DATA = await res.json();
+                // 오늘 날짜가 포함된 월로 시작
+                curY = today.getFullYear();
+                curM = today.getMonth();
+            } catch (e) {
+                document.getElementById('list').innerHTML = `<div class="err">earnings.json 로드 실패: ${e.message}<br>같은 디렉터리에 earnings.json이 있는지 확인하세요.</div>`;
+                curY = today.getFullYear();
+                curM = today.getMonth();
+            }
+            render();
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
