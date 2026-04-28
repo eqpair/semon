@@ -27,7 +27,7 @@
 
         .cell:hover {
             border-color: #a5b4fc;
-            box-shadow: 0 1px 4px rgba(99, 102, 241, .08)
+            box-shadow: 0 1px 4px rgba(99, 102, 241, .1)
         }
 
         .cell.today {
@@ -36,7 +36,8 @@
 
         .cell.active {
             background: #f5f3ff;
-            border-color: #534AB7
+            border-color: #534AB7;
+            box-shadow: 0 2px 8px rgba(83, 74, 183, .15)
         }
 
         .cell.empty {
@@ -118,6 +119,77 @@
             gap: 3px
         }
 
+        .nav-link {
+            font-size: 11px;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all .15s
+        }
+
+        /* 패널 */
+        .day-panel {
+            background: #fff;
+            border: 1px solid #e0e7ff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 8px;
+            animation: slideDown .15s ease
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .stock-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #f3f4f6;
+            margin-bottom: 5px;
+            background: #fff;
+            text-decoration: none;
+            transition: all .12s;
+            cursor: pointer
+        }
+
+        .stock-item:hover {
+            background: #f5f3ff;
+            border-color: #c4b5fd
+        }
+
+        .stock-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #111827;
+            flex: 1
+        }
+
+        .stock-item:hover .stock-name {
+            color: #534AB7
+        }
+
+        .stock-arrow {
+            font-size: 11px;
+            color: #9ca3af
+        }
+
+        .stock-item:hover .stock-arrow {
+            color: #534AB7
+        }
+
+        /* 하단 전체 목록 */
         .list-item {
             display: flex;
             align-items: center;
@@ -127,11 +199,12 @@
             border: 1px solid #f3f4f6;
             margin-bottom: 4px;
             background: #fff;
+            text-decoration: none;
             transition: background .1s
         }
 
         .list-item:hover {
-            background: #f9fafb
+            background: #f5f3ff
         }
 
         .li-date {
@@ -148,13 +221,8 @@
             flex: 1
         }
 
-        .nav-link {
-            font-size: 11px;
-            text-decoration: none;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all .15s
+        .list-item:hover .li-name {
+            color: #534AB7
         }
 
         @media(max-width:640px) {
@@ -165,10 +233,6 @@
             .cell {
                 min-height: 64px;
                 padding: 4px
-            }
-
-            .hide-mobile {
-                display: none
             }
         }
     </style>
@@ -205,9 +269,7 @@
                 <button onclick="changeMonth(-1)"
                     class="px-3 py-1.5 text-sm text-gray-500 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">←
                     이전</button>
-                <div class="text-center">
-                    <div class="text-lg font-bold text-gray-800" id="hdr-title">-</div>
-                </div>
+                <div class="text-lg font-bold text-gray-800" id="hdr-title">-</div>
                 <button onclick="changeMonth(1)"
                     class="px-3 py-1.5 text-sm text-gray-500 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">다음
                     →</button>
@@ -229,14 +291,15 @@
         </div>
 
         <!-- 범례 -->
-        <div class="flex gap-4 mb-3 px-1">
+        <div class="flex gap-4 mb-3 px-1 flex-wrap">
             <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-y">연결</span> 연결재무제표</span>
             <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-g">개별</span> 개별재무제표</span>
             <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-b">연결, 개별</span> 양식
                 병행</span>
+            <span class="text-xs text-gray-400 ml-auto">날짜 클릭 → 종목 상세</span>
         </div>
 
-        <!-- 달력 -->
+        <!-- 달력 + 인라인 패널 -->
         <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 mb-4">
             <div class="dow-hdr">
                 <div>월</div>
@@ -246,9 +309,11 @@
                 <div>금</div>
             </div>
             <div class="cal-grid" id="cal"></div>
+            <!-- 날짜 클릭 시 패널이 여기 삽입됨 -->
+            <div id="day-panel-wrap"></div>
         </div>
 
-        <!-- 리스트 -->
+        <!-- 하단 전체 목록 -->
         <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
             <div class="flex items-center justify-between mb-3">
                 <div class="text-sm font-semibold text-gray-700" id="list-title">전체 목록</div>
@@ -257,7 +322,7 @@
             <div id="list"></div>
         </div>
 
-        <div class="text-xs text-gray-400 text-center mt-4">
+        <div class="text-xs text-gray-400 text-center mt-4 pb-4">
             데이터 출처: WiseReport 어닝스캘린더 · 매일 오전 7시 자동 갱신
         </div>
 
@@ -285,8 +350,11 @@
             curM += dir;
             if (curM > 11) { curM = 0; curY++ }
             if (curM < 0) { curM = 11; curY-- }
-            selDay = null; render();
+            selDay = null;
+            document.getElementById('day-panel-wrap').innerHTML = '';
+            render();
         }
+
         function render() {
             const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             document.getElementById('hdr-title').textContent = `${curY}년 ${MN[curM]}`;
@@ -314,6 +382,7 @@
                 const el = document.createElement('div');
                 const isToday = today.getFullYear() === curY && today.getMonth() === curM && today.getDate() === d;
                 el.className = 'cell' + (isToday ? ' today' : '') + (selDay === d ? ' active' : '');
+
                 const MAX = 3;
                 let html = `<div class="cell-num">${d}</div>`;
                 items.slice(0, MAX).forEach(e => {
@@ -321,15 +390,64 @@
                 });
                 if (items.length > MAX) html += `<div class="more">+${items.length - MAX}개</div>`;
                 el.innerHTML = html;
-                el.onclick = () => { selDay = (selDay === d) ? null : d; render() };
+                el.onclick = () => selectDay(d);
                 cal.appendChild(el);
             }
             renderList();
         }
+
+        function selectDay(d) {
+            if (selDay === d) {
+                selDay = null;
+                document.getElementById('day-panel-wrap').innerHTML = '';
+                render();
+                return;
+            }
+            selDay = d;
+            render();
+            renderDayPanel(d);
+            // 패널로 스크롤
+            setTimeout(() => {
+                document.getElementById('day-panel-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 50);
+        }
+
+        function renderDayPanel(d) {
+            const items = byDay(curY, curM, d);
+            const wrap = document.getElementById('day-panel-wrap');
+            if (!items.length) {
+                wrap.innerHTML = `<div class="day-panel"><div class="text-sm text-gray-400 text-center py-4">이 날 실적발표 종목이 없습니다</div></div>`;
+                return;
+            }
+
+            const dateStr = `${curY}년 ${curM + 1}월 ${d}일`;
+            let html = `<div class="day-panel">
+    <div class="flex items-center justify-between mb-3">
+      <div class="text-sm font-bold text-gray-800">${dateStr} 실적발표 <span class="text-indigo-600">${items.length}종목</span></div>
+      <button onclick="selectDay(${d})" class="text-xs text-gray-400 hover:text-gray-600">✕ 닫기</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
+
+            items.forEach(e => {
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code || ''}`;
+                html += `<a href="${naverUrl}" target="_blank" class="stock-item">
+      <div class="flex-1">
+        <div class="stock-name">${e.name}</div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:1px;">${e.type}</div>
+      </div>
+      <span class="pill ${pillClass(e.type)}">${e.type.includes('연결') && e.type.includes('개별') ? '연결+개별' : e.type}</span>
+      <span class="stock-arrow">→</span>
+    </a>`;
+            });
+
+            html += `</div></div>`;
+            wrap.innerHTML = html;
+        }
+
         function renderList() {
             const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
-            const items = selDay ? byDay(curY, curM, selDay) : byMonth(curY, curM);
-            document.getElementById('list-title').textContent = selDay ? `${curM + 1}월 ${selDay}일 실적발표` : `${MN[curM]} 전체 목록`;
+            const items = byMonth(curY, curM);
+            document.getElementById('list-title').textContent = `${MN[curM]} 전체 목록`;
             document.getElementById('list-count').textContent = `${items.length}개`;
             const list = document.getElementById('list');
             if (!items.length) {
@@ -338,14 +456,16 @@
             }
             list.innerHTML = items.map(e => {
                 const d = new Date(e.date);
-                const naverUrl = `https://finance.naver.com/item/main.naver?code=`;
-                return `<div class="list-item">
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code || ''}`;
+                return `<a href="${naverUrl}" target="_blank" class="list-item">
       <div class="li-date">${d.getMonth() + 1}/${d.getDate()}</div>
       <div class="li-name">${e.name}</div>
       <span class="pill ${pillClass(e.type)}">${e.type}</span>
-    </div>`;
+      <span style="font-size:11px;color:#d1d5db;">→</span>
+    </a>`;
             }).join('');
         }
+
         async function init() {
             try {
                 const res = await fetch('data/earnings.json');
@@ -355,7 +475,7 @@
                 curY = today.getFullYear();
                 curM = today.getMonth();
             } catch (e) {
-                document.getElementById('list').innerHTML = `<div class="text-center py-6 text-sm text-red-500 bg-red-50 rounded-lg">데이터 로드 실패: ${e.message}</div>`;
+                document.getElementById('list').innerHTML = `<div class="text-center py-6 text-sm text-red-500 bg-red-50 rounded-lg p-4">데이터 로드 실패: ${e.message}</div>`;
                 curY = today.getFullYear();
                 curM = today.getMonth();
             }
