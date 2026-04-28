@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실적발표 캘린더</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SEMon 실적캘린더</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -12,136 +14,42 @@
             padding: 0
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f8f8f6;
-            color: #1a1a1a;
-            padding: 1.5rem
-        }
-
-        .wrap {
-            max-width: 780px;
-            margin: 0 auto
-        }
-
-        .hdr {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem
-        }
-
-        .hdr-title {
-            font-size: 20px;
-            font-weight: 500
-        }
-
-        .hdr-meta {
-            font-size: 11px;
-            color: #888;
-            margin-top: 2px
-        }
-
-        .nav {
-            display: flex;
-            gap: 6px
-        }
-
-        .nav button {
-            background: #fff;
-            border: 0.5px solid #ccc;
-            border-radius: 8px;
-            padding: 5px 14px;
-            cursor: pointer;
-            font-size: 12px;
-            color: #555
-        }
-
-        .nav button:hover {
-            background: #f0f0ee
-        }
-
-        .stat-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 1rem
-        }
-
-        .stat {
-            background: #fff;
-            border-radius: 8px;
-            padding: 10px 14px;
-            text-align: center;
-            border: 0.5px solid #e8e8e4
-        }
-
-        .stat-n {
-            font-size: 22px;
-            font-weight: 500
-        }
-
-        .stat-l {
-            font-size: 11px;
-            color: #888;
-            margin-top: 2px
-        }
-
-        .dow-hdr {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3px;
-            margin-bottom: 3px
-        }
-
-        .dow-hdr div {
-            text-align: center;
-            font-size: 11px;
-            color: #aaa;
-            padding: 3px 0;
-            font-weight: 500
-        }
-
-        .cal-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3px
-        }
-
         .cell {
-            min-height: 84px;
+            min-height: 88px;
             background: #fff;
-            border: 0.5px solid #e8e8e4;
-            border-radius: 8px;
-            padding: 5px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 6px;
             cursor: pointer;
             overflow: hidden;
-            transition: border-color .12s
+            transition: all .12s
         }
 
         .cell:hover {
-            border-color: #aaa
+            border-color: #a5b4fc;
+            box-shadow: 0 1px 4px rgba(99, 102, 241, .08)
         }
 
         .cell.today {
-            border: 1.5px solid #534AB7
+            border: 2px solid #534AB7
         }
 
         .cell.active {
-            background: #f4f3ff;
+            background: #f5f3ff;
             border-color: #534AB7
         }
 
         .cell.empty {
             background: transparent;
             border-color: transparent;
-            cursor: default
+            cursor: default;
+            box-shadow: none
         }
 
         .cell-num {
             font-size: 11px;
-            font-weight: 500;
-            color: #aaa;
+            font-weight: 600;
+            color: #9ca3af;
             margin-bottom: 3px
         }
 
@@ -149,12 +57,16 @@
             color: #534AB7
         }
 
+        .cell.active .cell-num {
+            color: #534AB7
+        }
+
         .pill {
             display: inline-block;
             font-size: 9px;
-            font-weight: 500;
-            border-radius: 3px;
-            padding: 1px 4px;
+            font-weight: 600;
+            border-radius: 4px;
+            padding: 1px 5px;
             margin: 1px 1px 0 0;
             line-height: 1.5;
             white-space: nowrap;
@@ -164,179 +76,220 @@
         }
 
         .p-y {
-            background: #E6F1FB;
-            color: #0C447C
+            background: #dbeafe;
+            color: #1e40af
         }
 
         .p-g {
-            background: #EAF3DE;
-            color: #27500A
+            background: #dcfce7;
+            color: #14532d
         }
 
         .p-b {
-            background: #EEEDFE;
-            color: #3C3489
+            background: #ede9fe;
+            color: #4c1d95
         }
 
         .more {
             font-size: 9px;
-            color: #aaa;
+            color: #9ca3af;
             margin-top: 2px
         }
 
-        hr {
-            border: none;
-            border-top: 0.5px solid #e8e8e4;
-            margin: 1.2rem 0
+        .dow-hdr {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+            margin-bottom: 4px
         }
 
-        .list-hdr {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px
+        .dow-hdr div {
+            text-align: center;
+            font-size: 11px;
+            color: #9ca3af;
+            padding: 4px 0;
+            font-weight: 600;
+            letter-spacing: .04em
         }
 
-        .list-title {
-            font-size: 14px;
-            font-weight: 500
-        }
-
-        .list-count {
-            font-size: 12px;
-            color: #aaa
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px
         }
 
         .list-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 12px;
+            padding: 9px 14px;
             border-radius: 8px;
-            border: 0.5px solid #e8e8e4;
-            margin-bottom: 5px;
-            background: #fff
+            border: 1px solid #f3f4f6;
+            margin-bottom: 4px;
+            background: #fff;
+            transition: background .1s
         }
 
         .list-item:hover {
-            background: #f8f8f6
+            background: #f9fafb
         }
 
         .li-date {
             font-size: 11px;
-            color: #aaa;
-            min-width: 36px
+            color: #9ca3af;
+            min-width: 36px;
+            flex-shrink: 0
         }
 
         .li-name {
             font-size: 13px;
             font-weight: 500;
+            color: #111827;
             flex: 1
         }
 
-        .empty-msg {
-            text-align: center;
-            padding: 2.5rem;
-            font-size: 13px;
-            color: #aaa
+        .nav-link {
+            font-size: 11px;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all .15s
         }
 
-        .err {
-            text-align: center;
-            padding: 2rem;
-            font-size: 13px;
-            color: #c0392b;
-            background: #fff5f5;
-            border-radius: 8px;
-            border: 0.5px solid #f5c6c6
+        @media(max-width:640px) {
+            .cal-grid {
+                gap: 2px
+            }
+
+            .cell {
+                min-height: 64px;
+                padding: 4px
+            }
+
+            .hide-mobile {
+                display: none
+            }
         }
     </style>
 </head>
 
-<body>
-    <div class="wrap">
-        <div class="hdr">
-            <div>
-                <div class="hdr-title" id="hdr-title">-</div>
-                <div class="hdr-meta" id="hdr-meta">로딩 중...</div>
+<body class="bg-gray-50 min-h-screen">
+
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+
+        <!-- 헤더 -->
+        <header class="mb-6">
+            <div class="flex justify-between items-start flex-wrap gap-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">실적발표 캘린더</h1>
+                    <div class="text-sm text-gray-500 mt-1">Last Update: <span id="updated"
+                            class="font-medium text-gray-700">-</span></div>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="./index.html" class="nav-link bg-blue-100 text-blue-700 hover:bg-blue-200">✳️ RRG</a>
+                    <a href="./momentum.html" class="nav-link bg-blue-100 text-blue-700 hover:bg-blue-200">▶
+                        Momentum</a>
+                    <a href="./heatmap.html" class="nav-link bg-green-100 text-green-700 hover:bg-green-200">📊
+                        Heatmap</a>
+                    <a href="./stats.html"
+                        style="font-size:11px;color:#a78bfa;text-decoration:none;padding:4px 10px;border:1px solid #3b1f6e;border-radius:6px;font-weight:500;">📈
+                        Stats</a>
+                </div>
             </div>
-            <div class="nav">
-                <button onclick="changeMonth(-1)">← 이전</button>
-                <button onclick="changeMonth(1)">다음 →</button>
+        </header>
+
+        <!-- 월 네비 + 통계 -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 mb-4">
+            <div class="flex items-center justify-between mb-4">
+                <button onclick="changeMonth(-1)"
+                    class="px-3 py-1.5 text-sm text-gray-500 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">←
+                    이전</button>
+                <div class="text-center">
+                    <div class="text-lg font-bold text-gray-800" id="hdr-title">-</div>
+                </div>
+                <button onclick="changeMonth(1)"
+                    class="px-3 py-1.5 text-sm text-gray-500 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">다음
+                    →</button>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+                <div class="text-center bg-gray-50 rounded-lg py-2 px-3">
+                    <div class="text-xl font-bold text-gray-800" id="s-total">-</div>
+                    <div class="text-xs text-gray-400 mt-0.5">이번달 종목</div>
+                </div>
+                <div class="text-center bg-blue-50 rounded-lg py-2 px-3">
+                    <div class="text-xl font-bold text-blue-700" id="s-yeon">-</div>
+                    <div class="text-xs text-blue-400 mt-0.5">연결</div>
+                </div>
+                <div class="text-center bg-green-50 rounded-lg py-2 px-3">
+                    <div class="text-xl font-bold text-green-700" id="s-gae">-</div>
+                    <div class="text-xs text-green-400 mt-0.5">개별</div>
+                </div>
             </div>
         </div>
 
-        <div class="stat-row">
-            <div class="stat">
-                <div class="stat-n" id="s-total">-</div>
-                <div class="stat-l">이번달 종목</div>
-            </div>
-            <div class="stat">
-                <div class="stat-n" id="s-yeon">-</div>
-                <div class="stat-l">연결</div>
-            </div>
-            <div class="stat">
-                <div class="stat-n" id="s-gae">-</div>
-                <div class="stat-l">개별</div>
-            </div>
+        <!-- 범례 -->
+        <div class="flex gap-4 mb-3 px-1">
+            <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-y">연결</span> 연결재무제표</span>
+            <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-g">개별</span> 개별재무제표</span>
+            <span class="flex items-center gap-1.5 text-xs text-gray-500"><span class="pill p-b">연결, 개별</span> 양식
+                병행</span>
         </div>
 
-        <div class="dow-hdr">
-            <div>월</div>
-            <div>화</div>
-            <div>수</div>
-            <div>목</div>
-            <div>금</div>
+        <!-- 달력 -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 mb-4">
+            <div class="dow-hdr">
+                <div>월</div>
+                <div>화</div>
+                <div>수</div>
+                <div>목</div>
+                <div>금</div>
+            </div>
+            <div class="cal-grid" id="cal"></div>
         </div>
-        <div class="cal-grid" id="cal"></div>
 
-        <hr>
-
-        <div class="list-hdr">
-            <div class="list-title" id="list-title">전체 목록</div>
-            <div class="list-count" id="list-count"></div>
+        <!-- 리스트 -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+            <div class="flex items-center justify-between mb-3">
+                <div class="text-sm font-semibold text-gray-700" id="list-title">전체 목록</div>
+                <div class="text-xs text-gray-400" id="list-count"></div>
+            </div>
+            <div id="list"></div>
         </div>
-        <div id="list"></div>
+
+        <div class="text-xs text-gray-400 text-center mt-4">
+            데이터 출처: WiseReport 어닝스캘린더 · 매일 오전 7시 자동 갱신
+        </div>
+
     </div>
 
     <script>
-        let DATA = null;
-        let curY, curM, selDay = null;
+        let DATA = null, curY, curM, selDay = null;
         const today = new Date();
 
-        function pillClass(type) {
-            if (type.includes('연결') && type.includes('개별')) return 'p-b';
-            if (type.includes('연결')) return 'p-y';
+        function pillClass(t) {
+            if (t.includes('연결') && t.includes('개별')) return 'p-b';
+            if (t.includes('연결')) return 'p-y';
             return 'p-g';
         }
-
         function byMonth(y, m) {
             if (!DATA) return [];
-            return DATA.earnings.filter(e => {
-                const d = new Date(e.date);
-                return d.getFullYear() === y && d.getMonth() === m;
-            });
+            return DATA.earnings.filter(e => { const d = new Date(e.date); return d.getFullYear() === y && d.getMonth() === m });
         }
-
         function byDay(y, m, d) {
             if (!DATA) return [];
             const key = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
             return DATA.earnings.filter(e => e.date === key);
         }
-
         function changeMonth(dir) {
             curM += dir;
-            if (curM > 11) { curM = 0; curY++; }
-            if (curM < 0) { curM = 11; curY--; }
-            selDay = null;
-            render();
+            if (curM > 11) { curM = 0; curY++ }
+            if (curM < 0) { curM = 11; curY-- }
+            selDay = null; render();
         }
-
         function render() {
             const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             document.getElementById('hdr-title').textContent = `${curY}년 ${MN[curM]}`;
-            document.getElementById('hdr-meta').textContent = DATA ? `업데이트: ${DATA.updated}` : '';
-
             const monthData = byMonth(curY, curM);
             const yeon = monthData.filter(e => e.type.includes('연결')).length;
             document.getElementById('s-total').textContent = monthData.length;
@@ -345,7 +298,6 @@
 
             const cal = document.getElementById('cal');
             cal.innerHTML = '';
-
             const first = new Date(curY, curM, 1).getDay();
             const offset = first === 0 ? 4 : first - 1;
             const dim = new Date(curY, curM + 1, 0).getDate();
@@ -355,7 +307,6 @@
                 el.className = 'cell empty';
                 cal.appendChild(el);
             }
-
             for (let d = 1; d <= dim; d++) {
                 const dow = new Date(curY, curM, d).getDay();
                 if (dow === 0 || dow === 6) continue;
@@ -363,7 +314,6 @@
                 const el = document.createElement('div');
                 const isToday = today.getFullYear() === curY && today.getMonth() === curM && today.getDate() === d;
                 el.className = 'cell' + (isToday ? ' today' : '') + (selDay === d ? ' active' : '');
-
                 const MAX = 3;
                 let html = `<div class="cell-num">${d}</div>`;
                 items.slice(0, MAX).forEach(e => {
@@ -371,26 +321,24 @@
                 });
                 if (items.length > MAX) html += `<div class="more">+${items.length - MAX}개</div>`;
                 el.innerHTML = html;
-                el.onclick = () => { selDay = (selDay === d) ? null : d; render(); };
+                el.onclick = () => { selDay = (selDay === d) ? null : d; render() };
                 cal.appendChild(el);
             }
-
             renderList();
         }
-
         function renderList() {
             const MN = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             const items = selDay ? byDay(curY, curM, selDay) : byMonth(curY, curM);
             document.getElementById('list-title').textContent = selDay ? `${curM + 1}월 ${selDay}일 실적발표` : `${MN[curM]} 전체 목록`;
             document.getElementById('list-count').textContent = `${items.length}개`;
-
             const list = document.getElementById('list');
-            if (items.length === 0) {
-                list.innerHTML = `<div class="empty-msg">일정이 없습니다</div>`;
+            if (!items.length) {
+                list.innerHTML = `<div class="text-center py-8 text-sm text-gray-400">일정이 없습니다</div>`;
                 return;
             }
             list.innerHTML = items.map(e => {
                 const d = new Date(e.date);
+                const naverUrl = `https://finance.naver.com/item/main.naver?code=`;
                 return `<div class="list-item">
       <div class="li-date">${d.getMonth() + 1}/${d.getDate()}</div>
       <div class="li-name">${e.name}</div>
@@ -398,23 +346,21 @@
     </div>`;
             }).join('');
         }
-
         async function init() {
             try {
                 const res = await fetch('data/earnings.json');
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 DATA = await res.json();
-                // 오늘 날짜가 포함된 월로 시작
+                document.getElementById('updated').textContent = DATA.updated || '-';
                 curY = today.getFullYear();
                 curM = today.getMonth();
             } catch (e) {
-                document.getElementById('list').innerHTML = `<div class="err">earnings.json 로드 실패: ${e.message}<br>같은 디렉터리에 earnings.json이 있는지 확인하세요.</div>`;
+                document.getElementById('list').innerHTML = `<div class="text-center py-6 text-sm text-red-500 bg-red-50 rounded-lg">데이터 로드 실패: ${e.message}</div>`;
                 curY = today.getFullYear();
                 curM = today.getMonth();
             }
             render();
         }
-
         init();
     </script>
 </body>
