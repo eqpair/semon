@@ -429,7 +429,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
 
             items.forEach(e => {
-                const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code || ''}`;
+                const naverUrl = `https://finance.naver.com/search/searchResult.naver?query=${encodeURIComponent(e.name)}`;
                 html += `<a href="${naverUrl}" target="_blank" class="stock-item">
       <div class="flex-1">
         <div class="stock-name">${e.name}</div>
@@ -456,7 +456,7 @@
             }
             list.innerHTML = items.map(e => {
                 const d = new Date(e.date);
-                const naverUrl = `https://finance.naver.com/item/main.naver?code=${e.code || ''}`;
+                const naverUrl = `https://finance.naver.com/search/searchResult.naver?query=${encodeURIComponent(e.name)}`;
                 return `<a href="${naverUrl}" target="_blank" class="list-item">
       <div class="li-date">${d.getMonth() + 1}/${d.getDate()}</div>
       <div class="li-name">${e.name}</div>
