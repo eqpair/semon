@@ -18,7 +18,7 @@ from utils import now_kst
 
 logger = logging.getLogger(__name__)
 
-SIGNAL_LOG_PATH = "/home/eq/semon/data/signal_log.json"
+SIGNAL_LOG_PATH = "/home/ubuntu/semon/data/signal_log.json"
 
 
 # ── 파일 I/O ─────────────────────────────────────────────────

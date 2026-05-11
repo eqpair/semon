@@ -145,7 +145,7 @@ DISP_OLED = {
     "272290","271090","475660","469610",
 }
 
-with open('/home/eq/semon/stocks_filtered.csv', encoding='utf-8-sig') as f:
+with open('/home/ubuntu/semon/stocks_filtered.csv', encoding='utf-8-sig') as f:
     rows = list(csv.DictReader(f))
 
 SKIP = {'기타', '창업투자', '부동산', '복합기업', '기타금융'}
@@ -299,6 +299,6 @@ for t in sorted(themes.keys()):
         print(f"  ... 외 {len(stocks)-5}개")
 
 # JSON 저장
-with open('/home/eq/semon/theme_classify.json', 'w', encoding='utf-8') as f:
+with open('/home/ubuntu/semon/theme_classify.json', 'w', encoding='utf-8') as f:
     json.dump(themes, f, ensure_ascii=False, indent=2)
 print("\n\nJSON 저장: theme_classify.json")

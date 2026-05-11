@@ -39,7 +39,7 @@ SISE_URL = (
 # ── 섹터 정의 (config.py에서 가져옴) ─────────────────────────
 try:
     import sys
-    sys.path.insert(0, '/home/eq/semon')
+    sys.path.insert(0, '/home/ubuntu/semon')
     from config import SECTORS
     print(f"config.py 로드 완료: {len(SECTORS)}개 테마")
 except ImportError:

@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
-load_dotenv("/home/eq/semon/.env")
+load_dotenv("/home/ubuntu/semon/.env")
 
 from config import SECTORS, WAIT_TIME
 from crawler import fetch_all_prices, fetch_all_ohlcv, fetch_kospi_ohlcv
@@ -24,7 +24,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler("/home/eq/semon/semon.log", encoding="utf-8"),
+        logging.FileHandler("/home/ubuntu/semon/semon.log", encoding="utf-8"),
     ],
 )
 logger = logging.getLogger(__name__)
@@ -36,7 +36,7 @@ logger.info(f"총 {len(ALL_CODES)}개 종목 로드")
 
 # ── 경로 설정 ─────────────────────────────────────────────────
 
-MARKET_CAP_PATH = "/home/eq/semon/data/market_cap.json"
+MARKET_CAP_PATH = "/home/ubuntu/semon/data/market_cap.json"
 
 # ── 갱신 주기 ─────────────────────────────────────────────────
 
@@ -144,11 +144,11 @@ async def run():
 
             # 7. signal_log → docs/data/ 복사 + staged
             import shutil, os, subprocess
-            src = "/home/eq/semon/data/signal_log.json"
-            dst = "/home/eq/semon/docs/data/signal_log.json"
+            src = "/home/ubuntu/semon/data/signal_log.json"
+            dst = "/home/ubuntu/semon/docs/data/signal_log.json"
             if os.path.exists(src):
                 shutil.copy2(src, dst)
-                subprocess.run(["git", "add", dst], cwd="/home/eq/semon", capture_output=True)
+                subprocess.run(["git", "add", dst], cwd="/home/ubuntu/semon", capture_output=True)
 
             # 8. JSON 저장 + git push (signal_log 포함)
             save_and_push(signals)

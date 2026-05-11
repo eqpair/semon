@@ -3,7 +3,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 
-sys.path.insert(0, '/home/eq/semon')
+sys.path.insert(0, '/home/ubuntu/semon')
 from config import SECTORS
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')

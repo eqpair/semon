@@ -1,5 +1,5 @@
 import json, sys
-sys.path.insert(0, '/home/eq/semon')
+sys.path.insert(0, '/home/ubuntu/semon')
 from config import SECTORS
 from sector_signal import ohlcv_store, update_ohlcv
 from crawler import fetch_all_ohlcv

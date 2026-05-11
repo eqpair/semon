@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 # ── 설정 ──────────────────────────────────────────────────────
 TELEGRAM_TOKEN   = os.getenv("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
-RADAR_SENT_PATH  = "/home/eq/semon/data/radar_sent.json"
+RADAR_SENT_PATH  = "/home/ubuntu/semon/data/radar_sent.json"
 
 # 감지 임계값
 VOL_BREAKOUT_THRESHOLD = 1.5   # Breakout 인정 최소 거래량 배수

@@ -40,7 +40,7 @@ MA_LONG    = 40   # 장기 이동평균 (블룸버그 기본값)
 TAIL_DAYS  = 40   # 8주 궤적
 CHART_DAYS = 120  # 주가 차트용 6개월
 
-RRG_HISTORY_PATH = "/home/eq/semon/data/rrg_history.json"
+RRG_HISTORY_PATH = "/home/ubuntu/semon/data/rrg_history.json"
 
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
