@@ -3,6 +3,7 @@ import asyncio
 import logging
 import os
 from pathlib import Path
+from datetime import datetime
 from dotenv import load_dotenv
 from kis_auth import get_access_token
 
@@ -16,7 +17,23 @@ PRICE_URL  = f"{BASE_URL}/uapi/domestic-stock/v1/quotations/inquire-price"
 logger = logging.getLogger(__name__)
 
 
-async def _fetch_one(session, token, code):
+def get_market_code():
+    """현재 시간에 따라 마켓 코드 반환"""
+    now = datetime.now()
+    h, m = now.hour, now.minute
+    t = h * 60 + m
+    # 09:00 ~ 15:30 → KRX 정규장
+    if 9 * 60 <= t <= 15 * 60 + 30:
+        return "J"
+    # 08:00 ~ 08:59 또는 15:30 ~ 20:00 → NXT
+    elif (8 * 60 <= t < 9 * 60) or (15 * 60 + 30 < t <= 20 * 60):
+        return "NX"
+    # 그 외 시간 → KRX (종가 기준)
+    else:
+        return "J"
+
+
+async def _fetch_one(session, token, code, market_code):
     try:
         async with session.get(
             PRICE_URL,
@@ -27,7 +44,7 @@ async def _fetch_one(session, token, code):
                 "tr_id":         "FHKST01010100",
             },
             params={
-                "fid_cond_mrkt_div_code": "J",
+                "fid_cond_mrkt_div_code": market_code,
                 "fid_input_iscd":         code,
             },
             timeout=aiohttp.ClientTimeout(total=5),
@@ -43,13 +60,15 @@ async def _fetch_one(session, token, code):
 
 
 async def fetch_all_prices_kis(code_list):
-    token      = await get_access_token()
+    token       = await get_access_token()
+    market_code = get_market_code()
+    logger.info(f"마켓 코드: {market_code}")
     results    = {}
     chunk_size = 19
     async with aiohttp.ClientSession() as session:
         for i in range(0, len(code_list), chunk_size):
             chunk     = code_list[i:i + chunk_size]
-            tasks     = [_fetch_one(session, token, code) for code in chunk]
+            tasks     = [_fetch_one(session, token, code, market_code) for code in chunk]
             responses = await asyncio.gather(*tasks)
             for code, price, volume in responses:
                 results[code] = (price, volume)
