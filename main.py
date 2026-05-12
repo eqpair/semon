@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 load_dotenv("/home/ubuntu/semon/.env")
 
 from config import SECTORS, WAIT_TIME
-from crawler import fetch_all_prices, fetch_all_ohlcv, fetch_kospi_ohlcv
+from crawler import fetch_all_ohlcv, fetch_kospi_ohlcv
+from kis_price import fetch_all_prices_kis as fetch_all_prices
 from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
                            load_market_caps_into_store, update_kospi,
                            save_rrg_history, load_rrg_history)
