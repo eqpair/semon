@@ -35,6 +35,14 @@ def is_market_time() -> bool:
     return is_weekday and is_open_hour
 
 
+def is_nxt_time() -> bool:
+    """평일 08:00~08:59 또는 15:31~20:00 KST — NXT 거래 시간"""
+    now = now_kst()
+    if not (0 <= now.weekday() <= 4):
+        return False
+    t = now.time()
+    return time(8, 0) <= t < time(9, 0) or time(15, 31) <= t <= time(20, 0)
+
 def is_near_market_close() -> bool:
     """
     15:25 ~ 15:45 KST 여부 확인 — closing 스냅샷 저장용.

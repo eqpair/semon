@@ -13,7 +13,7 @@ from kis_price import fetch_all_prices_kis as fetch_all_prices, fetch_all_ohlcv_
 from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
                            load_market_caps_into_store, update_kospi,
                            save_rrg_history, load_rrg_history)
-from utils import is_market_time, is_near_market_close, is_nxt_time, now_kst, save_and_push, save_closing
+from utils import is_market_time, is_near_market_close, now_kst, save_and_push, save_closing
 from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
 from radar import run_radar
 from signal_logger import log_signals, update_tracking
@@ -79,16 +79,12 @@ async def run():
     # 시작 시 rrg_history 복원
     load_rrg_history()
 
-    # 시작 시 OHLCV 무조건 1회 로드
-    # 장중 시작이면 KIS가 당일 봉 close=현재가로 내려줘 ret_1d 오계산 발생
-    # → strip_today=True 로 당일 봉 제거, current_price fetch 후 정상 계산됨
+    # 시작 시 OHLCV 무조건 1회 로드 (장중이어도 받아야 신호 계산 가능)
+    # 당일 미확정 봉(close=0)은 _get_return()의 now<=0 가드가 걸러냄
     logger.info("시작 시 OHLCV 초기 로드 시작 (약 10~15분 소요)")
     try:
         ohlcv = await fetch_all_ohlcv(ALL_CODES)
-        strip = not _is_after_market_close()
-        if strip:
-            logger.info("장중 시작 — OHLCV 당일 봉 제거 (strip_today=True)")
-        update_ohlcv(ohlcv, strip_today=strip)
+        update_ohlcv(ohlcv)
         _last_ohlcv_fetch = now_kst()
         success = sum(1 for v in ohlcv.values() if v is not None)
         logger.info(f"OHLCV 초기 로드 완료: {success}/{len(ALL_CODES)}개")
@@ -114,25 +110,15 @@ async def run():
 
             # ── 장 외 시간 ───────────────────────────────────────
             if not is_market_time():
-                if is_nxt_time():
-                    # NXT 시간(08:00~08:59, 15:31~20:00) — 5분마다 현재가 fetch + 신호 계산 + push
-                    logger.info("NXT 시간 — 현재가 fetch 시작")
-                    prices = await fetch_all_prices(ALL_CODES)
-                    update_prices(prices)
+                if _off_market_pushed != today and _closing_saved == today:
+                    logger.info("장 외 시간 — tail 포함 signals.json 갱신")
                     signals = calc_all_signals()
                     save_and_push(signals)
-                    logger.info("NXT 시간 — 신호 계산 + push 완료")
+                    _off_market_pushed = today
+                    logger.info("장 외 시간 tail push 완료")
                 else:
-                    # 야간(20:01~07:59) — 1회 tail push 후 대기
-                    if _off_market_pushed != today and _closing_saved == today:
-                        logger.info("야간 — tail 포함 signals.json 갱신")
-                        signals = calc_all_signals()
-                        save_and_push(signals)
-                        _off_market_pushed = today
-                        logger.info("야간 tail push 완료")
-                    else:
-                        logger.info("야간 — 대기 중")
-                await asyncio.sleep(300)
+                    logger.info("장 외 시간 — 대기 중")
+                await asyncio.sleep(60)
                 continue
 
             # 1. 시총 갱신 — 하루 1회
