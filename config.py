@@ -892,6 +892,6 @@ SECTORS = {
 
 }
 
-WAIT_TIME = 300  # 5분
+WAIT_TIME = 60  # 1분
 MARKET_OPEN = (9, 0)
 MARKET_CLOSE = (15, 30)

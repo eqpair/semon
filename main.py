@@ -132,7 +132,7 @@ async def run():
                         logger.info("야간 tail push 완료")
                     else:
                         logger.info("야간 — 대기 중")
-                await asyncio.sleep(300)
+                await asyncio.sleep(60)
                 continue
 
             # 1. 시총 갱신 — 하루 1회

@@ -135,8 +135,8 @@ def update_ohlcv(data: dict[str, dict | None], strip_today: bool = False):
 
 
 def update_prices(prices: dict[str, tuple]):
-    for code, (price, volume) in prices.items():
-        if price is not None:
+    for code, (price, volume) in prices.items():        
+        if price is not None and price > 0:  # ← 0 필터링 추가
             current_price[code] = price
         if volume is not None:
             current_volume[code] = volume
