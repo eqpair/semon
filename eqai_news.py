@@ -61,7 +61,7 @@ def fetch_macro() -> dict:
     result = {}
     for name, symbol in MACRO_TICKERS.items():
         try:
-            hist = yf.Ticker(symbol).history(period="2d")
+            hist = yf.Ticker(symbol).history(period="5d")  # 2d → 5d
             if len(hist) >= 2:
                 prev  = hist["Close"].iloc[-2]
                 curr  = hist["Close"].iloc[-1]
