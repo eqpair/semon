@@ -137,7 +137,7 @@
     <script>
         let eqaiData = null
         let chatHistory = []
-        const ANTHROPIC_API_KEY = "" // API 키 추가 후 활성화
+        const CHAT_API_URL = "http://43.201.12.170:5001/chat"
 
         // ── 데이터 로드 ───────────────────────────────────────────
         async function loadData() {
@@ -323,18 +323,13 @@ ${JSON.stringify(eqaiData, null, 2)}
             chatHistory.push({ role: "user", content: q })
 
             try {
-                const res = await fetch("https://api.anthropic.com/v1/messages", {
+                const res = await fetch(CHAT_API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        model: "claude-sonnet-4-20250514",
-                        max_tokens: 1000,
-                        system: systemPrompt,
-                        messages: chatHistory
-                    })
+                    body: JSON.stringify({ messages: chatHistory })
                 })
                 const data = await res.json()
-                const answer = data.content?.[0]?.text || "응답을 받지 못했어요."
+                const answer = data.answer || "응답을 받지 못했어요."
                 chatHistory.push({ role: "assistant", content: answer })
                 removeTyping()
                 addMessage("ai", answer)
