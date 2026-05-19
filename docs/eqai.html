@@ -194,7 +194,7 @@
             }).join("")
 
             const summary = eqaiData.news_summary || ""
-            document.getElementById("news-summary").textContent = summary
+            document.getElementById("news-summary").innerHTML = summary.replace(/\n/g, "<br>")
         }
 
         function renderRRG() {
