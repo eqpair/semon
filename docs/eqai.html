@@ -196,7 +196,9 @@
             }).join("")
 
             const summary = eqaiData.news_summary || ""
-            document.getElementById("news-summary").innerHTML = summary.replace(/\n/g, "<br>")
+            const lines = summary.split("\n").filter(l => l.trim())
+                const formatted = lines.map(l => `<div class="flex gap-2 mb-1"><span class="text-gray-400 flex-shrink-0">•</span><span>${l.trim()}</span></div>`).join("")
+                document.getElementById("news-summary").innerHTML = formatted
         }
 
         function renderRRG() {
