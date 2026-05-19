@@ -47,6 +47,8 @@ MACRO_TICKERS = {
     # 글로벌 지수
     "영국FTSE":  "^FTSE",   # 추가: FTSE 100
     "독일DAX":   "^GDAXI",  # 추가: DAX
+    "니케이":    "^N225",   # 추가: 일본 닛케이225
+    "항셍":      "^HSI",    # 추가: 홍콩 항셍
 
     # 채권 / 환율 / 원자재
     "달러인덱스": "DX-Y.NYB",
@@ -59,21 +61,23 @@ MACRO_TICKERS = {
 
 def fetch_macro() -> dict:
     result = {}
-    for name, symbol in MACRO_TICKERS.items():
-        try:
-            hist = yf.Ticker(symbol).history(period="5d")  # 2d → 5d
-            if len(hist) >= 2:
-                prev  = hist["Close"].iloc[-2]
-                curr  = hist["Close"].iloc[-1]
-                chg   = (curr - prev) / prev * 100
-                result[name] = {
-                    "price":  round(float(curr), 2),
-                    "change": round(float(chg), 2),
-                }
-            else:
-                logger.warning(f"매크로 데이터 부족 ({name}): {len(hist)}일치")
-        except Exception as e:
-            logger.warning(f"매크로 fetch 실패 ({name}): {e}")
+    try:
+        tickers = yf.Tickers(" ".join(MACRO_TICKERS.values()))
+        for name, symbol in MACRO_TICKERS.items():
+            try:
+                hist = tickers.tickers[symbol].history(period="2d")
+                if len(hist) >= 2:
+                    prev  = hist["Close"].iloc[-2]
+                    curr  = hist["Close"].iloc[-1]
+                    chg   = (curr - prev) / prev * 100
+                    result[name] = {
+                        "price":  round(float(curr), 2),
+                        "change": round(float(chg), 2),
+                    }
+            except Exception as e:
+                logger.warning(f"매크로 fetch 실패 ({name}): {e}")
+    except Exception as e:
+        logger.error(f"매크로 전체 fetch 실패: {e}")
     return result
 
 # ── RSS 수집 ─────────────────────────────────────────────────

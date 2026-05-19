@@ -232,7 +232,7 @@
 
                 <!-- 미국 주요 지수 -->
                 <div class="macro-section-label">🇺🇸 미국 지수</div>
-                <div id="macro-us" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
+                <div id="macro-us" class="grid grid-cols-3 md:grid-cols-5 gap-2 mb-2"></div>
 
                 <!-- 글로벌 지수 -->
                 <div class="macro-section-label">🌍 글로벌 지수</div>
@@ -337,8 +337,6 @@
             "러셀2000": { group: "us", unit: "RUT", priceDecimals: 2, warnIf: null },
             "영국FTSE": { group: "global", unit: "FTSE100", priceDecimals: 2, warnIf: null },
             "독일DAX": { group: "global", unit: "DAX", priceDecimals: 2, warnIf: null },
-            "니케이": { group: "global", unit: "N225", priceDecimals: 2, warnIf: null },
-            "항셍": { group: "global", unit: "HSI", priceDecimals: 2, warnIf: null },
             "달러인덱스": { group: "commodity", unit: "DXY", priceDecimals: 2, warnIf: null },
             "국채10Y": { group: "commodity", unit: "%", priceDecimals: 2, warnIf: null },
             "금": { group: "commodity", unit: "$/oz", priceDecimals: 1, warnIf: [1000, 6000] },
