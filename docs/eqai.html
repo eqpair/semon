@@ -201,6 +201,7 @@
             document.getElementById("updated").textContent = eqaiData.generated_at || "-"
 
             renderMacro()
+            renderKoreaImpact()
             renderRRG()
             renderAnalysis()
             renderPicks()
@@ -223,7 +224,7 @@
 
             const summary = eqaiData.news_summary || ""
             const lines = summary.split("\n").filter(l => l.trim())
-                const formatted = lines.map(l => `<div class="flex gap-2 mb-1"><span class="text-gray-400 flex-shrink-0">•</span><span>${l.trim()}</span></div>`).join("")
+                const formatted = lines.map(l => `<div class="flex gap-2 mb-1"><span class="text-gray-400 flex-shrink-0">•</span><span>${l.trim().replace(/\*\*/g, "")}</span></div>`).join("")
                 document.getElementById("news-summary").innerHTML = formatted
         }
 
