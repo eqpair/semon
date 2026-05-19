@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -14,28 +15,159 @@
             --weakening: #dc2626;
             --neutral: #9ca3af;
         }
-        .pill { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600; }
-        .pill.positive { background:#dcfce7;color:#14532d; }
-        .pill.negative { background:#fee2e2;color:#7f1d1d; }
-        .pill.neutral  { background:#f3f4f6;color:#6b7280; }
-        .section-card  { background:#fff;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,0.06);padding:20px; }
-        .chat-bubble-user { background:#eff6ff;border-radius:12px 12px 2px 12px;padding:10px 14px;font-size:13px;color:#1e40af;max-width:80%;margin-left:auto; }
-        .chat-bubble-ai   { background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;color:#374151;max-width:90%; }
-        ::-webkit-scrollbar { width:4px; }
-        ::-webkit-scrollbar-track { background:transparent; }
-        ::-webkit-scrollbar-thumb { background:#e5e7eb;border-radius:2px; }
-        .macro-card { background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:12px 16px;text-align:center; }
-        .sector-badge { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500; }
-        .typing-dot { display:inline-block;width:6px;height:6px;border-radius:50%;background:#9ca3af;animation:typing 1.2s infinite; }
-        .typing-dot:nth-child(2) { animation-delay:0.2s; }
-        .typing-dot:nth-child(3) { animation-delay:0.4s; }
-        @keyframes typing { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
-        .analysis-section { border-left:3px solid #e5e7eb;padding-left:12px;margin-bottom:12px; }
-        .analysis-section.strong { border-left-color:#2563eb; }
-        .analysis-section.caution { border-left-color:#d97706; }
-        .analysis-section.avoid { border-left-color:#dc2626; }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .pill.positive {
+            background: #dcfce7;
+            color: #14532d;
+        }
+
+        .pill.negative {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .pill.neutral {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .section-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            padding: 20px;
+        }
+
+        .chat-bubble-user {
+            background: #eff6ff;
+            border-radius: 12px 12px 2px 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #1e40af;
+            max-width: 80%;
+            margin-left: auto;
+        }
+
+        .chat-bubble-ai {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px 12px 12px 2px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #374151;
+            max-width: 90%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+
+        .macro-card {
+            background: #f9fafb;
+            border: 1px solid #f3f4f6;
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+        }
+
+        /* 이상값 경고 하이라이트 */
+        .macro-card.data-warn {
+            border-color: #fbbf24;
+            background: #fffbeb;
+        }
+
+        .sector-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .typing-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #9ca3af;
+            animation: typing 1.2s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0)
+            }
+
+            30% {
+                transform: translateY(-6px)
+            }
+        }
+
+        .analysis-section {
+            border-left: 3px solid #e5e7eb;
+            padding-left: 12px;
+            margin-bottom: 12px;
+        }
+
+        .analysis-section.strong {
+            border-left-color: #2563eb;
+        }
+
+        .analysis-section.caution {
+            border-left-color: #d97706;
+        }
+
+        .analysis-section.avoid {
+            border-left-color: #dc2626;
+        }
+
+        /* 섹터 구분선 */
+        .macro-section-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            margin-top: 14px;
+        }
+
+        .macro-section-label:first-child {
+            margin-top: 0;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
 
     <div class="container mx-auto px-4 py-6 max-w-7xl">
@@ -44,19 +176,27 @@
         <header class="mb-6">
             <div class="flex justify-between items-center">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">EQ AI <span class="text-lg font-normal text-gray-400">Analysis</span></h1>
+                    <h1 class="text-3xl font-bold text-gray-800">EQ AI <span
+                            class="text-lg font-normal text-gray-400">Analysis</span></h1>
                     <div class="text-sm text-gray-500 mt-1">
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
                         &nbsp;|&nbsp;
-                        <span id="market-badge" class="px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600">MARKET CLOSED</span>
+                        <span id="market-badge" class="px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600">MARKET
+                            CLOSED</span>
                         &nbsp;|&nbsp;
                         다음 업데이트: <span id="next-update" class="font-medium text-blue-600">-</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <a href="./index.html" class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">📊 RRG</a>
-                    <a href="./heatmap.html" class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">🗺 Heatmap</a>
-                    <a href="https://eqmon.duckdns.org" style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">🏠 HOME</a>
+                    <a href="./index.html"
+                        class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">📊
+                        RRG</a>
+                    <a href="./heatmap.html"
+                        class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">🗺
+                        Heatmap</a>
+                    <a href="https://eqmon.duckdns.org"
+                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">🏠
+                        HOME</a>
                 </div>
             </div>
         </header>
@@ -77,8 +217,21 @@
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">📡 글로벌 시황</h2>
                     <span class="text-xs text-gray-400" id="macro-time">-</span>
                 </div>
-                <div id="macro-grid" class="grid grid-cols-6 gap-2 mb-4"></div>
-                <div id="news-summary" class="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4"></div>
+
+                <!-- 미국 주요 지수 -->
+                <div class="macro-section-label">🇺🇸 미국 지수</div>
+                <div id="macro-us" class="grid grid-cols-3 md:grid-cols-5 gap-2 mb-2"></div>
+
+                <!-- 글로벌 지수 -->
+                <div class="macro-section-label">🌍 글로벌 지수</div>
+                <div id="macro-global" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
+
+                <!-- 채권·달러·원자재 -->
+                <div class="macro-section-label">💱 채권 / 원자재 / 환율</div>
+                <div id="macro-commodity" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4"></div>
+
+                <div id="news-summary" class="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                </div>
             </div>
 
             <!-- SECTION 1-2: 한국 시장 영향 -->
@@ -131,9 +284,12 @@
                 <div id="chat-messages" class="space-y-3 mb-4 overflow-y-auto" style="max-height:400px;">
                     <div class="chat-bubble-ai">
                         안녕하세요! 오늘의 시장 분석을 완료했어요. 궁금한 점이 있으면 뭐든 물어보세요. 예를 들어:<br>
-                        <span class="text-blue-500 cursor-pointer hover:underline" onclick="setQuestion('오늘 가장 주목할 섹터는?')">→ 오늘 가장 주목할 섹터는?</span><br>
-                        <span class="text-blue-500 cursor-pointer hover:underline" onclick="setQuestion('달러 강세가 지속되면 어떤 섹터가 유리해?')">→ 달러 강세가 지속되면 어떤 섹터가 유리해?</span><br>
-                        <span class="text-blue-500 cursor-pointer hover:underline" onclick="setQuestion('오늘 추천 종목의 리스크는?')">→ 오늘 추천 종목의 리스크는?</span>
+                        <span class="text-blue-500 cursor-pointer hover:underline"
+                            onclick="setQuestion('오늘 가장 주목할 섹터는?')">→ 오늘 가장 주목할 섹터는?</span><br>
+                        <span class="text-blue-500 cursor-pointer hover:underline"
+                            onclick="setQuestion('달러 강세가 지속되면 어떤 섹터가 유리해?')">→ 달러 강세가 지속되면 어떤 섹터가 유리해?</span><br>
+                        <span class="text-blue-500 cursor-pointer hover:underline"
+                            onclick="setQuestion('오늘 추천 종목의 리스크는?')">→ 오늘 추천 종목의 리스크는?</span>
                     </div>
                 </div>
                 <div class="flex gap-2">
@@ -155,10 +311,32 @@
         let chatHistory = []
         const CHAT_API_URL = "https://eqmon.duckdns.org/eqai-chat/chat"
 
+        // ── 지표별 메타데이터 ─────────────────────────────────────────
+        // group: "us" | "global" | "commodity"
+        // unit: 카드 하단에 표시할 단위 문자열
+        // priceDecimals: 가격 표시 소수점 자릿수
+        // warnIf: 값이 이 범위 밖이면 data-warn 클래스 붙임 [min, max]
+        const MACRO_META = {
+            "S&P500": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
+            "NASDAQ": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
+            "DOW": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
+            "VIX": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
+            "필라반도체": { group: "us", unit: "SOX", priceDecimals: 2, warnIf: null },
+            "러셀2000": { group: "us", unit: "RUT", priceDecimals: 2, warnIf: null },
+            "영국FTSE": { group: "global", unit: "FTSE100", priceDecimals: 2, warnIf: null },
+            "독일DAX": { group: "global", unit: "DAX", priceDecimals: 2, warnIf: null },
+            "달러인덱스": { group: "commodity", unit: "DXY", priceDecimals: 2, warnIf: null },
+            "국채10Y": { group: "commodity", unit: "%", priceDecimals: 2, warnIf: null },
+            "금": { group: "commodity", unit: "$/oz", priceDecimals: 1, warnIf: [1000, 6000] },
+            "WTI유가": { group: "commodity", unit: "$/bbl", priceDecimals: 2, warnIf: [30, 200] },
+            "원달러": { group: "commodity", unit: "KRW", priceDecimals: 1, warnIf: [900, 2000] },
+            "구리": { group: "commodity", unit: "$/lb", priceDecimals: 2, warnIf: [1, 20] },
+        }
+
         // ── RRG 토글 ──────────────────────────────────────────────────
         function toggleRRG() {
             const grid = document.getElementById("rrg-grid")
-            const btn  = document.getElementById("rrg-toggle")
+            const btn = document.getElementById("rrg-toggle")
             if (grid.style.display === "none") {
                 grid.style.display = "grid"
                 btn.textContent = "▲ 접기"
@@ -201,7 +379,7 @@
                 if (!res.ok) throw new Error("데이터 없음")
                 eqaiData = await res.json()
                 render()
-            } catch(e) {
+            } catch (e) {
                 document.getElementById("loading-state").innerHTML = `
                     <div class="text-4xl mb-4">⏳</div>
                     <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
@@ -224,41 +402,84 @@
             updateMarketBadge()
         }
 
+        // ── 매크로 카드 1개 생성 ──────────────────────────────────
+        function makeMacroCard(name, d) {
+            const meta = MACRO_META[name] || { unit: "", priceDecimals: 2, warnIf: null }
+            const up = d.change >= 0
+            const color = up ? "text-green-600" : "text-red-500"
+            const arrow = up ? "▲" : "▼"
+
+            // 이상값 감지
+            let warnClass = ""
+            let warnBadge = ""
+            if (meta.warnIf && d.price != null) {
+                const [lo, hi] = meta.warnIf
+                if (d.price < lo || d.price > hi) {
+                    warnClass = "data-warn"
+                    warnBadge = `<span title="데이터 이상값 의심" style="font-size:9px;color:#b45309;">⚠ 확인필요</span>`
+                }
+            }
+
+            // 가격 포맷: 단위가 %이면 그냥 숫자, 아니면 로케일
+            let priceStr
+            if (meta.unit === "%") {
+                priceStr = (d.price ?? "-").toString()
+            } else {
+                priceStr = d.price != null
+                    ? d.price.toLocaleString("en-US", { minimumFractionDigits: meta.priceDecimals, maximumFractionDigits: meta.priceDecimals })
+                    : "-"
+            }
+
+            return `<div class="macro-card ${warnClass}">
+                <div class="text-xs text-gray-400 mb-0.5">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</div>
+                <div class="text-sm font-bold text-gray-800">${priceStr}</div>
+                <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
+                ${warnBadge}
+            </div>`
+        }
+
         function renderMacro() {
             const macro = eqaiData.macro || {}
-            const grid = document.getElementById("macro-grid")
-            grid.innerHTML = Object.entries(macro).map(([name, d]) => {
-                const up = d.change >= 0
-                const color = up ? "text-green-600" : "text-red-500"
-                const arrow = up ? "▲" : "▼"
-                return `<div class="macro-card">
-                    <div class="text-xs text-gray-400 mb-1">${name}</div>
-                    <div class="text-sm font-bold text-gray-800">${d.price?.toLocaleString() ?? "-"}</div>
-                    <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
-                </div>`
-            }).join("")
+
+            // 그룹별로 분류: 메타에 없는 키는 'us' 기본값
+            const groups = { us: [], global: [], commodity: [] }
+            for (const [name, d] of Object.entries(macro)) {
+                const group = (MACRO_META[name]?.group) || "us"
+                groups[group].push([name, d])
+            }
+
+            const elUs = document.getElementById("macro-us")
+            const elGlb = document.getElementById("macro-global")
+            const elCom = document.getElementById("macro-commodity")
+
+            elUs.innerHTML = groups.us.map(([n, d]) => makeMacroCard(n, d)).join("")
+            elGlb.innerHTML = groups.global.map(([n, d]) => makeMacroCard(n, d)).join("")
+            elCom.innerHTML = groups.commodity.map(([n, d]) => makeMacroCard(n, d)).join("")
+
+            // 글로벌·원자재 섹션이 비어 있으면 라벨 숨김
+            document.querySelector('[data-section="global"]')?.style.setProperty("display", groups.global.length ? "" : "none")
 
             const summary = eqaiData.news_summary || ""
             const lines = summary.split("\n").filter(l => l.trim())
-                const formatted = lines.map(l => `<div class="flex gap-2 mb-1"><span class="text-gray-400 flex-shrink-0">•</span><span>${l.trim().replace(/\*\*/g, "")}</span></div>`).join("")
-                document.getElementById("news-summary").innerHTML = formatted
+            const formatted = lines.map(l => `<div class="flex gap-2 mb-1"><span class="text-gray-400 flex-shrink-0">•</span><span>${l.trim().replace(/\*\*/g, "")}</span></div>`).join("")
+            document.getElementById("news-summary").innerHTML = formatted
         }
 
         function renderRRG() {
             const rrg = eqaiData.sector_rrg || {}
             const grid = document.getElementById("rrg-grid")
-            const quadrantColor = { leading:"#16a34a", improving:"#2563eb", lagging:"#d97706", weakening:"#dc2626", neutral:"#9ca3af" }
-            const quadrantBg    = { leading:"#dcfce7", improving:"#dbeafe", lagging:"#fef3c7", weakening:"#fee2e2", neutral:"#f3f4f6" }
+            const quadrantColor = { leading: "#16a34a", improving: "#2563eb", lagging: "#d97706", weakening: "#dc2626", neutral: "#9ca3af" }
+            const quadrantBg = { leading: "#dcfce7", improving: "#dbeafe", lagging: "#fef3c7", weakening: "#fee2e2", neutral: "#f3f4f6" }
 
             const sorted = Object.entries(rrg).sort((a, b) => {
-                const order = { improving:0, leading:1, lagging:2, weakening:3, neutral:4 }
+                const order = { improving: 0, leading: 1, lagging: 2, weakening: 3, neutral: 4 }
                 return (order[a[1].quadrant] ?? 4) - (order[b[1].quadrant] ?? 4)
             })
 
             grid.innerHTML = sorted.map(([name, d]) => {
                 const color = quadrantColor[d.quadrant] || "#9ca3af"
-                const bg    = quadrantBg[d.quadrant]   || "#f3f4f6"
-                const ret   = d.sector_ret_1d
+                const bg = quadrantBg[d.quadrant] || "#f3f4f6"
+                const ret = d.sector_ret_1d
                 const retColor = ret > 0 ? "#16a34a" : ret < 0 ? "#dc2626" : "#9ca3af"
                 return `<div style="background:${bg};border-radius:8px;padding:10px 12px;border:1px solid ${color}22;">
                     <div class="flex items-center justify-between mb-1">
@@ -270,7 +491,7 @@
                         &nbsp;RS-M <span style="color:#374151;font-weight:500;">${d.rs_momentum?.toFixed(1) ?? "-"}</span>
                     </div>
                     <div class="text-xs mt-1">
-                        1D <span style="color:${retColor};font-weight:600;">${ret != null ? (ret>0?"+":"") + ret.toFixed(1)+"%" : "-"}</span>
+                        1D <span style="color:${retColor};font-weight:600;">${ret != null ? (ret > 0 ? "+" : "") + ret.toFixed(1) + "%" : "-"}</span>
                         &nbsp;★<span style="color:#2563eb;font-weight:600;">${d.improving_count || 0}</span>
                     </div>
                 </div>`
@@ -313,7 +534,7 @@
                     ${picks.map((pick, i) => `
                     <div class="border border-blue-100 bg-blue-50 rounded-xl p-4">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">${i+1}</span>
+                            <span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">${i + 1}</span>
                             <span class="font-semibold text-gray-800">${pick.sector}</span>
                             <span style="font-size:10px;background:#dbeafe;color:#1e40af;padding:2px 7px;border-radius:10px;font-weight:600;">
                                 ${pick.rrg_quadrant?.toUpperCase() || ""}
@@ -355,8 +576,8 @@
             if (d === 0 || d === 6) return "다음 평일 07:30"
 
             const schedules = [
-                {h:7, m:30}, {h:10, m:0}, {h:12, m:0},
-                {h:14, m:0}, {h:15, m:30}, {h:20, m:0}
+                { h: 7, m: 30 }, { h: 10, m: 0 }, { h: 12, m: 0 },
+                { h: 14, m: 0 }, { h: 15, m: 30 }, { h: 20, m: 0 }
             ]
 
             const nowMin = h * 60 + m
@@ -366,7 +587,7 @@
                     const diff = sMin - nowMin
                     const dh = Math.floor(diff / 60)
                     const dm = diff % 60
-                    const timeStr = String(s.h).padStart(2,"0") + ":" + String(s.m).padStart(2,"0")
+                    const timeStr = String(s.h).padStart(2, "0") + ":" + String(s.m).padStart(2, "0")
                     const diffStr = dh > 0 ? `${dh}시간 ${dm}분 후` : `${dm}분 후`
                     return `${timeStr} (${diffStr})`
                 }
@@ -379,7 +600,7 @@
             const now = new Date()
             const kst = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000)
             const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
-            const isOpen = d >= 1 && d <= 5 && (h > 9 || (h===9&&m>=0)) && (h < 15 || (h===15&&m<=30))
+            const isOpen = d >= 1 && d <= 5 && (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
             badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
             badge.className = isOpen
                 ? "px-2 py-0.5 text-xs rounded bg-green-100 text-green-700"
@@ -422,27 +643,25 @@ ${JSON.stringify(eqaiData, null, 2)}
                 chatHistory.push({ role: "assistant", content: answer })
                 removeTyping()
                 addMessage("ai", answer)
-            } catch(e) {
+            } catch (e) {
                 removeTyping()
                 addMessage("ai", "API 키가 설정되지 않았거나 오류가 발생했어요. 관리자에게 문의해주세요.")
             }
         }
 
         function markdownToHtml(text) {
-            // 테이블 제거
             text = text.replace(/\|.*\|\n?/g, "")
             text = text.replace(/[-|]{3,}\n?/g, "")
-            // 마크다운 변환
             const lines = text.split("\n")
             const html = lines.map(line => {
                 if (!line.trim()) return ""
                 if (line.startsWith("### ")) return `<div class="font-semibold text-gray-700 mt-2">${line.slice(4)}</div>`
-                if (line.startsWith("## "))  return `<div class="font-bold text-gray-800 mt-2">${line.slice(3)}</div>`
-                if (line.startsWith("# "))   return `<div class="font-bold text-gray-900 mt-2">${line.slice(2)}</div>`
-                if (line.startsWith("> "))   return `<div class="pl-3 border-l-2 border-blue-300 text-gray-600 my-1">${line.slice(2)}</div>`
-                if (line.startsWith("- "))   return `<div class="flex gap-2 my-0.5"><span class="text-gray-400 flex-shrink-0">•</span><span>${line.slice(2).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")}</span></div>`
-                if (line.startsWith("---"))  return `<hr class="border-gray-200 my-2">`
-                return `<div class="my-0.5">${line.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")}</div>`
+                if (line.startsWith("## ")) return `<div class="font-bold text-gray-800 mt-2">${line.slice(3)}</div>`
+                if (line.startsWith("# ")) return `<div class="font-bold text-gray-900 mt-2">${line.slice(2)}</div>`
+                if (line.startsWith("> ")) return `<div class="pl-3 border-l-2 border-blue-300 text-gray-600 my-1">${line.slice(2)}</div>`
+                if (line.startsWith("- ")) return `<div class="flex gap-2 my-0.5"><span class="text-gray-400 flex-shrink-0">•</span><span>${line.slice(2).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")}</span></div>`
+                if (line.startsWith("---")) return `<hr class="border-gray-200 my-2">`
+                return `<div class="my-0.5">${line.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")}</div>`
             }).join("")
             return html
         }
@@ -478,4 +697,5 @@ ${JSON.stringify(eqaiData, null, 2)}
         setInterval(loadData, 5 * 60 * 1000)
     </script>
 </body>
+
 </html>

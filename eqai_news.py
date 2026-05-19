@@ -22,18 +22,37 @@ RSS_SOURCES = {
 }
 
 # ── 매크로 지수 수집 ──────────────────────────────────────────
+#
+# 수정 이력:
+#   금    GLD  → GC=F  (COMEX 금 선물 — 실제 $/oz 반영)
+#   WTI   USO  → CL=F  (NYMEX WTI 선물 — 실제 $/bbl 반영)
+#   GLD/USO는 ETF로 실제 가격과 큰 괴리 존재:
+#     GLD ≈ 금값 × 0.093 (1/10oz 기준), USO ≈ 선물 롤오버 ETF
+#
+# 추가 지표:
+#   필라반도체  ^SOX   (Philadelphia Semiconductor Index)
+#   러셀2000   ^RUT   (Russell 2000 Small Cap)
+#   영국FTSE   ^FTSE  (FTSE 100)
+#   독일DAX    ^GDAXI (DAX)
 
 MACRO_TICKERS = {
+    # 미국 주요 지수
     "S&P500":    "^GSPC",
     "NASDAQ":    "^IXIC",
     "DOW":       "^DJI",
     "VIX":       "^VIX",
+    "필라반도체": "^SOX",    # 추가: 필라델피아 반도체지수
+    "러셀2000":  "^RUT",    # 추가: Russell 2000
+
+    # 글로벌 지수
+    "영국FTSE":  "^FTSE",   # 추가: FTSE 100
+    "독일DAX":   "^GDAXI",  # 추가: DAX
+
+    # 채권 / 환율 / 원자재
     "달러인덱스": "DX-Y.NYB",
     "국채10Y":   "^TNX",
-    "금":        "GLD",
-    "WTI유가":   "USO",
-    "니케이":    "^N225",
-    "항셍":      "^HSI",
+    "금":        "GC=F",    # 수정: COMEX 금 선물 ($/oz)  ← GLD에서 변경
+    "WTI유가":   "CL=F",    # 수정: NYMEX WTI 선물 ($/bbl) ← USO에서 변경
     "원달러":    "KRW=X",
     "구리":      "HG=F",
 }
