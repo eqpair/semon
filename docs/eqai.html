@@ -49,6 +49,8 @@
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
                         &nbsp;|&nbsp;
                         <span id="market-badge" class="px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600">MARKET CLOSED</span>
+                        &nbsp;|&nbsp;
+                        다음 업데이트: <span id="next-update" class="font-medium text-blue-600">-</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
@@ -298,6 +300,35 @@
             `
         }
 
+        function getNextUpdate() {
+            const now = new Date()
+            const kst = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000)
+            const h = kst.getHours()
+            const m = kst.getMinutes()
+            const d = kst.getDay()
+
+            if (d === 0 || d === 6) return "다음 평일 07:30"
+
+            const schedules = [
+                {h:7, m:30}, {h:10, m:0}, {h:12, m:0},
+                {h:14, m:0}, {h:15, m:30}, {h:20, m:0}
+            ]
+
+            const nowMin = h * 60 + m
+            for (const s of schedules) {
+                const sMin = s.h * 60 + s.m
+                if (sMin > nowMin) {
+                    const diff = sMin - nowMin
+                    const dh = Math.floor(diff / 60)
+                    const dm = diff % 60
+                    const timeStr = String(s.h).padStart(2,"0") + ":" + String(s.m).padStart(2,"0")
+                    const diffStr = dh > 0 ? `${dh}시간 ${dm}분 후` : `${dm}분 후`
+                    return `${timeStr} (${diffStr})`
+                }
+            }
+            return "다음 평일 07:30"
+        }
+
         function updateMarketBadge() {
             const badge = document.getElementById("market-badge")
             const now = new Date()
@@ -308,6 +339,8 @@
             badge.className = isOpen
                 ? "px-2 py-0.5 text-xs rounded bg-green-100 text-green-700"
                 : "px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600"
+            const nextEl = document.getElementById("next-update")
+            if (nextEl) nextEl.textContent = getNextUpdate()
         }
 
         // ── 채팅 ─────────────────────────────────────────────────
