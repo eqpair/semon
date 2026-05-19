@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>EQAI — Equity AI Intelligence</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --improving: #2563eb;
+            --lagging: #d97706;
+            --leading: #16a34a;
+            --weakening: #dc2626;
+            --neutral: #9ca3af;
+        }
+        .pill { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600; }
+        .pill.positive { background:#dcfce7;color:#14532d; }
+        .pill.negative { background:#fee2e2;color:#7f1d1d; }
+        .pill.neutral  { background:#f3f4f6;color:#6b7280; }
+        .section-card  { background:#fff;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,0.06);padding:20px; }
+        .chat-bubble-user { background:#eff6ff;border-radius:12px 12px 2px 12px;padding:10px 14px;font-size:13px;color:#1e40af;max-width:80%;margin-left:auto; }
+        .chat-bubble-ai   { background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;color:#374151;max-width:90%; }
+        ::-webkit-scrollbar { width:4px; }
+        ::-webkit-scrollbar-track { background:transparent; }
+        ::-webkit-scrollbar-thumb { background:#e5e7eb;border-radius:2px; }
+        .macro-card { background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:12px 16px;text-align:center; }
+        .sector-badge { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500; }
+        .typing-dot { display:inline-block;width:6px;height:6px;border-radius:50%;background:#9ca3af;animation:typing 1.2s infinite; }
+        .typing-dot:nth-child(2) { animation-delay:0.2s; }
+        .typing-dot:nth-child(3) { animation-delay:0.4s; }
+        @keyframes typing { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+        .analysis-section { border-left:3px solid #e5e7eb;padding-left:12px;margin-bottom:12px; }
+        .analysis-section.strong { border-left-color:#2563eb; }
+        .analysis-section.caution { border-left-color:#d97706; }
+        .analysis-section.avoid { border-left-color:#dc2626; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+
+        <!-- 헤더 -->
+        <header class="mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">EQAI <span class="text-lg font-normal text-gray-400">Equity AI Intelligence</span></h1>
+                    <div class="text-sm text-gray-500 mt-1">
+                        Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
+                        &nbsp;|&nbsp;
+                        <span id="market-badge" class="px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600">MARKET CLOSED</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="./index.html" class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">📊 RRG</a>
+                    <a href="./heatmap.html" class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">🗺 Heatmap</a>
+                    <a href="https://eqmon.duckdns.org" style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">🏠 HOME</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 로딩 상태 -->
+        <div id="loading-state" class="text-center py-20 text-gray-400">
+            <div class="text-4xl mb-4">🤖</div>
+            <div class="text-lg font-medium text-gray-600 mb-2">EQAI 분석 준비 중</div>
+            <div class="text-sm">Claude AI가 시장 데이터를 분석하고 있어요</div>
+        </div>
+
+        <!-- 메인 컨텐츠 (데이터 로드 후 표시) -->
+        <div id="main-content" style="display:none;">
+
+            <!-- SECTION 1: 글로벌 시황 -->
+            <div class="section-card mb-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">📡 글로벌 시황</h2>
+                    <span class="text-xs text-gray-400" id="macro-time">-</span>
+                </div>
+                <div id="macro-grid" class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4"></div>
+                <div id="news-summary" class="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4"></div>
+            </div>
+
+            <!-- SECTION 2: RRG 현황 -->
+            <div class="section-card mb-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">📈 RRG 섹터 현황</h2>
+                    <span class="text-xs text-gray-400" id="rrg-time">-</span>
+                </div>
+                <div id="rrg-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+            </div>
+
+            <!-- SECTION 3: Claude 교차 분석 -->
+            <div class="section-card mb-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">🧠 Claude 종합 분석</h2>
+                    <span class="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full font-medium">AI 분석</span>
+                </div>
+                <div id="analysis-content" class="space-y-3"></div>
+            </div>
+
+            <!-- SECTION 4: 오늘의 섹터/종목 -->
+            <div class="section-card mb-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">🎯 오늘의 진입 후보</h2>
+                    <span class="text-xs text-gray-400">뉴스 × RRG 교차 분석 결과</span>
+                </div>
+                <div id="picks-content"></div>
+            </div>
+
+            <!-- SECTION 5: Claude 채팅창 -->
+            <div class="section-card">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">💬 Claude에게 물어보기</h2>
+                    <span class="text-xs text-gray-400">오늘 분석 기반으로 답변합니다</span>
+                </div>
+                <div id="chat-messages" class="space-y-3 mb-4 overflow-y-auto" style="max-height:400px;">
+                    <div class="chat-bubble-ai">
+                        안녕하세요! 오늘의 시장 분석을 완료했어요. 궁금한 점이 있으면 뭐든 물어보세요. 예를 들어:<br>
+                        <span class="text-blue-500 cursor-pointer hover:underline" onclick="setQuestion('오늘 가장 주목할 섹터는?')">→ 오늘 가장 주목할 섹터는?</span><br>
+                        <span class="text-blue-500 cursor-pointer hover:underline" onclick="setQuestion('달러 강세가 지속되면 어떤 섹터가 유리해?')">→ 달러 강세가 지속되면 어떤 섹터가 유리해?</span><br>
+                        <span class="text-blue-500 cursor-pointer hover:underline" onclick="setQuestion('오늘 추천 종목의 리스크는?')">→ 오늘 추천 종목의 리스크는?</span>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <input id="chat-input" type="text" placeholder="시장이나 종목에 대해 질문해보세요..."
+                        class="flex-1 px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400"
+                        onkeydown="if(event.key==='Enter') sendChat()">
+                    <button onclick="sendChat()"
+                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                        전송
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let eqaiData = null
+        let chatHistory = []
+        const ANTHROPIC_API_KEY = "" // API 키 추가 후 활성화
+
+        // ── 데이터 로드 ───────────────────────────────────────────
+        async function loadData() {
+            try {
+                const res = await fetch("./data/eqai_report.json?t=" + Date.now())
+                if (!res.ok) throw new Error("데이터 없음")
+                eqaiData = await res.json()
+                render()
+            } catch(e) {
+                document.getElementById("loading-state").innerHTML = `
+                    <div class="text-4xl mb-4">⏳</div>
+                    <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
+                    <div class="text-sm text-gray-400">07:30 장전 리포트가 생성되면 자동으로 표시됩니다</div>`
+            }
+        }
+
+        // ── 렌더링 ────────────────────────────────────────────────
+        function render() {
+            if (!eqaiData) return
+            document.getElementById("loading-state").style.display = "none"
+            document.getElementById("main-content").style.display = "block"
+            document.getElementById("updated").textContent = eqaiData.generated_at || "-"
+
+            renderMacro()
+            renderRRG()
+            renderAnalysis()
+            renderPicks()
+            updateMarketBadge()
+        }
+
+        function renderMacro() {
+            const macro = eqaiData.macro || {}
+            const grid = document.getElementById("macro-grid")
+            grid.innerHTML = Object.entries(macro).map(([name, d]) => {
+                const up = d.change >= 0
+                const color = up ? "text-green-600" : "text-red-500"
+                const arrow = up ? "▲" : "▼"
+                return `<div class="macro-card">
+                    <div class="text-xs text-gray-400 mb-1">${name}</div>
+                    <div class="text-base font-bold text-gray-800">${d.price?.toLocaleString() ?? "-"}</div>
+                    <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
+                </div>`
+            }).join("")
+
+            const summary = eqaiData.news_summary || ""
+            document.getElementById("news-summary").textContent = summary
+        }
+
+        function renderRRG() {
+            const rrg = eqaiData.sector_rrg || {}
+            const grid = document.getElementById("rrg-grid")
+            const quadrantColor = { leading:"#16a34a", improving:"#2563eb", lagging:"#d97706", weakening:"#dc2626", neutral:"#9ca3af" }
+            const quadrantBg    = { leading:"#dcfce7", improving:"#dbeafe", lagging:"#fef3c7", weakening:"#fee2e2", neutral:"#f3f4f6" }
+
+            const sorted = Object.entries(rrg).sort((a, b) => {
+                const order = { improving:0, leading:1, lagging:2, weakening:3, neutral:4 }
+                return (order[a[1].quadrant] ?? 4) - (order[b[1].quadrant] ?? 4)
+            })
+
+            grid.innerHTML = sorted.map(([name, d]) => {
+                const color = quadrantColor[d.quadrant] || "#9ca3af"
+                const bg    = quadrantBg[d.quadrant]   || "#f3f4f6"
+                const ret   = d.sector_ret_1d
+                const retColor = ret > 0 ? "#16a34a" : ret < 0 ? "#dc2626" : "#9ca3af"
+                return `<div style="background:${bg};border-radius:8px;padding:10px 12px;border:1px solid ${color}22;">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-semibold text-gray-700">${name}</span>
+                        <span style="font-size:10px;color:${color};font-weight:600;">${d.quadrant?.toUpperCase()}</span>
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        RS-R <span style="color:#374151;font-weight:500;">${d.rs_ratio?.toFixed(1) ?? "-"}</span>
+                        &nbsp;RS-M <span style="color:#374151;font-weight:500;">${d.rs_momentum?.toFixed(1) ?? "-"}</span>
+                    </div>
+                    <div class="text-xs mt-1">
+                        1D <span style="color:${retColor};font-weight:600;">${ret != null ? (ret>0?"+":"") + ret.toFixed(1)+"%" : "-"}</span>
+                        &nbsp;★<span style="color:#2563eb;font-weight:600;">${d.improving_count || 0}</span>
+                    </div>
+                </div>`
+            }).join("")
+        }
+
+        function renderAnalysis() {
+            const analysis = eqaiData.analysis || {}
+            const el = document.getElementById("analysis-content")
+
+            const globalSentiment = analysis.global_sentiment || "neutral"
+            const sentimentColor = globalSentiment === "risk_on" ? "#16a34a" : globalSentiment === "risk_off" ? "#dc2626" : "#d97706"
+            const sentimentLabel = globalSentiment === "risk_on" ? "📈 리스크 온 (매수 우호)" : globalSentiment === "risk_off" ? "📉 리스크 오프 (매수 불리)" : "⚖️ 중립"
+
+            el.innerHTML = `
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-4">
+                    <span class="text-sm font-semibold" style="color:${sentimentColor};">${sentimentLabel}</span>
+                    <span class="text-xs text-gray-400">${analysis.sentiment_reason || ""}</span>
+                </div>
+                ${(analysis.key_factors || []).map(f => `
+                    <div class="analysis-section strong">
+                        <div class="text-xs font-medium text-gray-700">${f}</div>
+                    </div>`).join("")}
+                ${analysis.summary ? `<div class="text-sm text-gray-600 leading-relaxed mt-3 p-3 bg-blue-50 rounded-lg">${analysis.summary}</div>` : ""}
+            `
+        }
+
+        function renderPicks() {
+            const picks = eqaiData.top_picks || []
+            const caution = eqaiData.caution_sectors || []
+            const el = document.getElementById("picks-content")
+
+            if (!picks.length) {
+                el.innerHTML = '<div class="text-sm text-gray-400 py-4 text-center">분석 데이터 준비 중...</div>'
+                return
+            }
+
+            el.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    ${picks.map((pick, i) => `
+                    <div class="border border-blue-100 bg-blue-50 rounded-xl p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">${i+1}</span>
+                            <span class="font-semibold text-gray-800">${pick.sector}</span>
+                            <span style="font-size:10px;background:#dbeafe;color:#1e40af;padding:2px 7px;border-radius:10px;font-weight:600;">
+                                ${pick.rrg_quadrant?.toUpperCase() || ""}
+                            </span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-3">${pick.reason || ""}</div>
+                        <div class="space-y-1">
+                            ${(pick.stocks || []).map(s => `
+                            <div class="flex items-center justify-between bg-white rounded-lg px-3 py-2">
+                                <div class="flex items-center gap-2">
+                                    <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                                       target="_blank" class="text-xs font-semibold text-gray-800 hover:text-blue-600">
+                                        ${s.signal === "prime" ? "🔥 " : "★ "}${s.name}
+                                    </a>
+                                    <span class="text-xs text-gray-400">${s.code}</span>
+                                </div>
+                                <div class="text-xs text-gray-500">${s.reason || ""}</div>
+                            </div>`).join("")}
+                        </div>
+                    </div>`).join("")}
+                </div>
+                ${caution.length ? `
+                <div class="border border-amber-100 bg-amber-50 rounded-xl p-4">
+                    <div class="text-xs font-semibold text-amber-700 mb-2">⚠️ 주의 섹터</div>
+                    <div class="flex flex-wrap gap-2">
+                        ${caution.map(c => `<span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-lg">${c}</span>`).join("")}
+                    </div>
+                </div>` : ""}
+            `
+        }
+
+        function updateMarketBadge() {
+            const badge = document.getElementById("market-badge")
+            const now = new Date()
+            const kst = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000)
+            const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
+            const isOpen = d >= 1 && d <= 5 && (h > 9 || (h===9&&m>=0)) && (h < 15 || (h===15&&m<=30))
+            badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
+            badge.className = isOpen
+                ? "px-2 py-0.5 text-xs rounded bg-green-100 text-green-700"
+                : "px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600"
+        }
+
+        // ── 채팅 ─────────────────────────────────────────────────
+        function setQuestion(q) {
+            document.getElementById("chat-input").value = q
+            sendChat()
+        }
+
+        async function sendChat() {
+            const input = document.getElementById("chat-input")
+            const q = input.value.trim()
+            if (!q) return
+            input.value = ""
+
+            addMessage("user", q)
+            addTyping()
+
+            const systemPrompt = `당신은 한국 주식시장 전문 AI 애널리스트입니다.
+오늘의 분석 데이터:
+${JSON.stringify(eqaiData, null, 2)}
+
+위 데이터를 기반으로 질문에 답하세요. 간결하고 명확하게, 근거를 포함해서 답변하세요.`
+
+            chatHistory.push({ role: "user", content: q })
+
+            try {
+                const res = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-20250514",
+                        max_tokens: 1000,
+                        system: systemPrompt,
+                        messages: chatHistory
+                    })
+                })
+                const data = await res.json()
+                const answer = data.content?.[0]?.text || "응답을 받지 못했어요."
+                chatHistory.push({ role: "assistant", content: answer })
+                removeTyping()
+                addMessage("ai", answer)
+            } catch(e) {
+                removeTyping()
+                addMessage("ai", "API 키가 설정되지 않았거나 오류가 발생했어요. 관리자에게 문의해주세요.")
+            }
+        }
+
+        function addMessage(role, text) {
+            const el = document.getElementById("chat-messages")
+            const div = document.createElement("div")
+            div.className = role === "user" ? "chat-bubble-user" : "chat-bubble-ai"
+            div.style.whiteSpace = "pre-wrap"
+            div.textContent = text
+            el.appendChild(div)
+            el.scrollTop = el.scrollHeight
+        }
+
+        function addTyping() {
+            const el = document.getElementById("chat-messages")
+            const div = document.createElement("div")
+            div.id = "typing-indicator"
+            div.className = "chat-bubble-ai"
+            div.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>'
+            el.appendChild(div)
+            el.scrollTop = el.scrollHeight
+        }
+
+        function removeTyping() {
+            document.getElementById("typing-indicator")?.remove()
+        }
+
+        loadData()
+        setInterval(loadData, 5 * 60 * 1000)
+    </script>
+</body>
+</html>
