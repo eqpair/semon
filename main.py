@@ -13,7 +13,7 @@ from kis_price import fetch_all_prices_kis as fetch_all_prices, fetch_all_ohlcv_
 from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
                            load_market_caps_into_store, update_kospi,
                            save_rrg_history, load_rrg_history)
-from utils import is_market_time, is_near_market_close, is_nxt_time, now_kst, save_and_push, save_closing
+from utils import is_market_time, is_near_market_close, is_nxt_time, now_kst, save_and_push, save_closing, save_to_s3
 from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
 from radar import run_radar
 from signal_logger import log_signals, update_tracking
@@ -121,6 +121,7 @@ async def run():
                     update_prices(prices)
                     signals = calc_all_signals()
                     save_and_push(signals)
+                    save_to_s3(signals)
                     logger.info("NXT 시간 — 신호 계산 + push 완료")
                 else:
                     # 야간(20:01~07:59) — 1회 tail push 후 대기
@@ -128,6 +129,7 @@ async def run():
                         logger.info("야간 — tail 포함 signals.json 갱신")
                         signals = calc_all_signals()
                         save_and_push(signals)
+                        save_to_s3(signals)
                         _off_market_pushed = today
                         logger.info("야간 tail push 완료")
                     else:
@@ -191,6 +193,7 @@ async def run():
 
             # 8. JSON 저장 + git push (signal_log 포함)
             save_and_push(signals)
+            save_to_s3(signals)
 
             # 9. rrg_history 영속화
             save_rrg_history()

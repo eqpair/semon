@@ -144,3 +144,126 @@ CLOSING_FILE = DATA_PATH / "signals_closing.json"
 def save_closing(data: dict) -> bool:
     """장 마감 시 closing 스냅샷 저장"""
     return save_json(data, CLOSING_FILE)
+
+# ── S3 export (EQAI 연동) ─────────────────────────────────────
+
+import boto3
+from botocore.config import Config
+
+S3_BUCKET = "semon-eqai-data"
+S3_KEY    = "rrg_latest.json"
+
+def save_to_s3(signals: dict) -> bool:
+    """
+    RRG 핵심 데이터만 추출해서 S3에 저장
+    EQAI 페이지가 이 데이터를 인풋으로 사용
+    """
+    try:
+        # 핵심 데이터만 추출 (토큰 절약)
+        sector_rrg = signals.get("sector_rrg", {})
+        sectors    = signals.get("sectors", {})
+
+        # prime/confirm 종목만 필터링
+        top_candidates = {}
+        for sector_name, sector_data in sectors.items():
+            picks = [
+                {
+                    "code":        c.get("code"),
+                    "name":        c.get("name"),
+                    "signal":      c.get("signal"),
+                    "quadrant":    c.get("quadrant"),
+                    "rs_ratio":    c.get("rs_ratio"),
+                    "rs_momentum": c.get("rs_momentum"),
+                    "ret_1d":      c.get("ret_1d"),
+                    "ret_5d":      c.get("ret_5d"),
+                    "vol_ratio":   c.get("vol_ratio"),
+                    "gap_1d":      c.get("gap_1d"),
+                }
+                for c in sector_data.get("candidates", [])
+                if c.get("signal") in ("prime", "confirm")
+            ]
+            if picks:
+                top_candidates[sector_name] = picks
+
+        payload = {
+            "updated_at":     signals.get("updated_at"),
+            "sector_rrg":     sector_rrg,
+            "top_candidates": top_candidates,
+        }
+
+        s3 = boto3.client(
+            "s3",
+            region_name="ap-northeast-2",
+            config=Config(retries={"max_attempts": 3}),
+        )
+        s3.put_object(
+            Bucket      = S3_BUCKET,
+            Key         = S3_KEY,
+            Body        = json.dumps(payload, ensure_ascii=False, cls=_SafeEncoder),
+            ContentType = "application/json",
+        )
+        logger.info(f"S3 export 완료: s3://{S3_BUCKET}/{S3_KEY}")
+        return True
+
+    except Exception as e:
+        logger.error(f"S3 export 실패: {e}")
+        return False
+
+
+# ── S3 export (EQAI 연동) ─────────────────────────────────────
+
+import boto3
+from botocore.config import Config
+
+S3_BUCKET = "semon-eqai-data"
+S3_KEY    = "rrg_latest.json"
+
+def save_to_s3(signals: dict) -> bool:
+    try:
+        sector_rrg = signals.get("sector_rrg", {})
+        sectors    = signals.get("sectors", {})
+
+        top_candidates = {}
+        for sector_name, sector_data in sectors.items():
+            picks = [
+                {
+                    "code":        c.get("code"),
+                    "name":        c.get("name"),
+                    "signal":      c.get("signal"),
+                    "quadrant":    c.get("quadrant"),
+                    "rs_ratio":    c.get("rs_ratio"),
+                    "rs_momentum": c.get("rs_momentum"),
+                    "ret_1d":      c.get("ret_1d"),
+                    "ret_5d":      c.get("ret_5d"),
+                    "vol_ratio":   c.get("vol_ratio"),
+                    "gap_1d":      c.get("gap_1d"),
+                }
+                for c in sector_data.get("candidates", [])
+                if c.get("signal") in ("prime", "confirm")
+            ]
+            if picks:
+                top_candidates[sector_name] = picks
+
+        payload = {
+            "updated_at":     signals.get("updated_at"),
+            "sector_rrg":     sector_rrg,
+            "top_candidates": top_candidates,
+        }
+
+        s3 = boto3.client(
+            "s3",
+            region_name="ap-northeast-2",
+            config=Config(retries={"max_attempts": 3}),
+        )
+        s3.put_object(
+            Bucket      = S3_BUCKET,
+            Key         = S3_KEY,
+            Body        = json.dumps(payload, ensure_ascii=False, cls=_SafeEncoder),
+            ContentType = "application/json",
+        )
+        logger.info(f"S3 export 완료: s3://{S3_BUCKET}/{S3_KEY}")
+        return True
+
+    except Exception as e:
+        logger.error(f"S3 export 실패: {e}")
+        return False
