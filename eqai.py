@@ -85,137 +85,183 @@ def _extract_json(text: str) -> dict:
 
 
 def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
-    """
-    Claude 3단계 분석
-    API 키가 없으면 플레이스홀더 반환
-    """
     if not os.getenv("BEDROCK_API_KEY", ""):
-        logger.warning("ANTHROPIC_API_KEY 미설정 — 플레이스홀더 반환")
         return _placeholder_analysis(news_data, rrg_data)
 
     try:
-        import boto3
-        import re
-        bedrock = boto3.client(
-            service_name="bedrock-runtime",
-            region_name="ap-northeast-2",
-        )
+        bedrock = boto3.client("bedrock-runtime", region_name="ap-northeast-2")
 
-        # ── 1차 호출: 뉴스 분석 ───────────────────────────────
-        macro_text = _format_macro(news_data.get("macro", {}))
-        articles_text = _format_articles(news_data.get("articles", []))
+        macro_text      = _format_macro(news_data.get("macro", {}))
+        articles        = news_data.get("articles", [])
+        titles_text     = "\n".join([f"- {a.get('title','')} [{a.get('source','')}]" for a in articles[:15]])
+        bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:200]}" for a in articles[:8]])
+        rrg_text        = _format_rrg(rrg_data)
+        candidates_text = _format_candidates(rrg_data, [])
 
-        prompt_1 = f"""한국주식 애널리스트. 마크다운없이 순수JSON만 출력. 모든 문자열값에 큰따옴표 사용금지.
-매크로:{macro_text[:400]}
-뉴스:{articles_text[:800]}
-출력형식(이 구조 그대로):
-{{"global_sentiment":"risk_on","sentiment_reason":"한줄요약","key_factors":["요인1","요인2","요인3"],"korea_market_impact":{{"summary":"한국증시전반영향한줄","positive_factors":["긍정요인1","긍정요인2"],"negative_factors":["부정요인1","부정요인2"],"key_watch":"오늘주목포인트"}},"sector_impact":{{"반도체":{{"direction":"positive","reason":"이유"}},"금융":{{"direction":"neutral","reason":"이유"}},"자동차":{{"direction":"neutral","reason":"이유"}},"2차전지":{{"direction":"neutral","reason":"이유"}},"조선":{{"direction":"neutral","reason":"이유"}}}},"news_summary":"뉴스1\\n뉴스2\\n뉴스3"}}"""
+        prompt = f"""당신은 한국 주식시장 전문 애널리스트입니다.
+아래 데이터를 분석하여 XML 형식으로 응답하세요. XML 태그 외 다른 텍스트는 출력하지 마세요.
 
-        resp_1 = bedrock.invoke_model(
-            modelId="global.anthropic.claude-sonnet-4-6",
-            body=json.dumps({
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 1000,
-                "messages": [{"role": "user", "content": prompt_1}]
-            })
-        )
-        body_1 = json.loads(resp_1["body"].read())
-        analysis_1 = _extract_json(body_1["content"][0]["text"])
-        logger.info("1차 분석 완료")
+=== 글로벌 매크로 ===
+{macro_text}
 
-        # ── 2차 호출: RRG 교차 분석 ───────────────────────────
-        rrg_text = _format_rrg(rrg_data)
+=== 주요 뉴스 헤드라인 ===
+{titles_text}
 
-        # 2차: RRG 교차 분석 — 텍스트로 받아서 구조화
-        sector_rrg = rrg_data.get("sector_rrg", {})
-        sentiment = analysis_1.get("global_sentiment", "neutral")
+=== 뉴스 상세 ===
+{bodies_text}
 
-        strong_buy = []
-        watch = []
-        for sector, d in sector_rrg.items():
-            quad = d.get("quadrant", "neutral")
-            sector_impact = analysis_1.get("sector_impact", {})
-            # 섹터 카테고리 매핑
-            impact = "neutral"
-            for key in sector_impact:
-                if key in sector or sector in key:
-                    impact = sector_impact[key].get("direction", "neutral")
-                    break
+=== RRG 섹터 현황 ===
+{rrg_text}
 
-            if quad in ("improving", "leading") and (impact == "positive" or sentiment == "risk_on"):
-                strong_buy.append({
-                    "sector": sector,
-                    "reason": f"RRG {quad} + {sentiment} 환경 일치",
-                    "rrg_quadrant": quad
-                })
-            elif quad == "improving":
-                watch.append({
-                    "sector": sector,
-                    "reason": f"RRG {quad} 진입 — 뉴스 확인 필요"
-                })
-
-        strong_buy = strong_buy[:4]
-        watch = watch[:3]
-
-        analysis_2 = {
-            "strong_buy": strong_buy,
-            "watch": watch,
-            "avoid": [],
-            "summary": f"{sentiment} 환경 — {', '.join([s['sector'] for s in strong_buy[:2]])} 주목"
-        }
-        logger.info("2차 분석 완료")
-
-        # ── 3차 호출: 종목 확정 ───────────────────────────────
-        candidates_text = _format_candidates(rrg_data, analysis_2.get("strong_buy", []))
-
-        prompt_3 = f"""당신은 한국 주식시장 전문 애널리스트입니다.
-
-[진입 가능 섹터]
-{json.dumps(analysis_2.get("strong_buy", []), ensure_ascii=False)}
-
-[각 섹터의 prime/confirm 종목]
+=== Prime/Confirm 신호 종목 ===
 {candidates_text}
 
-오늘 진입 가능한 최종 섹터와 종목을 선정하여 아래 JSON 형식으로만 응답하세요. 마크다운 코드블록 없이 순수 JSON만 출력하세요.
+아래 XML 구조로만 응답하세요:
+<analysis>
+  <sentiment>risk_on</sentiment>
+  <sentiment_reason>한줄이유</sentiment_reason>
+  <key_factors>
+    <factor>요인1</factor>
+    <factor>요인2</factor>
+    <factor>요인3</factor>
+  </key_factors>
+  <news_summary>
+    <item>뉴스요약1</item>
+    <item>뉴스요약2</item>
+    <item>뉴스요약3</item>
+  </news_summary>
+  <korea_impact>
+    <summary>코스피 영향 한줄</summary>
+    <positive>긍정요인1</positive>
+    <positive>긍정요인2</positive>
+    <negative>부정요인1</negative>
+    <negative>부정요인2</negative>
+    <watch_point>오늘 주목 포인트</watch_point>
+  </korea_impact>
+  <strong_buy>
+    <sector quadrant="leading" reason="선정근거">반도체_대형</sector>
+    <sector quadrant="improving" reason="선정근거">2차전지_셀</sector>
+  </strong_buy>
+  <watch_sectors>
+    <sector reason="관망이유">조선</sector>
+  </watch_sectors>
+  <top_picks>
+    <pick sector="반도체_대형" name="삼성전자" code="005930" reason="선정근거"/>
+    <pick sector="반도체_대형" name="SK하이닉스" code="000660" reason="선정근거"/>
+  </top_picks>
+  <summary>오늘 시장 한줄 판단</summary>
+</analysis>"""
 
-{{
-  "top_picks": [
-    {{
-      "sector": "섹터명",
-      "rrg_quadrant": "quadrant",
-      "reason": "섹터 선정 근거",
-      "stocks": [
-        {{"code": "종목코드", "name": "종목명", "signal": "prime 또는 confirm", "reason": "종목 선정 근거"}}
-      ]
-    }}
-  ],
-  "caution_sectors": ["주의 섹터1", "주의 섹터2"]
-}}"""
-
-        resp_3 = bedrock.invoke_model(
+        resp = bedrock.invoke_model(
             modelId="global.anthropic.claude-sonnet-4-6",
             body=json.dumps({
                 "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 1000,
-                "messages": [{"role": "user", "content": prompt_3}]
+                "max_tokens": 3000,
+                "messages": [{"role": "user", "content": prompt}]
             })
         )
-        body_3 = json.loads(resp_3["body"].read())
-        analysis_3 = _extract_json(body_3["content"][0]["text"])
-        logger.info("3차 분석 완료")
-
-        return {
-            **analysis_1,
-            **analysis_2,
-            **analysis_3,
-        }
+        body = json.loads(resp["body"].read())
+        text = body["content"][0]["text"]
+        logger.info(f"Claude XML 분석 완료 ({len(text)}자)")
+        return _parse_xml_response(text, rrg_data)
 
     except Exception as e:
         logger.error(f"Claude 분석 실패: {e}")
         return _placeholder_analysis(news_data, rrg_data)
 
 
-# ── 플레이스홀더 (API 키 없을 때) ─────────────────────────────
+def _parse_xml_response(text: str, rrg_data: dict) -> dict:
+    import xml.etree.ElementTree as ET
+    import re
+
+    # XML 블록 추출
+    text = text.strip()
+    # 코드블록 제거
+    text = re.sub(r"```xml\s*", "", text)
+    text = re.sub(r"```\s*", "", text)
+    m = re.search(r"<analysis>.*?</analysis>", text, re.DOTALL)
+    if not m:
+        raise ValueError(f"XML analysis 태그 없음: {text[:200]}")
+
+    root = ET.fromstring(m.group())
+
+    def get(tag, default=""):
+        el = root.find(tag)
+        return el.text.strip() if el is not None and el.text else default
+
+    def get_list(tag):
+        return [el.text.strip() for el in root.findall(tag) if el.text]
+
+    # 기본 필드
+    sentiment       = get("sentiment", "neutral")
+    sentiment_reason= get("sentiment_reason", "")
+    key_factors     = get_list("key_factors/factor")
+    news_items      = get_list("news_summary/item")
+    news_summary    = "\n".join(news_items)
+    summary         = get("summary", "")
+
+    # 한국 시장 영향
+    ki = root.find("korea_impact")
+    korea_impact = {
+        "summary":          ki.find("summary").text.strip() if ki is not None and ki.find("summary") is not None else "",
+        "positive_factors": [el.text.strip() for el in ki.findall("positive") if el.text] if ki is not None else [],
+        "negative_factors": [el.text.strip() for el in ki.findall("negative") if el.text] if ki is not None else [],
+        "key_watch":        ki.find("watch_point").text.strip() if ki is not None and ki.find("watch_point") is not None else "",
+    }
+
+    # strong_buy
+    strong_buy = []
+    for el in root.findall("strong_buy/sector"):
+        if el.text:
+            strong_buy.append({
+                "sector":       el.text.strip(),
+                "rrg_quadrant": el.get("quadrant", ""),
+                "reason":       el.get("reason", ""),
+            })
+
+    # watch
+    watch = []
+    for el in root.findall("watch_sectors/sector"):
+        if el.text:
+            watch.append({
+                "sector": el.text.strip(),
+                "reason": el.get("reason", ""),
+            })
+
+    # top_picks
+    top_picks_raw = {}
+    for el in root.findall("top_picks/pick"):
+        sector = el.get("sector", "")
+        if not sector:
+            continue
+        if sector not in top_picks_raw:
+            sq = next((s.get("rrg_quadrant","") for s in strong_buy if s["sector"]==sector), "")
+            sr = next((s.get("reason","") for s in strong_buy if s["sector"]==sector), "")
+            top_picks_raw[sector] = {"sector": sector, "rrg_quadrant": sq, "reason": sr, "stocks": []}
+        top_picks_raw[sector]["stocks"].append({
+            "name":   el.get("name", ""),
+            "code":   el.get("code", ""),
+            "signal": "prime",
+            "reason": el.get("reason", ""),
+        })
+    top_picks = list(top_picks_raw.values())
+
+    return {
+        "global_sentiment":    sentiment,
+        "sentiment_reason":    sentiment_reason,
+        "key_factors":         key_factors,
+        "news_summary":        news_summary,
+        "korea_market_impact": korea_impact,
+        "sector_impact":       {},
+        "strong_buy":          strong_buy,
+        "watch":               watch,
+        "avoid":               [],
+        "summary":             summary,
+        "top_picks":           top_picks,
+        "caution_sectors":     [w["sector"] for w in watch[:2]],
+    }
+
+
 
 def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
     """API 키 없을 때 RRG 데이터만으로 기본 분석 생성"""
