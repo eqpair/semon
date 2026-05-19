@@ -194,12 +194,24 @@
                     <a href="./heatmap.html"
                         class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">🗺
                         Heatmap</a>
+                    <button id="refresh-btn" onclick="triggerUpdate()"
+                        class="px-3 py-1 text-xs rounded font-medium transition-colors"
+                        style="background:#0f172a;color:#fff;border:1px solid #334155;">
+                        🔄 UPDATE
+                    </button>
                     <a href="https://eqmon.duckdns.org"
                         style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">🏠
                         HOME</a>
                 </div>
             </div>
         </header>
+
+        <!-- 수동 업데이트 상태 토스트 -->
+        <div id="update-toast" style="display:none;position:fixed;top:20px;right:20px;z-index:999;
+            background:#1e293b;color:#fff;border-radius:10px;padding:12px 18px;font-size:13px;
+            box-shadow:0 4px 20px rgba(0,0,0,0.3);min-width:240px;transition:opacity 0.3s;">
+            <div id="update-toast-msg"></div>
+        </div>
 
         <!-- 로딩 상태 -->
         <div id="loading-state" class="text-center py-20 text-gray-400">
@@ -695,6 +707,100 @@ ${JSON.stringify(eqaiData, null, 2)}
 
         loadData()
         setInterval(loadData, 5 * 60 * 1000)
+
+        // ── 수동 업데이트 ─────────────────────────────────────────
+        const TRIGGER_URL = "https://eqmon.duckdns.org/eqai-trigger"
+        const STATUS_URL = "https://eqmon.duckdns.org/eqai-status"
+        let pollTimer = null
+
+        function showToast(msg, color = "#1e293b") {
+            const toast = document.getElementById("update-toast")
+            const msgEl = document.getElementById("update-toast-msg")
+            toast.style.background = color
+            msgEl.innerHTML = msg
+            toast.style.display = "block"
+        }
+
+        function hideToast(delay = 3000) {
+            setTimeout(() => {
+                document.getElementById("update-toast").style.display = "none"
+            }, delay)
+        }
+
+        function setRefreshBtn(disabled) {
+            const btn = document.getElementById("refresh-btn")
+            if (disabled) {
+                btn.disabled = true
+                btn.style.opacity = "0.5"
+                btn.style.cursor = "not-allowed"
+                btn.innerHTML = "⏳ 분석 중..."
+            } else {
+                btn.disabled = false
+                btn.style.opacity = "1"
+                btn.style.cursor = "pointer"
+                btn.innerHTML = "🔄 UPDATE"
+            }
+        }
+
+        function startPolling() {
+            if (pollTimer) clearInterval(pollTimer)
+            let elapsed = 0
+            pollTimer = setInterval(async () => {
+                elapsed += 5
+                try {
+                    const res = await fetch(STATUS_URL)
+                    const data = await res.json()
+
+                    if (!data.running) {
+                        clearInterval(pollTimer)
+                        pollTimer = null
+                        setRefreshBtn(false)
+
+                        if (data.last_result === "success") {
+                            showToast("✅ 업데이트 완료! 데이터를 다시 불러옵니다...", "#16a34a")
+                            setTimeout(() => { loadData(); hideToast(2000) }, 1500)
+                        } else {
+                            showToast("❌ 오류: " + data.last_result, "#dc2626")
+                            hideToast(5000)
+                        }
+                    } else {
+                        showToast("⏳ 분석 중... (" + elapsed + "초 경과)")
+                    }
+
+                    if (elapsed >= 120) {
+                        clearInterval(pollTimer)
+                        pollTimer = null
+                        setRefreshBtn(false)
+                        showToast("⏱ 타임아웃 — 나중에 다시 시도해주세요", "#d97706")
+                        hideToast(4000)
+                    }
+                } catch (e) { }
+            }, 5000)
+        }
+
+        async function triggerUpdate() {
+            try {
+                setRefreshBtn(true)
+                showToast("🚀 업데이트 요청 중...")
+
+                const res = await fetch(TRIGGER_URL, { method: "POST" })
+                const data = await res.json()
+
+                if (data.ok) {
+                    showToast("⏳ 분석 시작됨 — 보통 30~60초 소요됩니다")
+                    startPolling()
+                } else {
+                    showToast("⚠️ " + data.message, "#d97706")
+                    hideToast(3000)
+                    setRefreshBtn(false)
+                    if (data.status?.running) startPolling()
+                }
+            } catch (e) {
+                showToast("❌ 서버 연결 실패", "#dc2626")
+                hideToast(4000)
+                setRefreshBtn(false)
+            }
+        }
     </script>
 </body>
 
