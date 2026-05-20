@@ -262,7 +262,7 @@ def _get_return(code: str, days: int) -> float | None:
     if len(hist_closes) < days + 1:
         return None
 
-    past = hist_closes[-(days + 1)]
+    past = hist_closes[-days]
     return (now - past) / past if past != 0 else None
 
 
