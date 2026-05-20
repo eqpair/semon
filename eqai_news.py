@@ -13,12 +13,20 @@ KST = ZoneInfo("Asia/Seoul")
 # ── RSS 소스 정의 ─────────────────────────────────────────────
 
 RSS_SOURCES = {
-    "reuters_world": "https://feeds.reuters.com/reuters/worldNews",
+    # 글로벌
+    "reuters_world":    "https://feeds.reuters.com/reuters/worldNews",
     "reuters_business": "https://feeds.reuters.com/reuters/businessNews",
-    "cnbc_world": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
-    "cnbc_finance": "https://www.cnbc.com/id/10000664/device/rss/rss.html",
-    "yonhap": "https://www.yna.co.kr/rss/economy.xml",
-    "hankyung": "https://www.hankyung.com/feed/economy",
+    "cnbc_world":       "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+    "cnbc_finance":     "https://www.cnbc.com/id/10000664/device/rss/rss.html",
+    "bloomberg":        "https://feeds.bloomberg.com/markets/news.rss",
+    "ft":               "https://www.ft.com/rss/home",
+    "wsj_markets":      "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
+    "investing_com":    "https://www.investing.com/rss/news.rss",
+    "marketwatch":      "https://feeds.marketwatch.com/marketwatch/topstories/",
+    # 국내
+    "yonhap":           "https://www.yna.co.kr/rss/economy.xml",
+    "hankyung":         "https://www.hankyung.com/feed/economy",
+    "maeil":            "https://www.mk.co.kr/rss/40300001/",
 }
 
 # ── 매크로 지수 수집 ──────────────────────────────────────────
@@ -136,7 +144,7 @@ def collect_all(hours: int = 12) -> dict:
     articles = fetch_rss(hours=hours)
 
     # 본문 수집 (상위 15개만)
-    for article in articles[:15]:
+    for article in articles[:20]:
         body = fetch_article_body(article["link"])
         article["body"] = body
 
