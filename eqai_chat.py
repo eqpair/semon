@@ -236,9 +236,12 @@ def chat():
             code_to_name = {v: k for k, v in _stock_map.items()}
             lines = []
             not_found = []
+            duplicates = []
             seen = set()
             for code in code_list:
                 if code in seen:
+                    name = code_to_name.get(code, code)
+                    duplicates.append(f"{code}({name})")
                     continue
                 seen.add(code)
                 name = code_to_name.get(code)
@@ -246,10 +249,17 @@ def chat():
                     lines.append(f"{code}: {name}")
                 else:
                     not_found.append(code)
-            result = "\n".join(lines)
+
+            total_input = len(code_list)
+            total_unique = len(seen)
+            result = f"총 {total_input}개 입력 → {total_unique}개 종목 (중복 {total_input - total_unique}개 제거)\n"
+            result += "─" * 30 + "\n"
+            result += "\n".join(lines)
+            if duplicates:
+                result += f"\n\n중복 제거: {', '.join(duplicates)}"
             if not_found:
-                result += f"\n\n※ 미확인: {', '.join(not_found)}"
-            return jsonify({"answer": f"{result}"})
+                result += f"\n미확인 코드: {', '.join(not_found)}"
+            return jsonify({"answer": result})
 
         system_prompt = build_system_prompt(report, current_prices, messages)
 

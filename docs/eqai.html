@@ -139,6 +139,18 @@
             margin-bottom: 12px;
         }
 
+        .analysis-section.strong {
+            border-left-color: #2563eb;
+        }
+
+        .analysis-section.caution {
+            border-left-color: #d97706;
+        }
+
+        .analysis-section.avoid {
+            border-left-color: #dc2626;
+        }
+
         .quick-btn {
             font-size: 11px;
             padding: 4px 10px;
@@ -169,18 +181,6 @@
             max-width: 80%;
         }
 
-        .analysis-section.strong {
-            border-left-color: #2563eb;
-        }
-
-        .analysis-section.caution {
-            border-left-color: #d97706;
-        }
-
-        .analysis-section.avoid {
-            border-left-color: #dc2626;
-        }
-
         .macro-section-label {
             font-size: 10px;
             font-weight: 600;
@@ -197,7 +197,6 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen">
-
     <div class="container mx-auto px-4 py-6 max-w-7xl">
 
         <!-- 헤더 -->
@@ -216,45 +215,40 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button id="refresh-btn" onclick="triggerUpdate()" class="px-3 py-1 text-xs rounded font-medium transition-colors"
-                        style="background:#0f172a;color:#fff;border:1px solid #334155;">
-                        UPDATE
-                    </button>
+                    <button id="refresh-btn" onclick="triggerUpdate()"
+                        class="px-3 py-1 text-xs rounded font-medium transition-colors"
+                        style="background:#0f172a;color:#fff;border:1px solid #334155;">UPDATE</button>
                     <a href="./index.html"
-                        class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">📊
-                        RRG</a>
+                        class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">RRG</a>
                     <a href="./heatmap.html"
-                        class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">🗺
-                        Heatmap</a>
+                        class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">Heatmap</a>
                     <a href="https://eqmon.duckdns.org"
-                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">🏠
-                        HOME</a>
+                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
                 </div>
             </div>
         </header>
 
-        <!-- 수동 업데이트 상태 토스트 -->
+        <!-- 토스트 -->
         <div id="update-toast" style="display:none;position:fixed;top:20px;right:20px;z-index:999;
-            background:#1e293b;color:#fff;border-radius:10px;padding:12px 18px;font-size:13px;
-            box-shadow:0 4px 20px rgba(0,0,0,0.3);min-width:240px;transition:opacity 0.3s;">
+        background:#1e293b;color:#fff;border-radius:10px;padding:12px 18px;font-size:13px;
+        box-shadow:0 4px 20px rgba(0,0,0,0.3);min-width:240px;">
             <div id="update-toast-msg"></div>
         </div>
 
-        <!-- 로딩 상태 -->
+        <!-- 로딩 -->
         <div id="loading-state" class="text-center py-20 text-gray-400">
-
             <div class="text-lg font-medium text-gray-600 mb-2">EQ AI 분석 준비 중</div>
             <div class="text-sm">AI가 시장 데이터를 분석하고 있어요</div>
         </div>
 
-        <!-- 메인 컨텐츠 (데이터 로드 후 표시) -->
+        <!-- 메인 -->
         <div id="main-content" style="display:none;">
 
-            <!-- SECTION 1: 글로벌 시황 -->
+            <!-- 글로벌 시황 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">글로벌 시황</h2>
-                    <span class="text-xs text-gray-400" id="macro-time">-</span>
+                    <span class="text-xs text-gray-400" id="macro-time"></span>
                 </div>
                 <div class="macro-section-label">미국 지수</div>
                 <div id="macro-us" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
@@ -266,7 +260,7 @@
                 </div>
             </div>
 
-            <!-- SECTION 1-2: 한국 시장 영향 -->
+            <!-- 한국 시장 영향 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">한국 시장 영향</h2>
@@ -277,7 +271,7 @@
                 </div>
             </div>
 
-            <!-- SECTION 2: RRG 현황 -->
+            <!-- RRG 섹터 현황 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4 cursor-pointer" onclick="toggleRRG()">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">RRG 섹터 현황</h2>
@@ -289,7 +283,7 @@
                 <div id="rrg-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3" style="display:none;"></div>
             </div>
 
-            <!-- SECTION 3: AI 종합 분석 -->
+            <!-- AI 종합 분석 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">AI 종합 분석</h2>
@@ -298,16 +292,16 @@
                 <div id="analysis-content" class="space-y-3"></div>
             </div>
 
-            <!-- SECTION 4: 오늘의 진입 후보 -->
+            <!-- 오늘의 진입 후보 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">오늘의 진입 후보</h2>
-                    <span class="text-xs text-gray-400">뉴스 × RRG 교차 분석 결과</span>
+                    <span class="text-xs text-gray-400">뉴스 × RRG 교차 분석</span>
                 </div>
                 <div id="picks-content"></div>
             </div>
 
-            <!-- SECTION 5: EQ AI CHAT -->
+            <!-- EQ AI CHAT -->
             <div class="section-card" style="padding:0;overflow:hidden;">
                 <div
                     style="padding:16px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;">
@@ -337,13 +331,12 @@
                 </div>
                 <div style="padding:12px 20px;border-top:1px solid #f3f4f6;display:flex;gap:8px;align-items:flex-end;">
                     <textarea id="chat-input" placeholder="궁금한 점을 자유롭게 물어보세요..." rows="2" style="flex:1;padding:10px 14px;font-size:13px;border:1px solid #e5e7eb;border-radius:10px;
-                               background:#fff;resize:none;outline:none;line-height:1.5;font-family:inherit;"
+                           background:#fff;resize:none;outline:none;line-height:1.5;font-family:inherit;"
                         onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e5e7eb'"
                         onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
-                    <button onclick="sendChat()" style="padding:10px 18px;background:#1e40af;color:#fff;font-size:13px;font-weight:600;
-                               border:none;border-radius:10px;cursor:pointer;white-space:nowrap;height:fit-content;">
-                        전송
-                    </button>
+                    <button onclick="sendChat()"
+                        style="padding:10px 18px;background:#1e40af;color:#fff;font-size:13px;font-weight:600;
+                           border:none;border-radius:10px;cursor:pointer;white-space:nowrap;height:fit-content;">전송</button>
                 </div>
             </div>
 
@@ -357,14 +350,14 @@
         const TRIGGER_URL = "https://eqmon.duckdns.org/eqai-trigger"
         const STATUS_URL = "https://eqmon.duckdns.org/eqai-status"
         let pollTimer = null
-        let lastUserScrollTop = 0
+        let lastUserMsgEl = null  // 마지막 질문 DOM 요소
 
         const MACRO_META = {
             "S&P500": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
             "NASDAQ": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
             "DOW": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
             "VIX": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
-            "필라델피아반도체": { group: "us", unit: "SOX", priceDecimals: 2, warnIf: null },
+            "필라반도체": { group: "us", unit: "SOX", priceDecimals: 2, warnIf: null },
             "러셀2000": { group: "us", unit: "RUT", priceDecimals: 2, warnIf: null },
             "영국FTSE": { group: "global", unit: "FTSE100", priceDecimals: 2, warnIf: null },
             "독일DAX": { group: "global", unit: "DAX", priceDecimals: 2, warnIf: null },
@@ -390,34 +383,33 @@
             const impact = eqaiData.korea_market_impact
             const el = document.getElementById("korea-impact")
             if (!el) return
-            if (!impact) { el.innerHTML = '<div class="text-sm text-gray-400">한국 시장 영향 데이터 없음</div>'; return }
+            if (!impact) { el.innerHTML = '<div class="text-sm text-gray-400">데이터 없음</div>'; return }
             el.innerHTML = `
-                <div class="text-sm font-medium text-gray-700 mb-3">${impact.summary || ""}</div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-                    <div class="bg-green-50 rounded-lg p-3 border border-green-100">
-                        <div class="text-xs font-semibold text-green-700 mb-2">긍정 요인</div>
-                        ${(impact.positive_factors || []).map(f => `<div class="text-xs text-gray-600 mb-1">• ${f}</div>`).join("")}
-                    </div>
-                    <div class="bg-red-50 rounded-lg p-3 border border-red-100">
-                        <div class="text-xs font-semibold text-red-700 mb-2">부정 요인</div>
-                        ${(impact.negative_factors || []).map(f => `<div class="text-xs text-gray-600 mb-1">• ${f}</div>`).join("")}
-                    </div>
+            <div class="text-sm font-medium text-gray-700 mb-3">${impact.summary || ""}</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                <div class="bg-green-50 rounded-lg p-3 border border-green-100">
+                    <div class="text-xs font-semibold text-green-700 mb-2">긍정 요인</div>
+                    ${(impact.positive_factors || []).map(f => `<div class="text-xs text-gray-600 mb-1">• ${f}</div>`).join("")}
                 </div>
-                ${impact.key_watch ? `<div class="p-3 bg-blue-50 rounded-lg border border-blue-100 text-xs text-blue-700"><span class="font-semibold">주목:</span> ${impact.key_watch}</div>` : ""}
-            `
+                <div class="bg-red-50 rounded-lg p-3 border border-red-100">
+                    <div class="text-xs font-semibold text-red-700 mb-2">부정 요인</div>
+                    ${(impact.negative_factors || []).map(f => `<div class="text-xs text-gray-600 mb-1">• ${f}</div>`).join("")}
+                </div>
+            </div>
+            ${impact.key_watch ? `<div class="p-3 bg-blue-50 rounded-lg border border-blue-100 text-xs text-blue-700"><span class="font-semibold">주목:</span> ${impact.key_watch}</div>` : ""}
+        `
         }
 
         async function loadData() {
             try {
                 const res = await fetch("./data/eqai_report.json?t=" + Date.now())
-                if (!res.ok) throw new Error("데이터 없음")
+                if (!res.ok) throw new Error()
                 eqaiData = await res.json()
                 render()
             } catch (e) {
                 document.getElementById("loading-state").innerHTML = `
-                    
-                    <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
-                    <div class="text-sm text-gray-400">07:30 장전 리포트가 생성되면 자동으로 표시됩니다</div>`
+                <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
+                <div class="text-sm text-gray-400">07:30 장전 리포트가 생성되면 자동으로 표시됩니다</div>`
             }
         }
 
@@ -437,19 +429,16 @@
             let warnClass = "", warnBadge = ""
             if (meta.warnIf && d.price != null) {
                 const [lo, hi] = meta.warnIf
-                if (d.price < lo || d.price > hi) {
-                    warnClass = "data-warn"
-                    warnBadge = `<span title="데이터 이상값 의심" style="font-size:9px;color:#b45309;">⚠ 확인필요</span>`
-                }
+                if (d.price < lo || d.price > hi) { warnClass = "data-warn"; warnBadge = `<span style="font-size:9px;color:#b45309;">확인필요</span>` }
             }
             const priceStr = meta.unit === "%" ? (d.price ?? "-").toString()
                 : d.price != null ? d.price.toLocaleString("en-US", { minimumFractionDigits: meta.priceDecimals, maximumFractionDigits: meta.priceDecimals }) : "-"
             return `<div class="macro-card ${warnClass}">
-                <div class="text-xs text-gray-400 mb-0.5">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</div>
-                <div class="text-sm font-bold text-gray-800">${priceStr}</div>
-                <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
-                ${warnBadge}
-            </div>`
+            <div class="text-xs text-gray-400 mb-0.5">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</div>
+            <div class="text-sm font-bold text-gray-800">${priceStr}</div>
+            <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
+            ${warnBadge}
+        </div>`
         }
 
         function renderMacro() {
@@ -471,31 +460,31 @@
         function renderRRG() {
             const rrg = eqaiData.sector_rrg || {}
             const grid = document.getElementById("rrg-grid")
-            const quadrantColor = { leading: "#16a34a", improving: "#2563eb", lagging: "#d97706", weakening: "#dc2626", neutral: "#9ca3af" }
-            const quadrantBg = { leading: "#dcfce7", improving: "#dbeafe", lagging: "#fef3c7", weakening: "#fee2e2", neutral: "#f3f4f6" }
+            const qColor = { leading: "#16a34a", improving: "#2563eb", lagging: "#d97706", weakening: "#dc2626", neutral: "#9ca3af" }
+            const qBg = { leading: "#dcfce7", improving: "#dbeafe", lagging: "#fef3c7", weakening: "#fee2e2", neutral: "#f3f4f6" }
             const sorted = Object.entries(rrg).sort((a, b) => {
                 const order = { improving: 0, leading: 1, lagging: 2, weakening: 3, neutral: 4 }
                 return (order[a[1].quadrant] ?? 4) - (order[b[1].quadrant] ?? 4)
             })
             grid.innerHTML = sorted.map(([name, d]) => {
-                const color = quadrantColor[d.quadrant] || "#9ca3af"
-                const bg = quadrantBg[d.quadrant] || "#f3f4f6"
+                const color = qColor[d.quadrant] || "#9ca3af"
+                const bg = qBg[d.quadrant] || "#f3f4f6"
                 const ret = d.sector_ret_1d
                 const retColor = ret > 0 ? "#16a34a" : ret < 0 ? "#dc2626" : "#9ca3af"
                 return `<div style="background:${bg};border-radius:8px;padding:10px 12px;border:1px solid ${color}22;">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-xs font-semibold text-gray-700">${name}</span>
-                        <span style="font-size:10px;color:${color};font-weight:600;">${d.quadrant?.toUpperCase()}</span>
-                    </div>
-                    <div class="text-xs text-gray-500">
-                        RS-R <span style="color:#374151;font-weight:500;">${d.rs_ratio?.toFixed(1) ?? "-"}</span>
-                        &nbsp;RS-M <span style="color:#374151;font-weight:500;">${d.rs_momentum?.toFixed(1) ?? "-"}</span>
-                    </div>
-                    <div class="text-xs mt-1">
-                        1D <span style="color:${retColor};font-weight:600;">${ret != null ? (ret > 0 ? "+" : "") + ret.toFixed(1) + "%" : "-"}</span>
-                        &nbsp;★<span style="color:#2563eb;font-weight:600;">${d.improving_count || 0}</span>
-                    </div>
-                </div>`
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-semibold text-gray-700">${name}</span>
+                    <span style="font-size:10px;color:${color};font-weight:600;">${d.quadrant?.toUpperCase()}</span>
+                </div>
+                <div class="text-xs text-gray-500">
+                    RS-R <span style="color:#374151;font-weight:500;">${d.rs_ratio?.toFixed(1) ?? "-"}</span>
+                    &nbsp;RS-M <span style="color:#374151;font-weight:500;">${d.rs_momentum?.toFixed(1) ?? "-"}</span>
+                </div>
+                <div class="text-xs mt-1">
+                    1D <span style="color:${retColor};font-weight:600;">${ret != null ? (ret > 0 ? "+" : "") + ret.toFixed(1) + "%" : "-"}</span>
+                    &nbsp;★<span style="color:#2563eb;font-weight:600;">${d.improving_count || 0}</span>
+                </div>
+            </div>`
             }).join("")
         }
 
@@ -505,44 +494,40 @@
             const gs = d.global_sentiment || "neutral"
             const sc = gs === "risk_on" ? "#16a34a" : gs === "risk_off" ? "#dc2626" : "#d97706"
             const sl = gs === "risk_on" ? "리스크 온" : gs === "risk_off" ? "리스크 오프" : "중립"
-
-            // 추천 섹터 요약 (top_picks 상위 3개)
             const picks = d.top_picks || []
             const picksSummary = picks.slice(0, 3).map((p, i) => {
                 const stocks = (p.stocks || []).slice(0, 2).map(s =>
                     `<a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
-                        style="color:#2563eb;font-weight:600;text-decoration:none;">${s.name}</a>`
+                    style="color:#2563eb;font-weight:600;text-decoration:none;">${s.name}</a>`
                 ).join(", ")
-                const qColor = p.rrg_quadrant === "leading" ? "#16a34a" : p.rrg_quadrant === "improving" ? "#2563eb" : "#d97706"
+                const qc = p.rrg_quadrant === "leading" ? "#16a34a" : p.rrg_quadrant === "improving" ? "#2563eb" : "#d97706"
                 return `<div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f3f4f6;">
-                    <span style="background:${qColor};color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;margin-top:1px;">${i + 1}</span>
-                    <div>
-                        <span style="font-size:12px;font-weight:600;color:#374151;">${p.sector}</span>
-                        <span style="font-size:10px;color:${qColor};margin-left:4px;">${(p.rrg_quadrant || "").toUpperCase()}</span>
-                        <div style="font-size:11px;color:#6b7280;margin-top:2px;">${stocks}</div>
-                    </div>
-                </div>`
-            }).join("")
-
-            el.innerHTML = `
-                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-3">
-                    <span class="text-sm font-semibold" style="color:${sc};">${sl}</span>
-                    <span class="text-xs text-gray-400">${d.sentiment_reason || ""}</span>
+                <span style="background:${qc};color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;margin-top:1px;">${i + 1}</span>
+                <div>
+                    <span style="font-size:12px;font-weight:600;color:#374151;">${p.sector}</span>
+                    <span style="font-size:10px;color:${qc};margin-left:4px;">${(p.rrg_quadrant || "").toUpperCase()}</span>
+                    <div style="font-size:11px;color:#6b7280;margin-top:2px;">${stocks}</div>
                 </div>
-                ${(d.key_factors || []).map(f => `
-                    <div class="analysis-section strong">
-                        <div class="text-xs font-medium text-gray-700">${f}</div>
-                    </div>`).join("")}
-                ${d.summary ? `<div class="text-sm text-gray-600 leading-relaxed mt-3 p-3 bg-blue-50 rounded-lg">${d.summary}</div>` : ""}
-                ${picks.length ? `
-                <div style="margin-top:12px;padding:12px 14px;background:#f8faff;border:1px solid #dbeafe;border-radius:10px;">
-                    <div style="font-size:11px;font-weight:700;color:#1e40af;margin-bottom:6px;">주목 섹터·종목</div>
-                    ${picksSummary}
-                    <div style="margin-top:6px;font-size:11px;color:#3b82f6;cursor:pointer;" onclick="document.getElementById('picks-content').scrollIntoView({behavior:'smooth'})">
-                        전체 분석 보기
-                    </div>
-                </div>` : ""}
-            `
+            </div>`
+            }).join("")
+            el.innerHTML = `
+            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-3">
+                <span class="text-sm font-semibold" style="color:${sc};">${sl}</span>
+                <span class="text-xs text-gray-400">${d.sentiment_reason || ""}</span>
+            </div>
+            ${(d.key_factors || []).map(f => `
+                <div class="analysis-section strong">
+                    <div class="text-xs font-medium text-gray-700">${f}</div>
+                </div>`).join("")}
+            ${d.summary ? `<div class="text-sm text-gray-600 leading-relaxed mt-3 p-3 bg-blue-50 rounded-lg">${d.summary}</div>` : ""}
+            ${picks.length ? `
+            <div style="margin-top:12px;padding:12px 14px;background:#f8faff;border:1px solid #dbeafe;border-radius:10px;">
+                <div style="font-size:11px;font-weight:700;color:#1e40af;margin-bottom:6px;">주목 섹터·종목</div>
+                ${picksSummary}
+                <div style="margin-top:6px;font-size:11px;color:#3b82f6;cursor:pointer;"
+                    onclick="document.getElementById('picks-content').scrollIntoView({behavior:'smooth'})">전체 분석 보기</div>
+            </div>`: ""}
+        `
         }
 
         function renderPicks() {
@@ -551,42 +536,40 @@
             const el = document.getElementById("picks-content")
             if (!picks.length) { el.innerHTML = '<div class="text-sm text-gray-400 py-4 text-center">분석 데이터 준비 중...</div>'; return }
             el.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    ${picks.map((pick, i) => `
-                    <div class="border border-blue-100 bg-blue-50 rounded-xl p-4">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">${i + 1}</span>
-                            <span class="font-semibold text-gray-800">${pick.sector}</span>
-                            <span style="font-size:10px;background:#dbeafe;color:#1e40af;padding:2px 7px;border-radius:10px;font-weight:600;">${pick.rrg_quadrant?.toUpperCase() || ""}</span>
-                        </div>
-                        <div class="text-xs text-gray-500 mb-3">${pick.reason || ""}</div>
-                        <div class="space-y-2">
-                            ${(pick.stocks || []).map(s => `
-                            <div class="bg-white rounded-lg px-3 py-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
-                                       class="text-xs font-semibold text-gray-800 hover:text-blue-600 whitespace-nowrap">${s.name}</a>
-                                    <span class="text-xs text-gray-400 whitespace-nowrap">${s.code}</span>
-                                </div>
-                                <div class="text-xs text-gray-500 leading-relaxed">${s.reason || ""}</div>
-                            </div>`).join("")}
-                        </div>
-                    </div>`).join("")}
-                </div>
-                ${(eqaiData.watch?.length || caution.length) ? `
-                <div class="border border-amber-100 bg-amber-50 rounded-xl p-4">
-                    <div class="text-xs font-semibold text-amber-700 mb-3">주의 섹터</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                ${picks.map((pick, i) => `
+                <div class="border border-blue-100 bg-blue-50 rounded-xl p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">${i + 1}</span>
+                        <span class="font-semibold text-gray-800">${pick.sector}</span>
+                        <span style="font-size:10px;background:#dbeafe;color:#1e40af;padding:2px 7px;border-radius:10px;font-weight:600;">${pick.rrg_quadrant?.toUpperCase() || ""}</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mb-3">${pick.reason || ""}</div>
                     <div class="space-y-2">
-                        ${(eqaiData.watch?.length ? eqaiData.watch : caution.map(c => ({ sector: c, reason: "" }))).map(w => `
+                        ${(pick.stocks || []).map(s => `
                         <div class="bg-white rounded-lg px-3 py-2">
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="text-xs font-semibold text-amber-700">${w.sector || w}</span>
+                                <a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
+                                   class="text-xs font-semibold text-gray-800 hover:text-blue-600 whitespace-nowrap">${s.name}</a>
+                                <span class="text-xs text-gray-400 whitespace-nowrap">${s.code}</span>
                             </div>
-                            ${w.reason ? `<div class="text-xs text-gray-500 leading-relaxed">${w.reason}</div>` : ""}
+                            <div class="text-xs text-gray-500 leading-relaxed">${s.reason || ""}</div>
                         </div>`).join("")}
                     </div>
-                </div>` : ""}
-            `
+                </div>`).join("")}
+            </div>
+            ${(eqaiData.watch?.length || caution.length) ? `
+            <div class="border border-amber-100 bg-amber-50 rounded-xl p-4">
+                <div class="text-xs font-semibold text-amber-700 mb-3">주의 섹터</div>
+                <div class="space-y-2">
+                    ${(eqaiData.watch?.length ? eqaiData.watch : caution.map(c => ({ sector: c, reason: "" }))).map(w => `
+                    <div class="bg-white rounded-lg px-3 py-2">
+                        <div class="text-xs font-semibold text-amber-700 mb-1">${w.sector || w}</div>
+                        ${w.reason ? `<div class="text-xs text-gray-500 leading-relaxed">${w.reason}</div>` : ""}
+                    </div>`).join("")}
+                </div>
+            </div>`: ""}
+        `
         }
 
         function getNextUpdate() {
@@ -620,6 +603,7 @@
             if (nextEl) nextEl.textContent = getNextUpdate()
         }
 
+        // ── 채팅 ──────────────────────────────────────────────────────
         function setQuestion(q) {
             document.getElementById("chat-input").value = q
             sendChat()
@@ -627,10 +611,11 @@
 
         function clearChat() {
             chatHistory = []
+            lastUserMsgEl = null
             const el = document.getElementById("chat-messages")
             el.innerHTML = `<div class="chat-bubble-ai" style="background:#f0f9ff;border-color:#bae6fd;">
-                대화가 초기화되었습니다.
-            </div>`
+            대화가 초기화되었습니다.
+        </div>`
         }
 
         async function sendChat() {
@@ -659,13 +644,11 @@
         }
 
         function markdownToHtml(text) {
-            // 코드블록 제거
             text = text.replace(/```[\s\S]*?```/g, "")
             text = text.replace(/`([^`]+)`/g, "<code style='background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:12px;'>$1</code>")
             const bold = s => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
             const lines = text.split("\n")
-            let html = ""
-            let inTable = false
+            let html = "", inTable = false
             for (let i = 0; i < lines.length; i++) {
                 const trim = lines[i].trim()
                 if (trim.startsWith("|") && trim.endsWith("|")) {
@@ -685,7 +668,7 @@
                 if (trim.startsWith("### ")) html += `<div style="font-size:13px;font-weight:700;color:#1e40af;margin-top:14px;margin-bottom:4px;">${bold(trim.slice(4))}</div>`
                 else if (trim.startsWith("## ")) html += `<div style="font-size:14px;font-weight:700;color:#111827;margin-top:16px;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e5e7eb;">${bold(trim.slice(3))}</div>`
                 else if (trim.startsWith("# ")) html += `<div style="font-size:15px;font-weight:700;color:#111827;margin-top:16px;margin-bottom:8px;">${bold(trim.slice(2))}</div>`
-                else if (trim.startsWith("> ")) html += `<div style="border-left:3px solid #3b82f6;padding-left:10px;color:#374151;margin:6px 0;font-style:italic;">${bold(trim.slice(2))}</div>`
+                else if (trim.startsWith("> ")) html += `<div style="border-left:3px solid #3b82f6;padding-left:10px;color:#374151;margin:6px 0;">${bold(trim.slice(2))}</div>`
                 else if (trim.startsWith("- ") || trim.startsWith("* ")) html += `<div style="display:flex;gap:6px;margin:3px 0;"><span style="color:#6b7280;flex-shrink:0;margin-top:1px;">•</span><span>${bold(trim.slice(2))}</span></div>`
                 else if (/^\d+\.\s/.test(trim)) {
                     const num = trim.match(/^(\d+)\.\s/)[1]
@@ -705,23 +688,15 @@
             if (role === "ai") div.innerHTML = markdownToHtml(text)
             else div.textContent = text
             el.appendChild(div)
+
             if (role === "user") {
-                // 질문 추가 시: 질문이 채팅창 상단에 오도록 스크롤
-                el.scrollTop = el.scrollHeight
-                // 다음 프레임에서 질문 위치 저장 (렌더링 후)
+                // 질문 추가 후: 질문이 채팅창 맨 위에 오도록 스크롤
+                lastUserMsgEl = div
                 requestAnimationFrame(() => {
-                    const allBubbles = el.querySelectorAll(".chat-bubble-user, .chat-bubble-ai")
-                    const userBubbles = [...allBubbles].filter(b => b.classList.contains("chat-bubble-user"))
-                    const lastUser = userBubbles[userBubbles.length - 1]
-                    if (lastUser) {
-                        lastUserScrollTop = lastUser.offsetTop - 12
-                        el.scrollTop = lastUserScrollTop
-                    }
+                    el.scrollTop = div.offsetTop - 16
                 })
-            } else {
-                // AI 답변 추가 시: 질문이 맨 위에 보이도록 유지
-                el.scrollTop = lastUserScrollTop
             }
+            // AI 답변은 스크롤 안 건드림 — 사용자가 직접 내리며 읽음
         }
 
         function addTyping() {
@@ -731,22 +706,20 @@
             div.className = "chat-bubble-ai"
             div.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>'
             el.appendChild(div)
-            el.scrollTop = el.scrollHeight
         }
 
         function removeTyping() { document.getElementById("typing-indicator")?.remove() }
 
+        // ── 수동 업데이트 ─────────────────────────────────────────────
         function showToast(msg, color = "#1e293b") {
             const toast = document.getElementById("update-toast")
             toast.style.background = color
             document.getElementById("update-toast-msg").innerHTML = msg
             toast.style.display = "block"
         }
-
         function hideToast(delay = 3000) {
             setTimeout(() => { document.getElementById("update-toast").style.display = "none" }, delay)
         }
-
         function setRefreshBtn(disabled) {
             const btn = document.getElementById("refresh-btn")
             btn.disabled = disabled
@@ -754,7 +727,6 @@
             btn.style.cursor = disabled ? "not-allowed" : "pointer"
             btn.innerHTML = disabled ? "분석 중..." : "UPDATE"
         }
-
         function startPolling() {
             if (pollTimer) clearInterval(pollTimer)
             let elapsed = 0
@@ -781,7 +753,6 @@
                 } catch (e) { }
             }, 5000)
         }
-
         async function triggerUpdate() {
             try {
                 setRefreshBtn(true); showToast("업데이트 요청 중...")
@@ -789,7 +760,7 @@
                 const data = await res.json()
                 if (data.ok) { showToast("분석 시작 — 1분 이내 완료 예정"); startPolling() }
                 else {
-                    showToast("" + data.message, "#d97706"); hideToast(3000); setRefreshBtn(false)
+                    showToast(data.message, "#d97706"); hideToast(3000); setRefreshBtn(false)
                     if (data.status?.running) startPolling()
                 }
             } catch (e) { showToast("서버 연결 실패", "#dc2626"); hideToast(4000); setRefreshBtn(false) }
