@@ -513,23 +513,24 @@
         }
 
         function renderAnalysis() {
-            const analysis = eqaiData.analysis || {}
+            // JSON 구조: analysis 키 없이 최상위에 직접 위치
+            const d = eqaiData
             const el = document.getElementById("analysis-content")
 
-            const globalSentiment = analysis.global_sentiment || "neutral"
+            const globalSentiment = d.global_sentiment || "neutral"
             const sentimentColor = globalSentiment === "risk_on" ? "#16a34a" : globalSentiment === "risk_off" ? "#dc2626" : "#d97706"
             const sentimentLabel = globalSentiment === "risk_on" ? "📈 리스크 온 (매수 우호)" : globalSentiment === "risk_off" ? "📉 리스크 오프 (매수 불리)" : "⚖️ 중립"
 
             el.innerHTML = `
                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-4">
                     <span class="text-sm font-semibold" style="color:${sentimentColor};">${sentimentLabel}</span>
-                    <span class="text-xs text-gray-400">${analysis.sentiment_reason || ""}</span>
+                    <span class="text-xs text-gray-400">${d.sentiment_reason || ""}</span>
                 </div>
-                ${(analysis.key_factors || []).map(f => `
+                ${(d.key_factors || []).map(f => `
                     <div class="analysis-section strong">
                         <div class="text-xs font-medium text-gray-700">${f}</div>
                     </div>`).join("")}
-                ${analysis.summary ? `<div class="text-sm text-gray-600 leading-relaxed mt-3 p-3 bg-blue-50 rounded-lg">${analysis.summary}</div>` : ""}
+                ${d.summary ? `<div class="text-sm text-gray-600 leading-relaxed mt-3 p-3 bg-blue-50 rounded-lg">${d.summary}</div>` : ""}
             `
         }
 
