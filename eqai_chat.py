@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 eqai_chat.py — EQAI 채팅 API 서버
-브라우저 → 이 서버 → AWS Bedrock → 응답
 """
 import json
 import logging
@@ -25,6 +24,57 @@ def load_report() -> dict:
     except Exception:
         return {}
 
+def build_system_prompt(report: dict) -> str:
+    macro = report.get("macro", {})
+    macro_lines = "\n".join([
+        f"  - {k}: {v.get('price')} ({'+' if v.get('change',0)>=0 else ''}{v.get('change',0):.2f}%)"
+        for k, v in macro.items()
+    ])
+
+    rrg = report.get("sector_rrg", {})
+    leading   = [s for s,d in rrg.items() if d.get("quadrant")=="leading"]
+    improving = [s for s,d in rrg.items() if d.get("quadrant")=="improving"]
+    weakening = [s for s,d in rrg.items() if d.get("quadrant")=="weakening"]
+    lagging   = [s for s,d in rrg.items() if d.get("quadrant")=="lagging"]
+
+    picks = report.get("top_picks", [])
+    picks_text = ""
+    for p in picks:
+        stocks = ", ".join([f"{s['name']}({s['code']})" for s in p.get("stocks", [])])
+        picks_text += f"\n  - {p['sector']} [{p.get('rrg_quadrant','').upper()}]: {p.get('reason','')} → {stocks}"
+
+    ki = report.get("korea_market_impact", {})
+
+    return f"""당신은 한국 주식시장과 글로벌 매크로에 정통한 시니어 트레이딩 애널리스트입니다.
+
+## 역할과 답변 원칙
+- 질문의 주제와 범위에 맞게 자유롭게 답변하세요. 오늘 데이터에만 국한하지 마세요.
+- 거시경제, 섹터 분석, 종목, 매매 전략, 리스크 관리 등 어떤 주제든 전문가 수준으로 답하세요.
+- 오늘의 시장 데이터는 "현재 시장 상황"의 참고자료로만 활용하세요. 질문이 오늘과 무관하면 무시해도 됩니다.
+- 구체적 수치, 역사적 사례, 논리적 인과관계를 포함해 답하세요.
+- 한국어로 답변하되, 실제 트레이더에게 실용적인 인사이트를 제공하세요.
+- 불확실한 내용은 솔직하게 "불확실하다"고 말하세요.
+
+## 현재 시장 스냅샷 ({report.get('generated_at','')})
+참고용 데이터입니다. 질문과 관련 있을 때만 활용하세요.
+
+[글로벌 매크로]
+{macro_lines}
+
+[시장 심리] {report.get('global_sentiment', '-')} — {report.get('sentiment_reason', '-')}
+
+[RRG 섹터]
+- Leading: {', '.join(leading) or '없음'}
+- Improving: {', '.join(improving) or '없음'}
+- Weakening: {', '.join(weakening) or '없음'}
+- Lagging: {', '.join(lagging) or '없음'}
+
+[오늘 진입 후보]{picks_text}
+
+[한국 시장] {ki.get('summary', '-')}
+
+[종합 판단] {report.get('summary', '-')}"""
+
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
@@ -32,23 +82,14 @@ def chat():
         messages = data.get("messages", [])
         report   = load_report()
 
-        system_prompt = f"""당신은 한국 주식시장 전문 AI 애널리스트 EQAI입니다.
-오늘의 분석 데이터를 기반으로 질문에 답하세요.
-간결하고 명확하게, 근거를 포함해서 한국어로 답변하세요.
-
-오늘 분석 데이터:
-- 글로벌 심리: {report.get("global_sentiment", "-")}
-- 핵심 요인: {", ".join(report.get("key_factors", [])[:3])}
-- 진입 후보 섹터: {", ".join([p.get("sector","") for p in report.get("top_picks", [])[:3]])}
-- 주의 섹터: {", ".join(report.get("caution_sectors", [])[:3])}
-- 뉴스 요약: {report.get("news_summary", "-")}"""
+        system_prompt = build_system_prompt(report)
 
         bedrock = boto3.client("bedrock-runtime", region_name="ap-northeast-2")
         resp = bedrock.invoke_model(
             modelId="global.anthropic.claude-sonnet-4-6",
             body=json.dumps({
                 "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 800,
+                "max_tokens": 2000,
                 "system": system_prompt,
                 "messages": messages
             })
