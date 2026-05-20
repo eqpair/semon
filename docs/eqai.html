@@ -216,17 +216,16 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
+                    <button id="refresh-btn" onclick="triggerUpdate()" class="px-3 py-1 text-xs rounded font-medium transition-colors"
+                        style="background:#0f172a;color:#fff;border:1px solid #334155;">
+                        UPDATE
+                    </button>
                     <a href="./index.html"
                         class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">📊
                         RRG</a>
                     <a href="./heatmap.html"
                         class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">🗺
                         Heatmap</a>
-                    <button id="refresh-btn" onclick="triggerUpdate()"
-                        class="px-3 py-1 text-xs rounded font-medium transition-colors"
-                        style="background:#0f172a;color:#fff;border:1px solid #334155;">
-                        🔄 UPDATE
-                    </button>
                     <a href="https://eqmon.duckdns.org"
                         style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">🏠
                         HOME</a>
@@ -243,9 +242,9 @@
 
         <!-- 로딩 상태 -->
         <div id="loading-state" class="text-center py-20 text-gray-400">
-            <div class="text-4xl mb-4">🤖</div>
-            <div class="text-lg font-medium text-gray-600 mb-2">EQAI 분석 준비 중</div>
-            <div class="text-sm">Claude AI가 시장 데이터를 분석하고 있어요</div>
+
+            <div class="text-lg font-medium text-gray-600 mb-2">EQ AI 분석 준비 중</div>
+            <div class="text-sm">AI가 시장 데이터를 분석하고 있어요</div>
         </div>
 
         <!-- 메인 컨텐츠 (데이터 로드 후 표시) -->
@@ -254,14 +253,14 @@
             <!-- SECTION 1: 글로벌 시황 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">📡 글로벌 시황</h2>
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">글로벌 시황</h2>
                     <span class="text-xs text-gray-400" id="macro-time">-</span>
                 </div>
-                <div class="macro-section-label">US 미국 지수</div>
+                <div class="macro-section-label">미국 지수</div>
                 <div id="macro-us" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
-                <div class="macro-section-label">🌍 글로벌 지수</div>
+                <div class="macro-section-label">글로벌 지수</div>
                 <div id="macro-global" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
-                <div class="macro-section-label">💱 채권 / 원자재 / 환율</div>
+                <div class="macro-section-label">채권 / 원자재 / 환율</div>
                 <div id="macro-commodity" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4"></div>
                 <div id="news-summary" class="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
                 </div>
@@ -270,8 +269,8 @@
             <!-- SECTION 1-2: 한국 시장 영향 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">🇰🇷 한국 시장 영향 분석</h2>
-                    <span class="text-xs text-gray-400">뉴스 기반 Claude 분석</span>
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">한국 시장 영향</h2>
+                    <span class="text-xs text-gray-400">Claude 분석</span>
                 </div>
                 <div id="korea-impact">
                     <div class="text-sm text-gray-400">분석 데이터 로딩 중...</div>
@@ -281,10 +280,10 @@
             <!-- SECTION 2: RRG 현황 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4 cursor-pointer" onclick="toggleRRG()">
-                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">📈 RRG 섹터 현황</h2>
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">RRG 섹터 현황</h2>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs text-gray-400" id="rrg-time">-</span>
-                        <span id="rrg-toggle" class="text-xs text-gray-400">▼ 펼치기</span>
+                        <span class="text-xs text-gray-400" id="rrg-time"></span>
+                        <span id="rrg-toggle" class="text-xs text-gray-400">▼</span>
                     </div>
                 </div>
                 <div id="rrg-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3" style="display:none;"></div>
@@ -293,7 +292,7 @@
             <!-- SECTION 3: AI 종합 분석 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">✅ AI 종합 분석</h2>
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">AI 종합 분석</h2>
                     <span class="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full font-medium">AI 분석</span>
                 </div>
                 <div id="analysis-content" class="space-y-3"></div>
@@ -302,7 +301,7 @@
             <!-- SECTION 4: 오늘의 진입 후보 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">🎯 오늘의 진입 후보</h2>
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">오늘의 진입 후보</h2>
                     <span class="text-xs text-gray-400">뉴스 × RRG 교차 분석 결과</span>
                 </div>
                 <div id="picks-content"></div>
@@ -313,7 +312,7 @@
                 <div
                     style="padding:16px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;">
                     <div style="display:flex;align-items:center;gap:8px;">
-                        <span style="font-size:13px;font-weight:600;color:#374151;">💬 EQ AI CHAT</span>
+                        <span style="font-size:13px;font-weight:600;color:#374151;">EQ AI CHAT</span>
                         <span
                             style="font-size:10px;background:#eff6ff;color:#3b82f6;padding:2px 8px;border-radius:10px;">시장·종목·전략
                             무엇이든 물어보세요</span>
@@ -333,8 +332,7 @@
                 <div id="chat-messages"
                     style="padding:16px 20px;overflow-y:auto;min-height:300px;max-height:60vh;display:flex;flex-direction:column;gap:12px;">
                     <div class="chat-bubble-ai" style="background:#f0f9ff;border-color:#bae6fd;">
-                        안녕하세요! EQ AI입니다.<br>
-                        거시경제·섹터·종목·매매전략 등 <strong>어떤 주제든</strong> 전문적으로 답변해 드립니다.
+                        시장·종목·전략에 대해 무엇이든 질문하세요.
                     </div>
                 </div>
                 <div style="padding:12px 20px;border-top:1px solid #f3f4f6;display:flex;gap:8px;align-items:flex-end;">
@@ -366,7 +364,7 @@
             "NASDAQ": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
             "DOW": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
             "VIX": { group: "us", unit: "", priceDecimals: 2, warnIf: null },
-            "필라반도체": { group: "us", unit: "SOX", priceDecimals: 2, warnIf: null },
+            "필라델피아반도체": { group: "us", unit: "SOX", priceDecimals: 2, warnIf: null },
             "러셀2000": { group: "us", unit: "RUT", priceDecimals: 2, warnIf: null },
             "영국FTSE": { group: "global", unit: "FTSE100", priceDecimals: 2, warnIf: null },
             "독일DAX": { group: "global", unit: "DAX", priceDecimals: 2, warnIf: null },
@@ -383,8 +381,8 @@
         function toggleRRG() {
             const grid = document.getElementById("rrg-grid")
             const btn = document.getElementById("rrg-toggle")
-            if (grid.style.display === "none") { grid.style.display = "grid"; btn.textContent = "▲ 접기" }
-            else { grid.style.display = "none"; btn.textContent = "▼ 펼치기" }
+            if (grid.style.display === "none") { grid.style.display = "grid"; btn.textContent = "▲" }
+            else { grid.style.display = "none"; btn.textContent = "▼" }
         }
 
         function renderKoreaImpact() {
@@ -397,15 +395,15 @@
                 <div class="text-sm font-medium text-gray-700 mb-3">${impact.summary || ""}</div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                     <div class="bg-green-50 rounded-lg p-3 border border-green-100">
-                        <div class="text-xs font-semibold text-green-700 mb-2">✅ 긍정 요인</div>
+                        <div class="text-xs font-semibold text-green-700 mb-2">긍정 요인</div>
                         ${(impact.positive_factors || []).map(f => `<div class="text-xs text-gray-600 mb-1">• ${f}</div>`).join("")}
                     </div>
                     <div class="bg-red-50 rounded-lg p-3 border border-red-100">
-                        <div class="text-xs font-semibold text-red-700 mb-2">⚠️ 부정 요인</div>
+                        <div class="text-xs font-semibold text-red-700 mb-2">부정 요인</div>
                         ${(impact.negative_factors || []).map(f => `<div class="text-xs text-gray-600 mb-1">• ${f}</div>`).join("")}
                     </div>
                 </div>
-                ${impact.key_watch ? `<div class="p-3 bg-blue-50 rounded-lg border border-blue-100 text-xs text-blue-700"><span class="font-semibold">👀 오늘 주목:</span> ${impact.key_watch}</div>` : ""}
+                ${impact.key_watch ? `<div class="p-3 bg-blue-50 rounded-lg border border-blue-100 text-xs text-blue-700"><span class="font-semibold">주목:</span> ${impact.key_watch}</div>` : ""}
             `
         }
 
@@ -417,7 +415,7 @@
                 render()
             } catch (e) {
                 document.getElementById("loading-state").innerHTML = `
-                    <div class="text-4xl mb-4">⏳</div>
+                    
                     <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
                     <div class="text-sm text-gray-400">07:30 장전 리포트가 생성되면 자동으로 표시됩니다</div>`
             }
@@ -506,7 +504,7 @@
             const el = document.getElementById("analysis-content")
             const gs = d.global_sentiment || "neutral"
             const sc = gs === "risk_on" ? "#16a34a" : gs === "risk_off" ? "#dc2626" : "#d97706"
-            const sl = gs === "risk_on" ? "📈 리스크 온 (매수 우호)" : gs === "risk_off" ? "📉 리스크 오프 (매수 불리)" : "⚖️ 중립"
+            const sl = gs === "risk_on" ? "리스크 온" : gs === "risk_off" ? "리스크 오프" : "중립"
 
             // 추천 섹터 요약 (top_picks 상위 3개)
             const picks = d.top_picks || []
@@ -538,10 +536,10 @@
                 ${d.summary ? `<div class="text-sm text-gray-600 leading-relaxed mt-3 p-3 bg-blue-50 rounded-lg">${d.summary}</div>` : ""}
                 ${picks.length ? `
                 <div style="margin-top:12px;padding:12px 14px;background:#f8faff;border:1px solid #dbeafe;border-radius:10px;">
-                    <div style="font-size:11px;font-weight:700;color:#1e40af;margin-bottom:6px;">🎯 오늘 주목 섹터·종목</div>
+                    <div style="font-size:11px;font-weight:700;color:#1e40af;margin-bottom:6px;">주목 섹터·종목</div>
                     ${picksSummary}
                     <div style="margin-top:6px;font-size:11px;color:#3b82f6;cursor:pointer;" onclick="document.getElementById('picks-content').scrollIntoView({behavior:'smooth'})">
-                        → 전체 분석 보기 ↓
+                        전체 분석 보기
                     </div>
                 </div>` : ""}
             `
@@ -567,7 +565,7 @@
                             <div class="bg-white rounded-lg px-3 py-2">
                                 <div class="flex items-center gap-2 mb-1">
                                     <a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
-                                       class="text-xs font-semibold text-gray-800 hover:text-blue-600 whitespace-nowrap">🔥 ${s.name}</a>
+                                       class="text-xs font-semibold text-gray-800 hover:text-blue-600 whitespace-nowrap">${s.name}</a>
                                     <span class="text-xs text-gray-400 whitespace-nowrap">${s.code}</span>
                                 </div>
                                 <div class="text-xs text-gray-500 leading-relaxed">${s.reason || ""}</div>
@@ -577,12 +575,12 @@
                 </div>
                 ${(eqaiData.watch?.length || caution.length) ? `
                 <div class="border border-amber-100 bg-amber-50 rounded-xl p-4">
-                    <div class="text-xs font-semibold text-amber-700 mb-3">⚠️ 주의 섹터</div>
+                    <div class="text-xs font-semibold text-amber-700 mb-3">주의 섹터</div>
                     <div class="space-y-2">
                         ${(eqaiData.watch?.length ? eqaiData.watch : caution.map(c => ({ sector: c, reason: "" }))).map(w => `
                         <div class="bg-white rounded-lg px-3 py-2">
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="text-xs font-semibold text-amber-700">⚠ ${w.sector || w}</span>
+                                <span class="text-xs font-semibold text-amber-700">${w.sector || w}</span>
                             </div>
                             ${w.reason ? `<div class="text-xs text-gray-500 leading-relaxed">${w.reason}</div>` : ""}
                         </div>`).join("")}
@@ -631,7 +629,7 @@
             chatHistory = []
             const el = document.getElementById("chat-messages")
             el.innerHTML = `<div class="chat-bubble-ai" style="background:#f0f9ff;border-color:#bae6fd;">
-                대화가 초기화되었습니다. 무엇이든 질문해보세요!
+                대화가 초기화되었습니다.
             </div>`
         }
 
@@ -708,10 +706,21 @@
             else div.textContent = text
             el.appendChild(div)
             if (role === "user") {
+                // 질문 추가 시: 질문이 채팅창 상단에 오도록 스크롤
                 el.scrollTop = el.scrollHeight
-                lastUserScrollTop = el.scrollTop - el.clientHeight + div.offsetHeight + 12
+                // 다음 프레임에서 질문 위치 저장 (렌더링 후)
+                requestAnimationFrame(() => {
+                    const allBubbles = el.querySelectorAll(".chat-bubble-user, .chat-bubble-ai")
+                    const userBubbles = [...allBubbles].filter(b => b.classList.contains("chat-bubble-user"))
+                    const lastUser = userBubbles[userBubbles.length - 1]
+                    if (lastUser) {
+                        lastUserScrollTop = lastUser.offsetTop - 12
+                        el.scrollTop = lastUserScrollTop
+                    }
+                })
             } else {
-                el.scrollTop = Math.max(0, lastUserScrollTop)
+                // AI 답변 추가 시: 질문이 맨 위에 보이도록 유지
+                el.scrollTop = lastUserScrollTop
             }
         }
 
@@ -743,7 +752,7 @@
             btn.disabled = disabled
             btn.style.opacity = disabled ? "0.5" : "1"
             btn.style.cursor = disabled ? "not-allowed" : "pointer"
-            btn.innerHTML = disabled ? "⏳ 분석 중..." : "🔄 UPDATE"
+            btn.innerHTML = disabled ? "분석 중..." : "UPDATE"
         }
 
         function startPolling() {
@@ -757,17 +766,17 @@
                     if (!data.running) {
                         clearInterval(pollTimer); pollTimer = null; setRefreshBtn(false)
                         if (data.last_result === "success") {
-                            showToast("✅ 업데이트 완료! 데이터를 다시 불러옵니다...", "#16a34a")
+                            showToast("업데이트 완료. 데이터를 다시 불러옵니다...", "#16a34a")
                             setTimeout(() => { loadData(); hideToast(2000) }, 1500)
                         } else {
-                            showToast("❌ 오류: " + data.last_result, "#dc2626"); hideToast(5000)
+                            showToast("오류: " + data.last_result, "#dc2626"); hideToast(5000)
                         }
                     } else {
-                        showToast("⏳ 분석 중... (" + elapsed + "초 경과)")
+                        showToast("분석 중... (" + elapsed + "초 경과)")
                     }
                     if (elapsed >= 120) {
                         clearInterval(pollTimer); pollTimer = null; setRefreshBtn(false)
-                        showToast("⏱ 타임아웃 — 나중에 다시 시도해주세요", "#d97706"); hideToast(4000)
+                        showToast("타임아웃 — 나중에 다시 시도해주세요", "#d97706"); hideToast(4000)
                     }
                 } catch (e) { }
             }, 5000)
@@ -775,15 +784,15 @@
 
         async function triggerUpdate() {
             try {
-                setRefreshBtn(true); showToast("🚀 업데이트 요청 중...")
+                setRefreshBtn(true); showToast("업데이트 요청 중...")
                 const res = await fetch(TRIGGER_URL, { method: "POST" })
                 const data = await res.json()
-                if (data.ok) { showToast("⏳ 분석 시작됨 — 보통 30~60초 소요됩니다"); startPolling() }
+                if (data.ok) { showToast("분석 시작 — 1분 이내 완료 예정"); startPolling() }
                 else {
-                    showToast("⚠️ " + data.message, "#d97706"); hideToast(3000); setRefreshBtn(false)
+                    showToast("" + data.message, "#d97706"); hideToast(3000); setRefreshBtn(false)
                     if (data.status?.running) startPolling()
                 }
-            } catch (e) { showToast("❌ 서버 연결 실패", "#dc2626"); hideToast(4000); setRefreshBtn(false) }
+            } catch (e) { showToast("서버 연결 실패", "#dc2626"); hideToast(4000); setRefreshBtn(false) }
         }
 
         loadData()

@@ -196,6 +196,7 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
 - 중장기 질문: 구조적 흐름, 역사적 사례, 밸류에이션 관점을 포함합니다
 - 한국 시장 특수성(외국인 수급, 환율 민감도, 반도체 의존도, 정책 변수)을 항상 고려합니다
 - 한국어로 답변합니다
+- 이모지나 이모티콘은 사용하지 마세요. 텍스트만으로 답변하세요.
 {price_section}
 ## 현재 시장 스냅샷 ({report.get('generated_at', '')})
 
