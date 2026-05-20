@@ -30,7 +30,7 @@ RSS_SOURCES = {
 #     GLD ≈ 금값 × 0.093 (1/10oz 기준), USO ≈ 선물 롤오버 ETF
 #
 # 추가 지표:
-#   필라반도체  ^SOX   (Philadelphia Semiconductor Index)
+#   필라델피아반도체  ^SOX   (Philadelphia Semiconductor Index)
 #   러셀2000   ^RUT   (Russell 2000 Small Cap)
 #   영국FTSE   ^FTSE  (FTSE 100)
 #   독일DAX    ^GDAXI (DAX)
@@ -41,7 +41,7 @@ MACRO_TICKERS = {
     "NASDAQ":    "^IXIC",
     "DOW":       "^DJI",
     "VIX":       "^VIX",
-    "필라반도체": "^SOX",    # 추가: 필라델피아 반도체지수
+    "필라델피아반도체": "^SOX",    # 추가: 필라델피아 반도체지수
     "러셀2000":  "^RUT",    # 추가: Russell 2000
 
     # 글로벌 지수
