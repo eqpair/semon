@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21 08:50:39",
+  "generated_at": "2026-05-21 08:55:56",
   "macro": {
     "S&P500": {
       "price": 7432.97,
@@ -42,8 +42,8 @@
       "change": 0.48
     },
     "달러인덱스": {
-      "price": 99.12,
-      "change": -0.18
+      "price": 99.15,
+      "change": -0.15
     },
     "국채10Y": {
       "price": 4.57,
@@ -54,12 +54,12 @@
       "change": -1.25
     },
     "금": {
-      "price": 4545.6,
-      "change": 0.87
+      "price": 4543.6,
+      "change": 0.83
     },
     "WTI유가": {
-      "price": 99.21,
-      "change": -7.94
+      "price": 98.94,
+      "change": -8.19
     },
     "원달러": {
       "price": 1496.45,
@@ -67,7 +67,7 @@
     },
     "구리": {
       "price": 6.34,
-      "change": 2.83
+      "change": 2.81
     }
   },
   "sector_rrg": {
@@ -9067,54 +9067,93 @@
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "매크로 지표 기반 자동 판단 (Claude API 미연결)",
+  "sentiment_reason": "미국 주요 지수 강세(나스닥 +1.54%, 필라델피아반도체 +4.49%)와 VIX 하락, 원달러 하락으로 외국인 매수 여건 개선",
   "key_factors": [
-    "Claude API 연결 후 상세 분석 제공됩니다"
+    "필라델피아반도체지수 +4.49% 급등으로 반도체 섹터 모멘텀 강화",
+    "WTI 유가 -8.19% 급락(트럼프 이란 협상 최종단계 발언)으로 인플레 압력 완화",
+    "원달러 1496원대 하락과 국채금리 하락으로 외국인 자금유입 환경 개선"
   ],
-  "news_summary": "수집된 기사 150개 | Claude API 연결 후 뉴스 분석이 제공됩니다.",
+  "news_summary": "트럼프 이란 협상 최종단계 발언으로 WTI 유가 100달러 하회하며 8% 이상 급락\nSpaceX IPO 준비와 OpenAI 기밀 상장 신청 예정으로 AI·우주 섹터 관심 고조\nE.l.f. Beauty 관세 가격인상 철회 검토 등 소비재 기업들의 수요둔화 대응 본격화",
+  "korea_market_impact": {
+    "summary": "반도체 중심 외국인 매수 유입 기대감으로 코스피 상승 압력 강화",
+    "positive_factors": [
+      "필라반도체 급등으로 삼성전자·SK하이닉스 등 반도체 대형주 상승 기대",
+      "유가 급락으로 정유·화학 마진 개선 및 인플레 부담 완화"
+    ],
+    "negative_factors": [
+      "OpenAI·SpaceX IPO 준비로 글로벌 자금이 미국 테크 IPO로 집중될 가능성",
+      "Intuit 17% 인력감축 등 미국 기술기업 구조조정 확대 신호"
+    ],
+    "key_watch": "반도체 대형주 외국인 순매수 전환 여부와 IT부품(RS-R 128.7) 초강세 지속성"
+  },
+  "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "디스플레이",
-      "reason": "RRG Improving 진입 — 모멘텀 전환 신호",
-      "rrg_quadrant": "improving"
+      "sector": "반도체_대형",
+      "rrg_quadrant": "leading",
+      "reason": "필라반도체 +4.49% 급등과 RS-R 121.069 최상위 모멘텀, 글로벌 AI 투자 확대 수혜"
     },
     {
-      "sector": "조선",
-      "reason": "RRG Improving 진입 — 모멘텀 전환 신호",
-      "rrg_quadrant": "improving"
-    },
-    {
-      "sector": "의료기기",
-      "reason": "RRG Improving 진입 — 모멘텀 전환 신호",
-      "rrg_quadrant": "improving"
+      "sector": "IT부품",
+      "rrg_quadrant": "leading",
+      "reason": "RS-R 128.761로 전 섹터 1위, 반도체 공급망 수혜와 leading 사분면 내 강력한 모멘텀"
     }
   ],
   "watch": [
     {
-      "sector": "반도체_대형",
-      "reason": "RRG Leading — 모멘텀 확인 필요"
+      "sector": "조선",
+      "reason": "improving 사분면 진입했으나 RS-R 99.587로 중립권, 모멘텀 확인 필요"
     },
     {
-      "sector": "반도체_중소형",
-      "reason": "RRG Leading — 모멘텀 확인 필요"
+      "sector": "미용·에스테틱",
+      "reason": "improving 진입하고 RS-M 103.7로 양호하나 소비둔화 리스크 상존"
     }
   ],
   "avoid": [],
-  "summary": "Claude API 연결 후 종합 판단이 제공됩니다.",
+  "summary": "유가 급락과 반도체 강세로 코스피 상승 모멘텀 강화, 반도체·IT부품 중심 매수 전략 유효",
   "top_picks": [
     {
-      "sector": "의료기기",
-      "rrg_quadrant": "improving",
-      "reason": "RRG Improving + prime/confirm 신호 종목 보유",
+      "sector": "반도체_대형",
+      "rrg_quadrant": "leading",
+      "reason": "필라반도체 +4.49% 급등과 RS-R 121.069 최상위 모멘텀, 글로벌 AI 투자 확대 수혜",
       "stocks": [
         {
-          "code": "491000",
-          "name": "리브스메드",
+          "name": "SK하이닉스",
+          "code": "000660",
           "signal": "prime",
-          "reason": "RRG prime/confirm 신호"
+          "reason": "필라반도체 급등과 HBM 선두주자로 AI 투자 확대 직접 수혜, 외국인 매수 집중 예상"
+        }
+      ]
+    },
+    {
+      "sector": "IT부품",
+      "rrg_quadrant": "leading",
+      "reason": "RS-R 128.761로 전 섹터 1위, 반도체 공급망 수혜와 leading 사분면 내 강력한 모멘텀",
+      "stocks": [
+        {
+          "name": "삼성전기",
+          "code": "009150",
+          "signal": "prime",
+          "reason": "IT부품 섹터 RS-R 128.7 최고 모멘텀, MLCC·카메라모듈 AI 디바이스 수요 수혜"
+        }
+      ]
+    },
+    {
+      "sector": "전력기기",
+      "rrg_quadrant": "",
+      "reason": "",
+      "stocks": [
+        {
+          "name": "효성중공업",
+          "code": "298040",
+          "signal": "prime",
+          "reason": "전력기기 RS-R 121.076 leading 최상위권, AI 데이터센터 전력 인프라 수요 확대"
         }
       ]
     }
   ],
-  "caution_sectors": []
+  "caution_sectors": [
+    "조선",
+    "미용·에스테틱"
+  ]
 }
