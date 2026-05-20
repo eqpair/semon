@@ -260,11 +260,11 @@
                 </div>
                 <div
                     style="margin-top:10px;padding-top:10px;border-top:1px solid #f3f4f6;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-                    <span style="font-size:10px;color:#9ca3af;font-weight:600;flex-shrink:0;">SOURCE</span>
-                    <span style="font-size:10px;color:#6b7280;">Global: CNBC · Bloomberg · WSJ · FT · Investing.com ·
+                    <span style="font-size:10px;color:#9ca3af;font-weight:600;flex-shrink:0;">소스</span>
+                    <span style="font-size:10px;color:#6b7280;">글로벌: CNBC · Bloomberg · WSJ · FT · Investing.com ·
                         MarketWatch · Reuters</span>
                     <span style="font-size:10px;color:#d1d5db;">|</span>
-                    <span style="font-size:10px;color:#6b7280;">Domestic: 매일경제 · 연합뉴스</span>
+                    <span style="font-size:10px;color:#6b7280;">국내: 연합뉴스 · 매일경제</span>
                 </div>
             </div>
 
@@ -272,7 +272,7 @@
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">한국 시장 영향</h2>
-                    <span class="text-xs text-gray-400">AI 분석</span>
+                    <span class="text-xs text-gray-400">Claude 분석</span>
                 </div>
                 <div id="korea-impact">
                     <div class="text-sm text-gray-400">분석 데이터 로딩 중...</div>
@@ -303,7 +303,7 @@
             <!-- 오늘의 진입 후보 -->
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">TODAY 진입 후보</h2>
+                    <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">오늘의 진입 후보</h2>
                     <span class="text-xs text-gray-400">뉴스 × RRG 교차 분석</span>
                 </div>
                 <div id="picks-content"></div>
@@ -373,6 +373,7 @@
             "항셍": { group: "global", unit: "HSI", priceDecimals: 2, warnIf: null },
             "달러인덱스": { group: "commodity", unit: "DXY", priceDecimals: 2, warnIf: null },
             "국채10Y": { group: "commodity", unit: "%", priceDecimals: 2, warnIf: null },
+            "국채30Y": { group: "commodity", unit: "%", priceDecimals: 2, warnIf: null },
             "금": { group: "commodity", unit: "$/oz", priceDecimals: 1, warnIf: [1000, 6000] },
             "WTI유가": { group: "commodity", unit: "$/bbl", priceDecimals: 2, warnIf: [30, 200] },
             "원달러": { group: "commodity", unit: "KRW", priceDecimals: 1, warnIf: [900, 2000] },

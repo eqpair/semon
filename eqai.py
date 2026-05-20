@@ -16,6 +16,7 @@ import logging
 import os
 import sys
 import boto3
+import anthropic
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -85,11 +86,13 @@ def _extract_json(text: str) -> dict:
 
 
 def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
-    if not os.getenv("BEDROCK_API_KEY", ""):
+    if not os.getenv("ANTHROPIC_API_KEY", ""):
         return _placeholder_analysis(news_data, rrg_data)
 
     try:
-        bedrock = boto3.client("bedrock-runtime", region_name="ap-northeast-2")
+        from dotenv import load_dotenv
+        load_dotenv("/home/ubuntu/semon/.env")
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
         macro_text      = _format_macro(news_data.get("macro", {}))
         articles        = news_data.get("articles", [])
@@ -99,7 +102,9 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         candidates_text = _format_candidates(rrg_data, [])
 
         prompt = f"""당신은 한국 주식시장 전문 애널리스트입니다.
-아래 데이터를 분석하여 XML 형식으로 응답하세요. XML 태그 외 다른 텍스트는 출력하지 마세요.
+아래 데이터를 분석하여 반드시 아래 XML 구조로만 응답하세요.
+절대로 다른 XML 태그를 추가하지 마세요. 코드블록(```)도 사용하지 마세요.
+반드시 <analysis>로 시작하고 </analysis>로 끝나야 합니다.
 
 === 글로벌 매크로 ===
 {macro_text}
@@ -152,16 +157,12 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
   <summary>오늘 시장 한줄 판단</summary>
 </analysis>"""
 
-        resp = bedrock.invoke_model(
-            modelId="global.anthropic.claude-sonnet-4-6",
-            body=json.dumps({
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 3000,
-                "messages": [{"role": "user", "content": prompt}]
-            })
+        resp = client.messages.create(
+            model="claude-sonnet-4-5",
+            max_tokens=3000,
+            messages=[{"role": "user", "content": prompt}]
         )
-        body = json.loads(resp["body"].read())
-        text = body["content"][0]["text"]
+        text = resp.content[0].text
         logger.info(f"Claude XML 분석 완료 ({len(text)}자)")
         return _parse_xml_response(text, rrg_data)
 

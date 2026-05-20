@@ -2,16 +2,18 @@
 """
 eqai_chat.py — EQAI 채팅 API 서버
 """
-import json, logging, boto3, requests, re
+import json, logging, requests, re
+import anthropic
+from dotenv import load_dotenv
+import os
+load_dotenv("/home/ubuntu/semon/.env")
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 from pathlib import Path
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from io import StringIO
 
 app = Flask(__name__)
-CORS(app)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 REPORT_PATH   = Path("/home/ubuntu/semon/docs/data/eqai_report.json")
@@ -263,18 +265,14 @@ def chat():
 
         system_prompt = build_system_prompt(report, current_prices, messages)
 
-        bedrock = boto3.client("bedrock-runtime", region_name="ap-northeast-2")
-        resp = bedrock.invoke_model(
-            modelId="global.anthropic.claude-sonnet-4-6",
-            body=json.dumps({
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 8192,
-                "system": system_prompt,
-                "messages": messages
-            })
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        resp = client.messages.create(
+            model="claude-sonnet-4-5",
+            max_tokens=8192,
+            system=system_prompt,
+            messages=messages
         )
-        body   = json.loads(resp["body"].read())
-        answer = body["content"][0]["text"]
+        answer = resp.content[0].text
         return jsonify({"answer": answer})
 
     except Exception as e:
