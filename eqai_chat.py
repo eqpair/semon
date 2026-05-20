@@ -164,10 +164,16 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
                 lines.append(f"  - {name}({code}): 현재가 미조회")
                 seen_codes.add(code)
 
+        mapped_list = "\n".join([
+            f"- {name}({d.get('code','?')}): {d['price']:,}원 ({d['change']:+.2f}%)"
+            if d.get('price') else f"- {name}({d.get('code','?')})"
+            for name, d in {**{n:p for n,p in current_prices.items()},
+                            **{code_to_name[c]: {'code':c,'price':None,'change':None}
+                               for c,n in [(c, code_to_name.get(c)) for c in re.findall(r'\b(\d{6})\b', user_msgs_text) if code_to_name.get(c) and code_to_name.get(c) not in current_prices][:20]}}.items()
+        ])
         price_section = f"""
-## ⚡ 종목 정보 (stock_map 기반 실시간 조회)
-{chr(10).join(lines)}
-위 종목명과 코드 매핑을 반드시 사용하세요. 코드→종목명 변환 질문이면 위 목록으로 답하세요.
+## ⚡ 종목 정보 (코드→종목명 변환 질문이면 아래 목록을 그대로 답변에 포함하세요)
+{mapped_list}
 """
 
     return f"""당신은 글로벌 시장과 한국 주식시장에 정통한 올라운드 투자 전문가입니다.
@@ -218,6 +224,31 @@ def chat():
         report   = load_report()
 
         current_prices = extract_stocks_from_messages(messages)
+
+        # 코드→종목명 변환 전용 요청 감지 (Claude 불필요)
+        last_user = messages[-1].get("content", "") if messages else ""
+        code_list = re.findall(r'\b(\d{6})\b', last_user)
+        is_convert_only = (len(code_list) >= 3 and
+            any(kw in last_user for kw in ["종목명", "바꿔", "변환", "이름", "회사명"]))
+
+        if is_convert_only:
+            code_to_name = {v: k for k, v in _stock_map.items()}
+            lines = []
+            not_found = []
+            seen = set()
+            for code in code_list:
+                if code in seen:
+                    continue
+                seen.add(code)
+                name = code_to_name.get(code)
+                if name:
+                    lines.append(f"{code}: {name}")
+                else:
+                    not_found.append(code)
+            result = "\n".join(lines)
+            if not_found:
+                result += f"\n\n※ 미확인: {', '.join(not_found)}"
+            return jsonify({"answer": f"{result}"})
 
         system_prompt = build_system_prompt(report, current_prices, messages)
 
