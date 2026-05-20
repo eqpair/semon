@@ -2,7 +2,7 @@
 """
 eqai_chat.py — EQAI 채팅 API 서버
 """
-import json, logging, boto3, requests
+import json, logging, boto3, requests, re
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pathlib import Path
@@ -75,22 +75,43 @@ def extract_stocks_from_messages(messages: list) -> dict:
     """대화에서 종목명 찾아 실시간 현재가 조회"""
     if not _stock_map:
         return {}
-    full_text = " ".join([m.get("content", "") for m in messages])
+
+    # 마지막 user 메시지만 스캔
+    user_msgs = [m.get("content", "") for m in messages if m.get("role") == "user"]
+    if not user_msgs:
+        return {}
+    scan_text = " ".join(user_msgs[-2:])
+
+    # 숫자로만 된 6자리 패턴 제거 (종목코드 오탐 방지)
+    clean_text = re.sub(r'\b\d{6}\b', '', scan_text)
+
     found = {}
-    # 긴 이름 우선 매칭
+    # 역방향 매핑: 코드→이름 (종목코드 직접 입력시)
+    code_to_name = {v: k for k, v in _stock_map.items()}
+    direct_codes = re.findall(r'\b(\d{6})\b', scan_text)
+    for code in direct_codes[:5]:
+        if code in code_to_name:
+            name = code_to_name[code]
+            if name not in found:
+                price_info = get_stock_price(code, name)
+                if price_info:
+                    found[name] = price_info
+                    logger.info(f"코드 직접 감지: {name}({code}) = {price_info['price']:,}원")
+
+    # 종목명 매칭 (긴 이름 우선)
     for name in sorted(_stock_map.keys(), key=len, reverse=True):
-        if len(name) < 2:
+        if name in found:
             continue
-        if name in full_text and name not in found:
+        if any(name in fn for fn in found):
+            continue
+        if name in clean_text:
             code = _stock_map[name]
-            if not code.isdigit():
-                continue
             price_info = get_stock_price(code, name)
             if price_info:
                 found[name] = price_info
-                logger.info(f"종목 감지: {name}({code}) = {price_info['price']:,}원 ({price_info['change']:+.2f}%)")
-            if len(found) >= 10:
-                break
+                logger.info(f"종목명 감지: {name}({code}) = {price_info['price']:,}원 ({price_info['change']:+.2f}%)")
+        if len(found) >= 5:
+            break
     return found
 
 def load_report() -> dict:
@@ -100,7 +121,7 @@ def load_report() -> dict:
     except Exception:
         return {}
 
-def build_system_prompt(report: dict, current_prices: dict) -> str:
+def build_system_prompt(report: dict, current_prices: dict, messages: list = []) -> str:
     macro = report.get("macro", {})
     macro_lines = "\n".join([
         f"  - {k}: {v.get('price')} ({'+' if v.get('change',0)>=0 else ''}{v.get('change',0):.2f}%)"
@@ -121,16 +142,32 @@ def build_system_prompt(report: dict, current_prices: dict) -> str:
 
     ki = report.get("korea_market_impact", {})
 
+    # 코드→종목명 역방향 매핑 (질문에 코드만 있을 때)
+    code_to_name = {v: k for k, v in _stock_map.items()}
+    all_codes_in_msg = []
+    user_msgs_text = " ".join([m.get("content","") for m in messages if m.get("role")=="user"])
+    for code in re.findall(r'\b(\d{6})\b', user_msgs_text):
+        if code in code_to_name:
+            all_codes_in_msg.append((code, code_to_name[code]))
+
     price_section = ""
-    if current_prices:
-        price_lines = "\n".join([
-            f"  - {name}({d['code']}): {d['price']:,}원 ({d['change']:+.2f}%) [{d.get('status','')}]"
-            for name, d in current_prices.items()
-        ])
+    if current_prices or all_codes_in_msg:
+        lines = []
+        seen_codes = set()
+        # 현재가 조회된 종목
+        for name, d in current_prices.items():
+            lines.append(f"  - {name}({d['code']}): {d['price']:,}원 ({d['change']:+.2f}%) [{d.get('status','')}]")
+            seen_codes.add(d['code'])
+        # 현재가 미조회 종목 (코드→이름만 변환)
+        for code, name in all_codes_in_msg:
+            if code not in seen_codes:
+                lines.append(f"  - {name}({code}): 현재가 미조회")
+                seen_codes.add(code)
+
         price_section = f"""
-## ⚡ 실시간 종목 현재가 (방금 네이버 금융에서 조회)
-반드시 아래 가격을 기준으로 분석하세요. 이 가격이 실제 현재가입니다.
-{price_lines}
+## ⚡ 종목 정보 (stock_map 기반 실시간 조회)
+{chr(10).join(lines)}
+위 종목명과 코드 매핑을 반드시 사용하세요. 코드→종목명 변환 질문이면 위 목록으로 답하세요.
 """
 
     return f"""당신은 글로벌 시장과 한국 주식시장에 정통한 올라운드 투자 전문가입니다.
@@ -182,7 +219,7 @@ def chat():
 
         current_prices = extract_stocks_from_messages(messages)
 
-        system_prompt = build_system_prompt(report, current_prices)
+        system_prompt = build_system_prompt(report, current_prices, messages)
 
         bedrock = boto3.client("bedrock-runtime", region_name="ap-northeast-2")
         resp = bedrock.invoke_model(
