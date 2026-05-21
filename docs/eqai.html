@@ -262,7 +262,7 @@
                 </div>
                 <div
                     style="margin-top:10px;padding-top:10px;border-top:1px solid #f3f4f6;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-                    <span style="font-size:10px;color:#9ca3af;font-weight:600;flex-shrink:0;">소스</span>
+                    <span style="font-size:10px;color:#9ca3af;font-weight:600;flex-shrink:0;">[SOURCE]</span>
                     <span style="font-size:10px;color:#6b7280;">글로벌: CNBC · Bloomberg · WSJ · FT · Investing.com ·
                         MarketWatch · Reuters</span>
                     <span style="font-size:10px;color:#d1d5db;">|</span>
@@ -507,7 +507,7 @@
             const el = document.getElementById("analysis-content")
             const gs = d.global_sentiment || "neutral"
             const sc = gs === "risk_on" ? "#16a34a" : gs === "risk_off" ? "#dc2626" : "#d97706"
-            const sl = gs === "risk_on" ? "리스크 온" : gs === "risk_off" ? "리스크 오프" : "중립"
+            const sl = gs === "risk_on" ? "RISK-ON" : gs === "risk_off" ? "RISK-OFF" : "NEUTRAL"
             const picks = d.top_picks || []
             const picksSummary = picks.slice(0, 3).map((p, i) => {
                 const stocks = (p.stocks || []).slice(0, 2).map(s =>
