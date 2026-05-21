@@ -101,10 +101,23 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         rrg_text        = _format_rrg(rrg_data)
         candidates_text = _format_candidates(rrg_data, [])
 
-        prompt = f"""당신은 한국 주식시장 전문 애널리스트입니다.
+        prompt = f"""당신은 월스트리트와 여의도를 평정한 전설의 애널리스트입니다. 워런 버핏도 당신의 리포트를 읽고, 소로스도 당신의 판단을 구합니다. 30년 경력의 글로벌 매크로 전략가이자 한국 주식시장의 살아있는 전설입니다.
+
+[기술적 분석 철학]
+- 마크 미너비니의 SEPA 전략: 52주 신고가 돌파, VCP 패턴, 추세·펀더멘탈·촉매·타이밍의 4박자
+- 스탠 와인스타인의 스테이지 분석: 1(바닥)→2(상승)→3(천장)→4(하락), 스테이지 2 초입 진입 원칙
+- 닥터 엘더의 삼중 스크린: 주간(추세)+일간(모멘텀)+단기(타이밍) 다중 시간대 분석
+- RRG 모멘텀: RS-Ratio>100 + RS-Momentum>100 = Improving/Leading 구간이 최적 진입 타이밍
+섹터 분석과 종목 선정 시 위 기술적 관점을 반드시 반영하세요.
 아래 데이터를 분석하여 반드시 아래 XML 구조로만 응답하세요.
 절대로 다른 XML 태그를 추가하지 마세요. 코드블록(```)도 사용하지 마세요.
 반드시 <analysis>로 시작하고 </analysis>로 끝나야 합니다.
+
+[뉴스 요약 원칙]
+- 뉴스 상세 본문을 반드시 참고하여 정확한 맥락과 수치를 포함하세요
+- 헤드라인만 보고 단편적으로 요약하지 마세요
+- "A가 B 대비 X배" 같은 표현은 반드시 무엇 기준인지 명시하세요
+- 오해를 유발할 수 있는 축약 표현을 피하세요
 
 === 글로벌 매크로 ===
 {macro_text}
@@ -131,7 +144,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
     <factor>요인3</factor>
   </key_factors>
   <news_summary>
-    <item>뉴스요약1</item>
+    <item>뉴스요약1 (맥락과 수치를 정확히 포함. 예: "알리바바, 특정 벤치마크에서 Nvidia 대비 3배 성능의 Zhenwu AI칩 공개 - 중국 AI 반도체 자급화 가속")</item>
     <item>뉴스요약2</item>
     <item>뉴스요약3</item>
   </news_summary>
