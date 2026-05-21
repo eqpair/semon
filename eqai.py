@@ -184,7 +184,9 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
     if not m:
         raise ValueError(f"XML analysis 태그 없음: {text[:200]}")
 
-    root = ET.fromstring(m.group())
+    xml_text = m.group()
+    xml_text = re.sub(r"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;", xml_text)
+    root = ET.fromstring(xml_text)
 
     def get(tag, default=""):
         el = root.find(tag)
