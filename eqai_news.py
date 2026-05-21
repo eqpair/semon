@@ -64,9 +64,6 @@ MACRO_TICKERS = {
     "국채30Y":   "^TYX",
     "코스피":     "^KS11",
     "코스닥":     "^KQ11",
-    "국채30Y":   "^TYX",
-    "코스피":     "^KS11",
-    "코스닥":     "^KQ11",
     "금":        "GC=F",    # 수정: COMEX 금 선물 ($/oz)  ← GLD에서 변경
     "WTI유가":   "CL=F",    # 수정: NYMEX WTI 선물 ($/bbl) ← USO에서 변경
     "원달러":    "KRW=X",
