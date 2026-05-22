@@ -68,33 +68,31 @@
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
 
         <!-- HEADER -->
-        <header class="mb-8">
+        <header class="mb-6">
             <div class="header-inner">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">Momentum Board</h1>
-                    <div class="text-sm text-gray-600 mt-1">
-                        Last Update (KST): <span id="updated" class="font-medium">-</span>
+                    <h1 class="text-3xl font-bold text-gray-800">Momentum <span class="text-lg font-normal text-gray-400">Board</span></h1>
+                    <div class="text-sm text-gray-500 mt-1">
+                        Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
+                        &nbsp;|&nbsp;
+                        <span id="market-badge" class="px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600">MARKET CLOSED</span>
                     </div>
                 </div>
                 <div class="nav-links">
                     <a href="./index.html"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">✳️
-                        RRG</a>
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">RRG</a>
                     <a href="./heatmap.html"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">📊
-                        Heatmap</a>
-                    <a href="./stats.html" class="nav-link-sm"
-                        style="font-size:12px;color:#a78bfa;text-decoration:none;padding:4px 10px;border:1px solid #3b1f6e;border-radius:6px;">📈
-                        Stats</a>
-                    <a href="./cal.html" class="nav-link-sm"
-                        style="font-size:12px;color:#a78bfa;text-decoration:none;padding:4px 10px;border:1px solid #3b1f6e;border-radius:6px;">📅
-                        Calendar</a>
-                    <span id="market-badge"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-gray-200 text-gray-700">MARKET CLOSED</span>
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">Heatmap</a>
+                    <a href="./stats.html"
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Stats</a>
+                    <a href="./cal.html"
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Calendar</a>
+                    <a href="https://eqmon.duckdns.org" class="nav-link-sm"
+                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
                 </div>
             </div>
         </header>
@@ -103,7 +101,7 @@
         <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">Loading Data...</div>
 
         <div id="content" style="display:none;">
-            <section class="mb-8">
+            <section class="mb-6">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                     <h2 id="sector-summary" class="text-lg font-bold text-gray-800">섹터 로딩 중...</h2>
                     <div class="relative" id="search-wrap">
@@ -159,8 +157,8 @@
             const isOpen = d >= 1 && d <= 5 && (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
             badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"
             badge.className = isOpen
-                ? "nav-link-sm px-3 py-1 text-xs rounded bg-green-100 text-green-700"
-                : "nav-link-sm px-3 py-1 text-xs rounded bg-gray-200 text-gray-700"
+                ? "px-2 py-0.5 text-xs rounded bg-green-100 text-green-700"
+                : "px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600"
             const _sectors = allData.sectors || {}
             const _sectorCount = Object.keys(_sectors).length
             const _stockCount = Object.values(_sectors).reduce((s, d) => s + (d.candidates?.length ?? 0), 0)

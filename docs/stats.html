@@ -9,23 +9,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0c12;
-            --surface: #111520;
-            --border: #1e2535;
-            --text: #f1f5f9;
-            --muted: #cbd5e1;
-            --dim: #94a3b8;
-            --prime: #f97316;
-            --confirm: #3b82f6;
-            --green: #22c55e;
-            --red: #ef4444;
-            --gold: #f59e0b;
+            --bg: #f9fafb;
+            --surface: #ffffff;
+            --border: #e5e7eb;
+            --text: #1f2937;
+            --muted: #4b5563;
+            --dim: #6b7280;
+            --prime: #ea580c;
+            --confirm: #2563eb;
+            --green: #16a34a;
+            --red: #dc2626;
+            --gold: #d97706;
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
@@ -33,15 +31,14 @@
             color: var(--text);
             font-family: 'Pretendard', -apple-system, sans-serif;
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
         }
 
         .header {
-            padding: 16px 20px 14px;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 24px 16px 0;
         }
 
         .header-inner {
@@ -59,22 +56,26 @@
         }
 
         .nav-link {
-            font-size: 11px;
-            color: #60a5fa;
+            font-size: 12px;
+            color: #1d4ed8;
+            background: #dbeafe;
             text-decoration: none;
-            padding: 4px 8px;
-            border: 1px solid #1e3a5f;
+            padding: 4px 12px;
             border-radius: 6px;
+            font-weight: 500;
             transition: background 0.15s;
             white-space: nowrap;
         }
-
-        .nav-link:hover {
-            background: #1e3a5f33;
-        }
+        .nav-link:hover { background: #bfdbfe; }
+        .nav-link.green { color: #15803d; background: #dcfce7; }
+        .nav-link.green:hover { background: #bbf7d0; }
+        .nav-link.purple { color: #7c3aed; background: #ede9fe; }
+        .nav-link.purple:hover { background: #ddd6fe; }
+        .nav-link.dark { color: #fff; background: #1e293b; border: 1px solid #334155; }
+        .nav-link.dark:hover { background: #0f172a; }
 
         .container {
-            max-width: 1400px;
+            max-width: 80rem;
             margin: 0 auto;
             padding: 20px 16px;
         }
@@ -110,7 +111,7 @@
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #94a3b8;
+            color: #6b7280;
             margin-bottom: 10px;
         }
 
@@ -122,7 +123,7 @@
 
         .stat-sub {
             font-size: 12px;
-            color: #94a3b8;
+            color: #6b7280;
             margin-top: 5px;
         }
 
@@ -133,14 +134,17 @@
             font-weight: 600;
             cursor: pointer;
             border: 1px solid var(--border);
-            background: transparent;
-            color: #94a3b8;
+            background: #ffffff;
+            color: #6b7280;
             transition: all 0.15s;
             white-space: nowrap;
         }
 
+        .filter-btn:hover { background: #f9fafb; }
+
         .filter-btn.active {
             border-color: currentColor;
+            background: #f9fafb;
         }
 
         .filter-btn.all.active {
@@ -173,8 +177,9 @@
         .data-table th {
             padding: 10px 10px;
             text-align: right;
-            font-weight: 500;
-            color: #94a3b8;
+            font-weight: 600;
+            color: #6b7280;
+            background: #f9fafb;
             border-bottom: 1px solid var(--border);
             white-space: nowrap;
         }
@@ -187,7 +192,8 @@
         .data-table td {
             padding: 9px 10px;
             text-align: right;
-            border-bottom: 1px solid #0f1520;
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
             white-space: nowrap;
         }
 
@@ -197,7 +203,7 @@
         }
 
         .data-table tr:hover td {
-            background: #ffffff08;
+            background: #f9fafb;
         }
 
         .exited-row td {
@@ -213,13 +219,13 @@
         }
 
         .signal-badge.prime {
-            background: #431407;
-            color: var(--prime);
+            background: #fed7aa;
+            color: #c2410c;
         }
 
         .signal-badge.confirm {
-            background: #0c1a3a;
-            color: var(--confirm);
+            background: #dbeafe;
+            color: #1d4ed8;
         }
 
         .exit-badge {
@@ -228,8 +234,8 @@
             border-radius: 3px;
             font-size: 10px;
             font-weight: 600;
-            background: #1e2535;
-            color: #64748b;
+            background: #f3f4f6;
+            color: #9ca3af;
             margin-left: 4px;
         }
 
@@ -242,28 +248,28 @@
         }
 
         .quad-badge.improving {
-            color: #60a5fa;
-            background: #0c1a3a;
+            color: #1e40af;
+            background: #dbeafe;
         }
 
         .quad-badge.leading {
-            color: #4ade80;
-            background: #052e16;
+            color: #14532d;
+            background: #dcfce7;
         }
 
         .quad-badge.lagging {
-            color: #fb923c;
-            background: #431407;
+            color: #92400e;
+            background: #fef3c7;
         }
 
         .quad-badge.weakening {
-            color: #f87171;
-            background: #450a0a;
+            color: #7f1d1d;
+            background: #fee2e2;
         }
 
         .quad-badge.null {
-            color: #94a3b8;
-            background: #1e2535;
+            color: #6b7280;
+            background: #f3f4f6;
         }
 
         /* 분석 그리드: 데스크탑 3열, 모바일 1열 */
@@ -283,7 +289,7 @@
         .analysis-title {
             font-size: 11px;
             font-weight: 600;
-            color: #94a3b8;
+            color: #6b7280;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 10px;
@@ -294,7 +300,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 5px 0;
-            border-bottom: 1px solid #0f1520;
+            border-bottom: 1px solid #f3f4f6;
             font-size: 12px;
         }
 
@@ -318,7 +324,7 @@
         }
 
         .null-val {
-            color: #334155;
+            color: #d1d5db;
         }
 
         .ret-pos {
@@ -332,7 +338,7 @@
         }
 
         .ret-null {
-            color: #64748b;
+            color: #9ca3af;
         }
 
         .section-title {
@@ -344,14 +350,14 @@
 
         .section-sub {
             font-size: 11px;
-            color: #94a3b8;
+            color: #6b7280;
             margin-left: 8px;
             font-weight: 400;
         }
 
         .active-item {
             padding: 7px 0;
-            border-bottom: 1px solid #0f1520;
+            border-bottom: 1px solid #f3f4f6;
         }
 
         .active-item:last-child {
@@ -380,7 +386,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--border);
+            background: #cbd5e1;
             border-radius: 2px;
         }
 
@@ -417,18 +423,19 @@
 </head>
 
 <body>
+
     <div class="header">
         <div class="header-inner">
             <div>
-                <h1 style="font-size:17px;font-weight:700;color:#f1f5f9;">📈 Signal Statistics</h1>
-                <div style="font-size:11px;color:var(--dim);margin-top:2px;">신호 검증 로그 · <span id="updated">-</span>
-                </div>
+                <h1 style="font-size:30px;font-weight:700;color:#1f2937;line-height:1.1;">Stats <span style="font-size:18px;font-weight:400;color:#9ca3af;">Signal Statistics</span></h1>
+                <div style="font-size:14px;color:#6b7280;margin-top:4px;">신호 검증 로그 &nbsp;|&nbsp; <span id="updated" style="font-weight:500;color:#374151;">-</span></div>
             </div>
             <div class="nav-links">
-                <a href="./index.html" class="nav-link">✳️ RRG</a>
-                <a href="./momentum.html" class="nav-link">▶ Momentum</a>
-                <a href="./heatmap.html" class="nav-link">📊 Heatmap</a>
-                <a href="./cal.html" class="nav-link purple">📅 Calendar</a>
+                <a href="./index.html" class="nav-link">RRG</a>
+                <a href="./momentum.html" class="nav-link">Momentum</a>
+                <a href="./heatmap.html" class="nav-link green">Heatmap</a>
+                <a href="./cal.html" class="nav-link purple">Calendar</a>
+                <a href="https://eqmon.duckdns.org" class="nav-link dark">HOME</a>
             </div>
         </div>
     </div>
@@ -445,7 +452,7 @@
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="prime-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
                 <div
-                    style="margin-top:10px;padding-top:8px;border-top:1px solid #2d1a1a;font-size:11px;color:#94a3b8;line-height:1.6;">
+                    style="margin-top:10px;padding-top:8px;border-top:1px solid #fed7aa;font-size:11px;color:#6b7280;line-height:1.6;">
                     섹터가 KOSPI 대비 살아나는 중, Lagging→Improving 전환 + 모멘텀 가속<br>
                     <span style="color:var(--prime);">→ 가장 이른 매수 타이밍</span>
                 </div>
@@ -458,7 +465,7 @@
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="confirm-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="confirm-avg20">-</span></div>
                 <div
-                    style="margin-top:10px;padding-top:8px;border-top:1px solid #0c1a3a;font-size:11px;color:#94a3b8;line-height:1.6;">
+                    style="margin-top:10px;padding-top:8px;border-top:1px solid #dbeafe;font-size:11px;color:#6b7280;line-height:1.6;">
                     섹터 Improving + Improving 2회 이상 확인 + 복합점수 3점 만점<br>
                     <span style="color:var(--confirm);">→ 전환이 확인된 안정적 종목</span>
                 </div>
@@ -470,14 +477,14 @@
             <div class="section-title" onclick="toggleSection('active-section')"
                 style="cursor:pointer;user-select:none;">
                 종목 매매 현황 <span class="section-sub">진행 중인 신호 (조건 사라지면 자동 종료)</span>
-                <span id="active-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ 펼치기</span>
+                <span id="active-section-icon" style="color:#6b7280;font-size:11px;margin-left:8px;">▶ 펼치기</span>
             </div>
             <div id="active-section" style="display:none;">
                 <div class="active-grid">
                     <div
                         style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
                         <div
-                            style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #431407;">
+                            style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #fed7aa;">
                             🔥 PRIME</div>
                         <div id="active-prime">
                             <div style="color:#334155;font-size:12px;">없음</div>
@@ -486,7 +493,7 @@
                     <div
                         style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
                         <div
-                            style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #0c1a3a;">
+                            style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #dbeafe;">
                             ★ Confirm</div>
                         <div id="active-confirm">
                             <div style="color:#334155;font-size:12px;">없음</div>
@@ -501,7 +508,7 @@
             <div class="section-title" onclick="toggleSection('analysis-section')"
                 style="cursor:pointer;user-select:none;">
                 조건별 분석 <span class="section-sub">5D 수익률 기준 (데이터 누적 후 유효)</span>
-                <span id="analysis-section-icon" style="color:var(--dim);font-size:11px;margin-left:8px;">▶ 펼치기</span>
+                <span id="analysis-section-icon" style="color:#6b7280;font-size:11px;margin-left:8px;">▶ 펼치기</span>
             </div>
             <div id="analysis-section" style="display:none;">
                 <div class="analysis-grid">
@@ -668,25 +675,25 @@
             ['prime', 'confirm'].forEach(function (sig) {
                 var el = document.getElementById('active-' + sig);
                 var items = groups[sig];
-                if (!items.length) { el.innerHTML = '<div style="color:#334155;font-size:12px;padding:4px 0;">없음</div>'; return; }
+                if (!items.length) { el.innerHTML = '<div style="color:#9ca3af;font-size:12px;padding:4px 0;">없음</div>'; return; }
                 items.sort(function (a, b) { return b.logged_at.localeCompare(a.logged_at); });
                 el.innerHTML = items.map(function (e) {
                     var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
                     var d1 = new Date(e.logged_at);
                     var diffDays = Math.floor((now - d1) / (1000 * 60 * 60 * 24));
                     var maxRet = e.max_ret_5d, minRet = e.min_ret_5d;
-                    var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#94a3b8';
-                    var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#94a3b8';
+                    var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#6b7280';
+                    var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#6b7280';
                     return '<div class="active-item">' +
                         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
                         '<a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-size:12px;font-weight:600;">' + e.name + '</a>' +
-                        '<span style="font-size:10px;color:#475569;">D+' + diffDays + '</span></div>' +
-                        '<div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">' + e.sector + ' · ' + (e.price_at_signal ? e.price_at_signal.toLocaleString() + '원' : '-') + '</div>' +
+                        '<span style="font-size:10px;color:#9ca3af;">D+' + diffDays + '</span></div>' +
+                        '<div style="font-size:11px;color:#6b7280;margin-bottom:3px;">' + e.sector + ' · ' + (e.price_at_signal ? e.price_at_signal.toLocaleString() + '원' : '-') + '</div>' +
                         '<div style="display:flex;gap:8px;font-size:11px;flex-wrap:wrap;">' +
                         '<span>MAX <span style="color:' + maxCol + ';font-weight:600;">' + (maxRet != null ? (maxRet > 0 ? '+' : '') + maxRet.toFixed(2) + '%' : '-') + '</span></span>' +
                         '<span>MIN <span style="color:' + minCol + ';font-weight:600;">' + (minRet != null ? (minRet > 0 ? '+' : '') + minRet.toFixed(2) + '%' : '-') + '</span></span>' +
-                        '<span style="color:#94a3b8;">GAP ' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</span>' +
-                        '<span style="color:#94a3b8;">VOL ' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</span>' +
+                        '<span style="color:#6b7280;">GAP ' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</span>' +
+                        '<span style="color:#6b7280;">VOL ' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</span>' +
                         '</div></div>';
                 }).join('');
             });
@@ -701,13 +708,13 @@
                 var avg = r5.length > 0 ? r5.reduce(function (s, v) { return s + v; }, 0) / r5.length : null;
                 var wr = r5.length > 0 ? r5.filter(function (v) { return v > 0; }).length / r5.length * 100 : null;
                 html += '<div class="analysis-row">' +
-                    '<span style="color:#e2e8f0;">' + label + ' <span style="color:#94a3b8;font-size:10px;">(' + items.length + ')</span></span>' +
+                    '<span style="color:#374151;">' + label + ' <span style="color:#6b7280;font-size:10px;">(' + items.length + ')</span></span>' +
                     '<span>' + (avg != null
                         ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
                         (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '')
-                        : '<span style="color:#1e2535;">-</span>') + '</span></div>';
+                        : '<span style="color:#d1d5db;">-</span>') + '</span></div>';
             });
-            el.innerHTML = html || '<div style="color:var(--dim);font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
+            el.innerHTML = html || '<div style="color:#9ca3af;font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
         }
 
         function renderAnalysis() {
@@ -766,7 +773,7 @@
             });
             var tbody = document.getElementById('log-tbody');
             if (!filtered.length) {
-                tbody.innerHTML = '<tr><td colspan="22" style="text-align:center;padding:40px;color:var(--dim);">기록 없음</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="22" style="text-align:center;padding:40px;color:#9ca3af;">기록 없음</td></tr>';
                 return;
             }
             tbody.innerHTML = filtered.map(function (e) {
@@ -777,16 +784,16 @@
                 var trClass = isExited ? ' class="exited-row"' : '';
                 var exitBadge = isExited ? '<span class="exit-badge">종료 ' + (e.exit_at || '') + '</span>' : '';
                 return '<tr' + trClass + '>' +
-                    '<td style="color:#e2e8f0;">' + e.logged_at + '</td>' +
-                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;">' + e.name + '</a> <span style="color:#94a3b8;font-size:10px;">' + e.code + '</span>' + exitBadge + '</td>' +
-                    '<td style="color:#e2e8f0;">' + (e.sector || '-') + '</td>' +
+                    '<td style="color:#374151;">' + e.logged_at + '</td>' +
+                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-weight:500;">' + e.name + '</a> <span style="color:#9ca3af;font-size:10px;">' + e.code + '</span>' + exitBadge + '</td>' +
+                    '<td style="color:#374151;">' + (e.sector || '-') + '</td>' +
                     '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
                     '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
                     '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
                     '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
                     '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
-                    '<td style="color:' + (e.gap_1d >= 3 ? '#c084fc' : '#94a3b8') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
-                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#fb923c' : '#94a3b8') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
+                    '<td style="color:' + (e.gap_1d >= 3 ? '#7c3aed' : '#6b7280') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
+                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#ea580c' : '#6b7280') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
                     '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
                     '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
                     '<td>' + fmtRet(e.ret_1d) + '</td>' +
@@ -797,7 +804,7 @@
                     '<td>' + fmtRet(e.min_ret_5d) + '</td>' +
                     '<td>' + quadBadge(e.quadrant_5d) + '</td>' +
                     '<td>' + quadBadge(e.quadrant_20d) + '</td>' +
-                    '<td style="color:#64748b;font-size:11px;">' + (e.exit_at || '-') + '</td>' +
+                    '<td style="color:#9ca3af;font-size:11px;">' + (e.exit_at || '-') + '</td>' +
                     '<td>' + fmtRet(e.ret_exit) + '</td>' +
                     '</tr>';
             }).join('');
