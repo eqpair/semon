@@ -140,6 +140,7 @@
             }
         }
 
+        let lastUpdatedAt = null
         function render() {
             document.getElementById("loading").style.display = "none"
             document.getElementById("content").style.display = "block"
@@ -163,9 +164,15 @@
             const _sectorCount = Object.keys(_sectors).length
             const _stockCount = Object.values(_sectors).reduce((s, d) => s + (d.candidates?.length ?? 0), 0)
             document.getElementById("sector-summary").textContent = `※ ${_sectorCount} 섹터 ${_stockCount} 종목`
-            renderHeatmap()
+
+            // 데이터가 바뀐 경우에만 히트맵 전체를 다시 그림 (펼쳐진 패널 보존)
+            const dataChanged = lastUpdatedAt !== allData.updated_at
+            if (dataChanged) {
+                renderHeatmap()
+                lastUpdatedAt = allData.updated_at
+            }
             if (currentSector) {
-                // 자동 갱신 후에도 펼쳐진 섹터를 그대로 유지
+                // 자동 갱신 후에도 펼쳐진 섹터를 그대로 유지 (스크롤 위치는 건드리지 않음)
                 const sectorKeys = Object.keys(allData.sectors || {})
                 const sectorIdx = sectorKeys.indexOf(currentSector)
                 if (sectorIdx !== -1) {
@@ -327,7 +334,8 @@
                     ).join("")
             }
             renderPanelTable(rowStart, name, "all")
-            setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50)
+            // 클릭한 섹터 카드 행이 화면 맨 위에 오도록 스크롤
+            setTimeout(() => cardRow.scrollIntoView({ behavior: "smooth", block: "start" }), 50)
         }
 
         function closePanel(rowStart) {
