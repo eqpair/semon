@@ -6,14 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>SEMon Heatmap</title>
     <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="https://eqpair.github.io/shmon/ls-report.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Noto Sans KR", sans-serif;
-        }
-
         /* ── 헤더 ── */
         .header-inner {
             display: flex;
@@ -181,6 +176,8 @@
         var allData = null;
         var currentTab = 'sector';
         var currentRet = 'ret_1d';
+        var _urlParams = new URLSearchParams(location.search);
+        var _drillRestored = false;  // F5 새로고침 후 최초 복원 1회 플래그
 
         function switchTab(tab) {
             currentTab = tab;
@@ -216,6 +213,14 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('view-sector').style.display = 'block';
                 render();
+
+                // F5 새로고침: URL에 sector가 있고 아직 복원 안 했으면 자동 드릴다운
+                if (currentDrill && !_drillRestored && allData.sectors && allData.sectors[currentDrill]) {
+                    _drillRestored = true;
+                    var savedSector = currentDrill;
+                    currentDrill = null;  // drillDown에서 토글이 작동하지 않도록 일단 null로
+                    drillDown(savedSector);
+                }
             } catch (e) {
                 document.getElementById('loading').textContent = '데이터 로드 실패';
             }
@@ -439,14 +444,26 @@
             container.innerHTML = svg;
         }
 
-        var currentDrill = null;
+        // currentDrill 초기값을 URL ?sector= 파라미터에서 가져옴 (F5 새로고침 시 복원)
+        var currentDrill = _urlParams.get('sector') || null;
 
         function drillDown(sectorName) {
+            // 같은 섹터를 다시 클릭하면 드릴다운 패널을 닫는다 (토글)
+            if (currentDrill === sectorName && document.getElementById('sector-drill').style.display !== 'none') {
+                closeDrill();
+                return;
+            }
+
             currentDrill = sectorName;
             var sectors = allData.sectors || {};
             var sectorRRG = allData.sector_rrg || {};
             var sdata = sectors[sectorName];
             if (!sdata) return;
+
+            // URL에 현재 섹터 저장 (F5 새로고침해도 유지)
+            var params = new URLSearchParams(location.search);
+            params.set('sector', sectorName);
+            history.replaceState(null, '', location.pathname + '?' + params.toString());
 
             document.getElementById('sector-drill').style.display = 'block';
             renderSector();
@@ -508,6 +525,11 @@
             currentDrill = null;
             document.getElementById('sector-drill').style.display = 'none';
             renderSector();
+            // URL에서 sector 파라미터 제거
+            var params = new URLSearchParams(location.search);
+            params.delete('sector');
+            var qs = params.toString();
+            history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
         }
 
         window.addEventListener('resize', function () { render(); });
