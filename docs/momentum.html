@@ -126,7 +126,7 @@
     </div>
 
     <script>
-        const REFRESH_MS = 10 * 60 * 1000
+        const REFRESH_MS = 60 * 1000
         let currentSector = null
         let currentFilter = "all"
         let allData = null
@@ -145,11 +145,16 @@
         function render() {
             document.getElementById("loading").style.display = "none"
             document.getElementById("content").style.display = "block"
-            document.getElementById("updated").textContent =
-                allData.updated_at ? new Date(allData.updated_at.replace(" ", "T")).toLocaleString("ko-KR") : "-"
+            if (allData.updated_at) {
+                const kstStr = allData.updated_at.replace(" ", "T") + "+09:00"
+                document.getElementById("updated").textContent =
+                    new Date(kstStr).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
+            } else {
+                document.getElementById("updated").textContent = "-"
+            }
             const badge = document.getElementById("market-badge")
             const now = new Date()
-            const kst = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000)
+            const kst = new Date(now.getTime() + (now.getTimezoneOffset() + 540) * 60000)
             const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
             const isOpen = d >= 1 && d <= 5 && (h > 9 || (h === 9 && m >= 0)) && (h < 15 || (h === 15 && m <= 30))
             badge.textContent = isOpen ? "MARKET OPEN" : "MARKET CLOSED"

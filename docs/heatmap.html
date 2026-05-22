@@ -272,8 +272,13 @@
                 var res = await fetch('./data/signals.json?t=' + Date.now());
                 if (!res.ok) throw new Error();
                 allData = await res.json();
-                document.getElementById('updated').textContent =
-                    allData.updated_at ? new Date(allData.updated_at.replace(' ', 'T')).toLocaleString('ko-KR') : '-';
+                if (allData.updated_at) {
+                    const kstStr = allData.updated_at.replace(' ', 'T') + '+09:00';
+                    document.getElementById('updated').textContent =
+                        new Date(kstStr).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+                } else {
+                    document.getElementById('updated').textContent = '-';
+                }
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('view-sector').style.display = 'block';
                 render();
@@ -573,7 +578,7 @@
 
         window.addEventListener('resize', function () { render(); });
         loadData();
-        setInterval(loadData, 10 * 60 * 1000);
+        setInterval(loadData, 60 * 1000);
     </script>
 </body>
 
