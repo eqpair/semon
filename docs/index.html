@@ -819,7 +819,7 @@
     <div style="color:${quadrantColor(pt.quad)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(pt.quad)}</div>
     <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${pt.ratio.toFixed(2)}</span></div>
     <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${pt.mom.toFixed(2)}</span></div>
-    <div style="color:#6b7280;font-size:11px;margin-top:4px;">1W: <span style="color:${d.sector_ret_5d > 0 ? '#16a34a' : '#dc2626'};">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;margin-top:4px;">1W: <span style="color:${d.sector_ret_5d > 0 ? '#dc2626' : '#2563eb'};">${d.sector_ret_5d != null ? (d.sector_ret_5d > 0 ? '+' : '') + d.sector_ret_5d.toFixed(2) + '%' : '-'}</span></div>
     <div style="color:#6b7280;font-size:11px;">Improving: <span style="color:#2563eb;">${d.improving_count || 0}종목</span></div>
     <div style="color:#6b7280;font-size:11px;">Watch: <span style="color:#9ca3af;">${d.watch_count || 0}종목</span></div>
     <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → 종목 RRG</div>`
@@ -836,9 +836,9 @@
     <div style="color:#6b7280;font-size:11px;">현재가: <span style="color:#111827;">${s.price ? s.price.toLocaleString() : '-'}</span></div>
     <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${s.rs_ratio?.toFixed(2) ?? '-'}</span></div>
     <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
-    <div style="color:#6b7280;font-size:11px;">1D: <span style="color:${s.ret_1d > 0 ? '#16a34a' : '#dc2626'};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(2) + '%' : '-'}</span></div>
-    <div style="color:#6b7280;font-size:11px;">1W: <span style="color:${s.ret_5d > 0 ? '#16a34a' : '#dc2626'};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span></div>
-    <div style="color:#6b7280;font-size:11px;">1M: <span style="color:${(s.ret_20d || 0) > 0 ? '#16a34a' : '#dc2626'};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">1D: <span style="color:${s.ret_1d > 0 ? '#dc2626' : '#2563eb'};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">1W: <span style="color:${s.ret_5d > 0 ? '#dc2626' : '#2563eb'};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span></div>
+    <div style="color:#6b7280;font-size:11px;">1M: <span style="color:${(s.ret_20d || 0) > 0 ? '#dc2626' : '#2563eb'};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(2) + '%' : '-'}</span></div>
     <div style="color:#9ca3af;font-size:10px;margin-top:4px;"><a href="${naverUrl}" target="_blank" style="color:#2563eb;">네이버 증권 →</a></div>`
             tip.style.display = "block"
             moveTooltip(e)
@@ -900,7 +900,7 @@
                     : item.watch > 0
                         ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${item.watch}</span>`
                         : ''}
-                    <span class="text-xs ${item.ret > 0 ? 'text-green-600' : item.ret < 0 ? 'text-red-500' : 'text-gray-400'}">
+                    <span class="text-xs ${item.ret > 0 ? 'text-red-600' : item.ret < 0 ? 'text-blue-500' : 'text-gray-400'}">
                     ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
                     </span>
                 </div>
@@ -1108,9 +1108,9 @@
       <tbody>
         ${sorted.map(s => {
                 const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
-                const r1c = s.ret_1d > 0 ? '#16a34a' : s.ret_1d < 0 ? '#dc2626' : '#9ca3af'
-                const r5c = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
-                const r20c = s.ret_20d > 0 ? '#16a34a' : s.ret_20d < 0 ? '#dc2626' : '#9ca3af'
+                const r1c = s.ret_1d > 0 ? '#dc2626' : s.ret_1d < 0 ? '#2563eb' : '#9ca3af'
+                const r5c = s.ret_5d > 0 ? '#dc2626' : s.ret_5d < 0 ? '#2563eb' : '#9ca3af'
+                const r20c = s.ret_20d > 0 ? '#dc2626' : s.ret_20d < 0 ? '#2563eb' : '#9ca3af'
                 const rowBg = s.signal === 'prime' ? 'background:#fff5f5;'
                     : s.signal === 'confirm' ? 'background:#eff6ff;'
                         : s.short_rs_grade === 'breakout' ? 'background:#faf5ff;' : ''
@@ -1121,7 +1121,7 @@
                 <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r20c};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(1) + '%' : '-'}</td>
-                <td style="padding:7px 4px;text-align:right;color:${s.gap_1d >= 3 ? '#7c3aed' : s.gap_1d != null && s.gap_1d < 0 ? '#dc2626' : '#6b7280'};">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${s.gap_1d >= 3 ? '#7c3aed' : s.gap_1d != null && s.gap_1d < 0 ? '#2563eb' : '#6b7280'};">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_ratio?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:#6b7280;">${s.rs_momentum?.toFixed(1) ?? '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${s.rs_5d >= 2 ? '#7c3aed' : '#6b7280'};">
@@ -1325,7 +1325,7 @@
                         '<div class="text-xs text-gray-500 space-y-0.5">' +
                         '<div>RS-Ratio: <span class="font-medium text-gray-700">' + (rrg.rs_ratio != null ? rrg.rs_ratio.toFixed(2) : '-') + '</span>' +
                         ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
-                        '<div>5D <span class="' + (ret5d > 0 ? 'text-green-600' : 'text-red-500') + ' font-medium">' +
+                        '<div>5D <span class="' + (ret5d > 0 ? 'text-red-600' : 'text-blue-500') + ' font-medium">' +
                         (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
                         '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
                         ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
@@ -1418,9 +1418,9 @@
                         <div>현재가 <span class="text-gray-800 font-medium">${s.price ? s.price.toLocaleString() : '-'}원</span></div>
                         <div>RS-Ratio <span class="text-red-500 font-medium">${s.rs_ratio?.toFixed(2) ?? '-'}</span>
                              &nbsp;RS-M <span class="text-blue-600 font-medium">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
-                        <div>5D <span class="${s.ret_5d > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span>
+                        <div>5D <span class="${s.ret_5d > 0 ? 'text-red-600' : 'text-blue-500'} font-medium">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span>
                              &nbsp;VOL <span class="text-purple-600 font-medium">${s.vol_ratio?.toFixed(2) ?? '-'}x</span></div>
-                        <div>섹터 5D <span class="${s.sectorRet > 0 ? 'text-green-600' : 'text-red-500'} font-medium">${s.sectorRet != null ? (s.sectorRet > 0 ? '+' : '') + s.sectorRet.toFixed(2) + '%' : '-'}</span></div>
+                        <div>섹터 5D <span class="${s.sectorRet > 0 ? 'text-red-600' : 'text-blue-500'} font-medium">${s.sectorRet != null ? (s.sectorRet > 0 ? '+' : '') + s.sectorRet.toFixed(2) + '%' : '-'}</span></div>
                     </div>
                 </div>`}).join("") + `</div>`
         }
@@ -1549,7 +1549,7 @@
                         '<div class="text-xs text-gray-500 space-y-0.5">' +
                         '<div>RS-Ratio: <span class="font-medium text-gray-700">' + (rrg.rs_ratio != null ? rrg.rs_ratio.toFixed(2) : '-') + '</span>' +
                         ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
-                        '<div>5D <span class="' + (ret5d > 0 ? 'text-green-600' : 'text-red-500') + ' font-medium">' +
+                        '<div>5D <span class="' + (ret5d > 0 ? 'text-red-600' : 'text-blue-500') + ' font-medium">' +
                         (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
                         '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
                         ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +

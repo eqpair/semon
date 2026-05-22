@@ -92,7 +92,7 @@
             width: 120px;
             height: 8px;
             border-radius: 4px;
-            background: linear-gradient(to right, #b91c1c, #ef4444, #d1d5db, #22c55e, #15803d);
+            background: linear-gradient(to right, #1e40af, #3b82f6, #d1d5db, #ef4444, #b91c1c);
         }
 
         .tab-btn {
@@ -231,9 +231,9 @@
                 <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
                     <div class="nav-links">
                         <div class="legend-wrap">
-                            <span style="font-size:10px;color:#dc2626;">-3%</span>
+                            <span style="font-size:10px;color:#2563eb;">-3%</span>
                             <div class="legend-bar"></div>
-                            <span style="font-size:10px;color:#16a34a;">+3%</span>
+                            <span style="font-size:10px;color:#dc2626;">+3%</span>
                         </div>
                         <a href="./index.html" class="nav-link-btn">RRG</a>
                         <a href="./momentum.html" class="nav-link-btn">Momentum</a>
@@ -324,8 +324,8 @@
         function retColor(v) {
             if (v == null) return '#374151';
             var capped = Math.max(-5, Math.min(5, v));
-            if (capped > 0) return lerpColor('#374151', '#16a34a', capped / 5);
-            else return lerpColor('#374151', '#dc2626', Math.abs(capped) / 5);
+            if (capped > 0) return lerpColor('#374151', '#dc2626', capped / 5);
+            else return lerpColor('#374151', '#2563eb', Math.abs(capped) / 5);
         }
 
         function lerpColor(a, b, t) {
@@ -450,8 +450,8 @@
                 var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
                     '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
                     '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">5D <span style="color:' + ((cell.ret5d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret5d) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">5D <span style="color:' + ((cell.ret5d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret5d) + '</span></div>' +
                     (cell.improving > 0 ? '<div style="color:#60a5fa;font-size:11px;margin-top:4px;">★ Improving ' + cell.improving + '종목</div>' : '') +
                     '<div style="color:#64748b;font-size:11px;">총 ' + cell.total + '종목</div>';
 
@@ -465,7 +465,7 @@
                 var nameY = cell.y + PAD + th / 2 - (retVisible ? 7 : 0);
                 svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + cell.name + '</text>';
                 if (retVisible) {
-                    var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
+                    var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 9) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + retStr + '</text>';
                 }
                 svg += '</g>';
@@ -516,8 +516,8 @@
                     '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
                     '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
                     '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
-                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#60a5fa' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
                     (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
                     (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
 
@@ -530,7 +530,7 @@
                 var nameY2 = cell.y + PAD + th / 2 - (retVisible2 ? 6 : 0);
                 svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + cell.name + '</text>';
                 if (retVisible2) {
-                    var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
+                    var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs2 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + retStr + '</text>';
                 }
                 svg += '</g>';
@@ -582,8 +582,8 @@
                 var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;">' + cell.code + '</span></div>' +
                     '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
                     '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
-                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#4ade80' : '#f87171') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
-                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#f87171' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#60a5fa' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
                     (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + '</div>' : '');
 
                 svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
@@ -595,7 +595,7 @@
                 var nameY3 = cell.y + PAD + th / 2 - (retVisible3 ? 6 : 0);
                 svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + cell.name + '</text>';
                 if (retVisible3) {
-                    var tc = (cell.ret || 0) >= 0 ? '#86efac' : '#fca5a5';
+                    var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs3 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + retStr + '</text>';
                 }
                 svg += '</g>';

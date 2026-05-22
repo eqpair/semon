@@ -328,12 +328,12 @@
         }
 
         .ret-pos {
-            color: var(--green);
+            color: #dc2626;
             font-weight: 600;
         }
 
         .ret-neg {
-            color: var(--red);
+            color: #2563eb;
             font-weight: 600;
         }
 
@@ -649,7 +649,7 @@
                     var wr5 = r5.filter(function (v) { return v > 0; }).length / r5.length * 100;
                     var el = document.getElementById(sig + '-avg5');
                     el.textContent = (avg5 >= 0 ? '+' : '') + avg5.toFixed(2) + '%';
-                    el.style.color = avg5 >= 0 ? 'var(--green)' : 'var(--red)';
+                    el.style.color = avg5 >= 0 ? '#dc2626' : '#2563eb';
                     document.getElementById(sig + '-wr5').textContent = wr5.toFixed(0) + '%';
                 }
                 var r20 = items.map(function (e) { return e.ret_20d; }).filter(function (v) { return v != null; });
@@ -658,7 +658,7 @@
                     var wr20 = r20.filter(function (v) { return v > 0; }).length / r20.length * 100;
                     var el20 = document.getElementById(sig + '-avg20');
                     el20.textContent = (avg20 >= 0 ? '+' : '') + avg20.toFixed(2) + '%';
-                    el20.style.color = avg20 >= 0 ? 'var(--green)' : 'var(--red)';
+                    el20.style.color = avg20 >= 0 ? '#dc2626' : '#2563eb';
                     document.getElementById(sig + '-wr20').textContent = wr20.toFixed(0) + '%';
                 }
             });
@@ -682,8 +682,8 @@
                     var d1 = new Date(e.logged_at);
                     var diffDays = Math.floor((now - d1) / (1000 * 60 * 60 * 24));
                     var maxRet = e.max_ret_5d, minRet = e.min_ret_5d;
-                    var maxCol = maxRet > 0 ? 'var(--green)' : maxRet < 0 ? 'var(--red)' : '#6b7280';
-                    var minCol = minRet > 0 ? 'var(--green)' : minRet < 0 ? 'var(--red)' : '#6b7280';
+                    var maxCol = maxRet > 0 ? '#dc2626' : maxRet < 0 ? '#2563eb' : '#6b7280';
+                    var minCol = minRet > 0 ? '#dc2626' : minRet < 0 ? '#2563eb' : '#6b7280';
                     return '<div class="active-item">' +
                         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
                         '<a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-size:12px;font-weight:600;">' + e.name + '</a>' +
@@ -710,7 +710,7 @@
                 html += '<div class="analysis-row">' +
                     '<span style="color:#374151;">' + label + ' <span style="color:#6b7280;font-size:10px;">(' + items.length + ')</span></span>' +
                     '<span>' + (avg != null
-                        ? '<span style="color:' + (avg >= 0 ? 'var(--green)' : 'var(--red)') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
+                        ? '<span style="color:' + (avg >= 0 ? '#dc2626' : '#2563eb') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
                         (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '')
                         : '<span style="color:#d1d5db;">-</span>') + '</span></div>';
             });

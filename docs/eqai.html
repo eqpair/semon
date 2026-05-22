@@ -437,7 +437,7 @@
         function makeMacroCard(name, d) {
             const meta = MACRO_META[name] || { unit: "", priceDecimals: 2, warnIf: null }
             const up = d.change >= 0
-            const color = up ? "text-green-600" : "text-red-500"
+            const color = up ? "text-red-600" : "text-blue-500"
             const arrow = up ? "▲" : "▼"
             let warnClass = "", warnBadge = ""
             if (meta.warnIf && d.price != null) {
@@ -484,7 +484,7 @@
                 const color = qColor[d.quadrant] || "#9ca3af"
                 const bg = qBg[d.quadrant] || "#f3f4f6"
                 const ret = d.sector_ret_1d
-                const retColor = ret > 0 ? "#16a34a" : ret < 0 ? "#dc2626" : "#9ca3af"
+                const retColor = ret > 0 ? "#dc2626" : ret < 0 ? "#2563eb" : "#9ca3af"
                 return `<div style="background:${bg};border-radius:8px;padding:10px 12px;border:1px solid ${color}22;">
                 <div class="flex items-center justify-between mb-1">
                     <span class="text-xs font-semibold text-gray-700">${name}</span>
