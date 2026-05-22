@@ -125,7 +125,8 @@
 
     <script>
         const REFRESH_MS = 60 * 1000
-        let currentSector = null
+        const _urlParams = new URLSearchParams(location.search)
+        let currentSector = _urlParams.get("sector") || null
         let currentFilter = "all"
         let allData = null
 
@@ -172,7 +173,7 @@
                 lastUpdatedAt = allData.updated_at
             }
             if (currentSector) {
-                // 자동 갱신 후에도 펼쳐진 섹터를 그대로 유지 (스크롤 위치는 건드리지 않음)
+                // 자동 갱신 / F5 새로고침 후에도 펼쳐진 섹터를 그대로 유지
                 const sectorKeys = Object.keys(allData.sectors || {})
                 const sectorIdx = sectorKeys.indexOf(currentSector)
                 if (sectorIdx !== -1) {
@@ -180,6 +181,7 @@
                     const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
                     const card = document.querySelector(`[data-sector="${currentSector}"]`)
                     if (panel && card) {
+                        const wasFirstLoad = !panel.dataset.restored
                         panel.style.display = "block"
                         card.classList.add("ring-2", "ring-blue-400")
                         document.getElementById(`panel-label-${rowStart}`).innerHTML =
@@ -199,6 +201,12 @@
                                 ).join("")
                         }
                         renderPanelTable(rowStart, currentSector, currentFilter)
+                        // F5 새로고침 직후(최초 복원)에만 해당 카드로 스크롤
+                        if (wasFirstLoad) {
+                            panel.dataset.restored = "1"
+                            const cardRow = document.querySelector(`.grid[data-row="${rowStart}"]`)
+                            if (cardRow) setTimeout(() => cardRow.scrollIntoView({ behavior: "auto", block: "start" }), 50)
+                        }
                     }
                 }
             }
@@ -334,6 +342,10 @@
                     ).join("")
             }
             renderPanelTable(rowStart, name, "all")
+            // URL에 현재 섹터 저장 (F5 새로고침해도 유지)
+            const params = new URLSearchParams(location.search)
+            params.set("sector", name)
+            history.replaceState(null, "", location.pathname + "?" + params.toString())
             // 클릭한 섹터 카드 행이 화면 맨 위에 오도록 스크롤
             setTimeout(() => cardRow.scrollIntoView({ behavior: "smooth", block: "start" }), 50)
         }
@@ -342,6 +354,11 @@
             document.querySelector(`.inline-panel[data-row="${rowStart}"]`).style.display = "none"
             document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
             currentSector = null
+            // URL에서도 sector 파라미터 제거
+            const params = new URLSearchParams(location.search)
+            params.delete("sector")
+            const qs = params.toString()
+            history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""))
         }
 
         function togglePanelMembers(rowStart) {
