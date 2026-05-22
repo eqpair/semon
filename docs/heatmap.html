@@ -10,24 +10,25 @@
     <style>
         * {
             box-sizing: border-box;
+        }
+
+        body {
+            background: #f3f4f6;
+            color: #1f2937;
+            font-family: -apple-system, sans-serif;
+            min-height: 100vh;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            background: #0f1117;
-            color: #e2e8f0;
-            font-family: -apple-system, sans-serif;
-            min-height: 100vh;
-        }
-
         .header {
             padding: 14px 16px 12px;
-            border-bottom: 1px solid #1e2535;
-            background: #0f1117;
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
         }
 
         /* ── 헤더 상단 행 ── */
@@ -50,18 +51,21 @@
 
         .nav-link-btn {
             font-size: 11px;
-            color: #60a5fa;
+            color: #1d4ed8;
             text-decoration: none;
-            padding: 4px 8px;
-            border: 1px solid #1e3a5f;
+            padding: 4px 10px;
+            background: #dbeafe;
             border-radius: 6px;
             white-space: nowrap;
+            font-weight: 500;
         }
+        .nav-link-btn:hover { background: #bfdbfe; }
 
         .nav-link-btn.purple {
-            color: #a78bfa;
-            border-color: #3b1f6e;
+            color: #7c3aed;
+            background: #ede9fe;
         }
+        .nav-link-btn.purple:hover { background: #ddd6fe; }
 
         /* 범례 */
         .legend-wrap {
@@ -74,7 +78,7 @@
             width: 120px;
             height: 8px;
             border-radius: 4px;
-            background: linear-gradient(to right, #7f1d1d, #dc2626, #374151, #16a34a, #14532d);
+            background: linear-gradient(to right, #b91c1c, #ef4444, #d1d5db, #22c55e, #15803d);
         }
 
         .tab-btn {
@@ -83,21 +87,21 @@
             font-size: 12px;
             font-weight: 500;
             cursor: pointer;
-            border: 1px solid #2d3748;
-            background: transparent;
-            color: #64748b;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            color: #4b5563;
             transition: all 0.15s;
             white-space: nowrap;
         }
 
         .tab-btn:hover {
-            border-color: #4b5563;
-            color: #94a3b8;
+            border-color: #9ca3af;
+            color: #1f2937;
         }
 
         .tab-btn.active {
-            background: #1e40af;
-            border-color: #1e40af;
+            background: #2563eb;
+            border-color: #2563eb;
             color: #fff;
         }
 
@@ -112,7 +116,7 @@
         .tab-divider {
             width: 1px;
             height: 18px;
-            background: #2d3748;
+            background: #e5e7eb;
             margin: 0 2px;
         }
 
@@ -127,16 +131,16 @@
 
         #hm-tooltip {
             position: fixed;
-            background: rgba(15, 17, 23, 0.97);
-            border: 1px solid #2d3748;
-            border-radius: 10px;
+            background: #1e293b;
+            color: #f1f5f9;
+            border-radius: 8px;
             padding: 10px 14px;
             font-size: 12px;
             pointer-events: none;
             z-index: 200;
             display: none;
             min-width: 160px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
         }
 
         ::-webkit-scrollbar {
@@ -144,7 +148,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #2d3748;
+            background: #cbd5e1;
             border-radius: 2px;
         }
 
@@ -195,8 +199,8 @@
     <div class="header">
         <div class="header-top">
             <div>
-                <h1 style="font-size:18px;font-weight:700;color:#f1f5f9;">📊 Heatmap</h1>
-                <div style="font-size:11px;color:#475569;margin-top:2px;">Last Update: <span id="updated">-</span></div>
+                <h1 style="font-size:18px;font-weight:700;color:#1f2937;">📊 Heatmap</h1>
+                <div style="font-size:11px;color:#6b7280;margin-top:2px;">Last Update: <span id="updated">-</span></div>
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
                 <div class="nav-links">
@@ -223,15 +227,15 @@
     </div>
 
     <div id="heatmap-container">
-        <div id="loading" style="text-align:center;padding:60px;color:#475569;font-size:14px;">데이터 로딩 중...</div>
+        <div id="loading" style="text-align:center;padding:60px;color:#6b7280;font-size:14px;">데이터 로딩 중...</div>
         <div id="view-sector" style="display:none;">
             <div id="sector-split" style="display:flex;gap:12px;">
                 <div id="sector-treemap" class="treemap-wrapper" style="flex:1;min-width:0;"></div>
                 <div id="sector-drill" style="display:none;flex-shrink:0;width:40%;">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                        <div id="drill-title" style="font-size:13px;font-weight:700;color:#f1f5f9;"></div>
+                        <div id="drill-title" style="font-size:13px;font-weight:700;color:#1f2937;"></div>
                         <button onclick="closeDrill()"
-                            style="font-size:11px;color:#64748b;background:none;border:1px solid #2d3748;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
+                            style="font-size:11px;color:#6b7280;background:#ffffff;border:1px solid #d1d5db;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
                             닫기</button>
                     </div>
                     <div id="drill-treemap" class="treemap-wrapper"></div>
@@ -462,7 +466,7 @@
             });
 
             if (!allStocks.length) {
-                container.innerHTML = '<div style="text-align:center;padding:60px;color:#475569;">시총 데이터 없음</div>';
+                container.innerHTML = '<div style="text-align:center;padding:60px;color:#6b7280;">시총 데이터 없음</div>';
                 return;
             }
 

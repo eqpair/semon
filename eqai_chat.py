@@ -83,6 +83,9 @@ def extract_stocks_from_messages(messages: list) -> dict:
     if not user_msgs:
         return {}
     scan_text = " ".join(user_msgs[-2:])
+    # 기술적 분석 프롬프트는 종목 스캔 스킵 (숫자가 지표값이라 오탐)
+    if "기술적 지표" in scan_text and "차티스트" in scan_text:
+        return {}
 
     # 숫자로만 된 6자리 패턴 제거 (종목코드 오탐 방지)
     clean_text = re.sub(r'\b\d{6}\b', '', scan_text)
@@ -231,7 +234,8 @@ def chat():
         last_user = messages[-1].get("content", "") if messages else ""
         code_list = re.findall(r'\b(\d{6})\b', last_user)
         is_convert_only = (len(code_list) >= 3 and
-            any(kw in last_user for kw in ["종목명", "바꿔", "변환", "이름", "회사명"]))
+            any(kw in last_user for kw in ["종목명", "바꿔", "변환", "이름", "회사명"]) and
+            "기술적 지표" not in last_user and "차티스트" not in last_user)
 
         if is_convert_only:
             code_to_name = {v: k for k, v in _stock_map.items()}

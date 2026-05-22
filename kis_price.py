@@ -3,7 +3,7 @@ import asyncio
 import logging
 import os
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from kis_auth import get_access_token
 
@@ -17,26 +17,47 @@ OHLCV_URL  = f"{BASE_URL}/uapi/domestic-stock/v1/quotations/inquire-daily-itemch
 
 logger = logging.getLogger(__name__)
 
+# KST 타임존 (utils.now_kst 의존성 제거)
+KST = timezone(timedelta(hours=9))
 
-def get_market_code():
-    """현재 시간에 따라 마켓 코드 반환"""
-    now = datetime.now()
+
+def now_kst():
+    return datetime.now(KST)
+
+
+# ── 시장 코드 결정 ────────────────────────────────────────────
+#
+# KIS API의 fid_cond_mrkt_div_code 값:
+#   J  = KRX (한국거래소)
+#   NX = NXT (넥스트레이드)
+#   UN = 통합 (KRX + NXT, best price)
+#
+# NXT 운영시간 (2025-03-04 오픈):
+#   - 프리마켓:   08:00 ~ 08:50
+#   - 메인마켓:   09:00 ~ 15:30 (KRX 정규장과 동시 운영)
+#   - 애프터마켓: 15:30 ~ 20:00
+#
+# 정규장 시간에도 NXT가 동시에 돌아가므로,
+# "J"만 호출하면 NXT의 더 빠른 가격/체결을 놓침 → 실시간성 손실.
+# → 정규장+NXT 시간대에는 "UN" (통합)을 써서 두 시장 best price를 받아옴.
+
+def get_market_code() -> str:
+    """현재 시간에 따라 시장 코드 반환"""
+    now = now_kst()
     h, m = now.hour, now.minute
     t = h * 60 + m
-    # 09:00 ~ 15:30 → KRX 정규장
-    if 9 * 60 <= t <= 15 * 60 + 30:
-        return "J"
-    # 08:00 ~ 08:59 또는 15:30 ~ 20:00 → NXT
-    elif (8 * 60 <= t < 9 * 60) or (15 * 60 + 30 < t <= 20 * 60):
-        return "NX"
-    # 그 외 시간 → KRX (종가 기준)
-    else:
-        return "J"
+
+    # 08:00 ~ 20:00 → NXT 운영시간 → 통합 시세 (UN)
+    if 8 * 60 <= t <= 20 * 60:
+        return "UN"
+    # 그 외 시간 (야간) → KRX 종가 기준
+    return "J"
 
 
 # ── 현재가 fetch ──────────────────────────────────────────────
 
-async def _fetch_one(session, token, code, market_code):
+async def _fetch_one_market(session, token, code, market_code):
+    """특정 시장 코드로 1회 fetch. (price, volume, raw_output) 반환"""
     try:
         async with session.get(
             PRICE_URL,
@@ -53,19 +74,43 @@ async def _fetch_one(session, token, code, market_code):
             timeout=aiohttp.ClientTimeout(total=5),
         ) as resp:
             data   = await resp.json(content_type=None)
-            output = data.get("output", {})
+            output = data.get("output", {}) or {}
             price  = output.get("stck_prpr")
             volume = output.get("acml_vol")
-            return code, float(price) if price else None, float(volume) if volume else None
+            p = float(price) if price else None
+            v = float(volume) if volume else None
+            # KIS는 종목 미상장/오류 시 price=0 또는 빈 문자열을 줌
+            if p is not None and p <= 0:
+                p = None
+            return p, v, data.get("rt_cd")
     except Exception as e:
-        logger.warning(f"KIS 현재가 오류 ({code}): {e}")
-        return code, None, None
+        logger.warning(f"KIS 현재가 오류 ({code} mkt={market_code}): {e}")
+        return None, None, None
+
+
+async def _fetch_one(session, token, code, market_code):
+    """
+    종목 1개 현재가 fetch.
+    market_code='UN'으로 먼저 시도하고, 응답이 비면 'J'로 폴백.
+    """
+    # 1차: 요청된 시장 코드 (보통 UN)
+    price, volume, rt_cd = await _fetch_one_market(session, token, code, market_code)
+    if price is not None:
+        return code, price, volume
+
+    # 2차 폴백: NXT 미상장 종목 등은 UN으로 안 잡힐 수 있음 → J로 재시도
+    if market_code != "J":
+        price2, volume2, _ = await _fetch_one_market(session, token, code, "J")
+        if price2 is not None:
+            return code, price2, volume2
+
+    return code, None, None
 
 
 async def fetch_all_prices_kis(code_list):
     token       = await get_access_token()
     market_code = get_market_code()
-    logger.info(f"마켓 코드: {market_code}")
+    logger.info(f"마켓 코드: {market_code} (시간: {now_kst().strftime('%H:%M')})")
     results    = {}
     chunk_size = 19
     async with aiohttp.ClientSession() as session:
@@ -78,11 +123,17 @@ async def fetch_all_prices_kis(code_list):
             if i + chunk_size < len(code_list):
                 await asyncio.sleep(1.1)
     success = sum(1 for v in results.values() if v[0] is not None)
-    logger.info(f"KIS 현재가 fetch: {success}/{len(code_list)}개 성공")
+    fail = len(code_list) - success
+    if fail > 0:
+        failed_codes = [c for c, v in results.items() if v[0] is None][:5]
+        logger.info(f"KIS 현재가 fetch: {success}/{len(code_list)}개 성공 (실패 샘플: {failed_codes})")
+    else:
+        logger.info(f"KIS 현재가 fetch: {success}/{len(code_list)}개 성공")
     return results
 
 
 # ── 일봉 OHLCV fetch ──────────────────────────────────────────
+# 일봉은 KRX 기준만 사용 (NXT는 KRX 종가와 동일하게 정산됨)
 
 async def _fetch_ohlcv_chunk(session, token, code, start_dt: str, end_dt: str) -> list[dict]:
     """
@@ -100,7 +151,7 @@ async def _fetch_ohlcv_chunk(session, token, code, start_dt: str, end_dt: str) -
                 "tr_id":         "FHKST03010100",
             },
             params={
-                "fid_cond_mrkt_div_code": "J",
+                "fid_cond_mrkt_div_code": "J",  # 일봉은 KRX 통합 정산
                 "fid_input_iscd":         code,
                 "fid_input_date_1":       start_dt,
                 "fid_input_date_2":       end_dt,
@@ -143,31 +194,24 @@ async def _fetch_ohlcv_500(session, token, code) -> tuple[str, dict | None]:
     """
     종목 1개의 500거래일치 일봉 fetch
     KIS는 1회 최대 100거래일 → end를 뒤로 당기며 5번 호출
-
-    날짜 계산 방식:
-      - 달력일 140일 ≈ 거래일 100일 (주말+공휴일 약 40일 제외)
-      - end를 140일씩 뒤로 당기며 구간 생성 → 겹침/누락 없음
-      - 중복 제거 + 날짜 정렬로 최종 정합성 보장
-    반환: (code, {"closes": [...], "volumes": [...]})  오래된 순
     """
     all_rows = []
-    end = datetime.now()
+    end = now_kst().replace(tzinfo=None)
 
     for _ in range(5):
-        start     = end - timedelta(days=140)   # 달력 140일 ≈ 거래일 100일
+        start     = end - timedelta(days=140)
         start_str = start.strftime("%Y%m%d")
         end_str   = end.strftime("%Y%m%d")
 
         rows = await _fetch_ohlcv_chunk(session, token, code, start_str, end_str)
         all_rows.extend(rows)
 
-        end = start - timedelta(days=1)         # 다음 구간 끝 = 이번 구간 시작 하루 전
+        end = start - timedelta(days=1)
         await asyncio.sleep(0.1)
 
     if not all_rows:
         return code, None
 
-    # 날짜 중복 제거 후 오래된 순 정렬
     seen  = set()
     dedup = []
     for row in all_rows:
@@ -183,17 +227,10 @@ async def _fetch_ohlcv_500(session, token, code) -> tuple[str, dict | None]:
 
 
 async def fetch_all_ohlcv_kis(code_list: list[str]) -> dict[str, dict | None]:
-    """
-    전체 종목 500일치 일봉 KIS fetch
-    반환: {code: {"closes": [...], "volumes": [...]}} or {code: None}
-
-    KIS 제한:
-      - 초당 20건 → 종목당 5회 호출이므로 동시 실행 종목 수를 제한
-      - chunk_size=3: 3종목 × 5회 = 15회/초 → 안전
-    """
+    """전체 종목 500일치 일봉 KIS fetch"""
     token   = await get_access_token()
     results = {}
-    chunk_size = 3   # 동시 처리 종목 수 (KIS rate limit 대응)
+    chunk_size = 3
 
     async with aiohttp.ClientSession() as session:
         for i in range(0, len(code_list), chunk_size):
@@ -203,7 +240,7 @@ async def fetch_all_ohlcv_kis(code_list: list[str]) -> dict[str, dict | None]:
             for code, ohlcv in responses:
                 results[code] = ohlcv
             if i + chunk_size < len(code_list):
-                await asyncio.sleep(1.0)  # chunk 간 추가 대기
+                await asyncio.sleep(1.0)
 
     success = sum(1 for v in results.values() if v is not None)
     logger.info(f"KIS OHLCV fetch: {success}/{len(code_list)}개 성공")
