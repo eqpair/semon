@@ -165,12 +165,35 @@
             document.getElementById("sector-summary").textContent = `※ ${_sectorCount} 섹터 ${_stockCount} 종목`
             renderHeatmap()
             if (currentSector) {
-                const rows = document.querySelectorAll(".inline-panel")
-                rows.forEach(p => {
-                    if (p.style.display !== "none") {
-                        renderPanelTable(parseInt(p.dataset.row), currentSector, currentFilter)
+                // 자동 갱신 후에도 펼쳐진 섹터를 그대로 유지
+                const sectorKeys = Object.keys(allData.sectors || {})
+                const sectorIdx = sectorKeys.indexOf(currentSector)
+                if (sectorIdx !== -1) {
+                    const rowStart = Math.floor(sectorIdx / COLS) * COLS
+                    const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+                    const card = document.querySelector(`[data-sector="${currentSector}"]`)
+                    if (panel && card) {
+                        panel.style.display = "block"
+                        card.classList.add("ring-2", "ring-blue-400")
+                        document.getElementById(`panel-label-${rowStart}`).innerHTML =
+                            `<a href="./index.html?sector=${encodeURIComponent(currentSector)}"
+                               class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
+                               ▸ ${currentSector} 섹터 <span class="text-xs font-normal opacity-60">→ RRG</span>
+                             </a>`
+                        const data = allData.sectors?.[currentSector]
+                        if (data?.candidates) {
+                            document.getElementById(`panel-members-${rowStart}`).innerHTML =
+                                data.candidates.map(s =>
+                                    `<span class="inline-block mr-3">
+                                        <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
+                                           target="_blank" class="hover:underline text-gray-700">${s.name}</a>
+                                        <span class="text-gray-400">(${s.code})</span>
+                                    </span>`
+                                ).join("")
+                        }
+                        renderPanelTable(rowStart, currentSector, currentFilter)
                     }
-                })
+                }
             }
         }
 
@@ -272,13 +295,20 @@
         }
 
         function selectSector(name, cardRow) {
+            const rowStart = parseInt(cardRow.dataset.row)
+            const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
+
+            // 같은 섹터를 다시 클릭하면 패널을 닫는다
+            if (currentSector === name && panel && panel.style.display !== "none") {
+                closePanel(rowStart)
+                return
+            }
+
             currentSector = name
             currentFilter = "all"
-            const rowStart = parseInt(cardRow.dataset.row)
             document.querySelectorAll(".inline-panel").forEach(p => p.style.display = "none")
             document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
             cardRow.querySelector(`[data-sector="${name}"]`).classList.add("ring-2", "ring-blue-400")
-            const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
             panel.style.display = "block"
             document.getElementById(`panel-label-${rowStart}`).innerHTML =
                 `<a href="./index.html?sector=${encodeURIComponent(name)}"
