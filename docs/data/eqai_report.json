@@ -1,173 +1,175 @@
 {
-  "generated_at": "2026-05-27 08:38:28",
+  "generated_at": "2026-05-27 08:52:51",
   "macro": {
     "S&P500": {
       "price": 7519.12,
       "change": 0.61,
-      "reason": "기술주 강세에도 AutoZone 실적 호조 후 급락(-4년래 최악) 등 소비재 약세로 제한적 상승, 경기 둔화 우려 혼재",
+      "reason": "미국채 금리 하락(-1.43%)으로 성장주 밸류에이션 부담 완화, 반도체·기술주 중심 상승",
       "drivers": [
-        "나스닥 +1.19% 기술주 강세",
-        "AutoZone 급락 소비재 약세"
+        "필라델피아반도체 +5.53%",
+        "미국채 10년물 금리 4.49%(-1.43%)"
       ]
     },
     "NASDAQ": {
       "price": 26656.18,
       "change": 1.19,
-      "reason": "SpaceX Nasdaq 상장 추진 및 Tesla 합병설, American Airlines Starlink 계약 등 Musk 생태계 확장 기대로 기술주 집중 매수",
+      "reason": "금리 하락과 반도체 강세로 기술주 중심 랠리, 애플 신고가 테스트 전망 속 기대감",
       "drivers": [
-        "SpaceX-Tesla 합병 chatter",
-        "American Airlines Starlink 계약"
+        "필라델피아반도체 +5.53%",
+        "Apple WWDC(6/8) 기대감"
       ]
     },
     "DOW": {
       "price": 50461.68,
       "change": -0.23,
-      "reason": "AutoZone 4년래 최악 급락 등 전통 소비재·산업재 약세, 경기 둔화 우려로 가치주 중심 지수 하락",
+      "reason": "전통 산업주 중심 지수로 AutoZone -9%(4년래 최대 낙폭) 등 소비 관련 약세 반영",
       "drivers": [
-        "AutoZone 급락 (-4년래 최악)",
-        "소비재 약세 (미국인 재정 스트레스 심화 보도)"
+        "AutoZone 4년래 최악 하락",
+        "미국 소비자 재정 스트레스 심화"
       ]
     },
     "VIX": {
       "price": 17.01,
       "change": 2.53,
-      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄 전망, 미국의 이란 자위권 공습 등 지정학적 리스크 재부각",
+      "reason": "미국의 이란 남부 자위 타격 및 이란 보복 경고로 지정학 리스크 프리미엄 소폭 상승",
       "drivers": [
-        "호르무즈 해협 장기 폐쇄 전망",
-        "미국 대이란 자위권 공습"
+        "미-이란 군사 충돌",
+        "호르무즈 해협 폐쇄 장기화 우려"
       ]
     },
     "필라델피아반도체": {
       "price": 12876.91,
       "change": 5.53,
-      "reason": "SpaceX Nasdaq 상장 준비와 American Airlines Starlink 대규모 계약(500대 이상)으로 반도체·우주 산업 동반 강세, Musk 기술 생태계 확장 기대",
+      "reason": "글로벌 반도체 업황 모멘텀 지속, SpaceX 나스닥 상장 임박 및 머스크 빅테크 영향력 확대 기대",
       "drivers": [
-        "SpaceX Nasdaq 상장 추진",
-        "American Airlines Starlink 500대+ 계약"
+        "SpaceX 나스닥 상장 준비",
+        "Huawei 가을 신규 칩 출시 경쟁 가속화"
       ]
     },
     "러셀2000": {
       "price": 2920.54,
       "change": 1.79,
-      "reason": "국채 금리 급락(-1.43%)으로 차입 부담 완화 기대, 중소형주 유동성 개선 환경",
+      "reason": "금리 하락으로 소형주 자금조달 비용 부담 완화, 위험선호 확대",
       "drivers": [
-        "10년물 국채 -1.43% 금리 급락",
-        "유동성 우호적 환경"
+        "미국채 10년물 금리 -1.43%",
+        "성장주 모멘텀 확산"
       ]
     },
     "영국FTSE": {
       "price": 10466.3,
       "change": 0.22,
-      "reason": "직접 촉매 없음 — 유럽 기술주 동조 상승 및 독일DAX +2.01% 영향",
+      "reason": "BP 회장 Albert Manifold 긴급 해임(거버넌스·행동 문제)으로 에너지주 약세 일부 상쇄, 전반적 동조 상승",
       "drivers": [
-        "유럽 증시 동조화"
+        "BP 회장 해임 악재",
+        "유럽 증시 동조 상승"
       ]
     },
     "독일DAX": {
       "price": 25389.1,
       "change": 2.01,
-      "reason": "미국 기술주 강세 동조, 유럽 반도체·기술주 랠리 참여",
+      "reason": "유럽 제조업·기술주 중심 강세, 미국 금리 하락 및 글로벌 반도체 모멘텀 동조화",
       "drivers": [
-        "필라반도체 +5.53% 동조",
-        "글로벌 기술주 랠리"
+        "미국채 금리 하락",
+        "글로벌 반도체 강세 파급"
       ]
     },
     "니케이": {
       "price": 65158.19,
       "change": 2.87,
-      "reason": "필라델피아반도체 +5.53% 급등에 도쿄일렉트론·어드밴테스트 등 반도체 장비주 강세, 엔저 환경 지속",
+      "reason": "필라델피아반도체 +5.53% 영향으로 도쿄일렉트론 등 반도체 장비·소재주 강세",
       "drivers": [
-        "글로벌 반도체 랠리",
-        "엔저 수혜"
+        "필라델피아반도체 강세",
+        "엔화 약세 유지"
       ]
     },
     "항셍": {
       "price": 25606.03,
       "change": 0.86,
-      "reason": "직접 촉매 없음 — 글로벌 기술주 랠리 부분 동조, 중국 내수 약세 지속으로 상승 제한",
+      "reason": "APEC에서 미중 무역 간극 지속 확인됐으나 Huawei 가을 신규 칩 출시 계획으로 기술주 일부 반등",
       "drivers": [
-        "기술주 글로벌 랠리 일부 반영"
+        "Huawei 반도체 경쟁력 기대",
+        "미중 무역 갈등 지속"
       ]
     },
     "달러인덱스": {
       "price": 99.14,
       "change": -0.18,
-      "reason": "10년물 국채 금리 -1.43% 급락으로 달러 매력 감소, 경기 둔화 우려 반영",
+      "reason": "미국채 금리 하락 및 호르무즈 해협 장기 폐쇄 우려 속 안전자산 선호 약화",
       "drivers": [
-        "국채 10년물 -1.43% 금리 하락",
-        "경기 둔화 우려"
+        "미국채 10년물 금리 -1.43%",
+        "지정학 리스크의 달러 수요 제한적"
       ]
     },
     "국채10Y": {
       "price": 4.49,
       "change": -1.43,
-      "reason": "미국인 재정 스트레스 심화 보도, AutoZone 급락 등 소비 약화 신호로 경기 둔화 우려 강화되며 채권 매수",
+      "reason": "미국 소비자 재정 스트레스 심화(인플레 4%, 휘발유 $4 상회) 속 경기 둔화 우려로 채권 매수",
       "drivers": [
-        "소비 약화 신호 (AutoZone 급락)",
-        "미국인 부채·물가 압력 보도"
+        "미국 소비자 재정 스트레스",
+        "성장 둔화 우려"
       ]
     },
     "국채30Y": {
       "price": 5.03,
       "change": -0.75,
-      "reason": "10년물과 동일 맥락, 경기 둔화 우려로 장기 채권 수요 증가",
+      "reason": "장기 국채도 경기 둔화 우려 동조 하락, 단 10년물 대비 낙폭 축소",
       "drivers": [
-        "경기 둔화 우려",
-        "장기 안전자산 선호"
+        "10년물 금리 하락 파급",
+        "장기 인플레 우려 잔존"
       ]
     },
     "코스피": {
       "price": 7847.71,
       "change": 0.41,
-      "reason": "글로벌 반도체 강세 동조 및 국채 금리 하락 우호적이나, 대형주 중심 제한적 상승",
+      "reason": "필라델피아반도체 강세에도 코스피 대형주 중심 제한적 반등, 원/달러 1514원대 약세 지속",
       "drivers": [
-        "필라반도체 +5.53% 동조",
-        "국채 금리 하락 유동성 개선"
+        "글로벌 반도체 강세 제한적 파급",
+        "원/달러 1514원대 환율 부담"
       ]
     },
     "코스닥": {
       "price": 1161.13,
       "change": 4.99,
-      "reason": "반도체 대형·중소형 Leading 진입, 글로벌 기술주 랠리 동조로 IT부품·반도체 집중 매수세",
+      "reason": "필라델피아반도체 +5.53% 영향으로 반도체 중소형·IT부품 중심 급등, 기술주 모멘텀 확산",
       "drivers": [
-        "반도체 대형 RS-R 107.3 Leading",
-        "IT부품 RS-R 116.3 최고 강도"
+        "필라델피아반도체 강세",
+        "반도체 중소형·IT부품 Leading"
       ]
     },
     "금": {
-      "price": 4507.2,
-      "change": -0.31,
-      "reason": "호르무즈 해협 리스크에도 경기 둔화 우려가 안전자산 수요 상쇄, 옵션 시장서 방향성 논쟁 (뉴스: 금 ETF 옵션 거래 활발)",
+      "price": 4518.0,
+      "change": -0.07,
+      "reason": "미-이란 충돌에도 달러 약세 및 위험자산 선호로 안전자산 수요 제한, 횡보",
       "drivers": [
-        "경기 둔화 vs 지정학 리스크 상쇄",
-        "금 ETF 옵션 거래 증가"
+        "달러인덱스 -0.18%",
+        "위험자산 선호 확대"
       ]
     },
     "WTI유가": {
       "price": 93.35,
       "change": -3.36,
-      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄 및 유가 신고가 전망에도 실제 공급 차질 미발생, 경기 둔화 수요 감소 우려 우세",
+      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄·신고가 전망에도 단기 과매수 청산 및 경기 둔화 우려 반영",
       "drivers": [
-        "경기 둔화 수요 우려",
-        "호르무즈 실제 차질 미발생"
+        "단기 과매수 청산",
+        "미국 소비 둔화 우려"
       ]
     },
     "원달러": {
       "price": 1514.79,
       "change": 0.13,
-      "reason": "달러인덱스 소폭 약세에도 외국인 코스피 매수 제한적, 환율 안정권",
+      "reason": "달러인덱스 약세에도 코스피 상승폭 제한 및 외국인 수급 불안으로 원화 약세 지속",
       "drivers": [
-        "달러인덱스 -0.18% 소폭 약세",
-        "외국인 수급 중립"
+        "코스피 상승폭 제한(+0.41%)",
+        "외국인 수급 불안"
       ]
     },
     "구리": {
       "price": 6.43,
-      "change": 1.36,
-      "reason": "경기 둔화 우려에도 AI 인프라·전력 수요 기대 및 공급 제약 우려 지속",
+      "change": 1.42,
+      "reason": "글로벌 제조업 기대 및 Perpetua Resources의 Idaho 금·안티모니 프로젝트 $2.9B 대출 확보로 산업금속 수요 기대",
       "drivers": [
-        "AI 인프라 수요 기대",
-        "공급 제약 우려"
+        "제조업 경기 기대",
+        "미국 광산 프로젝트 투자 확대"
       ]
     }
   },
@@ -338,7 +340,7 @@
           "rs_momentum": 102.638
         }
       ],
-      "sector_ret_5d": 15.07,
+      "sector_ret_5d": 15.66,
       "improving_count": 0,
       "watch_count": 1,
       "total": 11
@@ -509,7 +511,7 @@
           "rs_momentum": 104.976
         }
       ],
-      "sector_ret_5d": 14.37,
+      "sector_ret_5d": 14.38,
       "improving_count": 0,
       "watch_count": 0,
       "total": 27
@@ -680,7 +682,7 @@
           "rs_momentum": 99.313
         }
       ],
-      "sector_ret_5d": 14.07,
+      "sector_ret_5d": 14.38,
       "improving_count": 1,
       "watch_count": 1,
       "total": 22
@@ -851,9 +853,9 @@
           "rs_momentum": 94.579
         }
       ],
-      "sector_ret_5d": 13.5,
-      "improving_count": 2,
-      "watch_count": 8,
+      "sector_ret_5d": 13.62,
+      "improving_count": 4,
+      "watch_count": 6,
       "total": 31
     },
     "2차전지_셀": {
@@ -1022,7 +1024,7 @@
           "rs_momentum": 96.35
         }
       ],
-      "sector_ret_5d": 10.72,
+      "sector_ret_5d": 10.97,
       "improving_count": 0,
       "watch_count": 1,
       "total": 12
@@ -1193,7 +1195,7 @@
           "rs_momentum": 96.386
         }
       ],
-      "sector_ret_5d": 4.9,
+      "sector_ret_5d": 4.93,
       "improving_count": 0,
       "watch_count": 2,
       "total": 18
@@ -1364,7 +1366,7 @@
           "rs_momentum": 101.358
         }
       ],
-      "sector_ret_5d": 2.17,
+      "sector_ret_5d": 2.43,
       "improving_count": 0,
       "watch_count": 3,
       "total": 17
@@ -1535,7 +1537,7 @@
           "rs_momentum": 84.34
         }
       ],
-      "sector_ret_5d": -2.2,
+      "sector_ret_5d": -2.23,
       "improving_count": 0,
       "watch_count": 2,
       "total": 13
@@ -1706,7 +1708,7 @@
           "rs_momentum": 83.586
         }
       ],
-      "sector_ret_5d": -0.52,
+      "sector_ret_5d": -0.39,
       "improving_count": 0,
       "watch_count": 2,
       "total": 10
@@ -1877,7 +1879,7 @@
           "rs_momentum": 95.249
         }
       ],
-      "sector_ret_5d": 10.26,
+      "sector_ret_5d": 10.39,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2048,7 +2050,7 @@
           "rs_momentum": 91.732
         }
       ],
-      "sector_ret_5d": 2.67,
+      "sector_ret_5d": 2.88,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2219,7 +2221,7 @@
           "rs_momentum": 96.81
         }
       ],
-      "sector_ret_5d": 5.73,
+      "sector_ret_5d": 5.87,
       "improving_count": 0,
       "watch_count": 1,
       "total": 17
@@ -2390,7 +2392,7 @@
           "rs_momentum": 85.938
         }
       ],
-      "sector_ret_5d": -1.33,
+      "sector_ret_5d": -1.16,
       "improving_count": 1,
       "watch_count": 5,
       "total": 10
@@ -2561,7 +2563,7 @@
           "rs_momentum": 103.764
         }
       ],
-      "sector_ret_5d": -1.69,
+      "sector_ret_5d": -1.79,
       "improving_count": 0,
       "watch_count": 1,
       "total": 22
@@ -2728,9 +2730,9 @@
           "rs_momentum": 87.228
         }
       ],
-      "sector_ret_5d": 4.3,
-      "improving_count": 1,
-      "watch_count": 4,
+      "sector_ret_5d": 4.38,
+      "improving_count": 0,
+      "watch_count": 5,
       "total": 17
     },
     "자동차_완성차": {
@@ -2899,7 +2901,7 @@
           "rs_momentum": 99.668
         }
       ],
-      "sector_ret_5d": 2.83,
+      "sector_ret_5d": 3.0,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -3070,7 +3072,7 @@
           "rs_momentum": 98.834
         }
       ],
-      "sector_ret_5d": 6.67,
+      "sector_ret_5d": 6.66,
       "improving_count": 0,
       "watch_count": 1,
       "total": 15
@@ -3241,7 +3243,7 @@
           "rs_momentum": 91.683
         }
       ],
-      "sector_ret_5d": 1.5,
+      "sector_ret_5d": 2.11,
       "improving_count": 1,
       "watch_count": 0,
       "total": 6
@@ -3412,7 +3414,7 @@
           "rs_momentum": 102.398
         }
       ],
-      "sector_ret_5d": 20.23,
+      "sector_ret_5d": 19.71,
       "improving_count": 0,
       "watch_count": 3,
       "total": 12
@@ -3583,7 +3585,7 @@
           "rs_momentum": 92.982
         }
       ],
-      "sector_ret_5d": -1.67,
+      "sector_ret_5d": -1.39,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -3754,7 +3756,7 @@
           "rs_momentum": 98.419
         }
       ],
-      "sector_ret_5d": -0.48,
+      "sector_ret_5d": -0.44,
       "improving_count": 0,
       "watch_count": 1,
       "total": 9
@@ -3925,7 +3927,7 @@
           "rs_momentum": 93.429
         }
       ],
-      "sector_ret_5d": 2.19,
+      "sector_ret_5d": 2.34,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -4096,7 +4098,7 @@
           "rs_momentum": 90.093
         }
       ],
-      "sector_ret_5d": 1.68,
+      "sector_ret_5d": 1.85,
       "improving_count": 0,
       "watch_count": 1,
       "total": 5
@@ -4267,7 +4269,7 @@
           "rs_momentum": 86.883
         }
       ],
-      "sector_ret_5d": 12.01,
+      "sector_ret_5d": 12.24,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -4438,7 +4440,7 @@
           "rs_momentum": 86.32
         }
       ],
-      "sector_ret_5d": 7.28,
+      "sector_ret_5d": 6.65,
       "improving_count": 0,
       "watch_count": 2,
       "total": 10
@@ -4609,7 +4611,7 @@
           "rs_momentum": 86.455
         }
       ],
-      "sector_ret_5d": 1.66,
+      "sector_ret_5d": 2.12,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -4780,7 +4782,7 @@
           "rs_momentum": 83.157
         }
       ],
-      "sector_ret_5d": 2.07,
+      "sector_ret_5d": 2.09,
       "improving_count": 0,
       "watch_count": 1,
       "total": 9
@@ -4951,7 +4953,7 @@
           "rs_momentum": 95.051
         }
       ],
-      "sector_ret_5d": 7.01,
+      "sector_ret_5d": 6.97,
       "improving_count": 0,
       "watch_count": 2,
       "total": 9
@@ -5122,7 +5124,7 @@
           "rs_momentum": 96.457
         }
       ],
-      "sector_ret_5d": 5.13,
+      "sector_ret_5d": 5.16,
       "improving_count": 0,
       "watch_count": 1,
       "total": 9
@@ -5293,7 +5295,7 @@
           "rs_momentum": 90.296
         }
       ],
-      "sector_ret_5d": 1.79,
+      "sector_ret_5d": 2.12,
       "improving_count": 1,
       "watch_count": 1,
       "total": 9
@@ -5464,7 +5466,7 @@
           "rs_momentum": 92.823
         }
       ],
-      "sector_ret_5d": -0.84,
+      "sector_ret_5d": -0.57,
       "improving_count": 0,
       "watch_count": 4,
       "total": 18
@@ -5635,7 +5637,7 @@
           "rs_momentum": 93.297
         }
       ],
-      "sector_ret_5d": 0.46,
+      "sector_ret_5d": 0.88,
       "improving_count": 1,
       "watch_count": 0,
       "total": 13
@@ -5806,7 +5808,7 @@
           "rs_momentum": 95.5
         }
       ],
-      "sector_ret_5d": 0.44,
+      "sector_ret_5d": 0.56,
       "improving_count": 0,
       "watch_count": 1,
       "total": 6
@@ -5977,7 +5979,7 @@
           "rs_momentum": 94.157
         }
       ],
-      "sector_ret_5d": -4.63,
+      "sector_ret_5d": -4.36,
       "improving_count": 0,
       "watch_count": 1,
       "total": 12
@@ -6148,7 +6150,7 @@
           "rs_momentum": 93.695
         }
       ],
-      "sector_ret_5d": 2.3,
+      "sector_ret_5d": 2.46,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -6319,7 +6321,7 @@
           "rs_momentum": 97.141
         }
       ],
-      "sector_ret_5d": 4.76,
+      "sector_ret_5d": 5.46,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -6490,7 +6492,7 @@
           "rs_momentum": 90.984
         }
       ],
-      "sector_ret_5d": 0.74,
+      "sector_ret_5d": 0.99,
       "improving_count": 0,
       "watch_count": 4,
       "total": 13
@@ -6661,7 +6663,7 @@
           "rs_momentum": 92.65
         }
       ],
-      "sector_ret_5d": -1.45,
+      "sector_ret_5d": -1.41,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -6832,7 +6834,7 @@
           "rs_momentum": 82.218
         }
       ],
-      "sector_ret_5d": 0.07,
+      "sector_ret_5d": 0.22,
       "improving_count": 0,
       "watch_count": 6,
       "total": 11
@@ -7003,7 +7005,7 @@
           "rs_momentum": 87.017
         }
       ],
-      "sector_ret_5d": -4.42,
+      "sector_ret_5d": -4.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -7174,7 +7176,7 @@
           "rs_momentum": 92.448
         }
       ],
-      "sector_ret_5d": 1.98,
+      "sector_ret_5d": 2.14,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -7516,7 +7518,7 @@
           "rs_momentum": 92.672
         }
       ],
-      "sector_ret_5d": 3.7,
+      "sector_ret_5d": 3.89,
       "improving_count": 0,
       "watch_count": 1,
       "total": 6
@@ -7687,7 +7689,7 @@
           "rs_momentum": 90.119
         }
       ],
-      "sector_ret_5d": -3.98,
+      "sector_ret_5d": -3.89,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -7858,7 +7860,7 @@
           "rs_momentum": 88.769
         }
       ],
-      "sector_ret_5d": -1.58,
+      "sector_ret_5d": -1.09,
       "improving_count": 1,
       "watch_count": 0,
       "total": 4
@@ -8200,7 +8202,7 @@
           "rs_momentum": 89.624
         }
       ],
-      "sector_ret_5d": -0.58,
+      "sector_ret_5d": -0.32,
       "improving_count": 0,
       "watch_count": 2,
       "total": 11
@@ -8371,7 +8373,7 @@
           "rs_momentum": 92.521
         }
       ],
-      "sector_ret_5d": -1.74,
+      "sector_ret_5d": -1.7,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -8713,7 +8715,7 @@
           "rs_momentum": 91.673
         }
       ],
-      "sector_ret_5d": -0.92,
+      "sector_ret_5d": -0.79,
       "improving_count": 0,
       "watch_count": 2,
       "total": 10
@@ -8884,7 +8886,7 @@
           "rs_momentum": 91.262
         }
       ],
-      "sector_ret_5d": -2.7,
+      "sector_ret_5d": -2.59,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -9055,7 +9057,7 @@
           "rs_momentum": 89.087
         }
       ],
-      "sector_ret_5d": -2.28,
+      "sector_ret_5d": -1.99,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -9226,7 +9228,7 @@
           "rs_momentum": 90.998
         }
       ],
-      "sector_ret_5d": -2.5,
+      "sector_ret_5d": -2.32,
       "improving_count": 0,
       "watch_count": 2,
       "total": 11
@@ -9397,7 +9399,7 @@
           "rs_momentum": 99.679
         }
       ],
-      "sector_ret_5d": -3.31,
+      "sector_ret_5d": -3.54,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -9568,7 +9570,7 @@
           "rs_momentum": 93.481
         }
       ],
-      "sector_ret_5d": -7.69,
+      "sector_ret_5d": -7.43,
       "improving_count": 0,
       "watch_count": 1,
       "total": 11
@@ -9739,7 +9741,7 @@
           "rs_momentum": 95.5
         }
       ],
-      "sector_ret_5d": -4.7,
+      "sector_ret_5d": -4.72,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -9910,7 +9912,7 @@
           "rs_momentum": 93.781
         }
       ],
-      "sector_ret_5d": -2.66,
+      "sector_ret_5d": -2.36,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -10017,7 +10019,7 @@
           "rs_momentum": 106.379
         }
       ],
-      "sector_ret_5d": 7.44,
+      "sector_ret_5d": 8.16,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -10075,6 +10077,13 @@
     },
     {
       "source": "cnbc_world",
+      "title": "U.S. conducts 'self-defense strikes' in Iran as Trump pushes for peace deal",
+      "link": "https://www.cnbc.com/2026/05/26/us-conducts-self-defense-strikes-in-iran-as-trump-seeks-peace-deal.html",
+      "published": "Tue, 26 May 2026 13:07:52 GMT",
+      "body": "U.S. forces conducted \"self-defense\" strikes in southern Iran early Tuesday local time, with U.S. Central Command saying the military action was to \"protect our troops from threats posed by Iranian forces.\"\nCENTCOM spokesman Tim Hawkins said targets included missile launch sites and Iranian boats attempting to emplace mines.\n\"U.S. Central Command continues to defend our forces while using restraint during the ongoing ceasefire,\" Hawkins added.\nThe action comes as U.S. President Donald Trump said Monday stateside that the talks with Iran were \"proceeding nicely.\" However, he warned that \"it will only be a Great Deal for all or, no Deal at all,\" threatening to take things \"Back to the Battlefront and shooting, but bigger and stronger than ever before.\"\nU.S. Secretary of State Marco Rubio, who is in India, said that the Strait of Hormuz has to be open, \"one way or the other,\" referring to U.S. action against Iran, Reuters reported. He added that the deal with Iran could take a few days. Fox News, citing senior U.S. officials on Monday said that the Iran deal was \"95% there.\"\nThis is not the first instance of military action since a ceasefire was reached between Washington and Tehran on April 8. Later that month, U.S. marines seized the Touska, an Iranian cargo ship, and in May, both sides traded fire in the Strait of Hormuz, with each side claiming the other initiated the attack.\nIn a separate Truth Social post, the U.S. president said Iran's stockpile of enriched uranium will b"
+    },
+    {
+      "source": "cnbc_world",
       "title": "Barriers grow for international students seeking U.S. jobs: The 'American dream ... is collapsing'",
       "link": "https://www.cnbc.com/2026/05/24/for-international-students-seeking-us-jobs-the-american-dream-is-collapsing.html",
       "published": "Sun, 24 May 2026 14:15:01 GMT",
@@ -10086,260 +10095,308 @@
       "link": "https://www.cnbc.com/2026/05/24/americans-struggling-with-debt-inflation.html",
       "published": "Sun, 24 May 2026 15:00:01 GMT",
       "body": "Economic conditions like gas prices well above $4 a gallon, according to AAA estimates, and annual inflation nearing 4%, per the Bureau of Labor Statistics, are pushing Americans' financial stress levels higher.\nThe National Foundation for Credit Counseling expects Americans' economic stress levels to tick back up in the second quarter of the year after a slight fall in the first quarter, according to its quarterly Financial Stress Forecast released on Wednesday.\nThe forecast considers data on consumer counseling behavior as well as other broader economic indicators to predict trends in Americans' financial stability. It rates Americans' financial stress on a scale of 1 through 10, with 10 as the highest stress level. The rating has remained at or above 6.3 since the end of 2024, compared with a post-pandemic low of 3.5 in 2021. The forecast for the three months ending in June: 6.7.\nAmericans \"are entrenched in financial stress,\" Bruce McClary, senior vice president of membership and media relations at NFCC says — the result of elevated prices on top of near-historic highs of consumer debt on credit cards and auto loans.\nThe nonprofit organization, which provides education and solutions for individuals struggling with their finances, especially debt management, reported a \"significant surge\" in consumers reaching out for credit counseling, which could be a warning sign for the broader economy, NFCC says. While it's encouraging to see individuals seeking help before they have "
-    },
-    {
-      "source": "cnbc_world",
-      "title": "U.S. conducts 'self-defense strikes' in Iran as Trump pushes for peace deal",
-      "link": "https://www.cnbc.com/2026/05/26/us-conducts-self-defense-strikes-in-iran-as-trump-seeks-peace-deal.html",
-      "published": "Tue, 26 May 2026 13:07:52 GMT",
-      "body": "U.S. forces conducted \"self-defense\" strikes in southern Iran early Tuesday local time, with U.S. Central Command saying the military action was to \"protect our troops from threats posed by Iranian forces.\"\nCENTCOM spokesman Tim Hawkins said targets included missile launch sites and Iranian boats attempting to emplace mines.\n\"U.S. Central Command continues to defend our forces while using restraint during the ongoing ceasefire,\" Hawkins added.\nThe action comes as U.S. President Donald Trump said Monday stateside that the talks with Iran were \"proceeding nicely.\" However, he warned that \"it will only be a Great Deal for all or, no Deal at all,\" threatening to take things \"Back to the Battlefront and shooting, but bigger and stronger than ever before.\"\nU.S. Secretary of State Marco Rubio, who is in India, said that the Strait of Hormuz has to be open, \"one way or the other,\" referring to U.S. action against Iran, Reuters reported. He added that the deal with Iran could take a few days. Fox News, citing senior U.S. officials on Monday said that the Iran deal was \"95% there.\"\nThis is not the first instance of military action since a ceasefire was reached between Washington and Tehran on April 8. Later that month, U.S. marines seized the Touska, an Iranian cargo ship, and in May, both sides traded fire in the Strait of Hormuz, with each side claiming the other initiated the attack.\nIn a separate Truth Social post, the U.S. president said Iran's stockpile of enriched uranium will b"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +5.53%, 나스닥 +1.19%, 코스닥 +4.99% 급등으로 기술주 중심 강세 시장, 10년물 국채 금리 -1.43% 하락하며 유동성 우호적 환경",
+  "sentiment_reason": "필라델피아반도체 +5.53%, 러셀2000 +1.79%, 나스닥 +1.19% 강세 속 미국채 10년물 금리 -1.43% 하락으로 성장주 밸류에이션 부담 완화",
   "key_factors": [
-    "필라델피아반도체 +5.53% 급등으로 글로벌 반도체 랠리 주도 (SpaceX-Tesla 합병설, American Airlines Starlink 계약으로 Musk 기술 생태계 확장 기대)",
-    "호르무즈 해협 폐쇄 장기화 전망에도 WTI -3.36% 급락, 10년물 국채 금리 -1.43% 하락으로 경기 둔화 우려와 채권 랠리",
-    "코스닥 +4.99% 폭등, 반도체 대형/중소형 Leading 구간 진입으로 국내 기술주 모멘텀 강화"
+    "필라델피아반도체 +5.53% 급등으로 글로벌 반도체 모멘텀 확인",
+    "미국채 10년물 금리 4.49%(-1.43%) 하락으로 성장주 선호 재점화",
+    "미-이란 긴장 고조로 WTI -3.36% 급락 속에도 위험자산 선별 강세 지속"
   ],
-  "news_summary": "Elon Musk가 SpaceX의 Nasdaq 상장을 추진하며 Tesla와의 합병 논의 재점화, 두 회사 모두 시가총액 1조 달러 기업으로 미국 10대 기업 중 2개 보유 가능성\nPiper Sandler는 호르무즈 해협이 수개월간 대부분 폐쇄 상태 유지되며 유가가 신고가 경신할 것으로 전망, 이란 협상 임박설 부정\nAmerican Airlines가 500대 이상 협동체 항공기에 SpaceX Starlink 기내 Wi-Fi 도입 결정, Musk 우주 사업 확장 가시화\nAutoZone이 월가 예상치 상회 실적 발표에도 4년래 최악의 하락세 기록, 미국 소비자 재정 스트레스 심화 우려 반영\n미국이 이란에 대해 자위권 공습 실시, Trump 행정부는 평화 협상 추진 중이나 지정학적 긴장 지속",
+  "news_summary": "Piper Sandler, 호르무즈 해협 수개월 폐쇄 및 유가 신고가 전망 — 이란 합의 회의적 시각, 여름 공급 부족 심화 경고\n미국 소비자 재정 스트레스 심화 — 휘발유 $4 상회, 인플레 4% 근접, 부채 압박으로 경제적 스트레스 고착화\n미국채 10년물 금리 4.49%(-1.43%) 하락 — 경기 둔화 우려 속 채권 수요 증가\n미국, 이란 남부에 자위 타격 실시 — 미사일 발사기지·이란 선박 표적, 이란은 보복 경고로 Brent유 +3% 급등\n트럼프 행정부, 교황 레오 14세의 AI 일자리 대체 경고에 분열 — 내무장관 Burgum 반박, 바티칸과 갈등 확대\nAPEC에서 미중 무역 간극 지속 확인 — 중국 상무장관 긴급 업무로 개막식 불참, 협력 난항\n트럼프, Camp David 각료 회의 기상 악화로 백악관 변경 발표\nSpaceX 나스닥 상장 준비 본격화 — 머스크 2개 시총 1조달러 기업 보유 전망, SpaceX-Tesla 합병 추측 재점화\n필라델피아반도체 +5.53% 급등 — 글로벌 반도체 모멘텀 확인, Huawei 가을 신규 스마트폰 칩 출시로 Nvidia·Apple과 경쟁 격화\nApple, 6월 8일 WWDC 앞두고 신고가 테스트 — 시장은 AI·신제품 발표 기대\nAmerican Airlines, SpaceX Starlink을 500대 이상 기내 Wi-Fi로 선택 — Amazon Leo 제치고 머스크 영향력 확대\nAutoZone 주가 4년래 최악(-9%) — 3분기 월가 예상 상회했으나 소비 둔화 우려 반영\nBP 회장 Albert Manifold 긴급 해임 — 거버넌스·감독·행동 문제로 이사회 결정, 주가 급락\n코스닥 +4.99% 급등 — 필라델피아반도체 강세 파급, 반도체 중소형(RS-R 111.4)·IT부품(RS-R 116.3) Leading 구간 진입\n원/달러 1514.79원(+0.13%) — 달러인덱스 약세에도 코스피 상승폭 제한, 외국인 수급 불안으로 원화 약세 지속\n코스피 +0.41% 제한적 반등 — 글로벌 반도체 강세에도 대형주 모멘텀 부족, 지주·복합기업(RS-R 106.1) Leading 유지",
+  "news_categories": [
+    {
+      "name": "macro",
+      "label": "매크로·금리",
+      "items": [
+        {
+          "text": "Piper Sandler, 호르무즈 해협 수개월 폐쇄 및 유가 신고가 전망 — 이란 합의 회의적 시각, 여름 공급 부족 심화 경고",
+          "impact": "high"
+        },
+        {
+          "text": "미국 소비자 재정 스트레스 심화 — 휘발유 $4 상회, 인플레 4% 근접, 부채 압박으로 경제적 스트레스 고착화",
+          "impact": "mid"
+        },
+        {
+          "text": "미국채 10년물 금리 4.49%(-1.43%) 하락 — 경기 둔화 우려 속 채권 수요 증가",
+          "impact": "mid"
+        }
+      ]
+    },
+    {
+      "name": "geopolitics",
+      "label": "지정학·정책",
+      "items": [
+        {
+          "text": "미국, 이란 남부에 자위 타격 실시 — 미사일 발사기지·이란 선박 표적, 이란은 보복 경고로 Brent유 +3% 급등",
+          "impact": "high"
+        },
+        {
+          "text": "트럼프 행정부, 교황 레오 14세의 AI 일자리 대체 경고에 분열 — 내무장관 Burgum 반박, 바티칸과 갈등 확대",
+          "impact": "mid"
+        },
+        {
+          "text": "APEC에서 미중 무역 간극 지속 확인 — 중국 상무장관 긴급 업무로 개막식 불참, 협력 난항",
+          "impact": "mid"
+        },
+        {
+          "text": "트럼프, Camp David 각료 회의 기상 악화로 백악관 변경 발표",
+          "impact": "mid"
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "label": "기업·실적",
+      "items": [
+        {
+          "text": "SpaceX 나스닥 상장 준비 본격화 — 머스크 2개 시총 1조달러 기업 보유 전망, SpaceX-Tesla 합병 추측 재점화",
+          "impact": "high"
+        },
+        {
+          "text": "필라델피아반도체 +5.53% 급등 — 글로벌 반도체 모멘텀 확인, Huawei 가을 신규 스마트폰 칩 출시로 Nvidia·Apple과 경쟁 격화",
+          "impact": "high"
+        },
+        {
+          "text": "Apple, 6월 8일 WWDC 앞두고 신고가 테스트 — 시장은 AI·신제품 발표 기대",
+          "impact": "mid"
+        },
+        {
+          "text": "American Airlines, SpaceX Starlink을 500대 이상 기내 Wi-Fi로 선택 — Amazon Leo 제치고 머스크 영향력 확대",
+          "impact": "mid"
+        },
+        {
+          "text": "AutoZone 주가 4년래 최악(-9%) — 3분기 월가 예상 상회했으나 소비 둔화 우려 반영",
+          "impact": "mid"
+        },
+        {
+          "text": "BP 회장 Albert Manifold 긴급 해임 — 거버넌스·감독·행동 문제로 이사회 결정, 주가 급락",
+          "impact": "mid"
+        }
+      ]
+    },
+    {
+      "name": "korea",
+      "label": "한국 관련",
+      "items": [
+        {
+          "text": "코스닥 +4.99% 급등 — 필라델피아반도체 강세 파급, 반도체 중소형(RS-R 111.4)·IT부품(RS-R 116.3) Leading 구간 진입",
+          "impact": "high"
+        },
+        {
+          "text": "원/달러 1514.79원(+0.13%) — 달러인덱스 약세에도 코스피 상승폭 제한, 외국인 수급 불안으로 원화 약세 지속",
+          "impact": "mid"
+        },
+        {
+          "text": "코스피 +0.41% 제한적 반등 — 글로벌 반도체 강세에도 대형주 모멘텀 부족, 지주·복합기업(RS-R 106.1) Leading 유지",
+          "impact": "mid"
+        }
+      ]
+    }
+  ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "기술주 강세에도 AutoZone 실적 호조 후 급락(-4년래 최악) 등 소비재 약세로 제한적 상승, 경기 둔화 우려 혼재",
+      "reason": "미국채 금리 하락(-1.43%)으로 성장주 밸류에이션 부담 완화, 반도체·기술주 중심 상승",
       "drivers": [
-        "나스닥 +1.19% 기술주 강세",
-        "AutoZone 급락 소비재 약세"
+        "필라델피아반도체 +5.53%",
+        "미국채 10년물 금리 4.49%(-1.43%)"
       ]
     },
     "NASDAQ": {
-      "reason": "SpaceX Nasdaq 상장 추진 및 Tesla 합병설, American Airlines Starlink 계약 등 Musk 생태계 확장 기대로 기술주 집중 매수",
+      "reason": "금리 하락과 반도체 강세로 기술주 중심 랠리, 애플 신고가 테스트 전망 속 기대감",
       "drivers": [
-        "SpaceX-Tesla 합병 chatter",
-        "American Airlines Starlink 계약"
+        "필라델피아반도체 +5.53%",
+        "Apple WWDC(6/8) 기대감"
       ]
     },
     "DOW": {
-      "reason": "AutoZone 4년래 최악 급락 등 전통 소비재·산업재 약세, 경기 둔화 우려로 가치주 중심 지수 하락",
+      "reason": "전통 산업주 중심 지수로 AutoZone -9%(4년래 최대 낙폭) 등 소비 관련 약세 반영",
       "drivers": [
-        "AutoZone 급락 (-4년래 최악)",
-        "소비재 약세 (미국인 재정 스트레스 심화 보도)"
+        "AutoZone 4년래 최악 하락",
+        "미국 소비자 재정 스트레스 심화"
       ]
     },
     "VIX": {
-      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄 전망, 미국의 이란 자위권 공습 등 지정학적 리스크 재부각",
+      "reason": "미국의 이란 남부 자위 타격 및 이란 보복 경고로 지정학 리스크 프리미엄 소폭 상승",
       "drivers": [
-        "호르무즈 해협 장기 폐쇄 전망",
-        "미국 대이란 자위권 공습"
+        "미-이란 군사 충돌",
+        "호르무즈 해협 폐쇄 장기화 우려"
       ]
     },
     "필라델피아반도체": {
-      "reason": "SpaceX Nasdaq 상장 준비와 American Airlines Starlink 대규모 계약(500대 이상)으로 반도체·우주 산업 동반 강세, Musk 기술 생태계 확장 기대",
+      "reason": "글로벌 반도체 업황 모멘텀 지속, SpaceX 나스닥 상장 임박 및 머스크 빅테크 영향력 확대 기대",
       "drivers": [
-        "SpaceX Nasdaq 상장 추진",
-        "American Airlines Starlink 500대+ 계약"
+        "SpaceX 나스닥 상장 준비",
+        "Huawei 가을 신규 칩 출시 경쟁 가속화"
       ]
     },
     "러셀2000": {
-      "reason": "국채 금리 급락(-1.43%)으로 차입 부담 완화 기대, 중소형주 유동성 개선 환경",
+      "reason": "금리 하락으로 소형주 자금조달 비용 부담 완화, 위험선호 확대",
       "drivers": [
-        "10년물 국채 -1.43% 금리 급락",
-        "유동성 우호적 환경"
+        "미국채 10년물 금리 -1.43%",
+        "성장주 모멘텀 확산"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유럽 기술주 동조 상승 및 독일DAX +2.01% 영향",
+      "reason": "BP 회장 Albert Manifold 긴급 해임(거버넌스·행동 문제)으로 에너지주 약세 일부 상쇄, 전반적 동조 상승",
       "drivers": [
-        "유럽 증시 동조화"
+        "BP 회장 해임 악재",
+        "유럽 증시 동조 상승"
       ]
     },
     "독일DAX": {
-      "reason": "미국 기술주 강세 동조, 유럽 반도체·기술주 랠리 참여",
+      "reason": "유럽 제조업·기술주 중심 강세, 미국 금리 하락 및 글로벌 반도체 모멘텀 동조화",
       "drivers": [
-        "필라반도체 +5.53% 동조",
-        "글로벌 기술주 랠리"
+        "미국채 금리 하락",
+        "글로벌 반도체 강세 파급"
       ]
     },
     "니케이": {
-      "reason": "필라델피아반도체 +5.53% 급등에 도쿄일렉트론·어드밴테스트 등 반도체 장비주 강세, 엔저 환경 지속",
+      "reason": "필라델피아반도체 +5.53% 영향으로 도쿄일렉트론 등 반도체 장비·소재주 강세",
       "drivers": [
-        "글로벌 반도체 랠리",
-        "엔저 수혜"
+        "필라델피아반도체 강세",
+        "엔화 약세 유지"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 없음 — 글로벌 기술주 랠리 부분 동조, 중국 내수 약세 지속으로 상승 제한",
+      "reason": "APEC에서 미중 무역 간극 지속 확인됐으나 Huawei 가을 신규 칩 출시 계획으로 기술주 일부 반등",
       "drivers": [
-        "기술주 글로벌 랠리 일부 반영"
+        "Huawei 반도체 경쟁력 기대",
+        "미중 무역 갈등 지속"
       ]
     },
     "달러인덱스": {
-      "reason": "10년물 국채 금리 -1.43% 급락으로 달러 매력 감소, 경기 둔화 우려 반영",
+      "reason": "미국채 금리 하락 및 호르무즈 해협 장기 폐쇄 우려 속 안전자산 선호 약화",
       "drivers": [
-        "국채 10년물 -1.43% 금리 하락",
-        "경기 둔화 우려"
+        "미국채 10년물 금리 -1.43%",
+        "지정학 리스크의 달러 수요 제한적"
       ]
     },
     "국채10Y": {
-      "reason": "미국인 재정 스트레스 심화 보도, AutoZone 급락 등 소비 약화 신호로 경기 둔화 우려 강화되며 채권 매수",
+      "reason": "미국 소비자 재정 스트레스 심화(인플레 4%, 휘발유 $4 상회) 속 경기 둔화 우려로 채권 매수",
       "drivers": [
-        "소비 약화 신호 (AutoZone 급락)",
-        "미국인 부채·물가 압력 보도"
+        "미국 소비자 재정 스트레스",
+        "성장 둔화 우려"
       ]
     },
     "국채30Y": {
-      "reason": "10년물과 동일 맥락, 경기 둔화 우려로 장기 채권 수요 증가",
+      "reason": "장기 국채도 경기 둔화 우려 동조 하락, 단 10년물 대비 낙폭 축소",
       "drivers": [
-        "경기 둔화 우려",
-        "장기 안전자산 선호"
+        "10년물 금리 하락 파급",
+        "장기 인플레 우려 잔존"
       ]
     },
     "코스피": {
-      "reason": "글로벌 반도체 강세 동조 및 국채 금리 하락 우호적이나, 대형주 중심 제한적 상승",
+      "reason": "필라델피아반도체 강세에도 코스피 대형주 중심 제한적 반등, 원/달러 1514원대 약세 지속",
       "drivers": [
-        "필라반도체 +5.53% 동조",
-        "국채 금리 하락 유동성 개선"
+        "글로벌 반도체 강세 제한적 파급",
+        "원/달러 1514원대 환율 부담"
       ]
     },
     "코스닥": {
-      "reason": "반도체 대형·중소형 Leading 진입, 글로벌 기술주 랠리 동조로 IT부품·반도체 집중 매수세",
+      "reason": "필라델피아반도체 +5.53% 영향으로 반도체 중소형·IT부품 중심 급등, 기술주 모멘텀 확산",
       "drivers": [
-        "반도체 대형 RS-R 107.3 Leading",
-        "IT부품 RS-R 116.3 최고 강도"
+        "필라델피아반도체 강세",
+        "반도체 중소형·IT부품 Leading"
       ]
     },
     "금": {
-      "reason": "호르무즈 해협 리스크에도 경기 둔화 우려가 안전자산 수요 상쇄, 옵션 시장서 방향성 논쟁 (뉴스: 금 ETF 옵션 거래 활발)",
+      "reason": "미-이란 충돌에도 달러 약세 및 위험자산 선호로 안전자산 수요 제한, 횡보",
       "drivers": [
-        "경기 둔화 vs 지정학 리스크 상쇄",
-        "금 ETF 옵션 거래 증가"
+        "달러인덱스 -0.18%",
+        "위험자산 선호 확대"
       ]
     },
     "WTI유가": {
-      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄 및 유가 신고가 전망에도 실제 공급 차질 미발생, 경기 둔화 수요 감소 우려 우세",
+      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄·신고가 전망에도 단기 과매수 청산 및 경기 둔화 우려 반영",
       "drivers": [
-        "경기 둔화 수요 우려",
-        "호르무즈 실제 차질 미발생"
+        "단기 과매수 청산",
+        "미국 소비 둔화 우려"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 소폭 약세에도 외국인 코스피 매수 제한적, 환율 안정권",
+      "reason": "달러인덱스 약세에도 코스피 상승폭 제한 및 외국인 수급 불안으로 원화 약세 지속",
       "drivers": [
-        "달러인덱스 -0.18% 소폭 약세",
-        "외국인 수급 중립"
+        "코스피 상승폭 제한(+0.41%)",
+        "외국인 수급 불안"
       ]
     },
     "구리": {
-      "reason": "경기 둔화 우려에도 AI 인프라·전력 수요 기대 및 공급 제약 우려 지속",
+      "reason": "글로벌 제조업 기대 및 Perpetua Resources의 Idaho 금·안티모니 프로젝트 $2.9B 대출 확보로 산업금속 수요 기대",
       "drivers": [
-        "AI 인프라 수요 기대",
-        "공급 제약 우려"
+        "제조업 경기 기대",
+        "미국 광산 프로젝트 투자 확대"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "코스닥 +4.99% 폭등, 반도체·IT부품 Leading 구간 진입으로 기술주 강세 본격화, 코스피는 대형주 제한적 상승",
+    "summary": "필라델피아반도체 +5.53% 강세로 코스닥 반도체 중소형·IT부품 급등(+4.99%), 코스피는 환율·수급 부담으로 제한 상승",
     "positive_factors": [
-      "필라델피아반도체 +5.53% 급등으로 삼성전자·SK하이닉스 등 반도체 대형주 수혜 기대",
-      "American Airlines Starlink 계약으로 우주·위성 테마 및 관련 부품주 재평가 가능성"
+      "필라델피아반도체 +5.53%로 글로벌 반도체 업황 모멘텀 재확인, 코스닥 기술주 파급 강력",
+      "미국채 10년물 금리 -1.43% 하락으로 성장주 밸류에이션 부담 완화"
     ],
     "negative_factors": [
-      "유가 -3.36% 급락 속 호르무즈 해협 수개월 폐쇄 전망, 정유·화학 섹터 불확실성 지속 (정유 RS-R 92.4 lagging)",
-      "미국 소비 약화 신호(AutoZone 급락, 재정 스트레스 보도)로 수출 의존 중소형주 경계 필요"
+      "원/달러 1514원대 약세 지속으로 외국인 이탈 우려, 코스피 상승 제한",
+      "미-이란 군사 충돌 및 호르무즈 해협 장기 폐쇄 우려로 유가 변동성 확대, 수입 물가 부담"
     ],
-    "key_watch": "코스닥 반도체 중소형 RS-R 111.4·RS-M 105.0 Leading 구간, VCP 패턴 형성 종목 발굴 및 스테이지2 초입 진입 타이밍 포착"
+    "key_watch": "반도체 중소형(RS-R 111.4 Leading) 및 IT부품(RS-R 116.3 Leading) 모멘텀 지속 여부, 원/달러 1520원 돌파 시 외국인 매도 가속 리스크"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "반도체_대형",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 107.3·RS-M 102.6 Leading, 필라반도체 +5.53% 글로벌 랠리 동조, SpaceX 상장·Starlink 계약으로 Musk 생태계 HBM·AI 반도체 수혜 집중, 스테이지2 강세 지속"
-    },
-    {
       "sector": "반도체_중소형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 111.4·RS-M 105.0 Leading 최고 강도, 코스닥 +4.99% 주도, 미너비니 SEPA 52주 신고가 돌파 후보군 다수, 중소형 밸류업 모멘텀"
+      "reason": "RS-R 111.4·RS-M 105.0 Leading, 필라델피아반도체 +5.53% 강세 파급, 코스닥 +4.99% 주도"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 116.3·RS-M 102.4 Leading 최강, American Airlines Starlink 계약으로 위성통신 부품 수혜, 닥터 엘더 삼중스크린 주간·일간 모두 상승 정렬"
-    },
-    {
-      "sector": "지주·복합기업",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 106.1·RS-M 106.4 Leading, 지주사 밸류업 정책 모멘텀 지속, 와인스타인 스테이지2 중반 안정적 우상향"
-    },
-    {
-      "sector": "전력기기",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 105.2·RS-M 101.4 Leading, AI 데이터센터 전력 수요 지속, 구리 +1.36% 원자재 동조"
-    },
-    {
-      "sector": "로봇",
-      "rrg_quadrant": "improving",
-      "reason": "RS-R 96.5·RS-M 103.8 Improving, lagging→improving 전환 초입, SpaceX 우주 사업 확장으로 자동화·로봇 테마 재조명, 스테이지1→2 전환 타이밍"
+      "reason": "RS-R 116.3·RS-M 102.4 Leading 최상위, 글로벌 기술주 강세 동조, 미국채 금리 하락으로 성장주 선호"
     }
   ],
   "watch": [
     {
       "sector": "조선",
-      "reason": "RS-R 87.6·RS-M 96.8 lagging, 스테이지4 하락 국면, 글로벌 경기 둔화 우려로 신규 수주 모멘텀 약화"
+      "reason": "RS-R 87.6·RS-M 96.8 Lagging, 호르무즈 해협 폐쇄 장기화 시 원자재 운송 차질 우려 — 모멘텀 회복 대기"
     },
     {
-      "sector": "정유",
-      "reason": "RS-R 92.4·RS-M 97.1 lagging, WTI -3.36% 급락에도 호르무즈 장기 폐쇄 전망 엇갈려 방향성 불투명, 관망 필요"
-    },
-    {
-      "sector": "2차전지_셀",
-      "reason": "RS-R 90.5·RS-M 96.4 lagging, 스테이지4 하락 지속, 중국 수요 부진·미국 소비 약화로 RS-Momentum 개선에도 추세 전환 미확인"
+      "sector": "반도체_장비",
+      "reason": "RS-R 104.8·RS-M 99.3 Weakening, Leading→Weakening 전환 초기 — 추가 하락 여부 관망"
     }
   ],
   "avoid": [],
-  "summary": "필라반도체 +5.53% 폭등과 코스닥 +4.99% 급등으로 반도체·IT부품 Leading 구간 진입, SpaceX-Tesla 합병설·Starlink 대규모 계약으로 Musk 생태계 수혜주 집중 매수 — 미너비니 SEPA 전략 52주 신고가 돌파 반도체 중소형 발굴, 로봇 섹터 Improving 전환 스테이지2 초입 진입 타이밍 포착 최적기",
+  "summary": "필라델피아반도체 +5.53% 폭등과 미국채 금리 급락(-1.43%)으로 코스닥 반도체 중소형·IT부품 Leading 섹터 강세 지속 — 원/달러 1514원대 약세와 미-이란 충돌 변수 속 선별 매수 전략 유효",
   "top_picks": [
-    {
-      "sector": "반도체_대형",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 107.3·RS-M 102.6 Leading, 필라반도체 +5.53% 글로벌 랠리 동조, SpaceX 상장·Starlink 계약으로 Musk 생태계 HBM·AI 반도체 수혜 집중, 스테이지2 강세 지속",
-      "stocks": [
-        {
-          "name": "SK하이닉스",
-          "code": "000660",
-          "signal": "prime",
-          "reason": "HBM3E 12단 양산 가시화, SpaceX·Tesla AI 인프라 확장 수혜, 필라반도체 +5.53% 동조 최대 수혜주, Leading 구간 RS-R 107+ 모멘텀"
-        }
-      ]
-    },
     {
       "sector": "반도체_중소형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 111.4·RS-M 105.0 Leading 최고 강도, 코스닥 +4.99% 주도, 미너비니 SEPA 52주 신고가 돌파 후보군 다수, 중소형 밸류업 모멘텀",
+      "reason": "RS-R 111.4·RS-M 105.0 Leading, 필라델피아반도체 +5.53% 강세 파급, 코스닥 +4.99% 주도",
       "stocks": [
         {
           "name": "리노공업",
           "code": "058470",
           "signal": "prime",
-          "reason": "반도체 검사 소켓 점유율 1위, 코스닥 +4.99% 주도주, RS-R 111+ Leading 구간 52주 신고가 돌파 VCP 패턴 형성 가능성"
+          "reason": "필라델피아반도체 +5.53% 파급, 반도체 중소형 Leading(RS-R 111.4) 최강 모멘텀, 글로벌 반도체 장비 수요 수혜"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 116.3·RS-M 102.4 Leading 최강, American Airlines Starlink 계약으로 위성통신 부품 수혜, 닥터 엘더 삼중스크린 주간·일간 모두 상승 정렬",
+      "reason": "RS-R 116.3·RS-M 102.4 Leading 최상위, 글로벌 기술주 강세 동조, 미국채 금리 하락으로 성장주 선호",
       "stocks": [
         {
-          "name": "심텍",
-          "code": "036710",
+          "name": "고영",
+          "code": "098460",
           "signal": "prime",
-          "reason": "Starlink 위성통신 PCB 공급 루트, American Airlines 계약 수혜 기대, RS-R 116.3 최강 섹터 대표주, 스테이지2 초중반"
+          "reason": "IT부품 섹터 RS-R 116.3 Leading 최상위, 반도체 검사장비 글로벌 점유율 확대, 나스닥 기술주 강세 동조"
         }
       ]
     }
   ],
   "caution_sectors": [
     "조선",
-    "정유"
+    "반도체_장비"
   ]
 }
