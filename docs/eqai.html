@@ -760,7 +760,7 @@
                     } else {
                         showToast("분석 중... (" + elapsed + "초 경과)")
                     }
-                    if (elapsed >= 120) {
+                    if (elapsed >= 180) {
                         clearInterval(pollTimer); pollTimer = null; setRefreshBtn(false)
                         showToast("타임아웃 — 나중에 다시 시도해주세요", "#d97706"); hideToast(4000)
                     }
