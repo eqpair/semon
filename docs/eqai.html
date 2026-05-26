@@ -193,6 +193,9 @@
         .macro-section-label:first-child {
             margin-top: 0;
         }
+        .macro-card { transition: all 0.15s; cursor: help; }
+        .macro-card:hover { border-color: #c7d2fe; background: #fafbff; }
+        .macro-card .macro-reason { cursor: help; }
     </style>
 </head>
 
@@ -446,11 +449,34 @@
             }
             const priceStr = meta.unit === "%" ? (d.price ?? "-").toString()
                 : d.price != null ? d.price.toLocaleString("en-US", { minimumFractionDigits: meta.priceDecimals, maximumFractionDigits: meta.priceDecimals }) : "-"
+
+            // 원인 + 드라이버
+            const reason  = (d.reason || "").trim()
+            const drivers = Array.isArray(d.drivers) ? d.drivers : []
+            const reasonShort = reason.length > 38 ? reason.slice(0, 38) + "…" : reason
+            const tooltipText = reason + (drivers.length ? "\n• " + drivers.join("\n• ") : "")
+            const reasonHtml = reason ? `
+                <div class="macro-reason" title="${tooltipText.replace(/"/g, '&quot;')}"
+                     style="font-size:10px;color:#6b7280;margin-top:6px;line-height:1.35;
+                            border-top:1px solid #f3f4f6;padding-top:5px;text-align:left;">
+                    ${reasonShort}
+                </div>
+                ${drivers.length ? `
+                <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;justify-content:flex-start;">
+                    ${drivers.slice(0, 3).map(dr => `
+                        <span style="font-size:9px;background:#f3f4f6;color:#4b5563;
+                                     padding:1px 5px;border-radius:8px;white-space:nowrap;">
+                            ${dr}
+                        </span>`).join("")}
+                </div>` : ""}
+            ` : ""
+
             return `<div class="macro-card ${warnClass}">
             <div class="text-xs text-gray-400 mb-0.5">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</div>
             <div class="text-sm font-bold text-gray-800">${priceStr}</div>
             <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
             ${warnBadge}
+            ${reasonHtml}
         </div>`
         }
 
