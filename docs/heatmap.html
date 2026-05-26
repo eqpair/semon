@@ -195,7 +195,7 @@
             document.getElementById('btn-5d').className = 'tab-btn' + (ret === 'ret_5d' ? ' active' : '');
             document.getElementById('btn-1m').className = 'tab-btn' + (ret === 'ret_20d' ? ' active' : '');
             render();
-            if (currentDrill) drillDown(currentDrill);
+            if (currentDrill) requestAnimationFrame(() => drillDown(currentDrill));
         }
 
         async function loadData() {
@@ -469,6 +469,7 @@
             renderSector();
             document.getElementById('drill-title').textContent = sectorName + ' 섹터';
 
+            requestAnimationFrame(function() {
             var container = document.getElementById('drill-treemap');
             var isMobile = window.innerWidth <= 640;
             var W = container.offsetWidth || (isMobile ? window.innerWidth - 32 : window.innerWidth * 0.4);
@@ -519,6 +520,7 @@
             });
             svg += '</svg>';
             container.innerHTML = svg;
+            }); // requestAnimationFrame
         }
 
         function closeDrill() {
