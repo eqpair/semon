@@ -250,6 +250,53 @@
             border-radius: 8px;
             white-space: nowrap;
         }
+        .news-category {
+            margin-bottom: 14px;
+        }
+        .news-category:last-child {
+            margin-bottom: 0;
+        }
+        .news-category-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+        .news-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #374151;
+        }
+        .news-item-text {
+            flex: 1;
+        }
+        .news-impact-badge {
+            display: inline-block;
+            flex-shrink: 0;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+            margin-top: 2px;
+            min-width: 36px;
+            text-align: center;
+        }
+        .news-impact-high {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+        .news-impact-mid {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
     </style>
 </head>
 
@@ -537,13 +584,48 @@
             document.getElementById("macro-global").innerHTML = groups.global.map(([n, d]) => makeMacroCard(n, d)).join("")
             document.getElementById("macro-korea").innerHTML = groups.korea.map(([n, d]) => makeMacroCard(n, d)).join("")
             document.getElementById("macro-commodity").innerHTML = groups.commodity.map(([n, d]) => makeMacroCard(n, d)).join("")
-            const lines = (eqaiData.news_summary || "").split("\n").filter(l => l.trim())
-            document.getElementById("news-summary").innerHTML = lines.map(l =>
+            renderNewsSummary(eqaiData.news_categories, eqaiData.news_summary)
+        }
+
+
+        function renderNewsSummary(categories, fallbackText) {
+            const el = document.getElementById("news-summary")
+            if (!el) return
+
+            // 구조화된 categories 있으면 우선 사용, 없으면 fallback
+            if (Array.isArray(categories) && categories.length > 0) {
+                const escapeHtml = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+                const catIcons = {
+                    macro: "📊", geopolitics: "🌐", company: "🏢", korea: "🇰🇷"
+                }
+                el.innerHTML = categories.map(cat => {
+                    const items = (cat.items || []).map(it => {
+                        const impact = (it.impact || "mid").toLowerCase()
+                        const badge = impact === "high"
+                            ? `<span class="news-impact-badge news-impact-high">HIGH</span>`
+                            : `<span class="news-impact-badge news-impact-mid">MID</span>`
+                        return `<div class="news-item">
+                            ${badge}
+                            <span class="news-item-text">${escapeHtml(it.text)}</span>
+                        </div>`
+                    }).join("")
+                    const icon = catIcons[cat.name] || "📰"
+                    return `<div class="news-category">
+                        <div class="news-category-header">${icon} ${escapeHtml(cat.label || cat.name)}</div>
+                        ${items}
+                    </div>`
+                }).join("")
+                return
+            }
+
+            // 폴백: 기존 평면 리스트
+            const lines = (fallbackText || "").split("\n").filter(l => l.trim())
+            el.innerHTML = lines.map(l =>
                 `<div class="flex gap-2 mb-1"><span class="text-gray-400 flex-shrink-0">•</span><span>${l.trim().replace(/\*\*/g, "")}</span></div>`
             ).join("")
         }
 
-        function renderRRG() {
+                function renderRRG() {
             const rrg = eqaiData.sector_rrg || {}
             const grid = document.getElementById("rrg-grid")
             const qColor = { leading: "#16a34a", improving: "#2563eb", lagging: "#d97706", weakening: "#dc2626", neutral: "#9ca3af" }

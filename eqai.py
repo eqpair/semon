@@ -59,16 +59,13 @@ def fetch_rrg_from_s3() -> dict:
         return {}
 
 
-# ── Claude 분석 (API 키 설정 후 활성화) ──────────────────────────
+# ── Claude 분석 ──────────────────────────────────────────────────
 
 def _extract_json(text: str) -> dict:
-    """Claude 응답에서 JSON 추출 — 코드블록 제거 후 첫번째 JSON 파싱"""
     import re
-    # 코드블록 제거
     text = re.sub(r"```json\s*", "", text)
     text = re.sub(r"```\s*", "", text)
     text = text.strip()
-    # 첫번째 { 부터 매칭되는 } 까지만 추출
     start = text.find("{")
     if start == -1:
         raise ValueError(f"JSON 없음: {text[:200]}")
@@ -96,8 +93,8 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 
         macro_text      = _format_macro(news_data.get("macro", {}))
         articles        = news_data.get("articles", [])
-        titles_text     = "\n".join([f"- {a.get('title','')} [{a.get('source','')}]" for a in articles[:15]])
-        bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:200]}" for a in articles[:8]])
+        titles_text     = "\n".join([f"- {a.get('title','')} [{a.get('source','')}]" for a in articles[:30]])
+        bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:300]}" for a in articles[:20]])
         rrg_text        = _format_rrg(rrg_data)
         candidates_text = _format_candidates(rrg_data, [])
 
@@ -109,6 +106,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - 닥터 엘더의 삼중 스크린: 주간(추세)+일간(모멘텀)+단기(타이밍) 다중 시간대 분석
 - RRG 모멘텀: RS-Ratio>100 + RS-Momentum>100 = Improving/Leading 구간이 최적 진입 타이밍
 섹터 분석과 종목 선정 시 위 기술적 관점을 반드시 반영하세요.
+
 아래 데이터를 분석하여 반드시 아래 XML 구조로만 응답하세요.
 절대로 다른 XML 태그를 추가하지 마세요. 코드블록(```)도 사용하지 마세요.
 반드시 <analysis>로 시작하고 </analysis>로 끝나야 합니다.
@@ -118,6 +116,29 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - 헤드라인만 보고 단편적으로 요약하지 마세요
 - "A가 B 대비 X배" 같은 표현은 반드시 무엇 기준인지 명시하세요
 - 오해를 유발할 수 있는 축약 표현을 피하세요
+
+[뉴스 카테고리 분류 규칙]
+- macro (매크로·금리): 연준·ECB·BOJ 정책, 금리·인플레·고용, 환율, 원자재, 채권시장
+- geopolitics (지정학·정책): 전쟁·중동·러우, 미중관계, 무역·관세·제재, 선거, 규제
+- company (기업·실적): 개별 기업 실적·M&A·신제품·소송, 빅테크 동향, 우주·AI 등 산업 이슈
+- korea (한국 관련): 한국 정책·기업, 한국 시장 직접 영향 뉴스, 환율·외국인 수급
+
+[임팩트 등급 기준 — impact 속성]
+- high: 글로벌 자산 가격에 즉각·광범위한 영향 (연준 결정, 빅테크 어닝쇼크, 전쟁 발발 등)
+- mid: 특정 섹터·지역에 영향, 또는 중기적으로 의미 있는 변화
+
+[뉴스 항목 수량]
+- 각 카테고리에 2~4개씩, 전체 약 10~14개 뉴스를 다루세요
+- 카테고리별 high 등급은 최소 1개 포함하세요 (없으면 mid만 가능)
+- 같은 사건은 한 카테고리에만 분류하세요 (중복 금지)
+
+[매크로 원인 분석 원칙 — 매우 중요]
+- 아래 매크로 지수 리스트의 모든 항목에 대해 <reason> 태그로 등락 원인을 반드시 작성하세요
+- 원인은 뉴스 상세 본문에서 근거를 찾아 구체적으로 작성하세요 ("실적 호조" 같은 모호한 표현 금지)
+- 핵심 드라이버(개별 종목·이벤트·지표·정책 등 2~3개)를 <driver> 태그로 나열하세요
+- 등락폭이 ±0.3% 미만이라도 시장 분위기·동조화 요인을 한 줄로 설명하세요
+- 뉴스에 직접적 근거가 없으면 "직접 촉매 없음 — [관련 매크로 흐름] 동조" 형식으로 명시하세요
+- 절대로 추측성 원인을 만들어내지 마세요. 근거가 약하면 약하다고 쓰세요
 
 === 글로벌 매크로 ===
 {macro_text}
@@ -143,10 +164,37 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
     <factor>요인2</factor>
     <factor>요인3</factor>
   </key_factors>
+  <macro_reasons>
+    <macro name="S&amp;P500">
+      <reason>등락의 핵심 원인 한 줄 (뉴스 근거 포함)</reason>
+      <driver>드라이버1 (예: NVDA +4.2%)</driver>
+      <driver>드라이버2</driver>
+    </macro>
+    <macro name="필라델피아반도체">
+      <reason>등락 원인 (예: 엔비디아 실적 가이던스 상향 + TSMC AI 수요 재확인)</reason>
+      <driver>NVDA 실적 호조</driver>
+      <driver>TSM 가이던스 상향</driver>
+    </macro>
+    <!-- 위 매크로 리스트의 모든 지수에 대해 동일한 패턴으로 작성 -->
+  </macro_reasons>
   <news_summary>
-    <item>뉴스요약1 (맥락과 수치를 정확히 포함. 예: "알리바바, 특정 벤치마크에서 Nvidia 대비 3배 성능의 Zhenwu AI칩 공개 - 중국 AI 반도체 자급화 가속")</item>
-    <item>뉴스요약2</item>
-    <item>뉴스요약3</item>
+    <category name="macro" label="매크로·금리">
+      <item impact="high">뉴스1 (맥락·수치 포함, 한 줄)</item>
+      <item impact="mid">뉴스2</item>
+    </category>
+    <category name="geopolitics" label="지정학·정책">
+      <item impact="high">뉴스1</item>
+      <item impact="mid">뉴스2</item>
+    </category>
+    <category name="company" label="기업·실적">
+      <item impact="high">뉴스1</item>
+      <item impact="mid">뉴스2</item>
+      <item impact="mid">뉴스3</item>
+    </category>
+    <category name="korea" label="한국 관련">
+      <item impact="high">뉴스1</item>
+      <item impact="mid">뉴스2</item>
+    </category>
   </news_summary>
   <korea_impact>
     <summary>코스피 영향 한줄</summary>
@@ -172,7 +220,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 
         resp = client.messages.create(
             model="claude-sonnet-4-5",
-            max_tokens=3000,
+            max_tokens=8000,
             messages=[{"role": "user", "content": prompt}]
         )
         text = resp.content[0].text
@@ -188,14 +236,19 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
     import xml.etree.ElementTree as ET
     import re
 
-    # XML 블록 추출
     text = text.strip()
-    # 코드블록 제거
     text = re.sub(r"```xml\s*", "", text)
     text = re.sub(r"```\s*", "", text)
     m = re.search(r"<analysis>.*?</analysis>", text, re.DOTALL)
     if not m:
-        raise ValueError(f"XML analysis 태그 없음: {text[:200]}")
+        # 닫는 태그 누락 여부 진단
+        has_open  = "<analysis>" in text
+        has_close = "</analysis>" in text
+        tail = text[-300:] if len(text) > 300 else text
+        raise ValueError(
+            f"XML analysis 매칭 실패 (열림={has_open}, 닫힘={has_close}, "
+            f"전체길이={len(text)}자). 응답 끝부분 300자:\n{tail}"
+        )
 
     xml_text = m.group()
     xml_text = re.sub(r"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;", xml_text)
@@ -208,13 +261,43 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
     def get_list(tag):
         return [el.text.strip() for el in root.findall(tag) if el.text]
 
-    # 기본 필드
-    sentiment       = get("sentiment", "neutral")
-    sentiment_reason= get("sentiment_reason", "")
-    key_factors     = get_list("key_factors/factor")
-    news_items      = get_list("news_summary/item")
-    news_summary    = "\n".join(news_items)
-    summary         = get("summary", "")
+    sentiment        = get("sentiment", "neutral")
+    sentiment_reason = get("sentiment_reason", "")
+    key_factors      = get_list("key_factors/factor")
+    # 새 구조: 카테고리별 뉴스 + 임팩트 등급
+    news_categories = []
+    flat_items = []
+    for cat in root.findall("news_summary/category"):
+        cat_name  = cat.get("name", "")
+        cat_label = cat.get("label", cat_name)
+        items = []
+        for it in cat.findall("item"):
+            if it.text:
+                items.append({
+                    "text":   it.text.strip(),
+                    "impact": (it.get("impact", "mid") or "mid").lower(),
+                })
+                flat_items.append(it.text.strip())
+        if items:
+            news_categories.append({
+                "name":  cat_name,
+                "label": cat_label,
+                "items": items,
+            })
+    # 하위호환: news_summary 문자열도 계속 채워둠 (구 클라이언트 대비)
+    news_summary = "\n".join(flat_items)
+    summary          = get("summary", "")
+
+    # ── 매크로 원인 파싱 ───────────────────────────────────────
+    macro_reasons = {}
+    for el in root.findall("macro_reasons/macro"):
+        name = el.get("name", "").strip()
+        if not name:
+            continue
+        reason_el = el.find("reason")
+        reason = reason_el.text.strip() if reason_el is not None and reason_el.text else ""
+        drivers = [d.text.strip() for d in el.findall("driver") if d.text]
+        macro_reasons[name] = {"reason": reason, "drivers": drivers}
 
     # 한국 시장 영향
     ki = root.find("korea_impact")
@@ -225,7 +308,6 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         "key_watch":        ki.find("watch_point").text.strip() if ki is not None and ki.find("watch_point") is not None else "",
     }
 
-    # strong_buy
     strong_buy = []
     for el in root.findall("strong_buy/sector"):
         if el.text:
@@ -235,7 +317,6 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
                 "reason":       el.get("reason", ""),
             })
 
-    # watch
     watch = []
     for el in root.findall("watch_sectors/sector"):
         if el.text:
@@ -244,7 +325,6 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
                 "reason": el.get("reason", ""),
             })
 
-    # top_picks
     top_picks_raw = {}
     for el in root.findall("top_picks/pick"):
         sector = el.get("sector", "")
@@ -267,6 +347,8 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         "sentiment_reason":    sentiment_reason,
         "key_factors":         key_factors,
         "news_summary":        news_summary,
+        "news_categories":     news_categories,
+        "macro_reasons":       macro_reasons,
         "korea_market_impact": korea_impact,
         "sector_impact":       {},
         "strong_buy":          strong_buy,
@@ -278,11 +360,8 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
     }
 
 
-
 def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
-    """API 키 없을 때 RRG 데이터만으로 기본 분석 생성"""
     sector_rrg = rrg_data.get("sector_rrg", {})
-
     improving = [s for s, d in sector_rrg.items() if d.get("quadrant") == "improving"]
     leading   = [s for s, d in sector_rrg.items() if d.get("quadrant") == "leading"]
 
@@ -324,6 +403,8 @@ def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
         "sentiment_reason":  "매크로 지표 기반 자동 판단 (Claude API 미연결)",
         "key_factors":       ["Claude API 연결 후 상세 분석 제공됩니다"],
         "news_summary":      f"수집된 기사 {len(news_data.get('articles', []))}개 | Claude API 연결 후 뉴스 분석이 제공됩니다.",
+        "news_categories":   [],
+        "macro_reasons":     {},
         "strong_buy":        strong_buy,
         "watch":             [{"sector": s, "reason": "RRG Leading — 모멘텀 확인 필요"} for s in leading[:2]],
         "avoid":             [],
@@ -404,28 +485,33 @@ def git_push_report() -> bool:
 def run():
     logger.info("EQAI 분석 시작")
 
-    # 1. 뉴스 + 매크로 수집
     logger.info("뉴스 수집 중...")
     news_data = collect_all(hours=12)
 
-    # 2. RRG 데이터 fetch
     logger.info("RRG 데이터 fetch 중...")
     rrg_data = fetch_rrg_from_s3()
 
-    # 3. Claude 분석
     logger.info("Claude 분석 중...")
     analysis = claude_analyze(news_data, rrg_data)
 
-    # 4. 리포트 생성
+    # ── 매크로 데이터에 원인 병합 ─────────────────────────────
+    macro_with_reasons = {}
+    macro_reasons = analysis.get("macro_reasons", {})
+    for name, d in news_data.get("macro", {}).items():
+        merged = dict(d)
+        mr = macro_reasons.get(name, {})
+        merged["reason"]  = mr.get("reason", "")
+        merged["drivers"] = mr.get("drivers", [])
+        macro_with_reasons[name] = merged
+
     report = {
         "generated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
-        "macro":        news_data.get("macro", {}),
+        "macro":        macro_with_reasons,
         "sector_rrg":   rrg_data.get("sector_rrg", {}),
         "articles":     news_data.get("articles", [])[:10],
         **analysis,
     }
 
-    # 5. 저장 + push
     save_report(report)
     git_push_report()
 
