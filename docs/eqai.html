@@ -193,9 +193,63 @@
         .macro-section-label:first-child {
             margin-top: 0;
         }
-        .macro-card { transition: all 0.15s; cursor: help; }
-        .macro-card:hover { border-color: #c7d2fe; background: #fafbff; }
-        .macro-card .macro-reason { cursor: help; }
+        .macro-card { position: relative; transition: all 0.15s; cursor: help; }
+        .macro-card.has-popover:hover { border-color: #c7d2fe; background: #fafbff; z-index: 10; }
+        .macro-popover {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 8px);
+            transform: translateX(-50%);
+            min-width: 260px;
+            max-width: 340px;
+            background: #1f2937;
+            color: #f9fafb;
+            border-radius: 8px;
+            padding: 10px 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+            z-index: 100;
+            text-align: left;
+            pointer-events: none;
+        }
+        .macro-card.has-popover:hover .macro-popover { display: block; }
+        .macro-popover::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #1f2937;
+        }
+        .macro-popover-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #93c5fd;
+            margin-bottom: 6px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #374151;
+        }
+        .macro-popover-reason {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #e5e7eb;
+        }
+        .macro-popover-drivers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 7px;
+        }
+        .macro-popover-chip {
+            font-size: 9px;
+            background: #374151;
+            color: #d1d5db;
+            padding: 2px 6px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -450,33 +504,25 @@
             const priceStr = meta.unit === "%" ? (d.price ?? "-").toString()
                 : d.price != null ? d.price.toLocaleString("en-US", { minimumFractionDigits: meta.priceDecimals, maximumFractionDigits: meta.priceDecimals }) : "-"
 
-            // 원인 + 드라이버
             const reason  = (d.reason || "").trim()
             const drivers = Array.isArray(d.drivers) ? d.drivers : []
-            const reasonShort = reason.length > 38 ? reason.slice(0, 38) + "…" : reason
-            const tooltipText = reason + (drivers.length ? "\n• " + drivers.join("\n• ") : "")
-            const reasonHtml = reason ? `
-                <div class="macro-reason" title="${tooltipText.replace(/"/g, '&quot;')}"
-                     style="font-size:10px;color:#6b7280;margin-top:6px;line-height:1.35;
-                            border-top:1px solid #f3f4f6;padding-top:5px;text-align:left;">
-                    ${reasonShort}
-                </div>
-                ${drivers.length ? `
-                <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;justify-content:flex-start;">
-                    ${drivers.slice(0, 3).map(dr => `
-                        <span style="font-size:9px;background:#f3f4f6;color:#4b5563;
-                                     padding:1px 5px;border-radius:8px;white-space:nowrap;">
-                            ${dr}
-                        </span>`).join("")}
-                </div>` : ""}
-            ` : ""
+            const escapeHtml = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")
+            const popoverHtml = reason ? `
+                <div class="macro-popover">
+                    <div class="macro-popover-title">${escapeHtml(name)} ${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
+                    <div class="macro-popover-reason">${escapeHtml(reason)}</div>
+                    ${drivers.length ? `
+                    <div class="macro-popover-drivers">
+                        ${drivers.map(dr => `<span class="macro-popover-chip">${escapeHtml(dr)}</span>`).join("")}
+                    </div>` : ""}
+                </div>` : ""
 
-            return `<div class="macro-card ${warnClass}">
+            return `<div class="macro-card ${warnClass}${reason ? ' has-popover' : ''}">
             <div class="text-xs text-gray-400 mb-0.5">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</div>
             <div class="text-sm font-bold text-gray-800">${priceStr}</div>
             <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
             ${warnBadge}
-            ${reasonHtml}
+            ${popoverHtml}
         </div>`
         }
 
