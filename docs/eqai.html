@@ -556,7 +556,7 @@
             const escapeHtml = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")
             const popoverHtml = reason ? `
                 <div class="macro-popover">
-                    <div class="macro-popover-title">${escapeHtml(name)} ${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
+                    <div class="macro-popover-title" style="color:${up ? '#fca5a5' : '#93c5fd'};">${escapeHtml(name)} <span style="color:${up ? '#fca5a5' : '#93c5fd'};">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</span></div>
                     <div class="macro-popover-reason">${escapeHtml(reason)}</div>
                     ${drivers.length ? `
                     <div class="macro-popover-drivers">
