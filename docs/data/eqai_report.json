@@ -1,175 +1,174 @@
 {
-  "generated_at": "2026-05-27 08:52:51",
+  "generated_at": "2026-05-27 09:01:36",
   "macro": {
     "S&P500": {
       "price": 7519.12,
       "change": 0.61,
-      "reason": "미국채 금리 하락(-1.43%)으로 성장주 밸류에이션 부담 완화, 반도체·기술주 중심 상승",
+      "reason": "SpaceX/OpenAI IPO 기대감과 AI 반도체 밸류에이션 상향이 대형 기술주 중심 상승 견인, 다우는 전통 산업주 부진으로 소폭 하락",
       "drivers": [
-        "필라델피아반도체 +5.53%",
-        "미국채 10년물 금리 4.49%(-1.43%)"
+        "나스닥 +1.19% 동조",
+        "SpaceX IPO 흥분감"
       ]
     },
     "NASDAQ": {
       "price": 26656.18,
       "change": 1.19,
-      "reason": "금리 하락과 반도체 강세로 기술주 중심 랠리, 애플 신고가 테스트 전망 속 기대감",
+      "reason": "SpaceX IPO 정식 신청 + OpenAI IPO 금요일 신청 예상으로 메가테크 IPO 러시 기대감 폭발, 반도체 밸류에이션 재평가 동조",
       "drivers": [
-        "필라델피아반도체 +5.53%",
-        "Apple WWDC(6/8) 기대감"
+        "SpaceX IPO 필링",
+        "반도체주 밸류에이션 상향"
       ]
     },
     "DOW": {
       "price": 50461.68,
       "change": -0.23,
-      "reason": "전통 산업주 중심 지수로 AutoZone -9%(4년래 최대 낙폭) 등 소비 관련 약세 반영",
+      "reason": "전통 산업주 중심 다우는 유가 -3.57% 하락과 금리 하단 안착 속 원자재·에너지 기업 부진으로 하락 전환",
       "drivers": [
-        "AutoZone 4년래 최악 하락",
-        "미국 소비자 재정 스트레스 심화"
+        "WTI -3.57% 충격",
+        "전통 산업주 부진"
       ]
     },
     "VIX": {
       "price": 17.01,
       "change": 2.53,
-      "reason": "미국의 이란 남부 자위 타격 및 이란 보복 경고로 지정학 리스크 프리미엄 소폭 상승",
+      "reason": "연준 의사록 인플레 우려 + Kevin Warsh 금리인하 신중론 + 엔비디아 실적 발표 불확실성으로 변동성 지수 소폭 상승",
       "drivers": [
-        "미-이란 군사 충돌",
-        "호르무즈 해협 폐쇄 장기화 우려"
+        "연준 의사록 긴축 시사",
+        "엔비디아 실적 불확실성"
       ]
     },
     "필라델피아반도체": {
       "price": 12876.91,
       "change": 5.53,
-      "reason": "글로벌 반도체 업황 모멘텀 지속, SpaceX 나스닥 상장 임박 및 머스크 빅테크 영향력 확대 기대",
+      "reason": "Micron UBS 목표가 대폭 상향 + 글로벌 메모리 밸류에이션 재평가 + AI 기판 공급 부족 심화 (LG이노텍 베라 루빈 원가 2배) 시그널이 반도체 전반 폭등 촉발",
       "drivers": [
-        "SpaceX 나스닥 상장 준비",
-        "Huawei 가을 신규 칩 출시 경쟁 가속화"
+        "Micron 목표가 급등",
+        "메모리 밸류에이션 상향",
+        "AI 기판 공급 병목"
       ]
     },
     "러셀2000": {
       "price": 2920.54,
       "change": 1.79,
-      "reason": "금리 하락으로 소형주 자금조달 비용 부담 완화, 위험선호 확대",
+      "reason": "SpaceX 리테일 직접 참여 (Robinhood·Fidelity·Schwab) 허용으로 개인투자자 접근성 확대 → 중소형주 리스크 선호 급등",
       "drivers": [
-        "미국채 10년물 금리 -1.43%",
-        "성장주 모멘텀 확산"
+        "SpaceX 리테일 참여",
+        "소형주 리스크온"
       ]
     },
     "영국FTSE": {
       "price": 10466.3,
       "change": 0.22,
-      "reason": "BP 회장 Albert Manifold 긴급 해임(거버넌스·행동 문제)으로 에너지주 약세 일부 상쇄, 전반적 동조 상승",
+      "reason": "직접 촉매 약함 — ECB 프랑스 총재 \"인플레 억제 필요한 조치\" 발언으로 유럽 긴축 기조 재확인 속 소폭 상승",
       "drivers": [
-        "BP 회장 해임 악재",
-        "유럽 증시 동조 상승"
+        "ECB 긴축 기조"
       ]
     },
     "독일DAX": {
       "price": 25389.1,
       "change": 2.01,
-      "reason": "유럽 제조업·기술주 중심 강세, 미국 금리 하락 및 글로벌 반도체 모멘텀 동조화",
+      "reason": "유럽 기술주 SpaceX IPO 동조 랠리 + 중국 Alibaba 젠우(Zhenwu) AI 칩 공개로 글로벌 AI 경쟁 심화 기대감 반영",
       "drivers": [
-        "미국채 금리 하락",
-        "글로벌 반도체 강세 파급"
+        "SpaceX IPO 글로벌 확산",
+        "중국 AI 칩 경쟁"
       ]
     },
     "니케이": {
       "price": 65158.19,
       "change": 2.87,
-      "reason": "필라델피아반도체 +5.53% 영향으로 도쿄일렉트론 등 반도체 장비·소재주 강세",
+      "reason": "필라델피아 반도체 +5.53% 급등 동조 + 한국 메모리 목표가 상향 (삼성 55만원·하이닉스 380만원) 시그널이 일본 반도체 공급망 전반 부양",
       "drivers": [
-        "필라델피아반도체 강세",
-        "엔화 약세 유지"
+        "필라델피아 반도체 동조",
+        "메모리 밸류에이션 재평가"
       ]
     },
     "항셍": {
       "price": 25606.03,
       "change": 0.86,
-      "reason": "APEC에서 미중 무역 간극 지속 확인됐으나 Huawei 가을 신규 칩 출시 계획으로 기술주 일부 반등",
+      "reason": "Huawei 가을 신규 스마트폰 칩 계획 발표 + Alibaba 젠우 AI 칩·신규 LLM 공개로 중국 자체 반도체 경쟁력 과시 → 기술주 상승",
       "drivers": [
-        "Huawei 반도체 경쟁력 기대",
-        "미중 무역 갈등 지속"
+        "Huawei 칩 계획",
+        "Alibaba AI 칩 공개"
       ]
     },
     "달러인덱스": {
-      "price": 99.14,
-      "change": -0.18,
-      "reason": "미국채 금리 하락 및 호르무즈 해협 장기 폐쇄 우려 속 안전자산 선호 약화",
+      "price": 99.08,
+      "change": -0.24,
+      "reason": "연준 의사록 인플레 경계 시사했으나 Kevin Warsh FOMC 내 금리인하 '가족 싸움' 예고로 통화정책 불확실성 증가 → 달러 약세",
       "drivers": [
-        "미국채 10년물 금리 -1.43%",
-        "지정학 리스크의 달러 수요 제한적"
+        "FOMC 내분 우려",
+        "금리 경로 불확실성"
       ]
     },
     "국채10Y": {
       "price": 4.49,
       "change": -1.43,
-      "reason": "미국 소비자 재정 스트레스 심화(인플레 4%, 휘발유 $4 상회) 속 경기 둔화 우려로 채권 매수",
+      "reason": "연준 의사록 인플레 고착 시 금리인상 가능 시사했으나, Kevin Warsh FOMC 내 금리인하 반대 직면 예상으로 긴축 지속 기대 완화 → 수익률 -1.43% 하락",
       "drivers": [
-        "미국 소비자 재정 스트레스",
-        "성장 둔화 우려"
+        "FOMC 내분 기대",
+        "긴축 지속 불확실성"
       ]
     },
     "국채30Y": {
       "price": 5.03,
       "change": -0.75,
-      "reason": "장기 국채도 경기 둔화 우려 동조 하락, 단 10년물 대비 낙폭 축소",
+      "reason": "10년물 동조 — 연준 내부 금리정책 분열 우려로 장기 긴축 시나리오 약화",
       "drivers": [
-        "10년물 금리 하락 파급",
-        "장기 인플레 우려 잔존"
+        "10년물 -1.43% 동조"
       ]
     },
     "코스피": {
       "price": 7847.71,
       "change": 0.41,
-      "reason": "필라델피아반도체 강세에도 코스피 대형주 중심 제한적 반등, 원/달러 1514원대 약세 지속",
+      "reason": "삼성전자 노사 합의안 가결 기대 (투표율 92.4%) + 메모리 목표가 대폭 상향 (삼성 55만원·하이닉스 380만원) 시그널이 대형주 중심 완만한 상승 견인",
       "drivers": [
-        "글로벌 반도체 강세 제한적 파급",
-        "원/달러 1514원대 환율 부담"
+        "삼성전자 노사 합의 기대",
+        "메모리 목표가 상향"
       ]
     },
     "코스닥": {
       "price": 1161.13,
       "change": 4.99,
-      "reason": "필라델피아반도체 +5.53% 영향으로 반도체 중소형·IT부품 중심 급등, 기술주 모멘텀 확산",
+      "reason": "필라델피아 반도체 +5.53% 동조 + AI 부품 목표가 연쇄 상향 (파크시스템스·LG이노텍 160만원·아모텍 4.2만원) + IT부품 섹터 Leading 진입이 중소형 기술주 폭등 견인",
       "drivers": [
-        "필라델피아반도체 강세",
-        "반도체 중소형·IT부품 Leading"
+        "필라델피아 반도체 동조",
+        "AI 부품 목표가 상향",
+        "IT부품 Leading 전환"
       ]
     },
     "금": {
-      "price": 4518.0,
-      "change": -0.07,
-      "reason": "미-이란 충돌에도 달러 약세 및 위험자산 선호로 안전자산 수요 제한, 횡보",
+      "price": 4522.7,
+      "change": 0.04,
+      "reason": "중동 걸프 공습으로 지정학 리스크 부각되었으나 연준 금리 전망 불확실성 (인상 vs 인하 혼재)으로 안전자산 수요 제한 → 보합",
       "drivers": [
-        "달러인덱스 -0.18%",
-        "위험자산 선호 확대"
+        "중동 지정학 리스크",
+        "금리 전망 혼선"
       ]
     },
     "WTI유가": {
-      "price": 93.35,
-      "change": -3.36,
-      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄·신고가 전망에도 단기 과매수 청산 및 경기 둔화 우려 반영",
+      "price": 93.15,
+      "change": -3.57,
+      "reason": "중동 걸프 공습 지정학 이슈에도 불구, 연준 긴축 장기화 우려 + 글로벌 경기 둔화 전망으로 수요 감소 우려가 공급 리스크 압도 → 급락",
       "drivers": [
-        "단기 과매수 청산",
-        "미국 소비 둔화 우려"
+        "연준 긴축 장기화",
+        "수요 둔화 우려"
       ]
     },
     "원달러": {
       "price": 1514.79,
       "change": 0.13,
-      "reason": "달러인덱스 약세에도 코스피 상승폭 제한 및 외국인 수급 불안으로 원화 약세 지속",
+      "reason": "직접 촉매 약함 — 달러인덱스 -0.24% 약세 동조했으나 외국인 수급 변동성으로 원화 소폭 약세",
       "drivers": [
-        "코스피 상승폭 제한(+0.41%)",
-        "외국인 수급 불안"
+        "달러인덱스 약세 동조"
       ]
     },
     "구리": {
-      "price": 6.43,
-      "change": 1.42,
-      "reason": "글로벌 제조업 기대 및 Perpetua Resources의 Idaho 금·안티모니 프로젝트 $2.9B 대출 확보로 산업금속 수요 기대",
+      "price": 6.44,
+      "change": 1.49,
+      "reason": "SpaceX IPO + AI 인프라 투자 확대 기대감 (LG이노텍 기판 원가 2배·아모텍 증자 투자) → 산업 수요 회복 기대로 상승",
       "drivers": [
-        "제조업 경기 기대",
-        "미국 광산 프로젝트 투자 확대"
+        "AI 인프라 투자 확대",
+        "산업 수요 기대"
       ]
     }
   },
@@ -853,9 +852,9 @@
           "rs_momentum": 94.579
         }
       ],
-      "sector_ret_5d": 13.62,
-      "improving_count": 4,
-      "watch_count": 6,
+      "sector_ret_5d": 13.69,
+      "improving_count": 3,
+      "watch_count": 7,
       "total": 31
     },
     "2차전지_셀": {
@@ -2392,7 +2391,7 @@
           "rs_momentum": 85.938
         }
       ],
-      "sector_ret_5d": -1.16,
+      "sector_ret_5d": -1.2,
       "improving_count": 1,
       "watch_count": 5,
       "total": 10
@@ -5637,7 +5636,7 @@
           "rs_momentum": 93.297
         }
       ],
-      "sector_ret_5d": 0.88,
+      "sector_ret_5d": 0.85,
       "improving_count": 1,
       "watch_count": 0,
       "total": 13
@@ -10028,98 +10027,102 @@
   "articles": [
     {
       "source": "cnbc_world",
+      "title": "Huawei plans new smartphone chips this fall as rivalry with Nvidia and Apple heats up",
+      "link": "https://www.cnbc.com/2026/05/25/huawei-chip-logicfolding-semiconductor-nvidia-china.html",
+      "published": "Mon, 25 May 2026 06:48:16 GMT",
+      "body": "SHANGHAI — Chinese tech giant Huawei on Monday touted a new approach to developing advanced semiconductors despite U.S. sanctions, as Nvidia struggles to sell its high-end chips in China.\nHuawei said it developed a new engineering approach called \"LogicFolding\" to manufacture its Kirin smartphone chips this fall.\nThat breakthrough comes as Nvidia faces U.S. export restrictions in China and Apple contends with renewed competition from Huawei in the world's second-largest consumer economy.\nHuawei's Mate 60 smartphone, launched in 2023, included 5G connectivity powered by an advanced chip that helped the company regain market share from Apple.\nWhile U.S. restrictions have kept Nvidia from selling its most advanced chips to China in recent years, Beijing has pushed to support homegrown technology instead. Last week, Nvidia CEO Jensen Huang told CNBC the U.S. chipmaker had \"conceded\" the Chinese market to Huawei.\n\"For Nvidia, this means the window to sell advanced chips such as the H200 into China is narrowing,\" said George Chen, partner and co-chair of digital practice at The Asia Group.\n\"This trajectory will likely heighten concerns in Washington, where Huawei remains emblematic of U.S. export restrictions,\" he said.\nHuawei said that by 2031, its new chip technology could deliver capabilities equivalent to 1.4-nanometer process technology — while global chip leader TSMC has begun volume production of 2-nanometer chips.\nNanometer processes refer to chip manufacturing technology, "
+    },
+    {
+      "source": "cnbc_finance",
+      "title": "SpaceX, OpenAI valuations could mean they leapfrog Berkshire Hathaway on first day of trading",
+      "link": "https://www.cnbc.com/2026/05/21/spacex-openai-valuations-to-leapfrog-berkshire-hathaway-traders-say.html",
+      "published": "Thu, 21 May 2026 20:28:40 GMT",
+      "body": "A slew of tech mega-IPOs are ahead and traders expect they'll push Warren Buffett aside on their first day of trading.\nSpaceX on Wednesday officially filed to go public on the Nasdaq. On the same day, reports circulated that OpenAI will file for an IPO confidentially as soon as Friday.\nAfter the OpenAI reports, traders on prediction market platform Kalshi now see a 92% chance that the ChatGPT owner files for an IPO this year. Traders also think its chief private rival, Anthropic, has 69% odds it will officially go public this year.\nAnd according to traders on Polymarket, all are expected to trade on their first days at valuations north of $1 trillion, which would be records for a public debut.\nSpaceX was valued at $1.25 trillion in February, and Polymarket traders think there's a 56% chance it closes its first trading day above $2.2 trillion. OpenAI was last valued at $852 billion, and traders think there's a 65% chance it ends its first public trading day above $1.4 trillion.\nMeanwhile, traders place 47% odds that Anthropic on its first day of public trading will close above $1.8 trillion. The company reportedly is in talks for a new funding round at a $900 billion valuation.\nThose valuations would place the companies firmly in the $1 trillion club, and likely above Berkshire Hathaway's market cap, currently at $1.03 trillion. They'd even challenge Meta and Tesla's around $1.5 trillion market caps.\nDeutsche Bank analyst Adrian Cox pointed out in a Thursday note that Berkshir"
+    },
+    {
+      "source": "yonhap",
+      "title": "신한투자 \"파크시스템스, 하반기 강해질 실적…목표가 상향\"",
+      "link": "https://www.yna.co.kr/view/AKR20260527025800008",
+      "published": "Wed, 27 May 2026 08:36:52 +0900",
+      "body": "(서울=연합뉴스) 고은지 기자 = 신한투자증권은 27일 코스닥 상장사인 파크시스템스[140860]에 대해 \"북미 구매 수요 지속으로 향후 안정적 성장이 기대된다\"며 목표주가를 상향 조정했다.\n김형태 수석 연구원·송혜수 연구원은 이날 보고서에서 \"파크시스템스는 비접촉 원자현미경(AFM)을 최초 개발해 독자 생산 중인 선도기업\"이라며 \"산업용 반도체 AFM 장비 점유율이 80%에 달하며 견고한 독점적 지위를 가진다\"고 분석했다.\n특히 \"공정 미세화 트렌드는 구조적 성장과 직결된다\"며 \"북미 고객사 신장비 수요가 지속하고 있어 향후 양산용 장비 수준의 안정적인 수요 성장이 기대된다\"고 판단했다.\n올해 매출은 전년 대비 17% 증가한 2천405억원, 영업이익은 46% 늘어난 618억원으로 전망했다.\n김 수석 연구원 등은 \"외형 성장 속도는 일부 둔화하나 수익성은 개선될 것\"이라면서 \"주력 장비인 웨이퍼 계측과 포토마스크 리페어, 백색광 분석기 실적 기여도가 점진적으로 증가할 것\"이라고 예상했다.\n이어 \"올해 1분기 신규 수주 총액은 전년 대비 20% 축소됐으나 수주잔고는 871억원으로 유사하다\"며 \"2분기 이후 수주 물량이 늘어날 가능성이 있고 3분기 말 수주까지 납품에 큰 문제가 없을 전망\"이라고 짚었다.\n이런 하반기 실적 기대감을 반영해 파크시스템스에 대한 투자의견 '매수'를 유지하고 목표주가를 기존 31만원에서 37만원으로 올렸다.\n파크시스템스의 전날 종가는 28만6천500원을 기록했다.\neun@yna.co.kr\n제보는 카카오톡 okjebo\n<저작권자(c) 연합뉴스,\n무단 전재-재배포, AI 학습 및 활용 금지>\n2026/05/27 08:36 송고\n2026년05월27일 08시36분 송고"
+    },
+    {
+      "source": "cnbc_world",
       "title": "SpaceX-Tesla merger chatter reignites as Musk pushes rocket company towards Nasdaq",
       "link": "https://www.cnbc.com/2026/05/26/spacex-tesla-merger-chatter-reignites-as-musk-rocket-company-nears-ipo.html",
       "published": "Tue, 26 May 2026 22:32:58 GMT",
       "body": "As Elon Musk prepares to lead a second trillion-dollar company into the public market, a move that will likely put him in charge of two of the 10 most valuable U.S. enterprises, chatter is building that Musk's ultimate goal is to combine the entities into one.\nSpaceX is expected to start trading on the Nasdaq in just over two weeks after obtaining a private market valuation of $1.25 trillion earlier this year, when it merged with xAI, Musk's artificial intelligence company. Tesla's market cap currently sits at around $1.6 trillion.\nThe two companies already have a laundry list of shared resources, and Musk has discussed with colleagues the possibility of folding the companies together, according to people familiar with the talks who asked not to be named due to the sensitivity of the topic.\nA current Tesla employee told CNBC that many workers at the electric vehicle company have long expected such a transaction to eventually take place and that the topic is openly discussed internally. Another person close to the company said that shared challenges tied to power and compute constraints have led to regular collaborations.\nWhile a company launching rockets based on contracts with the government may not seem to have a lot in common with an EV manufacturer, both of the businesses are increasingly focused on AI and the talent and computing resources necessary to build AI infrastructure and services. More than three-quarters of SpaceX's $10.1 billion in capital expenditures in the "
     },
     {
-      "source": "cnbc_world",
-      "title": "Piper Sandler says Strait of Hormuz to remain closed for months and oil to hit new highs",
-      "link": "https://www.cnbc.com/2026/05/26/piper-sandler-says-strait-of-hormuz-to-remain-closed-for-months-and-oil-to-hit-new-highs.html",
-      "published": "Tue, 26 May 2026 19:43:54 GMT",
-      "body": "Piper Sandler isn't buying the talk that an Iran deal is nearing, telling clients that the Strait of Hormuz will largely stay closed and oil will hit new highs.\n\"We think the Strait of Hormuz remains largely closed for months yet, meaning shortages become more urgent and oil hits new highs this Summer,\" according to a recent note from the investment bank's energy and macro teams.\nWest Texas Intermediate Futures are down since Friday but bounced back some on Tuesday with mixed messaging on a possible Iran deal over the long weekend. The U.S. military said it conducted \"self-defense strikes\" in southern Iran, which included targeting Iranian missile launch sites and vessels placing mines around the Strait of Hormuz. The news came after President Donald Trump said Saturday that an agreement with Iran has been \"largely negotiated\", with details to be announced shortly. Meanwhile, Iran's foreign ministry has said navigation through the vital shipping channel \"will have costs.\"\nPiper Sandler said it has very little confidence that the commercial traffic through the Strait would return to even 50% of its pre-crisis levels, either next week or next month.\nThe U.S. has been \"unwilling to press the fight\" because the scale of Iran's retaliation could have broader implications for its neighbors and may further disrupt global supply chains, the note said.\nThe bank also argued that Iran's leaders are unwilling to settle for any compromise because they believe they have leverage, reinforci"
+      "source": "cnbc_finance",
+      "title": "Nvidia earnings call drama: Will Jensen Huang talk 'Trump' and China chips after Xi summit?",
+      "link": "https://www.cnbc.com/2026/05/18/nvidia-earnings-call-drama-will-jensen-huang-talk-trump-and-china-chips-after-xi-summit.html",
+      "published": "Wed, 20 May 2026 18:26:47 GMT",
+      "body": "All eyes are on Nvidia, the world's most valuable company and artificial intelligence trade darling, as it is set to report fiscal first-quarter earnings on Wednesday after the closing bell.\nOn its conference call, traders on prediction markets platform Kalshi think the company might talk about President Donald Trump after CEO Jensen Huang joined him on his trip to China.\nTrump has 50-50 odds of being mentioned on the call, with the chances rising recently. The president wasn't mentioned on the company's last earnings call in February. Huang joined Trump for his summit in Beijing with Chinese President Xi Jinping.\nHuang's presence on the trip came as the status of Nvidia's H200 chip sales in China remains uncertain.\nTrump told reporters last week that the chip model didn't come up in discussions with China, but Reuters reported that the U.S. government gave approval to several Chinese firms to purchase the model. China, though, hasn't allowed firms to purchase the chip, Trump claimed to reporters.\nIn January, Trump cleared the way for Chinese purchases of the chip model. That came with a 25% tariff on imports for chips that will be sent to China. There's a 57% chance the company mentions tariffs on its call on Wednesday.\nBut after the trip to China, traders place just an 11% chance that Nvidia mentions Taiwan. After the U.S.-China summit, neither country revealed if Trump or Xi discussed Taiwan, which is home to critical chip manufacturers. Traders now only place 15% odds tha"
     },
     {
-      "source": "cnbc_world",
-      "title": "Trump officials split over Pope Leo’s AI warning as Vatican feud enters new front",
-      "link": "https://www.cnbc.com/2026/05/26/pope-leo-xiv-ai-warning-trump-jd-vance-doug-burgum-anthropic-iran.html",
-      "published": "Tue, 26 May 2026 21:18:58 GMT",
-      "body": "Interior Secretary Doug Burgum opened a new front Tuesday in the Trump administration's public feud with the Vatican, dismissing Pope Leo XIV's warning about artificial intelligence as the White House resists new guardrails on the rapidly evolving technology.\n\"I didn't know that tech editorializing was part of the role of being pope,\" Burgum said in an interview on Fox Business, referring to Leo's first encyclical, a 42,300-word document that called for stronger AI oversight and warned the technology could displace workers, deepen inequality and put lethal weapons decisions beyond human control.\nBut Vice President JD Vance, the highest-ranking Catholic in the Trump administration and one of its most prominent links to Silicon Valley, in an interview with NBC praised the same message as \"profound\" and the kind of \"moral leadership\" the church should offer at the start of the AI age.\nThe split response underscores the delicate politics facing President Donald Trump as he makes AI dominance and deregulation central to his second-term economic agenda while navigating an increasingly public feud with the first American pope.\n\"The vice president now seems to be backtracking on earlier criticisms when he said Pope Leo needs to learn more theology,\" said Peter Casarella, a Duke Divinity School professor of theology who studies AI. \"They got ahead of their skis and are rowing back.\"\nLeo's remarks follow Trump's decision last week to delay an executive order that would have created a v"
+      "source": "marketwatch",
+      "title": "Micron’s stock reaches a major milestone as UBS slaps on an out-of-sight price target",
+      "link": "https://www.marketwatch.com/story/microns-stock-soars-as-ubs-slaps-on-an-out-of-sight-price-target-77e75b8e?mod=mw_rss_topstories",
+      "published": "Tue, 26 May 2026 20:46:00 GMT",
+      "body": ""
     },
     {
-      "source": "cnbc_world",
-      "title": "Trump cancels Camp David Cabinet trip, citing weather",
-      "link": "https://www.cnbc.com/2026/05/26/trump-camp-david-iran-cabinet.html",
-      "published": "Tue, 26 May 2026 21:05:24 GMT",
-      "body": "President Donald Trump on Tuesday said he and his Cabinet will no longer meet at Camp David on Wednesday, and will instead convene at the White House.\nThe trip was scrapped \"based on the possible bad weather conditions,\" Trump said in a Truth Social post.\nCNBC had confirmed the planned trip to the woodsy Maryland retreat on Tuesday morning, hours after new U.S. strikes in Iran raised concerns about an anticipated peace deal.\nThe president and his top officials were poised to discuss issues both foreign and domestic, a White House official told the New York Post, which first reported the planned trip earlier Tuesday.\nThey include the \"recent successes of the administration including economy and small business wins, Task Force to Eliminate Fraud highlights, and foreign policy updates,\" the official told the Post. The White House confirmed the Post's report to CNBC.\nWhile Trump frequently leaves the White House to spend time elsewhere, he usually opts to travel to his own properties, only rarely visiting Camp David in either of his presidential terms.\nThe presidential property has historically been the site of some significant U.S. policy developments — including the 1978 Camp David Accords, which were signed by President Jimmy Carter, Egyptian President Anwar Sadat and Israeli Prime Minister Menachem Begin and laid the groundwork for an Israel-Egypt peace treaty.\nThe U.S. and Israel's current war in the Middle East is widely expected to be a main topic of discussion at Wednesda"
+      "source": "cnbc_finance",
+      "title": "OpenAI takes the lead in AI IPO horse race: 'Getting to public markets first is very important'",
+      "link": "https://www.cnbc.com/2026/05/20/openai-takes-the-lead-in-ai-ipo-horse-race-getting-to-public-markets-first-is-very-important.html",
+      "published": "Wed, 20 May 2026 19:05:35 GMT",
+      "body": "Reports that OpenAI is set to confidentially file for an IPO as soon as Friday changed prediction market traders' outlook on which private AI giant will debut on the public markets first.\nTraders on Kalshi now see OpenAI as the favorite to go public before Anthropic, giving it an 83% chance of getting the big payday first.\n\"Getting to public markets first is very important, given this arms race going on,\" said Dan Ives, Wedbush Securities' global head of technology research. \"It sets a valuation, you're the first one to meet with investors on the road, and there's an advantage.\"\nBefore the initial report on the IPO timeline by the Wall Street Journal which CNBC later confirmed, traders gave OpenAI just over a 32% chance of beating its chief private rival to the public markets.\nChances Anthropic would beat OpenAI to an IPO collapsed on Polymarket to 20% from 69%.\nWhile the birth of OpenAI's ChatGPT launched the AI bull market in November 2022, the company has lost some of its shine with investors.\nWorries about the company's spending, reports on missed revenue and growth targets and leadership turnover weighed on investors' outlooks. There have even been internal disagreements on the timeline to go public, according to the Journal, with CEO Sam Altman pushing for a faster debut than CFO Sarah Friar.\nAt the same time, Anthropic's enterprise business has led it to experience massive growth in recent months, and reportedly is in talks with investors for a new funding round that w"
     },
     {
-      "source": "cnbc_world",
-      "title": "A battle is brewing in the gold pits. Here are the winners and losers",
-      "link": "https://www.cnbc.com/2026/05/26/a-battle-is-brewing-in-the-gold-pits-here-are-the-winners-and-losers.html",
-      "published": "Tue, 26 May 2026 20:15:51 GMT",
-      "body": "Has gold lost its luster?\nTraders on both sides of the question are duking it out in the options pit of one ETF that's trying to buck the multi-month downtrend in the commodity.\nOptions volumes leaned bullish in both the SPDR Gold ETF (GLD) and VanEck Gold Miners ETF (GDX) on Tuesday as GDX posted a more than 4% rally despite gold futures dropping on the session. Bullish flows were particularly strong in GDX, with call volumes outpacing puts more than 5 to 1 at one point of the trading day.\nIn GDX, more than 10,000 calls traded at the ask or above, meaning they were likely bought, compared to 4,400 puts bought, according to data from ThinkOrSwim. The most popular contracts by volume were the 100 and 110-strike calls expiring June 18, according to SpotGamma. Those calls need big double-digit rallies from here to break even.\nA separate, much bigger trader in the same GDX market doesn't think that will happen.\nThe biggest premium trade of the day was someone spending more than $1 million – more than the combined premium of both the 100 and 110 calls – scooping up thousands of the 85-strike puts expiring July 17.\nThe opposing trades offer a perspective on what could be a make-or-break moment for the precious metal as geopolitics remain unpredictable and the interest-rate outlook gets muddied as well. Gold's down almost 20% from its all-time high in January but still up 89% the past two years. Gold miners, by comparison, are up 144% over the same time period.\nTraders looking for a"
+      "source": "cnbc_finance",
+      "title": "Kevin Warsh comes into the Fed facing a big 'family fight' over cutting interest rates",
+      "link": "https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html",
+      "published": "Sat, 16 May 2026 13:41:29 GMT",
+      "body": "If new Federal Reserve Chair Kevin Warsh is still itching for a \"good family fight\" over monetary policy, he is likely to get one if he sticks to his guns on interest rate cuts.\nWith inflation spiking and Treasury yields surging, Warsh is likely to confront a Federal Open Market Committee in no mood to ease. In fact, several officials of late have stressed the need for the Fed to keep its options open for rate hikes ahead.\nIf it looked like outgoing Governor Stephen Miran was a lone wolf howling for reductions, seeing a Fed chair trying to defy his fellow policymakers and push for cuts will loom even larger.\nThose who have watched Warsh over the years, from his prior stint as a Fed governor through his high-profile public disagreements with Fed policy since, expect him to put up strong arguments for cutting. The problem is, he's likely to lose at least in the short term, a situation that sets up some interesting communication issues for the new central bank leader.\n\"I saw him in action. He does base his decisions on his view of the economy, and even his arguments for why he would favor rate decreases in general were based on his read of what's happening structurally in the economy,\" said former Cleveland Fed President Loretta Mester, who served with the Philadelphia Fed during the prior period when Warsh was on the board. \"I just don't think right now he can make those arguments in a credible way, because we have an inflation problem.\"\nIndeed, surging inflation will be Warsh'"
     },
     {
-      "source": "cnbc_world",
-      "title": "American Airlines picks SpaceX's Starlink for in-flight Wi-Fi on more than 500 planes",
-      "link": "https://www.cnbc.com/2026/05/26/american-airlines-spacex-starlink.html",
-      "published": "Tue, 26 May 2026 15:03:46 GMT",
-      "body": "American Airlines plans to outfit more than 500 of its narrow-body aircraft with Starlink, handing another win to Elon Musk's SpaceX unit that has made inroads with major carriers for in-flight Wi-Fi.\nAmerican was evaluating Starlink and Amazon Leo as recently as March for the service.\nThe airline announced Tuesday it would install Starlink on about 500 of its narrow-body Airbus planes, like the A321neo, starting early next year. American spokesman said the carrier doesn't have immediate plans to change providers on its Boeing fleet, which uses a mix of Viasat and Panasonic.\nAmerican in January rolled out free in-flight Wi-Fi for members of its frequent flyer program, following United Airlines, Delta Air Lines and others.\nDelta in March said it would use Amazon Leo for in-flight Wi-Fi for hundreds of jets starting in 2028. United, Southwest Airlines and Alaska Airlines, which merged with Hawaiian Airlines in 2024, have selected Starlink.\nCarriers are battling for higher-spending customers, including by upgrading once-slow, expensive and clunky in-flight internet to higher speeds. They have also been weighing other revenue streams, like personalized ads for travelers.\nSpaceX, meanwhile, is preparing to go public in what's likely to be a record IPO next month. Its connectivity unit, which includes Starlink, posted revenue of $11.39 billion last year, making up 61% of total sales, SpaceX said in a filing for its initial public offering earlier this month."
+      "source": "maeil",
+      "title": "“삼성전자 55만원·하이닉스 380만원”…메모리 몸값 더 뛴다 [오늘 나온 보고서]",
+      "link": "https://www.mk.co.kr/news/stock/12058405",
+      "published": "Wed, 27 May 2026 08:50:15 +09:00",
+      "body": "글로벌 메모리 밸류에이션 상향 반영\n삼성전자와 SK하이닉스 목표주가를 동시에 상향하는 보고서가 나왔다. 실적 전망 자체를 크게 바꾸기보다 글로벌 메모리 업종 전반의 밸류에이션 상승을 반영한 조정이다.\n27일 미래에셋증권은 보고서에서 SK하이닉스 목표주가를 기존 320만원에서 380만원으로 18.8% 상향했다. 삼성전자 목표주가도 기존 48만원에서 55만원으로 14.6% 올렸다.\n두 종목 모두 투자의견 ‘매수’를 유지했다. 미래에셋증권은 실적 전망은 직전 추정과 같이 유지하되, 글로벌 메모리 업종 전반의 밸류에이션 상향 기조를 반영했다고 설명했다.\nSK하이닉스의 경우 주가순자산비율(PBR) 적용 배수를 기존 5.3배에서 6.2배로 높였다. 글로벌 메모리 2개사인 마이크론과 키옥시아의 현재 주가 기준 배수 평균을 반영한 것이다.\n보고서는 SK하이닉스의 현 주가 기준 12개월 선행 PBR과 주가수익비율(PER)이 각각 3.0배, 5.6배 수준이라고 설명했다. 이는 글로벌 메모리 2개사 평균인 PBR 6.2배, PER 10.1배에 크게 미치지 못한다는 분석이다.\nSK하이닉스에 대해서는 높아진 메모리 가격 레벨과 장기공급계약(LTA) 비중 확대로 2026~2028년 평균 자기자본이익률(ROE)이 66%로 높아질 것으로 추정했다. 이익 체력에 비해 현재 밸류에이션이 낮다는 판단이다.\n삼성전자도 비슷한 논리로 목표주가가 상향됐다. 미래에셋증권은 삼성전자에 적용하는 12개월 선행 EV/EBITDA 배수를 기존 6.0배에서 7.0배로 높였다. 역시 글로벌 메모리 2개사의 현재 주가 기준 배수 평균을 반영했다.\n보고서는 삼성전자의 현 주가 기준 12개월 선행 PBR과 PER이 각각 2.3배, 7배 수준이라고 설명했다. 이 역시 글로벌 메모리 2개사 평균에 크게 못 미친다는 평가다.\n삼성전자에 대해서는 구조적 프리미엄 요인이 충분하다고 봤다. DRAM과 NAND 모두 최대 생산능력을 갖춘 만큼 2026년 초호황 국면에서 영업 레버리지를 가장 크게 누릴 수 있다는 설명이다. 여기에 HBM4와 SOCAMM2 성능, 수율 확보, DRAM·Flash·파운드리 구조를 통한 엔터프라이즈 SSD와 HBM 내재화 가능성도 긍정적 요인으로 제시했다.\n메모리 수급 전망도 우호적으로 제시됐다. 보고서는 최근 빅테크의 데이터센터 수주잔고 증가 속도가 설비투자 증가 속도를 초과하고 있다며, 안정적 설비 투자를 위한 메모리 장기공급계약이 확대되고 있다고 분석했다. 샌디스크가 데이터센터향 분기 매출액의 28배 규모인 420억달러의 수주잔고를 확보하고 25% 규모의 선수금도 확보한 점을 사례로 들었다.\n미래에셋증권은 2028년까지 DRAM과 NAND 모두 초과수요 국면이 이어질 것으로 전망했다. 이에 따라 높아진 가격대가 유지될 것으로 예상했다.\n실적 전망도 큰 폭의 이익 성장을 반영했다. 미래에셋증권은 SK하이닉스의 2분기와 2026년, 2027년 영업이익을 각각 67조원, 290조원, 420조원으로 추정했다. 삼성전자의 영업이익은 같은 기간 각각 89조원, 371조원, 500조원으"
     },
     {
-      "source": "cnbc_world",
-      "title": "Cornyn and Paxton go head-to-head in Texas Republican Senate primary after Trump endorsement",
-      "link": "https://www.cnbc.com/2026/05/26/texas-primary-election-senate-paxton-cornyn.html",
-      "published": "Tue, 26 May 2026 18:42:16 GMT",
-      "body": "Polls are open in the Republican Senate primary runoff in Texas as incumbent Sen. John Cornyn tries to fend off a primary challenge from state Attorney General Ken Paxton, who has the backing of President Donald Trump.\nThe winner of the Republican runoff will face off against Democratic state legislator James Talarico in the general election in November. The race is expected to be one of the most expensive in the nation as the GOP vies to keep control of the Senate and Democrats push to win a long-sought Senate seat in Texas.\nCornyn came out narrowly on top of Paxton in the March primary, but failed to garner enough votes to avoid a runoff.\nTrump's endorsement of Paxton last week sent shock waves through the Republican-controlled Senate, which has poured significant resources into Cornyn's reelection bid. Cornyn also took extensive steps to mend his relationship with Trump, which has been strained over the years.\nThe Republican primary in Texas has been among the messiest of the 2026 campaign cycle. Cornyn's campaign has slammed Paxton, a close Trump ally, over a slew of ethical and legal scandals that have plagued him and his office throughout his tenure as the Lone Star State's top law enforcement official.\nPaxton was impeached by the Texas House of Representatives and acquitted by the Senate and has been indicted for securities fraud. He was recently divorced from his wife on what she described as \"biblical grounds.\"\nPaxton's campaign, meanwhile, has tried to frame Cornyn "
-    },
-    {
-      "source": "cnbc_world",
-      "title": "U.S. conducts 'self-defense strikes' in Iran as Trump pushes for peace deal",
-      "link": "https://www.cnbc.com/2026/05/26/us-conducts-self-defense-strikes-in-iran-as-trump-seeks-peace-deal.html",
-      "published": "Tue, 26 May 2026 13:07:52 GMT",
-      "body": "U.S. forces conducted \"self-defense\" strikes in southern Iran early Tuesday local time, with U.S. Central Command saying the military action was to \"protect our troops from threats posed by Iranian forces.\"\nCENTCOM spokesman Tim Hawkins said targets included missile launch sites and Iranian boats attempting to emplace mines.\n\"U.S. Central Command continues to defend our forces while using restraint during the ongoing ceasefire,\" Hawkins added.\nThe action comes as U.S. President Donald Trump said Monday stateside that the talks with Iran were \"proceeding nicely.\" However, he warned that \"it will only be a Great Deal for all or, no Deal at all,\" threatening to take things \"Back to the Battlefront and shooting, but bigger and stronger than ever before.\"\nU.S. Secretary of State Marco Rubio, who is in India, said that the Strait of Hormuz has to be open, \"one way or the other,\" referring to U.S. action against Iran, Reuters reported. He added that the deal with Iran could take a few days. Fox News, citing senior U.S. officials on Monday said that the Iran deal was \"95% there.\"\nThis is not the first instance of military action since a ceasefire was reached between Washington and Tehran on April 8. Later that month, U.S. marines seized the Touska, an Iranian cargo ship, and in May, both sides traded fire in the Strait of Hormuz, with each side claiming the other initiated the attack.\nIn a separate Truth Social post, the U.S. president said Iran's stockpile of enriched uranium will b"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Barriers grow for international students seeking U.S. jobs: The 'American dream ... is collapsing'",
-      "link": "https://www.cnbc.com/2026/05/24/for-international-students-seeking-us-jobs-the-american-dream-is-collapsing.html",
-      "published": "Sun, 24 May 2026 14:15:01 GMT",
-      "body": "Sakshi Patel has known since she was little that she wanted to study in the U.S. She says she pictured herself landing a job in New York City, the financial capital of the world, and living out her version of the American dream far from home.\nPatel, who earned her master's degree in financial management from Boston University in May 2025, says she has about two months left on her current work authorization and is job hunting full force. If she doesn't get a job within that time, she'll have to move back to her native India.\nAs difficult as it is for recent college graduates to gain their footing in one of the worst entry-level job markets in recent memory, international graduates are also having to navigate an unpredictable immigration environment in order to jump-start their U.S.-based careers and lives. Faced with additional and increasing difficulties, some international students are putting together backup plans.\nAfter graduating last year, Patel, 23, began working as a business analyst with a nonprofit under the optional practical training program, or OPT, the work authorization available to international students after they graduate. After her one-year OPT expires this summer, though, she'll need to find an eligible job related to her degree, then apply for a STEM OPT extension of up to two years — available to some graduates with science, technology, engineering and math degrees — in order to stay in the U.S.\nPatel told CNBC Make It that she's been \"making every effort"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Americans are 'entrenched' in financial stress amid debt and price pressures",
-      "link": "https://www.cnbc.com/2026/05/24/americans-struggling-with-debt-inflation.html",
-      "published": "Sun, 24 May 2026 15:00:01 GMT",
-      "body": "Economic conditions like gas prices well above $4 a gallon, according to AAA estimates, and annual inflation nearing 4%, per the Bureau of Labor Statistics, are pushing Americans' financial stress levels higher.\nThe National Foundation for Credit Counseling expects Americans' economic stress levels to tick back up in the second quarter of the year after a slight fall in the first quarter, according to its quarterly Financial Stress Forecast released on Wednesday.\nThe forecast considers data on consumer counseling behavior as well as other broader economic indicators to predict trends in Americans' financial stability. It rates Americans' financial stress on a scale of 1 through 10, with 10 as the highest stress level. The rating has remained at or above 6.3 since the end of 2024, compared with a post-pandemic low of 3.5 in 2021. The forecast for the three months ending in June: 6.7.\nAmericans \"are entrenched in financial stress,\" Bruce McClary, senior vice president of membership and media relations at NFCC says — the result of elevated prices on top of near-historic highs of consumer debt on credit cards and auto loans.\nThe nonprofit organization, which provides education and solutions for individuals struggling with their finances, especially debt management, reported a \"significant surge\" in consumers reaching out for credit counseling, which could be a warning sign for the broader economy, NFCC says. While it's encouraging to see individuals seeking help before they have "
+      "source": "yonhap",
+      "title": "KB증권 \"LG이노텍, AI 기판 공급 부족 수혜…목표가 160만원\"",
+      "link": "https://www.yna.co.kr/view/AKR20260527025300008",
+      "published": "Wed, 27 May 2026 08:31:43 +0900",
+      "body": "KB증권은 27일 LG이노텍에 대해 AI 기판 공급 부족의 수혜가 기대된다며 목표주가를 120만원에서 160만원으로 올렸다.\n특히 \"엔비디아 베라 루빈 플랫폼에서 기판이 차지하는 원가 비중이 전작 블랙웰 대비 2배 이상 확대될 것으로 예상돼, LG이노텍 기판 사업이 메모리 반도체와 유사하게 AI 기판 공급 부족의 직접적 수혜를 받을 것\"이라고 설명했다.\n이어 \"현재 기판 생산라인은 최대 비수기인 2분기에도 가동률은 100%\"라며 \"빅테크 업체들이 선수금을 통한 신규 설비투자 지원을 LG이노텍 기판 사업부에 제시하고 있고 장기공급계약도 논의되고 있는 것으로 추정돼, 향후 기판 사업의 장기 실적 가시성을 확대할 것\"이라고 예상했다.\n인공지능이 자동으로 줄인 '세 줄 요약' 기술을 사용합니다. 전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n(서울=연합뉴스) 이민영 기자 = KB증권은 27일 LG이노텍[011070]에 대해 AI(인공지능) 기판 공급 부족의 수혜가 기대된다며 목표주가를 120만원에서 160만원으로 올렸다.\n김동원 리서치본부장은 이날 보고서에서 \"극심한 공급 부족에 직면한 기판 사업은 1천조원을 상회하는 AI 투자로 공급 병목이 발생한 메모리 반도체 산업과 닮아 있다\"고 짚었다.\n구체적으로 \"빅테크 업체들은 공급 부족 심화에 대응해 구속력 있는 장기공급계약(LTA)과 선수금 기반 설비투자 지원을 동시에 논의 중\"이라며 \"에이전틱 AI 확산으로 연간 토큰 사용량이 7배 증가할 것으로 예상되는 가운데, 클라우드 사업자들의 AI 데이터센터 확충과 메모리 용량 확보가 한층 시급해지면서 기판 공급 부족은 향후 1∼2년 내 해소되기 어려울 전망\"이라고 했다.\n특히 \"엔비디아 베라 루빈(Vera Rubin) 플랫폼에서 기판이 차지하는 원가 비중이 전작 블랙웰 대비 2배 이상 확대될 것으로 예상돼, LG이노텍 기판 사업이 메모리 반도체와 유사하게 AI 기판 공급 부족의 직접적 수혜를 받을 것\"이라고 설명했다.\n이어 \"현재 기판 생산라인은 최대 비수기인 2분기에도 가동률은 100%\"라며 \"빅테크 업체들이 선수금을 통한 신규 설비투자 지원을 LG이노텍 기판 사업부에 제시하고 있고 장기공급계약도 논의되고 있는 것으로 추정돼, 향후 기판 사업의 장기 실적 가시성을 확대할 것\"이라고 예상했다.\n그러면서 올해 연간 영업이익 추정치를 기존 1조1천640억원에서 1조1천940억원으로 2.6% 상향 조정했다. 아울러 내년 영업익 추정치도 1조5천120억원에서 1조5천920억원으로 5.3% 상향했다.\n김 본부장은 \"당분간 실적 전망치의 상향 속도가 주가 상승 속도를 앞지를 것\"이라며 \"최근 주가 상승에도 LG이노텍의 내년 평균 PER(주가수익비율)은 20배, PBR(주가순자산비율)은 3.2배 수준으로, 글로벌 기판 상위 업체들의 내년 평균 PER 40배, PBR 8배 대비 큰 폭으로 할인 거래되고 있다\"고 강조했다.\nLG이노텍은 전날 23.61% 급등한 106만8천원을 기록하며 이른바 '황제주'(주가 100만원)에 등극했다.\nmylux@yna."
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +5.53%, 러셀2000 +1.79%, 나스닥 +1.19% 강세 속 미국채 10년물 금리 -1.43% 하락으로 성장주 밸류에이션 부담 완화",
+  "sentiment_reason": "필라델피아 반도체 +5.53%, 나스닥 +1.19%, 코스닥 +4.99% — SpaceX IPO 흥분, AI 반도체 밸류에이션 상향, OpenAI IPO 임박 기대가 기술주 전방위 랠리 촉발",
   "key_factors": [
-    "필라델피아반도체 +5.53% 급등으로 글로벌 반도체 모멘텀 확인",
-    "미국채 10년물 금리 4.49%(-1.43%) 하락으로 성장주 선호 재점화",
-    "미-이란 긴장 고조로 WTI -3.36% 급락 속에도 위험자산 선별 강세 지속"
+    "SpaceX IPO 정식 신청 + OpenAI 금요일 비공개 신청 예정 → 메가테크 IPO 러시 흥분감 확산",
+    "Micron UBS 목표가 대폭 상향 + 메모리 밸류에이션 글로벌 재평가 (삼성전자 55만원·SK하이닉스 380만원 목표가)",
+    "엔비디아 실적 발표 임박 (수요일) + AI 기판 공급 부족 심화 (LG이노텍 원가 비중 2배 확대)"
   ],
-  "news_summary": "Piper Sandler, 호르무즈 해협 수개월 폐쇄 및 유가 신고가 전망 — 이란 합의 회의적 시각, 여름 공급 부족 심화 경고\n미국 소비자 재정 스트레스 심화 — 휘발유 $4 상회, 인플레 4% 근접, 부채 압박으로 경제적 스트레스 고착화\n미국채 10년물 금리 4.49%(-1.43%) 하락 — 경기 둔화 우려 속 채권 수요 증가\n미국, 이란 남부에 자위 타격 실시 — 미사일 발사기지·이란 선박 표적, 이란은 보복 경고로 Brent유 +3% 급등\n트럼프 행정부, 교황 레오 14세의 AI 일자리 대체 경고에 분열 — 내무장관 Burgum 반박, 바티칸과 갈등 확대\nAPEC에서 미중 무역 간극 지속 확인 — 중국 상무장관 긴급 업무로 개막식 불참, 협력 난항\n트럼프, Camp David 각료 회의 기상 악화로 백악관 변경 발표\nSpaceX 나스닥 상장 준비 본격화 — 머스크 2개 시총 1조달러 기업 보유 전망, SpaceX-Tesla 합병 추측 재점화\n필라델피아반도체 +5.53% 급등 — 글로벌 반도체 모멘텀 확인, Huawei 가을 신규 스마트폰 칩 출시로 Nvidia·Apple과 경쟁 격화\nApple, 6월 8일 WWDC 앞두고 신고가 테스트 — 시장은 AI·신제품 발표 기대\nAmerican Airlines, SpaceX Starlink을 500대 이상 기내 Wi-Fi로 선택 — Amazon Leo 제치고 머스크 영향력 확대\nAutoZone 주가 4년래 최악(-9%) — 3분기 월가 예상 상회했으나 소비 둔화 우려 반영\nBP 회장 Albert Manifold 긴급 해임 — 거버넌스·감독·행동 문제로 이사회 결정, 주가 급락\n코스닥 +4.99% 급등 — 필라델피아반도체 강세 파급, 반도체 중소형(RS-R 111.4)·IT부품(RS-R 116.3) Leading 구간 진입\n원/달러 1514.79원(+0.13%) — 달러인덱스 약세에도 코스피 상승폭 제한, 외국인 수급 불안으로 원화 약세 지속\n코스피 +0.41% 제한적 반등 — 글로벌 반도체 강세에도 대형주 모멘텀 부족, 지주·복합기업(RS-R 106.1) Leading 유지",
+  "news_summary": "연준 의사록, 인플레 고착 시 금리인상 가능 시사 — Kevin Warsh 신임 의장 FOMC 내 금리인하 반대 직면 예상으로 통화정책 경로 불확실성 증폭\nECB 프랑스 총재 \"인플레 억제 위해 필요한 조치 취할 것\" 발언 — 유럽 긴축 기조 재확인\n중동 걸프 공습으로 지정학 리스크 부각되었으나 금 가격 보합 — 금리 전망 혼선이 안전자산 수요 제한\nWTI 유가 -3.57% 급락 — 중동 지정학 이슈에도 연준 긴축 장기화·경기 둔화 우려로 수요 감소 전망 우세\n트럼프 행정부, IBM·D-Wave 등 9개 양자컴퓨팅 업체에 지분 참여 조건 20억 달러 보조금 지급 정책 발표 — 반도체·신재생·광통신 이어 양자 산업 정책 육성 본격화\nHuawei, 가을 신규 스마트폰 칩 계획 발표 + 'LogicFolding' 반도체 제조 기법 공개 — 미국 제재 속 Nvidia·Apple과 경쟁 심화\n중국 Alibaba, 젠우(Zhenwu) AI 칩 고도화 버전 + 신규 LLM 모델 공개 — 자체 AI 반도체 경쟁력 과시\nSpaceX, 나스닥 정식 IPO 신청 완료 + Robinhood·Fidelity·Schwab 통해 리테일 직접 참여 허용 — Berkshire Hathaway 시총 추월 예상, S&P500 빠른 편입 가능성\nOpenAI, 금요일 비공개 IPO 신청 예정 — 예측시장 Kalshi, Anthropic 대비 IPO 선두 확률 83%로 급등\nMicron, UBS 목표가 대폭 상향 (구체 수치 미공개) — 메모리 반도체 밸류에이션 재평가 신호탄\n엔비디아, 수요일 1분기 실적 발표 앞두고 긴장 고조 — Kalshi, Jensen Huang이 컨퍼런스콜에서 '트럼프'·'시진핑 정상회담 이후 중국 칩' 언급 여부 베팅 활발\nSpaceX, 미 우주군으로부터 20억 달러 위성 제작 계약 수주 + American Airlines 500대 이상 기내 Starlink Wi-Fi 도입 결정\nSpaceX-Tesla 합병 추측 재점화 — Musk, 두 번째 1조 달러 기업 상장 앞두고 통합 목표 추정\nApple, 6월 8일 WWDC 앞두고 8주 연속 신고가 행진 중 — 주요 시험대 예고\n사이버보안주 실적 앞두고 급등 — 1개 종목 유망 (구체 종목 미상)",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "Piper Sandler, 호르무즈 해협 수개월 폐쇄 및 유가 신고가 전망 — 이란 합의 회의적 시각, 여름 공급 부족 심화 경고",
+          "text": "연준 의사록, 인플레 고착 시 금리인상 가능 시사 — Kevin Warsh 신임 의장 FOMC 내 금리인하 반대 직면 예상으로 통화정책 경로 불확실성 증폭",
           "impact": "high"
         },
         {
-          "text": "미국 소비자 재정 스트레스 심화 — 휘발유 $4 상회, 인플레 4% 근접, 부채 압박으로 경제적 스트레스 고착화",
+          "text": "ECB 프랑스 총재 \"인플레 억제 위해 필요한 조치 취할 것\" 발언 — 유럽 긴축 기조 재확인",
           "impact": "mid"
         },
         {
-          "text": "미국채 10년물 금리 4.49%(-1.43%) 하락 — 경기 둔화 우려 속 채권 수요 증가",
+          "text": "중동 걸프 공습으로 지정학 리스크 부각되었으나 금 가격 보합 — 금리 전망 혼선이 안전자산 수요 제한",
+          "impact": "mid"
+        },
+        {
+          "text": "WTI 유가 -3.57% 급락 — 중동 지정학 이슈에도 연준 긴축 장기화·경기 둔화 우려로 수요 감소 전망 우세",
           "impact": "mid"
         }
       ]
@@ -10129,19 +10132,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미국, 이란 남부에 자위 타격 실시 — 미사일 발사기지·이란 선박 표적, 이란은 보복 경고로 Brent유 +3% 급등",
+          "text": "트럼프 행정부, IBM·D-Wave 등 9개 양자컴퓨팅 업체에 지분 참여 조건 20억 달러 보조금 지급 정책 발표 — 반도체·신재생·광통신 이어 양자 산업 정책 육성 본격화",
           "impact": "high"
         },
         {
-          "text": "트럼프 행정부, 교황 레오 14세의 AI 일자리 대체 경고에 분열 — 내무장관 Burgum 반박, 바티칸과 갈등 확대",
+          "text": "Huawei, 가을 신규 스마트폰 칩 계획 발표 + 'LogicFolding' 반도체 제조 기법 공개 — 미국 제재 속 Nvidia·Apple과 경쟁 심화",
           "impact": "mid"
         },
         {
-          "text": "APEC에서 미중 무역 간극 지속 확인 — 중국 상무장관 긴급 업무로 개막식 불참, 협력 난항",
-          "impact": "mid"
-        },
-        {
-          "text": "트럼프, Camp David 각료 회의 기상 악화로 백악관 변경 발표",
+          "text": "중국 Alibaba, 젠우(Zhenwu) AI 칩 고도화 버전 + 신규 LLM 모델 공개 — 자체 AI 반도체 경쟁력 과시",
           "impact": "mid"
         }
       ]
@@ -10151,45 +10150,35 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "SpaceX 나스닥 상장 준비 본격화 — 머스크 2개 시총 1조달러 기업 보유 전망, SpaceX-Tesla 합병 추측 재점화",
+          "text": "SpaceX, 나스닥 정식 IPO 신청 완료 + Robinhood·Fidelity·Schwab 통해 리테일 직접 참여 허용 — Berkshire Hathaway 시총 추월 예상, S&P500 빠른 편입 가능성",
           "impact": "high"
         },
         {
-          "text": "필라델피아반도체 +5.53% 급등 — 글로벌 반도체 모멘텀 확인, Huawei 가을 신규 스마트폰 칩 출시로 Nvidia·Apple과 경쟁 격화",
+          "text": "OpenAI, 금요일 비공개 IPO 신청 예정 — 예측시장 Kalshi, Anthropic 대비 IPO 선두 확률 83%로 급등",
           "impact": "high"
         },
         {
-          "text": "Apple, 6월 8일 WWDC 앞두고 신고가 테스트 — 시장은 AI·신제품 발표 기대",
-          "impact": "mid"
-        },
-        {
-          "text": "American Airlines, SpaceX Starlink을 500대 이상 기내 Wi-Fi로 선택 — Amazon Leo 제치고 머스크 영향력 확대",
-          "impact": "mid"
-        },
-        {
-          "text": "AutoZone 주가 4년래 최악(-9%) — 3분기 월가 예상 상회했으나 소비 둔화 우려 반영",
-          "impact": "mid"
-        },
-        {
-          "text": "BP 회장 Albert Manifold 긴급 해임 — 거버넌스·감독·행동 문제로 이사회 결정, 주가 급락",
-          "impact": "mid"
-        }
-      ]
-    },
-    {
-      "name": "korea",
-      "label": "한국 관련",
-      "items": [
-        {
-          "text": "코스닥 +4.99% 급등 — 필라델피아반도체 강세 파급, 반도체 중소형(RS-R 111.4)·IT부품(RS-R 116.3) Leading 구간 진입",
+          "text": "Micron, UBS 목표가 대폭 상향 (구체 수치 미공개) — 메모리 반도체 밸류에이션 재평가 신호탄",
           "impact": "high"
         },
         {
-          "text": "원/달러 1514.79원(+0.13%) — 달러인덱스 약세에도 코스피 상승폭 제한, 외국인 수급 불안으로 원화 약세 지속",
+          "text": "엔비디아, 수요일 1분기 실적 발표 앞두고 긴장 고조 — Kalshi, Jensen Huang이 컨퍼런스콜에서 '트럼프'·'시진핑 정상회담 이후 중국 칩' 언급 여부 베팅 활발",
+          "impact": "high"
+        },
+        {
+          "text": "SpaceX, 미 우주군으로부터 20억 달러 위성 제작 계약 수주 + American Airlines 500대 이상 기내 Starlink Wi-Fi 도입 결정",
           "impact": "mid"
         },
         {
-          "text": "코스피 +0.41% 제한적 반등 — 글로벌 반도체 강세에도 대형주 모멘텀 부족, 지주·복합기업(RS-R 106.1) Leading 유지",
+          "text": "SpaceX-Tesla 합병 추측 재점화 — Musk, 두 번째 1조 달러 기업 상장 앞두고 통합 목표 추정",
+          "impact": "mid"
+        },
+        {
+          "text": "Apple, 6월 8일 WWDC 앞두고 8주 연속 신고가 행진 중 — 주요 시험대 예고",
+          "impact": "mid"
+        },
+        {
+          "text": "사이버보안주 실적 앞두고 급등 — 1개 종목 유망 (구체 종목 미상)",
           "impact": "mid"
         }
       ]
@@ -10197,206 +10186,223 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "미국채 금리 하락(-1.43%)으로 성장주 밸류에이션 부담 완화, 반도체·기술주 중심 상승",
+      "reason": "SpaceX/OpenAI IPO 기대감과 AI 반도체 밸류에이션 상향이 대형 기술주 중심 상승 견인, 다우는 전통 산업주 부진으로 소폭 하락",
       "drivers": [
-        "필라델피아반도체 +5.53%",
-        "미국채 10년물 금리 4.49%(-1.43%)"
+        "나스닥 +1.19% 동조",
+        "SpaceX IPO 흥분감"
       ]
     },
     "NASDAQ": {
-      "reason": "금리 하락과 반도체 강세로 기술주 중심 랠리, 애플 신고가 테스트 전망 속 기대감",
+      "reason": "SpaceX IPO 정식 신청 + OpenAI IPO 금요일 신청 예상으로 메가테크 IPO 러시 기대감 폭발, 반도체 밸류에이션 재평가 동조",
       "drivers": [
-        "필라델피아반도체 +5.53%",
-        "Apple WWDC(6/8) 기대감"
+        "SpaceX IPO 필링",
+        "반도체주 밸류에이션 상향"
       ]
     },
     "DOW": {
-      "reason": "전통 산업주 중심 지수로 AutoZone -9%(4년래 최대 낙폭) 등 소비 관련 약세 반영",
+      "reason": "전통 산업주 중심 다우는 유가 -3.57% 하락과 금리 하단 안착 속 원자재·에너지 기업 부진으로 하락 전환",
       "drivers": [
-        "AutoZone 4년래 최악 하락",
-        "미국 소비자 재정 스트레스 심화"
+        "WTI -3.57% 충격",
+        "전통 산업주 부진"
       ]
     },
     "VIX": {
-      "reason": "미국의 이란 남부 자위 타격 및 이란 보복 경고로 지정학 리스크 프리미엄 소폭 상승",
+      "reason": "연준 의사록 인플레 우려 + Kevin Warsh 금리인하 신중론 + 엔비디아 실적 발표 불확실성으로 변동성 지수 소폭 상승",
       "drivers": [
-        "미-이란 군사 충돌",
-        "호르무즈 해협 폐쇄 장기화 우려"
+        "연준 의사록 긴축 시사",
+        "엔비디아 실적 불확실성"
       ]
     },
     "필라델피아반도체": {
-      "reason": "글로벌 반도체 업황 모멘텀 지속, SpaceX 나스닥 상장 임박 및 머스크 빅테크 영향력 확대 기대",
+      "reason": "Micron UBS 목표가 대폭 상향 + 글로벌 메모리 밸류에이션 재평가 + AI 기판 공급 부족 심화 (LG이노텍 베라 루빈 원가 2배) 시그널이 반도체 전반 폭등 촉발",
       "drivers": [
-        "SpaceX 나스닥 상장 준비",
-        "Huawei 가을 신규 칩 출시 경쟁 가속화"
+        "Micron 목표가 급등",
+        "메모리 밸류에이션 상향",
+        "AI 기판 공급 병목"
       ]
     },
     "러셀2000": {
-      "reason": "금리 하락으로 소형주 자금조달 비용 부담 완화, 위험선호 확대",
+      "reason": "SpaceX 리테일 직접 참여 (Robinhood·Fidelity·Schwab) 허용으로 개인투자자 접근성 확대 → 중소형주 리스크 선호 급등",
       "drivers": [
-        "미국채 10년물 금리 -1.43%",
-        "성장주 모멘텀 확산"
+        "SpaceX 리테일 참여",
+        "소형주 리스크온"
       ]
     },
     "영국FTSE": {
-      "reason": "BP 회장 Albert Manifold 긴급 해임(거버넌스·행동 문제)으로 에너지주 약세 일부 상쇄, 전반적 동조 상승",
+      "reason": "직접 촉매 약함 — ECB 프랑스 총재 \"인플레 억제 필요한 조치\" 발언으로 유럽 긴축 기조 재확인 속 소폭 상승",
       "drivers": [
-        "BP 회장 해임 악재",
-        "유럽 증시 동조 상승"
+        "ECB 긴축 기조"
       ]
     },
     "독일DAX": {
-      "reason": "유럽 제조업·기술주 중심 강세, 미국 금리 하락 및 글로벌 반도체 모멘텀 동조화",
+      "reason": "유럽 기술주 SpaceX IPO 동조 랠리 + 중국 Alibaba 젠우(Zhenwu) AI 칩 공개로 글로벌 AI 경쟁 심화 기대감 반영",
       "drivers": [
-        "미국채 금리 하락",
-        "글로벌 반도체 강세 파급"
+        "SpaceX IPO 글로벌 확산",
+        "중국 AI 칩 경쟁"
       ]
     },
     "니케이": {
-      "reason": "필라델피아반도체 +5.53% 영향으로 도쿄일렉트론 등 반도체 장비·소재주 강세",
+      "reason": "필라델피아 반도체 +5.53% 급등 동조 + 한국 메모리 목표가 상향 (삼성 55만원·하이닉스 380만원) 시그널이 일본 반도체 공급망 전반 부양",
       "drivers": [
-        "필라델피아반도체 강세",
-        "엔화 약세 유지"
+        "필라델피아 반도체 동조",
+        "메모리 밸류에이션 재평가"
       ]
     },
     "항셍": {
-      "reason": "APEC에서 미중 무역 간극 지속 확인됐으나 Huawei 가을 신규 칩 출시 계획으로 기술주 일부 반등",
+      "reason": "Huawei 가을 신규 스마트폰 칩 계획 발표 + Alibaba 젠우 AI 칩·신규 LLM 공개로 중국 자체 반도체 경쟁력 과시 → 기술주 상승",
       "drivers": [
-        "Huawei 반도체 경쟁력 기대",
-        "미중 무역 갈등 지속"
+        "Huawei 칩 계획",
+        "Alibaba AI 칩 공개"
       ]
     },
     "달러인덱스": {
-      "reason": "미국채 금리 하락 및 호르무즈 해협 장기 폐쇄 우려 속 안전자산 선호 약화",
+      "reason": "연준 의사록 인플레 경계 시사했으나 Kevin Warsh FOMC 내 금리인하 '가족 싸움' 예고로 통화정책 불확실성 증가 → 달러 약세",
       "drivers": [
-        "미국채 10년물 금리 -1.43%",
-        "지정학 리스크의 달러 수요 제한적"
+        "FOMC 내분 우려",
+        "금리 경로 불확실성"
       ]
     },
     "국채10Y": {
-      "reason": "미국 소비자 재정 스트레스 심화(인플레 4%, 휘발유 $4 상회) 속 경기 둔화 우려로 채권 매수",
+      "reason": "연준 의사록 인플레 고착 시 금리인상 가능 시사했으나, Kevin Warsh FOMC 내 금리인하 반대 직면 예상으로 긴축 지속 기대 완화 → 수익률 -1.43% 하락",
       "drivers": [
-        "미국 소비자 재정 스트레스",
-        "성장 둔화 우려"
+        "FOMC 내분 기대",
+        "긴축 지속 불확실성"
       ]
     },
     "국채30Y": {
-      "reason": "장기 국채도 경기 둔화 우려 동조 하락, 단 10년물 대비 낙폭 축소",
+      "reason": "10년물 동조 — 연준 내부 금리정책 분열 우려로 장기 긴축 시나리오 약화",
       "drivers": [
-        "10년물 금리 하락 파급",
-        "장기 인플레 우려 잔존"
+        "10년물 -1.43% 동조"
       ]
     },
     "코스피": {
-      "reason": "필라델피아반도체 강세에도 코스피 대형주 중심 제한적 반등, 원/달러 1514원대 약세 지속",
+      "reason": "삼성전자 노사 합의안 가결 기대 (투표율 92.4%) + 메모리 목표가 대폭 상향 (삼성 55만원·하이닉스 380만원) 시그널이 대형주 중심 완만한 상승 견인",
       "drivers": [
-        "글로벌 반도체 강세 제한적 파급",
-        "원/달러 1514원대 환율 부담"
+        "삼성전자 노사 합의 기대",
+        "메모리 목표가 상향"
       ]
     },
     "코스닥": {
-      "reason": "필라델피아반도체 +5.53% 영향으로 반도체 중소형·IT부품 중심 급등, 기술주 모멘텀 확산",
+      "reason": "필라델피아 반도체 +5.53% 동조 + AI 부품 목표가 연쇄 상향 (파크시스템스·LG이노텍 160만원·아모텍 4.2만원) + IT부품 섹터 Leading 진입이 중소형 기술주 폭등 견인",
       "drivers": [
-        "필라델피아반도체 강세",
-        "반도체 중소형·IT부품 Leading"
+        "필라델피아 반도체 동조",
+        "AI 부품 목표가 상향",
+        "IT부품 Leading 전환"
       ]
     },
     "금": {
-      "reason": "미-이란 충돌에도 달러 약세 및 위험자산 선호로 안전자산 수요 제한, 횡보",
+      "reason": "중동 걸프 공습으로 지정학 리스크 부각되었으나 연준 금리 전망 불확실성 (인상 vs 인하 혼재)으로 안전자산 수요 제한 → 보합",
       "drivers": [
-        "달러인덱스 -0.18%",
-        "위험자산 선호 확대"
+        "중동 지정학 리스크",
+        "금리 전망 혼선"
       ]
     },
     "WTI유가": {
-      "reason": "Piper Sandler의 호르무즈 해협 수개월 폐쇄·신고가 전망에도 단기 과매수 청산 및 경기 둔화 우려 반영",
+      "reason": "중동 걸프 공습 지정학 이슈에도 불구, 연준 긴축 장기화 우려 + 글로벌 경기 둔화 전망으로 수요 감소 우려가 공급 리스크 압도 → 급락",
       "drivers": [
-        "단기 과매수 청산",
-        "미국 소비 둔화 우려"
+        "연준 긴축 장기화",
+        "수요 둔화 우려"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 약세에도 코스피 상승폭 제한 및 외국인 수급 불안으로 원화 약세 지속",
+      "reason": "직접 촉매 약함 — 달러인덱스 -0.24% 약세 동조했으나 외국인 수급 변동성으로 원화 소폭 약세",
       "drivers": [
-        "코스피 상승폭 제한(+0.41%)",
-        "외국인 수급 불안"
+        "달러인덱스 약세 동조"
       ]
     },
     "구리": {
-      "reason": "글로벌 제조업 기대 및 Perpetua Resources의 Idaho 금·안티모니 프로젝트 $2.9B 대출 확보로 산업금속 수요 기대",
+      "reason": "SpaceX IPO + AI 인프라 투자 확대 기대감 (LG이노텍 기판 원가 2배·아모텍 증자 투자) → 산업 수요 회복 기대로 상승",
       "drivers": [
-        "제조업 경기 기대",
-        "미국 광산 프로젝트 투자 확대"
+        "AI 인프라 투자 확대",
+        "산업 수요 기대"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "필라델피아반도체 +5.53% 강세로 코스닥 반도체 중소형·IT부품 급등(+4.99%), 코스피는 환율·수급 부담으로 제한 상승",
+    "summary": "코스닥 +4.99% 폭등 — 필라델피아 반도체 동조 + 메모리·AI 부품 목표가 연쇄 상향이 중소형 기술주 전방위 랠리 촉발, 삼성전자 노사 합의 가결 기대로 코스피 안정",
     "positive_factors": [
-      "필라델피아반도체 +5.53%로 글로벌 반도체 업황 모멘텀 재확인, 코스닥 기술주 파급 강력",
-      "미국채 10년물 금리 -1.43% 하락으로 성장주 밸류에이션 부담 완화"
+      "미래에셋, 삼성전자 목표가 48만→55만원(+14.6%), SK하이닉스 320만→380만원(+18.8%) 상향 — 글로벌 메모리 밸류에이션 재평가 반영",
+      "KB증권 LG이노텍 목표가 120만→160만원 상향 — 엔비디아 베라 루빈 플랫폼 기판 원가 블랙웰 대비 2배 확대, 2분기 비수기에도 가동률 100%, 빅테크 선수금·장기 공급계약 제시 중",
+      "IBK투자증권 아모텍 목표가 2만→4.2만원 상향 — 광네트워크·AI GPU용 MLCC 증자 투자 본격화, AI 관련 매출 빠른 성장 확신",
+      "신한투자 파크시스템스 목표가 상향 — 비접촉 AFM 산업용 점유율 80%, 북미 신장비 수요 지속, 공정 미세화 트렌드 구조적 성장 직결",
+      "하나증권 ICTK 목표가 4만→6만원 상향 — 미국 양자 산업 20억 달러 보조금 정책으로 국내 양자주 급등 기대"
     ],
     "negative_factors": [
-      "원/달러 1514원대 약세 지속으로 외국인 이탈 우려, 코스피 상승 제한",
-      "미-이란 군사 충돌 및 호르무즈 해협 장기 폐쇄 우려로 유가 변동성 확대, 수입 물가 부담"
+      "삼성증권 카카오게임즈 목표가 1.3만→1만원 하향 — 경영권 교체 앞두고 실적 정상화·모회사 시너지 검증 필요, 라인·야후 글로벌 영향력 제한적",
+      "원달러 +0.13% 소폭 상승 — 달러인덱스 약세에도 외국인 수급 변동성 지속"
     ],
-    "key_watch": "반도체 중소형(RS-R 111.4 Leading) 및 IT부품(RS-R 116.3 Leading) 모멘텀 지속 여부, 원/달러 1520원 돌파 시 외국인 매도 가속 리스크"
+    "key_watch": "오늘 오전 10시 30분 삼성전자 노사 잠정합의안 투표 결과 발표 (전날 투표율 92.4%, 가결 가능성 높음) — 가결 시 메모리 대형주 안정, 부결 시 단기 변동성 확대"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "반도체_중소형",
+      "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 111.4·RS-M 105.0 Leading, 필라델피아반도체 +5.53% 강세 파급, 코스닥 +4.99% 주도"
+      "reason": "RS-R 107.3·RS-M 102.6 Leading 유지 + 미래에셋 삼성전자 55만원·SK하이닉스 380만원 목표가 상향으로 글로벌 메모리 밸류에이션 재평가 본격화, 필라델피아 반도체 +5.53% 동조 — 미너비니 52주 신고가 돌파 + 와인스타인 Stage 2 유지 충족"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 116.3·RS-M 102.4 Leading 최상위, 글로벌 기술주 강세 동조, 미국채 금리 하락으로 성장주 선호"
+      "reason": "RS-R 116.3·RS-M 102.4 Leading 최상위 + LG이노텍·아모텍 목표가 급등 (베라 루빈 기판 원가 2배·MLCC 증자) 시그널로 AI 부품 공급 병목 심화 확인 — RRG Improving→Leading 전환 완료, 엘더 주간 추세 상승 확정"
+    },
+    {
+      "sector": "로봇",
+      "rrg_quadrant": "improving",
+      "reason": "RS-R 96.5·RS-M 103.8 Improving 진입 — 모멘텀 104 돌파로 반등 초기, SpaceX IPO 흥분감·우주 산업 정책 확대 기대 (20억 달러 위성 계약)가 하반기 촉매, 와인스타인 Stage 1→2 전환 타이밍"
     }
   ],
   "watch": [
     {
       "sector": "조선",
-      "reason": "RS-R 87.6·RS-M 96.8 Lagging, 호르무즈 해협 폐쇄 장기화 시 원자재 운송 차질 우려 — 모멘텀 회복 대기"
+      "reason": "RS-R 87.6·RS-M 96.8 Lagging 고착 — 직접 촉매 없고, 유가 -3.57% 급락·원자재 수요 둔화로 조선 중기 모멘텀 약화 우려, RRG 하단 장기 체류로 와인스타인 Stage 4 리스크"
     },
     {
-      "sector": "반도체_장비",
-      "reason": "RS-R 104.8·RS-M 99.3 Weakening, Leading→Weakening 전환 초기 — 추가 하락 여부 관망"
+      "sector": "우주·위성",
+      "reason": "RS-R 83.4·RS-M 87.2 Lagging 하단 — SpaceX IPO 흥분에도 국내 우주·위성 섹터 동조 실패, 정책 수혜 미약, 미너비니 VCP 패턴 부재·추세 약화로 진입 시점 아님"
+    },
+    {
+      "sector": "게임",
+      "reason": "RS-R 81.9·RS-M 89.6 Lagging — 카카오게임즈 목표가 하향·적자 늪, 경영권 교체 불확실성으로 섹터 전반 부진, 엘더 일간 모멘텀 하락 지속"
     }
   ],
   "avoid": [],
-  "summary": "필라델피아반도체 +5.53% 폭등과 미국채 금리 급락(-1.43%)으로 코스닥 반도체 중소형·IT부품 Leading 섹터 강세 지속 — 원/달러 1514원대 약세와 미-이란 충돌 변수 속 선별 매수 전략 유효",
+  "summary": "SpaceX/OpenAI 메가 IPO 러시 + 메모리 밸류에이션 재평가 (삼성 55만원·하이닉스 380만원) + AI 기판 공급 병목 심화 (LG이노텍 원가 2배)가 필라델피아 반도체 +5.53%·코스닥 +4.99% 폭등 견인 — 기술주 VCP 패턴 완성, 오전 삼성전자 노사 합의 결과 주목",
   "top_picks": [
     {
-      "sector": "반도체_중소형",
+      "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 111.4·RS-M 105.0 Leading, 필라델피아반도체 +5.53% 강세 파급, 코스닥 +4.99% 주도",
+      "reason": "RS-R 107.3·RS-M 102.6 Leading 유지 + 미래에셋 삼성전자 55만원·SK하이닉스 380만원 목표가 상향으로 글로벌 메모리 밸류에이션 재평가 본격화, 필라델피아 반도체 +5.53% 동조 — 미너비니 52주 신고가 돌파 + 와인스타인 Stage 2 유지 충족",
       "stocks": [
         {
-          "name": "리노공업",
-          "code": "058470",
+          "name": "SK하이닉스",
+          "code": "000660",
           "signal": "prime",
-          "reason": "필라델피아반도체 +5.53% 파급, 반도체 중소형 Leading(RS-R 111.4) 최강 모멘텀, 글로벌 반도체 장비 수요 수혜"
+          "reason": "미래에셋 목표가 320만→380만원 (+18.8%) 상향 폭 삼성전자 (+14.6%) 압도 + HBM·AI 메모리 독보적 지위 + 필라델피아 반도체 +5.53% 동조 최대 수혜 — 미너비니 SEPA 4박자 (추세·펀더멘탈·촉매·타이밍) 완벽 충족, 와인스타인 Stage 2 중반 가속 구간"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 116.3·RS-M 102.4 Leading 최상위, 글로벌 기술주 강세 동조, 미국채 금리 하락으로 성장주 선호",
+      "reason": "RS-R 116.3·RS-M 102.4 Leading 최상위 + LG이노텍·아모텍 목표가 급등 (베라 루빈 기판 원가 2배·MLCC 증자) 시그널로 AI 부품 공급 병목 심화 확인 — RRG Improving→Leading 전환 완료, 엘더 주간 추세 상승 확정",
       "stocks": [
         {
-          "name": "고영",
-          "code": "098460",
+          "name": "LG이노텍",
+          "code": "011070",
           "signal": "prime",
-          "reason": "IT부품 섹터 RS-R 116.3 Leading 최상위, 반도체 검사장비 글로벌 점유율 확대, 나스닥 기술주 강세 동조"
+          "reason": "KB증권 목표가 120만→160만원 (+33.3%) 급등 + 엔비디아 베라 루빈 기판 원가 블랙웰 대비 2배 확대 + 2분기 비수기에도 가동률 100% + 빅테크 선수금·장기 공급계약 제시 중 — AI 기판 공급 병목 최대 수혜, RRG Leading 섹터 내 독보적 모멘텀, 미너비니 52주 신고가 돌파 임박"
+        },
+        {
+          "name": "아모텍",
+          "code": "052710",
+          "signal": "prime",
+          "reason": "IBK투자 목표가 2만→4.2만원 (+110%) 폭발적 상향 + 광네트워크·AI GPU용 MLCC 증자 투자 본격화 + AI 관련 매출 빠른 성장 확신 — 중소형주 변동성 감안 시 상승 탄력 최대, 엘더 단기 타이밍 진입 최적"
         }
       ]
     }
   ],
   "caution_sectors": [
     "조선",
-    "반도체_장비"
+    "우주·위성"
   ]
 }
