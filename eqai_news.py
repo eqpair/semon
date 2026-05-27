@@ -26,7 +26,15 @@ RSS_SOURCES = {
     # 국내
     "yonhap":           "https://www.yna.co.kr/rss/economy.xml",
     "hankyung":         "https://www.hankyung.com/feed/economy",
+    "hankyung_finance": "https://www.hankyung.com/feed/finance",
     "maeil":            "https://www.mk.co.kr/rss/40300001/",
+    "fnnews":           "https://www.fnnews.com/rss/r20/fn_realnews_economy.xml",
+    # 글로벌 추가
+    "yahoo_finance":    "https://finance.yahoo.com/news/rssindex",
+    "seeking_alpha":    "https://seekingalpha.com/market_currents.xml",
+    "cnbc_tech":        "https://www.cnbc.com/id/19854910/device/rss/rss.html",
+    "benzinga":         "https://www.benzinga.com/feed",
+    "investors":        "https://www.investors.com/feed/",
 }
 
 # ── 매크로 지수 수집 ──────────────────────────────────────────
@@ -124,7 +132,7 @@ def fetch_rss(hours: int = 12) -> list[dict]:
     }
 
     # 한글 RSS 소스는 paywall 없음 → 본문 확보 확률 100% → 가중치 보너스
-    KOREAN_SOURCES = {"yonhap", "hankyung", "maeil"}
+    KOREAN_SOURCES = {"yonhap", "hankyung", "hankyung_finance", "maeil", "fnnews"}
 
     def score(title: str, source: str = "") -> int:
         t = title.lower()
