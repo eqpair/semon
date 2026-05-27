@@ -211,7 +211,8 @@
                     document.getElementById('updated').textContent = '-';
                 }
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('view-sector').style.display = 'block';
+                document.getElementById('view-sector').style.display = currentTab === 'sector' ? 'block' : 'none';
+                document.getElementById('view-stock').style.display  = currentTab === 'stock'  ? 'block' : 'none';
                 render();
 
                 // F5 새로고침: URL에 sector가 있고 아직 복원 안 했으면 자동 드릴다운
