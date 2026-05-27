@@ -181,6 +181,13 @@ def fetch_rss(hours: int = 12) -> list[dict]:
         except Exception as e:
             logger.warning(f"RSS fetch 실패 ({source}): {e}")
 
+    # ── 시간 필터: cutoff 이전 기사 제거 ────────────────────
+    # parse 실패한 기사(datetime.min)는 자동으로 컷오프 미달로 제거됨
+    before = len(articles)
+    articles = [a for a in articles if a["_pub_dt"] >= cutoff]
+    filtered = before - len(articles)
+    logger.info(f"시간 필터: {before}개 → {len(articles)}개 ({filtered}개 제거, cutoff={cutoff.strftime('%Y-%m-%d %H:%M')})")
+
     # 정렬: 점수 내림차순 → 최신순
     articles.sort(key=lambda a: (-a["_score"], -a["_pub_dt"].timestamp()))
 
@@ -189,7 +196,7 @@ def fetch_rss(hours: int = 12) -> list[dict]:
         a.pop("_pub_dt", None)
         a.pop("_score", None)
 
-    logger.info(f"RSS 수집 완료: {len(articles)}개 (점수+최신순 정렬)")
+    logger.info(f"RSS 수집 완료: {len(articles)}개 (점수+최신순 정렬, 최근 {(datetime.now(KST) - cutoff).total_seconds() / 3600:.0f}시간)")
     return articles
 
 
