@@ -120,16 +120,20 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 [뉴스 카테고리 분류 규칙]
 - macro (매크로·금리): 연준·ECB·BOJ 정책, 금리·인플레·고용, 환율, 원자재, 채권시장
 - geopolitics (지정학·정책): 전쟁·중동·러우, 미중관계, 무역·관세·제재, 선거, 규제
-- company (기업·실적): 개별 기업 실적·M&A·신제품·소송, 빅테크 동향, 우주·AI 등 산업 이슈
-- korea (한국 관련): 한국 정책·기업, 한국 시장 직접 영향 뉴스, 환율·외국인 수급
+- company (기업·실적): 개별 기업 실적·목표가·M&A·신제품·소송, 빅테크 동향, 우주·AI 등 산업 이슈
+- 한국 시장 영향은 별도 섹션에서 다루므로 news_summary에서는 글로벌 이슈만 다루세요
+- 단, 한국 종목 직접 뉴스(예: 삼성전자·SK하이닉스 실적, 외국인 매도 등)는 company에 포함 가능
 
 [임팩트 등급 기준 — impact 속성]
 - high: 글로벌 자산 가격에 즉각·광범위한 영향 (연준 결정, 빅테크 어닝쇼크, 전쟁 발발 등)
 - mid: 특정 섹터·지역에 영향, 또는 중기적으로 의미 있는 변화
 
 [뉴스 항목 수량]
-- 각 카테고리에 2~4개씩, 전체 약 10~14개 뉴스를 다루세요
-- 카테고리별 high 등급은 최소 1개 포함하세요 (없으면 mid만 가능)
+- 글로벌 3개 카테고리 (macro / geopolitics / company)로만 작성하세요
+- 각 카테고리 3~5개씩, 전체 약 10~14개 뉴스
+- company 카테고리는 4~5개로 가장 풍성하게 (빅네임 시그널은 모두 포함)
+- 카테고리별 high 등급은 최소 1개 포함하세요
+- 빅네임 종목(엔비디아·마이크론·TSMC·애플·테슬라·삼성·SK하이닉스)의 목표가·실적·신제품 뉴스는 우선순위로 high 처리
 - 같은 사건은 한 카테고리에만 분류하세요 (중복 금지)
 
 [매크로 원인 분석 원칙 — 매우 중요]
@@ -187,13 +191,10 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
       <item impact="mid">뉴스2</item>
     </category>
     <category name="company" label="기업·실적">
-      <item impact="high">뉴스1</item>
-      <item impact="mid">뉴스2</item>
+      <item impact="high">뉴스1 (예: Micron UBS 목표가 인상 등 빅네임 시그널)</item>
+      <item impact="high">뉴스2</item>
       <item impact="mid">뉴스3</item>
-    </category>
-    <category name="korea" label="한국 관련">
-      <item impact="high">뉴스1</item>
-      <item impact="mid">뉴스2</item>
+      <item impact="mid">뉴스4</item>
     </category>
   </news_summary>
   <korea_impact>

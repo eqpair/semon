@@ -596,7 +596,7 @@
             if (Array.isArray(categories) && categories.length > 0) {
                 const escapeHtml = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
                 const catIcons = {
-                    macro: "📊", geopolitics: "🌐", company: "🏢", korea: "🇰🇷"
+                    macro: "📊", geopolitics: "🌐", company: "🏢"
                 }
                 el.innerHTML = categories.map(cat => {
                     const items = (cat.items || []).map(it => {

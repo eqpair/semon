@@ -92,7 +92,52 @@ def fetch_macro() -> dict:
 # ── RSS 수집 ─────────────────────────────────────────────────
 
 def fetch_rss(hours: int = 12) -> list[dict]:
-    """최근 N시간 이내 기사만 수집"""
+    """최근 N시간 이내 기사 수집 + 시간순 정렬 + 중요도 우선순위 부여"""
+    from email.utils import parsedate_to_datetime
+
+    # 빅네임 키워드 (높을수록 가중치 큼)
+    PRIORITY_KEYWORDS = {
+        # 글로벌 빅네임 — 가중치 3
+        "nvidia": 3, "엔비디아": 3, "nvda": 3,
+        "micron": 3, "마이크론": 3, "mu ": 3,
+        "tsmc": 3, "tsm ": 3,
+        "삼성전자": 3, "sk하이닉스": 3, "hynix": 3,
+        "apple": 3, "애플": 3, "aapl": 3,
+        "tesla": 3, "테슬라": 3, "tsla": 3,
+        "openai": 3, "오픈ai": 3, "오픈에이아이": 3,
+        "amd ": 3, "broadcom": 3, "avgo": 3,
+        "google": 3, "구글": 3, "alphabet": 3,
+        "microsoft": 3, "msft": 3, "마이크로소프트": 3,
+        "meta": 3, "amazon": 3, "amzn": 3,
+        "spacex": 3, "스페이스x": 3,
+        # 매크로 키워드 — 가중치 2
+        "fed ": 2, "fomc": 2, "powell": 2, "연준": 2, "파월": 2,
+        "ecb": 2, "boj": 2, "한국은행": 2,
+        "cpi": 2, "ppi": 2, "인플레": 2, "고용지표": 2,
+        "금리": 2, "interest rate": 2,
+        # 시그널성 키워드 — 가중치 2
+        "price target": 2, "목표가": 2, "tp ": 2,
+        "upgrade": 2, "downgrade": 2, "상향": 2, "하향": 2,
+        "earnings": 2, "실적": 2, "어닝": 2,
+        # 기타 중요 — 가중치 1
+        "ai ": 1, "chip": 1, "반도체": 1,
+    }
+
+    def score(title: str) -> int:
+        t = title.lower()
+        return sum(w for k, w in PRIORITY_KEYWORDS.items() if k in t)
+
+    def parse_pub(s: str):
+        if not s:
+            return datetime.min.replace(tzinfo=KST)
+        try:
+            dt = parsedate_to_datetime(s)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=KST)
+            return dt.astimezone(KST)
+        except Exception:
+            return datetime.min.replace(tzinfo=KST)
+
     cutoff = datetime.now(KST) - timedelta(hours=hours)
     articles = []
     seen_titles = set()
@@ -100,27 +145,37 @@ def fetch_rss(hours: int = 12) -> list[dict]:
     for source, url in RSS_SOURCES.items():
         try:
             feed = feedparser.parse(url)
-            for entry in feed.entries[:20]:
+            for entry in feed.entries[:30]:  # 소스당 30개로 확대
                 title = entry.get("title", "").strip()
                 link  = entry.get("link", "").strip()
-
                 if not title or not link:
                     continue
                 if title in seen_titles:
                     continue
-
                 seen_titles.add(title)
+                pub_str = entry.get("published", "")
                 articles.append({
-                    "source": source,
-                    "title":  title,
-                    "link":   link,
-                    "published": entry.get("published", ""),
+                    "source":    source,
+                    "title":     title,
+                    "link":      link,
+                    "published": pub_str,
+                    "_pub_dt":   parse_pub(pub_str),
+                    "_score":    score(title),
                 })
         except Exception as e:
             logger.warning(f"RSS fetch 실패 ({source}): {e}")
 
-    logger.info(f"RSS 수집 완료: {len(articles)}개")
+    # 정렬: 점수 내림차순 → 최신순
+    articles.sort(key=lambda a: (-a["_score"], -a["_pub_dt"].timestamp()))
+
+    # 내부 필드 제거
+    for a in articles:
+        a.pop("_pub_dt", None)
+        a.pop("_score", None)
+
+    logger.info(f"RSS 수집 완료: {len(articles)}개 (점수+최신순 정렬)")
     return articles
+
 
 # ── 본문 스크래핑 ─────────────────────────────────────────────
 
