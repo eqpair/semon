@@ -94,7 +94,10 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         macro_text      = _format_macro(news_data.get("macro", {}))
         articles        = news_data.get("articles", [])
         titles_text     = "\n".join([f"- {a.get('title','')} [{a.get('source','')}]" for a in articles[:30]])
-        bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:300]}" for a in articles[:20]])
+        # 본문 확보된 기사만 (상위 30개 후보 중 본문 100자 이상) — 최대 20개
+        bodies_pool = [a for a in articles[:30] if (a.get("body") or "").strip() and len(a.get("body", "")) >= 100][:20]
+        bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:300]}" for a in bodies_pool])
+        logger.info(f"Claude에 전달: 헤드라인 {min(30,len(articles))}개 + 본문 {len(bodies_pool)}개")
         rrg_text        = _format_rrg(rrg_data)
         candidates_text = _format_candidates(rrg_data, [])
 

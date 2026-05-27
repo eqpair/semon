@@ -123,9 +123,17 @@ def fetch_rss(hours: int = 12) -> list[dict]:
         "ai ": 1, "chip": 1, "반도체": 1,
     }
 
-    def score(title: str) -> int:
+    # 한글 RSS 소스는 paywall 없음 → 본문 확보 확률 100% → 가중치 보너스
+    KOREAN_SOURCES = {"yonhap", "hankyung", "maeil"}
+
+    def score(title: str, source: str = "") -> int:
         t = title.lower()
-        return sum(w for k, w in PRIORITY_KEYWORDS.items() if k in t)
+        base = sum(w for k, w in PRIORITY_KEYWORDS.items() if k in t)
+        # 한글 소스 보너스: 빅네임이 언급되면 +2, 일반은 +0
+        # (한글 소스라도 무관 뉴스가 위로 오는 건 막기 위해 빅네임 매칭시에만 보너스)
+        if source in KOREAN_SOURCES and base >= 2:
+            base += 2
+        return base
 
     def parse_pub(s: str):
         if not s:
@@ -160,7 +168,7 @@ def fetch_rss(hours: int = 12) -> list[dict]:
                     "link":      link,
                     "published": pub_str,
                     "_pub_dt":   parse_pub(pub_str),
-                    "_score":    score(title),
+                    "_score":    score(title, source),
                 })
         except Exception as e:
             logger.warning(f"RSS fetch 실패 ({source}): {e}")
@@ -201,10 +209,21 @@ def collect_all(hours: int = 12) -> dict:
     macro    = fetch_macro()
     articles = fetch_rss(hours=hours)
 
-    # 본문 수집 (상위 15개만)
-    for article in articles[:20]:
+    # 본문 수집: 상위 30개 후보 중 실제로 본문 확보된 20개까지 (실패 시 다음 후보)
+    BODY_TARGET = 20   # 목표 본문 확보 개수
+    BODY_MAX_TRY = 30  # 최대 시도 개수
+    success_count = 0
+    fail_count = 0
+    for i, article in enumerate(articles[:BODY_MAX_TRY]):
+        if success_count >= BODY_TARGET:
+            break
         body = fetch_article_body(article["link"])
         article["body"] = body
+        if body and len(body) >= 100:  # 100자 이상이면 성공 간주
+            success_count += 1
+        else:
+            fail_count += 1
+    logger.info(f"본문 수집: 성공 {success_count}개 / 실패 {fail_count}개 (총 {success_count+fail_count}개 시도)")
 
     result = {
         "collected_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
