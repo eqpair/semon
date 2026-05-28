@@ -1,175 +1,173 @@
 {
-  "generated_at": "2026-05-28 10:02:32",
+  "generated_at": "2026-05-28 12:02:33",
   "macro": {
     "S&P500": {
       "price": 7520.36,
       "change": 0.02,
-      "reason": "Salesforce 가이던스 약세에도 Snowflake·Micron 실적 호조로 AI 기대감 지속, VIX -4.23%로 안정세 유지",
+      "reason": "Snowflake +36% 급등과 Meta AI 구독 출시 등 빅테크 혼조 속 채권금리 하락(-2.7bp)이 밸류에이션 부담 완화하며 소폭 상승",
       "drivers": [
-        "Snowflake 36% 급등 (실적 서프라이즈)",
-        "Micron 시총 1조달러 돌파 모멘텀"
+        "Snowflake AWS $6B 계약 발표",
+        "미 10년물 국채 4.48% -2.7bp 하락"
       ]
     },
     "NASDAQ": {
       "price": 26674.73,
       "change": 0.07,
-      "reason": "빅테크 실적 호조에도 Salesforce 가이던스 부진 + 반도체 차익실현 압박으로 상승 제한",
+      "reason": "Snowflake·Meta AI 구독 모델 호재에 소프트웨어 강세, 하지만 Salesforce 가이던스 실망과 반도체 혼조로 상승폭 제한(+0.07%)",
       "drivers": [
-        "Snowflake AWS 60억달러 계약",
-        "Meta AI 구독 서비스 테스트 시작"
+        "Snowflake +36% 급등",
+        "Salesforce 가이던스 부진"
       ]
     },
     "DOW": {
       "price": 50644.28,
       "change": 0.36,
-      "reason": "전통 산업주 중심 안정적 매수세로 주요 지수 중 가장 강한 상승 (+0.36%)",
+      "reason": "금리 하락으로 금융·산업재 등 가치주 선호 강화, VIX -4.2%로 변동성 축소되며 전통 대형주 중심 +0.36% 상승",
       "drivers": [
-        "VIX 하락으로 방어주 선호",
-        "금리 안정 (10년물 -0.27%)"
+        "미 국채10Y 금리 -2.7bp 하락",
+        "VIX 16.29 -4.23% 안정화"
       ]
     },
     "VIX": {
       "price": 16.29,
       "change": -4.23,
-      "reason": "Micron·Snowflake 실적 서프라이즈 + 채권 금리 하락으로 위험 선호 심리 강화",
+      "reason": "Fed 금리 경로 불확실성 완화 기대와 빅테크 실적 혼조에도 시장 방향성 유지되며 변동성 지수 -4.23% 하락",
       "drivers": [
-        "빅테크 실적 불확실성 해소",
-        "국채 10년물 금리 4.48% 하락"
+        "미 국채금리 안정화",
+        "빅테크 실적 무난 통과"
       ]
     },
     "필라델피아반도체": {
       "price": 12702.19,
       "change": -1.36,
-      "reason": "Micron 1조달러 돌파 축하 랠리 이후 차익실현 압박 — 간밤 미국 반도체주 조정으로 영향",
+      "reason": "Marvell AI 수요 강조에도 가이던스 기대치 못 미쳐 하락, TSMC 성과급 30% 인상은 비용 부담 우려로 -1.36% 약세",
       "drivers": [
-        "Micron 목표가 상향 이후 과열 조정",
-        "Marvell 가이던스 호조에도 주가 하락"
+        "Marvell 가이던스 실망",
+        "TSMC 성과급 30% 인상 비용 부담"
       ]
     },
     "러셀2000": {
       "price": 2919.94,
       "change": -0.02,
-      "reason": "대형주 중심 랠리 속 중소형주는 관망세 — Abercrombie 12% 급등에도 전체 지수는 보합",
+      "reason": "금리인하 기대 후퇴(한은 인상 시사)와 유가 급락으로 소형주 수혜 제한, 대형주 대비 상대적 약세로 -0.02% 소폭 하락",
       "drivers": [
-        "중동 이란 종전협상 정체로 불확실성",
-        "대형주 대비 모멘텀 부재"
+        "한은 금리인상 시사",
+        "WTI -3.46% 급락"
       ]
     },
     "영국FTSE": {
       "price": 10505.0,
       "change": 0.13,
-      "reason": "유럽 증시 안정 흐름 속 소폭 상승 — 글로벌 AI 모멘텀 동조화",
+      "reason": "직접 촉매 약함 — 유럽 금리 안정 기조와 파운드 약세 수출주 수혜로 +0.13% 소폭 상승",
       "drivers": [
-        "달러인덱스 소폭 상승 (+0.13%)",
-        "유럽 경기 우려 제한적"
+        "파운드 약세"
       ]
     },
     "독일DAX": {
       "price": 25177.8,
       "change": -0.03,
-      "reason": "유럽 제조업 회복 기대 속 보합권 — 미국 실적 시즌 영향 제한적",
+      "reason": "직접 촉매 없음 — ECB 금리 동결 기대 속 에너지 비용 하락(WTI -3.5%) 긍정, 유로존 제조업 회복 더디며 -0.03% 보합",
       "drivers": [
-        "원자재 가격 안정",
-        "ECB 금리 정책 관망"
+        "WTI 유가 -3.46% 하락"
       ]
     },
     "니케이": {
-      "price": 64868.76,
-      "change": -0.2,
-      "reason": "엔화 안정 속 반도체 관련주 차익실현 압박 — 미국 필라델피아 반도체 -1.36% 영향",
+      "price": 65039.78,
+      "change": 0.06,
+      "reason": "BOJ 금리인상 불확실성 지속(Nomura \"단기 인상 미정\") 속 엔화 약세 수출주 수혜로 +0.06% 소폭 상승",
       "drivers": [
-        "도쿄일렉트론 등 장비주 조정",
-        "Micron 랠리 이후 피로감"
+        "BOJ 금리인상 시기 불투명",
+        "엔화 약세 수출주 지원"
       ]
     },
     "항셍": {
-      "price": 25328.23,
-      "change": -1.06,
-      "reason": "중국 경기 모멘텀 부재 + 글로벌 반도체 차익실현 압박으로 -1% 이상 하락",
+      "price": 24834.25,
+      "change": -1.95,
+      "reason": "중국 경기 회복 모멘텀 약화와 미중 기술 긴장(Nvidia 젠슨 황 베이징대 이사 취임 논란) 우려로 -1.95% 급락",
       "drivers": [
-        "테크주 약세 (알리바바·텐센트)",
-        "중국 내수 소비 부진"
+        "중국 경기 회복 둔화",
+        "Nvidia-중국 관계 불확실성"
       ]
     },
     "달러인덱스": {
-      "price": 99.3,
-      "change": 0.13,
-      "reason": "한은 금리 동결 예상 속 달러 수요 소폭 증가 — 미국 10년물 금리 하락에도 방어",
+      "price": 99.35,
+      "change": 0.18,
+      "reason": "한은 금리인상 시사로 원화 약세 압력, 연준 금리인하 기대 후퇴와 중동 불안으로 달러 안전자산 수요 +0.18% 상승",
       "drivers": [
-        "한국 원화 약세 압력 (+0.12%)",
-        "유로·엔화 대비 소폭 강세"
+        "한은 금리인상 매파 발언",
+        "중동 긴장 고조"
       ]
     },
     "국채10Y": {
       "price": 4.48,
       "change": -0.27,
-      "reason": "Snowflake·Micron 실적 호조로 성장 기대감 강화 — 안전자산 수요 감소",
+      "reason": "Fed 금리인하 기대 유지와 중동 불안 안전자산 수요로 -2.7bp 하락, 하지만 인플레 재점화 우려는 하방 제한",
       "drivers": [
-        "VIX -4.23% 하락",
-        "AI 섹터 실적 서프라이즈"
+        "중동 긴장 안전자산 수요",
+        "인플레 우려 하방 제한"
       ]
     },
     "국채30Y": {
       "price": 5.01,
       "change": -0.3,
-      "reason": "장기 성장 기대감 + 인플레 우려 완화로 장기물 금리 동반 하락",
+      "reason": "10년물과 동조, 장기 인플레 우려에도 경기 둔화 헷지 수요로 -3.0bp 하락폭 확대",
       "drivers": [
-        "10년물 금리 하락 동조화",
-        "연준 금리 인하 기대 유지"
+        "경기 둔화 헷지 수요"
       ]
     },
     "코스피": {
-      "price": 8193.21,
-      "change": -0.43,
-      "reason": "한은 금리 동결·성장률 상향에도 삼성전자 차익실현 + 코스닥 급락으로 약세",
+      "price": 8156.21,
+      "change": -0.88,
+      "reason": "한은 총재 \"금리인상 명확\" 매파 발언으로 금융주 타격, 삼성전자 성과급→물가 압력 경고에 외국인 이탈, 원달러 +0.07% 약세로 -0.88% 하락",
       "drivers": [
-        "삼성전자 -0.65% (전일 신고가 후 조정)",
-        "외국인 매도 지속 (환율 상승)"
+        "한은 금리인상 시사",
+        "외국인 매도",
+        "삼성전자 성과급 물가 우려"
       ]
     },
     "코스닥": {
-      "price": 1114.75,
-      "change": -4.93,
-      "reason": "2차전지·바이오 등 테마주 전면 급락 — 반도체 차익실현 압박이 중소형주로 확산",
+      "price": 1095.69,
+      "change": -3.3,
+      "reason": "한은 금리인상 시사로 유동성 축소 우려, 2차전지·바이오 등 성장주 전반 약세에 -3.30% 급락",
       "drivers": [
-        "2차전지 섹터 lagging 지속",
-        "게임·바이오 동반 약세"
+        "금리인상 성장주 타격",
+        "2차전지·바이오 동반 약세"
       ]
     },
     "금": {
-      "price": 4484.2,
-      "change": -0.36,
-      "reason": "달러 강세 (+0.13%) + VIX 하락으로 안전자산 수요 감소",
+      "price": 4425.9,
+      "change": -1.66,
+      "reason": "달러인덱스 +0.18% 강세와 실질금리 상승(한은 인상) 압력, 중동 불안에도 역설적으로 -1.66% 하락",
       "drivers": [
-        "달러인덱스 99.3 상승",
-        "위험 선호 심리 강화"
+        "달러 강세",
+        "실질금리 상승 압력"
       ]
     },
     "WTI유가": {
-      "price": 90.55,
-      "change": -3.56,
-      "reason": "미국-이란 종전협상 정체에도 수요 우려 + 재고 증가 우려로 -3.56% 급락",
+      "price": 90.64,
+      "change": -3.46,
+      "reason": "IEA 공동방출 1200만배럴(한국 민간비축 20일 하향) 발표로 공급 증가 우려, 중동 긴장에도 -3.46% 급락",
       "drivers": [
-        "중동 긴장 완화 기대",
-        "글로벌 경기 둔화 우려"
+        "IEA 석유 1200만배럴 방출",
+        "한국 민간비축 40일→20일 하향"
       ]
     },
     "원달러": {
-      "price": 1503.69,
-      "change": -0.12,
-      "reason": "한은 금리 동결 예상 속 달러 수요 소폭 증가했으나 성장률 상향으로 낙폭 제한 (-0.12%)",
+      "price": 1506.46,
+      "change": 0.07,
+      "reason": "한은 금리인상 시사에도 미 달러인덱스 강세(+0.18%)와 코스피 -0.88% 외국인 이탈로 원화 약세 +0.07% 지속",
       "drivers": [
-        "한은 성장률 2.6% 상향",
-        "미-한 금리차 1.25%p 유지"
+        "달러인덱스 +0.18% 강세",
+        "외국인 자금 이탈"
       ]
     },
     "구리": {
-      "price": 6.34,
-      "change": -0.26,
-      "reason": "중국 수요 둔화 우려 + 항셍지수 -1.06% 약세로 산업금속 전반 약세",
+      "price": 6.3,
+      "change": -0.97,
+      "reason": "중국 경기 회복 기대 약화(항셍 -1.95%)와 제조업 수요 둔화 우려로 -0.97% 하락",
       "drivers": [
-        "중국 제조업 모멘텀 부재",
-        "WTI 유가 -3.56% 동조 하락"
+        "중국 항셍 -1.95% 급락",
+        "제조업 수요 둔화"
       ]
     }
   },
@@ -340,7 +338,7 @@
           "rs_momentum": 109.407
         }
       ],
-      "sector_ret_5d": 20.69,
+      "sector_ret_5d": 17.75,
       "improving_count": 1,
       "watch_count": 0,
       "total": 11
@@ -511,7 +509,7 @@
           "rs_momentum": 111.877
         }
       ],
-      "sector_ret_5d": 6.21,
+      "sector_ret_5d": 2.23,
       "improving_count": 0,
       "watch_count": 0,
       "total": 27
@@ -682,7 +680,7 @@
           "rs_momentum": 106.272
         }
       ],
-      "sector_ret_5d": 5.01,
+      "sector_ret_5d": 2.64,
       "improving_count": 0,
       "watch_count": 1,
       "total": 22
@@ -853,9 +851,9 @@
           "rs_momentum": 100.191
         }
       ],
-      "sector_ret_5d": 8.73,
-      "improving_count": 1,
-      "watch_count": 7,
+      "sector_ret_5d": 5.2,
+      "improving_count": 5,
+      "watch_count": 3,
       "total": 31
     },
     "2차전지_셀": {
@@ -1024,7 +1022,7 @@
           "rs_momentum": 100.38
         }
       ],
-      "sector_ret_5d": 16.05,
+      "sector_ret_5d": 14.4,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -1195,9 +1193,9 @@
           "rs_momentum": 99.803
         }
       ],
-      "sector_ret_5d": 8.85,
-      "improving_count": 1,
-      "watch_count": 3,
+      "sector_ret_5d": 6.12,
+      "improving_count": 2,
+      "watch_count": 2,
       "total": 18
     },
     "전력기기": {
@@ -1366,9 +1364,9 @@
           "rs_momentum": 105.147
         }
       ],
-      "sector_ret_5d": 0.16,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -1.58,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 17
     },
     "신재생에너지": {
@@ -1537,7 +1535,7 @@
           "rs_momentum": 90.615
         }
       ],
-      "sector_ret_5d": 1.24,
+      "sector_ret_5d": -0.57,
       "improving_count": 0,
       "watch_count": 2,
       "total": 13
@@ -1708,7 +1706,7 @@
           "rs_momentum": 89.46
         }
       ],
-      "sector_ret_5d": 5.07,
+      "sector_ret_5d": 3.24,
       "improving_count": 0,
       "watch_count": 3,
       "total": 10
@@ -1879,7 +1877,7 @@
           "rs_momentum": 101.177
         }
       ],
-      "sector_ret_5d": 12.71,
+      "sector_ret_5d": 8.84,
       "improving_count": 0,
       "watch_count": 1,
       "total": 7
@@ -2050,7 +2048,7 @@
           "rs_momentum": 98.574
         }
       ],
-      "sector_ret_5d": 42.73,
+      "sector_ret_5d": 39.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2221,7 +2219,7 @@
           "rs_momentum": 101.738
         }
       ],
-      "sector_ret_5d": 9.58,
+      "sector_ret_5d": 8.04,
       "improving_count": 0,
       "watch_count": 0,
       "total": 17
@@ -2392,9 +2390,9 @@
           "rs_momentum": 90.701
         }
       ],
-      "sector_ret_5d": 0.07,
-      "improving_count": 1,
-      "watch_count": 5,
+      "sector_ret_5d": -0.27,
+      "improving_count": 5,
+      "watch_count": 1,
       "total": 10
     },
     "로봇": {
@@ -2563,7 +2561,7 @@
           "rs_momentum": 109.847
         }
       ],
-      "sector_ret_5d": 10.03,
+      "sector_ret_5d": 7.33,
       "improving_count": 0,
       "watch_count": 1,
       "total": 22
@@ -2734,9 +2732,9 @@
           "rs_momentum": 94.691
         }
       ],
-      "sector_ret_5d": 4.86,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": 3.35,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 17
     },
     "자동차_완성차": {
@@ -2905,7 +2903,7 @@
           "rs_momentum": 107.483
         }
       ],
-      "sector_ret_5d": 15.91,
+      "sector_ret_5d": 12.59,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -3076,7 +3074,7 @@
           "rs_momentum": 106.389
         }
       ],
-      "sector_ret_5d": 29.85,
+      "sector_ret_5d": 24.12,
       "improving_count": 1,
       "watch_count": 1,
       "total": 15
@@ -3247,7 +3245,7 @@
           "rs_momentum": 98.074
         }
       ],
-      "sector_ret_5d": 4.58,
+      "sector_ret_5d": 4.08,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -3418,7 +3416,7 @@
           "rs_momentum": 108.786
         }
       ],
-      "sector_ret_5d": 45.68,
+      "sector_ret_5d": 50.33,
       "improving_count": 1,
       "watch_count": 1,
       "total": 12
@@ -3589,7 +3587,7 @@
           "rs_momentum": 98.938
         }
       ],
-      "sector_ret_5d": 2.75,
+      "sector_ret_5d": 1.39,
       "improving_count": 0,
       "watch_count": 1,
       "total": 4
@@ -3760,7 +3758,7 @@
           "rs_momentum": 105.926
         }
       ],
-      "sector_ret_5d": 23.4,
+      "sector_ret_5d": 21.07,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -3931,7 +3929,7 @@
           "rs_momentum": 100.079
         }
       ],
-      "sector_ret_5d": 4.08,
+      "sector_ret_5d": 3.22,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -4102,7 +4100,7 @@
           "rs_momentum": 96.097
         }
       ],
-      "sector_ret_5d": 3.62,
+      "sector_ret_5d": 1.47,
       "improving_count": 1,
       "watch_count": 0,
       "total": 5
@@ -4273,9 +4271,9 @@
           "rs_momentum": 94.295
         }
       ],
-      "sector_ret_5d": 20.75,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 18.67,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 10
     },
     "바이오_임상단계": {
@@ -4444,9 +4442,9 @@
           "rs_momentum": 92.584
         }
       ],
-      "sector_ret_5d": 12.91,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 10.79,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 10
     },
     "대형제약": {
@@ -4615,9 +4613,9 @@
           "rs_momentum": 93.324
         }
       ],
-      "sector_ret_5d": 6.75,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 5.82,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 10
     },
     "중소제약": {
@@ -4786,9 +4784,9 @@
           "rs_momentum": 91.787
         }
       ],
-      "sector_ret_5d": 5.21,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 2.73,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 9
     },
     "의료기기": {
@@ -4957,9 +4955,9 @@
           "rs_momentum": 102.599
         }
       ],
-      "sector_ret_5d": 2.5,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": 0.45,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 9
     },
     "미용·에스테틱": {
@@ -5128,7 +5126,7 @@
           "rs_momentum": 102.546
         }
       ],
-      "sector_ret_5d": 2.82,
+      "sector_ret_5d": 0.69,
       "improving_count": 1,
       "watch_count": 1,
       "total": 9
@@ -5299,9 +5297,9 @@
           "rs_momentum": 96.621
         }
       ],
-      "sector_ret_5d": -0.83,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -0.52,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 9
     },
     "증권": {
@@ -5470,9 +5468,9 @@
           "rs_momentum": 99.005
         }
       ],
-      "sector_ret_5d": 1.44,
-      "improving_count": 0,
-      "watch_count": 3,
+      "sector_ret_5d": -0.3,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 18
     },
     "보험": {
@@ -5641,7 +5639,7 @@
           "rs_momentum": 101.645
         }
       ],
-      "sector_ret_5d": 5.33,
+      "sector_ret_5d": 6.4,
       "improving_count": 0,
       "watch_count": 1,
       "total": 13
@@ -5812,7 +5810,7 @@
           "rs_momentum": 101.976
         }
       ],
-      "sector_ret_5d": -1.3,
+      "sector_ret_5d": -1.57,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -5983,7 +5981,7 @@
           "rs_momentum": 99.128
         }
       ],
-      "sector_ret_5d": 2.19,
+      "sector_ret_5d": 0.23,
       "improving_count": 0,
       "watch_count": 1,
       "total": 12
@@ -6154,7 +6152,7 @@
           "rs_momentum": 100.682
         }
       ],
-      "sector_ret_5d": 2.83,
+      "sector_ret_5d": 2.81,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -6325,7 +6323,7 @@
           "rs_momentum": 102.911
         }
       ],
-      "sector_ret_5d": 13.38,
+      "sector_ret_5d": 11.84,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -6496,7 +6494,7 @@
           "rs_momentum": 94.309
         }
       ],
-      "sector_ret_5d": 8.28,
+      "sector_ret_5d": 6.41,
       "improving_count": 1,
       "watch_count": 2,
       "total": 13
@@ -6667,9 +6665,9 @@
           "rs_momentum": 98.903
         }
       ],
-      "sector_ret_5d": 3.88,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 2.49,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 8
     },
     "건설": {
@@ -6838,7 +6836,7 @@
           "rs_momentum": 85.996
         }
       ],
-      "sector_ret_5d": 2.34,
+      "sector_ret_5d": 1.17,
       "improving_count": 0,
       "watch_count": 6,
       "total": 11
@@ -7009,7 +7007,7 @@
           "rs_momentum": 93.52
         }
       ],
-      "sector_ret_5d": -3.07,
+      "sector_ret_5d": -2.45,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -7180,7 +7178,7 @@
           "rs_momentum": 98.841
         }
       ],
-      "sector_ret_5d": 10.0,
+      "sector_ret_5d": 7.4,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -7351,7 +7349,7 @@
           "rs_momentum": 91.75
         }
       ],
-      "sector_ret_5d": -1.09,
+      "sector_ret_5d": -1.65,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -7522,7 +7520,7 @@
           "rs_momentum": 100.457
         }
       ],
-      "sector_ret_5d": 5.86,
+      "sector_ret_5d": 4.02,
       "improving_count": 0,
       "watch_count": 2,
       "total": 6
@@ -7693,7 +7691,7 @@
           "rs_momentum": 96.454
         }
       ],
-      "sector_ret_5d": -1.31,
+      "sector_ret_5d": -1.38,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -7864,7 +7862,7 @@
           "rs_momentum": 95.588
         }
       ],
-      "sector_ret_5d": -3.39,
+      "sector_ret_5d": -3.32,
       "improving_count": 0,
       "watch_count": 1,
       "total": 4
@@ -8035,9 +8033,9 @@
           "rs_momentum": 100.916
         }
       ],
-      "sector_ret_5d": 0.52,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -1.23,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 8
     },
     "게임": {
@@ -8206,9 +8204,9 @@
           "rs_momentum": 96.115
         }
       ],
-      "sector_ret_5d": 1.0,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -0.66,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 11
     },
     "미디어·콘텐츠": {
@@ -8377,7 +8375,7 @@
           "rs_momentum": 99.308
         }
       ],
-      "sector_ret_5d": -2.81,
+      "sector_ret_5d": -3.42,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -8548,9 +8546,9 @@
           "rs_momentum": 94.087
         }
       ],
-      "sector_ret_5d": 1.0,
-      "improving_count": 0,
-      "watch_count": 3,
+      "sector_ret_5d": 0.35,
+      "improving_count": 1,
+      "watch_count": 2,
       "total": 8
     },
     "화장품_ODM": {
@@ -8719,7 +8717,7 @@
           "rs_momentum": 97.413
         }
       ],
-      "sector_ret_5d": -1.98,
+      "sector_ret_5d": -2.58,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -8890,9 +8888,9 @@
           "rs_momentum": 97.749
         }
       ],
-      "sector_ret_5d": -5.45,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -6.43,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 9
     },
     "중국내수식품": {
@@ -9061,7 +9059,7 @@
           "rs_momentum": 96.055
         }
       ],
-      "sector_ret_5d": -3.81,
+      "sector_ret_5d": -4.37,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -9232,9 +9230,9 @@
           "rs_momentum": 98.298
         }
       ],
-      "sector_ret_5d": -2.28,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -2.86,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 11
     },
     "유통": {
@@ -9403,7 +9401,7 @@
           "rs_momentum": 106.567
         }
       ],
-      "sector_ret_5d": -0.47,
+      "sector_ret_5d": -0.84,
       "improving_count": 0,
       "watch_count": 1,
       "total": 7
@@ -9574,7 +9572,7 @@
           "rs_momentum": 100.502
         }
       ],
-      "sector_ret_5d": -3.95,
+      "sector_ret_5d": -4.1,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -9745,7 +9743,7 @@
           "rs_momentum": 100.832
         }
       ],
-      "sector_ret_5d": -2.84,
+      "sector_ret_5d": -2.87,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -9916,7 +9914,7 @@
           "rs_momentum": 99.993
         }
       ],
-      "sector_ret_5d": 1.64,
+      "sector_ret_5d": 1.52,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -10027,7 +10025,7 @@
           "rs_momentum": 112.376
         }
       ],
-      "sector_ret_5d": 17.92,
+      "sector_ret_5d": 15.59,
       "improving_count": 0,
       "watch_count": 1,
       "total": 5
@@ -10036,52 +10034,24 @@
   "articles": [
     {
       "source": "maeil",
-      "title": "삼성전자 내리고 SK하이닉스 오르고…숨고르기에 들어간 반도체주",
-      "link": "https://www.mk.co.kr/news/stock/12059616",
-      "published": "Thu, 28 May 2026 09:53:46 +09:00",
-      "body": "KB證도 삼전 목표가 53만원으로\n전일 급등하며 신고가를 썼던 삼성전자는 하락하는 반면 SK하이닉스는 하락 폭을 줄이며 소폭 상승하고 있다. 차익 실현 매물에 반도체주가 숨 고르기에 들어간 모습이다.\n이날 오전 9시 43분 기준 삼성전자는 전일 대비 2000원(0.65%) 내린 30만5500원에 거래되고 있다. 삼성전자를 전일 27일, 33만원 신고가를 쓴 뒤 이날 하락 폭을 조정하는 모습이다.\n같은 시각 SK하이닉스는 전일 대비 1만9000원(0.85%) 오른 226만1000원을 보이고 있다. SK하이닉스도 전일 235만8000원의 신고가를 경신, 이날 216만2000원까지 하락 한 뒤 하락 폭을 줄인 뒤 소폭 오르고 있다.\n이는 전날 각각 2.68%와 9.31% 급등한 만큼 차익실현 압박이 커진 것으로 보인다. 또 간밤 미국 증시에서 반도체주가 숨고르기에 들어간 모습이 영향을 준 것으로 보인다.\n간밤 뉴욕증시는 3대 주가지수가 모두 상승한 채 마감했다. 다우존스30 산업평균지수가 0.36% 올랐고 스탠더드앤드푸어스(S&P) 500지수와 나스닥 종합지수도 각각 0.02%, 0.07% 상승했다.\n그러나 마이크론(3.64%) 상승을 제외하면 다른 주요 반도체주 대부분은 차익실현 매물이 나오면서 약세를 보였다. 또 필라델피아 반도체 지수도 1.36% 내린 채마감했다.\n증권가에서는 삼성전자와 SK하이닉스에 대한 긍정적 전망을 유지하고 있다. 신한투자증권은 이날 SK하이닉스의 목표주가 380만원을 유지했다. 고대역폭 메모리(HBM) 가격 인상 가능성, 주주환원정책 강화 기대감, 북미 자회사 통한 비즈니스 영역 확장 등 다수의 기대 요인에 주목했다.\nKB증권도 삼성전자의 목표주가를 53만원으로 상향했다. 내년 메모리 시장은 공급 부족이 더욱 심화, 가격 상승의 탄력도 역시 확대될 것으로 전망했다. 또 내년 HBM은 범용 디램(DRAM)과의 마진율 격차 축소를 반영한 가격 협상이 진행되고 있어 전년 대비 50% 이상의 가격 상승을 예상했다."
+      "title": "삼성전자 때문이야…TSMC도 올해 성과급 30% 인상",
+      "link": "https://www.mk.co.kr/news/world/12059713",
+      "published": "Thu, 28 May 2026 11:14:07 +09:00",
+      "body": "사내 타운홀 미팅 진행한 웨이 CEO\n블룸버그 “기업 이익 배분 압박 커져”\n세계 1위 파운드리(반도체 위탁 생산) 기업인 대만 TSMC가 올해 직원 성과급을 평균 30% 넘게 인상한다.\n27일(현지 시간) 블룸버그 통신에 따르면 웨이저자 TSMC 최고경영자(CEO)는 사내 타운홀 미팅을 통해 올해 직원 이익 배분 보너스가 지난해보다 평균 30% 이상 늘어날 것이라고 밝혔다.\n앞서 TSMC 일부 직원 사이에서는 온라인을 중심으로 성과급 규모에 대한 불만이 제기됐다. 역대급 실적에도 성과급이 최대 15% 감소할 수 있다는 루머가 확산되며 내부 불만이 커졌다. 일각에선 노조 결성이나 파업 필요성을 언급하는 목소리까지 나온 것으로 전해졌다.\n최근 삼성전자 노사가 반도체 메모리 사업부 직원에게 대규모 성과급 지급한다는 잠정 합의안을 마련한 점도 영향을 미친 것으로 풀이된다.\n불만을 잠재우기 위해 웨이 CEO는 당초 예정된 해외 출장을 취소하고 직원들과 회의를 진행했다. 웨이 CEO는 “직원 고과평가가 지난해와 같다면 올해 성과급도 대폭 인상할 것”이라며 “증가 폭은 지난해 30%를 넘어서는 수준”이라고 말했다.\nTSMC 실적은 AI 열풍에 힘입어 가파른 성장세를 이어가고 있다. 올 1분기 순이익은 5725억 대만달러(약 182억달러)로 2년 전 같은 기간보다 두 배 이상 늘었다.\n직원 성과급 규모도 빠르게 늘어나는 추세다. 올해 직원 이익 배분 프로그램 재원은 약 1030억 대만달러로 책정됐으며, 이는 지난해보다 46.6% 증가한 규모다. TSMC는 정관에 따라 연간 순이익의 최소 1%를 직원 성과급 재원으로 배정한다.\n블룸버그는 AI 호황으로 급증한 기업 이익을 직원들과 얼마나 공유할 것인지를 둘러싼 압박이 업계 전반으로 확대되고 있다고 분석했다. 이번 TSMC 발표는 이 같은 흐름을 상징적으로 보여주는 사례라는 평가다."
     },
     {
       "source": "yonhap",
-      "title": "[특징주] 삼성전자, 장초반 1%대 하락…SK하이닉스는 2%대↓",
-      "link": "https://www.yna.co.kr/view/AKR20260528035400008",
-      "published": "Thu, 28 May 2026 09:16:03 +0900",
-      "body": "(서울=연합뉴스) 황철환 기자 = 삼성전자[005930]와 SK하이닉스[000660]가 28일 장 초반 각각 1%와 2%대의 낙폭을 보인다.\n이날 유가증권시장에서 삼성전자는 오전 9시 7분 현재 전장보다 1.14% 내린 30만3천500원에 거래되고 있다.\n같은 시각 SK하이닉스는 전장보다 2.32% 내린 219만1천원에 매매 중이다.\n전날 각각 2.68%와 9.31%씩 급등한 데 따른 차익실현 압박이 큰 상황인 데다, 간밤 미국 증시에서 반도체주가 쉬어가는 모습을 보인 것이 주가에 영향을 미친 것으로 보인다.\n뉴욕증권거래소에선 다우존스30 산업평균지수가 0.36% 오르고, 스탠더드앤드푸어스(S&P) 500 지수와 나스닥 지수도 각각 0.02%, 0.07% 상승했다.\n그러나 마이크론(+3.64%)을 제외한 여타 주요 반도체주 대부분은 차익실현 매물이 나오면서 약세를 보였고, 결과적으로 필라델피아 반도체 지수는 1.36% 내린 채 장을 마쳤다.\n한편, 이 시각 현재 유가증권시장에선 외국인이 홀로 9천300억원을 순매도 중이며, 개인과 기관은 8천269억원과 756억원을 순매수하고 있다.\n외국인은 삼성전자와 SK하이닉스 등이 속한 코스피 전기전자 업종에서도 7천681억원 매도 우위를 기록 중이며, 개인과 기관은 6천480억원과 977억원 매수 우위다.\nhwangch@yna.co.kr\n제보는 카카오톡 okjebo\n<저작권자(c) 연합뉴스,\n무단 전재-재배포, AI 학습 및 활용 금지>\n2026/05/28 09:16 송고\n2026년05월28일 09시16분 송고"
+      "title": "한은 총재 \"삼성전자 성과급에 물가 상승 압력 생길 것\"",
+      "link": "https://www.yna.co.kr/view/AKR20260528090900002",
+      "published": "Thu, 28 May 2026 11:54:32 +0900",
+      "body": "\"노사 합의 중요…양극화 심화시키지 않는 범위 바람직\"\n(서울=연합뉴스) 임지우 이도흔 기자 = 신현송 한국은행 총재는 28일 \"삼성전자[005930] 성과급으로 임금이 구매력 증가를 통해 수요를 증가시켜 물가 상승 압력이 생길 수 있다\"고 말했다.\n신 총재는 이날 오전 금융통화위원회가 기준금리를 연 2.50%로 동결한 뒤 가진 기자간담회에서 \"삼성전자 성과급에 관해서 노사가 합의하는 것이 가장 중요하다\"며 이같이 말했다.\n이어 \"노사 간에 회의를 하겠지만, 양극화를 심화시키지 않는 범위에서 하는 것이 바람직하다고 느낀다\"고 말했다.\nwisefool@yna.co.kr\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년05월28일 11시54분 송고"
     },
     {
       "source": "yonhap",
-      "title": "KB증권 \"삼성전자, 시총 2조달러 진입 기대…목표가 53만원\"",
-      "link": "https://www.yna.co.kr/view/AKR20260528027200008",
-      "published": "Thu, 28 May 2026 08:45:54 +0900",
-      "body": "(서울=연합뉴스) 이민영 기자 = KB증권은 28일 삼성전자[005930]에 대해 내년 메모리 업황 호조가 예상되는 가운데 시가총액 2조 달러 진입이 기대된다며 목표주가를 45만원에서 53만원으로 올렸다.\n지난 15일 목표가를 올린 지 약 2주 만에 재차 상향한 것으로, 삼성전자는 전날 31만3천500원에 거래를 마쳤다.\n김동원 리서치본부장은 보고서에서 \"올해 하반기 출시 예정인 엔비디아 베라 루빈 플랫폼에서 메모리가 차지하는 원가 비중이 블랙웰 대비 5배 이상 확대돼 베라 루빈 플랫폼 전체 원가의 25%에 이를 것\"이라고 짚었다.\n이에 따라 \"SOCAMM(차세대 메모리 규격), HBM4(6세대 고대역폭메모리) 등 차세대 메모리 공급 비중을 확대하는 삼성전자의 직접적 수혜가 기대된다\"고 했다.\n김 본부장은 \"내년 메모리 시장은 올해보다 더 좋다\"며 \"공급 부족이 더욱 심화하고, 가격 상승 탄력 역시 확대될 전망이기 때문\"이라고 설명했다.\n구체적으로 \"평택 4공장(P4) 신규 증설이 특정 HBM(고대역폭메모리) 생산능력 확대에 집중되면서 범용 메모리의 추가 생산은 공정 전환을 통해서만 가능해 공급 부족이 심화할 것\"이라고 분석했다.\n이에 따라 올해 연간 영업이익 추정치를 기존 373조7천280억원에서 375조3천440억원으로 0.4% 상향 조정했다. 아울러 내년 영업익 추정치도 547조8천70억원으로 직전 대비 10.2% 상향했다.\n현대차그룹의 로보틱스 계열사인 보스턴다이내믹스와 협력이 기대되는 점도 긍정적 요인으로 꼽았다.\n그는 \"올해 하반기부터 삼성전자는 지능형 휴머노이드 로봇을 반도체 생산라인에 투입할 것으로 예상된다\"며 \"삼성전자의 휴머노이드 사업 전략은 전략적 지분 투자를 통한 글로벌 휴머노이드 업체와의 직접적 협력과, 내재화의 투트랙으로 전개될 전망\"이라고 했다.\n특히 \"현대차와 긴밀한 협력 관계를 유지하고 있는 삼성전자는 휴머노이드 로봇 행동 데이터 확보를 원하는 엔비디아, 구글 등과의 협업 가능성도 커 보스턴다이내믹스와 전략적 협력이 가장 현실적인 대안\"이라고 짚었다.\n그러면서 \"현시점은 초기 국면에 불과한 반도체 호황 사이클과 휴머노이드 로봇 사업 확대 등을 고려할 때 시가총액 2조달러(3천조원)의 출발점으로 평가된다\"고 강조했다.\nmylux@yna.co.kr\n제보는 카카오톡 okjebo\n<저작권자(c) 연합뉴스,\n무단 전재-재배포, AI 학습 및 활용 금지>\n2026/05/28 08:45 송고\n2026년05월28일 08시45분 송고"
-    },
-    {
-      "source": "maeil",
-      "title": "[속보] 한국은행, 올해 성장률 전망치 2.0%→2.6% 상향 조정",
-      "link": "https://www.mk.co.kr/news/economy/12059617",
-      "published": "Thu, 28 May 2026 09:53:48 +09:00",
-      "body": "한국은행이 올해 한국의 실질 국내총생산(GDP) 성장률을 기존 2.0%에서 2.6%으로 상향했다. 내년은 2.1%로 전망했다.\n한은은 28일 수정 경제전망을 발표, 올해 성장률 전망치를 2.6%로 제시했다. 지난 2월 전망치(2.0%)보다 0.6%포인트(p) 높인 것이다. 이는 반도체를 중심으로 한 수출 증가세 등이 영향을 준 것으로 보인다.\n앞서 한은은 올해 연간 전망치를 지난 2024년 11월 1.8%로 처음 제시한 뒤 지난해 5월 1.6%로 낮췄고, 11월에 다시 1.8%로 높였다.\n앞서 한은은 올해 연간 전망치를 지난 2024년 11월 1.8%로 처음 제시한 뒤 지난해 5월 1.6%로 낮췄다. 이후 11월에 다시 1.8%로, 2월은 2.0%로 높였다.\n또 한은은 내년 성장률 전망치는 지난 2월 전망치인 1.8%에서 2.1%로 0.3%p 상향 조정했다.\n한은은 내년 성장률 전망치를 지난해 11월 1.9%로 처음 제시한 뒤 지난 2월 1.8%로 낮춘 뒤 이번에 다시 올렸다. 반도체 사이클이 내년까지 강하게 지속되며 성장률을 끌어올릴 것이라는 판단이 영향을 준 것으로 보인다.\n올해 소비자물가 상승률 전망치도 2.2%에서 2.7%로 0.5%p 상향 조정했다. 중동 전쟁 장기화로 고유가가 지속되면서 올해 물가가 큰 폭으로 오를 것이라고 봐서다.\n또 내년 소비자물가 상승률 전망치는 2.0%에서 2.3%로 올렸다."
-    },
-    {
-      "source": "yonhap",
-      "title": "[특징주] 현대모비스, 증권가 목표가 줄상향 속 52주 신고가",
-      "link": "https://www.yna.co.kr/view/AKR20260528039600008",
-      "published": "Thu, 28 May 2026 09:30:29 +0900",
-      "body": "(서울=연합뉴스) 이민영 기자 = 현대모비스[012330] 주가가 28일 증권가의 잇따른 목표가 상향에 장 초반 올라 52주 신고가를 경신했다.\n이날 오전 9시 25분 기준 현대모비스는 전장 대비 2.18% 오른 70만3천원에 거래되고 있다. 개장 직후에는 8.87% 오른 74만9천원까지 상승해 52주 신고가를 기록하기도 했다.\n이날 신한투자증권은 현대모비스[012330]에 대해 \"기존 자동차 부품사를 넘어 피지컬 인공지능(AI) 밸류체인(가치사슬)으로 재평가될 수 있다\"며 목표주가를 90만원으로 상향했다.\n박광래 연구원은 \"현대모비스는 애프터서비스(A/S) 부문이 밸류에이션(평가가치) 하단을 지지하는 핵심 현금창출원 역할을 하면서 전장·자율주행·로봇 투자 여력을 제공하고 있다\"며 이같이 밝혔다.\n그러면서 올해 연간 영업이익은 3조6천500억원으로 작년보다 8.6% 증가하고, 내년 영업이익은 4조1천억원으로 12.2% 늘어날 것이라고 전망했다.\n이날 삼성증권[016360]도 현대모비스의 목표가를 95만원으로 올렸다.\n임은영 연구원은 \"현대모비스가 담당하는 액추에이터는 휴머노이드 로봇 하드웨어 원가의 50∼60%를 차지할 뿐 아니라, 열관리의 핵심 부품\"이라며 로봇 사업에서의 역할 확대 등을 반영해 P/E(주가수익비율)를 기존 13.7배에서 18.4배로 상향한다고 밝혔다.\nmylux@yna.co.kr\n제보는 카카오톡 okjebo\n<저작권자(c) 연합뉴스,\n무단 전재-재배포, AI 학습 및 활용 금지>\n2026/05/28 09:30 송고\n2026년05월28일 09시30분 송고"
-    },
-    {
-      "source": "yonhap",
-      "title": "신한투자 \"현대모비스, 피지컬AI로 재평가…목표가 상향\"",
-      "link": "https://www.yna.co.kr/view/AKR20260528023900008",
-      "published": "Thu, 28 May 2026 08:29:06 +0900",
-      "body": "(서울=연합뉴스) 고은지 기자 = 신한투자증권은 28일 현대모비스[012330]에 대해 \"기존 자동차 부품사를 넘어 피지컬 인공지능(AI) 밸류체인(가치사슬)으로 재평가될 수 있다\"며 목표주가를 상향 조정했다.\n박광래 연구위원은 이날 보고서에서 \"현대모비스는 애프터서비스(A/S) 부문이 밸류에이션(평가가치) 하단을 지지하는 핵심 현금창출원 역할을 하면서 전장·자율주행·로봇 투자 여력을 제공하고 있다\"며 이같이 밝혔다.\n현대모비스의 연간 영업이익은 올해의 경우 전년 대비 8.6% 증가한 3조6천500억원, 내년에는 12.2% 늘어난 4조1천억원이 될 것으로 전망했다.\n박 연구위원은 \"제조 부문은 낮은 수익성이 약점이었으나 마진 개선 시 이익 레버리지가 크다\"며 \"모듈·핵심부품 매출을 50조원으로 가정하면 영업이익률(OPM) 1%포인트 개선만으로 연간 영업이익 5천억원이 증가한다\"고 분석했다.\n또 \"자율주행·소프트웨어 중심 차량(SDV) 전환은 차량 1대당 매출 증가로 연결될 수 있다\"면서 \"현대차·기아 글로벌 판매를 700만∼800만대로 가정할 경우 차량당 SDV 관련 매출이 10만원 증가 시 연간 7천억∼8천억원의 매출 추가 달성이 가능하다\"고 짚었다.\n박 연구위원은 특히 \"로봇 액추에이터는 주가 재평가의 핵심 옵션\"이라면서 \"보스턴다이내믹스의 아틀라스 판매 대수를 2030년 5만대로 가정하면 2030년 2조원 이상의 로봇 액추에이터 매출 달성이 가능하다\"고 말했다.\n그는 \"휴머노이드 관련 업체들이 높은 주가매출액비율(PSR) 밸류에이션을 받는 걸 가정할 때 2조원의 매출만으로도 큰 폭의 주가 재평가가 나타날 것\"이라고 예상했다.\n이에 따라 현대모비스에 대한 투자의견 '매수'를 유지하고 목표주가를 기존 57만원에서 90만원으로 올렸다. 현대모비스의 전날 종가는 68만8천원이었다.\neun@yna.co.kr\n제보는 카카오톡 okjebo\n<저작권자(c) 연합뉴스,\n무단 전재-재배포, AI 학습 및 활용 금지>\n2026/05/28 08:29 송고\n2026년05월28일 08시29분 송고"
-    },
-    {
-      "source": "cnbc_tech",
-      "title": "Amazon starts selling its AI shopping technology to other retailers",
-      "link": "https://www.cnbc.com/2026/05/27/amazon-ai-shopping-alexa-kate-spade.html",
-      "published": "Wed, 27 May 2026 13:10:01 GMT",
-      "body": "Amazon has been using homegrown artificial intelligence technology to help users compare products and buy or reorder items on their behalf. Now the company is licensing that technology to other retailers, as it vies to be the backbone of AI shopping across the web.\nIn a blog post Wednesday, Amazon said it's taking the \"architecture, starter code and learnings\" from Alexa for Shopping and packaging it together for the rest of the retail industry. The new service allows retailers to launch their own AI shopping tools tailored to their storefront, catalog and branding \"in as little as 60 days,\" Amazon said.\nFor Amazon, the move marks another effort to take technology built internally and sell it to other companies, including competitors, as a service. It's the approach Amazon took roughly two decades ago with Amazon Web Services, its cloud computing unit, and later with its cashier-less checkout, warehousing and supply chain services.\nEarlier this month, Amazon rebranded its e-commerce chatbot from Rufus to Alexa for Shopping and enabled it by default in search queries on its store. As it turns outward, the new tool is being offered by AWS, which could help reassure retailers leery of partnering and sharing data with the industry giant.\nAmazon said it's already signed up Tapestry-owned luxury fashion brand Kate Spade as a customer, which used the service to launch a gifting assistant. Additional retailers are \"currently in testing,\" the company said.\nAcross the burgeoning AI ind"
+      "title": "[속보] 한은 총재 \"삼성전자 성과급에 물가 상승 압력 생길 것\"",
+      "link": "https://www.yna.co.kr/view/AKR20260528086300002",
+      "published": "Thu, 28 May 2026 11:38:34 +0900",
+      "body": "한지훈기자 구독 구독중 이전 다음 이미지 확대 의사봉 두드리는 신현송 한국은행 총재 (서울=연합뉴스) 신현송 한국은행 총재가 28일 서울 중구 한국은행에서 열린 금융통화위원회 본회의에 참석해 의사봉을 두드리고 있다. 2026.5.28 [사진공동취재단] photo@yna.co.kr 제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026/05/28 11:38 송고 2026년05월28일 11시38분 송고 #한은 댓글 좋아요 슬퍼요 화나요 후속요청 북마크 공유 공유하기 카카오톡 페이스북 X 페이스북 메신저 네이버 밴드 URL 복사 닫기 URL이 복사되었습니다. 댓글 글자크기 본문 글자 크기 조정 폰트 1단계 13px 폰트 2단계 16px 폰트 3단계 18px 폰트 4단계 20px 폰트 5단계 22px 닫기 프린트 제보"
     },
     {
       "source": "cnbc_world",
@@ -10098,40 +10068,68 @@
       "body": "Amazon's top health-care boss will step down from his role and be replaced by the cofounder of telemedicine company Amwell, the company announced Wednesday.\nNeil Lindsay, who joined Amazon more than 15 years ago, has served as the senior vice president of Amazon Health Services since 2021. AHS spans Amazon's online pharmacy service and primary care chain One Medical, among other initiatives.\nDr. Roy Schoenberg will succeed Lindsay on July 1, Amazon's worldwide retail chief Doug Herrington wrote in a memo posted to the company's website. Lindsay will stay on as an advisor at Amazon until the end of the year, and plans to continue advising companies on health-care technology.\nIn addition to cofounding and leading Amwell, Schoenberg brings \"a rare combination of clinical expertise, technology vision, and experience building health-care businesses at scale,\" Herrington wrote.\nAmazon has for years been on a mission to crack the multi-trillion dollar U.S. health-care industry, which is notoriously complex and inefficient. Its first big splash came in 2018 with the acquisition of online pharmacy PillPack for about $750 million, which led to the creation of its own offering called Amazon Pharmacy.\nThe company then bought One Medical for $3.9 billion in 2023, among its largest acquisitions ever, giving Amazon access to a chain of brick-and-mortar primary clinics and a robust membership base.\nAmazon launched, then shuttered, a telehealth service. It also experimented with a line of hea"
     },
     {
+      "source": "yonhap",
+      "title": "[속보] 한은 총재 \"최종 금리 수준 아직 몰라…데이터 볼 것\"",
+      "link": "https://www.yna.co.kr/view/AKR20260528091100002",
+      "published": "Thu, 28 May 2026 11:55:13 +0900",
+      "body": "한지훈기자 구독 구독중 이전 다음 이미지 확대 연합뉴스 속보(CG) 제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026/05/28 11:55 송고 2026년05월28일 11시55분 송고 #금리 댓글 좋아요 슬퍼요 화나요 후속요청 북마크 공유 공유하기 카카오톡 페이스북 X 페이스북 메신저 네이버 밴드 URL 복사 닫기 URL이 복사되었습니다. 댓글 글자크기 본문 글자 크기 조정 폰트 1단계 13px 폰트 2단계 16px 폰트 3단계 18px 폰트 4단계 20px 폰트 5단계 22px 닫기 프린트 제보"
+    },
+    {
+      "source": "yonhap",
+      "title": "한은 총재 \"물가·성장·환율 등 보면 갈 길 명확…금리 인상\"",
+      "link": "https://www.yna.co.kr/view/AKR20260528087300002",
+      "published": "Thu, 28 May 2026 11:43:04 +0900",
+      "body": "신현송 한국은행 총재는 28일 향후 기준금리 결정과 관련해 \"물가로 보나 성장으로 보나 환율, 부동산으로 보나 갈 길이 명확하다\"고 말했다.\n신 총재는 이날 오전 금융통화위원회가 기준금리를 연 2.50%로 동결한 뒤 연 기자간담회에서 \"앞으로 기준금리를 인상함으로써 이러한 요소를 일관성 있게 관리할 것\"이라며 이같이 말했다.\n그는 \"정책을 할 때 여러 목적이 상충 되는 경우에는 어디로 갈지 모르는 딜레마가 있는데, 이번에는 예외적인 상황\"이라고 말했다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다."
+    },
+    {
+      "source": "yonhap",
+      "title": "국고채 금리 일제히 상승…3년물 장중 연 3.752%",
+      "link": "https://www.yna.co.kr/view/AKR20260528086800008",
+      "published": "Thu, 28 May 2026 11:42:39 +0900",
+      "body": "(서울=연합뉴스) 28일 국고채 금리가 일제히 상승하고 있다.\n이날 오전 서울 채권시장에서 3년 만기 국고채 금리는 전 거래일보다 4.1bp(1bp=0.01%포인트) 오른 연 3.752%를 기록했다.\n10년물 금리는 연 4.131%로 2.9bp 상승했다. 5년물과 2년물은 각각 3.3bp, 3.4bp 상승해 연 3.983%, 연 3.600%에 거래되고 있다.\n20년물은 연 4.172%로 1.8bp 올랐다. 30년물과 50년물은 각각 1.4bp, 1.2bp 상승해 연 4.114%, 연 3.958%를 기록했다.\n※ 이 기사와 표는 연합인포맥스의 데이터를 토대로 알고리즘에 의해 자동 작성돼 편집자의 데스킹을 거쳤습니다.\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년05월28일 11시42분 송고"
+    },
+    {
+      "source": "yonhap",
+      "title": "한은총재 \"향후 적절한 시기에 금리 인상 필요…물가 등 고려\"",
+      "link": "https://www.yna.co.kr/view/AKR20260528086600002",
+      "published": "Thu, 28 May 2026 11:41:29 +0900",
+      "body": "신현송 한국은행 총재는 28일 \"향후 적절한 시기에 기준금리를 인상할 필요가 있다고 판단된다\"라고 밝혔다.\n신 총재는 \"물가상승률이 상당 기간 목표 수준을 상회할 것으로 전망되는 가운데 성장은 견조한 개선세를 지속할 것으로 보인다\"라며 \"금융안정 측면에서도 환율 변동성, 가계부채 리스크 등에 계속 유의할 필요가 있다\"라고 했다.\n이어 \"금리 인상 시기와 속도는 앞으로 입수되는 데이터를 토대로 물가상승 압력의 확대 정도와 경기개선 흐름, 금융안정 상황 등을 점검하며 결정해 나갈 것\"이라고 설명했다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다."
+    },
+    {
       "source": "maeil",
-      "title": "[속보] 한은 기준금리 연 2.50% 동결…8회 연속",
-      "link": "https://www.mk.co.kr/news/economy/12059612",
-      "published": "Thu, 28 May 2026 09:51:16 +09:00",
-      "body": "반도체 호조…GDP 성장률 쑥\n한국은행은 28일 금융통화위원회를 열고 현재 연 2.50%인 기준금리를 동결했다.\n지난해 7·8·10·11월과 올해 1·2·4월에 이어 8회 연속 동결이다. 이에 따라 미국의 기준금리 3.50~3.75%와 상단 기준 한국 1.25%포인트 차이가 난다.\n당초 시장에서도 신현송 총재 취임 이후 처음 열리는 회의인 만큼 기준금리를 동결하고 당분간 시장 흐름을 지켜볼 것이란 관측이 우세했다. 채권 시장 전문가 설문에선 99%가 이번 금통위 때 금리 동결을 예상했다.\n전문가들은 금통위가 금리를 동결하는 주된 이유로 불확실성을 지목했다.\n지난 2월 말 시작된 중동전쟁이 석 달째 지속되고 있는 가운데 종전협상이 막판 진통을 겪고 있다. 미국과 이란간 종전협상이 타결돼 호르무즈 해협이 개방될 경우 국제 유가가 안정을 찾고, 미국 국채 금리 상승세도 진정되겠지만 반대로 확전 양상으로 번질 경우 금융시장은 또 한번 충격을 받게 된다.\n금통위는 일단 이날 금리를 동결하되, 총재 기자간담회를 통해 ‘매파적’(통화긴축 선호) 입장을 내비칠 것이라는 분석이 나온다.\n실제로 중동전쟁 등의 영향으로 최근 국내 생산자물가와 소비자물가가 치솟고 있기 때문이다.\n지난 4월 생산자물가지수는 2.5% 올라 외환위기 때인 1998년 2월(2.5%) 이후 가장 큰 폭으로 상승했다. 원재료가 28.5% 급등해 1980년 통계 작성 이후 역대 최고치를 기록했다.\n같은 달 소비자물가지수 역시 2.6% 올라 목표 수준(2.0%)을 웃돌았다. 석유류가 21.9% 올라 러시아·우크라이나 전쟁 초기인 2022년 7월(35.2%) 이후 3년 9개월 만에 최고 상승률을 보였다. 소비자물가 상승률은 올해 1월과 2월 2.0%로 안정됐지만 3월 2.2%, 4월 2.6% 등으로 크게 뛰었다. 5월 오름폭은 더 확대될 전망이다.\n아울러 반도체를 중심으로 한 수출 호조로 성장 지표가 크게 개선되고 있다.\n올해 1분기 실질 국내총생산(GDP) 성장률은 1.7%(직전 분기 대비 속보치)에 달해, 한은이 지난 2월 제시한 전망치(0.9%)의 두 배에 가까웠다. 그만큼 통화 완화를 통한 경기 부양 필요성은 줄어들고, 오히려 수요측 물가 상방 압력이 커졌다는 의미다.\n한은은 이날 올해 경제성장률과 소비자물가 상승률 전망치도 발표한다.\n한은이 지난 2월에 발표한 올해 성장률은 2.0%, 물가 상승률은 2.2%였는데 반도체 수출 호조와 고유가, 고환율을 감안하면 각각 상향 조정될 것으로 관측된다."
+      "title": "목표주가 상향에 장중 신고가...신났다 ‘현대모비스’ [오늘, 이 종목]",
+      "link": "https://www.mk.co.kr/news/business/12059745",
+      "published": "Thu, 28 May 2026 11:36:06 +09:00",
+      "body": "신한證 90만원·삼성證 95만원\nA/S 하방 지키고 로봇 상단 연다\n현대모비스가 피지컬 AI 수혜 기대감과 증권가의 잇따른 목표주가 상향에 힘입어 장중 사상 최고가를 경신했다.\n현대모비스는 유가증권시장에서 28일 오전 11시 15분 현재 전일 대비 1.02%오른 69만5000원에 거래되고 있다. 개장 직후에는 8.87% 오른 74만9000원까지 상승해 최고가를 새로 썼다.\n이날 신한투자증권은 현대모비스가 기존 자동차 부품사의 틀에서 벗어나 피지컬 AI 밸류체인으로 재평가될 수 있다며 투자의견 ‘매수’를 유지하고 목표주가는 90만원으로 상향했다. 연간 영업이익은 올해 전년 대비 8.6% 증가한 3조6500억원을 기록하고, 내년에는 12.2% 늘어난 4조1000억원에 달할 것으로 내다봤다.\n박광래 신한투자증권 애널리스트는 “기존 자동차 부품사를 넘어 A/S 부품과 전장·전동화 부품, SDV(소프트웨어 중심차량) 하드웨어, 로봇 액추에이터, 피지컬 AI 밸류체인 기업으로 재평가될 가능성에 주목했다”고 밝혔다.\n특히 안정적인 A/S 사업이 버팀목 역할을 하며 밸류에이션 하단을 지지하는 가운데, 로봇 사업이 본격적인 주가 재평가를 이끌 것이라고 분석했다. 박 애널리스트는 “A/S 부품은 밸류에이션 하단을 지지하는 핵심 현금창출원”이라며 “전장·자율주행·로봇 투자 여력을 제공할 전망”이라고 전했다. 이어 “보스턴다이내믹스의 휴머노이드 로봇 ‘아틀라스’ 판매량이 2030년 5만대 수준에 이를 것으로 가정하면 현대모비스 로봇 액추에이터 매출은 2조원을 넘어설 수 있다”고 짚었다.\n삼성증권 역시 로봇 사업 가속화를 반영해 현대모비스 목표주가를 95만원으로 높였다. 임은영 삼성증권 애널리스트는 “현대모비스가 담당하는 액추에이터는 휴머노이드 로봇 하드웨어 원가의 50~60%를 차지한다”며 “아틀라스 액추에이터 100%를 납품하며 하드웨어 공급망의 중심에 선 가운데, 열관리까지 영역을 확대하고 있다”고 평가했다."
     }
   ],
-  "global_sentiment": "risk_on",
-  "sentiment_reason": "VIX -4.23% 안정, 미국 주요 지수 혼조세 속 다우·S&P 플러스, Snowflake·Micron 등 빅테크 실적 호조로 AI 모멘텀 지속",
+  "global_sentiment": "risk_off",
+  "sentiment_reason": "한은 총재의 명확한 금리인상 시사와 성과급→물가 상승 경로 경고로 채권금리 급등, 중동 긴장 고조로 유가 -3.5%, 항셍 -2%에 글로벌 위험자산 동시 약세",
   "key_factors": [
-    "Micron 시총 1조달러 돌파로 메모리 섹터 재평가 강화 — 삼성전자 목표가 53만원·SK하이닉스 상승",
-    "Snowflake 36% 급등 + AWS 6년간 60억달러 계약으로 AI 인프라 수요 확인",
-    "한은 성장률 전망 2.0%→2.6% 상향 조정으로 한국 경기 모멘텀 재확인, 금리 8연속 동결"
+    "한은 총재 \"물가·성장·환율·부동산 모두 금리인상 방향\" 매파 발언으로 국고채 3년물 +4.1bp, 10년물 +2.9bp 급등",
+    "IEA 석유 공동방출 공조(1200만배럴) 참여에도 중동 불확실성으로 WTI -3.46%, 금 -1.66% 안전자산 역설적 하락",
+    "Snowflake AWS 6B$ 계약에 +36% 폭등하며 클라우드 수요 재확인, 반면 Salesforce 가이던스 부진에 반도체 -1.36% 혼조"
   ],
-  "news_summary": "한국은행 2026년 성장률 전망 2.0%→2.6% 대폭 상향 — 반도체 수출 호조 반영, 기준금리 8연속 동결 (연 2.50%)\n미국 국채 10년물 금리 4.48% (-0.27%), 30년물 5.01% (-0.30%) — Snowflake·Micron 실적 서프라이즈로 성장 기대감 강화\nWTI 유가 90.55달러 -3.56% 급락 — 미-이란 종전협상 정체에도 수요 우려 우세\n달러인덱스 99.3 (+0.13%) — 한은 금리 동결 속 원화 약세 압력, 원/달러 1,503.69원 (-0.12%)\n미국-이란 종전 협상 정체 지속 — 원/달러 환율 상승 출발, 중동 불확실성 잔존\n엔비디아 CEO 젠슨 황, 베이징 명문대 이사회 합류 — 미중 AI 협력 신호로 해석 가능\n구글 엔지니어 Polymarket 내부정보 거래 혐의 기소 — 검색어 데이터로 120만달러 부당 수익\nMicron 시총 1조달러 돌파 기록 경신 — 1987년 이래 최대 상승률, 애널리스트들 \"여전히 저평가\" 진단\nSnowflake 36% 폭등 + AWS와 5년간 60억달러 계약 체결 — AI 가속화로 제품매출 기록적 성장\nKB증권 삼성전자 목표가 45만원→53만원 상향 — 엔비디아 베라 루빈 플랫폼에서 메모리 원가 비중 블랙웰 대비 5배 확대, 시총 2조달러 진입 기대\n신한투자·KB증권 현대모비스 목표가 90만원·120만원 대폭 상향 — 피지컬AI 밸류체인 재평가, 52주 신고가 경신\nKB증권 현대차 목표가 120만원으로 50% 상향 — 휴머노이드·자율주행 사업 확대로 피지컬AI 핵심 기업 도약, 영업이익률 전망 3%→4.5%\nMeta AI 구독 서비스 테스트 시작 — 최저 월 7.99달러, OpenAI·Google 경쟁 본격화\nSalesforce 실적 비트했으나 연간 가이던스 약세 — 주가 보합권, AI 모멘텀 둔화 우려\nAmazon AI 쇼핑 기술 외부 리테일러에 라이선싱 시작 — 웹 전반 AI 쇼핑 백본 전략\nMarvell AI 수요 '예외적' 성장 전망에도 주가 하락 — 가이던스 호조 후 차익실현\n키움증권 시프트업 커버리지 개시 목표가 6만5천원 — 게임 업종 내 최선호주 제시, NC는 차선호주로 조정",
+  "news_summary": "한은 총재 \"물가·성장·환율·부동산 모두 금리인상 방향 명확\" 매파 발언, 삼성전자 성과급이 구매력 증가→물가 상승 압력 경고하며 국고채 3년물 +4.1bp·10년물 +2.9bp 급등\nIEA 석유 공동방출 공조에 한국 참여 — 정부비축유 대신 민간비축 의무일수 40일→20일 하향으로 약 1200만배럴 방출 실적 통보, WTI -3.46% 급락\nNomura \"이란 상황으로 BOJ 단기 금리인상 여전히 불투명\" — 엔화 약세 지속 가능성 시사\n미 국채 10년물 4.48%(-2.7bp), 30년물 5.01%(-3.0bp) 하락 — 중동 불안 안전자산 수요와 인플레 우려 상충\nNvidia 젠슨 황 CEO, 베이징 명문대 이사회 합류 발표 — 미중 기술 긴장 속 중국 시장 공략 강화 시그널, 항셍 -1.95% 하락에 일조\nGoogle 엔지니어 Michele Spagnuolo, Polymarket 내부정보로 검색어 베팅해 $120만 수익 — 연방검찰 사기 혐의 기소\n한국 정부, 민간 석유비축 의무 40일→20일 하향으로 IEA 1200만배럴 공조 이행 — 중동전쟁 장기화 대비 정부비축분 보존 전략\nSnowflake Q1 실적 서프라이즈 + AWS와 5년간 $6B 지출 계약 발표 — AI 가속으로 제품매출 기록 경신, 주가 +36% 로켓 발사\nTSMC, 올해 직원 성과급 평균 30% 이상 인상 발표 — 삼성전자 성과급 논란 영향, 웨이 CEO 타운홀서 \"역대급 실적 환원\" 강조하며 직원 불만 해소\nMicron 주가 1987년 이래 최고 밸류에이션 — 애널리스트들 \"AI·HBM 수요로 여전히 저평가\" 판단, 추가 상승 여력 시사\nMeta, AI 구독 서비스 테스트 시작 — Meta AI 앱·웹사이트 최저 $7.99/월, 광고 외 AI 시대 신규 수익원 확보 전략\nSalesforce Q1 실적·매출 컨센서스 상회, 하지만 연간 가이던스 예상 하회 — AI 디스럽션 우려 지속으로 시간외 하락\nMarvell \"AI 수요 exceptional\" 강조에도 성장 전망 기대 못 미쳐 — 주가 하락, 필라델피아반도체 -1.36% 약세 기여\n현대모비스, 신한證 목표가 90만원·삼성證 95만원 상향 — 피지컬 AI 밸류체인 재평가 기대에 장중 74.9만원 신고가 경신\nMark Zuckerberg \"Meta 클라우드 사업 진출 definitely on the table\" — 데이터센터 초과 투자 시 AWS·Azure 경쟁 가능성 시사",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "한국은행 2026년 성장률 전망 2.0%→2.6% 대폭 상향 — 반도체 수출 호조 반영, 기준금리 8연속 동결 (연 2.50%)",
+          "text": "한은 총재 \"물가·성장·환율·부동산 모두 금리인상 방향 명확\" 매파 발언, 삼성전자 성과급이 구매력 증가→물가 상승 압력 경고하며 국고채 3년물 +4.1bp·10년물 +2.9bp 급등",
           "impact": "high"
         },
         {
-          "text": "미국 국채 10년물 금리 4.48% (-0.27%), 30년물 5.01% (-0.30%) — Snowflake·Micron 실적 서프라이즈로 성장 기대감 강화",
+          "text": "IEA 석유 공동방출 공조에 한국 참여 — 정부비축유 대신 민간비축 의무일수 40일→20일 하향으로 약 1200만배럴 방출 실적 통보, WTI -3.46% 급락",
+          "impact": "high"
+        },
+        {
+          "text": "Nomura \"이란 상황으로 BOJ 단기 금리인상 여전히 불투명\" — 엔화 약세 지속 가능성 시사",
           "impact": "mid"
         },
         {
-          "text": "WTI 유가 90.55달러 -3.56% 급락 — 미-이란 종전협상 정체에도 수요 우려 우세",
-          "impact": "mid"
-        },
-        {
-          "text": "달러인덱스 99.3 (+0.13%) — 한은 금리 동결 속 원화 약세 압력, 원/달러 1,503.69원 (-0.12%)",
+          "text": "미 국채 10년물 4.48%(-2.7bp), 30년물 5.01%(-3.0bp) 하락 — 중동 불안 안전자산 수요와 인플레 우려 상충",
           "impact": "mid"
         }
       ]
@@ -10141,15 +10139,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미국-이란 종전 협상 정체 지속 — 원/달러 환율 상승 출발, 중동 불확실성 잔존",
+          "text": "Nvidia 젠슨 황 CEO, 베이징 명문대 이사회 합류 발표 — 미중 기술 긴장 속 중국 시장 공략 강화 시그널, 항셍 -1.95% 하락에 일조",
+          "impact": "high"
+        },
+        {
+          "text": "Google 엔지니어 Michele Spagnuolo, Polymarket 내부정보로 검색어 베팅해 $120만 수익 — 연방검찰 사기 혐의 기소",
           "impact": "mid"
         },
         {
-          "text": "엔비디아 CEO 젠슨 황, 베이징 명문대 이사회 합류 — 미중 AI 협력 신호로 해석 가능",
-          "impact": "mid"
-        },
-        {
-          "text": "구글 엔지니어 Polymarket 내부정보 거래 혐의 기소 — 검색어 데이터로 120만달러 부당 수익",
+          "text": "한국 정부, 민간 석유비축 의무 40일→20일 하향으로 IEA 1200만배럴 공조 이행 — 중동전쟁 장기화 대비 정부비축분 보존 전략",
           "impact": "mid"
         }
       ]
@@ -10159,43 +10157,35 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "Micron 시총 1조달러 돌파 기록 경신 — 1987년 이래 최대 상승률, 애널리스트들 \"여전히 저평가\" 진단",
+          "text": "Snowflake Q1 실적 서프라이즈 + AWS와 5년간 $6B 지출 계약 발표 — AI 가속으로 제품매출 기록 경신, 주가 +36% 로켓 발사",
           "impact": "high"
         },
         {
-          "text": "Snowflake 36% 폭등 + AWS와 5년간 60억달러 계약 체결 — AI 가속화로 제품매출 기록적 성장",
+          "text": "TSMC, 올해 직원 성과급 평균 30% 이상 인상 발표 — 삼성전자 성과급 논란 영향, 웨이 CEO 타운홀서 \"역대급 실적 환원\" 강조하며 직원 불만 해소",
           "impact": "high"
         },
         {
-          "text": "KB증권 삼성전자 목표가 45만원→53만원 상향 — 엔비디아 베라 루빈 플랫폼에서 메모리 원가 비중 블랙웰 대비 5배 확대, 시총 2조달러 진입 기대",
+          "text": "Micron 주가 1987년 이래 최고 밸류에이션 — 애널리스트들 \"AI·HBM 수요로 여전히 저평가\" 판단, 추가 상승 여력 시사",
           "impact": "high"
         },
         {
-          "text": "신한투자·KB증권 현대모비스 목표가 90만원·120만원 대폭 상향 — 피지컬AI 밸류체인 재평가, 52주 신고가 경신",
+          "text": "Meta, AI 구독 서비스 테스트 시작 — Meta AI 앱·웹사이트 최저 $7.99/월, 광고 외 AI 시대 신규 수익원 확보 전략",
           "impact": "high"
         },
         {
-          "text": "KB증권 현대차 목표가 120만원으로 50% 상향 — 휴머노이드·자율주행 사업 확대로 피지컬AI 핵심 기업 도약, 영업이익률 전망 3%→4.5%",
-          "impact": "high"
-        },
-        {
-          "text": "Meta AI 구독 서비스 테스트 시작 — 최저 월 7.99달러, OpenAI·Google 경쟁 본격화",
+          "text": "Salesforce Q1 실적·매출 컨센서스 상회, 하지만 연간 가이던스 예상 하회 — AI 디스럽션 우려 지속으로 시간외 하락",
           "impact": "mid"
         },
         {
-          "text": "Salesforce 실적 비트했으나 연간 가이던스 약세 — 주가 보합권, AI 모멘텀 둔화 우려",
+          "text": "Marvell \"AI 수요 exceptional\" 강조에도 성장 전망 기대 못 미쳐 — 주가 하락, 필라델피아반도체 -1.36% 약세 기여",
           "impact": "mid"
         },
         {
-          "text": "Amazon AI 쇼핑 기술 외부 리테일러에 라이선싱 시작 — 웹 전반 AI 쇼핑 백본 전략",
+          "text": "현대모비스, 신한證 목표가 90만원·삼성證 95만원 상향 — 피지컬 AI 밸류체인 재평가 기대에 장중 74.9만원 신고가 경신",
           "impact": "mid"
         },
         {
-          "text": "Marvell AI 수요 '예외적' 성장 전망에도 주가 하락 — 가이던스 호조 후 차익실현",
-          "impact": "mid"
-        },
-        {
-          "text": "키움증권 시프트업 커버리지 개시 목표가 6만5천원 — 게임 업종 내 최선호주 제시, NC는 차선호주로 조정",
+          "text": "Mark Zuckerberg \"Meta 클라우드 사업 진출 definitely on the table\" — 데이터센터 초과 투자 시 AWS·Azure 경쟁 가능성 시사",
           "impact": "mid"
         }
       ]
@@ -10203,211 +10193,207 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "Salesforce 가이던스 약세에도 Snowflake·Micron 실적 호조로 AI 기대감 지속, VIX -4.23%로 안정세 유지",
+      "reason": "Snowflake +36% 급등과 Meta AI 구독 출시 등 빅테크 혼조 속 채권금리 하락(-2.7bp)이 밸류에이션 부담 완화하며 소폭 상승",
       "drivers": [
-        "Snowflake 36% 급등 (실적 서프라이즈)",
-        "Micron 시총 1조달러 돌파 모멘텀"
+        "Snowflake AWS $6B 계약 발표",
+        "미 10년물 국채 4.48% -2.7bp 하락"
       ]
     },
     "NASDAQ": {
-      "reason": "빅테크 실적 호조에도 Salesforce 가이던스 부진 + 반도체 차익실현 압박으로 상승 제한",
+      "reason": "Snowflake·Meta AI 구독 모델 호재에 소프트웨어 강세, 하지만 Salesforce 가이던스 실망과 반도체 혼조로 상승폭 제한(+0.07%)",
       "drivers": [
-        "Snowflake AWS 60억달러 계약",
-        "Meta AI 구독 서비스 테스트 시작"
+        "Snowflake +36% 급등",
+        "Salesforce 가이던스 부진"
       ]
     },
     "DOW": {
-      "reason": "전통 산업주 중심 안정적 매수세로 주요 지수 중 가장 강한 상승 (+0.36%)",
+      "reason": "금리 하락으로 금융·산업재 등 가치주 선호 강화, VIX -4.2%로 변동성 축소되며 전통 대형주 중심 +0.36% 상승",
       "drivers": [
-        "VIX 하락으로 방어주 선호",
-        "금리 안정 (10년물 -0.27%)"
+        "미 국채10Y 금리 -2.7bp 하락",
+        "VIX 16.29 -4.23% 안정화"
       ]
     },
     "VIX": {
-      "reason": "Micron·Snowflake 실적 서프라이즈 + 채권 금리 하락으로 위험 선호 심리 강화",
+      "reason": "Fed 금리 경로 불확실성 완화 기대와 빅테크 실적 혼조에도 시장 방향성 유지되며 변동성 지수 -4.23% 하락",
       "drivers": [
-        "빅테크 실적 불확실성 해소",
-        "국채 10년물 금리 4.48% 하락"
+        "미 국채금리 안정화",
+        "빅테크 실적 무난 통과"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Micron 1조달러 돌파 축하 랠리 이후 차익실현 압박 — 간밤 미국 반도체주 조정으로 영향",
+      "reason": "Marvell AI 수요 강조에도 가이던스 기대치 못 미쳐 하락, TSMC 성과급 30% 인상은 비용 부담 우려로 -1.36% 약세",
       "drivers": [
-        "Micron 목표가 상향 이후 과열 조정",
-        "Marvell 가이던스 호조에도 주가 하락"
+        "Marvell 가이던스 실망",
+        "TSMC 성과급 30% 인상 비용 부담"
       ]
     },
     "러셀2000": {
-      "reason": "대형주 중심 랠리 속 중소형주는 관망세 — Abercrombie 12% 급등에도 전체 지수는 보합",
+      "reason": "금리인하 기대 후퇴(한은 인상 시사)와 유가 급락으로 소형주 수혜 제한, 대형주 대비 상대적 약세로 -0.02% 소폭 하락",
       "drivers": [
-        "중동 이란 종전협상 정체로 불확실성",
-        "대형주 대비 모멘텀 부재"
+        "한은 금리인상 시사",
+        "WTI -3.46% 급락"
       ]
     },
     "영국FTSE": {
-      "reason": "유럽 증시 안정 흐름 속 소폭 상승 — 글로벌 AI 모멘텀 동조화",
+      "reason": "직접 촉매 약함 — 유럽 금리 안정 기조와 파운드 약세 수출주 수혜로 +0.13% 소폭 상승",
       "drivers": [
-        "달러인덱스 소폭 상승 (+0.13%)",
-        "유럽 경기 우려 제한적"
+        "파운드 약세"
       ]
     },
     "독일DAX": {
-      "reason": "유럽 제조업 회복 기대 속 보합권 — 미국 실적 시즌 영향 제한적",
+      "reason": "직접 촉매 없음 — ECB 금리 동결 기대 속 에너지 비용 하락(WTI -3.5%) 긍정, 유로존 제조업 회복 더디며 -0.03% 보합",
       "drivers": [
-        "원자재 가격 안정",
-        "ECB 금리 정책 관망"
+        "WTI 유가 -3.46% 하락"
       ]
     },
     "니케이": {
-      "reason": "엔화 안정 속 반도체 관련주 차익실현 압박 — 미국 필라델피아 반도체 -1.36% 영향",
+      "reason": "BOJ 금리인상 불확실성 지속(Nomura \"단기 인상 미정\") 속 엔화 약세 수출주 수혜로 +0.06% 소폭 상승",
       "drivers": [
-        "도쿄일렉트론 등 장비주 조정",
-        "Micron 랠리 이후 피로감"
+        "BOJ 금리인상 시기 불투명",
+        "엔화 약세 수출주 지원"
       ]
     },
     "항셍": {
-      "reason": "중국 경기 모멘텀 부재 + 글로벌 반도체 차익실현 압박으로 -1% 이상 하락",
+      "reason": "중국 경기 회복 모멘텀 약화와 미중 기술 긴장(Nvidia 젠슨 황 베이징대 이사 취임 논란) 우려로 -1.95% 급락",
       "drivers": [
-        "테크주 약세 (알리바바·텐센트)",
-        "중국 내수 소비 부진"
+        "중국 경기 회복 둔화",
+        "Nvidia-중국 관계 불확실성"
       ]
     },
     "달러인덱스": {
-      "reason": "한은 금리 동결 예상 속 달러 수요 소폭 증가 — 미국 10년물 금리 하락에도 방어",
+      "reason": "한은 금리인상 시사로 원화 약세 압력, 연준 금리인하 기대 후퇴와 중동 불안으로 달러 안전자산 수요 +0.18% 상승",
       "drivers": [
-        "한국 원화 약세 압력 (+0.12%)",
-        "유로·엔화 대비 소폭 강세"
+        "한은 금리인상 매파 발언",
+        "중동 긴장 고조"
       ]
     },
     "국채10Y": {
-      "reason": "Snowflake·Micron 실적 호조로 성장 기대감 강화 — 안전자산 수요 감소",
+      "reason": "Fed 금리인하 기대 유지와 중동 불안 안전자산 수요로 -2.7bp 하락, 하지만 인플레 재점화 우려는 하방 제한",
       "drivers": [
-        "VIX -4.23% 하락",
-        "AI 섹터 실적 서프라이즈"
+        "중동 긴장 안전자산 수요",
+        "인플레 우려 하방 제한"
       ]
     },
     "국채30Y": {
-      "reason": "장기 성장 기대감 + 인플레 우려 완화로 장기물 금리 동반 하락",
+      "reason": "10년물과 동조, 장기 인플레 우려에도 경기 둔화 헷지 수요로 -3.0bp 하락폭 확대",
       "drivers": [
-        "10년물 금리 하락 동조화",
-        "연준 금리 인하 기대 유지"
+        "경기 둔화 헷지 수요"
       ]
     },
     "코스피": {
-      "reason": "한은 금리 동결·성장률 상향에도 삼성전자 차익실현 + 코스닥 급락으로 약세",
+      "reason": "한은 총재 \"금리인상 명확\" 매파 발언으로 금융주 타격, 삼성전자 성과급→물가 압력 경고에 외국인 이탈, 원달러 +0.07% 약세로 -0.88% 하락",
       "drivers": [
-        "삼성전자 -0.65% (전일 신고가 후 조정)",
-        "외국인 매도 지속 (환율 상승)"
+        "한은 금리인상 시사",
+        "외국인 매도",
+        "삼성전자 성과급 물가 우려"
       ]
     },
     "코스닥": {
-      "reason": "2차전지·바이오 등 테마주 전면 급락 — 반도체 차익실현 압박이 중소형주로 확산",
+      "reason": "한은 금리인상 시사로 유동성 축소 우려, 2차전지·바이오 등 성장주 전반 약세에 -3.30% 급락",
       "drivers": [
-        "2차전지 섹터 lagging 지속",
-        "게임·바이오 동반 약세"
+        "금리인상 성장주 타격",
+        "2차전지·바이오 동반 약세"
       ]
     },
     "금": {
-      "reason": "달러 강세 (+0.13%) + VIX 하락으로 안전자산 수요 감소",
+      "reason": "달러인덱스 +0.18% 강세와 실질금리 상승(한은 인상) 압력, 중동 불안에도 역설적으로 -1.66% 하락",
       "drivers": [
-        "달러인덱스 99.3 상승",
-        "위험 선호 심리 강화"
+        "달러 강세",
+        "실질금리 상승 압력"
       ]
     },
     "WTI유가": {
-      "reason": "미국-이란 종전협상 정체에도 수요 우려 + 재고 증가 우려로 -3.56% 급락",
+      "reason": "IEA 공동방출 1200만배럴(한국 민간비축 20일 하향) 발표로 공급 증가 우려, 중동 긴장에도 -3.46% 급락",
       "drivers": [
-        "중동 긴장 완화 기대",
-        "글로벌 경기 둔화 우려"
+        "IEA 석유 1200만배럴 방출",
+        "한국 민간비축 40일→20일 하향"
       ]
     },
     "원달러": {
-      "reason": "한은 금리 동결 예상 속 달러 수요 소폭 증가했으나 성장률 상향으로 낙폭 제한 (-0.12%)",
+      "reason": "한은 금리인상 시사에도 미 달러인덱스 강세(+0.18%)와 코스피 -0.88% 외국인 이탈로 원화 약세 +0.07% 지속",
       "drivers": [
-        "한은 성장률 2.6% 상향",
-        "미-한 금리차 1.25%p 유지"
+        "달러인덱스 +0.18% 강세",
+        "외국인 자금 이탈"
       ]
     },
     "구리": {
-      "reason": "중국 수요 둔화 우려 + 항셍지수 -1.06% 약세로 산업금속 전반 약세",
+      "reason": "중국 경기 회복 기대 약화(항셍 -1.95%)와 제조업 수요 둔화 우려로 -0.97% 하락",
       "drivers": [
-        "중국 제조업 모멘텀 부재",
-        "WTI 유가 -3.56% 동조 하락"
+        "중국 항셍 -1.95% 급락",
+        "제조업 수요 둔화"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "코스피 -0.43% 약세 — 한은 성장률 상향·금리 동결 호재에도 삼성전자 차익실현 + 코스닥 -4.93% 급락으로 시장 혼조",
+    "summary": "한은 금리인상 시사 + 삼성전자 성과급 물가 압력 경고로 국고채 금리 급등, 외국인 이탈에 코스피 -0.88%·코스닥 -3.30% 동반 약세",
     "positive_factors": [
-      "한은 2026년 성장률 전망 2.0%→2.6% 대폭 상향 — 반도체 수출 호조 반영으로 거시 모멘텀 강화",
-      "KB증권 삼성전자 목표가 53만원·현대차 120만원 상향 — 메모리 업황 + 피지컬AI 테마로 대형주 재평가 지속",
-      "중소제조업 생산 1.8% 반등 — 반도체·자동차 견인으로 실물 경기 회복 신호"
+      "현대모비스·현대차 피지컬 AI 밸류체인 재평가로 목표가 상향 랠리 — 증권가 \"글로벌 AI 산업 대표주자\" 평가",
+      "TSMC 성과급 30% 인상은 삼성전자 협상력 강화 선례 — 반도체 인력 이탈 방지 압력 완화 가능"
     ],
     "negative_factors": [
-      "코스닥 -4.93% 급락 — 2차전지·바이오 등 테마주 전면 약세, RRG lagging 섹터 집중 타격",
-      "삼성전자 타워크레인 총파업 우려 — 노조 갈등 진정 후 건설 노동 이슈로 반도체 공정 차질 가능성"
+      "한은 총재 \"금리인상 명확\" 매파 발언 + 국고채 3년물 +4.1bp 급등 — 금융주 타격, 성장주 밸류에이션 부담 가중",
+      "삼성전자 성과급→물가 상승 경로 경고로 추가 긴축 우려 — 내수 소비·부동산 회복 지연 가능성"
     ],
-    "key_watch": "반도체 대형주 차익실현 vs. 현대차·모비스 피지컬AI 테마 부상 — Leading 섹터 내 로테이션 관찰 필요"
+    "key_watch": "오늘 주목: ①현대차·모비스 피지컬 AI 모멘텀 지속성 ②Snowflake AWS 계약이 네이버클라우드 등 국내 클라우드주 동조 상승 촉발 여부 ③코스닥 -3.3% 급락 후 2차전지·바이오 기술적 반등 타이밍"
   },
   "sector_impact": {},
   "strong_buy": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 107.6·RS-M 102.6으로 Leading 영역 안정 — KB증권 삼성전자 목표가 53만원 상향, 엔비디아 베라루빈 플랫폼 메모리 원가 5배 확대로 2026년 하반기 실적 모멘텀 강화. Micron 1조달러 돌파가 메모리 섹터 재평가 촉매"
+      "reason": "RS-R 107.6·RS-M 102.6 Leading 구간 안착 + TSMC 성과급 30% 인상·Micron 밸류에이션 재평가로 글로벌 메모리 업사이클 재확인, 한은 금리인상에도 AI·HBM 구조적 수요는 불변"
+    },
+    {
+      "sector": "로봇",
+      "rrg_quadrant": "improving",
+      "reason": "RS-R 93.8·RS-M 102.7 Improving 진입 + 현대모비스 목표가 90~95만원 상향·현대차 피지컬 AI 밸류체인 재평가, Snowflake AWS 계약이 로봇·자율주행 클라우드 수요 촉매"
     },
     {
       "sector": "자동차_완성차",
       "rrg_quadrant": "improving",
-      "reason": "RS-R 93.8·RS-M 100.1로 Improving 진입 — 신한투자 현대모비스 목표가 90만원, KB증권 현대차 120만원 상향으로 피지컬AI·휴머노이드 밸류체인 재평가 본격화. 52주 신고가 돌파 후 모멘텀 지속, 스테이지2 초입 진입 신호"
+      "reason": "RS-R 93.8·RS-M 100.1 Improving 전환 초입 + 현대차 피지컬 AI 대표주자 평가·증권가 집중 매수, 테슬라 FSD 진전 시 동조 모멘텀 기대"
     }
   ],
   "watch": [
     {
-      "sector": "방산",
-      "reason": "RS-R 86.9·RS-M 94.8로 Lagging — 중동 이란 종전협상 정체 + 글로벌 방산 수요 불확실성으로 모멘텀 상실. RS-Momentum 하락 추세로 단기 진입 부적합"
+      "sector": "조선",
+      "reason": "RS-R 86.9·RS-M 94.8 Lagging 구간 — 중동 긴장에도 유가 -3.5% 급락으로 에너지 운송 수요 약화, 글로벌 경기 둔화 우려 지속"
     },
     {
       "sector": "2차전지_셀",
-      "reason": "RS-R 89.0·RS-M 93.8로 Lagging — Micron·Snowflake 실적 호조에도 국내 2차전지 섹터는 중국 수요 둔화 + 전기차 판매 부진으로 디커플링. Improving 전환까지 관망 필요"
+      "reason": "RS-R 89.0·RS-M 93.8 Lagging 저점 — 한은 금리인상 시사로 성장주 밸류에이션 타격, LG에너지솔루션 외국인 매도 지속"
     },
     {
-      "sector": "게임",
-      "reason": "RS-R 82.9·RS-M 89.1로 Lagging — 키움증권 시프트업 커버리지 개시에도 섹터 전체는 모멘텀 부재. RRG Improving 진입 확인 후 선별 매수 전략 필요"
+      "sector": "반도체_소재부품",
+      "reason": "RS-R 94.97·RS-M 93.4 Lagging — 반도체 장비 RS-M 99.5 Weakening 전환으로 업스트림 투자 사이클 지연 우려"
     }
   ],
   "avoid": [],
-  "summary": "Micron 1조달러 + Snowflake 36% 랠리로 AI 모멘텀 재확인 — 한은 성장률 상향·삼성전자 목표가 53만원에도 차익실현 압박. 반도체 대형·자동차 완성차 Leading/Improving 섹터 중심 선별 매수, 코스닥 급락은 테마주 정리 국면",
+  "summary": "한은 금리인상 매파 발언에 채권금리 급등·코스닥 -3.3% 급락, 하지만 Snowflake AWS $6B 계약·Meta AI 구독 모델로 클라우드 AI 수요 재확인 — 현대차·모비스 피지컬 AI 밸류체인 재평가, SK하이닉스 HBM 구조적 수요 불변으로 Leading·Improving 섹터 선별 매수 전략 유효",
   "top_picks": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 107.6·RS-M 102.6으로 Leading 영역 안정 — KB증권 삼성전자 목표가 53만원 상향, 엔비디아 베라루빈 플랫폼 메모리 원가 5배 확대로 2026년 하반기 실적 모멘텀 강화. Micron 1조달러 돌파가 메모리 섹터 재평가 촉매",
+      "reason": "RS-R 107.6·RS-M 102.6 Leading 구간 안착 + TSMC 성과급 30% 인상·Micron 밸류에이션 재평가로 글로벌 메모리 업사이클 재확인, 한은 금리인상에도 AI·HBM 구조적 수요는 불변",
       "stocks": [
-        {
-          "name": "삼성전자",
-          "code": "005930",
-          "signal": "prime",
-          "reason": "KB증권 목표가 45→53만원 상향 — 엔비디아 베라루빈 플랫폼 메모리 원가 비중 블랙웰 대비 5배 확대, 2026년 하반기 AI 서버 메모리 수요 폭발 예상. 전일 33만원 52주 신고가 돌파 후 VCP 패턴 형성, 시총 2조달러 진입 기대감으로 추가 상승 여력"
-        },
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "Micron 1조달러 돌파가 메모리 섹터 재평가 촉매 — HBM 점유율 50% 이상 유지, 엔비디아 베라루빈·알파마요 플랫폼 핵심 공급사. 전일 +9.31% 급등 후 차익실현 조정이지만 Leading 섹터 내 모멘텀 최강, 220만원대 지지 확인 시 재진입"
+          "reason": "HBM3E 독점 공급 + Micron 밸류에이션 재평가 시그널, 초고수 순매수 5위 — 한은 금리인상에도 AI 메모리 구조적 수요 불변, 52주 신고가 돌파 VCP 패턴 유효"
         }
       ]
     },
     {
       "sector": "자동차_완성차",
       "rrg_quadrant": "improving",
-      "reason": "RS-R 93.8·RS-M 100.1로 Improving 진입 — 신한투자 현대모비스 목표가 90만원, KB증권 현대차 120만원 상향으로 피지컬AI·휴머노이드 밸류체인 재평가 본격화. 52주 신고가 돌파 후 모멘텀 지속, 스테이지2 초입 진입 신호",
+      "reason": "RS-R 93.8·RS-M 100.1 Improving 전환 초입 + 현대차 피지컬 AI 대표주자 평가·증권가 집중 매수, 테슬라 FSD 진전 시 동조 모멘텀 기대",
       "stocks": [
         {
           "name": "현대차",
           "code": "005380",
           "signal": "prime",
-          "reason": "KB증권 목표가 80→120만원 50% 상향 — 휴머노이드·자율주행 사업 확대로 피지컬AI 핵심 기업 재평가, 영업이익률 전망 3%→4.5% 상향. 엔비디아 알파마요 도입 가능성 + 전기차 전략 후퇴 경쟁사 대비 점유율 확대로 장기 성장 기반 확보"
+          "reason": "피지컬 AI 밸류체인 재평가 + 초고수 1위 집중 매수, Improving 구간 진입 초기 — 로봇·자율주행 AI 인프라 수혜, 목표가 상향 모멘텀 지속"
         }
       ]
     },
@@ -10420,26 +10406,13 @@
           "name": "현대모비스",
           "code": "012330",
           "signal": "prime",
-          "reason": "신한투자 목표가 90만원 상향 — 피지컬AI 밸류체인 재평가로 기존 자동차 부품사 밸류에이션 탈피. A/S 부문 안정적 현금흐름이 전장·자율주행·로봇 투자 여력 제공, 52주 신고가 74만9천원 경신 후 RS-R 119.9로 Leading 최강 섹터"
-        }
-      ]
-    },
-    {
-      "sector": "게임",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "시프트업",
-          "code": "462520",
-          "signal": "prime",
-          "reason": "키움증권 커버리지 개시 목표가 6만5천원, 게임 업종 내 최선호주 — 글로벌 IP 확장성 + 신작 파이프라인 강화. 섹터 전체는 Lagging이지만 개별 종목 펀더멘탈 강세로 선별 매수 전략, NC 대비 성장 모멘텀 우위"
+          "reason": "RS-R 119.9 Leading 최강 + 신한證 90만·삼성證 95만 목표가 상향, 장중 74.9만 신고가 경신 — A/S 안정 수익 + 로봇·AI 성장 옵션, 스테이지2 상승 가속"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "방산",
+    "조선",
     "2차전지_셀"
   ]
 }
