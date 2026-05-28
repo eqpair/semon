@@ -45,6 +45,7 @@ RRG_HISTORY_PATH = "/home/ubuntu/semon/data/rrg_history.json"
 ohlcv_store:    dict[str, dict]       = {}
 current_price:  dict[str, float]      = {}
 current_volume: dict[str, float]      = {}  # 장중 누적 거래량
+prev_close:     dict[str, float]      = {}  # KIS stck_sdpr — 전일 확정 종가(HTS 기준가)
 rrg_history:    dict[str, list[dict]] = {}
 market_cap_store: dict[str, int]      = {}  # { code: 시총(억원) }
 kospi_store:      list[float]          = []   # KOSPI 지수 일봉 closes
@@ -135,11 +136,16 @@ def update_ohlcv(data: dict[str, dict | None], strip_today: bool = False):
 
 
 def update_prices(prices: dict[str, tuple]):
-    for code, (price, volume) in prices.items():        
+    for code, vals in prices.items():
+        price  = vals[0]
+        volume = vals[1] if len(vals) > 1 else None
+        sdpr   = vals[2] if len(vals) > 2 else None
         if price is not None and price > 0:  # ← 0 필터링 추가
             current_price[code] = price
         if volume is not None:
             current_volume[code] = volume
+        if sdpr is not None and sdpr > 0:
+            prev_close[code] = sdpr
 
 
 def _ma(values: list[float], period: int) -> list[float | None]:
@@ -246,6 +252,12 @@ def _quadrant(ratio: float | None, mom: float | None) -> str:
 
 
 def _get_return(code: str, days: int) -> float | None:
+    # 당일 등락률(1일)은 KIS 공식 기준가(stck_sdpr) 우선 — HTS와 일치 보장
+    if days == 1:
+        now = current_price.get(code)
+        base = prev_close.get(code)
+        if now is not None and base is not None and base > 0:
+            return (now - base) / base
     entry = ohlcv_store.get(code)
     if not entry:
         return None
@@ -279,6 +291,30 @@ def _get_vol_ratio(code: str) -> float | None:
     # 장중이면 실시간 누적 거래량 사용, 없으면 전일 기준
     today_vol = current_volume.get(code)
     return (today_vol / avg) if today_vol else (vols[-2] / avg)
+
+
+def _weighted_return_for_codes(code_list: list[str], days: int) -> float | None:
+    """순수 시총가중 평균 수익률 (캡 없음, HTS 섹터지수와 동일 방식).
+    시총 데이터가 전혀 없으면 동등가중으로 폴백."""
+    pairs = []
+    for c in code_list:
+        r = _get_return(c, days)
+        if r is None:
+            continue
+        cap = market_cap_store.get(c, 0)
+        pairs.append((c, r, cap))
+
+    if not pairs:
+        return None
+
+    total_cap = sum(cap for _, _, cap in pairs)
+
+    if total_cap > 0:
+        # 시총 0인 종목은 가중치 0 (제외와 같은 효과 — 시총 누락은 보통 거래정지/우선주 등)
+        return sum(r * cap for _, r, cap in pairs) / total_cap
+
+    # 시총 데이터가 전혀 없을 때만 동등가중 폴백
+    return sum(r for _, r, _ in pairs) / len(pairs)
 
 
 def _sector_avg(code_list: list[str], days: int) -> float | None:
@@ -362,16 +398,19 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
     if not returns_5d:
         return _empty_sector(sector)
 
-    sector_ret_5d  = sum(returns_5d.values()) / len(returns_5d)
+    # 시총가중 평균 (20% 캡)
+    sector_ret_5d = _weighted_return_for_codes(list(valid.keys()), 5)
+    if sector_ret_5d is None:
+        return _empty_sector(sector)
 
     # 당일 섹터 평균 수익률
     returns_1d    = {c: r for c in valid if (r := _get_return(c, 1)) is not None}
-    sector_ret_1d = sum(returns_1d.values()) / len(returns_1d) if returns_1d else None
+    sector_ret_1d = _weighted_return_for_codes(list(valid.keys()), 1) if returns_1d else None
 
     rising_ratio   = sum(1 for r in returns_5d.values() if r > 0) / len(returns_5d)
     is_rising      = sector_ret_5d > 0 and rising_ratio > 0.5
-    sector_ret_20d = _sector_avg(code_list, 20)
-    sector_ret_60d = _sector_avg(code_list, 60)
+    sector_ret_20d = _weighted_return_for_codes(list(valid.keys()), 20)
+    sector_ret_60d = _weighted_return_for_codes(list(valid.keys()), 60)
 
     candidates = []
     for code in valid:

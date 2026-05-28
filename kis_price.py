@@ -77,15 +77,19 @@ async def _fetch_one_market(session, token, code, market_code):
             output = data.get("output", {}) or {}
             price  = output.get("stck_prpr")
             volume = output.get("acml_vol")
+            sdpr   = output.get("stck_sdpr")  # 전일 정규장 확정 종가 (HTS 기준가)
             p = float(price) if price else None
             v = float(volume) if volume else None
+            sd = float(sdpr) if sdpr else None
             # KIS는 종목 미상장/오류 시 price=0 또는 빈 문자열을 줌
             if p is not None and p <= 0:
                 p = None
-            return p, v, data.get("rt_cd")
+            if sd is not None and sd <= 0:
+                sd = None
+            return p, v, sd, data.get("rt_cd")
     except Exception as e:
         logger.warning(f"KIS 현재가 오류 ({code} mkt={market_code}): {e}")
-        return None, None, None
+        return None, None, None, None
 
 
 async def _fetch_one(session, token, code, market_code):
@@ -94,17 +98,17 @@ async def _fetch_one(session, token, code, market_code):
     market_code='UN'으로 먼저 시도하고, 응답이 비면 'J'로 폴백.
     """
     # 1차: 요청된 시장 코드 (보통 UN)
-    price, volume, rt_cd = await _fetch_one_market(session, token, code, market_code)
+    price, volume, sdpr, rt_cd = await _fetch_one_market(session, token, code, market_code)
     if price is not None:
-        return code, price, volume
+        return code, price, volume, sdpr
 
     # 2차 폴백: NXT 미상장 종목 등은 UN으로 안 잡힐 수 있음 → J로 재시도
     if market_code != "J":
-        price2, volume2, _ = await _fetch_one_market(session, token, code, "J")
+        price2, volume2, sdpr2, _ = await _fetch_one_market(session, token, code, "J")
         if price2 is not None:
-            return code, price2, volume2
+            return code, price2, volume2, sdpr2
 
-    return code, None, None
+    return code, None, None, None
 
 
 async def fetch_all_prices_kis(code_list):
@@ -118,8 +122,8 @@ async def fetch_all_prices_kis(code_list):
             chunk     = code_list[i:i + chunk_size]
             tasks     = [_fetch_one(session, token, code, market_code) for code in chunk]
             responses = await asyncio.gather(*tasks)
-            for code, price, volume in responses:
-                results[code] = (price, volume)
+            for code, price, volume, sdpr in responses:
+                results[code] = (price, volume, sdpr)
             if i + chunk_size < len(code_list):
                 await asyncio.sleep(1.1)
     success = sum(1 for v in results.values() if v[0] is not None)
