@@ -447,9 +447,6 @@
                            background:#fff;resize:none;outline:none;line-height:1.5;font-family:inherit;"
                         onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e5e7eb'"
                         onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
-                    <button id="mic-btn" onclick="toggleVoiceInput()" title="음성 입력"
-                        style="padding:10px 14px;background:#f9fafb;color:#374151;font-size:16px;
-                           border:1px solid #e5e7eb;border-radius:10px;cursor:pointer;white-space:nowrap;height:fit-content;display:none;">🎤</button>
                     <button onclick="sendChat()"
                         style="padding:10px 18px;background:#1e40af;color:#fff;font-size:13px;font-weight:600;
                            border:none;border-radius:10px;cursor:pointer;white-space:nowrap;height:fit-content;">전송</button>
@@ -778,49 +775,6 @@
             if (nextEl) nextEl.textContent = getNextUpdate()
         }
 
-        // ── 음성 인식 ──────────────────────────────────────────────────
-        let recognition = null, recognizing = false
-        function initVoice() {
-            const SR = window.SpeechRecognition || window.webkitSpeechRecognition
-            if (!SR) return  // 미지원 브라우저: 버튼 숨김 유지
-            recognition = new SR()
-            recognition.lang = "ko-KR"
-            recognition.interimResults = true
-            recognition.continuous = false
-            const input = document.getElementById("chat-input")
-            let baseText = ""
-            recognition.onstart = () => {
-                recognizing = true
-                const btn = document.getElementById("mic-btn")
-                btn.style.background = "#fee2e2"
-                btn.style.borderColor = "#dc2626"
-                btn.textContent = "⏺"
-                baseText = input.value ? input.value.trim() + " " : ""
-            }
-            recognition.onresult = (e) => {
-                let txt = ""
-                for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript
-                input.value = baseText + txt
-            }
-            recognition.onerror = () => { stopVoiceUI() }
-            recognition.onend = () => { stopVoiceUI() }
-            document.getElementById("mic-btn").style.display = "block"
-        }
-        function stopVoiceUI() {
-            recognizing = false
-            const btn = document.getElementById("mic-btn")
-            if (!btn) return
-            btn.style.background = "#f9fafb"
-            btn.style.borderColor = "#e5e7eb"
-            btn.textContent = "🎤"
-        }
-        function toggleVoiceInput() {
-            if (!recognition) return
-            if (recognizing) { recognition.stop() }
-            else { try { recognition.start() } catch (e) { } }
-        }
-        function startVoiceInput() { toggleVoiceInput() }  // 별칭
-
         // ── 채팅 ──────────────────────────────────────────────────────
         function setQuestion(q) {
             document.getElementById("chat-input").value = q
@@ -985,7 +939,6 @@
         }
 
         loadData()
-        initVoice()
         setInterval(loadData, 60 * 1000)
     </script>
 </body>
