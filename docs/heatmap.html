@@ -386,11 +386,20 @@
                 svg += '<circle cx="' + (cell.x + PAD + 10) + '" cy="' + (cell.y + PAD + 10) + '" r="5" fill="' + qc + '" opacity="0.9"/>';
                 var tfs = Math.max(9, fs);
                 var retVisible = th > 28;
-                var nameY = cell.y + PAD + th / 2 - (retVisible ? 7 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + cell.name + '</text>';
+                var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
                 if (retVisible) {
-                    var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
+                    // 세로 공간 충분 — 2줄(이름 위, % 아래)
+                    var nameY = cell.y + PAD + th / 2 - 7;
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + cell.name + '</text>';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 9) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + retStr + '</text>';
+                } else {
+                    // 납작한 셀 — 1줄에 "이름  +%" 같이 표시
+                    var combined = cell.name + '  ' + retStr;
+                    var smallFs = Math.max(9, tfs - 1);
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + smallFs + '" font-weight="600" font-family="sans-serif" clip-path="url(#' + clipId + ')">' +
+                        '<tspan fill="rgba(255,255,255,0.95)">' + cell.name + '</tspan>' +
+                        '<tspan fill="' + tc + '" dx="6">' + retStr + '</tspan>' +
+                    '</text>';
                 }
                 svg += '</g>';
             });
@@ -451,11 +460,17 @@
                 svg += '<clipPath id="' + clipId2 + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
                 var tfs2 = Math.max(9, fs);
                 var retVisible2 = th > 24;
-                var nameY2 = cell.y + PAD + th / 2 - (retVisible2 ? 6 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + cell.name + '</text>';
+                var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
                 if (retVisible2) {
-                    var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
+                    var nameY2 = cell.y + PAD + th / 2 - 6;
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + cell.name + '</text>';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs2 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + retStr + '</text>';
+                } else {
+                    var smallFs2 = Math.max(9, tfs2 - 1);
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + smallFs2 + '" font-weight="600" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' +
+                        '<tspan fill="rgba(255,255,255,0.92)">' + cell.name + '</tspan>' +
+                        '<tspan fill="' + tc + '" dx="6">' + retStr + '</tspan>' +
+                    '</text>';
                 }
                 svg += '</g>';
             });
@@ -529,11 +544,17 @@
                 svg += '<clipPath id="' + clipId3 + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
                 var tfs3 = Math.max(9, fs);
                 var retVisible3 = th > 24;
-                var nameY3 = cell.y + PAD + th / 2 - (retVisible3 ? 6 : 0);
-                svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + cell.name + '</text>';
+                var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
                 if (retVisible3) {
-                    var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
+                    var nameY3 = cell.y + PAD + th / 2 - 6;
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + cell.name + '</text>';
                     svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs3 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + retStr + '</text>';
+                } else {
+                    var smallFs3 = Math.max(9, tfs3 - 1);
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + smallFs3 + '" font-weight="600" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' +
+                        '<tspan fill="rgba(255,255,255,0.92)">' + cell.name + '</tspan>' +
+                        '<tspan fill="' + tc + '" dx="6">' + retStr + '</tspan>' +
+                    '</text>';
                 }
                 svg += '</g>';
             });
