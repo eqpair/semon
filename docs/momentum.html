@@ -81,7 +81,7 @@
                     <div class="text-sm text-gray-500 mt-1">
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
                         &nbsp;|&nbsp;
-                        <span id="market-badge" class="px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600">MARKET CLOSED</span>
+                        <span id="market-badge" class="font-bold text-gray-400">-</span>
                     </div>
                 </div>
                 <div class="nav-links">
@@ -162,13 +162,13 @@
             const weekday = d >= 1 && d <= 5
             if (weekday && t >= 540 && t <= 930) {
                 badge.textContent = "\ud83d\udfe2 KRX"
-                badge.className = "px-2 py-0.5 text-xs rounded bg-green-100 text-green-700"
+                badge.className = "font-bold text-green-600"
             } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
                 badge.textContent = "\ud83d\udd35 NXT"
-                badge.className = "px-2 py-0.5 text-xs rounded bg-blue-100 text-blue-700"
+                badge.className = "font-bold text-blue-600"
             } else {
                 badge.textContent = "\u26ab Market Closed"
-                badge.className = "px-2 py-0.5 text-xs rounded bg-gray-200 text-gray-600"
+                badge.className = "font-bold text-gray-400"
             }
             const _sectors = allData.sectors || {}
             const _sectorCount = Object.keys(_sectors).length
