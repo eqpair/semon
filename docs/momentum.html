@@ -8,10 +8,6 @@
     <link rel="icon" href="./favicon.svg" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
     <style>
-        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
-        body, h1, h2, h3, table, input, button, a, span, div {
-            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
-        }
         #sector-tooltip {
             position: fixed;
             z-index: 100;
@@ -69,6 +65,8 @@
                 flex-wrap: wrap;
             }
         }
+        /* 본문 패널 테이블 종목 글씨 축소 */
+        .panel-table-wrap table td, .panel-table-wrap table th { font-size: 11.5px !important; }
         /* 행간격 압축 — 모니터에 꽉 차게 */
         table td, table th { padding-top: 3px !important; padding-bottom: 3px !important; line-height: 1.3 !important; }
     </style>
