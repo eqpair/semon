@@ -1,179 +1,175 @@
 {
-  "generated_at": "2026-05-29 14:02:31",
+  "generated_at": "2026-05-29 15:32:24",
   "macro": {
     "S&P500": {
       "price": 7563.63,
       "change": 0.58,
-      "reason": "앤트로픽 1조달러 밸류 달성·델 AI 실적 호조로 빅테크 모멘텀 지속, 10년물 금리 -0.58%로 밸류에이션 압력 완화",
+      "reason": "빅테크 중심 상승. Anthropic 초대형 투자 라운드와 Dell AI 실적 호조로 기술주 강세 지속",
       "drivers": [
-        "델 AI 실적 서프라이즈 (기사신고가)",
-        "앤트로픽 밸류 9650억달러 (오픈AI 제침)",
-        "국채 10년물 4.45% (5.8bp 하락)"
+        "Dell 실적 서프라이즈",
+        "AI 밸류 재평가 (Anthropic 1440조)"
       ]
     },
     "NASDAQ": {
       "price": 26917.47,
       "change": 0.91,
-      "reason": "델·옥타 실적 호조, 앤트로픽 밸류 재평가로 AI 테마주 전반 강세, 필라 반도체 +1.0% 동반 상승",
+      "reason": "반도체·AI 인프라 중심 상승. 삼성 HBM4E 샘플 출하, Nvidia 포토닉스 투자로 AI 공급망 전반 강세",
       "drivers": [
-        "델 AI 붐 실적 급등",
-        "옥타 실적 비트·AI 에이전트 기회",
-        "앤트로픽 9650억달러 밸류"
+        "필라델피아반도체 +1.0%",
+        "Anthropic 메가 밸류"
       ]
     },
     "DOW": {
       "price": 50668.97,
       "change": 0.05,
-      "reason": "금리 하락에도 경기민감 올드이코노미 비중 높아 상승폭 제한 (+0.05%), 테크 랠리에서 소외",
+      "reason": "금융·전통 산업 혼조로 보합. 금리 인상 우려(한은 긴축 신호, ECB 인상 딜레마)로 상승폭 제한",
       "drivers": [
-        "국채 금리 하락 (10Y -5.8bp)",
-        "AI 테마 외 섹터 모멘텀 부재"
+        "금융주 혼조",
+        "경기 민감주 약세"
       ]
     },
     "VIX": {
       "price": 15.74,
       "change": -3.38,
-      "reason": "AI 밸류 재평가·델 실적 호조로 불확실성 완화, S&P500 +0.58% 안정 랠리 반영",
+      "reason": "AI 투자 폭발과 빅테크 실적 호조로 변동성 수요 감소. 리스크온 심리 확대",
       "drivers": [
-        "빅테크 실적 서프라이즈",
-        "국채 금리 하락"
+        "나스닥 강세",
+        "AI 밸류 재평가"
       ]
     },
     "필라델피아반도체": {
       "price": 12829.14,
       "change": 1.0,
-      "reason": "삼성 HBM4E 샘플 출하·앤트로픽 파트너 포함·FT 보도 '연중 75% 급등으로 1999년 이래 최고' 모멘텀 지속",
+      "reason": "삼성 HBM4E 샘플 출하(+6% 급등), FT 보도로 SOX 올해 75% 상승 확인, AI 메모리·파운드리 수요 재확인",
       "drivers": [
-        "삼성전자 HBM4E 16Gbps 샘플 출하",
-        "앤트로픽 삼성·하이닉스 전략 파트너",
-        "FT '반도체 호황 수년간 지속' 전망"
+        "삼성전자 HBM4E 샘플",
+        "Anthropic 전략 투자"
       ]
     },
     "러셀2000": {
       "price": 2936.57,
       "change": 0.57,
-      "reason": "금리 하락 (10Y -5.8bp)으로 중소형주 밸류에이션 부담 완화, S&P500 랠리 동조 상승",
+      "reason": "대형주 강세 동조. AI 투자 확산 기대감으로 중소형주도 수혜",
       "drivers": [
-        "국채 10년물 4.45% 하락",
-        "S&P500 +0.58% 동조"
+        "나스닥 상승 동조",
+        "리스크온 분위기"
       ]
     },
     "영국FTSE": {
       "price": 10426.0,
       "change": -0.75,
-      "reason": "직접 촉매 없음 — 유가 -1.26% 하락으로 에너지 비중 높은 영국 증시 하방 압력",
+      "reason": "ECB 금리 인상 딜레마와 유럽 경기 둔화 우려로 하락. 미국 기술주 강세와 대조",
       "drivers": [
-        "WTI -1.26% 하락",
-        "유럽 매크로 모멘텀 부재"
+        "ECB 긴축 우려",
+        "유럽 경기 약세"
       ]
     },
     "독일DAX": {
       "price": 25092.25,
       "change": -0.34,
-      "reason": "직접 촉매 없음 — 유로존 인플레·성장 불확실성 지속, 미국 AI 랠리 대비 상대적 부진",
+      "reason": "ECB 금리 인상 리스크 부각. 민간 부문 긴축 효과로 중앙은행 정책 부담 가중 우려",
       "drivers": [
-        "유로존 매크로 불확실성",
-        "미국 대비 테크 비중 부족"
+        "ECB 정책 불확실성",
+        "금융주 약세"
       ]
     },
     "니케이": {
-      "price": 66308.03,
-      "change": 2.5,
-      "reason": "삼성 HBM4E·앤트로픽 밸류 업 등 AI 인프라 호재로 반도체 비중 높은 일본 증시 급등",
+      "price": 66394.29,
+      "change": 2.63,
+      "reason": "삼성 HBM4E 샘플 출하와 Anthropic 투자로 반도체·AI 관련주 급등. 도쿄일렉 등 장비주 동반 강세",
       "drivers": [
-        "도쿄일렉 등 반도체 장비주 강세",
-        "AI 인프라 사이클 재확인"
+        "반도체 강세",
+        "AI 투자 확산"
       ]
     },
     "항셍": {
-      "price": 25281.43,
-      "change": 1.1,
-      "reason": "앤트로픽 밸류 상향·산업용 금속 Bloomberg 보도 '1월 이래 최고 월간 상승' 등 중국 경기 기대 반영",
+      "price": 25222.78,
+      "change": 0.87,
+      "reason": "글로벌 AI 투자 확산 수혜. 중국 테크주 동조 상승",
       "drivers": [
-        "구리 +0.30% 상승",
-        "Bloomberg 산업용 금속 강세"
+        "나스닥 강세 동조",
+        "AI 밸류 재평가"
       ]
     },
     "달러인덱스": {
-      "price": 99.08,
-      "change": 0.06,
-      "reason": "미 국채 금리 하락에도 중동 불확실성·인플레 재점화 우려로 안전자산 수요 유지, 소폭 상승",
+      "price": 99.03,
+      "change": 0.01,
+      "reason": "보합. 한은 금리 인상 신호와 ECB 긴축 우려 상쇄",
       "drivers": [
-        "중동 전쟁 장기화 우려",
-        "한은 금리 인상 예고"
+        "한은 긴축 신호",
+        "ECB 정책 불확실성"
       ]
     },
     "국채10Y": {
       "price": 4.45,
       "change": -0.58,
-      "reason": "한은 금리 인상 예고에도 국내 국고채 급락 (3년물 -7.3bp) 영향, AI 랠리로 성장 기대 반영",
+      "reason": "한은 금리 인상 시사(7월 예고)에도 AI 투자 자금 이동으로 채권 수요 증가. 금리 하락",
       "drivers": [
-        "국고채 동반 하락 (3Y -7.3bp)",
-        "AI 실적 호조로 성장 기대"
+        "한은 긴축 신호 상쇄",
+        "주식 강세 속 수급 조정"
       ]
     },
     "국채30Y": {
       "price": 4.99,
       "change": -0.52,
-      "reason": "10년물 동조 하락, 장기 성장 기대 반영 및 연준 향후 완화 여지 재평가",
+      "reason": "10년물 동조 하락. AI 투자 폭발로 장기 성장 기대감 유지",
       "drivers": [
-        "10년물 -5.8bp 동조",
-        "장기 성장 기대 반영"
+        "10년물 동조",
+        "장기 성장 기대"
       ]
     },
     "코스피": {
-      "price": 8447.7,
-      "change": 3.21,
-      "reason": "삼성전자 HBM4E 샘플 출하로 +6% 급등, 앤트로픽 전략 파트너 포함·LG전자 구글 협업 +24% 등 빅테크 동반 강세",
+      "price": 8448.77,
+      "change": 3.22,
+      "reason": "삼성전자 HBM4E 샘플 출하(+6.01%)와 시총 2000조 돌파, Anthropic 전략 투자 수혜로 반도체 대형주 폭등",
       "drivers": [
-        "삼성전자 HBM4E 16Gbps 샘플",
-        "LG전자 구글 자율주행 협업 +24%",
-        "앤트로픽 삼성·하이닉스 파트너"
+        "삼성전자 +6.01%",
+        "SK하이닉스 동반 강세"
       ]
     },
     "코스닥": {
-      "price": 1071.95,
-      "change": -2.93,
-      "reason": "한은 금리 인상 예고 (점도표 21개 중 19개 2.50% 이상)로 유동성 우려, 중소형주 차익 실현 압력",
+      "price": 1072.48,
+      "change": -2.89,
+      "reason": "한은 금리 인상 신호(7월 예고)로 성장주 부담. 카카오 목표가 하향(7만→6만원) 등 내수 악재",
       "drivers": [
-        "한은 금리 인상 시사 (2.75% 제안 2명)",
-        "중소형 성장주 밸류에이션 부담"
+        "금리 인상 우려",
+        "카카오 등 대형주 약세"
       ]
     },
     "금": {
-      "price": 4540.0,
-      "change": 0.9,
-      "reason": "중동 전쟁 장기화·유가 상승 (WTI 87.78)으로 인플레 우려 지속, 안전자산 수요 유입",
+      "price": 4543.7,
+      "change": 0.99,
+      "reason": "중동 전쟁 장기화와 인플레 우려(유가 고공행진)로 안전자산 수요 지속",
       "drivers": [
-        "중동 전쟁 장기화 우려",
-        "인플레 재점화 리스크"
+        "중동 리스크",
+        "인플레 헤지"
       ]
     },
     "WTI유가": {
-      "price": 87.78,
-      "change": -1.26,
-      "reason": "직접 촉매 약함 — 중동 휴전 기대 또는 단기 수급 조정으로 추정, 구체적 뉴스 부재",
+      "price": 87.88,
+      "change": -1.15,
+      "reason": "직접 촉매 없음. 중동 전쟁 장기화 속 단기 수급 조정으로 소폭 하락",
       "drivers": [
-        "단기 수급 조정 (추정)",
-        "중동 긴장 완화 기대 (근거 약함)"
+        "단기 수급 조정",
+        "중동 리스크는 여전"
       ]
     },
     "원달러": {
-      "price": 1504.58,
-      "change": 0.1,
-      "reason": "한은 금리 인상 예고 (신현송 총재 '적절한 시기 인상')에도 중동·인플레 우려로 달러 강세 지속, 소폭 상승",
+      "price": 1507.38,
+      "change": 0.28,
+      "reason": "한은 금리 인상 신호(7월 예고)에도 코스피 강세로 외국인 유입 제한적. 소폭 상승",
       "drivers": [
-        "한은 인상 시사에도 효과 제한",
-        "달러인덱스 +0.06% 동조"
+        "한은 긴축 신호",
+        "무역 수지 변수"
       ]
     },
     "구리": {
-      "price": 6.42,
-      "change": 0.3,
-      "reason": "Bloomberg 보도 '이란 휴전으로 산업용 금속 1월 이래 최고 월간 상승' — 중국 수요 기대 반영",
+      "price": 6.41,
+      "change": 0.15,
+      "reason": "Bloomberg 보도: 산업금속 1월 이후 최고 월간 상승. 이란 휴전으로 중동 공급망 안정 기대",
       "drivers": [
-        "Bloomberg 산업용 금속 강세",
-        "중국 경기 기대"
+        "이란 휴전 기대",
+        "AI 인프라 수요"
       ]
     }
   },
@@ -344,7 +340,7 @@
           "rs_momentum": 108.327
         }
       ],
-      "sector_ret_5d": 11.63,
+      "sector_ret_5d": 12.05,
       "improving_count": 2,
       "watch_count": 0,
       "total": 11
@@ -515,7 +511,7 @@
           "rs_momentum": 112.489
         }
       ],
-      "sector_ret_5d": -9.27,
+      "sector_ret_5d": -9.21,
       "improving_count": 0,
       "watch_count": 0,
       "total": 27
@@ -686,7 +682,7 @@
           "rs_momentum": 105.873
         }
       ],
-      "sector_ret_5d": -9.31,
+      "sector_ret_5d": -9.29,
       "improving_count": 0,
       "watch_count": 1,
       "total": 22
@@ -857,9 +853,9 @@
           "rs_momentum": 100.236
         }
       ],
-      "sector_ret_5d": -4.13,
-      "improving_count": 5,
-      "watch_count": 3,
+      "sector_ret_5d": -3.52,
+      "improving_count": 6,
+      "watch_count": 2,
       "total": 31
     },
     "2차전지_셀": {
@@ -1028,7 +1024,7 @@
           "rs_momentum": 99.109
         }
       ],
-      "sector_ret_5d": 11.78,
+      "sector_ret_5d": 11.48,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -1199,7 +1195,7 @@
           "rs_momentum": 98.796
         }
       ],
-      "sector_ret_5d": -2.39,
+      "sector_ret_5d": -2.27,
       "improving_count": 3,
       "watch_count": 0,
       "total": 18
@@ -1370,7 +1366,7 @@
           "rs_momentum": 103.982
         }
       ],
-      "sector_ret_5d": -9.97,
+      "sector_ret_5d": -10.48,
       "improving_count": 2,
       "watch_count": 0,
       "total": 17
@@ -1541,7 +1537,7 @@
           "rs_momentum": 90.423
         }
       ],
-      "sector_ret_5d": -2.24,
+      "sector_ret_5d": -2.09,
       "improving_count": 1,
       "watch_count": 1,
       "total": 13
@@ -1712,7 +1708,7 @@
           "rs_momentum": 89.501
         }
       ],
-      "sector_ret_5d": -3.27,
+      "sector_ret_5d": -3.75,
       "improving_count": 0,
       "watch_count": 2,
       "total": 10
@@ -1883,7 +1879,7 @@
           "rs_momentum": 100.907
         }
       ],
-      "sector_ret_5d": 2.38,
+      "sector_ret_5d": 1.44,
       "improving_count": 0,
       "watch_count": 1,
       "total": 7
@@ -2054,7 +2050,7 @@
           "rs_momentum": 99.099
         }
       ],
-      "sector_ret_5d": 55.1,
+      "sector_ret_5d": 52.22,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2225,7 +2221,7 @@
           "rs_momentum": 101.545
         }
       ],
-      "sector_ret_5d": 2.56,
+      "sector_ret_5d": 1.69,
       "improving_count": 0,
       "watch_count": 2,
       "total": 17
@@ -2396,7 +2392,7 @@
           "rs_momentum": 90.279
         }
       ],
-      "sector_ret_5d": -3.54,
+      "sector_ret_5d": -4.87,
       "improving_count": 7,
       "watch_count": 0,
       "total": 10
@@ -2567,7 +2563,7 @@
           "rs_momentum": 109.401
         }
       ],
-      "sector_ret_5d": -4.67,
+      "sector_ret_5d": -3.64,
       "improving_count": 1,
       "watch_count": 0,
       "total": 22
@@ -2738,7 +2734,7 @@
           "rs_momentum": 95.402
         }
       ],
-      "sector_ret_5d": -0.47,
+      "sector_ret_5d": -1.61,
       "improving_count": 1,
       "watch_count": 1,
       "total": 17
@@ -2909,7 +2905,7 @@
           "rs_momentum": 107.633
         }
       ],
-      "sector_ret_5d": 8.05,
+      "sector_ret_5d": 6.48,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -3080,7 +3076,7 @@
           "rs_momentum": 107.226
         }
       ],
-      "sector_ret_5d": 15.05,
+      "sector_ret_5d": 12.95,
       "improving_count": 1,
       "watch_count": 0,
       "total": 15
@@ -3251,7 +3247,7 @@
           "rs_momentum": 97.794
         }
       ],
-      "sector_ret_5d": 4.07,
+      "sector_ret_5d": 3.22,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -3422,7 +3418,7 @@
           "rs_momentum": 109.164
         }
       ],
-      "sector_ret_5d": 62.17,
+      "sector_ret_5d": 62.29,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -3593,7 +3589,7 @@
           "rs_momentum": 98.845
         }
       ],
-      "sector_ret_5d": 9.25,
+      "sector_ret_5d": 7.95,
       "improving_count": 1,
       "watch_count": 0,
       "total": 4
@@ -3764,7 +3760,7 @@
           "rs_momentum": 106.402
         }
       ],
-      "sector_ret_5d": 33.73,
+      "sector_ret_5d": 30.27,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -3935,7 +3931,7 @@
           "rs_momentum": 99.927
         }
       ],
-      "sector_ret_5d": -1.41,
+      "sector_ret_5d": -1.81,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -4106,7 +4102,7 @@
           "rs_momentum": 96.084
         }
       ],
-      "sector_ret_5d": 2.72,
+      "sector_ret_5d": 2.46,
       "improving_count": 1,
       "watch_count": 0,
       "total": 5
@@ -4277,7 +4273,7 @@
           "rs_momentum": 95.336
         }
       ],
-      "sector_ret_5d": 13.48,
+      "sector_ret_5d": 13.7,
       "improving_count": 1,
       "watch_count": 0,
       "total": 10
@@ -4448,7 +4444,7 @@
           "rs_momentum": 92.734
         }
       ],
-      "sector_ret_5d": 8.62,
+      "sector_ret_5d": 8.77,
       "improving_count": 2,
       "watch_count": 0,
       "total": 10
@@ -4619,7 +4615,7 @@
           "rs_momentum": 94.04
         }
       ],
-      "sector_ret_5d": 3.3,
+      "sector_ret_5d": 2.95,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -4790,7 +4786,7 @@
           "rs_momentum": 93.134
         }
       ],
-      "sector_ret_5d": -1.03,
+      "sector_ret_5d": -0.41,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -4961,7 +4957,7 @@
           "rs_momentum": 103.244
         }
       ],
-      "sector_ret_5d": -2.48,
+      "sector_ret_5d": -3.06,
       "improving_count": 2,
       "watch_count": 0,
       "total": 9
@@ -5132,7 +5128,7 @@
           "rs_momentum": 102.573
         }
       ],
-      "sector_ret_5d": 0.25,
+      "sector_ret_5d": 1.0,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -5303,7 +5299,7 @@
           "rs_momentum": 96.82
         }
       ],
-      "sector_ret_5d": -2.12,
+      "sector_ret_5d": -2.99,
       "improving_count": 2,
       "watch_count": 0,
       "total": 9
@@ -5474,9 +5470,9 @@
           "rs_momentum": 98.878
         }
       ],
-      "sector_ret_5d": -6.26,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -6.76,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 18
     },
     "보험": {
@@ -5645,7 +5641,7 @@
           "rs_momentum": 102.745
         }
       ],
-      "sector_ret_5d": 3.08,
+      "sector_ret_5d": 3.18,
       "improving_count": 0,
       "watch_count": 1,
       "total": 13
@@ -5816,7 +5812,7 @@
           "rs_momentum": 101.808
         }
       ],
-      "sector_ret_5d": -1.82,
+      "sector_ret_5d": -1.99,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -5987,7 +5983,7 @@
           "rs_momentum": 98.428
         }
       ],
-      "sector_ret_5d": -5.61,
+      "sector_ret_5d": -6.05,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -6158,7 +6154,7 @@
           "rs_momentum": 101.332
         }
       ],
-      "sector_ret_5d": -2.32,
+      "sector_ret_5d": -2.9,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -6329,7 +6325,7 @@
           "rs_momentum": 102.748
         }
       ],
-      "sector_ret_5d": 7.97,
+      "sector_ret_5d": 7.66,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -6500,9 +6496,9 @@
           "rs_momentum": 93.408
         }
       ],
-      "sector_ret_5d": 5.5,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": 4.9,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 13
     },
     "에너지유틸리티": {
@@ -6671,7 +6667,7 @@
           "rs_momentum": 99.033
         }
       ],
-      "sector_ret_5d": -1.14,
+      "sector_ret_5d": -1.76,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -6842,9 +6838,9 @@
           "rs_momentum": 85.373
         }
       ],
-      "sector_ret_5d": -2.97,
-      "improving_count": 4,
-      "watch_count": 2,
+      "sector_ret_5d": -2.46,
+      "improving_count": 6,
+      "watch_count": 0,
       "total": 11
     },
     "시멘트": {
@@ -7013,7 +7009,7 @@
           "rs_momentum": 93.719
         }
       ],
-      "sector_ret_5d": -3.9,
+      "sector_ret_5d": -3.06,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -7184,7 +7180,7 @@
           "rs_momentum": 99.056
         }
       ],
-      "sector_ret_5d": 1.87,
+      "sector_ret_5d": 0.88,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -7355,7 +7351,7 @@
           "rs_momentum": 91.444
         }
       ],
-      "sector_ret_5d": -4.72,
+      "sector_ret_5d": -4.99,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -7526,9 +7522,9 @@
           "rs_momentum": 101.205
         }
       ],
-      "sector_ret_5d": -0.73,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": -1.65,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 6
     },
     "물류·육운": {
@@ -7697,7 +7693,7 @@
           "rs_momentum": 96.579
         }
       ],
-      "sector_ret_5d": -3.26,
+      "sector_ret_5d": -3.68,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -7868,9 +7864,9 @@
           "rs_momentum": 96.024
         }
       ],
-      "sector_ret_5d": -0.8,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -1.9,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 4
     },
     "엔터·음악": {
@@ -8039,7 +8035,7 @@
           "rs_momentum": 101.265
         }
       ],
-      "sector_ret_5d": -5.48,
+      "sector_ret_5d": -5.77,
       "improving_count": 2,
       "watch_count": 0,
       "total": 8
@@ -8210,7 +8206,7 @@
           "rs_momentum": 95.77
         }
       ],
-      "sector_ret_5d": 1.56,
+      "sector_ret_5d": 0.91,
       "improving_count": 2,
       "watch_count": 0,
       "total": 11
@@ -8381,7 +8377,7 @@
           "rs_momentum": 99.689
         }
       ],
-      "sector_ret_5d": -2.65,
+      "sector_ret_5d": -2.88,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -8552,7 +8548,7 @@
           "rs_momentum": 93.567
         }
       ],
-      "sector_ret_5d": -2.64,
+      "sector_ret_5d": -1.78,
       "improving_count": 2,
       "watch_count": 1,
       "total": 8
@@ -8723,7 +8719,7 @@
           "rs_momentum": 97.114
         }
       ],
-      "sector_ret_5d": -3.03,
+      "sector_ret_5d": -3.33,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -8894,9 +8890,9 @@
           "rs_momentum": 98.482
         }
       ],
-      "sector_ret_5d": -6.79,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": -6.49,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 9
     },
     "중국내수식품": {
@@ -9065,7 +9061,7 @@
           "rs_momentum": 96.681
         }
       ],
-      "sector_ret_5d": -3.84,
+      "sector_ret_5d": -4.36,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -9236,7 +9232,7 @@
           "rs_momentum": 98.833
         }
       ],
-      "sector_ret_5d": -2.87,
+      "sector_ret_5d": -3.25,
       "improving_count": 1,
       "watch_count": 0,
       "total": 11
@@ -9407,7 +9403,7 @@
           "rs_momentum": 106.957
         }
       ],
-      "sector_ret_5d": -8.2,
+      "sector_ret_5d": -8.93,
       "improving_count": 1,
       "watch_count": 0,
       "total": 7
@@ -9578,7 +9574,7 @@
           "rs_momentum": 100.714
         }
       ],
-      "sector_ret_5d": -5.49,
+      "sector_ret_5d": -5.58,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -9749,7 +9745,7 @@
           "rs_momentum": 100.511
         }
       ],
-      "sector_ret_5d": -3.1,
+      "sector_ret_5d": -2.78,
       "improving_count": 1,
       "watch_count": 0,
       "total": 11
@@ -9920,7 +9916,7 @@
           "rs_momentum": 100.05
         }
       ],
-      "sector_ret_5d": -0.86,
+      "sector_ret_5d": -0.92,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -10035,13 +10031,20 @@
           "rs_momentum": 111.904
         }
       ],
-      "sector_ret_5d": 4.75,
+      "sector_ret_5d": 5.07,
       "improving_count": 1,
       "watch_count": 0,
       "total": 5
     }
   },
   "articles": [
+    {
+      "source": "maeil",
+      "title": "테슬라·엔비디아 다음 앤트로픽? 삼성 파운드리 부활 기대감↑",
+      "link": "https://www.mk.co.kr/news/business/12061141",
+      "published": "Fri, 29 May 2026 14:31:23 +09:00",
+      "body": "파운드리 부문 협력 가능성 거론\n삼성전자가 인공지능(AI) 모델 ‘클로드’를 개발한 미국 AI 기업 앤트로픽에 전략적 투자를 단행한 가운데, 앤트로픽의 로직 칩(연산용 반도체) 수주 가능성까지 높아졌다. 수년간 적자를 이어온 파운드리(반도체 위탁생산) 사업 반등 가능성에 관심이 쏠린다.\n28일(현지 시간) 앤트로픽은 최근 진행한 시리즈H 투자 라운드에서 650억달러를 유치했다고 밝혔다. 투자 후 기업가치는 9650억달러(약 1440조원)로 평가됐다. 이번 투자에는 삼성전자와 SK하이닉스, 마이크론 등이 ‘전략적 인프라 파트너’로 참여했다.\n앤트로픽은 이 3사를 언급하며 “이들 기업은 전 세계 메모리, 저장장치, 로직 칩 공급망에서 핵심 역할을 맡고 있다”고 강조했다. 업계는 특히 ‘로직 칩’ 언급에 주목하는 모습이다. 로직 칩 생산은 파운드리 사업 영역으로, 투자 참여 기업 중 관련 사업을 운영하는 곳은 삼성전자가 유일하기 때문이다.\n이에 따라 삼성전자가 향후 앤트로픽이 개발하는 AI 칩을 위탁 생산할 수 있다는 관측도 나온다. 앤트로픽은 오픈AI와 함께 글로벌 AI 시장을 선도하는 기업이다. 삼성전자가 앤트로픽의 로직 칩을 수주하게 되면 테슬라, 엔비디아에 이은 대형 고객사를 확보하게 되는 셈이다.\n앞서 삼성전자는 테슬라의 AI5·AI6칩 생산에도 참여하기로 한 상태다. 또 엔비디아의 추론 전용 언어처리장치(LPU)칩인 ‘그록3’을 수주해 올해 하반기 양산에 들어갈 것으로도 알려졌다.\n반도체 업계 관계자는 “삼성전자가 글로벌 AI 기업들과 전략적 협력 관계를 넓히고 있다는 점에서 의미가 크다”며 “AI 시장 확대가 파운드리 사업 반등 계기가 될 수 있다는 기대가 커지고 있다”고 설명했다."
+    },
     {
       "source": "fnnews",
       "title": "\"SK하이닉스보다 낮네?\" 삼성전자 5년 평균 이직률 2.1%…DS는 1%대",
@@ -10051,10 +10054,38 @@
     },
     {
       "source": "maeil",
-      "title": "앤트로픽 몸값, 오픈AI도 제쳐…삼전·닉스도 투자",
-      "link": "https://www.mk.co.kr/news/business/12061085",
-      "published": "Fri, 29 May 2026 13:47:23 +09:00",
-      "body": "삼성·하이닉스 ‘전략적 인프라 파트너’\n연내 기업공개(IPO)를 목표로 하는 클로드 개발사 앤트로픽이 1조달러에 육박하는 기업가치를 인정받았다. 앤트로픽이 유치한 650억달러 규모 신규 투자에는 삼성전자와 SK하이닉스 등 국내 메모리 반도체 기업이 전략적 인프라 파트너로 언급됐다.\n앤트로픽은 최근 650억달러의 시리즈H 투자 유치를 완료하고, 투자 후 기업가치가 9650억달러(약 1440조원)로 평가됐다고 28일(현지시간) 밝혔다. 이는 지난 2월 기업가치 평가액 3800억달러 대비 2.5배 이상 증가한 수치다. 라이벌 오픈AI의 지난 3월 말 평가액 8520억달러보다도 높다. 대표 서비스 클로드 출시 후 불과 3년 2개월 만에 거둔, 역대 가장 빠른 기업가치 성장세다.\n이 같은 가치 급등은 가파른 실적 성장이 뒷받침했다. 기업 고객 사이에서 클로드와 AI 코딩 도구 클로드 코드 도입이 빠르게 확산하며 앤트로픽의 연간 환산 매출은 이달 초 기준 470억달러(약 70조4000억원)를 넘어섰다. 월스트리트저널(WSJ)은 앤트로픽이 2분기 매출 109억달러를 기록하며 창사 이래 첫 분기 영업이익 흑자를 달성할 것으로 전망했다.\n이번 투자에는 알티미터 캐피털과 드라고니어, 그리녹스, 세쿼이아 캐피털을 비롯해 캐피털그룹, 코튜(Coatue), D1캐피털, 싱가포르 국부펀드 GIC, 테마섹 등이 참여했다. 아마존 투자금 50억 달러를 포함해 빅테크들의 기존 투자 약정액 150억 달러도 포함됐다.\n특히 앤트로픽은 투자 유치와 함께 삼성전자, SK하이닉스, 마이크론을 전략적 인프라 파트너로 공식 언급했다. 앤트로픽은 보도자료를 통해 “세 회사의 기술은 전 세계 메모리와 저장장치, 반도체 공급망에서 핵심적인 역할을 하고 있다”며 “클로드 수요가 증가함에 따라 이들 기업과의 협력이 컴퓨팅 인프라 확장에 중요한 기반이 될 것”이라고 밝혔다."
+      "title": "젠슨 황 엔비디아 CEO 방한 기대감에 LG그룹주 동반 강세 [매경 자이앤트]",
+      "link": "https://www.mk.co.kr/news/stock/12061241",
+      "published": "Fri, 29 May 2026 15:19:59 +09:00",
+      "body": "젠슨 황 엔비디아 최고경영책임자(CEO)가 LG그룹을 만난다는 소식이 전해지면서 LG그룹주가 상승세를 보이고 있다.\n29일 오후 2시6분 LG는 전 거래일 보다 2만2400원(19.34%) 오른 13만8200원에 거래되고 있다.\n매경 자이앤트 텔레그램 분석에 따르면 LG의 거래량이 945만3170주로 기록되며 52주 최대 거래량을 나타냈다.\nLG와 함께 LG우(9.54%), LG이노텍(24.96%), LG유플러스(9.95%), LG씨엔에스(29.91%), LG전자(28.82%) 등 다른 LG그룹주도 상승하는 중이다.\nLG그룹을 모아놓은 TIGER LG그룹플러스 ETF(상장지수펀드)도 15.96% 오르며 강세를 보이고 있다.\n업계에 따르면 젠슨 황 CEO는 다음 주 한국을 방문해 구광모 LG그룹 회장을 만나 피지컬 AI(인공지능)에 대한 협력 확대 방안을 논할 계획이다.\nLG전자와의 피지컬 AI 협력 외에도 LG AI연구원을 비롯한 LG이노텍, LG유플러스 등 계열사와의 협력 방안도 논의될 가능성이 거론되고 있다.\n한편 젠슨 황 CEO는 이번 방한을 통해 네이버 등 주요 IT(정보기술) 기업과도 AI 협력 방안을 논의할 것으로 전망된다.\n네이버 주가도 같은 기간 2만9000원(14.15%) 오른 23만4000원에 거래되고 있다.\n☞ 더 많은 투자 정보가 궁금하다면? 매경 자이앤트 텔레그램으로 입장하세요! 매경 자이앤트 텔레그램 서비스는 실시간 주도주 선별·분석 서비스 마켓스타Pro에서 제공하는 정보를 기반으로 운영됩니다. 마켓스타Pro는 AI 기반 데이터 분석 플랫폼 AWAKE가 개발한 서비스입니다.\n매경 자이언트 텔레그램 채널에서는 AI가 최근 7년간의 공시를 분석해 주가에 영향을 미칠 가능성이 높은 공시를 선별하고, 이용자가 한눈에 확인할 수 있도록 핵심 시장 정보만을 실시간으로 제공하고 있으니 꼭 확인해 보시기 바랍니다."
+    },
+    {
+      "source": "maeil",
+      "title": "[속보] 삼성전자, 우선주 포함해 시총 2000조원 돌파",
+      "link": "https://www.mk.co.kr/news/business/12061193",
+      "published": "Fri, 29 May 2026 14:54:40 +09:00",
+      "body": "삼성전자 주가가 29일 6% 넘게 급등하며 우선주를 포함한 시가총액이 2000조원을 넘어섰다.\n한국거래소에 따르면 이날 오후 2시 53분 기준 삼성전자 주가는 전 거래일보다 6.01% 상승한 31만7500원에 거래 중이다.\n시가총액은 1856조1935억원이다.\n우선주인 삼성전자우는 8.04% 오른 20만6250원으로 시총은 165조4891억원이다.\n합산 시총은 2021조6826억원으로 2000조원을 훌쩍 넘어섰다.\n삼성전자는 이날 개장 전 인공지능(AI) 산업 핵심 부품인 고대역폭 메모리(HBM)의 7세대 제품 HBM4E의 샘플 출하를 세계 최초로 시작했다고 발표했다.\n올해 2월 HBM4(6세대)를 세계 최초로 양산 출하한 데 이어 3개월 만에 다음 세대 제품 샘플까지 선제적으로 공급하는 등 차세대 AI 메모리 시장 주도권 굳히기에 나서는 모습이다."
+    },
+    {
+      "source": "maeil",
+      "title": "‘7월 금리인상’ 예고…‘영끌·빚투족’ 어쩌나",
+      "link": "https://www.mk.co.kr/news/business/12061165",
+      "published": "Fri, 29 May 2026 14:41:42 +09:00",
+      "body": "주담대 금리 상단 8% 육박할 수도\n빚투족, 이자 급증·투자 손실 이중고\n한국은행이 연내 기준금리 인상을 시사하면서 대출을 끌어모아 집을 사거나 주식에 투자한 ‘영끌·빚투’족의 이자 부담에 비상이 걸렸다. 중동 분쟁으로 인한 물가 불안에 기준금리 인상까지 가시화될 경우, 차주들의 원리금 상환 압박이 한층 무거워질 전망이다.\n신현송 한은 총재는 지난 28일 금융통화위원회 이후 기자간담회에서 “물가로 보나 성장으로 보나 환율, 부동산으로 보나 갈 길이 명확하다”며 “향후 적절한 시기에 기준금리를 인상할 필요가 있다”고 밝히며 긴축 기조를 명확히 했다.\n금통위 내부 분위기도 인상 의견이 지배적이다. 29일 공개된 점도표에 따르면 21개 점 중 19개가 현재 기준금리(2.5%)보다 높은 곳에 분포했다. 점도표는 금통위원 7명의 향후 6개월 금리 전망을 각각 3개의 점으로 표시한 지표다. 이에 따르면 6개월 후 기준금리를 ‘연 3.0%’로 제시한 전망이 10개로 가장 많았고, 인상 횟수로는 ‘2회 인상’ 의견이 과반(10개)을 차지했다.\n금융시장에서는 이르면 오는 7월 기준금리를 연 2.50%에서 연 2.75%로 인상하는 등 연내 두 차례 인상 가능성이 점쳐진다. 조용구 신영증권 애널리스트는 “7월을 비롯해 연내 2회 인상은 기정사실화됐다”며 “내년 1분기 최종 금리가 3.25%에 도달할 것”이라고 내다봤다.\n한은의 통화긴축 신호에 시장금리는 일제히 상승세다. 지난 28일 서울 채권시장에서 5년 만기 국고채 금리는 연 3.992%로 전일 대비 0.042%포인트 뛰었다. 10년 만기 금리는 연 4.147%로 0.045%포인트 올랐다.\n시장금리가 오르면서 은행권 대출금리도 상승 압박을 받게 됐다. 주택담보대출 고정형 금리의 기준이 되는 금융채 금리는 이미 중동 리스크 등으로 지속적 상승세다. 금융채 5년물(AAA) 금리는 전날 기준 4.280%를 기록, 지난 3월 말(4.051%) 대비 0.229%포인트 올랐다.\n이에 따라 영끌·빚투 차주들의 원리금 상환 부담이 커질 전망이다. 금리 인상이 본격화되면 현재 연 4.25~7.11% 수준인 5대 시중은행의 주담대 고정형(5년) 금리는 상단이 8%에 육박할 수 있다. 이 경우 변동형 주담대를 받은 영끌 차주부터 직격탄을 맞게 된다. 신용대출 금리도 5%대 중후반까지 치솟아, 빚투 차주들 역시 증시 변동성으로 인해 투자 손실 위험과 이자 부담이 동시에 커질 수 있다."
+    },
+    {
+      "source": "maeil",
+      "title": "성과급 갈등에 ‘목표가’ 뚝...속 타는 카카오 주주들",
+      "link": "https://www.mk.co.kr/news/economy/12061146",
+      "published": "Fri, 29 May 2026 14:33:00 +09:00",
+      "body": "다올證 7만원→6만원 낮춰\n“AI 수익화 시간 걸릴 것” 평가\n파업 리스크까지 현실화될 듯\n카카오가 시끌시끌하다. 회사 내부에서는 성과급을 둘러싼 노사 갈등이 현재 진행형이다. 창사 이래 첫 본사 파업 가능성이 높아졌다. 주가도 하락세다. 1월 2일 6만2100원이던 주가는 5월 28일 4만100원까지 떨어졌다. 증권가 평가도 좋지 못하다. 목표가를 낮춰 잡는 모습이다. 자연스레 카카오 주주들의 불만과 불안감만 고조되고 있다.\n다올투자증권은 5월 27일 리포트에서 카카오 목표주가를 기존 7만원에서 6만원으로 하향 조정했다. 김혜영 다올투자증권 애널리스트는 카카오의 AI 에이전트 서비스 수익화 시점까지 시간이 필요하다고 봤다.\n카카오는 현재 온디바이스(장치 탑재) 서비스 ‘카나나 인 카카오톡’을 통해 채팅방 내 일정 요약과 탐색 추천 기능을 제공 중이다. 향후 채팅방 내 커머스·결제 서비스까지 선보일 계획이다. 김혜영 애널리스트는 “카나나 인 카카오톡의 경우 외부 파트너사 협업 등을 통한 고도화가 이뤄지고 있지만, 파트너십 구축에 시간이 소요된다”며 “AI 수익화는 2027년부터 점진적으로 기대 가능하다고 판단한다”고 설명했다.\n앞서 미래에셋증권도 5월 21일 리포트에서 목표가를 기존 7만8000원에서 5만8000원으로 낮춰 잡았다.\n임희석 미래에셋증권 애널리스트는 “(카카오게임즈 등) 자회사 정리를 통한 수익성 개선이 이뤄지고 있다는 점은 긍정적”이라면서도 “시장에서 기대하는 AI 도입을 통한 카카오톡 체류시간 성장세 가시화 등 가시적인 성과가 나타나기 전까지는 리레이팅(가치 재평가)이 이뤄지기 어렵다”고 짚었다. 그러면서 “모멘텀이 발생하려면 트래픽 상승세가 확인돼야 한다”고 덧붙였다.\n여기에 본사 파업 가능성까지 불거져 주가 하방 압력을 키우고 있다. 카카오는 지난해 6월 카카오모빌리티가 부분 파업을 벌인 적은 있다. 하지만 본사 차원의 파업은 아직 없었다. 6월 파업이 현실화하면 카카오 창사 이래 첫 본사 파업이다.\n정신아 카카오 대표는 최근 사내 공지를 통해 “아직 서로의 입장 차이를 충분히 좁히지 못한 상황이지만 우리는 결국 카카오 안에서 함께 일하며 같은 방향을 향해 나아가야 할 크루”라며 “서로의 목소리에 더 귀 기울이고 차이를 대화로 풀어가며 다시 하나의 카카오로 힘을 모아갈 수 있도록 노력하겠다”고 덧붙였다."
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Nvidia is investing billions into this emerging technology that could change the AI industry",
+      "link": "https://www.cnbc.com/2026/05/29/nvidia-photonics-investment-ai.html",
+      "published": "Fri, 29 May 2026 05:00:02 GMT",
+      "body": "Nvidia has committed at least $6.5 billion into companies developing photonics technology in the past three months, as the company races to invest in solving one of the major bottlenecks to the rollout of AI.\nPhotonics, the use of light to transmit data, is an emerging technology considered to be a more efficient alternative to the current process of transferring data using electricity. Electrical data transfer consumes more energy — a factor which is increasingly seen as a blocker to the broader deployment of AI.\nSince the beginning of March, Nvidia has announced $2 billion investments into Lumentum, Coherent and Marvell, all of which are developing photonics tech. The chip giant also said it would invest $500 million into Corning to develop advanced optical connectivity solutions, and participated in optics startup Ayer Labs' $500 million Series E funding round.\n\"Photonics represents a way for Nvidia to scale their AI infrastructure without the energy costs that staying with electrical and copper will incur,\" Alvin Nguyen, senior analyst at Forrester, told CNBC.\n\"By investing in photonics companies, Nvidia is making sure that advancements in photonics continue and it will prevent them from hitting a scalability and performance wall that will occur if they remain on electrical and copper.\"\nSolving bottlenecks\nPhotonics can be used in AI infrastructure by using light to move data between graphics processing units (GPUs), memory, networking chips, servers and data centers, ins"
     },
     {
       "source": "bloomberg",
@@ -10064,13 +10095,6 @@
       "body": ""
     },
     {
-      "source": "maeil",
-      "title": "금리 인상 예고한 한은 … ‘명목성장 10%’ 장담하는 정부가 말하지 않는것",
-      "link": "https://www.mk.co.kr/news/economy/12061062",
-      "published": "Fri, 29 May 2026 13:14:26 +09:00",
-      "body": "신현송 한은총재 첫 통방회의 분석\n한국은행 금융통화위원회가 5월 28일 기준금리를 연 2.50%로 동결했다. 동결 결정에도 통화정책방향 의결문의 문구는 이전과 확 달라졌다. 한은은 앞으로 “기준금리 인상 시기 등을 결정해 나갈 것”이라고 적었다. 금통위원 7명 가운데 장용성 위원과 유상대 위원은 이번 회의에서 기준금리를 2.75%로 올리자는 의견을 냈다. 신현송 한은 총재는 회의 뒤 기자간담회에서 “향후 적절한 시기에 기준금리를 인상할 필요가 있다고 판단된다”고 말했다. 금리 인상을 기정사실화 한 것이다.\n한은이 인상 방향을 분명히 한 이유는 이란 전쟁을 비롯한 몇가지 경제 변수의 충격을 감안한 결과다. 한은은 이란 전쟁이 올해 성장률을 0.4%포인트 낮추지만, 예상보다 강한 정보기술(IT) 수출이 0.7%포인트, 추가경정예산이 0.2%포인트, 증시 호황이 0.1%포인트 높인다고 봤다."
-    },
-    {
       "source": "yonhap",
       "title": "4월 은행 주담대 금리 연 4.31%, 0.03%p↓…7개월 만에 하락",
       "link": "https://www.yna.co.kr/view/AKR20260529070400002",
@@ -10078,68 +10102,40 @@
       "body": "지난달 주택담보대출 금리가 7개월 만에 하락했다.\n고정형 주택담보대출 금리가 4.34%로 0.02%p 올라 7개월 연속 상승세를 지속했으나, 변동형 금리가 4.28%로 0.11%p 하락해 이를 상쇄했다.\n전체 가계대출 금리도 4.43%로 0.08%p 하락했다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년05월29일 12시00분\n지난달 주택담보대출 금리가 7개월 만에 하락했다.\n고정형 주택담보대출 금리가 4.34%로 0.02%p 올라 7개월 연속 상승세를 지속했으나, 변동형 금리가 4.28%로 0.11%p 하락해 이를 상쇄했다.\n전체 가계대출 금리도 4.43%로 0.08%p 하락했다.\n(서울=연합뉴스) 한지훈 기자 = 지난달 주택담보대출 금리가 7개월 만에 하락했다. 상대적으로 금리 수준이 낮은 변동금리 비중이 높아졌기 때문이다.\n한국은행이 29일 발표한 '금융기관 가중평균금리' 통계에 따르면, 지난 4월 중 예금은행의 주택담보대출 가중평균금리(신규취급액 기준)는 연 4.31%로 전월보다 0.03%포인트(p) 낮아졌다.\n작년 10월(3.98%) 이후 7개월 만의 하락 전환이다.\n고정형 주택담보대출 금리가 4.34%로 0.02%p 올라 7개월 연속 상승세를 지속했으나, 변동형 금리가 4.28%로 0.11%p 하락해 이를 상쇄했다.\n전체 가계대출 금리도 4.43%로 0.08%p 하락했다.\n주택담보대출 중 고정형 금리 비중은 3월 60.8%에서 4월 47.8%로 13.0%p 축소됐다. 작년 11월(90.2%) 이후 6개월 연속으로 비중이 줄어 2021년 7월(43.9%) 이후 4년 9개월 만에 최저치를 기록했다.\n가계대출 중 고정형 금리 비중 역시 35.5%에서 27.8%로 7.7%p 줄었다. 2022년 7월(21.4%) 이후 3년 9개월 만에 가장 낮은 수준이었다.\n이혜영 한은 금융통계팀장은 \"보금자리론 금리 인상 등으로 고정금리가 상승했다\"며 \"상대적으로 금리 수준이 낮은 변동금리 취급 비중이 높아졌다\"고 설명했다.\n이어 \"고정금리 수준 자체가 변동금리보다 많이 높은 상황\"이라며 \"차주들이 금리가 낮은 상품을 선택해 고정형 금리 비중이 축소됐다\"고 부연했다.\n4월 기업 대출금리는 4.14%로 전월과 같았다. 단기 시장금리 하락 등으로 대기업 대출 금리(4.09%)가 0.02%p 내린 반면, 일부 은행의 고금리 인수금융 취급 등으로 중소기업 대출 금리(4.18%)가 0.01%p 올랐다.\n가계와 기업을 통틀어 전체 은행권 대출 금리는 4.20%로 변동이 없었다.\n저축성 수신(예금) 금리(신규취급액 기준)는 연 2.92%로 전월보다 0.10%p 높아졌다.\n정기예금 등 순수저축성예금 금리(2.87%)와 금융채·양도성예금증서(CD) 등 시장형 금융상품 금리(3.07%)가 각 0.08%p, 0.09%p 상승했다.\n은행 신규 취급액 기준 대출 금리와 저축성 수신 금리의 차이인 예대금리차(1.28%p)는 0.10%p 줄었다. 다만, 신규 취급액이 아닌 잔액 기준 예대금리차(2.28%p)는 0.01%p 확대됐다.\n은행 외"
     },
     {
-      "source": "yonhap",
-      "title": "국고채 금리 일제히 하락…3년물 장중 연 3.729%",
-      "link": "https://www.yna.co.kr/view/AKR20260529081300008",
-      "published": "Fri, 29 May 2026 11:44:01 +0900",
-      "body": "29일 국고채 금리가 일제히 하락하고 있다.\n10년물 금리는 연 4.074%로 7.3bp 하락했다.\n5년물과 2년물은 각각 5.4bp, 2.7bp 하락해 연 3.938%, 연 3.588%에 거래되고 있다.\n인공지능이 자동으로 줄인 '세 줄 요약' 기술을 사용합니다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년05월29일 11시44분\n29일 국고채 금리가 일제히 하락하고 있다.\n10년물 금리는 연 4.074%로 7.3bp 하락했다.\n5년물과 2년물은 각각 5.4bp, 2.7bp 하락해 연 3.938%, 연 3.588%에 거래되고 있다.\n(서울=연합뉴스) 29일 국고채 금리가 일제히 하락하고 있다.\n이날 오전 서울 채권시장에서 3년 만기 국고채 금리는 전 거래일보다 3.7bp(1bp=0.01%포인트) 내린 연 3.729%를 기록했다.\n10년물 금리는 연 4.074%로 7.3bp 하락했다. 5년물과 2년물은 각각 5.4bp, 2.7bp 하락해 연 3.938%, 연 3.588%에 거래되고 있다.\n20년물은 연 4.117%로 7.1bp 내렸다. 30년물과 50년물은 각각 8.8bp, 8.5bp 하락해 연 4.036%, 연 3.891%를 기록했다.\n※ 이 기사와 표는 연합인포맥스의 데이터를 토대로 알고리즘에 의해 자동 작성돼 편집자의 데스킹을 거쳤습니다.\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년05월29일 11시44분 송고"
-    },
-    {
-      "source": "yonhap",
-      "title": "한화생명·손보, S&P 신용등급 'A+'로 상향",
-      "link": "https://www.yna.co.kr/view/AKR20260529072400002",
-      "published": "Fri, 29 May 2026 11:10:58 +0900",
-      "body": "(서울=연합뉴스) 강수련 기자 = 한화생명[088350]과 한화손해보험[000370]은 28일 글로벌 3대 신용평가사인 스탠더드앤푸어스(S&P)로부터 신용등급을 기존 'A'에서 한 단계 상향된 'A+'를 부여받았다고 밝혔다.\n등급 전망도 모두 '안정적(Stable)'으로 평가받았다.\n한화생명에 따르면 S&P는 보고서에서 \"한화생명은 안정적 사업 기반과 한화생명금융서비스를 포함한 광범위한 영업망을 바탕으로 국내 시장에서 견고한 시장 지위를 유지할 것\"이라고 전망했다.\n또한 \"보장성보험 중심의 매출 전략으로 미래 수익 창출력을 보여주는 보험계약마진(CSM)도 향후 성장세를 보일 것\"이라고 밝혔다.\n자본건전성 평가에서도 보험료 성장세, 우량 장기채권 중심 투자 포트폴리오 등이 안정적으로 유지될 것이라고 평가받았다.\n인도네시아와 베트남 등 해외 자회사 등과 관련 \"해외 사업기반이 동남아시아를 중심으로 단계적으로 확장되고 있고 국내·외 자회사를 통해 다각화된 사업기반을 바탕으로 수익성도 꾸준히 개선될 것으로 예상한다\"고 말했다.\n한화손보의 경우 생명·손해보험 간 서비스 시너지 구현에서 전략적 중요성이 크다는 점도 인정받았다\n한화생명 관계자는 \"보험 본업 경쟁력은 물론 글로벌 진출·자회사를 통한 포트폴리오 다각화 전략이 실질적인 수익으로 가시화되고 있음을 인정받은 결과\"라며 \"향후에도 안정적인 재무건전성을 바탕으로 성장 기반을 강화해 기업가치 제고에 힘쓰겠다\"고 밝혔다.\ntraining@yna.co.kr\n제보는 카카오톡 okjebo\n<저작권자(c) 연합뉴스,\n무단 전재-재배포, AI 학습 및 활용 금지>\n2026/05/29 11:10 송고\n2026년05월29일 11시10분 송고"
-    },
-    {
       "source": "fnnews",
       "title": "\"삼전닉스 팔아 주담대 갚아야하나\"...8%대 금리 전망에, '영끌·빚투족' 출구전략 짜나",
       "link": "https://www.fnnews.com/news/202605290959516912",
       "published": "Fri,29 May 2026 10:21:55 +0900",
       "body": "[파이낸셜뉴스] 한국은행이 올해 기준금리 인상 신호를 보내면서 '영끌족'들의 부담이 더욱 커질 것으로 보인다. 중동 전쟁 장기화에 따른 인플레이션 우려로 시장금리가 이미 오름세를 보이는 가운데, 금리 인상까지 현실화될 경우 원리금 상환 부담이 한층 커질 것이라는 우려가 나온다.\n29일 한은 금융통화위원회가 '5월 통화정책방향 결정회의'에서 공개한 점도표에 따르면 점도표 21개 중 19개가 현재 기준금리(2.50%)보다 높은 곳에 찍혔다. 점도표는 금통위원 7명이 각각 향후 6개월의 금리 수준을 전망해 3개의 점으로 제시한다.\n앞으로 6개월 후 기준금리에 대해 현재와 같은 수준을 예상한 전망은 2개에 불과한 반면, '연 3.0%'로 제시한 전망이 10개로 가장 많았다.\n금통위원들 대다수가 연내 기준금리 인상 가능성을 전망한 것이다. 이에 대해 신현송 한은 총재는 전날 금통위 이후 기자간담회에서 \"물가로 보나 성장으로 보나 환율, 부동산으로 보나 갈 길이 명확하다\"며 \"향후 적절한 시기에 기준금리를 인상할 필요가 있다고 판단된다\"며 연내 금리인상을 사실상 공식화했다.\n\"연내 인상, 길 명확하다\" 긴축 시그널 확실하게 준 한은 총재\n금융시장에서는 한은이 연내 두 차례의 기준금리 인상에 나설 것으로 보고 있다. 이르면 오는 7월 열리는 금통위에서 한은이 기준금리를 연 2.50%에서 연 2.75%로 0.25%포인트 인상할 것이라는 전망이 나온다.\n조용구 신영증권 연구원은 \"물가와 성장, 금융안정 측면에서 금리인상 방침을 명확히 하고 낙수효과에 대해 긍정적인 영향을 언급했다\"며 \"인상 소수의견과 점도표 중간값이 3.00%에 위치하면서 7월을 비롯해 연내 2회 인상은 기정사실화됐다\"고 진단했다. 이어 \"8월 금통위를 거쳐 점도표가 상향 조정되면서 최종금리가 내년 1분기 3.25%에 도달할 것\"이라고 전망했다.\n한은의 매파적(통화긴축) 신호에 시장금리는 일제히 상승세를 보였다. 전날 서울 채권시장에서 5년 만기 국고채 금리는 연 3.992%로 전일 대비 0.042%p 뛰었다. 10년 만기 금리는 연 4.147%로 전일 대비 0.045%p 올랐다.\n\"주담대 상단 8%까지 열린다\" 전망에 이자 부담 커져\n시장금리가 오르면서 은행권 대출금리도 상승 압박을 받게 됐다. 이미 주택담보대출 고정형 금리의 기준이 되는 금융채 금리는 중동 지정학적 리스크 등으로 상승세를 지속해 왔다. 금융채 5년물(AAA) 금리는 전날 기준 4.280%로 지난 3월 말(4.051%) 대비 0.229%p 뛰었다. 이런 가운데 한은의 금리인상을 앞두고 추가 상승 압력을 받을 가능성이 높아졌다.\n금융권에 따르면 KB국민·신한·하나·우리·NH농협 등 5대 은행의 주택담보대출 고정형(5년) 금리는 지난 28일 기준 연 4.25∼7.11%로 집계됐다. 일부 은행의 주담대 금리 하단은 연 5%대를 넘어섰다. 금리 인상이 본격화되면 주담대 금리 상단이 8%에 육박할 수 있다는 관측이 나온다.\n문제는 이렇게 되면 변동형 주담대를 받은 '영끌' 차주부터 금리 충격을 받을 수 있다는 점이다. 여기에 "
-    },
-    {
-      "source": "fnnews",
-      "title": "농·어업 면세유 보조금 지급한도 상향... 경유 리터당 138원→176원",
-      "link": "https://www.fnnews.com/news/202605281524195905",
-      "published": "Fri,29 May 2026 08:00:00 +0900",
-      "body": "[파이낸셜뉴스] 정부가 농번기·성어기를 앞두고 면세유 유가연동보조금 지급한도를 올리기로 했다.\n정부는 29일 구윤철 경제부총리 주재로 개최된 비상경제본부 회의 겸 경제·산업경쟁력강화 관계장관회의에서 이 같은 내용의 '농·어민 유류비 지원 확대방안'을 발표했다.\n정부는 중동전쟁에 따른 국제유가 상승으로 생산비 부담이 커진 농·어민을 지원하기 위해 추가경정예산 1188억원을 투입해 면세유 유가연동보조금을 한시 지급(3~9월분)하고 있다. 면세유 가격이 기준가격을 초과할 경우 초과분의 70%를 최대 지급한도 내에서 지원하는 방식이다.\n다만 최근 고유가 상황이 지속되면서 지급한도를 초과하는 유가 상승분은 지원하지 못하는 한계가 있었다.\n이에 정부는 면세유 유가연동보조금 지급한도를 상향하기로 했다. 면세경유 기준 지급한도는 기존 리터당 138.4원에서 176.2원으로 37.8원 인상된다.\n농림축산식품부·해양수산부·산림청 등 관계부처는 사업지침 개정을 통해 이날 구입한 면세유부터 상향된 지원한도를 즉시 적용할 예정이다.\nhippo@fnnews.com 김찬미 기자\n※ 저작권자 ⓒ 파이낸셜뉴스, 무단전재-재배포 금지"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Anthropic tops OpenAI as most valuable AI startup, nears $1 trillion valuation in latest round",
-      "link": "https://www.cnbc.com/2026/05/28/anthropic-open-ai-startup-value.html",
-      "published": "Thu, 28 May 2026 21:10:06 GMT",
-      "body": "Anthropic is now the most valuable artificial intelligence company in Silicon Valley.\nThe AI giant announced a $65 billion Series H financing round at a $965 billion valuation on Thursday. The financing puts its valuation above that of rival AI lab OpenAI.\nCNBC reported in late April that Anthropic was in talks to raise capital.\nThe newest round was led by Altimeter Capital, Dragoneer, Greenoaks and Sequoia Capital, and almost triples Anthropic's valuation from February, when it was worth $380 billion. The financing also includes $15 billion of previously committed investments, including $5 billion from Amazon, the company said.\nAnthropic's biggest competitor OpenAI was valued at $852 billion in late March after closing a record-breaking $122 billion funding round.\nAnthropic's revenue has exploded thanks to its popular AI coding assistant, Claude Code. Anthropic also reported a $47 billion revenue run rate on Thursday. That's up from a $30 billion run rate earlier this year, and $10 billion in annual revenue last year.\nThe company released its latest model, Claude Opus 4.8, earlier on Thursday. Anthropic has also captivated Wall Street by unveiling Claude Mythos Preview, a model with advanced cybersecurity capabilities that's only available to a select group of companies.\n\"Claude is increasingly indispensable to our growing global community of customers, and we work tirelessly to make tools like Claude Code and Cowork more helpful, more powerful, and more adaptable to their n"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "앤트로픽 1조달러 밸류 달성·삼성 HBM4E 샘플출하·델 실적 호조 등 AI 인프라 사이클 재확인으로 나스닥 +0.91%, 필라 반도체 +1.0%, 코스피 +3.21% 급등",
+  "sentiment_reason": "필라델피아반도체 +1.0%, 나스닥 +0.91% 상승. Anthropic 1440조원 밸류로 AI 투자 폭발, 삼성전자 HBM4E 샘플 출하로 국내 반도체 시총 2000조 돌파하며 글로벌 AI 생태계 확장세 지속",
   "key_factors": [
-    "앤트로픽 밸류에이션 9650억달러로 오픈AI 제치고 삼성·SK하이닉스 전략적 파트너 포함",
-    "삼성전자 12단계 HBM4E 샘플 출하로 주가 6% 급등 (AI 메모리 경쟁력 재확인)",
-    "델 AI 붐 실적 호조·LG전자 구글 자율주행 협업으로 +24% 급등·필라 반도체 지수 연중 75% 상승"
+    "Anthropic 시리즈H 650억달러 유치, 밸류 9650억달러(1440조원)로 OpenAI 제치고 최대 AI 기업 등극",
+    "삼성전자 HBM4E 12레이어 샘플 출하 (16Gbps, 업계 최초), 파운드리 수주 기대감과 함께 시총 2000조 돌파",
+    "Nvidia 포토닉스 기술에 65억달러 투자, LG전자 구글 기반 자동차 솔루션 발표로 주가 24% 급등"
   ],
-  "news_summary": "한은 금통위 기준금리 2.50% 동결하되 점도표 21개 중 19개가 현 수준 이상 제시, 신현송 총재 \"향후 적절한 시기 인상 필요\" 명시 (7명 중 2명 즉시 2.75% 인상 주장)\n한국 국고채 금리 일제히 하락 — 10년물 4.074% (-7.3bp), 3년물 3.729% (-5.4bp), 2년물 3.588% (-2.7bp) 기록\n4월 은행 주담대 금리 연 4.31% (전월 대비 -0.03%p)로 7개월 만에 하락 — 변동형 4.28% (-0.11%p)가 고정형 4.34% (+0.02%p) 상쇄\nBloomberg 보고 '이란 휴전으로 산업용 금속 1월 이래 최고 월간 상승' — 구리 +0.30%, 중국 수요 기대 반영\n한국 정부 면세유 유가연동보조금 지급한도 상향 — 경유 리터당 138원→176원, 추경 1,188억원 투입 (3~9월 중동전쟁 유가 상승 대응)\nFT 보도 '필라델피아 반도체 지수 연중 75% 급등으로 1999년 통계 이래 연간 최고 전망' — AI 투자 열풍 속 반도체 호황 수년간 지속 예상\n한국 국세청-서울대 AI 연구원 MOU 체결 — 세무 신고·컨설팅 AI 서비스 추진, 정보보안·개인정보 보호 자문 협력\n앤트로픽 650억달러 시리즈H 투자 유치로 밸류에이션 9,650억달러 (약 1,440조원) 달성 — 오픈AI (3,800억달러 추정) 제치고 최대 AI 스타트업, 삼성전자·SK하이닉스 '전략적 인프라 파트너'로 명시\n삼성전자 12단계 HBM4E 칩 샘플 글로벌 출하 개시 — 업계 최초 16Gbps 속도, 주가 6.51% 급등 (코스피 +3.21% 주도)\n델 주가 AI 붐 실적 호조로 사상 최고가 경신 — 구체적 수치 미공개, 시장 기대치 상회로 급등\nLG전자 주가 24% 급등 — 구글 Android Automotive OS 기반 차량용 솔루션 다수 제어 기능 발표, 자율주행 기술 협업\nSpaceX IPO 목표 밸류에이션 최소 1.8조달러로 하향 조정 (Seeking Alpha 보도) — 투자자 수요는 여전히 높음 (FT)\n테슬라 텍사스 로보택시 42대로 Waymo (577대)의 1/10 미만 (주정부 파일링 공개) — 머스크 트윗이 앤트로픽 데이터센터 계약 주장과 상충 (FT)\n한국 국민성장펀드 FuriosaAI에 8,000억원 (535백만달러) 직접 투자 — 국산 AI 반도체 개발 지원 (금융위 발표)\n옥타 실적 호조 및 AI 에이전트 기회 강조로 주가 상승 (MarketWatch 보도)",
+  "news_summary": "한은 7월 금리 인상 예고. 신현송 총재 \"향후 적절한 시기에 기준금리 인상 필요\" 명시, 점도표 21개 중 19개가 현재 2.50%보다 높은 곳 표시. 주담대 금리 상단 8% 육박 전망으로 영끌족 이자 부담 급증 우려\nECB 금리 인상 딜레마. CNBC 보도: 인플레 대응 위해 인상 필요하지만 유로존 경기 침체 리스크로 정책 딜레마 심화. 민간 부문 자체 긴축 효과로 중앙은행 역할 대체 가능성 제기\n4월 은행 주담대 금리 4.31%로 7개월 만에 0.03%p 하락. 변동형 금리 4.28%(-0.11%p)가 고정형 4.34%(+0.02%p) 상쇄. 단 7월 금리 인상 시 반등 불가피\nBloomberg 보도: 산업금속 1월 이후 최고 월간 상승. 이란 휴전 기대로 중동 공급망 안정화 전망, 구리 +0.15%\n농·어업 면세유 보조금 지급한도 상향. 경유 리터당 138원→176원, 중동 전쟁 장기화로 국제유가 상승 대응 위해 추경 1188억원 투입(3~9월분)\n반도체 초과이익 처분 논란. 김영훈 고용부 장관 \"사회적 재분배 필요\" vs 김정관 산업부 장관 \"AI 시대 승부는 속도와 규모, 재투자 최우선\" 온도차. 삼성전자 총파업 사태 계기로 부처 간 갈등 표면화\n한수원, 체코 두코바니 원전에 AI 형상관리시스템 도입. 14억원 투입해 설계 정보 DB화, 수작업 오류 제거와 안전성 극대화 추진\nAnthropic, 시리즈H에서 650억달러 유치하며 밸류 9650억달러(1440조원) 달성. OpenAI 제치고 최대 AI 기업 등극. 삼성전자·SK하이닉스·마이크론이 '전략적 인프라 파트너'로 참여, 삼성 파운드리 로직칩 수주 기대감 고조\n삼성전자, HBM4E 12레이어 샘플 글로벌 출하 개시(업계 최초, 16Gbps 속도). 주가 +6.01%로 우선주 포함 시총 2000조원 돌파. Anthropic 투자 + 파운드리 수주 기대로 DS부문 턴어라운드 신호\nLG전자, 구글 안드로이드 오토모티브 기반 차량 솔루션 발표로 주가 24% 급등. 젠슨 황 엔비디아 CEO 방한·LG그룹 미팅 기대감으로 LG·LG이노텍·LG씨엔에스 등 그룹주 전반 강세(LG +19.34%, LG이노텍 +24.96%, LG씨엔에스 +29.91%)\nDell, AI 붐 수혜로 실적 서프라이즈. MarketWatch 보도: 주가 신고가 경신하며 강세. AI 서버 수요 급증 재확인\nNvidia, 포토닉스 기술(광통신 데이터 전송)에 최근 3개월간 최소 65억달러 투자. CNBC 보도: AI 산업 주요 병목 현상 해결 위한 차세대 기술 선점 전략\nFT 보도: SpaceX IPO 앞두고 투자자들 익스포저 확보 경쟁. Musk 트윗으로 Anthropic 데이터센터 계약 논란 발생\nTesla, 텍사스 자율주행 로보택시 42대로 Waymo(577대)의 1/10 수준. CNBC 보도: 상용화 규모 격차 부각\n카카오, 다올투자증권 목표가 7만→6만원 하향. 성과급 갈등으로 창사 첫 본사 파업 가능성, AI 수익화 시간 소요 평가. 주가 1월 6.21만원→5월 28일 4.01만원 급락",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "한은 금통위 기준금리 2.50% 동결하되 점도표 21개 중 19개가 현 수준 이상 제시, 신현송 총재 \"향후 적절한 시기 인상 필요\" 명시 (7명 중 2명 즉시 2.75% 인상 주장)",
+          "text": "한은 7월 금리 인상 예고. 신현송 총재 \"향후 적절한 시기에 기준금리 인상 필요\" 명시, 점도표 21개 중 19개가 현재 2.50%보다 높은 곳 표시. 주담대 금리 상단 8% 육박 전망으로 영끌족 이자 부담 급증 우려",
           "impact": "high"
         },
         {
-          "text": "한국 국고채 금리 일제히 하락 — 10년물 4.074% (-7.3bp), 3년물 3.729% (-5.4bp), 2년물 3.588% (-2.7bp) 기록",
+          "text": "ECB 금리 인상 딜레마. CNBC 보도: 인플레 대응 위해 인상 필요하지만 유로존 경기 침체 리스크로 정책 딜레마 심화. 민간 부문 자체 긴축 효과로 중앙은행 역할 대체 가능성 제기",
+          "impact": "high"
+        },
+        {
+          "text": "4월 은행 주담대 금리 4.31%로 7개월 만에 0.03%p 하락. 변동형 금리 4.28%(-0.11%p)가 고정형 4.34%(+0.02%p) 상쇄. 단 7월 금리 인상 시 반등 불가피",
           "impact": "mid"
         },
         {
-          "text": "4월 은행 주담대 금리 연 4.31% (전월 대비 -0.03%p)로 7개월 만에 하락 — 변동형 4.28% (-0.11%p)가 고정형 4.34% (+0.02%p) 상쇄",
-          "impact": "mid"
-        },
-        {
-          "text": "Bloomberg 보고 '이란 휴전으로 산업용 금속 1월 이래 최고 월간 상승' — 구리 +0.30%, 중국 수요 기대 반영",
+          "text": "Bloomberg 보도: 산업금속 1월 이후 최고 월간 상승. 이란 휴전 기대로 중동 공급망 안정화 전망, 구리 +0.15%",
           "impact": "mid"
         }
       ]
@@ -10149,15 +10145,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "한국 정부 면세유 유가연동보조금 지급한도 상향 — 경유 리터당 138원→176원, 추경 1,188억원 투입 (3~9월 중동전쟁 유가 상승 대응)",
+          "text": "농·어업 면세유 보조금 지급한도 상향. 경유 리터당 138원→176원, 중동 전쟁 장기화로 국제유가 상승 대응 위해 추경 1188억원 투입(3~9월분)",
           "impact": "high"
         },
         {
-          "text": "FT 보도 '필라델피아 반도체 지수 연중 75% 급등으로 1999년 통계 이래 연간 최고 전망' — AI 투자 열풍 속 반도체 호황 수년간 지속 예상",
+          "text": "반도체 초과이익 처분 논란. 김영훈 고용부 장관 \"사회적 재분배 필요\" vs 김정관 산업부 장관 \"AI 시대 승부는 속도와 규모, 재투자 최우선\" 온도차. 삼성전자 총파업 사태 계기로 부처 간 갈등 표면화",
           "impact": "mid"
         },
         {
-          "text": "한국 국세청-서울대 AI 연구원 MOU 체결 — 세무 신고·컨설팅 AI 서비스 추진, 정보보안·개인정보 보호 자문 협력",
+          "text": "한수원, 체코 두코바니 원전에 AI 형상관리시스템 도입. 14억원 투입해 설계 정보 DB화, 수작업 오류 제거와 안전성 극대화 추진",
           "impact": "mid"
         }
       ]
@@ -10167,35 +10163,35 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "앤트로픽 650억달러 시리즈H 투자 유치로 밸류에이션 9,650억달러 (약 1,440조원) 달성 — 오픈AI (3,800억달러 추정) 제치고 최대 AI 스타트업, 삼성전자·SK하이닉스 '전략적 인프라 파트너'로 명시",
+          "text": "Anthropic, 시리즈H에서 650억달러 유치하며 밸류 9650억달러(1440조원) 달성. OpenAI 제치고 최대 AI 기업 등극. 삼성전자·SK하이닉스·마이크론이 '전략적 인프라 파트너'로 참여, 삼성 파운드리 로직칩 수주 기대감 고조",
           "impact": "high"
         },
         {
-          "text": "삼성전자 12단계 HBM4E 칩 샘플 글로벌 출하 개시 — 업계 최초 16Gbps 속도, 주가 6.51% 급등 (코스피 +3.21% 주도)",
+          "text": "삼성전자, HBM4E 12레이어 샘플 글로벌 출하 개시(업계 최초, 16Gbps 속도). 주가 +6.01%로 우선주 포함 시총 2000조원 돌파. Anthropic 투자 + 파운드리 수주 기대로 DS부문 턴어라운드 신호",
           "impact": "high"
         },
         {
-          "text": "델 주가 AI 붐 실적 호조로 사상 최고가 경신 — 구체적 수치 미공개, 시장 기대치 상회로 급등",
+          "text": "LG전자, 구글 안드로이드 오토모티브 기반 차량 솔루션 발표로 주가 24% 급등. 젠슨 황 엔비디아 CEO 방한·LG그룹 미팅 기대감으로 LG·LG이노텍·LG씨엔에스 등 그룹주 전반 강세(LG +19.34%, LG이노텍 +24.96%, LG씨엔에스 +29.91%)",
           "impact": "high"
         },
         {
-          "text": "LG전자 주가 24% 급등 — 구글 Android Automotive OS 기반 차량용 솔루션 다수 제어 기능 발표, 자율주행 기술 협업",
+          "text": "Dell, AI 붐 수혜로 실적 서프라이즈. MarketWatch 보도: 주가 신고가 경신하며 강세. AI 서버 수요 급증 재확인",
           "impact": "high"
         },
         {
-          "text": "SpaceX IPO 목표 밸류에이션 최소 1.8조달러로 하향 조정 (Seeking Alpha 보도) — 투자자 수요는 여전히 높음 (FT)",
+          "text": "Nvidia, 포토닉스 기술(광통신 데이터 전송)에 최근 3개월간 최소 65억달러 투자. CNBC 보도: AI 산업 주요 병목 현상 해결 위한 차세대 기술 선점 전략",
           "impact": "mid"
         },
         {
-          "text": "테슬라 텍사스 로보택시 42대로 Waymo (577대)의 1/10 미만 (주정부 파일링 공개) — 머스크 트윗이 앤트로픽 데이터센터 계약 주장과 상충 (FT)",
+          "text": "FT 보도: SpaceX IPO 앞두고 투자자들 익스포저 확보 경쟁. Musk 트윗으로 Anthropic 데이터센터 계약 논란 발생",
           "impact": "mid"
         },
         {
-          "text": "한국 국민성장펀드 FuriosaAI에 8,000억원 (535백만달러) 직접 투자 — 국산 AI 반도체 개발 지원 (금융위 발표)",
+          "text": "Tesla, 텍사스 자율주행 로보택시 42대로 Waymo(577대)의 1/10 수준. CNBC 보도: 상용화 규모 격차 부각",
           "impact": "mid"
         },
         {
-          "text": "옥타 실적 호조 및 AI 에이전트 기회 강조로 주가 상승 (MarketWatch 보도)",
+          "text": "카카오, 다올투자증권 목표가 7만→6만원 하향. 성과급 갈등으로 창사 첫 본사 파업 가능성, AI 수익화 시간 소요 평가. 주가 1월 6.21만원→5월 28일 4.01만원 급락",
           "impact": "mid"
         }
       ]
@@ -10203,243 +10199,213 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "앤트로픽 1조달러 밸류 달성·델 AI 실적 호조로 빅테크 모멘텀 지속, 10년물 금리 -0.58%로 밸류에이션 압력 완화",
+      "reason": "빅테크 중심 상승. Anthropic 초대형 투자 라운드와 Dell AI 실적 호조로 기술주 강세 지속",
       "drivers": [
-        "델 AI 실적 서프라이즈 (기사신고가)",
-        "앤트로픽 밸류 9650억달러 (오픈AI 제침)",
-        "국채 10년물 4.45% (5.8bp 하락)"
+        "Dell 실적 서프라이즈",
+        "AI 밸류 재평가 (Anthropic 1440조)"
       ]
     },
     "NASDAQ": {
-      "reason": "델·옥타 실적 호조, 앤트로픽 밸류 재평가로 AI 테마주 전반 강세, 필라 반도체 +1.0% 동반 상승",
+      "reason": "반도체·AI 인프라 중심 상승. 삼성 HBM4E 샘플 출하, Nvidia 포토닉스 투자로 AI 공급망 전반 강세",
       "drivers": [
-        "델 AI 붐 실적 급등",
-        "옥타 실적 비트·AI 에이전트 기회",
-        "앤트로픽 9650억달러 밸류"
+        "필라델피아반도체 +1.0%",
+        "Anthropic 메가 밸류"
       ]
     },
     "DOW": {
-      "reason": "금리 하락에도 경기민감 올드이코노미 비중 높아 상승폭 제한 (+0.05%), 테크 랠리에서 소외",
+      "reason": "금융·전통 산업 혼조로 보합. 금리 인상 우려(한은 긴축 신호, ECB 인상 딜레마)로 상승폭 제한",
       "drivers": [
-        "국채 금리 하락 (10Y -5.8bp)",
-        "AI 테마 외 섹터 모멘텀 부재"
+        "금융주 혼조",
+        "경기 민감주 약세"
       ]
     },
     "VIX": {
-      "reason": "AI 밸류 재평가·델 실적 호조로 불확실성 완화, S&P500 +0.58% 안정 랠리 반영",
+      "reason": "AI 투자 폭발과 빅테크 실적 호조로 변동성 수요 감소. 리스크온 심리 확대",
       "drivers": [
-        "빅테크 실적 서프라이즈",
-        "국채 금리 하락"
+        "나스닥 강세",
+        "AI 밸류 재평가"
       ]
     },
     "필라델피아반도체": {
-      "reason": "삼성 HBM4E 샘플 출하·앤트로픽 파트너 포함·FT 보도 '연중 75% 급등으로 1999년 이래 최고' 모멘텀 지속",
+      "reason": "삼성 HBM4E 샘플 출하(+6% 급등), FT 보도로 SOX 올해 75% 상승 확인, AI 메모리·파운드리 수요 재확인",
       "drivers": [
-        "삼성전자 HBM4E 16Gbps 샘플 출하",
-        "앤트로픽 삼성·하이닉스 전략 파트너",
-        "FT '반도체 호황 수년간 지속' 전망"
+        "삼성전자 HBM4E 샘플",
+        "Anthropic 전략 투자"
       ]
     },
     "러셀2000": {
-      "reason": "금리 하락 (10Y -5.8bp)으로 중소형주 밸류에이션 부담 완화, S&P500 랠리 동조 상승",
+      "reason": "대형주 강세 동조. AI 투자 확산 기대감으로 중소형주도 수혜",
       "drivers": [
-        "국채 10년물 4.45% 하락",
-        "S&P500 +0.58% 동조"
+        "나스닥 상승 동조",
+        "리스크온 분위기"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유가 -1.26% 하락으로 에너지 비중 높은 영국 증시 하방 압력",
+      "reason": "ECB 금리 인상 딜레마와 유럽 경기 둔화 우려로 하락. 미국 기술주 강세와 대조",
       "drivers": [
-        "WTI -1.26% 하락",
-        "유럽 매크로 모멘텀 부재"
+        "ECB 긴축 우려",
+        "유럽 경기 약세"
       ]
     },
     "독일DAX": {
-      "reason": "직접 촉매 없음 — 유로존 인플레·성장 불확실성 지속, 미국 AI 랠리 대비 상대적 부진",
+      "reason": "ECB 금리 인상 리스크 부각. 민간 부문 긴축 효과로 중앙은행 정책 부담 가중 우려",
       "drivers": [
-        "유로존 매크로 불확실성",
-        "미국 대비 테크 비중 부족"
+        "ECB 정책 불확실성",
+        "금융주 약세"
       ]
     },
     "니케이": {
-      "reason": "삼성 HBM4E·앤트로픽 밸류 업 등 AI 인프라 호재로 반도체 비중 높은 일본 증시 급등",
+      "reason": "삼성 HBM4E 샘플 출하와 Anthropic 투자로 반도체·AI 관련주 급등. 도쿄일렉 등 장비주 동반 강세",
       "drivers": [
-        "도쿄일렉 등 반도체 장비주 강세",
-        "AI 인프라 사이클 재확인"
+        "반도체 강세",
+        "AI 투자 확산"
       ]
     },
     "항셍": {
-      "reason": "앤트로픽 밸류 상향·산업용 금속 Bloomberg 보도 '1월 이래 최고 월간 상승' 등 중국 경기 기대 반영",
+      "reason": "글로벌 AI 투자 확산 수혜. 중국 테크주 동조 상승",
       "drivers": [
-        "구리 +0.30% 상승",
-        "Bloomberg 산업용 금속 강세"
+        "나스닥 강세 동조",
+        "AI 밸류 재평가"
       ]
     },
     "달러인덱스": {
-      "reason": "미 국채 금리 하락에도 중동 불확실성·인플레 재점화 우려로 안전자산 수요 유지, 소폭 상승",
+      "reason": "보합. 한은 금리 인상 신호와 ECB 긴축 우려 상쇄",
       "drivers": [
-        "중동 전쟁 장기화 우려",
-        "한은 금리 인상 예고"
+        "한은 긴축 신호",
+        "ECB 정책 불확실성"
       ]
     },
     "국채10Y": {
-      "reason": "한은 금리 인상 예고에도 국내 국고채 급락 (3년물 -7.3bp) 영향, AI 랠리로 성장 기대 반영",
+      "reason": "한은 금리 인상 시사(7월 예고)에도 AI 투자 자금 이동으로 채권 수요 증가. 금리 하락",
       "drivers": [
-        "국고채 동반 하락 (3Y -7.3bp)",
-        "AI 실적 호조로 성장 기대"
+        "한은 긴축 신호 상쇄",
+        "주식 강세 속 수급 조정"
       ]
     },
     "국채30Y": {
-      "reason": "10년물 동조 하락, 장기 성장 기대 반영 및 연준 향후 완화 여지 재평가",
+      "reason": "10년물 동조 하락. AI 투자 폭발로 장기 성장 기대감 유지",
       "drivers": [
-        "10년물 -5.8bp 동조",
-        "장기 성장 기대 반영"
+        "10년물 동조",
+        "장기 성장 기대"
       ]
     },
     "코스피": {
-      "reason": "삼성전자 HBM4E 샘플 출하로 +6% 급등, 앤트로픽 전략 파트너 포함·LG전자 구글 협업 +24% 등 빅테크 동반 강세",
+      "reason": "삼성전자 HBM4E 샘플 출하(+6.01%)와 시총 2000조 돌파, Anthropic 전략 투자 수혜로 반도체 대형주 폭등",
       "drivers": [
-        "삼성전자 HBM4E 16Gbps 샘플",
-        "LG전자 구글 자율주행 협업 +24%",
-        "앤트로픽 삼성·하이닉스 파트너"
+        "삼성전자 +6.01%",
+        "SK하이닉스 동반 강세"
       ]
     },
     "코스닥": {
-      "reason": "한은 금리 인상 예고 (점도표 21개 중 19개 2.50% 이상)로 유동성 우려, 중소형주 차익 실현 압력",
+      "reason": "한은 금리 인상 신호(7월 예고)로 성장주 부담. 카카오 목표가 하향(7만→6만원) 등 내수 악재",
       "drivers": [
-        "한은 금리 인상 시사 (2.75% 제안 2명)",
-        "중소형 성장주 밸류에이션 부담"
+        "금리 인상 우려",
+        "카카오 등 대형주 약세"
       ]
     },
     "금": {
-      "reason": "중동 전쟁 장기화·유가 상승 (WTI 87.78)으로 인플레 우려 지속, 안전자산 수요 유입",
+      "reason": "중동 전쟁 장기화와 인플레 우려(유가 고공행진)로 안전자산 수요 지속",
       "drivers": [
-        "중동 전쟁 장기화 우려",
-        "인플레 재점화 리스크"
+        "중동 리스크",
+        "인플레 헤지"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 약함 — 중동 휴전 기대 또는 단기 수급 조정으로 추정, 구체적 뉴스 부재",
+      "reason": "직접 촉매 없음. 중동 전쟁 장기화 속 단기 수급 조정으로 소폭 하락",
       "drivers": [
-        "단기 수급 조정 (추정)",
-        "중동 긴장 완화 기대 (근거 약함)"
+        "단기 수급 조정",
+        "중동 리스크는 여전"
       ]
     },
     "원달러": {
-      "reason": "한은 금리 인상 예고 (신현송 총재 '적절한 시기 인상')에도 중동·인플레 우려로 달러 강세 지속, 소폭 상승",
+      "reason": "한은 금리 인상 신호(7월 예고)에도 코스피 강세로 외국인 유입 제한적. 소폭 상승",
       "drivers": [
-        "한은 인상 시사에도 효과 제한",
-        "달러인덱스 +0.06% 동조"
+        "한은 긴축 신호",
+        "무역 수지 변수"
       ]
     },
     "구리": {
-      "reason": "Bloomberg 보도 '이란 휴전으로 산업용 금속 1월 이래 최고 월간 상승' — 중국 수요 기대 반영",
+      "reason": "Bloomberg 보도: 산업금속 1월 이후 최고 월간 상승. 이란 휴전으로 중동 공급망 안정 기대",
       "drivers": [
-        "Bloomberg 산업용 금속 강세",
-        "중국 경기 기대"
+        "이란 휴전 기대",
+        "AI 인프라 수요"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "삼성 HBM4E 샘플 출하·앤트로픽 파트너 선정으로 코스피 +3.21% 급등, 반도체 대형 Leading 사이클 재확인",
+    "summary": "삼성 HBM4E 샘플 출하와 Anthropic 전략 투자로 반도체 대형주 폭등하며 코스피 +3.22% 급등. 단 한은 7월 금리 인상 신호로 성장주·내수주 약세, 코스닥 -2.89% 하락",
     "positive_factors": [
-      "삼성전자 12단계 HBM4E 16Gbps 샘플 출하로 AI 메모리 경쟁력 입증 (+6% 급등)",
-      "앤트로픽 9,650억달러 밸류 투자에 삼성·SK하이닉스 '전략적 인프라 파트너' 명시로 장기 수주 기대",
-      "LG전자 구글 자율주행 협업 발표로 +24% 급등, IT부품·자동차 부품 섹터 모멘텀 확산"
+      "삼성전자 HBM4E 12레이어 샘플 출하(16Gbps, 업계 최초)로 AI 메모리 경쟁력 재확인. 시총 2000조 돌파",
+      "Anthropic 1440조 밸류 투자에 삼성·하이닉스 전략 파트너 참여. 삼성 파운드리 로직칩 수주 기대감으로 DS부문 턴어라운드 모멘텀",
+      "LG전자 구글 기반 자동차 솔루션 발표 + 젠슨 황 방한 기대로 LG그룹주 전반 20~30% 급등. IT부품 섹터 leading 진입",
+      "FT 보도: 필라델피아반도체 지수 올해 75% 상승, 1999년 이후 최고. 글로벌 반도체 호황 수년 지속 전망"
     ],
     "negative_factors": [
-      "한은 금리 인상 예고 (점도표 19/21개 2.50% 이상)로 코스닥 -2.93% 급락, 중소형 성장주 유동성 우려",
-      "중동 전쟁 장기화로 유가 87.78달러 유지, 인플레 재점화 우려 (정부 면세유 보조금 긴급 확대)"
+      "한은 7월 금리 인상 예고(점도표 19/21개 현재보다 상향). 주담대 금리 8% 육박 전망으로 영끌족 이자 부담 급증, 내수 소비 위축 우려",
+      "코스닥 -2.89% 급락. 금리 인상 시그널로 성장주 밸류 부담, 카카오 목표가 하향(7만→6만원)과 파업 리스크 등 내수 대형주 악재"
     ],
-    "key_watch": "삼성 HBM4E 양산 일정 및 엔비디아 공급 비중 확인, 한은 6월 금통위 실제 인상 여부, 코스닥 중소형 AI 테마주 차익 실현 압력"
+    "key_watch": "삼성전자 Anthropic 파운드리 수주 가시화 여부, LG전자 젠슨 황 미팅 결과, 7월 금통위 실제 인상폭(0.25%p vs 0.5%p) 점검"
   },
   "sector_impact": {},
   "strong_buy": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 106.3·RS-M 102.2 Leading 유지 + 삼성 HBM4E 샘플 출하·앤트로픽 파트너 선정으로 AI 메모리 사이클 재확인, 필라 반도체 연중 75% 급등"
-    },
-    {
-      "sector": "반도체_중소형",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 115.0·RS-M 106.6 Leading 최상위 + 앤트로픽·델 실적 호조로 AI 중소형 반도체 모멘텀 지속, 국민성장펀드 FuriosaAI 8,000억 투자"
+      "reason": "삼성전자 HBM4E 샘플 출하 + Anthropic 전략 투자로 시총 2000조 돌파. RS-R 106.3·RS-M 102.2로 leading 중심 확고. 파운드리 수주 기대로 DS부문 턴어라운드 모멘텀 강화. 스테이지2 상승 초입 진입"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 123.7·RS-M 103.2 Leading 최강 + LG전자 구글 협업 +24% 급등, 자율주행·AI 인프라 부품 수혜"
-    },
-    {
-      "sector": "자동차_완성차",
-      "rrg_quadrant": "improving",
-      "reason": "RS-R 93.4·RS-M 100.9 Improving 진입 + LG전자 구글 Android Automotive 협업, 테슬라 로보택시 확대 기대 (Waymo 대비 성장 여지)"
+      "reason": "LG전자 구글 솔루션 발표로 +24% 급등, LG이노텍·씨엔에스 동반 강세. RS-R 123.7·RS-M 103.2로 leading 내 최강. 젠슨 황 방한 기대감 + AI 자동차 테마 부각으로 52주 신고가 돌파 VCP 패턴"
     },
     {
       "sector": "자동차_부품",
       "rrg_quadrant": "improving",
-      "reason": "RS-R 97.0·RS-M 100.7 Improving 진입 + LG전자 차량용 솔루션 강세 동조, 자율주행 부품 공급망 수혜"
+      "reason": "LG전자 자동차 솔루션 강세로 부품 동조 상승. RS-R 97.0·RS-M 100.7로 improving 진입. 모멘텀 전환 초기 단계로 추세 추종 유리"
     }
   ],
   "watch": [
     {
       "sector": "조선",
-      "reason": "RS-R 87.7·RS-M 95.1 Lagging → 한은 금리 인상 예고로 중장기 수주 밸류에이션 부담, 중동 전쟁 장기화 유가 상승 수혜 vs 글로벌 경기 둔화 리스크 혼재"
+      "reason": "RS-R 87.7·RS-M 95.1로 lagging 탈출 시도 중이나 7월 금리 인상 신호로 경기 민감 업종 부담. 중동 리스크 완화 시 재평가 가능하나 현재는 모멘텀 부족"
     },
     {
       "sector": "2차전지_셀",
-      "reason": "RS-R 88.8·RS-M 92.6 Lagging → 한은 금리 인상·중국 전기차 보조금 축소 우려, 2차전지 재고 조정 장기화 (improving 신호 부재)"
-    },
-    {
-      "sector": "로봇",
-      "reason": "RS-R 93.3·RS-M 102.9 Improving 초입 → AI 에이전트 테마 부상 (앤트로픽·SK에코플랜트) 수혜 기대, 단 RS-R 100 미달로 진입 타이밍 관망"
+      "reason": "RS-R 88.8·RS-M 92.6로 lagging. 한은 금리 인상 신호로 성장주 밸류 부담 지속. AI 투자 확산 수혜 기대하나 단기 촉매 부재"
     }
   ],
   "avoid": [],
-  "summary": "앤트로픽 1조달러 밸류·삼성 HBM4E 샘플 출하로 AI 인프라 사이클 재확인 — 반도체 대형·IT부품 Leading 강세, 한은 금리 인상 예고로 코스닥 -2.93% 급락은 중소형 차익 실현 기회",
+  "summary": "Anthropic 1440조 메가 밸류 + 삼성 HBM4E 샘플 출하로 AI 생태계 폭발적 확장. 반도체 대형·IT부품 leading 섹터 집중 매수. 단 한은 7월 금리 인상 신호로 코스닥·내수 성장주는 선별 접근",
   "top_picks": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 106.3·RS-M 102.2 Leading 유지 + 삼성 HBM4E 샘플 출하·앤트로픽 파트너 선정으로 AI 메모리 사이클 재확인, 필라 반도체 연중 75% 급등",
+      "reason": "삼성전자 HBM4E 샘플 출하 + Anthropic 전략 투자로 시총 2000조 돌파. RS-R 106.3·RS-M 102.2로 leading 중심 확고. 파운드리 수주 기대로 DS부문 턴어라운드 모멘텀 강화. 스테이지2 상승 초입 진입",
       "stocks": [
         {
           "name": "삼성전자",
           "code": "005930",
           "signal": "prime",
-          "reason": "12단계 HBM4E 16Gbps 샘플 글로벌 출하 (업계 최초), 앤트로픽 전략 파트너 선정으로 AI 메모리 경쟁력 재확인 + 이직률 2.1% (DS 1%대)로 인력 안정성 입증, 코스피 +3.21% 주도"
+          "reason": "HBM4E 샘플 출하(12레이어, 16Gbps 업계 최초) + Anthropic 전략 투자로 파운드리 수주 기대. 시총 2000조 돌파하며 +6.01% 급등. DS부문 턴어라운드 가시화, 스테이지2 초입 진입으로 52주 신고가 돌파 임박"
         },
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "앤트로픽 9,650억달러 투자 '전략적 인프라 파트너' 명시, 삼성 HBM4E 출하에 경쟁 압력 있으나 NVDA·AMD 공급 독점 지위 유지, 필라 반도체 +1.0% 동조 상승"
+          "reason": "Anthropic 전략 파트너 참여. 삼성 HBM4E 출하로 경쟁 심화 우려 있으나 HBM3E 점유율 1위 기반 견고. 이직률 2.3%(삼성 2.1%)로 인력 안정성 양호. AI 메모리 수요 지속 수혜"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 123.7·RS-M 103.2 Leading 최강 + LG전자 구글 협업 +24% 급등, 자율주행·AI 인프라 부품 수혜",
+      "reason": "LG전자 구글 솔루션 발표로 +24% 급등, LG이노텍·씨엔에스 동반 강세. RS-R 123.7·RS-M 103.2로 leading 내 최강. 젠슨 황 방한 기대감 + AI 자동차 테마 부각으로 52주 신고가 돌파 VCP 패턴",
       "stocks": [
         {
-          "name": "LG전자",
-          "code": "066570",
+          "name": "LG이노텍",
+          "code": "011070",
           "signal": "prime",
-          "reason": "구글 Android Automotive OS 기반 차량용 솔루션 다수 제어 발표로 +24% 급등, 자율주행·AI 인프라 부품 공급망 확대 (RS-R 123.7 Leading 최강)"
-        }
-      ]
-    },
-    {
-      "sector": "반도체_중소형",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 115.0·RS-M 106.6 Leading 최상위 + 앤트로픽·델 실적 호조로 AI 중소형 반도체 모멘텀 지속, 국민성장펀드 FuriosaAI 8,000억 투자",
-      "stocks": [
-        {
-          "name": "FuriosaAI (비상장)",
-          "code": "N/A",
-          "signal": "prime",
-          "reason": "국민성장펀드 8,000억원 직접 투자로 국산 AI 반도체 개발 본격화, 앤트로픽·델 실적 호조 속 중소형 AI 반도체 모멘텀 (상장 시 주목)"
+          "reason": "LG전자 구글 자동차 솔루션 발표 수혜로 +24.96% 급등. 젠슨 황 방한·LG그룹 미팅 기대감으로 단기 모멘텀 폭발. 카메라·광학 부품 AI 자동차 적용 확대 스토리. 52주 최대 거래량 기록하며 VCP 패턴 형성"
         }
       ]
     }
