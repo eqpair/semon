@@ -778,48 +778,32 @@
             if (nextEl) nextEl.textContent = getNextUpdate()
         }
 
-        // ── 음성 인식 (연속 받아쓰기) ──────────────────────────────────
-        let recognition = null, recognizing = false, manualStop = false
-        let finalText = ""
+        // ── 음성 인식 ──────────────────────────────────────────────────
+        let recognition = null, recognizing = false
         function initVoice() {
             const SR = window.SpeechRecognition || window.webkitSpeechRecognition
             if (!SR) return  // 미지원 브라우저: 버튼 숨김 유지
             recognition = new SR()
             recognition.lang = "ko-KR"
             recognition.interimResults = true
-            recognition.continuous = true
+            recognition.continuous = false
             const input = document.getElementById("chat-input")
+            let baseText = ""
             recognition.onstart = () => {
                 recognizing = true
                 const btn = document.getElementById("mic-btn")
                 btn.style.background = "#fee2e2"
                 btn.style.borderColor = "#dc2626"
                 btn.textContent = "⏺"
+                baseText = input.value ? input.value.trim() + " " : ""
             }
             recognition.onresult = (e) => {
-                let interim = ""
-                for (let i = e.resultIndex; i < e.results.length; i++) {
-                    const t = e.results[i][0].transcript
-                    if (e.results[i].isFinal) finalText += t
-                    else interim += t
-                }
-                input.value = (finalText + interim).trimStart()
+                let txt = ""
+                for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript
+                input.value = baseText + txt
             }
-            recognition.onerror = (ev) => {
-                // no-speech 등 일시 오류는 무시하고 계속, 그 외엔 종료
-                if (ev.error === "not-allowed" || ev.error === "service-not-allowed") {
-                    manualStop = true
-                    stopVoiceUI()
-                }
-            }
-            recognition.onend = () => {
-                // 사용자가 직접 끈 게 아니면 자동 재시작 (멈춤 구간에도 계속 듣기)
-                if (!manualStop) {
-                    try { recognition.start() } catch (e) { stopVoiceUI() }
-                } else {
-                    stopVoiceUI()
-                }
-            }
+            recognition.onerror = () => { stopVoiceUI() }
+            recognition.onend = () => { stopVoiceUI() }
             document.getElementById("mic-btn").style.display = "block"
         }
         function stopVoiceUI() {
@@ -832,16 +816,8 @@
         }
         function toggleVoiceInput() {
             if (!recognition) return
-            if (recognizing) {
-                manualStop = true
-                recognition.stop()
-            } else {
-                manualStop = false
-                // 입력창에 이미 있던 텍스트를 이어서 받아쓰기
-                const cur = document.getElementById("chat-input").value
-                finalText = cur ? cur.trim() + " " : ""
-                try { recognition.start() } catch (e) { }
-            }
+            if (recognizing) { recognition.stop() }
+            else { try { recognition.start() } catch (e) { } }
         }
         function startVoiceInput() { toggleVoiceInput() }  // 별칭
 
