@@ -120,6 +120,8 @@
                     <h1 class="text-3xl font-bold text-gray-800">Heatmap <span class="text-lg font-normal text-gray-400">Sector / Stock</span></h1>
                     <div class="text-sm text-gray-500 mt-1">
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
+                        &nbsp;|&nbsp;
+                        Market: <span id="market-badge" class="font-bold text-gray-400">-</span>
                     </div>
                 </div>
                 <div class="nav-links">
@@ -210,6 +212,22 @@
                 } else {
                     document.getElementById('updated').textContent = '-';
                 }
+                // Market 상태 — shmon 형식 (KRX/NXT/Closed)
+                (function () {
+                    const badge = document.getElementById('market-badge');
+                    if (!badge) return;
+                    const now = new Date();
+                    const kst = new Date(now.getTime() + (now.getTimezoneOffset() + 540) * 60000);
+                    const d = kst.getDay(), t = kst.getHours() * 60 + kst.getMinutes();
+                    const weekday = d >= 1 && d <= 5;
+                    if (weekday && t >= 540 && t <= 930) {
+                        badge.textContent = "\ud83d\udfe2 KRX"; badge.className = "font-bold text-green-600";
+                    } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
+                        badge.textContent = "\ud83d\udd35 NXT"; badge.className = "font-bold text-blue-600";
+                    } else {
+                        badge.textContent = "\u26ab Market Closed"; badge.className = "font-bold text-gray-400";
+                    }
+                })();
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('view-sector').style.display = currentTab === 'sector' ? 'block' : 'none';
                 document.getElementById('view-stock').style.display  = currentTab === 'stock'  ? 'block' : 'none';
