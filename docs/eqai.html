@@ -790,7 +790,6 @@
             recognition.continuous = true
             const input = document.getElementById("chat-input")
             recognition.onstart = () => {
-                console.log("[voice] onstart - 인식 시작됨")
                 recognizing = true
                 const btn = document.getElementById("mic-btn")
                 btn.style.background = "#fee2e2"
@@ -798,7 +797,6 @@
                 btn.textContent = "⏺"
             }
             recognition.onresult = (e) => {
-                console.log("[voice] onresult 발생, results:", e.results.length)
                 let interim = ""
                 for (let i = e.resultIndex; i < e.results.length; i++) {
                     const t = e.results[i][0].transcript
@@ -808,7 +806,6 @@
                 input.value = (finalText + interim).trimStart()
             }
             recognition.onerror = (ev) => {
-                console.log("[voice] onerror:", ev.error)
                 // no-speech 등 일시 오류는 무시하고 계속, 그 외엔 종료
                 if (ev.error === "not-allowed" || ev.error === "service-not-allowed") {
                     manualStop = true
@@ -816,7 +813,6 @@
                 }
             }
             recognition.onend = () => {
-                console.log("[voice] onend - manualStop:", manualStop)
                 // 사용자가 직접 끈 게 아니면 자동 재시작 (멈춤 구간에도 계속 듣기)
                 if (!manualStop) {
                     try { recognition.start() } catch (e) { stopVoiceUI() }
