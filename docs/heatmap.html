@@ -202,7 +202,7 @@
 
         async function loadData() {
             try {
-                var res = await fetch('./data/signals.json?t=' + Date.now());
+                var res = await fetch('https://eqmon.duckdns.org/signals.json?t=' + Date.now());
                 if (!res.ok) throw new Error();
                 allData = await res.json();
                 if (allData.updated_at) {
