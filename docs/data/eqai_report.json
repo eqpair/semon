@@ -1,174 +1,176 @@
 {
-  "generated_at": "2026-06-01 12:02:24",
+  "generated_at": "2026-06-01 14:02:46",
   "macro": {
     "S&P500": {
       "price": 7580.06,
       "change": 0.22,
-      "reason": "AI 랠리 지속 + 중동전쟁 휴전 기대로 리스크온 분위기, 직접 촉매는 약하나 반도체·빅테크 동조 상승",
+      "reason": "엔비디아 PC칩 발표·AI 인프라 테마 확산으로 빅테크 중심 상승, 연준 신중 기조 속 AI 실적 가시성 선호",
       "drivers": [
-        "AI 인프라 투자 확대 지속",
-        "중동 휴전 기대감"
+        "NVDA RTX Spark 칩 발표",
+        "파월 Fed 정치화 경고 발언으로 정책 신뢰성 재확인"
       ]
     },
     "NASDAQ": {
       "price": 26972.62,
       "change": 0.2,
-      "reason": "SpaceX·OpenAI·Anthropic IPO 관심 고조로 AI 생태계 밸류에이션 재평가, 반도체 랠리 동조",
+      "reason": "엔비디아·델·MS·HP 등 PC 생태계 확장 기대로 테크 섹터 전반 상승, AI 칩 → PC 통합 투자 재점화",
       "drivers": [
-        "SpaceX 1.8조달러 밸류 IPO",
-        "AI 섹터 자금 집중"
+        "NVDA PC 슈퍼칩·델 XPS 13 터치스크린 699달러 출시",
+        "인텔 연말 AI칩 출시 발표로 경쟁 구도 심화"
       ]
     },
     "DOW": {
       "price": 51032.46,
       "change": 0.72,
-      "reason": "중동전쟁 휴전 기대·유가 상승에도 경기 리스크온 판단, 전통산업 가치주 유입",
+      "reason": "에너지·금융·산업재 중심 상승, WTI +2.58% 오름에 따른 경기순환주 선호 반영",
       "drivers": [
-        "리스크온 심리",
-        "WTI +2.54% 에너지 동조"
+        "WTI 유가 89.61달러까지 상승",
+        "VIX -2.67%로 변동성 축소"
       ]
     },
     "VIX": {
       "price": 15.32,
       "change": -2.67,
-      "reason": "AI 랠리·수출지표 호조로 변동성 수요 축소, 중동 불확실성 완화 기대",
+      "reason": "엔비디아 신제품 발표·파월 Fed 신뢰성 강조 등 불확실성 완화 요인으로 변동성 지수 하락",
       "drivers": [
-        "AI 랠리 지속",
-        "중동 휴전 기대"
+        "NVDA PC칩 발표로 AI 테마 안정화",
+        "파월 Fed 정치화 경고로 정책 예측 가능성 개선"
       ]
     },
     "필라델피아반도체": {
       "price": 12829.38,
       "change": 0.0,
-      "reason": "변동 없으나 탑 테크펀드 SK하이닉스 매수·한국 반도체수출 +169% 시그널로 모멘텀 유지",
+      "reason": "엔비디아 PC칩·인텔 AI칩 계획 등 개별 이벤트 상쇄, 마이크론·TSMC 등 혼조세로 지수 보합 마감",
       "drivers": [
-        "SK하이닉스 기관 매수 시그널",
-        "한국 반도체 수출 사상최대"
+        "NVDA PC 진출 호재 vs 인텔 경쟁 심화 우려",
+        "TSMC 현지 투자자 밸류에이션 격차 축소 뉴스"
       ]
     },
     "러셀2000": {
       "price": 2919.34,
       "change": -0.59,
-      "reason": "대형주 AI 랠리에 자금 집중되며 소형주 상대적 소외, 직접 촉매 없음",
+      "reason": "대형주 중심 AI 테마 쏠림 심화, 소형주는 Fed 정책 불확실성 지속으로 상대적 약세",
       "drivers": [
-        "대형 AI주 쏠림",
-        "금리 4.45% 부담"
+        "대형 빅테크 독주 구도",
+        "채권금리 상승(10Y -0.04%·30Y +0.16%)으로 듀레이션 민감 소형주 부담"
       ]
     },
     "영국FTSE": {
       "price": 10409.3,
       "change": -0.16,
-      "reason": "직접 촉매 없음 - 유럽 경기 중립·ECB Schnabel 인플레 리스크 경고 부담",
+      "reason": "에너지주 일부 상승에도 유럽 내수 둔화 우려 지속, ECB 슈나벨 전쟁 인플레 우려 발언 부담",
       "drivers": [
-        "ECB 인플레 경고"
+        "ECB 슈나벨 위원 전쟁 인플레 언앵커링 리스크 경고",
+        "WTI 상승으로 에너지주 일부 지지"
       ]
     },
     "독일DAX": {
       "price": 25104.7,
       "change": 0.05,
-      "reason": "ECB Schnabel 전쟁發 인플레 우려에도 제조업 중립, 직접 드라이버 약함",
+      "reason": "ECB 인플레 우려·중국 PMI 혼조에도 자동차·산업재 방어 매수로 미세 상승",
       "drivers": [
-        "ECB 인플레 경고"
+        "중국 서비스 PMI 반등",
+        "ECB 슈나벨 인플레 경고로 상승폭 제한"
       ]
     },
     "니케이": {
-      "price": 67038.24,
-      "change": 1.07,
-      "reason": "엔화 약세 지속(BOJ 개입 무력화)으로 수출주 수혜, TSMC 밸류 갭 축소·반도체 동조",
+      "price": 66875.93,
+      "change": 0.82,
+      "reason": "엔비디아 발표·한국 수출 호조 등 아시아 테크 수혜 기대, 엔화 약세(일은 개입에도 엔화 방어 실패) 수출주 지원",
       "drivers": [
-        "엔화 약세 지속",
-        "TSMC 현지투자자 밸류 상승"
+        "NVDA PC칩 발표·한국 반도체 수출 최대 실적",
+        "엔화 약세 지속(BOJ 개입 효과 제한)"
       ]
     },
     "항셍": {
-      "price": 25388.14,
-      "change": 0.82,
-      "reason": "미국 AI칩 對中 수출규제 강화 우려 있으나, 글로벌 AI 랠리 동조·리스크온 분위기",
+      "price": 25402.8,
+      "change": 0.88,
+      "reason": "5월 서비스 PMI 반등(제조업 둔화 상쇄)·테크주 엔비디아 발표 동조 상승, 내수 회복 기대 반영",
       "drivers": [
-        "AI 랠리 동조",
-        "미 대중 AI칩 규제 부담 제한적"
+        "중국 서비스 PMI 반등",
+        "엔비디아 PC칩 발표로 테크주 동반 상승"
       ]
     },
     "달러인덱스": {
-      "price": 99.05,
-      "change": 0.14,
-      "reason": "파월 연준 정치화 경고·고용지표 대기로 단기 중립, 강달러 흐름 유지",
+      "price": 99.04,
+      "change": 0.13,
+      "reason": "파월 Fed 신중 기조 재확인·채권 트레이더 금리인상 베팅 지속(고용지표 대기) 속 달러 소폭 강세",
       "drivers": [
-        "파월 연준 독립성 강조",
-        "고용지표 대기"
+        "파월 Fed 정치화 경고로 정책 신뢰성 지지",
+        "채권시장 Fed 인상 베팅 유지"
       ]
     },
     "국채10Y": {
       "price": 4.45,
       "change": -0.04,
-      "reason": "고용지표 대기로 매수 유입, 파월 연준 스트레스 테스트 발언도 금리 하방 지지",
+      "reason": "파월 신중 기조·채권 트레이더 금리인상 베팅 일부 완화(고용지표 대기 모드)로 소폭 하락",
       "drivers": [
-        "고용지표 앞두고 매수",
-        "파월 발언"
+        "파월 Fed 스트레스테스트 발언",
+        "고용지표 대기로 매수 일부 유입"
       ]
     },
     "국채30Y": {
       "price": 4.99,
       "change": 0.16,
-      "reason": "장기 인플레 우려·ECB Schnabel 전쟁發 인플레 리스크 경고로 매도 우위",
+      "reason": "장기물 공급 우려·인플레 리스크 프리미엄(ECB 슈나벨 전쟁 인플레 경고) 반영하며 상승",
       "drivers": [
-        "ECB 인플레 경고",
-        "장기 인플레 리스크"
+        "ECB 슈나벨 위원 인플레 언앵커링 우려",
+        "장기 재정 리스크 프리미엄"
       ]
     },
     "코스피": {
-      "price": 8867.32,
-      "change": 4.61,
-      "reason": "삼성전자 시총 2000조 돌파·5월 수출 877억달러 역대최대(반도체 371.6억달러 +169%)로 AI 슈퍼사이클 확인, 외국인 대규모 순매수",
+      "price": 8850.02,
+      "change": 4.41,
+      "reason": "5월 수출 877억달러 사상최대·반도체 372억달러(+169%) 슈퍼사이클 확인, 삼성전자·SK하이닉스 등 반도체_대형 급등 주도",
       "drivers": [
-        "삼성전자 +9.46% 시총 2000조",
-        "5월 수출 역대최대",
-        "반도체 수출 +169%"
+        "5월 반도체 수출 372억달러·전체 수출비중 42% 돌파",
+        "엔비디아 PC칩 발표로 AI 생태계 확장 기대",
+        "톱 글로벌 펀드 SK하이닉스 매수 계획 보도"
       ]
     },
     "코스닥": {
-      "price": 1050.87,
-      "change": -2.23,
-      "reason": "대형주 쏠림·삼성전자 랠리에 자금 집중되며 중소형 소외, 기술주 차익실현",
+      "price": 1046.48,
+      "change": -2.63,
+      "reason": "코스피 대형주 쏠림·AI 테마 외 소외, 2차전지·바이오 등 중소형 섹터 전반 약세 지속",
       "drivers": [
-        "코스피 대형주 쏠림",
-        "중소형 차익실현"
+        "반도체·IT부품 대형주 독주 구도",
+        "2차전지_셀·바이오 lagging 섹터 하락 지속"
       ]
     },
     "금": {
-      "price": 4553.4,
-      "change": -0.16,
-      "reason": "중동 휴전 기대·달러 강세(+0.14%)로 안전자산 수요 감소, 리스크온 전환",
+      "price": 4541.6,
+      "change": -0.41,
+      "reason": "달러 강세(+0.13%)·VIX 하락으로 안전자산 수요 축소, 이란 미군기지 공격 경고에도 상승 제한",
       "drivers": [
-        "중동 휴전 기대",
-        "달러 강세"
+        "달러인덱스 +0.13% 강세",
+        "VIX -2.67% 하락"
       ]
     },
     "WTI유가": {
-      "price": 89.58,
-      "change": 2.54,
-      "reason": "중동전쟁 물류 차질 지속·공급 불안 우려, 글로벌 AI 인프라 수요 확대 기대",
+      "price": 89.61,
+      "change": 2.58,
+      "reason": "이란 \"미국이 이란 영토 타격에 사용한 기지 공격\" 보복 경고로 중동 지정학 리스크 급증, 공급 차질 우려 반영",
       "drivers": [
-        "중동 물류 차질",
-        "AI 인프라 수요"
+        "이란 미군기지 타격 경고 발표",
+        "중동 전쟁 공급 차질 우려"
       ]
     },
     "원달러": {
-      "price": 1516.26,
-      "change": 1.4,
-      "reason": "수출 호조에도 국고채 금리 상승(3년물 3.787%)·외국인 차익실현 우려로 약세, 달러 강세 동조",
+      "price": 1513.58,
+      "change": 1.22,
+      "reason": "코스피 급등에도 달러 강세·수출 대금 환전 수요로 원화 약세, 1513원대 돌파",
       "drivers": [
-        "국고채 금리 상승",
-        "달러 강세 동조"
+        "달러인덱스 +0.13% 강세",
+        "수출 877억달러 환전 수요"
       ]
     },
     "구리": {
       "price": 6.45,
-      "change": 1.48,
-      "reason": "AI 인프라 투자 확대·한국 수출 최대 시그널로 제조업 수요 기대, 중국 경기 중립",
+      "change": 1.41,
+      "reason": "중국 서비스 PMI 반등·AI 인프라 투자 확대 기대로 산업금속 수요 전망 개선",
       "drivers": [
-        "AI 인프라 수요",
-        "한국 수출 역대최대"
+        "중국 서비스 PMI 반등",
+        "엔비디아 PC칩 발표로 인프라 투자 기대"
       ]
     }
   },
@@ -279,7 +281,7 @@
           "rs_momentum": 113.104
         }
       ],
-      "sector_ret_5d": 20.21,
+      "sector_ret_5d": 20.8,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -390,7 +392,7 @@
           "rs_momentum": 112.746
         }
       ],
-      "sector_ret_5d": -15.0,
+      "sector_ret_5d": -15.39,
       "improving_count": 0,
       "watch_count": 1,
       "total": 27
@@ -501,7 +503,7 @@
           "rs_momentum": 104.186
         }
       ],
-      "sector_ret_5d": -12.94,
+      "sector_ret_5d": -12.93,
       "improving_count": 0,
       "watch_count": 0,
       "total": 22
@@ -612,9 +614,9 @@
           "rs_momentum": 97.82
         }
       ],
-      "sector_ret_5d": -10.05,
-      "improving_count": 4,
-      "watch_count": 3,
+      "sector_ret_5d": -11.51,
+      "improving_count": 6,
+      "watch_count": 1,
       "total": 31
     },
     "2차전지_셀": {
@@ -723,7 +725,7 @@
           "rs_momentum": 95.246
         }
       ],
-      "sector_ret_5d": 4.87,
+      "sector_ret_5d": 5.3,
       "improving_count": 1,
       "watch_count": 0,
       "total": 12
@@ -834,7 +836,7 @@
           "rs_momentum": 95.155
         }
       ],
-      "sector_ret_5d": -4.09,
+      "sector_ret_5d": -4.67,
       "improving_count": 3,
       "watch_count": 0,
       "total": 18
@@ -945,7 +947,7 @@
           "rs_momentum": 100.996
         }
       ],
-      "sector_ret_5d": -6.04,
+      "sector_ret_5d": -8.99,
       "improving_count": 2,
       "watch_count": 0,
       "total": 17
@@ -1056,7 +1058,7 @@
           "rs_momentum": 89.965
         }
       ],
-      "sector_ret_5d": -7.32,
+      "sector_ret_5d": -8.61,
       "improving_count": 1,
       "watch_count": 0,
       "total": 13
@@ -1167,7 +1169,7 @@
           "rs_momentum": 94.401
         }
       ],
-      "sector_ret_5d": -2.08,
+      "sector_ret_5d": -3.87,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -1278,7 +1280,7 @@
           "rs_momentum": 99.478
         }
       ],
-      "sector_ret_5d": -0.96,
+      "sector_ret_5d": -1.73,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -1389,7 +1391,7 @@
           "rs_momentum": 104.128
         }
       ],
-      "sector_ret_5d": 85.74,
+      "sector_ret_5d": 87.23,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -1500,7 +1502,7 @@
           "rs_momentum": 100.467
         }
       ],
-      "sector_ret_5d": 0.48,
+      "sector_ret_5d": -1.34,
       "improving_count": 0,
       "watch_count": 0,
       "total": 17
@@ -1611,7 +1613,7 @@
           "rs_momentum": 88.71
         }
       ],
-      "sector_ret_5d": -7.2,
+      "sector_ret_5d": -8.63,
       "improving_count": 6,
       "watch_count": 1,
       "total": 10
@@ -1722,7 +1724,7 @@
           "rs_momentum": 107.902
         }
       ],
-      "sector_ret_5d": 12.76,
+      "sector_ret_5d": 11.7,
       "improving_count": 1,
       "watch_count": 1,
       "total": 22
@@ -1833,7 +1835,7 @@
           "rs_momentum": 92.291
         }
       ],
-      "sector_ret_5d": -5.23,
+      "sector_ret_5d": -7.15,
       "improving_count": 2,
       "watch_count": 1,
       "total": 17
@@ -1944,7 +1946,7 @@
           "rs_momentum": 108.39
         }
       ],
-      "sector_ret_5d": 10.82,
+      "sector_ret_5d": 13.21,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -2055,7 +2057,7 @@
           "rs_momentum": 112.468
         }
       ],
-      "sector_ret_5d": 15.14,
+      "sector_ret_5d": 16.75,
       "improving_count": 0,
       "watch_count": 0,
       "total": 15
@@ -2166,9 +2168,9 @@
           "rs_momentum": 98.562
         }
       ],
-      "sector_ret_5d": 4.34,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 5.07,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 6
     },
     "IT부품": {
@@ -2277,7 +2279,7 @@
           "rs_momentum": 108.257
         }
       ],
-      "sector_ret_5d": 55.22,
+      "sector_ret_5d": 54.04,
       "improving_count": 1,
       "watch_count": 0,
       "total": 12
@@ -2388,7 +2390,7 @@
           "rs_momentum": 97.232
         }
       ],
-      "sector_ret_5d": 17.01,
+      "sector_ret_5d": 26.59,
       "improving_count": 1,
       "watch_count": 0,
       "total": 4
@@ -2499,7 +2501,7 @@
           "rs_momentum": 112.166
         }
       ],
-      "sector_ret_5d": 39.05,
+      "sector_ret_5d": 42.35,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -2610,7 +2612,7 @@
           "rs_momentum": 96.569
         }
       ],
-      "sector_ret_5d": -3.61,
+      "sector_ret_5d": -3.13,
       "improving_count": 1,
       "watch_count": 0,
       "total": 5
@@ -2721,7 +2723,7 @@
           "rs_momentum": 94.752
         }
       ],
-      "sector_ret_5d": -6.66,
+      "sector_ret_5d": -6.62,
       "improving_count": 1,
       "watch_count": 0,
       "total": 5
@@ -2832,7 +2834,7 @@
           "rs_momentum": 94.485
         }
       ],
-      "sector_ret_5d": 0.72,
+      "sector_ret_5d": 0.15,
       "improving_count": 1,
       "watch_count": 0,
       "total": 10
@@ -2943,7 +2945,7 @@
           "rs_momentum": 91.458
         }
       ],
-      "sector_ret_5d": -4.25,
+      "sector_ret_5d": -3.49,
       "improving_count": 1,
       "watch_count": 0,
       "total": 10
@@ -3054,7 +3056,7 @@
           "rs_momentum": 92.971
         }
       ],
-      "sector_ret_5d": 0.14,
+      "sector_ret_5d": 0.06,
       "improving_count": 2,
       "watch_count": 0,
       "total": 10
@@ -3165,7 +3167,7 @@
           "rs_momentum": 90.925
         }
       ],
-      "sector_ret_5d": -8.42,
+      "sector_ret_5d": -9.22,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -3276,7 +3278,7 @@
           "rs_momentum": 102.059
         }
       ],
-      "sector_ret_5d": -11.46,
+      "sector_ret_5d": -11.83,
       "improving_count": 2,
       "watch_count": 0,
       "total": 9
@@ -3387,7 +3389,7 @@
           "rs_momentum": 101.15
         }
       ],
-      "sector_ret_5d": -6.44,
+      "sector_ret_5d": -6.7,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -3498,7 +3500,7 @@
           "rs_momentum": 95.397
         }
       ],
-      "sector_ret_5d": -4.12,
+      "sector_ret_5d": -4.74,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -3609,7 +3611,7 @@
           "rs_momentum": 96.995
         }
       ],
-      "sector_ret_5d": -5.26,
+      "sector_ret_5d": -5.57,
       "improving_count": 1,
       "watch_count": 1,
       "total": 18
@@ -3720,7 +3722,7 @@
           "rs_momentum": 105.36
         }
       ],
-      "sector_ret_5d": 8.24,
+      "sector_ret_5d": 7.49,
       "improving_count": 1,
       "watch_count": 0,
       "total": 13
@@ -3831,7 +3833,7 @@
           "rs_momentum": 97.23
         }
       ],
-      "sector_ret_5d": -4.24,
+      "sector_ret_5d": -3.8,
       "improving_count": 0,
       "watch_count": 2,
       "total": 6
@@ -3942,7 +3944,7 @@
           "rs_momentum": 99.896
         }
       ],
-      "sector_ret_5d": -8.08,
+      "sector_ret_5d": -8.21,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -4053,7 +4055,7 @@
           "rs_momentum": 95.157
         }
       ],
-      "sector_ret_5d": -4.07,
+      "sector_ret_5d": -5.69,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -4164,7 +4166,7 @@
           "rs_momentum": 107.294
         }
       ],
-      "sector_ret_5d": -0.02,
+      "sector_ret_5d": -1.51,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -4275,7 +4277,7 @@
           "rs_momentum": 91.962
         }
       ],
-      "sector_ret_5d": 2.71,
+      "sector_ret_5d": 1.11,
       "improving_count": 2,
       "watch_count": 0,
       "total": 13
@@ -4386,7 +4388,7 @@
           "rs_momentum": 97.452
         }
       ],
-      "sector_ret_5d": -3.65,
+      "sector_ret_5d": -3.67,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -4497,9 +4499,9 @@
           "rs_momentum": 84.582
         }
       ],
-      "sector_ret_5d": -8.77,
-      "improving_count": 4,
-      "watch_count": 1,
+      "sector_ret_5d": -9.48,
+      "improving_count": 5,
+      "watch_count": 0,
       "total": 11
     },
     "시멘트": {
@@ -4608,7 +4610,7 @@
           "rs_momentum": 90.869
         }
       ],
-      "sector_ret_5d": -6.98,
+      "sector_ret_5d": -7.58,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -4719,7 +4721,7 @@
           "rs_momentum": 98.376
         }
       ],
-      "sector_ret_5d": -0.04,
+      "sector_ret_5d": -1.77,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -4830,7 +4832,7 @@
           "rs_momentum": 96.005
         }
       ],
-      "sector_ret_5d": -4.89,
+      "sector_ret_5d": -5.91,
       "improving_count": 1,
       "watch_count": 0,
       "total": 6
@@ -4941,7 +4943,7 @@
           "rs_momentum": 100.736
         }
       ],
-      "sector_ret_5d": -2.42,
+      "sector_ret_5d": -3.56,
       "improving_count": 2,
       "watch_count": 0,
       "total": 6
@@ -5052,7 +5054,7 @@
           "rs_momentum": 95.514
         }
       ],
-      "sector_ret_5d": -4.76,
+      "sector_ret_5d": -4.87,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -5163,7 +5165,7 @@
           "rs_momentum": 94.917
         }
       ],
-      "sector_ret_5d": 1.71,
+      "sector_ret_5d": 0.83,
       "improving_count": 1,
       "watch_count": 0,
       "total": 4
@@ -5274,7 +5276,7 @@
           "rs_momentum": 101.873
         }
       ],
-      "sector_ret_5d": -8.28,
+      "sector_ret_5d": -7.49,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -5385,7 +5387,7 @@
           "rs_momentum": 95.272
         }
       ],
-      "sector_ret_5d": -2.01,
+      "sector_ret_5d": -1.77,
       "improving_count": 2,
       "watch_count": 0,
       "total": 11
@@ -5496,7 +5498,7 @@
           "rs_momentum": 97.975
         }
       ],
-      "sector_ret_5d": -5.23,
+      "sector_ret_5d": -4.7,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -5607,9 +5609,9 @@
           "rs_momentum": 91.153
         }
       ],
-      "sector_ret_5d": 0.36,
-      "improving_count": 2,
-      "watch_count": 2,
+      "sector_ret_5d": 1.48,
+      "improving_count": 3,
+      "watch_count": 1,
       "total": 8
     },
     "화장품_ODM": {
@@ -5718,9 +5720,9 @@
           "rs_momentum": 94.613
         }
       ],
-      "sector_ret_5d": -7.09,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -7.29,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 10
     },
     "K푸드_수출": {
@@ -5829,9 +5831,9 @@
           "rs_momentum": 96.064
         }
       ],
-      "sector_ret_5d": -7.85,
-      "improving_count": 2,
-      "watch_count": 2,
+      "sector_ret_5d": -8.85,
+      "improving_count": 3,
+      "watch_count": 1,
       "total": 9
     },
     "중국내수식품": {
@@ -5940,7 +5942,7 @@
           "rs_momentum": 92.307
         }
       ],
-      "sector_ret_5d": -7.53,
+      "sector_ret_5d": -7.26,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -6051,7 +6053,7 @@
           "rs_momentum": 97.544
         }
       ],
-      "sector_ret_5d": -5.68,
+      "sector_ret_5d": -5.49,
       "improving_count": 1,
       "watch_count": 0,
       "total": 11
@@ -6162,9 +6164,9 @@
           "rs_momentum": 106.569
         }
       ],
-      "sector_ret_5d": -5.1,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -4.35,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 7
     },
     "패션·의류": {
@@ -6273,7 +6275,7 @@
           "rs_momentum": 99.388
         }
       ],
-      "sector_ret_5d": -9.0,
+      "sector_ret_5d": -8.98,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -6384,7 +6386,7 @@
           "rs_momentum": 98.245
         }
       ],
-      "sector_ret_5d": -6.59,
+      "sector_ret_5d": -6.45,
       "improving_count": 1,
       "watch_count": 1,
       "total": 11
@@ -6495,7 +6497,7 @@
           "rs_momentum": 99.424
         }
       ],
-      "sector_ret_5d": -2.8,
+      "sector_ret_5d": -2.87,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -6606,7 +6608,7 @@
           "rs_momentum": 115.468
         }
       ],
-      "sector_ret_5d": 9.05,
+      "sector_ret_5d": 7.55,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -6614,11 +6616,18 @@
   },
   "articles": [
     {
-      "source": "yonhap",
-      "title": "[특징주] 삼성전자, 10% 가까이 급등…SK하이닉스 상승 전환(종합)",
-      "link": "https://www.yna.co.kr/view/AKR20260601036551008",
-      "published": "Mon, 1 Jun 2026 11:13:40 +0900",
-      "body": "삼성전자가 1일 오전 10% 가까이 급등하고 있다.\n이날 오전 11시 5분 현재 삼성전자는 전장보다 9.15% 오른 34만6천원에 거래 중이다.\n우선주인 삼성전자우도 12.10% 오른 22만7천원이다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년06월01일 11시13분\n삼성전자가 1일 오전 10% 가까이 급등하고 있다.\n이날 오전 11시 5분 현재 삼성전자는 전장보다 9.15% 오른 34만6천원에 거래 중이다.\n우선주인 삼성전자우도 12.10% 오른 22만7천원이다.\n(서울=연합뉴스) 김유아 기자 = 삼성전자[005930]가 1일 오전 10% 가까이 급등하고 있다.\n이날 오전 11시 5분 현재 삼성전자는 전장보다 9.15% 오른 34만6천원에 거래 중이다.\n우선주인 삼성전자우[005935]도 12.10% 오른 22만7천원이다. 한때 15.8%까지 오르며 23만5천원을 기록하기도 했다.\n장 초반 1.59%까지 떨어졌던 SK하이닉스[000660]는 개장 한시간을 넘어서며 상승 전환, 같은 시각 2.19% 오른 238만4천원에 거래되고 있다.\n'톱2'인 삼성전자와 SK하이닉스의 강세로 코스피는 사상 처음 8,800선을 돌파했다.\n개장 직전 한국의 지난달 반도체 수출이 372억달러로 역대 최대치를 달성했다는 소식이 전해지며, 투심이 계속해서 반도체로 쏠리는 것으로 보인다.\n한국의 지난달 전체 수출도 반도체 초호황에 힘입어 전년 동기 대비 53% 증가한 877억5천만달러를 기록, 월 기준 역대 최대를 달성했다.\n또 삼성전자는 지난달 29일 인공지능(AI) 산업 핵심 부품인 고대역폭 메모리(HBM)의 7세대 제품 HBM4E의 샘플 출하를 세계 최초로 시작했다는 소식도 계속 호재로 작용하고 있다.\n김동원·이창민 KB증권 연구원은 \"AI인프라 핵심 부품인 메모리, 기판, 적층세라믹콘덴서(MLCC) 등 핵심 부품이 고부가 제품 중심으로 탑재되며, AI서버 원가에서 차지하는 비중은 기존보다 3∼5배 확대될 전망\"이라며 \"삼성전자와 SK하이닉스 등 반도체 업체의 실적 개선은 (야구)1회 초에 불과하다\"고 긍정 전망했다.\nkua@yna.co.kr\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년06월01일 11시13분 송고"
+      "source": "cnbc_tech",
+      "title": "Nvidia jumps into PCs with new Arm-based chip debuting in laptops from Microsoft, Dell, HP",
+      "link": "https://www.cnbc.com/2026/05/31/nvidias-new-chip-to-power-fresh-line-of-windows-laptops-by-dell-hp.html",
+      "published": "Mon, 01 Jun 2026 04:55:22 GMT",
+      "body": "Nvidia has emerged as the world's most valuable company by dominating the market for AI chips in the data center. Now the company is expanding its prowess to chips that will serve as the main processor for personal computers, entering an arena that's long been ruled by Intel, Advanced Micro Devices, Qualcomm and Apple.\nDuring a keynote address at Taiwan's Computex conference on Monday, Nvidia CEO Jensen Huang unveiled a new N1X processor made alongside Microsoft. It will be incorporated into a new RTX Spark superchip, debuting in the fall on a fresh line of Windows PCs from Microsoft, Dell, HP, ASUS, Lenovo and MSI.\n\"This reinvention of the computer is as big of a deal as the reinvention of the phone into what we now know as the smartphone,\" Huang said, pointing to the fact agentic AI will run across all the new computers.\n\"Microsoft and Nvidia are going to reinvent the PC,\" he added. \"This is the first completely re-engineered, reinvented line of PCs that has happened in 40 years.\"\nNvidia's initial plan includes more than 30 laptops and 10 desktops with the new chip, a Nvidia spokesperson said.\nThe debut PC processor is made up of two flagship types of Nvidia chips fused together, plus 128 gigabytes of unified memory. It pairs one of Nvidia's Blackwell graphics processing units with the new Arm-based custom N1X central processing unit, custom designed by Taiwanese firm MediaTek.\nThe RTX Spark represents a potentially major shakeup for the PC industry, which is already experi"
+    },
+    {
+      "source": "ft",
+      "title": "Nvidia unveils PC ‘superchip’ in challenge to Apple and Intel",
+      "link": "https://www.ft.com/content/58f984fd-d90b-4e8e-95b0-987a97c4a522",
+      "published": "Mon, 01 Jun 2026 04:49:04 GMT",
+      "body": ""
     },
     {
       "source": "cnbc_world",
@@ -6629,24 +6638,38 @@
     },
     {
       "source": "maeil",
-      "title": "“27년 철옹성 흔들리나 했더니”…삼성전자, 사상 첫 시총 2000조 돌파",
-      "link": "https://www.mk.co.kr/news/stock/12062685",
-      "published": "Mon, 01 Jun 2026 11:27:58 +09:00",
-      "body": "AI 슈퍼사이클 수혜 속 ‘반도체 투톱’ 시총 경쟁 격화\n“하이닉스 추월은 강세장 막바지 신호” 분석도\n삼성전자가 인공지능(AI) 반도체 훈풍을 타고 사상 처음으로 시가총액 2000조원을 돌파하면서 27년째 지켜온 국내 증시 ‘왕좌’를 다시 한번 과시했다. 최근 SK하이닉스가 시가총액 격차를 빠르게 좁혀왔지만, 삼성전자가 9% 넘게 급등하며 다시 앞서 나간 모습이다.\n1일 증권가에 따르면 삼성전자는 이날 오전 장중 9%대 급등세를 기록하며 시가총액 2000조원을 처음 넘어섰다.\n국내 상장사 가운데 단일 종목 시총이 2000조원을 돌파한 것은 이번이 처음이다.\n불과 며칠 전까지만 해도 시장의 관심은 삼성전자와 SK하이닉스 간 시총 역전 가능성에 쏠려 있었다. AI 반도체 슈퍼사이클의 최대 수혜주로 꼽히는 SK하이닉스가 고대역폭메모리(HBM) 시장 주도권을 앞세워 연일 신고가를 경신했기 때문이다.\n지난 29일 기준 삼성전자 시가총액은 약 1853조원, SK하이닉스는 약 1662조원으로 집계됐다. 격차는 190조원 수준까지 좁혀졌다. 한때 수백조원에 달했던 차이가 빠르게 축소되면서 시장에서는 “SK하이닉스가 삼성전자를 추월할 수 있다”는 전망까지 제기됐다.\n삼성전자는 1999년 한국전력을 제치고 국내 증시 시가총액 1위에 오른 뒤 약 27년간 단 한 번도 왕좌를 내준 적이 없다. 국내 증시 역사상 가장 오랫동안 시총 1위를 유지한 기업이기도 하다.\n하지만 AI 시대가 열리면서 분위기가 달라졌다. HBM 시장을 선점한 SK하이닉스가 엔비디아 공급망의 핵심 기업으로 부상하며 주가가 폭발적으로 상승했고, 반면 삼성전자는 상대적으로 AI 수혜가 제한적이라는 평가를 받아왔다.\n실제 올해 들어 지난 29일까지 삼성전자 주가는 164.39% 상승한 반면 SK하이닉스는 258.37% 뛰며 훨씬 가파른 상승률을 기록했다. 이 같은 주가 흐름은 시가총액 격차 축소로 이어졌다.\n다만 이날 삼성전자가 급등세를 연출하며 시총 2000조원을 돌파하면서 격차는 다시 벌어지게 됐다. SK하이닉스 시총은 이날 오전 기준 1700조원을 웃돌고 있다.\n증권가에서는 양사의 시총 경쟁 자체보다 그 상징성에 주목하고 있다. 하나증권은 지난달 보고서에서 SK하이닉스 시가총액이 삼성전자를 추월하는 순간이 오히려 강세장 종료 신호가 될 수 있다고 분석했다.\n이는 2000년 닷컴 버블 당시 네트워크 장비업체 시스코시스템즈가 마이크로소프트(MS)와 제너럴일렉트릭(GE)을 제치고 S&P500 시가총액 1위에 오른 직후 기술주 버블이 붕괴했던 사례를 근거로 든 것이다. 특정 산업의 대표 수혜주가 시장 전체를 압도할 정도로 과열되는 시점이 강세장의 정점과 맞물릴 수 있다는 의미다.\n다만 현재 상황을 과열 국면으로 보기는 어렵다고 평가했다. 실적 전망치에서는 여전히 삼성전자가 SK하이닉스를 앞서고 있기 때문이다.\n이재만 하나증권 연구원은 “올해 예상 순이익은 삼성전자가 280조원, SK하이닉스가 208조원 수준으로 추정된다”며 “내년에도 각각 349조원, 272조원으로 삼성전자의 순이익 규모가 더"
+      "title": "“삼전처럼 5억 대출해달라”…SK하이닉스 임협 ‘전운’",
+      "link": "https://www.mk.co.kr/news/business/12062770",
+      "published": "Mon, 01 Jun 2026 13:55:00 +09:00",
+      "body": "주택자금 지원 확대 등 복지 개선이 쟁점\n삼성전자가 약 5개월에 걸친 교섭 끝에 올해 임금협상을 마무리한 가운데, SK하이닉스도 곧 임금협상에 돌입한다. 이번 협상에서는 임금 인상률과 주택자금 지원 확대 등 복지 개선이 핵심 쟁점으로 떠오를 전망이다.\n31일 업계에 따르면 SK하이닉스 노사는 이르면 다음 달 2026년 임금협상을 시작할 예정이다. 삼성전자 노사가 6.2% 임금 인상과 반도체 부문 특별경영성과급 제도 신설, 복지제도 개선 등에 잠정 합의하면서 SK하이닉스 노조 역시 비슷한 수준의 요구안을 제시할 것으로 예상된다.\n최근 삼성전자는 무주택 임직원 등을 대상으로 최대 5억원 규모의 주택안정 대출 제도를 도입하기로 했다. 연 1.5%라는 낮은 이자율로 10년간 상환 또는 3년 거치 후 10년간 상환 중에서 선택할 수 있다.\nSK하이닉스도 연 1.5% 금리의 주택자금 제도를 운영하지만, 대출 한도가 1억원에 불과하다. 이에 내부에서는 “삼성 수준으로 대출 한도를 높여야 한다”는 목소리가 나온다.\nSK하이닉스가 지난해 성과급 체계 개편을 통해 주요 쟁점을 상당 부분 해소한 만큼, 올해 협상은 임금 인상률과 복지제도 개선을 중심으로 진행될 것이라는 게 업계 관측이다.\n앞서 SK하이닉스 노사는 지난해 임금 협상에서 영업이익의 10%를 재원으로 하는 성과급 제도인 초과이익분배금(PS) 상한선을 폐지했다.\n2023년에는 생산성 격려금(PI) 지급 체계도 개편했다. 기존 최대 기본급의 100%까지 지급하던 PI를 영업이익률에 따라 최대 150%까지 차등 지급하는 방식으로 바꿨다. PI는 매년 상·하반기 지급되는 성과급 제도다.\n한편 복수노조 체제를 채택한 SK하이닉스에서는 민주노총 산하 기술사무직 노조와 한국노총 소속 이천·청주공장 전임직 노조가 각각 별도로 교섭을 진행한다."
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Nvidia debuts RTX Spark AI superchip for Windows laptops, desktops",
+      "link": "https://seekingalpha.com/news/4598731-nvidia-debuts-rtx-spark-ai-superchip-for-windows-laptops-desktops?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Mon, 01 Jun 2026 00:48:01 -0400",
+      "body": "NVIDIA (NVDA) on Monday unveiled NVIDIA RTX Spark, a new superchip that reinvents Windows PCs for the era of personal AI agents, featuring 1 petaflop of AI performance, power efficiency, full-stack NVIDIA AI and graphics technology, and up to 128 GB of unified memory."
     },
     {
       "source": "maeil",
-      "title": "[속보] 삼성전자 시총 2000조 첫 돌파…35만전자 향해 진격",
-      "link": "https://www.mk.co.kr/news/business/12062666",
-      "published": "Mon, 01 Jun 2026 11:11:11 +09:00",
-      "body": "코스피도 4% 오르며 8850선 돌파\n삼성전자가 장중 9% 넘게 급등하며 보통주 기준 시가총액 2000조원을 처음으로 넘어섰다. 1일 삼성전자는 이날 오전 11시 3분 현재 전 거래일 대비 3만원(9.46%) 오른 34만7000원에 거래되고 있다. 이 가격 기준 삼성전자의 시가총액은 2028조8500억원에 달한다.\n삼성전자는 지난달 29일 우선주를 포함한 전체 시가총액 기준으로 2000조원을 넘어선 데 이어 이날 보통주 기준으로도 2000조원을 돌파했다. 국내 증시에서 단일 종목이 시가총액 2000조를 넘은 것은 처음이다.\n증권가에서도 삼성전자의 추가 주가 상승 가능성을 높게 보고 있다. 김동원 KB증권 연구원은 “올 하반기 출시 예정인 엔비디아 베라 루빈 플랫폼에서 메모리가 차지하는 원가 비중이 블랙웰 대비 5배 이상 확대될 것으로 예상된다”라며 “2027년 메모리 시장은 공급 부족이 더욱 심화되고 가격 상승 탄력 역시 확대될 전망”이라고 말했다. 이어 김 연구원은 “현재 삼성전자는 초기 국면에 불과한 반도체 호황 사이클과 휴머노이드 사업 확대 등을 고려할 때 시가총액 2조달러, 원화 기준 약 3000조원의 출발점으로 평가된다”고 말했다.\n주주환원 확대 가능성도 주가 재평가 요인으로 꼽힌다. 김영건 미래에셋증권 연구원은 “올해 3월 특별 주주환원 발표 이후 무산됐던 주가 상승이 주가 레벨 부담 완화와 우수한 기본 체력을 바탕으로 다시 나타날 수 있다”라며 “반도체 판가 상승을 고려하면 전례적 저평가 구간”이라고 강조했다.\n한편 이날 코스피는 삼성전자(9.46%), 현대차(3.32%), LG전자(28.67%) 등 대형주의 상승에 힘입어 4.42% 오른 8853.21을 기록했다."
+      "title": "SK하이닉스 청주공장서 3600명 대피소동…7명 병원 이송",
+      "link": "https://www.mk.co.kr/news/society/12062745",
+      "published": "Mon, 01 Jun 2026 13:12:39 +09:00",
+      "body": "1일 청주 SK하이닉스 공장에서 화재가 발생해 유독 가스가 누출됐다. 이 일로 공장 내 전 직원이 대피하는 소동이 벌어졌다.\n이날 오전 10시 32분께 SK하이닉스 청주 4캠퍼스 내 M15 공장과 M15X 공장을 잇는 6층 가스룸에서 불이 났다.\n불은 스프링클러가 작동되면서 곧바로 진화됐으나, 인체 독성이 있는 불화수소가 일부(5ppm) 가스룸 내부에 퍼져 7명이 부설 병원으로 옮겨졌다.\n당시 현장에선 10명이 작업 중이었다. 이 가운데 5명은 눈 따가움 증세를 호소했으며 나머지 2명은 특이 증세가 없었으나, 가스 누출 영향권 내에 있어 정확한 검진을 받기 위해 병원으로 이송했다고 SK하이닉스 관계자는 전했다.\nSK하이닉스 측은 가스 누출 직후 혹시 모를 상황에 대비해 M15 공장과 M15X 공장 내 전 직원 3600명을 대피시켰다.\nSK하이닉스 관계자는 “환경정화 장비를 가동해 방재 작업을 진행 중”이라며 “공기질 측정 등 안전점검이 완료되면 직원들을 복귀시킬 예정”이라고 설명했다.\n이어 “장비 가동엔 문제가 없어 생산 차질은 없다”며 “가스 배관에서 문제가 발생한 것으로 추정하고 정확한 경위를 조사할 예정”이라고 덧붙였다."
     },
     {
       "source": "yonhap",
-      "title": "코스피, 장중 사상 첫 8,800선 돌파…삼성전자 9%대 급등",
-      "link": "https://www.yna.co.kr/view/AKR20260601066300008",
-      "published": "Mon, 1 Jun 2026 11:00:33 +0900",
-      "body": "코스피가 1일 장중 상승폭을 키워 사상 처음 8,800대를 돌파했다.\n이날 오전 10시 54분 현재 코스피는 전장보다 350.46포인트 오른 8.826.61이다.\n지수는 전장보다 9.52포인트 오른 8.485.67로 출발해 직전 거래일 기록한 장중·종가 사상 최고치를 재차 경신했다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년06월01일 11시00분\n코스피가 1일 장중 상승폭을 키워 사상 처음 8,800대를 돌파했다.\n이날 오전 10시 54분 현재 코스피는 전장보다 350.46포인트 오른 8.826.61이다.\n지수는 전장보다 9.52포인트 오른 8.485.67로 출발해 직전 거래일 기록한 장중·종가 사상 최고치를 재차 경신했다.\n(서울=연합뉴스) 이민영 기자 = 코스피가 1일 장중 상승폭을 키워 사상 처음 8,800대를 돌파했다.\n이날 오전 10시 54분 현재 코스피는 전장보다 350.46포인트(4.13%) 오른 8.826.61이다.\n지수는 전장보다 9.52포인트(0.11%) 오른 8.485.67로 출발해 직전 거래일(29일) 기록한 장중·종가 사상 최고치(8,476.15)를 재차 경신했다.\n이후 상승폭을 키워 사상 처음으로 8,500선을 넘어선 뒤 차례로 8,600선, 8,700선, 8,800선마저 넘었다.\n유가증권시장에서 개인과 기관이 각각 1천524억원, 1조6천975억원 순매수하며 지수를 끌어 올리고 있다.\n반면 외국인은 1조7천380억원 매도 우위를 보이며 17거래일 연속 '팔자'를 나타내고 있다.\n외국인은 다만 코스피200선물시장에서는 933억원 순매수 중이다.\n삼성전자[005930](9.70%)가 급등해 사상 처음 34만원을 돌파했으며 장 초반 하락하던 SK하이닉스[000660](1.29%)도 상승세로 돌아섰다.\n아울러 SK스퀘어[402340](2.60%), 현대차[005380](2.42%), 삼성생명[032830](5.15%), 삼성물산[028260](7.98%), 두산에너빌리티[034020](4.26%) 등도 강세다.\n반면 삼성전기[009150](-4.75%), LG에너지솔루션[373220](-1.53%), 현대모비스[012330](-0.65%) 등은 하락 중이다.\n업종별로 보면 전기전자(5.05%), 보험(4.82%), 유통(3.74%) 등이 오르고 있으며 부동산(-4.13%), 건설(-4.17%) 등은 하락 중이다.\n같은 시각 코스닥지수는 전장보다 22.67포인트(2.11%) 내린 1,052.13이다.\n지수는 전장보다 2.03포인트(0.19%) 하락한 1,072.77로 출발해 보합권 내 등락하다 하락세로 돌아선 뒤 낙폭을 키우고 있다.\n에코프로비엠(-3.46%), 에코프로[086520](-4.68%) 등 이차전지주와 알테오젠[196170](-1.63%), 주성엔지니어링[036930](-6.05%), 코오롱티슈진[950160](-4.75%) 등이 내리고 있다.\n레인보우로보틱스[277810](13.25%), 로보티즈[108490](25.19%) 등 로봇주와 HLB[028300](0.59"
+      "title": "테슬라 효과에 4월 차 온라인거래 2.5배로…5년 만에 최대폭↑",
+      "link": "https://www.yna.co.kr/view/AKR20260601039400002",
+      "published": "Mon, 1 Jun 2026 12:00:08 +0900",
+      "body": "지난 4월 온라인 쇼핑 거래액이 동월 기준 역대 최대 기록을 썼다.\n온라인 주문 시스템을 운영하는 테슬라의 전기차 인도량이 증가한 영향으로, 자동차 및 자동차용품 온라인쇼핑 거래액은 지난해 하반기부터 계속해서 늘고 있다.\n특히 4월 자동차 및 자동차용품 거래액 증가율은 2021년 5월 이후 4년 11개월 만에 가장 높았다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n(세종=연합뉴스) 김수현 기자 = 지난 4월 온라인 쇼핑 거래액이 동월 기준 역대 최대 기록을 썼다.\n국가데이터처가 1일 발표한 '4월 온라인쇼핑 동향'을 보면 4월 온라인 쇼핑 거래액은 24조1천280억원으로, 1년 전 같은 기간보다 10%(2조1천856억원) 증가했다.\n이는 2017년 관련 통계가 집계된 이래 4월 기준 가장 큰 규모다.\n온라인 쇼핑 거래액은 온라인 거래 활성화 영향으로 꾸준히 늘고 있다.\n자동차 및 자동차용품(154.8%)이 두 배 이상으로 늘며 증가세를 주도했다.\n온라인 주문 시스템을 운영하는 테슬라의 전기차 인도량이 증가한 영향으로, 자동차 및 자동차용품 온라인쇼핑 거래액은 지난해 하반기부터 계속해서 늘고 있다.\n특히 4월 자동차 및 자동차용품 거래액 증가율은 2021년 5월(187.7%) 이후 4년 11개월 만에 가장 높았다.\n음·식료품(9.6%)과 배달 등 음식 서비스(7.8%)의 증가율도 두드러졌다.\n반면 기타 서비스(-42.6%), 문화 및 레저서비스(-6.3%) 등에선 감소했다.\n데이터처 관계자는 \"기타 서비스의 경우 온라인 렌털 서비스를 운영하는 특정 업체의 사업이 중단된 여파가 거의 1년째 영향을 미치고 있다\"며 \"문화 및 레저서비스는 작년 대형 아이돌 등의 공연이 많았던 기저효과가 있다\"고 설명했다.\n상품군별 거래액 구성비는 음식 서비스(14.4%), 음·식료품(13.9%), 여행 및 교통서비스(11.8%) 순으로 높았다.\n온라인쇼핑 중 모바일쇼핑 거래액은 18조4천382억원으로, 8.6%(1조4천596억원) 늘었다.\n총거래액 가운데 모바일쇼핑 비중은 76.4%로, 1년 전보다 1%포인트(p) 하락했다.\nporque@yna.co.kr\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년06월01일 12시00분 송고"
+    },
+    {
+      "source": "ft",
+      "title": "Intel targets Nvidia with new AI chip by year end",
+      "link": "https://www.ft.com/content/3ca15070-c1c7-4ec2-9598-e36b7de47bc0",
+      "published": "Mon, 01 Jun 2026 03:00:06 GMT",
+      "body": ""
     },
     {
       "source": "fnnews",
@@ -6657,60 +6680,43 @@
     },
     {
       "source": "yonhap",
-      "title": "국고채 금리 일제히 상승…3년물 장중 연 3.787%",
-      "link": "https://www.yna.co.kr/view/AKR20260601077800008",
-      "published": "Mon, 1 Jun 2026 11:41:10 +0900",
-      "body": "1일 국고채 금리가 일제히 상승하고 있다.\n10년물 금리는 연 4.122%로 5.4bp 상승했다.\n5년물과 2년물은 각각 4.5bp, 8.1bp 상승해 연 3.969%, 연 3.698%에 거래되고 있다.\n인공지능이 자동으로 줄인 '세 줄 요약' 기술을 사용합니다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년06월01일 11시41분\n1일 국고채 금리가 일제히 상승하고 있다.\n10년물 금리는 연 4.122%로 5.4bp 상승했다.\n5년물과 2년물은 각각 4.5bp, 8.1bp 상승해 연 3.969%, 연 3.698%에 거래되고 있다.\n(서울=연합뉴스) 1일 국고채 금리가 일제히 상승하고 있다.\n이날 오전 서울 채권시장에서 3년 만기 국고채 금리는 전 거래일보다 5.6bp(1bp=0.01%포인트) 오른 연 3.787%를 기록했다.\n10년물 금리는 연 4.122%로 5.4bp 상승했다. 5년물과 2년물은 각각 4.5bp, 8.1bp 상승해 연 3.969%, 연 3.698%에 거래되고 있다.\n20년물은 연 4.134%로 4.6bp 올랐다. 30년물과 50년물은 각각 4.2bp, 4.3bp 상승해 연 4.048%, 연 3.909%를 기록했다.\n※ 이 기사와 표는 연합인포맥스의 데이터를 토대로 알고리즘에 의해 자동 작성돼 편집자의 데스킹을 거쳤습니다.\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년06월01일 11시41분 송고"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Jerome Powell warns that politicizing Fed will erode its credibility",
-      "link": "https://www.marketwatch.com/story/jerome-powell-warns-that-politicizing-fed-will-erode-its-credibility-34fa4f14?mod=mw_rss_topstories",
-      "published": "Mon, 01 Jun 2026 02:41:00 GMT",
-      "body": ""
-    },
-    {
-      "source": "bloomberg",
-      "title": "Top Tech Fund Plans to Buy SK Hynix in Bet on Memory Chip Crunch",
-      "link": "https://www.bloomberg.com/news/articles/2026-06-01/top-tech-fund-plans-to-buy-sk-hynix-in-bet-on-memory-chip-crunch",
-      "published": "Mon, 01 Jun 2026 02:28:03 GMT",
-      "body": ""
-    },
-    {
-      "source": "yonhap",
-      "title": "광주은행, 비대면 전용 정기예금 특판…금리 3.41%",
-      "link": "https://www.yna.co.kr/view/AKR20260601064300054",
-      "published": "Mon, 1 Jun 2026 10:59:18 +0900",
-      "body": "디지털예금 금리UP 이벤트'를 한다고 1일 밝혔다.\n이벤트 기간은 이달 30일까지며 총 1천억원 한도로 운영되고, 이벤트 참여하기 전 1개월 이내 광주은행 정기예금을 보유하지 않은 개인 고객이 대상이다.\n상품 가입은 광주와뱅크와 모바일웹뱅킹을 통해 가능하며, 이벤트에 대한 자세한 사항은 광주은행 홈페이지 또는 고객센터를 통해 확인할 수 있다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년06월01일 10시59분\n디지털예금 금리UP 이벤트'를 한다고 1일 밝혔다.\n이벤트 기간은 이달 30일까지며 총 1천억원 한도로 운영되고, 이벤트 참여하기 전 1개월 이내 광주은행 정기예금을 보유하지 않은 개인 고객이 대상이다.\n상품 가입은 광주와뱅크와 모바일웹뱅킹을 통해 가능하며, 이벤트에 대한 자세한 사항은 광주은행 홈페이지 또는 고객센터를 통해 확인할 수 있다.\n(광주=연합뉴스) 전승현 기자 = 광주은행은 비대면 전용 정기예금 상품인 '디지털예금'을 대상으로 '특판! 디지털예금 금리UP 이벤트'를 한다고 1일 밝혔다.\n비대면 채널 이용 고객에게 경쟁력 있는 금리 혜택을 제공하기 위해 마련된 한정 판매 이벤트로, 12개월 기준, 기본금리 연 3.10%에다 우대금리를 더해 최고 연 3.41%(5월28일 세전 금리 기준)를 제공한다.\n이벤트 기간은 이달 30일까지며 총 1천억원 한도로 운영되고, 이벤트 참여하기 전 1개월 이내 광주은행 정기예금을 보유하지 않은 개인 고객이 대상이다.\n상품 가입은 광주와뱅크(APP)와 모바일웹뱅킹을 통해 가능하며, 이벤트에 대한 자세한 사항은 광주은행 홈페이지(www.kjbank.com) 또는 고객센터(☎1600-4000)를 통해 확인할 수 있다.\nshchon@yna.co.kr\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년06월01일 10시59분 송고"
+      "title": "소방헬기·고정익항공기 124대 통합보험…보험금 한도 상향",
+      "link": "https://www.yna.co.kr/view/AKR20260601046100530",
+      "published": "Mon, 1 Jun 2026 12:00:06 +0900",
+      "body": "소방청은 1일 산림청, 경찰청, 해양경찰청과 공동으로 '2026년 국가기관 항공보험 종합계약'을 체결했다고 밝혔다.\n보험 대상은 4개 기관이 보유한 항공기 총 124대다.\n이 중 118대는 헬기, 6대는 고정익 항공기다.\n전체 내용을 이해하기 위해서는 기사 본문과 함께 읽어야 합니다.\n송고 2026년06월01일 12시00분\n소방청은 1일 산림청, 경찰청, 해양경찰청과 공동으로 '2026년 국가기관 항공보험 종합계약'을 체결했다고 밝혔다.\n보험 대상은 4개 기관이 보유한 항공기 총 124대다.\n이 중 118대는 헬기, 6대는 고정익 항공기다.\n(서울=연합뉴스) 홍준석 기자 = 소방청은 1일 산림청, 경찰청, 해양경찰청과 공동으로 '2026년 국가기관 항공보험 종합계약'을 체결했다고 밝혔다.\n보험 대상은 4개 기관이 보유한 항공기 총 124대다.\n이 중 118대는 헬기, 6대는 고정익 항공기다.\n기체보험 한도는 350억원에서 600억원으로, 탑승 대원 1인당 상해보험 한도는 5억원에서 6억원으로 각각 상향됐다.\n보험 기간은 12개월, 계약 금액은 총 95억1천만원이다.\n소방청 관계자는 \"대원들이 보상 걱정 없이 현장에 더 적극적으로 임할 수 있는 환경이 조성되면서 더 빠르고 과감한 대국민 항공 서비스가 가능해질 것으로 기대한다\"고 말했다.\nhonk0216@yna.co.kr\n제보는 카카오톡 okjebo <저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지> 2026년06월01일 12시00분 송고"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "삼성전자 시총 2000조 돌파·5월 수출 877억달러 역대최대 달성으로 AI 슈퍼사이클 확인, 글로벌 반도체 랠리 지속",
+  "sentiment_reason": "엔비디아 PC 슈퍼칩 출시·한국 5월 수출 877억달러 사상최대 등 AI 슈퍼사이클 확인, 코스피 +4.41% 반도체 주도 급등",
   "key_factors": [
-    "5월 수출 877억달러 역대 최대·반도체 수출 371.6억달러(+169%) 사상 최고 - AI 투자 확대 직접 수혜",
-    "삼성전자 시총 2000조 첫 돌파(+9.46%)·코스피 8800선 상회(+4.61%) - 반도체 투톱 밸류에이션 리레이팅",
-    "SpaceX 1.8조달러 밸류 IPO 준비·탑 테크펀드 SK하이닉스 매수 계획 - 글로벌 AI 인프라 자금 집중"
+    "엔비디아 RTX Spark PC칩 출시로 AI 플랫폼 확장, 인텔·AMD 영역 침투 본격화",
+    "한국 5월 수출 877억달러·반도체 수출 372억달러로 각각 월간 역대 최대 — 수출비중 42% 돌파",
+    "코스피 +4.41%·코스닥 -2.63% 양극화, 반도체_대형·IT부품 Leading 지속·소형주 약세"
   ],
-  "news_summary": "파월 의장 \"연준 정치화는 신뢰 훼손\" 경고·스트레스 테스트 중 발언 - 독립성 강조로 금리인상 베팅 후퇴 시그널\n채권시장 고용지표 앞두고 10년물 4.45%(-4bp)·30년물 4.99%(+16bp) 스프레드 확대 - 장기 인플레 우려 지속\nECB Schnabel 중동전쟁發 인플레 기대 디앵커 리스크 경고 - 유럽 통화정책 매파 신호\n일본 엔화 사상 최대 개입에도 약세 지속·BOJ 추가 인상 대기로 리스크 확대\n미국 해외 중국기업 대상 AI칩 수출규제 강화 추진 - 對中 반도체 공급망 압박 심화\n중동전쟁 휴전 기대감 부상·블룸버그 보도 AI 랠리·유가 동반 상승 - 리스크온 전환 촉매\n대전 한화에어로스페이스 폭발사고 6명 인명피해 추정 - 방산 섹터 단기 리스크\n탑 테크펀드 SK하이닉스 매수 계획 발표·메모리칩 크런치 베팅 - 블룸버그 보도, HBM3E 수급 타이트 재확인\nTSMC 현지투자자 밸류에이션 갭 축소·월가와 격차 좁혀 - AI 수요 재평가 시그널\nSpaceX 밸류에이션 1.8조달러로 조정·세계 최대 IPO 트랙 유지 - 월가 조직 재편 수준 이벤트\n삼성전자 시총 2000조원 첫 돌파(+9.46%·34만7천원)·5월 반도체 수출 371.6억달러(+169%) 사상최대 - AI 슈퍼사이클 한국 직접 수혜\n삼성 KODEX ETF 순자산 200조 돌파·아시아 1위(일본 제외) - 국내 패시브 자금 집중",
+  "news_summary": "파월 Fed 의장 \"연준 정치화는 신뢰 훼손\" 경고, Fed 독립성 스트레스테스트 중 강조 — 정책 예측가능성 지지\n채권 트레이더 Fed 금리인상 베팅 유지, 6월 고용지표 대기 — 10Y 4.45%(-0.04bp)·30Y 4.99%(+0.16bp)\nECB 슈나벨 위원 \"전쟁으로 인플레이션 기대 언앵커링 리스크\" 경고, 유럽 통화정책 긴축 기조 지속 시사\n일본 엔화 기록적 개입에도 약세 지속, BOJ 금리인상 지연 우려 심화 — 수출주 지원 vs 수입 인플레 부담\n중국 5월 PMI 혼조 — 서비스 반등·제조업 둔화, 내수 회복 vs 수출 둔화 엇갈린 신호\n이란 \"미국이 이란 영토 타격에 사용한 기지 공격\" 보복 경고 발표, 중동 지정학 리스크 급등 — WTI +2.58% 급등\n이재명 대통령 \"반도체 빼면 코스피 착시는 축구 빼고 손흥민 말하는 격\" SNS 반박, 반도체 중심 증시 구조 옹호\n한국 5월 수출 877억달러(+53.2%) 역대 최대 — 반도체 372억달러(+169%)로 사상 최대, 전체 수출 비중 42% 돌파\n엔비디아, Arm 기반 PC 슈퍼칩 'RTX Spark' 발표 — 1 페타플롭 AI 성능·128GB 통합메모리, MS·델·HP 탑재 노트북 출시\n톱 글로벌 테크펀드, SK하이닉스 매수 계획 발표 — \"메모리칩 공급 부족 베팅\" (블룸버그)\n인텔, 연말까지 엔비디아 겨냥 신규 AI칩 출시 목표 발표 — PC·데이터센터 양면 경쟁 심화\nSpaceX IPO 월가 재편성 촉발 — 뱅크 오브 아메리카 등 주간사 경쟁, OpenAI·Anthropic IPO도 주목\nTSMC 현지(대만) 투자자, 월가 대비 밸류에이션 격차 축소 중 — ADR vs 현지 주가 프리미엄 좁혀져\n델, 699달러 XPS 13 터치스크린 노트북 출시 — 애플 MacBook Air 대항마 저가 공세\n테슬라 온라인 주문 시스템으로 4월 자동차 온라인거래 2.5배 급증 — 5년래 최대 증가폭(한국)\nSK하이닉스 청주공장 화재·불화수소 누출로 3600명 대피, 7명 병원 이송 — 생산 차질 제한적",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "파월 의장 \"연준 정치화는 신뢰 훼손\" 경고·스트레스 테스트 중 발언 - 독립성 강조로 금리인상 베팅 후퇴 시그널",
+          "text": "파월 Fed 의장 \"연준 정치화는 신뢰 훼손\" 경고, Fed 독립성 스트레스테스트 중 강조 — 정책 예측가능성 지지",
           "impact": "high"
         },
         {
-          "text": "채권시장 고용지표 앞두고 10년물 4.45%(-4bp)·30년물 4.99%(+16bp) 스프레드 확대 - 장기 인플레 우려 지속",
-          "impact": "high"
-        },
-        {
-          "text": "ECB Schnabel 중동전쟁發 인플레 기대 디앵커 리스크 경고 - 유럽 통화정책 매파 신호",
+          "text": "채권 트레이더 Fed 금리인상 베팅 유지, 6월 고용지표 대기 — 10Y 4.45%(-0.04bp)·30Y 4.99%(+0.16bp)",
           "impact": "mid"
         },
         {
-          "text": "일본 엔화 사상 최대 개입에도 약세 지속·BOJ 추가 인상 대기로 리스크 확대",
+          "text": "ECB 슈나벨 위원 \"전쟁으로 인플레이션 기대 언앵커링 리스크\" 경고, 유럽 통화정책 긴축 기조 지속 시사",
+          "impact": "mid"
+        },
+        {
+          "text": "일본 엔화 기록적 개입에도 약세 지속, BOJ 금리인상 지연 우려 심화 — 수출주 지원 vs 수입 인플레 부담",
+          "impact": "mid"
+        },
+        {
+          "text": "중국 5월 PMI 혼조 — 서비스 반등·제조업 둔화, 내수 회복 vs 수출 둔화 엇갈린 신호",
           "impact": "mid"
         }
       ]
@@ -6720,15 +6726,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미국 해외 중국기업 대상 AI칩 수출규제 강화 추진 - 對中 반도체 공급망 압박 심화",
+          "text": "이란 \"미국이 이란 영토 타격에 사용한 기지 공격\" 보복 경고 발표, 중동 지정학 리스크 급등 — WTI +2.58% 급등",
           "impact": "high"
         },
         {
-          "text": "중동전쟁 휴전 기대감 부상·블룸버그 보도 AI 랠리·유가 동반 상승 - 리스크온 전환 촉매",
+          "text": "이재명 대통령 \"반도체 빼면 코스피 착시는 축구 빼고 손흥민 말하는 격\" SNS 반박, 반도체 중심 증시 구조 옹호",
           "impact": "mid"
         },
         {
-          "text": "대전 한화에어로스페이스 폭발사고 6명 인명피해 추정 - 방산 섹터 단기 리스크",
+          "text": "한국 5월 수출 877억달러(+53.2%) 역대 최대 — 반도체 372억달러(+169%)로 사상 최대, 전체 수출 비중 42% 돌파",
           "impact": "mid"
         }
       ]
@@ -6738,23 +6744,35 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "탑 테크펀드 SK하이닉스 매수 계획 발표·메모리칩 크런치 베팅 - 블룸버그 보도, HBM3E 수급 타이트 재확인",
+          "text": "엔비디아, Arm 기반 PC 슈퍼칩 'RTX Spark' 발표 — 1 페타플롭 AI 성능·128GB 통합메모리, MS·델·HP 탑재 노트북 출시",
           "impact": "high"
         },
         {
-          "text": "TSMC 현지투자자 밸류에이션 갭 축소·월가와 격차 좁혀 - AI 수요 재평가 시그널",
+          "text": "톱 글로벌 테크펀드, SK하이닉스 매수 계획 발표 — \"메모리칩 공급 부족 베팅\" (블룸버그)",
           "impact": "high"
         },
         {
-          "text": "SpaceX 밸류에이션 1.8조달러로 조정·세계 최대 IPO 트랙 유지 - 월가 조직 재편 수준 이벤트",
+          "text": "인텔, 연말까지 엔비디아 겨냥 신규 AI칩 출시 목표 발표 — PC·데이터센터 양면 경쟁 심화",
           "impact": "high"
         },
         {
-          "text": "삼성전자 시총 2000조원 첫 돌파(+9.46%·34만7천원)·5월 반도체 수출 371.6억달러(+169%) 사상최대 - AI 슈퍼사이클 한국 직접 수혜",
-          "impact": "high"
+          "text": "SpaceX IPO 월가 재편성 촉발 — 뱅크 오브 아메리카 등 주간사 경쟁, OpenAI·Anthropic IPO도 주목",
+          "impact": "mid"
         },
         {
-          "text": "삼성 KODEX ETF 순자산 200조 돌파·아시아 1위(일본 제외) - 국내 패시브 자금 집중",
+          "text": "TSMC 현지(대만) 투자자, 월가 대비 밸류에이션 격차 축소 중 — ADR vs 현지 주가 프리미엄 좁혀져",
+          "impact": "mid"
+        },
+        {
+          "text": "델, 699달러 XPS 13 터치스크린 노트북 출시 — 애플 MacBook Air 대항마 저가 공세",
+          "impact": "mid"
+        },
+        {
+          "text": "테슬라 온라인 주문 시스템으로 4월 자동차 온라인거래 2.5배 급증 — 5년래 최대 증가폭(한국)",
+          "impact": "mid"
+        },
+        {
+          "text": "SK하이닉스 청주공장 화재·불화수소 누출로 3600명 대피, 7명 병원 이송 — 생산 차질 제한적",
           "impact": "mid"
         }
       ]
@@ -6762,260 +6780,265 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "AI 랠리 지속 + 중동전쟁 휴전 기대로 리스크온 분위기, 직접 촉매는 약하나 반도체·빅테크 동조 상승",
+      "reason": "엔비디아 PC칩 발표·AI 인프라 테마 확산으로 빅테크 중심 상승, 연준 신중 기조 속 AI 실적 가시성 선호",
       "drivers": [
-        "AI 인프라 투자 확대 지속",
-        "중동 휴전 기대감"
+        "NVDA RTX Spark 칩 발표",
+        "파월 Fed 정치화 경고 발언으로 정책 신뢰성 재확인"
       ]
     },
     "NASDAQ": {
-      "reason": "SpaceX·OpenAI·Anthropic IPO 관심 고조로 AI 생태계 밸류에이션 재평가, 반도체 랠리 동조",
+      "reason": "엔비디아·델·MS·HP 등 PC 생태계 확장 기대로 테크 섹터 전반 상승, AI 칩 → PC 통합 투자 재점화",
       "drivers": [
-        "SpaceX 1.8조달러 밸류 IPO",
-        "AI 섹터 자금 집중"
+        "NVDA PC 슈퍼칩·델 XPS 13 터치스크린 699달러 출시",
+        "인텔 연말 AI칩 출시 발표로 경쟁 구도 심화"
       ]
     },
     "DOW": {
-      "reason": "중동전쟁 휴전 기대·유가 상승에도 경기 리스크온 판단, 전통산업 가치주 유입",
+      "reason": "에너지·금융·산업재 중심 상승, WTI +2.58% 오름에 따른 경기순환주 선호 반영",
       "drivers": [
-        "리스크온 심리",
-        "WTI +2.54% 에너지 동조"
+        "WTI 유가 89.61달러까지 상승",
+        "VIX -2.67%로 변동성 축소"
       ]
     },
     "VIX": {
-      "reason": "AI 랠리·수출지표 호조로 변동성 수요 축소, 중동 불확실성 완화 기대",
+      "reason": "엔비디아 신제품 발표·파월 Fed 신뢰성 강조 등 불확실성 완화 요인으로 변동성 지수 하락",
       "drivers": [
-        "AI 랠리 지속",
-        "중동 휴전 기대"
+        "NVDA PC칩 발표로 AI 테마 안정화",
+        "파월 Fed 정치화 경고로 정책 예측 가능성 개선"
       ]
     },
     "필라델피아반도체": {
-      "reason": "변동 없으나 탑 테크펀드 SK하이닉스 매수·한국 반도체수출 +169% 시그널로 모멘텀 유지",
+      "reason": "엔비디아 PC칩·인텔 AI칩 계획 등 개별 이벤트 상쇄, 마이크론·TSMC 등 혼조세로 지수 보합 마감",
       "drivers": [
-        "SK하이닉스 기관 매수 시그널",
-        "한국 반도체 수출 사상최대"
+        "NVDA PC 진출 호재 vs 인텔 경쟁 심화 우려",
+        "TSMC 현지 투자자 밸류에이션 격차 축소 뉴스"
       ]
     },
     "러셀2000": {
-      "reason": "대형주 AI 랠리에 자금 집중되며 소형주 상대적 소외, 직접 촉매 없음",
+      "reason": "대형주 중심 AI 테마 쏠림 심화, 소형주는 Fed 정책 불확실성 지속으로 상대적 약세",
       "drivers": [
-        "대형 AI주 쏠림",
-        "금리 4.45% 부담"
+        "대형 빅테크 독주 구도",
+        "채권금리 상승(10Y -0.04%·30Y +0.16%)으로 듀레이션 민감 소형주 부담"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 - 유럽 경기 중립·ECB Schnabel 인플레 리스크 경고 부담",
+      "reason": "에너지주 일부 상승에도 유럽 내수 둔화 우려 지속, ECB 슈나벨 전쟁 인플레 우려 발언 부담",
       "drivers": [
-        "ECB 인플레 경고"
+        "ECB 슈나벨 위원 전쟁 인플레 언앵커링 리스크 경고",
+        "WTI 상승으로 에너지주 일부 지지"
       ]
     },
     "독일DAX": {
-      "reason": "ECB Schnabel 전쟁發 인플레 우려에도 제조업 중립, 직접 드라이버 약함",
+      "reason": "ECB 인플레 우려·중국 PMI 혼조에도 자동차·산업재 방어 매수로 미세 상승",
       "drivers": [
-        "ECB 인플레 경고"
+        "중국 서비스 PMI 반등",
+        "ECB 슈나벨 인플레 경고로 상승폭 제한"
       ]
     },
     "니케이": {
-      "reason": "엔화 약세 지속(BOJ 개입 무력화)으로 수출주 수혜, TSMC 밸류 갭 축소·반도체 동조",
+      "reason": "엔비디아 발표·한국 수출 호조 등 아시아 테크 수혜 기대, 엔화 약세(일은 개입에도 엔화 방어 실패) 수출주 지원",
       "drivers": [
-        "엔화 약세 지속",
-        "TSMC 현지투자자 밸류 상승"
+        "NVDA PC칩 발표·한국 반도체 수출 최대 실적",
+        "엔화 약세 지속(BOJ 개입 효과 제한)"
       ]
     },
     "항셍": {
-      "reason": "미국 AI칩 對中 수출규제 강화 우려 있으나, 글로벌 AI 랠리 동조·리스크온 분위기",
+      "reason": "5월 서비스 PMI 반등(제조업 둔화 상쇄)·테크주 엔비디아 발표 동조 상승, 내수 회복 기대 반영",
       "drivers": [
-        "AI 랠리 동조",
-        "미 대중 AI칩 규제 부담 제한적"
+        "중국 서비스 PMI 반등",
+        "엔비디아 PC칩 발표로 테크주 동반 상승"
       ]
     },
     "달러인덱스": {
-      "reason": "파월 연준 정치화 경고·고용지표 대기로 단기 중립, 강달러 흐름 유지",
+      "reason": "파월 Fed 신중 기조 재확인·채권 트레이더 금리인상 베팅 지속(고용지표 대기) 속 달러 소폭 강세",
       "drivers": [
-        "파월 연준 독립성 강조",
-        "고용지표 대기"
+        "파월 Fed 정치화 경고로 정책 신뢰성 지지",
+        "채권시장 Fed 인상 베팅 유지"
       ]
     },
     "국채10Y": {
-      "reason": "고용지표 대기로 매수 유입, 파월 연준 스트레스 테스트 발언도 금리 하방 지지",
+      "reason": "파월 신중 기조·채권 트레이더 금리인상 베팅 일부 완화(고용지표 대기 모드)로 소폭 하락",
       "drivers": [
-        "고용지표 앞두고 매수",
-        "파월 발언"
+        "파월 Fed 스트레스테스트 발언",
+        "고용지표 대기로 매수 일부 유입"
       ]
     },
     "국채30Y": {
-      "reason": "장기 인플레 우려·ECB Schnabel 전쟁發 인플레 리스크 경고로 매도 우위",
+      "reason": "장기물 공급 우려·인플레 리스크 프리미엄(ECB 슈나벨 전쟁 인플레 경고) 반영하며 상승",
       "drivers": [
-        "ECB 인플레 경고",
-        "장기 인플레 리스크"
+        "ECB 슈나벨 위원 인플레 언앵커링 우려",
+        "장기 재정 리스크 프리미엄"
       ]
     },
     "코스피": {
-      "reason": "삼성전자 시총 2000조 돌파·5월 수출 877억달러 역대최대(반도체 371.6억달러 +169%)로 AI 슈퍼사이클 확인, 외국인 대규모 순매수",
+      "reason": "5월 수출 877억달러 사상최대·반도체 372억달러(+169%) 슈퍼사이클 확인, 삼성전자·SK하이닉스 등 반도체_대형 급등 주도",
       "drivers": [
-        "삼성전자 +9.46% 시총 2000조",
-        "5월 수출 역대최대",
-        "반도체 수출 +169%"
+        "5월 반도체 수출 372억달러·전체 수출비중 42% 돌파",
+        "엔비디아 PC칩 발표로 AI 생태계 확장 기대",
+        "톱 글로벌 펀드 SK하이닉스 매수 계획 보도"
       ]
     },
     "코스닥": {
-      "reason": "대형주 쏠림·삼성전자 랠리에 자금 집중되며 중소형 소외, 기술주 차익실현",
+      "reason": "코스피 대형주 쏠림·AI 테마 외 소외, 2차전지·바이오 등 중소형 섹터 전반 약세 지속",
       "drivers": [
-        "코스피 대형주 쏠림",
-        "중소형 차익실현"
+        "반도체·IT부품 대형주 독주 구도",
+        "2차전지_셀·바이오 lagging 섹터 하락 지속"
       ]
     },
     "금": {
-      "reason": "중동 휴전 기대·달러 강세(+0.14%)로 안전자산 수요 감소, 리스크온 전환",
+      "reason": "달러 강세(+0.13%)·VIX 하락으로 안전자산 수요 축소, 이란 미군기지 공격 경고에도 상승 제한",
       "drivers": [
-        "중동 휴전 기대",
-        "달러 강세"
+        "달러인덱스 +0.13% 강세",
+        "VIX -2.67% 하락"
       ]
     },
     "WTI유가": {
-      "reason": "중동전쟁 물류 차질 지속·공급 불안 우려, 글로벌 AI 인프라 수요 확대 기대",
+      "reason": "이란 \"미국이 이란 영토 타격에 사용한 기지 공격\" 보복 경고로 중동 지정학 리스크 급증, 공급 차질 우려 반영",
       "drivers": [
-        "중동 물류 차질",
-        "AI 인프라 수요"
+        "이란 미군기지 타격 경고 발표",
+        "중동 전쟁 공급 차질 우려"
       ]
     },
     "원달러": {
-      "reason": "수출 호조에도 국고채 금리 상승(3년물 3.787%)·외국인 차익실현 우려로 약세, 달러 강세 동조",
+      "reason": "코스피 급등에도 달러 강세·수출 대금 환전 수요로 원화 약세, 1513원대 돌파",
       "drivers": [
-        "국고채 금리 상승",
-        "달러 강세 동조"
+        "달러인덱스 +0.13% 강세",
+        "수출 877억달러 환전 수요"
       ]
     },
     "구리": {
-      "reason": "AI 인프라 투자 확대·한국 수출 최대 시그널로 제조업 수요 기대, 중국 경기 중립",
+      "reason": "중국 서비스 PMI 반등·AI 인프라 투자 확대 기대로 산업금속 수요 전망 개선",
       "drivers": [
-        "AI 인프라 수요",
-        "한국 수출 역대최대"
+        "중국 서비스 PMI 반등",
+        "엔비디아 PC칩 발표로 인프라 투자 기대"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "AI 슈퍼사이클 한국 직접 수혜 확인 - 5월 수출 877억달러·반도체 371.6억달러(+169%) 역대최대로 코스피 8800선 돌파",
+    "summary": "엔비디아 PC칩 발표·한국 5월 반도체 수출 372억달러 사상최대 → 코스피 +4.41% 반도체 대형주 주도 급등, AI 슈퍼사이클 재확인",
     "positive_factors": [
-      "5월 반도체 수출 371.6억달러(+169%)·전체 수출 877억달러 역대최대 - 미국 빅테크 AI 설비투자 확대 직접 수혜 확인",
-      "탑 테크펀드 SK하이닉스 매수 계획·TSMC 밸류 재평가 - 글로벌 자금 한국 메모리 투입 시그널",
-      "삼성전자 시총 2000조 첫 돌파·단일종목 사상최대 - 외국인 27년 왕좌 재확인·AI 밸류에이션 리레이팅"
+      "엔비디아 RTX Spark PC칩·인텔 AI칩 발표로 AI 생태계 확장 → 삼성전자·SK하이닉스 등 메모리 공급 부족 베팅 심화",
+      "5월 수출 877억달러·반도체 372억달러 각각 월간 역대 최대 실적 → 한국 수출 슈퍼사이클 가시화, 반도체 비중 42% 구조적 우위",
+      "글로벌 톱 테크펀드 SK하이닉스 매수 계획 보도 → HBM·DDR5 공급 부족 내러티브 재점화, 외국인 매수 모멘텀 기대",
+      "니케이 +0.82%·항셍 +0.88% 아시아 증시 동반 상승 → 역내 투자심리 개선, 코스피 랠리 지속성 지지"
     ],
     "negative_factors": [
-      "코스닥 -2.23%·중소형 소외 - 대형주 쏠림 심화·국고채 금리 상승(3년물 3.787%) 부담",
-      "원달러 1516원(+1.40%)·미 對中 AI칩 규제 강화 - 환율 약세 부담·공급망 불확실성"
+      "코스닥 -2.63% 급락·러셀2000 -0.59% → 대형주 독주·소형주 소외 양극화 심화, 2차전지·바이오 lagging 섹터 약세",
+      "원달러 1513원(+1.22%) 급등 → 달러 강세·수출 환전 수요로 원화 약세, 외국인 매도 리스크 잠재",
+      "SK하이닉스 청주공장 화재·불화수소 누출 사고 → 단기 생산 차질 우려(실제 영향 제한적이나 심리 부담)",
+      "이란 미군기지 타격 경고로 WTI +2.58% 급등 → 중동 리스크 재부각, 에너지 비용 상승 우려"
     ],
-    "key_watch": "삼성전자 35만원 돌파 여부·SK하이닉스 외국인 매수 지속성·반도체_대형 Leading 지속 확인"
+    "key_watch": "반도체_대형·IT부품 Leading 지속 여부 + 코스닥 -2.63% 양극화 심화 → 대형주 집중 vs 소형주 저가 매수 타이밍 판단 분기점"
   },
   "sector_impact": {},
   "strong_buy": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 115.7·RS-M 108.1 Leading 구간 유지, 5월 반도체 수출 371.6억달러(+169%) 사상최대·탑 테크펀드 SK하이닉스 매수로 모멘텀 확인 - 미너비니 52주 신고가·와인스타인 스테이지2 지속"
+      "reason": "RS-R 115.7·RS-M 108.1 Leading 우측 상단, 5월 수출 372억달러 사상최대·엔비디아 PC칩 발표·글로벌 펀드 SK하이닉스 매수 계획으로 HBM·DDR5 공급 부족 내러티브 정점, 52주 신고가 근접·VCP 패턴 형성 중"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 136.7·RS-M 103.7 Leading 최강, 삼성 KODEX ETF 200조 돌파·AI 인프라 수요 동조 - VCP 패턴 후 재가속"
+      "reason": "RS-R 136.7·RS-M 103.7 Leading 최강 모멘텀, 엔비디아 PC칩·델 터치스크린 노트북 출시로 AI PC 부품 수요 급증 기대, 스탠 와인스타인 스테이지2 상승 중반"
     },
     {
       "sector": "자동차_부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 108.0·RS-M 107.2 Leading 진입, 글로벌 자동차 AI 전환 수혜·완성차 Improving 동조 - 스테이지2 초입"
+      "reason": "RS-R 108.0·RS-M 107.2 Leading, 테슬라 온라인거래 2.5배 급증·엔비디아 PC칩 발표로 AI 자율주행 부품 재조명, 닥터 엘더 삼중스크린 주간 상승추세 지속"
     },
     {
-      "sector": "지주·복합기업",
+      "sector": "정유",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 115.3·RS-M 110.7 Leading 최상위, 삼성전자 시총 2000조 돌파·지주 밸류 재평가 - 모멘텀 최강"
+      "reason": "RS-R 103.4·RS-M 102.0 Leading, WTI +2.58% 급등·이란 지정학 리스크로 정유 마진 개선 기대, RRG Improving→Leading 전환 초입"
     }
   ],
   "watch": [
     {
-      "sector": "방산",
-      "reason": "대전 한화에어로스페이스 폭발사고·6명 인명피해로 단기 리스크, RS-R 78.2 Lagging - 사고 수습 후 재진입"
+      "sector": "로봇",
+      "reason": "RS-R 91.9·RS-M 102.3 Improving 진입, 엔비디아 PC칩·인텔 AI칩 발표로 자동화 로봇 AI 통합 테마 부각 가능성 — 단 Leading 진입 확인 필요"
+    },
+    {
+      "sector": "자동차_완성차",
+      "reason": "RS-R 97.3·RS-M 102.9 Improving, 테슬라 온라인거래 급증 시그널 있으나 반도체·IT부품 대비 모멘텀 약해 Leading 전환 관찰 필요"
     },
     {
       "sector": "2차전지_셀",
-      "reason": "RS-R 87.7·RS-M 90.0 Lagging하단이나 정유 Leading(RS-R 103.4) 동조 가능성, 중동전쟁 휴전 기대 양면 - 모멘텀 재확인 필요"
-    },
-    {
-      "sector": "반도체_장비",
-      "reason": "RS-R 100.5·RS-M 99.0 Weakening 전환, 반도체_대형 랠리 후행 가능성 있으나 모멘텀 약화 - 재진입 타이밍 대기"
+      "reason": "RS-R 87.7·RS-M 90.0 lagging, 코스닥 -2.63% 급락 영향권·중국 PMI 제조업 둔화로 2차전지 수요 가시성 약화 — 스테이지4 하락 지속 중"
     }
   ],
   "avoid": [],
-  "summary": "AI 슈퍼사이클 한국 직접 수혜 확인 - 반도체 수출 역대최대·삼성 2000조 돌파, Leading 대형주 집중 국면",
-  "strategy_brief": "5월 수출 877억달러·반도체 371.6억달러(+169%) 역대최대 달성과 삼성전자 시총 2000조 돌파는 AI 슈퍼사이클의 한국 직접 수혜를 팩트로 확인시켰다. 탑 테크펀드의 SK하이닉스 매수 계획·TSMC 밸류 재평가 시그널은 글로벌 자금이 한국 메모리로 집중 투입되는 국면 진입을 시사한다. 반도체_대형(RS-R 115.7 Leading)·IT부품(RS-R 136.7 최강)·지주(RS-R 115.3) 섹터는 미너비니 52주 신고가 돌파·와인스타인 스테이지2 지속을 동시 충족하며 최적 진입 구간이다. 다만 코스닥 -2.23%·원달러 1516원 약세·국고채 금리 상승은 중소형 소외와 환율 부담을 경고하므로, Leading 대형주 중심 선택과 집중이 핵심 전략이다.",
+  "summary": "엔비디아 PC칩·한국 반도체 수출 372억달러 사상최대로 AI 슈퍼사이클 재확인 → 코스피 +4.41% 반도체·IT부품 Leading 주도, 코스닥 -2.63% 양극화 심화 — 대형주 집중 전략 유효",
+  "strategy_brief": "엔비디아가 Arm 기반 PC 슈퍼칩 RTX Spark를 출시하며 AI 칩 영역을 데이터센터에서 PC로 확장했고, 한국은 5월 반도체 수출 372억달러로 월간 사상최대 실적을 기록하며 AI 슈퍼사이클을 재확인했다. 글로벌 톱 테크펀드의 SK하이닉스 매수 계획 보도는 HBM·DDR5 공급 부족 내러티브를 정점으로 끌어올렸고, 코스피는 +4.41% 급등하며 반도체_대형(RS-R 115.7)·IT부품(RS-R 136.7) Leading 섹터가 시장을 주도했다. 반면 코스닥은 -2.63% 급락하며 대형주 독주·소형주 소외 양극화가 심화됐고, 2차전지·바이오는 lagging 구간에서 스테이지4 하락을 지속 중이다. 이란의 미군기지 타격 경고로 WTI가 +2.58% 급등하며 정유 섹터가 Leading 전환 초입에 진입했으나, 원달러 1513원 급등과 중동 리스크는 단기 변동성 확대 요인으로 작용한다. 오늘은 반도체_대형·IT부품·자동차_부품·정유 등 Leading 섹터에 집중하고, 52주 신고가 근접·VCP 패턴 압축 단계인 삼성전자·SK하이닉스를 핵심 진입 타이밍으로 판단하며, lagging 구간의 2차전지·바이오는 스테이지2 전환 시그널 확인 전까지 관망한다.",
   "strategy_headline": "AI 수출 슈퍼사이클 확인 — 반도체·IT부품 Leading 집중",
   "strategy_points": [
-    "5월 반도체 수출 371.6억달러(+169%)·전체 877억달러 역대최대 - AI 인프라 투자 한국 직접 수혜 팩트",
-    "삼성전자 시총 2000조·탑펀드 SK하이닉스 매수 - 글로벌 자금 한국 메모리 밸류에이션 리레이팅 국면",
-    "반도체_대형·IT부품·지주 Leading 최상위 - 미너비니 52주 신고가·와인스타인 스테이지2 지속 확인",
-    "코스닥 -2.23%·원달러 1516원 - 대형주 쏠림 심화·환율 약세 부담 관리 필요"
+    "엔비디아 PC칩·한국 반도체 수출 372억달러 사상최대 → AI 생태계 확장·메모리 공급 부족 내러티브 정점",
+    "코스피 +4.41%·코스닥 -2.63% 양극화 심화 → 반도체_대형·IT부품 Leading 집중, 소형주 lagging 회피",
+    "이란 지정학 리스크·WTI +2.58% 급등 → 정유 Leading 전환, 중동 리스크 헤지 포지션 병행",
+    "원달러 1513원 급등·코스닥 급락 → 대형주 쏠림 지속, 2차전지·바이오 lagging 섹터는 스테이지4 하락 지속 경계"
   ],
   "top_picks": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 115.7·RS-M 108.1 Leading 구간 유지, 5월 반도체 수출 371.6억달러(+169%) 사상최대·탑 테크펀드 SK하이닉스 매수로 모멘텀 확인 - 미너비니 52주 신고가·와인스타인 스테이지2 지속",
+      "reason": "RS-R 115.7·RS-M 108.1 Leading 우측 상단, 5월 수출 372억달러 사상최대·엔비디아 PC칩 발표·글로벌 펀드 SK하이닉스 매수 계획으로 HBM·DDR5 공급 부족 내러티브 정점, 52주 신고가 근접·VCP 패턴 형성 중",
       "stocks": [
         {
           "name": "삼성전자",
           "code": "005930",
           "signal": "prime",
-          "reason": "시총 2000조 첫 돌파·5월 반도체 수출 +169% AI 슈퍼사이클 직접 수혜 확인 + 반도체_대형 Leading·52주 신고가 돌파·VCP 4단계 재가속"
+          "reason": "5월 반도체 수출 372억달러 사상최대 + 엔비디아 PC칩·인텔 AI칩 발표로 HBM·DDR5 공급 부족 심화 → 반도체_대형 RS-R 115.7 Leading·52주 신고가 근접·VCP 패턴 압축 단계"
         },
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "탑 테크펀드 매수 계획·HBM3E 크런치 재확인 + 반도체_대형 Leading·27년 삼성 추격 모멘텀 지속·스테이지2 중반"
+          "reason": "글로벌 톱 테크펀드 매수 계획 보도·5월 수출 슈퍼사이클 확인 → 반도체_대형 Leading·HBM3E 공급 부족 내러티브 정점, 청주공장 사고 영향 제한적·스테이지2 상승 중반"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 136.7·RS-M 103.7 Leading 최강, 삼성 KODEX ETF 200조 돌파·AI 인프라 수요 동조 - VCP 패턴 후 재가속",
+      "reason": "RS-R 136.7·RS-M 103.7 Leading 최강 모멘텀, 엔비디아 PC칩·델 터치스크린 노트북 출시로 AI PC 부품 수요 급증 기대, 스탠 와인스타인 스테이지2 상승 중반",
       "stocks": [
         {
           "name": "삼성SDI",
           "code": "006400",
           "signal": "prime",
-          "reason": "IT부품 RS-R 136.7 최강·KODEX ETF 200조 패시브 자금 집중 + Leading 구간·전고점 돌파 시도"
-        }
-      ]
-    },
-    {
-      "sector": "지주·복합기업",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 115.3·RS-M 110.7 Leading 최상위, 삼성전자 시총 2000조 돌파·지주 밸류 재평가 - 모멘텀 최강",
-      "stocks": [
-        {
-          "name": "삼성물산",
-          "code": "028260",
-          "signal": "prime",
-          "reason": "삼성전자 시총 2000조 돌파 지주 밸류 재평가 + 지주 RS-R 115.3 Leading 최상위·스테이지2 초입"
+          "reason": "엔비디아 PC칩·델 노트북 출시로 AI PC 부품(배터리·디스플레이) 수요 급증 기대 + IT부품 RS-R 136.7 최강 Leading·마크 미너비니 SEPA 촉매 타이밍 일치"
         }
       ]
     },
     {
       "sector": "자동차_부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 108.0·RS-M 107.2 Leading 진입, 글로벌 자동차 AI 전환 수혜·완성차 Improving 동조 - 스테이지2 초입",
+      "reason": "RS-R 108.0·RS-M 107.2 Leading, 테슬라 온라인거래 2.5배 급증·엔비디아 PC칩 발표로 AI 자율주행 부품 재조명, 닥터 엘더 삼중스크린 주간 상승추세 지속",
       "stocks": [
         {
           "name": "현대모비스",
           "code": "012330",
           "signal": "prime",
-          "reason": "자동차_부품 Leading 진입·완성차 Improving 동조 + AI 전환 공급망 수혜·스테이지2 초입 진입 타이밍"
+          "reason": "테슬라 온라인거래 2.5배 급증·엔비디아 PC칩 발표로 AI 자율주행 부품 재조명 + 자동차_부품 RS-R 108.0 Leading·스테이지2 초입 진입 원칙 부합"
+        }
+      ]
+    },
+    {
+      "sector": "정유",
+      "rrg_quadrant": "leading",
+      "reason": "RS-R 103.4·RS-M 102.0 Leading, WTI +2.58% 급등·이란 지정학 리스크로 정유 마진 개선 기대, RRG Improving→Leading 전환 초입",
+      "stocks": [
+        {
+          "name": "SK이노베이션",
+          "code": "096770",
+          "signal": "prime",
+          "reason": "WTI +2.58%·이란 미군기지 타격 경고로 정유 마진 개선 기대 + 정유 RS-R 103.4 Leading·RRG Improving→Leading 전환 타이밍"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "방산",
-    "2차전지_셀"
+    "로봇",
+    "자동차_완성차"
   ]
 }
