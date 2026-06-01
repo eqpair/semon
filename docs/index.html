@@ -757,7 +757,7 @@
                 const pts = pt.tail.map(t => {
                     const p = toPos(t.rs_ratio, t.rs_momentum)
                     return p.x + "," + p.y
-                }).join(" ")
+                }).concat([(() => { const cp = toPos(pt.ratio, pt.mom); return cp.x + "," + cp.y })()]).join(" ")
                 const pl = document.createElementNS("http://www.w3.org/2000/svg", "polyline")
                 pl.setAttribute("points", pts)
                 pl.setAttribute("fill", "none")
@@ -883,31 +883,53 @@
                 const quad = sectorRRG[name]?.quadrant ?? "neutral"
                 return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }
             })
-            items.sort((a, b) => {
-                const order = { improving: 0, lagging: 1, leading: 2, weakening: 3, neutral: 4 }
-                if (order[a.quad] !== order[b.quad])
-                    return order[a.quad] - order[b.quad]
-                return (b.imp || 0) - (a.imp || 0)
-            })
 
-            list.innerHTML = items.map(item => `
-                <div class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                    onclick="selectSector('${item.name}'); switchTab('stock')">
-                <div class="flex items-center gap-2">
-                    <span style="width:7px;height:7px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;display:inline-block;"></span>
-                    <span class="text-xs text-gray-700">${item.name}</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    ${item.imp > 0
-                    ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${item.imp}</span>`
+            // 사분면별 그룹핑
+            const groups = { leading: [], improving: [], weakening: [], lagging: [], neutral: [] }
+            items.forEach(it => { (groups[it.quad] || groups.neutral).push(it) })
+            // 각 그룹 내부는 improving 수 → 등락률 순
+            Object.values(groups).forEach(arr => arr.sort((a, b) =>
+                (b.imp || 0) - (a.imp || 0) || (b.ret ?? -999) - (a.ret ?? -999)))
+
+            const meta = [
+                { key: "leading",   label: "Leading",   desc: "상승 주도" },
+                { key: "improving", label: "Improving", desc: "모멘텀 전환" },
+                { key: "weakening", label: "Weakening", desc: "모멘텀 약화" },
+                { key: "lagging",   label: "Lagging",   desc: "소외 지속" },
+            ]
+
+            const chip = (item) => {
+                const retCls = item.ret > 0 ? "text-red-600" : item.ret < 0 ? "text-blue-500" : "text-gray-400"
+                const retStr = item.ret != null ? (item.ret > 0 ? "+" : "") + item.ret.toFixed(1) + "%" : "-"
+                const badge = item.imp > 0
+                    ? `<span style="font-size:9px;color:#2563eb;font-weight:700;">★${item.imp}</span>`
                     : item.watch > 0
-                        ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${item.watch}</span>`
-                        : ''}
-                    <span class="text-xs ${item.ret > 0 ? 'text-red-600' : item.ret < 0 ? 'text-blue-500' : 'text-gray-400'}">
-                    ${item.ret != null ? (item.ret > 0 ? '+' : '') + item.ret.toFixed(1) + '%' : '-'}
-                    </span>
-                </div>
-                </div>`).join("")
+                        ? `<span style="font-size:9px;color:#9ca3af;font-weight:700;">◎${item.watch}</span>`
+                        : ""
+                return `<div onclick="selectSector('${item.name}'); switchTab('stock')"
+                    style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;margin:2px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;background:#fff;transition:background .12s;"
+                    onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">
+                    <span style="width:6px;height:6px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;"></span>
+                    <span style="font-size:11px;color:#374151;">${item.name}</span>
+                    ${badge}
+                    <span style="font-size:10px;font-weight:600;" class="${retCls}">${retStr}</span>
+                </div>`
+            }
+
+            list.innerHTML = meta.map(mt => {
+                const arr = groups[mt.key]
+                if (!arr.length) return ""
+                const col = quadrantColor(mt.key)
+                return `<div style="margin-bottom:10px;">
+                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid #f3f4f6;">
+                        <span style="width:8px;height:8px;border-radius:50%;background:${col};"></span>
+                        <span style="font-size:11px;font-weight:700;color:#374151;">${mt.label}</span>
+                        <span style="font-size:10px;color:#9ca3af;">${mt.desc}</span>
+                        <span style="font-size:10px;color:#9ca3af;margin-left:auto;">${arr.length}</span>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;">${arr.map(chip).join("")}</div>
+                </div>`
+            }).join("")
         }
 
         // ── 섹터 칩 ─────────────────────────────────────────────────
@@ -1019,6 +1041,21 @@
                     svg.appendChild(midCircle)
                 })
 
+                // tail 마지막 → 현재 점 연결 (장중 실시간 끝점이 궤적과 끊기지 않게)
+                const lastTail = tail[tail.length - 1]
+                const pLast = toPos(lastTail.rs_ratio, lastTail.rs_momentum)
+                const pCurr = toPos(s.rs_ratio, s.rs_momentum)
+                const connSeg = document.createElementNS("http://www.w3.org/2000/svg", "line")
+                connSeg.setAttribute("x1", pLast.x.toFixed(1))
+                connSeg.setAttribute("y1", pLast.y.toFixed(1))
+                connSeg.setAttribute("x2", pCurr.x.toFixed(1))
+                connSeg.setAttribute("y2", pCurr.y.toFixed(1))
+                connSeg.setAttribute("stroke", color)
+                connSeg.setAttribute("stroke-width", "1.5")
+                connSeg.setAttribute("stroke-opacity", "0.8")
+                connSeg.setAttribute("visibility", "hidden")
+                connSeg.setAttribute("data-code", s.code)
+                svg.appendChild(connSeg)
                 // 시작점 — 빈 원
                 const firstPos = toPos(tail[0].rs_ratio, tail[0].rs_momentum)
                 const startCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
