@@ -572,7 +572,7 @@
             if (Array.isArray(categories) && categories.length > 0) {
                 const escapeHtml = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
                 const catIcons = {
-                    macro: "📊", geopolitics: "🌐", company: "🏢"
+                    macro: "", geopolitics: "", company: ""
                 }
                 el.innerHTML = categories.map(cat => {
                     const items = (cat.items || []).map(it => {
@@ -585,9 +585,9 @@
                             <span class="news-item-text">${escapeHtml(it.text)}</span>
                         </div>`
                     }).join("")
-                    const icon = catIcons[cat.name] || "📰"
+                    const icon = catIcons[cat.name] || ""
                     return `<div class="news-category">
-                        <div class="news-category-header">${icon} ${escapeHtml(cat.label || cat.name)}</div>
+                        <div class="news-category-header">${icon}${escapeHtml(cat.label || cat.name)}</div>
                         ${items}
                     </div>`
                 }).join("")
@@ -758,11 +758,11 @@
             const t = h * 60 + m
             const weekday = d >= 1 && d <= 5
             if (weekday && t >= 540 && t <= 930) {
-                badge.textContent = "\ud83d\udfe2 KRX"; badge.className = "font-bold text-gray-700"
+                badge.textContent = "KRX"; badge.className = "font-bold text-gray-700"
             } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
-                badge.textContent = "\ud83d\udd35 NXT"; badge.className = "font-bold text-gray-600"
+                badge.textContent = "NXT"; badge.className = "font-bold text-gray-600"
             } else {
-                badge.textContent = "\u26ab Market Closed"; badge.className = "font-bold text-gray-400"
+                badge.textContent = "Market Closed"; badge.className = "font-bold text-gray-400"
             }
             const nextEl = document.getElementById("next-update")
             if (nextEl) nextEl.textContent = getNextUpdate()
@@ -830,14 +830,14 @@
                 }
                 if (inTable) { html += '</table>'; inTable = false }
                 if (!trim) { html += '<div style="height:6px"></div>'; continue }
-                if (trim.startsWith("### ")) html += `<div style="font-size:13px;font-weight:700;color:#1e40af;margin-top:14px;margin-bottom:4px;">${bold(trim.slice(4))}</div>`
+                if (trim.startsWith("### ")) html += `<div style="font-size:13px;font-weight:700;color:#111827;margin-top:14px;margin-bottom:4px;">${bold(trim.slice(4))}</div>`
                 else if (trim.startsWith("## ")) html += `<div style="font-size:14px;font-weight:700;color:#111827;margin-top:16px;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e5e7eb;">${bold(trim.slice(3))}</div>`
                 else if (trim.startsWith("# ")) html += `<div style="font-size:15px;font-weight:700;color:#111827;margin-top:16px;margin-bottom:8px;">${bold(trim.slice(2))}</div>`
-                else if (trim.startsWith("> ")) html += `<div style="border-left:3px solid #3b82f6;padding-left:10px;color:#374151;margin:6px 0;">${bold(trim.slice(2))}</div>`
+                else if (trim.startsWith("> ")) html += `<div style="border-left:3px solid #9ca3af;padding-left:10px;color:#374151;margin:6px 0;">${bold(trim.slice(2))}</div>`
                 else if (trim.startsWith("- ") || trim.startsWith("* ")) html += `<div style="display:flex;gap:6px;margin:3px 0;"><span style="color:#6b7280;flex-shrink:0;margin-top:1px;">•</span><span>${bold(trim.slice(2))}</span></div>`
                 else if (/^\d+\.\s/.test(trim)) {
                     const num = trim.match(/^(\d+)\.\s/)[1]
-                    html += `<div style="display:flex;gap:6px;margin:3px 0;"><span style="color:#3b82f6;font-weight:600;flex-shrink:0;min-width:16px;">${num}.</span><span>${bold(trim.replace(/^\d+\.\s/, ""))}</span></div>`
+                    html += `<div style="display:flex;gap:6px;margin:3px 0;"><span style="color:#374151;font-weight:600;flex-shrink:0;min-width:16px;">${num}.</span><span>${bold(trim.replace(/^\d+\.\s/, ""))}</span></div>`
                 }
                 else if (trim === "---") html += `<hr style="border:none;border-top:1px solid #e5e7eb;margin:10px 0;">`
                 else html += `<div style="margin:2px 0;line-height:1.6;">${bold(trim)}</div>`
