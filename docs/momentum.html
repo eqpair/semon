@@ -88,13 +88,13 @@
                 </div>
                 <div class="nav-links">
                     <a href="./index.html"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">RRG</a>
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">RRG</a>
                     <a href="./heatmap.html"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">Heatmap</a>
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Heatmap</a>
                     <a href="./stats.html"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Stats</a>
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Stats</a>
                     <a href="./cal.html"
-                        class="nav-link-sm px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Calendar</a>
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Calendar</a>
                     <a href="https://eqmon.duckdns.org" class="nav-link-sm"
                         style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
                 </div>
@@ -110,8 +110,8 @@
                     <h2 id="sector-summary" class="text-lg font-bold text-gray-800">섹터 로딩 중...</h2>
                     <div class="relative" id="search-wrap">
                         <div class="relative inline-block w-full md:w-72">
-                            <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
-                                class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
+                            <input id="stock-search" type="text" placeholder="종목명 또는 코드 검색..."
+                                class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-gray-400 shadow-sm"
                                 oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}"
                                 autocomplete="off">
                             <button onclick="closeSearch()" id="search-clear"
@@ -163,13 +163,13 @@
             const t = h * 60 + m
             const weekday = d >= 1 && d <= 5
             if (weekday && t >= 540 && t <= 930) {
-                badge.textContent = "\ud83d\udfe2 KRX"
-                badge.className = "font-bold text-green-600"
+                badge.textContent = "KRX"
+                badge.className = "font-bold text-gray-700"
             } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
-                badge.textContent = "\ud83d\udd35 NXT"
-                badge.className = "font-bold text-blue-600"
+                badge.textContent = "NXT"
+                badge.className = "font-bold text-gray-600"
             } else {
-                badge.textContent = "\u26ab Market Closed"
+                badge.textContent = "Market Closed"
                 badge.className = "font-bold text-gray-400"
             }
             const _sectors = allData.sectors || {}
@@ -194,10 +194,10 @@
                     if (panel && card) {
                         const wasFirstLoad = !panel.dataset.restored
                         panel.style.display = "block"
-                        card.classList.add("ring-2", "ring-blue-400")
+                        card.classList.add("ring-2", "ring-gray-400")
                         document.getElementById(`panel-label-${rowStart}`).innerHTML =
                             `<a href="./index.html?sector=${encodeURIComponent(currentSector)}"
-                               class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
+                               class="hover:text-gray-600 transition-colors" title="RRG에서 보기">
                                ▸ ${currentSector} 섹터 <span class="text-xs font-normal opacity-60">→ RRG</span>
                              </a>`
                         const data = allData.sectors?.[currentSector]
@@ -247,10 +247,10 @@
                     const primeCount = data.prime_count || 0
                     const confirmCount = data.confirm_count || 0
                     const badge = primeCount > 0
-                        ? `<span class="text-red-600 font-bold">${primeCount} PRIME 🔥</span>`
-                        : confirmCount > 0 ? `<span class="text-blue-600 font-medium">${confirmCount} Confirm ★</span>`
+                        ? `<span class="text-gray-700 font-bold"> PRIME</span>`
+                        : confirmCount > 0 ? `<span class="text-gray-600 font-medium"> Confirm</span>`
                             : watchCount > 0 ? `<span class="text-gray-400 font-medium">${watchCount} Watch</span>`
-                                : lagCount > 0 ? `<span class="text-orange-500 font-medium">${lagCount} Lagging</span>` : "<span>-</span>"
+                                : lagCount > 0 ? `<span class="text-gray-500 font-medium"> Lagging</span>` : "<span>-</span>"
 
                     card.className = "bg-white rounded-lg shadow p-3 hover:shadow-md cursor-pointer transition-all"
                     card.dataset.sector = name
@@ -276,19 +276,19 @@
                 panel.dataset.row = rowStart
                 panel.style.display = "none"
                 panel.innerHTML = `
-                    <div class="bg-white rounded-lg shadow-md p-4 border-t-2 border-blue-400">
+                    <div class="bg-white rounded-lg shadow-md p-4 border-t-2 border-gray-300">
                         <div class="flex items-center justify-between mb-3 flex-wrap gap-2 panel-filter-row">
                             <div class="flex items-center gap-3">
-                                <span id="panel-label-${rowStart}" class="text-sm font-semibold text-blue-600"></span>
+                                <span id="panel-label-${rowStart}" class="text-sm font-semibold text-gray-700"></span>
                                 <button onclick="togglePanelMembers(${rowStart})" class="text-xs text-gray-400 hover:text-gray-600">
                                     <span id="panel-members-arrow-${rowStart}">▶</span> 구성 종목
                                 </button>
                             </div>
                             <div class="flex gap-1 flex-wrap items-center">
-                                <button class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded" onclick="setPanelFilter(${rowStart},'all')">ALL</button>
-                                <button class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">Improving ★</button>
+                                <button class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'all')">ALL</button>
+                                <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded font-medium" onclick="setPanelFilter(${rowStart},'improving')">Improving</button>
                                 <button class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'lagging')">Lagging</button>
-                                <button class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">Weakening</button>
+                                <button class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded" onclick="setPanelFilter(${rowStart},'weakening')">Weakening</button>
                                 <button onclick="closePanel(${rowStart})" class="text-gray-400 hover:text-gray-600 ml-1 text-sm font-medium">✕</button>
                             </div>
                         </div>
@@ -309,7 +309,7 @@
                                         <th class="px-3 py-2 text-right">RS-5</th>
                                         <th class="px-3 py-2 text-right">VOL</th>
                                         <th class="px-3 py-2 text-right">신호</th>
-                                        <th class="px-3 py-2 text-right" title="섹터+종목 복합 점수 (0~3)">⚡</th>
+                                        <th class="px-3 py-2 text-right" title="섹터+종목 복합 점수 (0~3)">점수</th>
                                     </tr>
                                 </thead>
                                 <tbody id="panel-tbody-${rowStart}"></tbody>
@@ -333,12 +333,12 @@
             currentSector = name
             currentFilter = "all"
             document.querySelectorAll(".inline-panel").forEach(p => p.style.display = "none")
-            document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
-            cardRow.querySelector(`[data-sector="${name}"]`).classList.add("ring-2", "ring-blue-400")
+            document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-gray-400"))
+            cardRow.querySelector(`[data-sector="${name}"]`).classList.add("ring-2", "ring-gray-400")
             panel.style.display = "block"
             document.getElementById(`panel-label-${rowStart}`).innerHTML =
                 `<a href="./index.html?sector=${encodeURIComponent(name)}"
-                   class="hover:text-blue-400 transition-colors" title="RRG에서 보기">
+                   class="hover:text-gray-600 transition-colors" title="RRG에서 보기">
                    ▸ ${name} 섹터 <span class="text-xs font-normal opacity-60">→ RRG</span>
                  </a>`
             const data = allData.sectors?.[name]
@@ -363,7 +363,7 @@
 
         function closePanel(rowStart) {
             document.querySelector(`.inline-panel[data-row="${rowStart}"]`).style.display = "none"
-            document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-blue-400"))
+            document.querySelectorAll("[data-sector]").forEach(c => c.classList.remove("ring-2", "ring-gray-400"))
             currentSector = null
             // URL에서도 sector 파라미터 제거
             const params = new URLSearchParams(location.search)
@@ -405,10 +405,10 @@
                 const isImproving = isPrime || isConfirm
                 const isLagging = s.quadrant === "lagging"
                 const isBreakout = s.short_rs_grade === "breakout"
-                const rowClass = isPrime ? "border-b bg-red-50 font-medium"
-                    : isConfirm ? "border-b bg-blue-50 font-medium"
-                        : isBreakout ? "border-b bg-purple-50 font-medium"
-                            : isLagging ? "border-b bg-yellow-50"
+                const rowClass = isPrime ? "border-b bg-gray-100 font-medium"
+                    : isConfirm ? "border-b bg-gray-100 font-medium"
+                        : isBreakout ? "border-b bg-gray-100 font-medium"
+                            : isLagging ? "border-b bg-gray-50"
                                 : "border-b hover:bg-gray-50"
                 const naverUrl = `https://finance.naver.com/item/main.naver?code=${s.code}`
                 const r1c = s.ret_1d > 0 ? "text-red-600" : "text-blue-600"
@@ -417,26 +417,26 @@
                 return `
 <tr class="${rowClass}">
   <td class="px-3 py-2">
-    ${isPrime ? '<span class="text-red-500 mr-1">🔥</span>'
-                        : isConfirm ? '<span class="text-blue-500 mr-1">★</span>'
-                            : isBreakout ? '<span class="text-purple-500 mr-1">⚡</span>'
-                                : isLagging ? '<span class="text-yellow-500 mr-1">●</span>' : ''}
-    <a href="${naverUrl}" target="_blank" class="hover:underline font-bold ${isImproving ? "text-blue-800" : "text-gray-800"}">${s.name}</a>
+    ${isPrime ? ''
+                        : isConfirm ? ''
+                            : isBreakout ? ''
+                                : isLagging ? '' : ''}
+    <a href="${naverUrl}" target="_blank" class="hover:underline font-bold ${isImproving ? "text-gray-900" : "text-gray-800"}">${s.name}</a>
   </td>
   <td class="px-3 py-2 text-right text-gray-500 text-xs">${s.code}</td>
   <td class="px-3 py-2 text-right font-medium">${s.price ? s.price.toLocaleString() : "-"}</td>
   <td class="px-3 py-2 text-right ${r1c}">${fmt(s.ret_1d)}</td>
   <td class="px-3 py-2 text-right ${r5c}">${fmt(s.ret_5d)}</td>
   <td class="px-3 py-2 text-right ${r20c}">${fmt(s.ret_20d)}</td>
-  <td class="px-3 py-2 text-right ${s.gap_1d >= 3 ? 'text-purple-600 font-medium' : s.gap_1d != null && s.gap_1d < 0 ? 'text-blue-500' : 'text-gray-600'}">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
+  <td class="px-3 py-2 text-right ${s.gap_1d >= 3 ? 'text-gray-700 font-medium' : s.gap_1d != null && s.gap_1d < 0 ? 'text-blue-500' : 'text-gray-600'}">${s.gap_1d != null ? (s.gap_1d > 0 ? '+' : '') + s.gap_1d.toFixed(1) + '%' : '-'}</td>
   <td class="px-3 py-2 text-right ${s.rs_ratio != null && s.rs_ratio < 100 ? "text-red-500 font-medium" : "text-gray-600"}">${s.rs_ratio != null ? s.rs_ratio.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-blue-600 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
-  <td class="px-3 py-2 text-right ${s.rs_5d >= 2 ? 'text-purple-600 font-medium' : 'text-gray-600'}">${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}</td>
+  <td class="px-3 py-2 text-right ${s.rs_momentum != null && s.rs_momentum >= 100 ? "text-gray-700 font-medium" : "text-gray-600"}">${s.rs_momentum != null ? s.rs_momentum.toFixed(2) : "-"}</td>
+  <td class="px-3 py-2 text-right ${s.rs_5d >= 2 ? 'text-gray-700 font-medium' : 'text-gray-600'}">${s.rs_5d != null ? s.rs_5d.toFixed(1) + 'x' : '-'}</td>
   <td class="px-3 py-2 text-right ${s.vol_ratio != null && s.vol_ratio < 0.7 ? "text-gray-400" : "text-gray-600"}">${s.vol_ratio != null ? s.vol_ratio.toFixed(2) + 'x' : "-"}</td>
   <td class="px-3 py-2 text-right">${s.short_rs_grade === 'breakout' ? signalPill('breakout') : signalPill(s.signal || s.quadrant)}</td>
   <td class="px-3 py-2 text-right">
-    ${s.combo_score >= 3 ? '<span class="text-red-600 font-bold text-xs">★★★</span>'
-                        : s.combo_score === 2 ? '<span class="text-blue-500 font-medium text-xs">★★</span>'
+    ${s.combo_score >= 3 ? '<span class="text-gray-700 font-bold text-xs">★★★</span>'
+                        : s.combo_score === 2 ? '<span class="text-gray-500 font-medium text-xs">★★</span>'
                             : s.combo_score === 1 ? '<span class="text-gray-400 text-xs">★</span>'
                                 : '<span class="text-gray-200 text-xs">-</span>'}
   </td>
@@ -446,13 +446,13 @@
 
         function signalPill(signal) {
             const map = {
-                prime: `<span class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded font-bold">PRIME 🔥</span>`,
-                confirm: `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded font-bold">Confirm ★</span>`,
+                prime: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded font-bold">PRIME</span>`,
+                confirm: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded font-bold">Confirm</span>`,
                 watch: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">Watch</span>`,
-                lagging: `<span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Lagging</span>`,
-                weakening: `<span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded">Weakening</span>`,
-                leading: `<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">Leading</span>`,
-                breakout: `<span class="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded font-bold">⚡ Breakout</span>`,
+                lagging: `<span class="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">Lagging</span>`,
+                weakening: `<span class="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">Weakening</span>`,
+                leading: `<span class="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">Leading</span>`,
+                breakout: `<span class="px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded font-bold">Breakout</span>`,
             }
             return map[signal] || `<span class="text-gray-400">-</span>`
         }
@@ -480,8 +480,8 @@
                 <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
                      onclick="goToStock('${s.sectorName}', '${s.code}')">
                     <div class="flex items-center justify-between">
-                        <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
-                            ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
+                        <span class="text-sm font-medium ${isImproving ? 'text-gray-800' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
+                            ${isImproving ? '' : isWatch ? '' : ''}${s.name}
                         </span>
                         <span class="text-xs text-gray-400">${s.code}</span>
                     </div>
@@ -507,13 +507,13 @@
                 selectSector(sectorName, cardRow)
             }
             setTimeout(() => {
-                document.querySelectorAll(".ring-1.ring-blue-300").forEach(r => r.classList.remove("ring-1", "ring-blue-300"))
+                document.querySelectorAll(".ring-1.ring-gray-300").forEach(r => r.classList.remove("ring-1", "ring-gray-300"))
                 const activePanel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
                 if (!activePanel) return
                 const links = activePanel.querySelectorAll(`a[href*="code=${code}"]`)
                 links.forEach(link => {
                     const row = link.closest("tr")
-                    if (row) { row.classList.add("ring-1", "ring-blue-300"); row.scrollIntoView({ behavior: "smooth", block: "nearest" }) }
+                    if (row) { row.classList.add("ring-1", "ring-gray-300"); row.scrollIntoView({ behavior: "smooth", block: "nearest" }) }
                 })
             }, 300)
         }
