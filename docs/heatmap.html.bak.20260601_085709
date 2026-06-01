@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SEMon Heatmap</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="https://eqpair.github.io/shmon/ls-report.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* ── 헤더 ── */
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link-sm { white-space: nowrap; }
+
+        /* 범례 */
+        .legend-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-bar {
+            width: 120px;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #1e40af, #3b82f6, #d1d5db, #ef4444, #b91c1c);
+        }
+
+        /* 탭 */
+        .tab-btn {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
+            color: #6b7280;
+            transition: all 0.15s;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .tab-btn:hover { background: #f3f4f6; color: #1f2937; }
+        .tab-btn.active {
+            background: #1f2937;
+            border-color: #1f2937;
+            color: #fff;
+        }
+
+        .tab-row {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-divider {
+            width: 1px;
+            height: 18px;
+            background: #e5e7eb;
+            margin: 0 2px;
+        }
+
+        .treemap-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        #hm-tooltip {
+            position: fixed;
+            background: #1e293b;
+            color: #f1f5f9;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 200;
+            display: none;
+            min-width: 160px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.4rem !important; }
+            .legend-wrap { display: none; }
+            .tab-btn { font-size: 11px; padding: 4px 10px; }
+            #sector-split { flex-direction: column !important; }
+            #sector-drill { width: 100% !important; }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div id="hm-tooltip"></div>
+
+    <div class="container mx-auto px-4 py-6 max-w-screen-2xl">
+
+        <!-- HEADER -->
+        <header class="mb-6">
+            <div class="header-inner">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Heatmap <span class="text-lg font-normal text-gray-400">Sector / Stock</span></h1>
+                    <div class="text-sm text-gray-500 mt-1">
+                        Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
+                        &nbsp;|&nbsp;
+                        Market: <span id="market-badge" class="font-bold text-gray-400">-</span>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <div class="legend-wrap">
+                        <span style="font-size:10px;color:#2563eb;">-3%</span>
+                        <div class="legend-bar"></div>
+                        <span style="font-size:10px;color:#dc2626;">+3%</span>
+                    </div>
+                    <a href="./index.html"
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">RRG</a>
+                    <a href="./momentum.html"
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">Momentum</a>
+                    <a href="./stats.html"
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Stats</a>
+                    <a href="./cal.html"
+                        class="nav-link-sm px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Calendar</a>
+                    <a href="https://eqmon.duckdns.org" class="nav-link-sm"
+                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
+                </div>
+            </div>
+            <div class="tab-row mt-4">
+                <button class="tab-btn active" id="btn-sector" onclick="switchTab('sector')">섹터 히트맵</button>
+                <button class="tab-btn" id="btn-stock" onclick="switchTab('stock')">종목 히트맵</button>
+                <div class="tab-divider"></div>
+                <button class="tab-btn active" id="btn-1d" onclick="switchRet('ret_1d')">당일</button>
+                <button class="tab-btn" id="btn-5d" onclick="switchRet('ret_5d')">1주</button>
+                <button class="tab-btn" id="btn-1m" onclick="switchRet('ret_20d')">1달</button>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div id="loading" class="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">데이터 로딩 중...</div>
+
+        <div id="view-sector" style="display:none;">
+            <div id="sector-split" style="display:flex;gap:12px;">
+                <div id="sector-treemap" class="treemap-wrapper" style="flex:1;min-width:0;"></div>
+                <div id="sector-drill" style="display:none;flex-shrink:0;width:40%;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                        <div id="drill-title" class="text-sm font-bold text-gray-800"></div>
+                        <button onclick="closeDrill()"
+                            style="font-size:11px;color:#6b7280;background:#ffffff;border:1px solid #d1d5db;border-radius:4px;cursor:pointer;padding:2px 8px;">✕
+                            닫기</button>
+                    </div>
+                    <div id="drill-treemap" class="treemap-wrapper"></div>
+                </div>
+            </div>
+        </div>
+        <div id="view-stock" style="display:none;">
+            <div id="stock-treemap" class="treemap-wrapper"></div>
+        </div>
+    </div>
+
+    <script>
+        var allData = null;
+        var currentTab = 'sector';
+        var currentRet = 'ret_1d';
+        var _urlParams = new URLSearchParams(location.search);
+        var _drillRestored = false;  // F5 새로고침 후 최초 복원 1회 플래그
+
+        function switchTab(tab) {
+            currentTab = tab;
+            currentDrill = null;
+            document.getElementById('btn-sector').className = 'tab-btn' + (tab === 'sector' ? ' active' : '');
+            document.getElementById('btn-stock').className = 'tab-btn' + (tab === 'stock' ? ' active' : '');
+            document.getElementById('view-sector').style.display = tab === 'sector' ? 'block' : 'none';
+            document.getElementById('view-stock').style.display = tab === 'stock' ? 'block' : 'none';
+            render();
+        }
+
+        function switchRet(ret) {
+            currentRet = ret;
+            document.getElementById('btn-1d').className = 'tab-btn' + (ret === 'ret_1d' ? ' active' : '');
+            document.getElementById('btn-5d').className = 'tab-btn' + (ret === 'ret_5d' ? ' active' : '');
+            document.getElementById('btn-1m').className = 'tab-btn' + (ret === 'ret_20d' ? ' active' : '');
+            render();
+            if (currentDrill) requestAnimationFrame(() => drillDown(currentDrill));
+        }
+
+        async function loadData() {
+            try {
+                var res = await fetch('./data/signals.json?t=' + Date.now());
+                if (!res.ok) throw new Error();
+                allData = await res.json();
+                if (allData.updated_at) {
+                    const kstStr = allData.updated_at.replace(' ', 'T') + '+09:00';
+                    document.getElementById('updated').textContent =
+                        new Date(kstStr).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+                } else {
+                    document.getElementById('updated').textContent = '-';
+                }
+                // Market 상태 — shmon 형식 (KRX/NXT/Closed)
+                (function () {
+                    const badge = document.getElementById('market-badge');
+                    if (!badge) return;
+                    const now = new Date();
+                    const kst = new Date(now.getTime() + (now.getTimezoneOffset() + 540) * 60000);
+                    const d = kst.getDay(), t = kst.getHours() * 60 + kst.getMinutes();
+                    const weekday = d >= 1 && d <= 5;
+                    if (weekday && t >= 540 && t <= 930) {
+                        badge.textContent = "\ud83d\udfe2 KRX"; badge.className = "font-bold text-green-600";
+                    } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
+                        badge.textContent = "\ud83d\udd35 NXT"; badge.className = "font-bold text-blue-600";
+                    } else {
+                        badge.textContent = "\u26ab Market Closed"; badge.className = "font-bold text-gray-400";
+                    }
+                })();
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('view-sector').style.display = currentTab === 'sector' ? 'block' : 'none';
+                document.getElementById('view-stock').style.display  = currentTab === 'stock'  ? 'block' : 'none';
+                render();
+
+                // F5 새로고침: URL에 sector가 있고 아직 복원 안 했으면 자동 드릴다운
+                if (currentDrill && !_drillRestored && allData.sectors && allData.sectors[currentDrill]) {
+                    _drillRestored = true;
+                    var savedSector = currentDrill;
+                    currentDrill = null;  // drillDown에서 토글이 작동하지 않도록 일단 null로
+                    drillDown(savedSector);
+                }
+            } catch (e) {
+                document.getElementById('loading').textContent = '데이터 로드 실패';
+            }
+        }
+
+        function retColor(v) {
+            if (v == null) return '#374151';
+            var capped = Math.max(-5, Math.min(5, v));
+            if (capped > 0) return lerpColor('#374151', '#dc2626', capped / 5);
+            else return lerpColor('#374151', '#2563eb', Math.abs(capped) / 5);
+        }
+
+        function lerpColor(a, b, t) {
+            var ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16);
+            var ar = (ah >> 16) & 0xff, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+            var br = (bh >> 16) & 0xff, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+            var r = Math.round(ar + (br - ar) * t), g = Math.round(ag + (bg - ag) * t), bv = Math.round(ab + (bb - ab) * t);
+            return '#' + ((1 << 24) + (r << 16) + (g << 8) + bv).toString(16).slice(1);
+        }
+
+        function quadColor(q) {
+            return { improving: '#2563eb', leading: '#16a34a', lagging: '#d97706', weakening: '#dc2626' }[q] || '#64748b';
+        }
+
+        function fmtRet(v) { if (v == null) return '-'; return (v > 0 ? '+' : '') + v.toFixed(2) + '%'; }
+        function fmtCap(v) { if (!v) return '-'; return v >= 10000 ? (v / 10000).toFixed(1) + '조' : v + '억'; }
+
+        function squarify(data, x, y, w, h) {
+            if (!data.length) return [];
+            var total = data.reduce(function (s, d) { return s + d.value; }, 0);
+            if (total === 0) return [];
+            var results = [], remaining = data.slice(), cx = x, cy = y, cw = w, ch = h;
+            while (remaining.length) {
+                var shortSide = Math.min(cw, ch);
+                var totalRem = remaining.reduce(function (s, d) { return s + d.value; }, 0);
+                var bestRow = [remaining[0]], bestRatio = Infinity;
+                for (var i = 1; i <= remaining.length; i++) {
+                    var row = remaining.slice(0, i);
+                    var rowSum = row.reduce(function (s, d) { return s + d.value; }, 0);
+                    var rowH = (rowSum / totalRem) * shortSide;
+                    var longSide = Math.max(cw, ch);
+                    var maxRatio = Math.max.apply(null, row.map(function (d) {
+                        var rw = (d.value / rowSum) * longSide;
+                        return Math.max(rowH / rw, rw / rowH);
+                    }));
+                    if (maxRatio < bestRatio) { bestRatio = maxRatio; bestRow = row; }
+                    else break;
+                }
+                var rowSum2 = bestRow.reduce(function (s, d) { return s + d.value; }, 0);
+                var rowFrac = rowSum2 / totalRem;
+                if (cw <= ch) {
+                    var rowH2 = rowFrac * ch, rx = cx;
+                    bestRow.forEach(function (d) {
+                        var rw = (d.value / rowSum2) * cw;
+                        results.push(Object.assign({}, d, { x: rx, y: cy, w: rw, h: rowH2 }));
+                        rx += rw;
+                    });
+                    cy += rowH2; ch -= rowH2;
+                } else {
+                    var rowW = rowFrac * cw, ry = cy;
+                    bestRow.forEach(function (d) {
+                        var rh = (d.value / rowSum2) * ch;
+                        results.push(Object.assign({}, d, { x: cx, y: ry, w: rowW, h: rh }));
+                        ry += rh;
+                    });
+                    cx += rowW; cw -= rowW;
+                }
+                remaining = remaining.slice(bestRow.length);
+            }
+            return results;
+        }
+
+        var tipEl = document.getElementById('hm-tooltip');
+        function showTip(html, e) { tipEl.innerHTML = html; tipEl.style.display = 'block'; moveTip(e); }
+        function moveTip(e) {
+            var tw = tipEl.offsetWidth || 200, th = tipEl.offsetHeight || 150;
+            var x = (e.clientX + 16 + tw > window.innerWidth) ? e.clientX - tw - 16 : e.clientX + 16;
+            var y = (e.clientY + 16 + th > window.innerHeight) ? e.clientY - th - 16 : e.clientY + 16;
+            tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
+        }
+        function hideTip() { tipEl.style.display = 'none'; }
+        document.addEventListener('mousemove', function (e) { if (tipEl.style.display !== 'none') moveTip(e); });
+
+        function render() {
+            if (!allData) return;
+            if (currentTab === 'sector') renderSector();
+            else renderStock();
+        }
+
+        function renderSector() {
+            var container = document.getElementById('sector-treemap');
+            var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
+            var drillOpen = document.getElementById('sector-drill').style.display !== 'none';
+            var W = container.offsetWidth || (window.innerWidth - 32 - (drillOpen ? window.innerWidth * 0.4 + 12 : 0));
+            var H = Math.max(400, window.innerHeight - 200);
+
+            var items = Object.keys(sectors).map(function (name) {
+                var d = sectors[name];
+                var cap = d.candidates.reduce(function (s, c) { return s + (c.market_cap || 0); }, 0);
+                var ret;
+                if (currentRet === 'ret_1d') {
+                    ret = d.sector_ret_1d != null ? d.sector_ret_1d :
+                        (function () {
+                            var vals = d.candidates.filter(function (c) { return c.ret_1d != null; });
+                            return vals.length ? vals.reduce(function (s, c) { return s + c.ret_1d; }, 0) / vals.length : null;
+                        })();
+                } else if (currentRet === 'ret_5d') {
+                    ret = d.sector_ret_5d;
+                } else {
+                    var vals20 = d.candidates.filter(function (c) { return c.ret_20d != null; });
+                    ret = vals20.length ? vals20.reduce(function (s, c) { return s + c.ret_20d; }, 0) / vals20.length : null;
+                }
+                return {
+                    name: name, value: cap || 1, ret: ret, cap: cap,
+                    quad: (sectorRRG[name] || {}).quadrant || 'neutral',
+                    improving: d.improving_count || 0,
+                    ret5d: d.sector_ret_5d, ret1d: d.sector_ret_1d,
+                    total: d.total || 0
+                };
+            }).filter(function (d) { return d.value > 0; })
+                .sort(function (a, b) { return b.value - a.value; });
+
+            var cells = squarify(items, 0, 0, W, H);
+            var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+            cells.forEach(function (cell) {
+                var col = retColor(cell.ret);
+                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
+                var fs = Math.min(16, Math.max(10, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.8));
+                var retStr = fmtRet(cell.ret);
+                var qc = quadColor(cell.quad);
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:6px;">' + cell.name + '</div>' +
+                    '<div style="color:' + qc + ';font-size:11px;font-weight:600;margin-bottom:4px;">' + cell.quad + '</div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">5D <span style="color:' + ((cell.ret5d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret5d) + '</span></div>' +
+                    (cell.improving > 0 ? '<div style="color:#60a5fa;font-size:11px;margin-top:4px;">★ Improving ' + cell.improving + '종목</div>' : '') +
+                    '<div style="color:#64748b;font-size:11px;">총 ' + cell.total + '종목</div>';
+
+                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" onclick="drillDown(\'' + cell.name + '\')" style="cursor:pointer;">';
+                var clipId = 'sc' + Math.round(cell.x) + '_' + Math.round(cell.y);
+                svg += '<clipPath id="' + clipId + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
+                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="4"/>';
+                svg += '<circle cx="' + (cell.x + PAD + 10) + '" cy="' + (cell.y + PAD + 10) + '" r="5" fill="' + qc + '" opacity="0.9"/>';
+                var tfs = Math.max(9, fs);
+                var retVisible = th > 28;
+                var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
+                if (retVisible) {
+                    // 세로 공간 충분 — 2줄(이름 위, % 아래)
+                    var nameY = cell.y + PAD + th / 2 - 7;
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs + '" font-weight="600" fill="rgba(255,255,255,0.95)" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + cell.name + '</text>';
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 9) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId + ')">' + retStr + '</text>';
+                } else {
+                    // 납작한 셀 — 1줄에 "이름  +%" 같이 표시
+                    var combined = cell.name + '  ' + retStr;
+                    var smallFs = Math.max(9, tfs - 1);
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + smallFs + '" font-weight="600" font-family="sans-serif" clip-path="url(#' + clipId + ')">' +
+                        '<tspan fill="rgba(255,255,255,0.95)">' + cell.name + '</tspan>' +
+                        '<tspan fill="' + tc + '" dx="6">' + retStr + '</tspan>' +
+                    '</text>';
+                }
+                svg += '</g>';
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+        }
+
+        function renderStock() {
+            var container = document.getElementById('stock-treemap');
+            var sectors = allData.sectors || {}, sectorRRG = allData.sector_rrg || {};
+            var W = container.offsetWidth || window.innerWidth - 32;
+            var H = Math.max(500, window.innerHeight - 200);
+
+            var allStocks = [];
+            Object.keys(sectors).forEach(function (sname) {
+                sectors[sname].candidates.forEach(function (c) {
+                    if (!c.market_cap) return;
+                    allStocks.push({
+                        name: c.name, code: c.code, value: c.market_cap,
+                        ret: c[currentRet], cap: c.market_cap, sector: sname,
+                        signal: c.signal, grade: c.short_rs_grade,
+                        gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
+                        price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d,
+                        quad: (sectorRRG[sname] || {}).quadrant || 'neutral'
+                    });
+                });
+            });
+
+            if (!allStocks.length) {
+                container.innerHTML = '<div style="text-align:center;padding:60px;color:#6b7280;">시총 데이터 없음</div>';
+                return;
+            }
+
+            allStocks.sort(function (a, b) { return b.value - a.value; });
+            var cells = squarify(allStocks, 0, 0, W, H);
+            var PAD = 1, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+            cells.forEach(function (cell) {
+                var col = retColor(cell.ret);
+                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
+                if (tw < 2 || th < 2) return;
+                var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
+                var retStr = fmtRet(cell.ret);
+                var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
+
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;">' + cell.code + '</span></div>' +
+                    '<div style="color:#64748b;font-size:11px;margin-bottom:6px;">' + cell.sector + '</div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#60a5fa' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+                    (cell.vol != null ? '<div style="color:#94a3b8;font-size:11px;">VOL <span style="color:' + (cell.vol >= 1.5 ? '#fb923c' : '#94a3b8') + ';font-weight:600;">' + cell.vol.toFixed(1) + 'x</span></div>' : '') +
+                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + ' ' + (cell.signal === 'prime' ? 'PRIME' : cell.grade === 'breakout' ? 'Breakout' : 'Confirm') + '</div>' : '');
+
+                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
+                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="2"/>';
+                var clipId2 = 'st' + Math.round(cell.x) + '_' + Math.round(cell.y);
+                svg += '<clipPath id="' + clipId2 + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
+                var tfs2 = Math.max(9, fs);
+                var retVisible2 = th > 24;
+                var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
+                if (retVisible2) {
+                    var nameY2 = cell.y + PAD + th / 2 - 6;
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY2 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs2 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + cell.name + '</text>';
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs2 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' + retStr + '</text>';
+                } else {
+                    var smallFs2 = Math.max(9, tfs2 - 1);
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + smallFs2 + '" font-weight="600" font-family="sans-serif" clip-path="url(#' + clipId2 + ')">' +
+                        '<tspan fill="rgba(255,255,255,0.92)">' + cell.name + '</tspan>' +
+                        '<tspan fill="' + tc + '" dx="6">' + retStr + '</tspan>' +
+                    '</text>';
+                }
+                svg += '</g>';
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+        }
+
+        // currentDrill 초기값을 URL ?sector= 파라미터에서 가져옴 (F5 새로고침 시 복원)
+        var currentDrill = _urlParams.get('sector') || null;
+
+        function drillDown(sectorName) {
+            // 같은 섹터를 다시 클릭하면 드릴다운 패널을 닫는다 (토글)
+            if (currentDrill === sectorName && document.getElementById('sector-drill').style.display !== 'none') {
+                closeDrill();
+                return;
+            }
+
+            currentDrill = sectorName;
+            var sectors = allData.sectors || {};
+            var sectorRRG = allData.sector_rrg || {};
+            var sdata = sectors[sectorName];
+            if (!sdata) return;
+
+            // URL에 현재 섹터 저장 (F5 새로고침해도 유지)
+            var params = new URLSearchParams(location.search);
+            params.set('sector', sectorName);
+            history.replaceState(null, '', location.pathname + '?' + params.toString());
+
+            document.getElementById('sector-drill').style.display = 'block';
+            renderSector();
+            document.getElementById('drill-title').textContent = sectorName + ' 섹터';
+
+            requestAnimationFrame(function() {
+            var container = document.getElementById('drill-treemap');
+            var isMobile = window.innerWidth <= 640;
+            var W = container.offsetWidth || (isMobile ? window.innerWidth - 32 : window.innerWidth * 0.4);
+            var H = Math.max(400, window.innerHeight - 240);
+
+            var stocks = sdata.candidates.map(function (c) {
+                return {
+                    name: c.name, code: c.code, value: c.market_cap || 1,
+                    ret: c[currentRet], cap: c.market_cap || 0,
+                    signal: c.signal, grade: c.short_rs_grade,
+                    gap: c.gap_1d, vol: c.vol_ratio, rs5: c.rs_5d,
+                    price: c.price, ret1d: c.ret_1d, ret5d: c.ret_5d
+                };
+            });
+
+            stocks.sort(function (a, b) { return b.value - a.value; });
+            var cells = squarify(stocks, 0, 0, W, H);
+            var PAD = 2, svg = '<svg width="' + W + '" height="' + H + '" style="display:block;">';
+
+            cells.forEach(function (cell) {
+                var col = retColor(cell.ret);
+                var tw = cell.w - PAD * 2, th = cell.h - PAD * 2;
+                if (tw < 2 || th < 2) return;
+                var fs = Math.min(14, Math.max(9, Math.sqrt(tw * th) / (cell.name.length || 1) * 0.75));
+                var retStr = fmtRet(cell.ret);
+                var icon = cell.signal === 'prime' ? '🔥' : cell.grade === 'breakout' ? '⚡' : cell.signal === 'confirm' ? '★' : '';
+
+                var tipHtml = '<div style="font-weight:700;font-size:13px;color:#f1f5f9;margin-bottom:4px;">' + icon + ' ' + cell.name + ' <span style="color:#64748b;font-size:11px;">' + cell.code + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">시총 <span style="color:#e2e8f0;font-weight:600;">' + fmtCap(cell.cap) + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">현재가 <span style="color:#e2e8f0;font-weight:600;">' + (cell.price ? cell.price.toLocaleString() + '원' : '-') + '</span></div>' +
+                    '<div style="color:#94a3b8;font-size:11px;">당일 <span style="color:' + ((cell.ret1d || 0) >= 0 ? '#f87171' : '#60a5fa') + ';font-weight:600;">' + fmtRet(cell.ret1d) + '</span></div>' +
+                    (cell.gap != null ? '<div style="color:#94a3b8;font-size:11px;">GAP <span style="color:' + (cell.gap >= 3 ? '#c084fc' : (cell.gap < 0 ? '#60a5fa' : '#94a3b8')) + ';font-weight:600;">' + (cell.gap >= 0 ? '+' : '') + cell.gap.toFixed(1) + '%p</span></div>' : '') +
+                    (icon ? '<div style="margin-top:4px;font-size:11px;color:#60a5fa;">' + icon + '</div>' : '');
+
+                svg += '<g onmouseenter="showTip(decodeURIComponent(\'' + encodeURIComponent(tipHtml) + '\'), event)" onmouseleave="hideTip()" style="cursor:pointer;">';
+                svg += '<rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '" fill="' + col + '" rx="3"/>';
+                var clipId3 = 'dr' + Math.round(cell.x) + '_' + Math.round(cell.y);
+                svg += '<clipPath id="' + clipId3 + '"><rect x="' + (cell.x + PAD) + '" y="' + (cell.y + PAD) + '" width="' + tw + '" height="' + th + '"/></clipPath>';
+                var tfs3 = Math.max(9, fs);
+                var retVisible3 = th > 24;
+                var tc = (cell.ret || 0) >= 0 ? '#fca5a5' : '#93c5fd';
+                if (retVisible3) {
+                    var nameY3 = cell.y + PAD + th / 2 - 6;
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + nameY3 + '" text-anchor="middle" dominant-baseline="middle" font-size="' + tfs3 + '" font-weight="600" fill="rgba(255,255,255,0.92)" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + cell.name + '</text>';
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2 + 8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + Math.max(8, tfs3 - 2) + '" fill="' + tc + '" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' + retStr + '</text>';
+                } else {
+                    var smallFs3 = Math.max(9, tfs3 - 1);
+                    svg += '<text x="' + (cell.x + PAD + tw / 2) + '" y="' + (cell.y + PAD + th / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + smallFs3 + '" font-weight="600" font-family="sans-serif" clip-path="url(#' + clipId3 + ')">' +
+                        '<tspan fill="rgba(255,255,255,0.92)">' + cell.name + '</tspan>' +
+                        '<tspan fill="' + tc + '" dx="6">' + retStr + '</tspan>' +
+                    '</text>';
+                }
+                svg += '</g>';
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+            }); // requestAnimationFrame
+        }
+
+        function closeDrill() {
+            currentDrill = null;
+            document.getElementById('sector-drill').style.display = 'none';
+            renderSector();
+            // URL에서 sector 파라미터 제거
+            var params = new URLSearchParams(location.search);
+            params.delete('sector');
+            var qs = params.toString();
+            history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+        }
+
+        window.addEventListener('resize', function () { render(); });
+        loadData();
+        setInterval(loadData, 60 * 1000);
+    </script>
+</body>
+
+</html>

@@ -354,13 +354,13 @@
                     <span class="text-xs text-gray-400" id="macro-time"></span>
                 </div>
                 <div class="macro-section-label">미국 지수</div>
-                <div id="macro-us" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
+                <div id="macro-us" class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2"></div>
                 <div class="macro-section-label">글로벌 지수</div>
-                <div id="macro-global" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
+                <div id="macro-global" class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2"></div>
                 <div class="macro-section-label">한국 지수</div>
-                <div id="macro-korea" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"></div>
+                <div id="macro-korea" class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2"></div>
                 <div class="macro-section-label">채권 / 원자재 / 환율</div>
-                <div id="macro-commodity" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4"></div>
+                <div id="macro-commodity" class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4"></div>
                 <div id="news-summary" class="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
                 </div>
                 <div
@@ -563,10 +563,12 @@
                     </div>` : ""}
                 </div>` : ""
 
-            return `<div class="macro-card ${warnClass}${reason ? ' has-popover' : ''}">
-            <div class="text-xs text-gray-400 mb-0.5">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</div>
-            <div class="text-sm font-bold text-gray-800">${priceStr}</div>
-            <div class="text-xs font-medium ${color}">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</div>
+            return `<div class="macro-card ${warnClass}${reason ? ' has-popover' : ''}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;padding:8px 12px;">
+            <span class="text-xs text-gray-400" style="flex-shrink:0;">${name}${meta.unit ? `<span class="ml-1" style="font-size:9px;opacity:0.7;">${meta.unit}</span>` : ""}</span>
+            <span style="display:flex;align-items:baseline;gap:8px;flex-shrink:0;">
+                <span class="text-sm font-bold text-gray-800">${priceStr}</span>
+                <span class="text-xs font-medium ${color}" style="white-space:nowrap;">${arrow} ${Math.abs(d.change ?? 0).toFixed(2)}%</span>
+            </span>
             ${warnBadge}
             ${popoverHtml}
         </div>`
