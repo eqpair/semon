@@ -137,11 +137,7 @@
             background: #f3f4f6;
         }
 
-        .q-btn.active {
-            background: #eff6ff;
-            border-color: #93c5fd;
-            color: #1d4ed8;
-        }
+        .q-btn.active { background: #f3f4f6; border-color: #9ca3af; color: #111827; }
 
         .sector-chip {
             display: inline-flex;
@@ -162,11 +158,7 @@
             background: #f3f4f6;
         }
 
-        .sector-chip.selected {
-            background: #eff6ff;
-            border-color: #93c5fd;
-            color: #1d4ed8;
-        }
+        .sector-chip.selected { background: #f3f4f6; border-color: #9ca3af; color: #111827; }
 
         .sector-chip .dot-sm {
             width: 6px;
@@ -282,13 +274,13 @@
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
                     <a href="./momentum.html"
-                        class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">Momentum</a>
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Momentum</a>
                     <a href="./heatmap.html"
-                        class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">Heatmap</a>
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Heatmap</a>
                     <a href="./stats.html"
-                        class="px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Stats</a>
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Stats</a>
                     <a href="./cal.html"
-                        class="px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Calendar</a>
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Calendar</a>
                     <a href="https://eqmon.duckdns.org"
                         style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
                 </div>
@@ -300,8 +292,7 @@
             class="flex flex-wrap gap-4 mb-5 items-center bg-white rounded-lg px-4 py-3 shadow-sm border border-gray-100">
             <span class="text-xs text-gray-400 mr-1 font-medium">사분면</span>
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
-                    style="background:var(--improving)"></span><span class="text-blue-600 font-medium">Improving
-                    ★</span><span class="text-gray-400">모멘텀 전환</span></span>
+                    style="background:var(--improving)"></span><span class="text-blue-600 font-medium">Improving</span><span class="text-gray-400">모멘텀 전환</span></span>
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
                     style="background:var(--lagging)"></span><span
                     class="text-amber-600 font-medium">Lagging</span><span class="text-gray-400">소외 지속</span></span>
@@ -319,7 +310,7 @@
         <!-- 탭 -->
         <div class="flex gap-2 mb-5">
             <button id="tab-sector" onclick="switchTab('sector')"
-                class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-blue-600 text-white shadow-sm">
+                class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-gray-800 text-white shadow-sm">
                 섹터 RRG
             </button>
             <button id="tab-stock" onclick="switchTab('stock')"
@@ -367,8 +358,8 @@
                 <!-- 검색 -->
                 <div class="relative mb-3" id="search-wrap">
                     <div class="relative inline-block w-full md:w-72">
-                        <input id="stock-search" type="text" placeholder="🔍 종목명 또는 코드 검색..."
-                            class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-blue-400 shadow-sm"
+                        <input id="stock-search" type="text" placeholder="종목명 또는 코드 검색..."
+                            class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-gray-400 shadow-sm"
                             oninput="searchStock(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}"
                             autocomplete="off">
                         <button onclick="closeSearch()" id="search-clear"
@@ -429,7 +420,7 @@
         <div id="view-spotlight" class="mt-6" style="display:none;">
             <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
                 <div class="mb-4">
-                    <h2 id="spotlight-title" class="text-sm font-semibold text-gray-800">🔍 주목 섹터</h2>
+                    <h2 id="spotlight-title" class="text-sm font-semibold text-gray-800">주목 섹터</h2>
                     <p id="spotlight-desc" class="text-xs text-gray-400 mt-0.5">Improving 사분면 진입 기준</p>
                 </div>
                 <div id="spotlight-candidates" class="mb-4"></div>
@@ -480,11 +471,11 @@
                 const t = h * 60 + m
                 const weekday = d >= 1 && d <= 5
                 if (weekday && t >= 540 && t <= 930) {
-                    badge.textContent = "\ud83d\udfe2 KRX"; badge.className = "font-bold text-green-600"
+                    badge.textContent = "KRX"; badge.className = "font-bold text-green-600"
                 } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
-                    badge.textContent = "\ud83d\udd35 NXT"; badge.className = "font-bold text-blue-600"
+                    badge.textContent = "NXT"; badge.className = "font-bold text-gray-600"
                 } else {
-                    badge.textContent = "\u26ab Market Closed"; badge.className = "font-bold text-gray-400"
+                    badge.textContent = "Market Closed"; badge.className = "font-bold text-gray-400"
                 }
             }
 
@@ -503,8 +494,8 @@
 
             // 탭 버튼 상태 동기화
             const isStock = currentTab === "stock"
-            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!isStock ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
-            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${isStock ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!isStock ? "bg-gray-800 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${isStock ? "bg-gray-800 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
             document.getElementById("view-sector").style.display = isStock ? "none" : "block"
             document.getElementById("view-stock").style.display = isStock ? "block" : "none"
 
@@ -517,25 +508,25 @@
         }
         function quadrantLabel(q) {
             return {
-                improving: "Improving ★", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-",
-                prime: "PRIME 🔥", confirm: "Confirm ★"
+                improving: "Improving", lagging: "Lagging", leading: "Leading", weakening: "Weakening", watch: "Watch", neutral: "-",
+                prime: "PRIME", confirm: "Confirm"
             }[q] || "-"
         }
         function signalPill(s) {
             const map = {
-                prime: '<span class="pill improving" style="background:#fee2e2;color:#b91c1c;">PRIME 🔥</span>',
-                confirm: '<span class="pill improving">Confirm ★</span>',
+                prime: '<span class="pill improving" style="background:#e5e7eb;color:#374151;">PRIME</span>',
+                confirm: '<span class="pill improving">Confirm</span>',
                 watch: '<span class="pill watch">Watch</span>',
                 lagging: '<span class="pill lagging">Lagging</span>',
                 weakening: '<span class="pill weakening">Weakening</span>',
                 leading: '<span class="pill leading">Leading</span>',
-                breakout: '<span class="pill" style="background:#ede9fe;color:#7c3aed;">⚡ Breakout</span>',
+                breakout: '<span class="pill" style="background:#e5e7eb;color:#374151;">Breakout</span>',
             }
             return map[s] || '<span class="pill neutral">-</span>'
         }
         function comboStars(n) {
-            if (n >= 3) return '<span style="color:#b91c1c;font-weight:700;font-size:11px;">★★★</span>'
-            if (n === 2) return '<span style="color:#2563eb;font-size:11px;">★★</span>'
+            if (n >= 3) return '<span style="color:#374151;font-weight:700;font-size:11px;">★★★</span>'
+            if (n === 2) return '<span style="color:#6b7280;font-size:11px;">★★</span>'
             if (n === 1) return '<span style="color:#9ca3af;font-size:11px;">★</span>'
             return '<span style="color:#e5e7eb;font-size:11px;">-</span>'
         }
@@ -902,9 +893,9 @@
                 const retCls = item.ret > 0 ? "text-red-600" : item.ret < 0 ? "text-blue-500" : "text-gray-400"
                 const retStr = item.ret != null ? (item.ret > 0 ? "+" : "") + item.ret.toFixed(1) + "%" : "-"
                 const badge = item.imp > 0
-                    ? `<span style="font-size:9px;color:#2563eb;font-weight:700;">★${item.imp}</span>`
+                    ? `<span style="font-size:9px;color:#2563eb;font-weight:700;">${item.imp}</span>`
                     : item.watch > 0
-                        ? `<span style="font-size:9px;color:#9ca3af;font-weight:700;">◎${item.watch}</span>`
+                        ? `<span style="font-size:9px;color:#9ca3af;font-weight:700;">${item.watch}</span>`
                         : ""
                 return `<div onclick="selectSector('${item.name}'); switchTab('stock')"
                     style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;margin:2px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;background:#fff;transition:background .12s;"
@@ -945,9 +936,9 @@
       <span class="dot-sm" style="background:${quadrantColor(quad)};"></span>
       <span>${name}</span>
       ${d.improving_count > 0
-                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">★${d.improving_count}</span>`
+                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">${d.improving_count}</span>`
                         : d.watch_count > 0
-                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">◎${d.watch_count}</span>`
+                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">${d.watch_count}</span>`
                             : ""}
     </div>`
             }).join("")
@@ -1142,7 +1133,7 @@
           <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-5</th>
           <th style="padding:6px 4px;text-align:right;font-weight:500;">VOL</th>
           <th style="padding:6px 8px;text-align:right;font-weight:500;">신호</th>
-          <th style="padding:6px 4px;text-align:right;font-weight:500;" title="섹터+종목 복합점수">⚡</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;" title="섹터+종목 복합점수">점수</th>
         </tr>
       </thead>
       <tbody>
@@ -1151,13 +1142,13 @@
                 const r1c = s.ret_1d > 0 ? '#dc2626' : s.ret_1d < 0 ? '#2563eb' : '#9ca3af'
                 const r5c = s.ret_5d > 0 ? '#dc2626' : s.ret_5d < 0 ? '#2563eb' : '#9ca3af'
                 const r20c = s.ret_20d > 0 ? '#dc2626' : s.ret_20d < 0 ? '#2563eb' : '#9ca3af'
-                const rowBg = s.signal === 'prime' ? 'background:#fff5f5;'
-                    : s.signal === 'confirm' ? 'background:#eff6ff;'
-                        : s.short_rs_grade === 'breakout' ? 'background:#faf5ff;' : ''
+                const rowBg = s.signal === 'prime' ? 'background:#f3f4f6;'
+                    : s.signal === 'confirm' ? 'background:#f3f4f6;'
+                        : s.short_rs_grade === 'breakout' ? 'background:#f3f4f6;' : ''
                 return `<tr class="stock-row ${s.signal === 'prime' || s.signal === 'confirm' ? 'improving' : s.signal === 'watch' ? 'watch' : s.quadrant}" style="${rowBg}">
                 <td style="padding:7px 8px;"><a href="${naverUrl}" target="_blank" style="color:#111827;text-decoration:none;">
-                    ${s.signal === 'prime' ? '🔥 ' : s.signal === 'confirm' ? '★ '
-                        : s.short_rs_grade === 'breakout' ? '⚡ ' : ''}${s.name}
+                    ${s.signal === 'prime' ? '' : s.signal === 'confirm' ? ''
+                        : s.short_rs_grade === 'breakout' ? '' : ''}${s.name}
                 <td style="padding:7px 4px;text-align:right;color:${r1c};">${s.ret_1d != null ? (s.ret_1d > 0 ? '+' : '') + s.ret_1d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r5c};">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(1) + '%' : '-'}</td>
                 <td style="padding:7px 4px;text-align:right;color:${r20c};">${s.ret_20d != null ? (s.ret_20d > 0 ? '+' : '') + s.ret_20d.toFixed(1) + '%' : '-'}</td>
@@ -1209,15 +1200,15 @@
                 const color = s.signal === 'watch' ? '#9ca3af' : quadrantColor(s.quadrant)
                 const canvasId = `chart-${s.code}`
                 const ret5cls = s.ret_5d > 0 ? '#16a34a' : s.ret_5d < 0 ? '#dc2626' : '#9ca3af'
-                const signalLabel = s.signal === 'improving' ? '★ Improving'
-                    : s.signal === 'watch' ? '◎ Watch'
+                const signalLabel = s.signal === 'improving' ? 'Improving'
+                    : s.signal === 'watch' ? 'Watch'
                         : quadrantLabel(s.quadrant)
                 return `
                 <div class="bg-gray-50 rounded-lg p-2 border border-gray-100">
                     <div class="flex items-center justify-between mb-1">
                         <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
                            target="_blank"
-                           class="text-xs font-semibold text-gray-800 hover:text-blue-600 truncate"
+                           class="text-xs font-semibold text-gray-800 hover:text-gray-700 truncate"
                            style="max-width:80px;">${s.name}</a>
                         <span style="font-size:10px;color:${color};font-weight:600;">${signalLabel}</span>
                     </div>
@@ -1301,8 +1292,8 @@
             document.getElementById("view-stock").style.display = tab === "stock" ? "block" : "none"
             if (tab === "sector") document.getElementById("view-price-chart").style.display = "none"
             const s = tab === "sector"
-            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
-            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!s ? "bg-blue-600 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${s ? "bg-gray-800 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!s ? "bg-gray-800 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
             updateSpotlightVisibility()
         }
 
@@ -1322,12 +1313,12 @@
             const desc = document.getElementById("spotlight-desc")
 
             if (currentTab === "sector") {
-                title.textContent = "🔍 주목 섹터"
+                title.textContent = "주목 섹터"
                 desc.textContent = "Improving 사분면 진입 기준"
                 renderSpotlightSectors()
                 generateSpotlight()
             } else {
-                title.textContent = "🔍 주목 종목"
+                title.textContent = "주목 종목"
                 desc.textContent = currentSector
                     ? `${currentSector} — Improving 우선, 없으면 Watch`
                     : "Improving 우선 선정, 없으면 Watch 종목으로 표시"
@@ -1358,7 +1349,7 @@
                     const name = item.name, d = item.d
                     const rrg = sectorRRG[name] || {}
                     const ret5d = d.sector_ret_5d
-                    return '<div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"' +
+                    return '<div class="bg-gray-50 rounded-lg p-3 border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors"' +
                         ' onclick="selectSector(\'' + name + '\'); switchTab(\'stock\')">' +
                         '<div class="font-semibold text-sm text-gray-800 mb-1">' + name +
                         ' <span class="text-xs text-gray-400 font-normal">하기 참조</span></div>' +
@@ -1367,7 +1358,7 @@
                         ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
                         '<div>5D <span class="' + (ret5d > 0 ? 'text-red-600' : 'text-blue-500') + ' font-medium">' +
                         (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
-                        '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
+                        '<div>Improving <span class="text-gray-700 font-medium">' + (d.improving_count || 0) + '종목</span>' +
                         ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
                         '</div></div>'
                 }).join("") + '</div>'
@@ -1440,24 +1431,24 @@
             el.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">` +
                 cands.map(s => {
                     const isWatch = s.signal === 'watch'
-                    const cardBg = isWatch ? 'bg-gray-50 border-gray-200' : 'bg-blue-50 border-blue-100'
+                    const cardBg = isWatch ? 'bg-gray-50 border-gray-200' : 'bg-gray-50 border-gray-200'
                     const nameCls = isWatch ? 'text-gray-700' : 'text-gray-800'
                     const signalBadge = isWatch
-                        ? `<span class="text-xs bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded font-medium">◎ Watch</span>`
-                        : `<span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-medium">★ Improving</span>`
+                        ? `<span class="text-xs bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded font-medium">Watch</span>`
+                        : `<span class="text-xs bg-gray-200 text-gray-700 px-1.5 py-0.5 rounded font-medium">Improving</span>`
                     return `
                 <div class="rounded-lg p-3 border ${cardBg}">
                     <div class="flex items-center justify-between mb-1">
                         <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
                            target="_blank"
-                           class="font-semibold text-sm ${nameCls} hover:text-blue-600">${s.name}</a>
+                           class="font-semibold text-sm ${nameCls} hover:text-gray-700">${s.name}</a>
                         ${signalBadge}
                     </div>
                     <div class="text-xs text-gray-400 mb-1">${s.sectorName}</div>
                     <div class="text-xs text-gray-500 space-y-0.5">
                         <div>현재가 <span class="text-gray-800 font-medium">${s.price ? s.price.toLocaleString() : '-'}원</span></div>
                         <div>RS-Ratio <span class="text-red-500 font-medium">${s.rs_ratio?.toFixed(2) ?? '-'}</span>
-                             &nbsp;RS-M <span class="text-blue-600 font-medium">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
+                             &nbsp;RS-M <span class="text-gray-700 font-medium">${s.rs_momentum?.toFixed(2) ?? '-'}</span></div>
                         <div>5D <span class="${s.ret_5d > 0 ? 'text-red-600' : 'text-blue-500'} font-medium">${s.ret_5d != null ? (s.ret_5d > 0 ? '+' : '') + s.ret_5d.toFixed(2) + '%' : '-'}</span>
                              &nbsp;VOL <span class="text-purple-600 font-medium">${s.vol_ratio?.toFixed(2) ?? '-'}x</span></div>
                         <div>섹터 5D <span class="${s.sectorRet > 0 ? 'text-red-600' : 'text-blue-500'} font-medium">${s.sectorRet != null ? (s.sectorRet > 0 ? '+' : '') + s.sectorRet.toFixed(2) + '%' : '-'}</span></div>
@@ -1482,7 +1473,7 @@
                 lines.push(`RS-Momentum ${s.rs_momentum?.toFixed(2)}로 모멘텀 전환 방향은 맞지만 거래량이 아직 충분하지 않습니다.`)
                 if (s.vol_ratio != null)
                     lines.push(`거래량이 평균의 ${s.vol_ratio?.toFixed(1)}배 수준 — 거래량 증가 여부를 추가 확인하세요.`)
-                lines.push(`⚠ 신호 강도가 약한 만큼 관망하거나 소량 관심 종목으로만 두는 것을 권장합니다.`)
+                lines.push(`신호 강도가 약한 만큼 관망하거나 소량 관심 종목으로만 두는 것을 권장합니다.`)
             }
             if (s.sectorRet > 1)
                 lines.push(`${s.sectorName} 섹터 5일 수익률 +${s.sectorRet?.toFixed(1)}%로 섹터 흐름도 긍정적입니다.`)
@@ -1524,8 +1515,8 @@
                 contentEl.innerHTML = result.map((item, i) => `
                     <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
                         <div class="flex items-center gap-2 mb-1">
-                            <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
-                            <span class="font-semibold text-gray-800 cursor-pointer hover:text-blue-600"
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
+                            <span class="font-semibold text-gray-800 cursor-pointer hover:text-gray-700"
                                   onclick="selectSector('${item.name}'); switchTab('stock')">${item.name}</span>
                             <span class="text-xs text-gray-400">→ 종목 보기</span>
                         </div>
@@ -1547,11 +1538,11 @@
             contentEl.innerHTML = cands.map((s, i) => `
                 <div class="mb-4 pb-4 border-b border-gray-100 last:border-0">
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 text-xs font-bold px-1.5 py-0.5 rounded">${i + 1}</span>
                         <a href="https://finance.naver.com/item/main.naver?code=${s.code}"
                            target="_blank"
-                           class="font-semibold text-gray-800 hover:text-blue-600">${s.name}</a>
-                        <span class="text-xs text-blue-500">${s.sectorName}</span>
+                           class="font-semibold text-gray-800 hover:text-gray-700">${s.name}</a>
+                        <span class="text-xs text-gray-500">${s.sectorName}</span>
                     </div>
                     <div class="text-sm text-gray-600 leading-relaxed">
                         ${generateSpotlightComment(s)}
@@ -1582,7 +1573,7 @@
                     const name = item.name, d = item.d
                     const rrg = sectorRRG[name] || {}
                     const ret5d = d.sector_ret_5d
-                    return '<div class="bg-blue-50 rounded-lg p-3 border border-blue-100 cursor-pointer hover:bg-blue-100 transition-colors"' +
+                    return '<div class="bg-gray-50 rounded-lg p-3 border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors"' +
                         ' onclick="selectSector(' + JSON.stringify(name) + '); switchTab(\'stock\')">' +
                         '<div class="font-semibold text-sm text-gray-800 mb-1">' + name +
                         ' <span class="text-xs text-gray-400 font-normal">하기 참조</span></div>' +
@@ -1591,7 +1582,7 @@
                         ' &nbsp;RS-Mom: <span class="font-medium text-gray-700">' + (rrg.rs_momentum != null ? rrg.rs_momentum.toFixed(2) : '-') + '</span></div>' +
                         '<div>5D <span class="' + (ret5d > 0 ? 'text-red-600' : 'text-blue-500') + ' font-medium">' +
                         (ret5d != null ? (ret5d > 0 ? '+' : '') + ret5d.toFixed(2) + '%' : '-') + '</span></div>' +
-                        '<div>Improving <span class="text-blue-600 font-medium">' + (d.improving_count || 0) + '종목</span>' +
+                        '<div>Improving <span class="text-gray-700 font-medium">' + (d.improving_count || 0) + '종목</span>' +
                         ' &nbsp;Watch <span class="text-gray-500 font-medium">' + (d.watch_count || 0) + '종목</span></div>' +
                         '</div></div>'
                 }).join("") + '</div>'
@@ -1626,8 +1617,8 @@
                 <div class="px-4 py-2.5 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0"
                      onclick="goToStock('${s.sectorName}', '${s.code}')">
                   <div class="flex items-center justify-between">
-                    <span class="text-sm font-medium ${isImproving ? 'text-blue-700' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
-                      ${isImproving ? '★ ' : isWatch ? '◎ ' : ''}${s.name}
+                    <span class="text-sm font-medium ${isImproving ? 'text-gray-800' : isWatch ? 'text-gray-500' : 'text-gray-800'}">
+                      ${isImproving ? '' : isWatch ? '' : ''}${s.name}
                     </span>
                     <span class="text-xs text-gray-400">${s.code}</span>
                   </div>
@@ -1652,7 +1643,7 @@
                 links.forEach(link => {
                     const row = link.closest("tr")
                     if (row) {
-                        row.style.outline = "2px solid #3b82f6"
+                        row.style.outline = "2px solid #9ca3af"
                         row.scrollIntoView({ behavior: "smooth", block: "nearest" })
                         setTimeout(() => row.style.outline = "", 2000)
                     }
