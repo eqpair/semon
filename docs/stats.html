@@ -15,11 +15,11 @@
             --text: #1f2937;
             --muted: #4b5563;
             --dim: #6b7280;
-            --prime: #ea580c;
-            --confirm: #2563eb;
+            --prime: #4b5563;
+            --confirm: #374151;
             --green: #16a34a;
             --red: #dc2626;
-            --gold: #d97706;
+            --gold: #6b7280;
         }
 
         * {
@@ -55,10 +55,7 @@
             flex-wrap: wrap;
         }
 
-        .nav-link {
-            font-size: 12px;
-            color: #1d4ed8;
-            background: #dbeafe;
+        .nav-link { font-size: 12px; color: #374151; background: #f3f4f6;
             text-decoration: none;
             padding: 4px 12px;
             border-radius: 6px;
@@ -66,11 +63,11 @@
             transition: background 0.15s;
             white-space: nowrap;
         }
-        .nav-link:hover { background: #bfdbfe; }
-        .nav-link.green { color: #15803d; background: #dcfce7; }
-        .nav-link.green:hover { background: #bbf7d0; }
-        .nav-link.purple { color: #7c3aed; background: #ede9fe; }
-        .nav-link.purple:hover { background: #ddd6fe; }
+        .nav-link:hover { background: #e5e7eb; }
+        .nav-link.green { color: #374151; background: #f3f4f6; }
+        .nav-link.green:hover { background: #e5e7eb; }
+        .nav-link.purple { color: #374151; background: #f3f4f6; }
+        .nav-link.purple:hover { background: #e5e7eb; }
         .nav-link.dark { color: #fff; background: #1e293b; border: 1px solid #334155; }
         .nav-link.dark:hover { background: #0f172a; }
 
@@ -218,15 +215,9 @@
             font-weight: 700;
         }
 
-        .signal-badge.prime {
-            background: #fed7aa;
-            color: #c2410c;
-        }
+        .signal-badge.prime { background: #e5e7eb; color: #374151; }
 
-        .signal-badge.confirm {
-            background: #dbeafe;
-            color: #1d4ed8;
-        }
+        .signal-badge.confirm { background: #e5e7eb; color: #374151; }
 
         .exit-badge {
             display: inline-block;
@@ -445,27 +436,27 @@
         <!-- 요약 카드 -->
         <div class="stat-grid">
             <div class="stat-card prime">
-                <div class="stat-label">🔥 PRIME</div>
+                <div class="stat-label">PRIME</div>
                 <div class="stat-value" id="prime-count">-</div>
                 <div class="stat-sub">5D 적중률 <span id="prime-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균
                     <span id="prime-avg5">-</span></div>
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="prime-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
                 <div
-                    style="margin-top:10px;padding-top:8px;border-top:1px solid #fed7aa;font-size:11px;color:#6b7280;line-height:1.6;">
+                    style="margin-top:10px;padding-top:8px;border-top:1px solid #e5e7eb;font-size:11px;color:#6b7280;line-height:1.6;">
                     섹터가 KOSPI 대비 살아나는 중, Lagging→Improving 전환 + 모멘텀 가속<br>
                     <span style="color:var(--prime);">→ 가장 이른 매수 타이밍</span>
                 </div>
             </div>
             <div class="stat-card confirm">
-                <div class="stat-label">★ Confirm</div>
+                <div class="stat-label">Confirm</div>
                 <div class="stat-value" id="confirm-count">-</div>
                 <div class="stat-sub">5D 적중률 <span id="confirm-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균
                     <span id="confirm-avg5">-</span></div>
                 <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="confirm-wr20"
                         style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="confirm-avg20">-</span></div>
                 <div
-                    style="margin-top:10px;padding-top:8px;border-top:1px solid #dbeafe;font-size:11px;color:#6b7280;line-height:1.6;">
+                    style="margin-top:10px;padding-top:8px;border-top:1px solid #e5e7eb;font-size:11px;color:#6b7280;line-height:1.6;">
                     섹터 Improving + Improving 2회 이상 확인 + 복합점수 3점 만점<br>
                     <span style="color:var(--confirm);">→ 전환이 확인된 안정적 종목</span>
                 </div>
@@ -484,8 +475,7 @@
                     <div
                         style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
                         <div
-                            style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #fed7aa;">
-                            🔥 PRIME</div>
+                            style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e5e7eb;">PRIME</div>
                         <div id="active-prime">
                             <div style="color:#334155;font-size:12px;">없음</div>
                         </div>
@@ -493,8 +483,7 @@
                     <div
                         style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
                         <div
-                            style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #dbeafe;">
-                            ★ Confirm</div>
+                            style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e5e7eb;">Confirm</div>
                         <div id="active-confirm">
                             <div style="color:#334155;font-size:12px;">없음</div>
                         </div>
@@ -546,8 +535,8 @@
                 <div class="section-title" style="margin-bottom:0;">상세 기록</div>
                 <div class="filter-btns">
                     <button class="filter-btn all active" onclick="filterSignal('all', event)">ALL</button>
-                    <button class="filter-btn prime" onclick="filterSignal('prime', event)">🔥 PRIME</button>
-                    <button class="filter-btn confirm" onclick="filterSignal('confirm', event)">★ Confirm</button>
+                    <button class="filter-btn prime" onclick="filterSignal('prime', event)">PRIME</button>
+                    <button class="filter-btn confirm" onclick="filterSignal('confirm', event)">Confirm</button>
                     <div style="width:1px;background:var(--border);margin:0 2px;"></div>
                     <button class="filter-btn all" onclick="sortBy('date', event)">날짜↓</button>
                     <button class="filter-btn all" onclick="sortBy('ret5', event)">5D↓</button>
@@ -569,7 +558,7 @@
                             <th>GAP</th>
                             <th>VOL</th>
                             <th>RS-5</th>
-                            <th>⚡</th>
+                            <th>점수</th>
                             <th>1D</th>
                             <th>5D</th>
                             <th>20D</th>
@@ -736,9 +725,9 @@
                 'VOL < 1.5x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio < 1.5; }),
             });
             renderAnalGroup('anal-combo', {
-                '★★★ (3점)': logData.filter(function (e) { return e.combo_score >= 3; }),
-                '★★ (2점)': logData.filter(function (e) { return e.combo_score === 2; }),
-                '★ (1점)': logData.filter(function (e) { return e.combo_score === 1; }),
+                '3점': logData.filter(function (e) { return e.combo_score >= 3; }),
+                '2점': logData.filter(function (e) { return e.combo_score === 2; }),
+                '1점': logData.filter(function (e) { return e.combo_score === 1; }),
             });
             renderAnalGroup('anal-rsr', {
                 'RS-R < 95': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio < 95; }),
@@ -778,7 +767,7 @@
             }
             tbody.innerHTML = filtered.map(function (e) {
                 var sigKey = getSignalKey(e);
-                var sigLabel = sigKey === 'prime' ? '🔥 PRIME' : '★ Confirm';
+                var sigLabel = sigKey === 'prime' ? 'PRIME' : 'Confirm';
                 var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
                 var isExited = e.exited === true;
                 var trClass = isExited ? ' class="exited-row"' : '';
@@ -792,8 +781,8 @@
                     '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
                     '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
                     '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
-                    '<td style="color:' + (e.gap_1d >= 3 ? '#7c3aed' : '#6b7280') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
-                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#ea580c' : '#6b7280') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
+                    '<td style="color:' + (e.gap_1d >= 3 ? '#374151' : '#6b7280') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
+                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#374151' : '#6b7280') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
                     '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
                     '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
                     '<td>' + fmtRet(e.ret_1d) + '</td>' +
