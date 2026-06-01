@@ -166,6 +166,8 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
 - top_picks의 각 pick reason은 반드시 두 근거를 한 문장에 엮으세요: (1) 위 korea_impact 판단 중 어느 요인/시장 흐름에서 파생됐는지, (2) 해당 종목의 RRG·기술적 신호(스테이지2 초입, VCP, prime/confirm 등). (예: "달러 강세 수출주 수혜 판단 + 반도체_대형 Leading·신고가 돌파 → 삼성전자")
 - summary는 "글로벌 환경 → 국내 시장 한 줄 판단 → 핵심 진입 아이디어" 순서의 한 흐름으로 쓰세요.
+- strategy_headline은 오늘 국내 시장의 핵심 논지를 한 줄(공백 포함 40자 이내)로 압축하세요. 예: "AI 수출 슈퍼사이클 확인 — 반도체·IT부품 Leading 집중"
+- strategy_points는 투자자가 한눈에 봐야 할 요점 3~4개로 쓰세요. 각 요점은 한 줄(1문장, 짧게)이며 서로 다른 측면(글로벌 동인 / 국내 수급·지표 / 섹터 모멘텀 / 리스크)을 담으세요.
 - strategy_brief는 위 모든 분석을 종합한 "오늘의 국내 시장 전략"을 서술형 한 문단(3~5문장)으로 쓰세요. 긍정/부정 요인을 나열하지 말고, 글로벌 환경이 국내에 주는 함의와 그래서 어디에 주목하는지를 자연스러운 문장으로 압축하세요. key_factors나 korea_impact 항목을 그대로 복사하지 말고 새로 종합 서술하세요.
 
 아래 XML 구조로만 응답하세요:
@@ -225,6 +227,12 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
     <pick sector="반도체_대형" name="삼성전자" code="005930" reason="선정근거"/>
     <pick sector="반도체_대형" name="SK하이닉스" code="000660" reason="선정근거"/>
   </top_picks>
+  <strategy_headline>오늘 국내 시장을 한 줄로 압축한 핵심 논지 (간결한 헤드라인)</strategy_headline>
+  <strategy_points>
+    <point>요점1 (짧고 명료하게, 글로벌→국내 함의 또는 핵심 판단)</point>
+    <point>요점2</point>
+    <point>요점3</point>
+  </strategy_points>
   <strategy_brief>글로벌 환경부터 국내 시장 판단, 핵심 진입 아이디어까지 하나의 흐름으로 엮은 3~5문장 종합 판단 (서술형 한 문단)</strategy_brief>
   <summary>오늘 시장 한줄 판단</summary>
 </analysis>"""
@@ -299,6 +307,8 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
     news_summary = "\n".join(flat_items)
     summary          = get("summary", "")
     strategy_brief   = get("strategy_brief", "")
+    strategy_headline = get("strategy_headline", "")
+    strategy_points   = get_list("strategy_points/point")
 
     # ── 매크로 원인 파싱 ───────────────────────────────────────
     macro_reasons = {}
@@ -368,6 +378,8 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         "avoid":               [],
         "summary":             summary,
         "strategy_brief":      strategy_brief,
+        "strategy_headline":   strategy_headline,
+        "strategy_points":     strategy_points,
         "top_picks":           top_picks,
         "caution_sectors":     [w["sector"] for w in watch[:2]],
     }
