@@ -892,6 +892,6 @@ SECTORS = {
 
 }
 
-WAIT_TIME = 60  # 1분
+WAIT_TIME = 5  # 5초 (fetch 내부 rate-limit이 KIS 보호)
 MARKET_OPEN = (9, 0)
 MARKET_CLOSE = (15, 30)

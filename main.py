@@ -62,6 +62,16 @@ def _is_after_market_close() -> bool:
     return now.hour > 15 or (now.hour == 15 and now.minute >= 31)
 
 
+def _is_nxt_premarket() -> bool:
+    """평일 08:00~08:59 — NXT 프리마켓 시간.
+    이 시간엔 KIS가 미확정 오늘 봉을 closes에 미리 넣어 내려준다."""
+    from datetime import time
+    now = now_kst()
+    if not (0 <= now.weekday() <= 4):
+        return False
+    return time(8, 0) <= now.time() < time(9, 0)
+
+
 # ── 메인 루프 ─────────────────────────────────────────────────
 
 async def run():
@@ -85,7 +95,7 @@ async def run():
     logger.info("시작 시 OHLCV 초기 로드 시작 (약 10~15분 소요)")
     try:
         ohlcv = await fetch_all_ohlcv(ALL_CODES)
-        strip = not _is_after_market_close()
+        strip = is_market_time() or _is_nxt_premarket()  # 장중 + NXT 프리마켓 (KIS가 미확정 봉 내려줌)
         if strip:
             logger.info("장중 시작 — OHLCV 당일 봉 제거 (strip_today=True)")
         update_ohlcv(ohlcv, strip_today=strip)
@@ -134,7 +144,7 @@ async def run():
                         logger.info("야간 tail push 완료")
                     else:
                         logger.info("야간 — 대기 중")
-                await asyncio.sleep(60)
+                await asyncio.sleep(WAIT_TIME)
                 continue
 
             # 1. 시총 갱신 — 하루 1회
@@ -162,10 +172,13 @@ async def run():
             #    _get_return()에서 ret_1d = -100% 오류 발생
             #    초기 로드는 run() 시작 시 이미 완료됨
             if _need_ohlcv_refresh() and _last_ohlcv_fetch is not None:
-                if _is_after_market_close():
-                    logger.info("OHLCV fetch 시작 (장 마감 확인)")
+                if _is_after_market_close() or _last_ohlcv_fetch.date() < now_kst().date():
+                    logger.info("OHLCV fetch 시작")
                     ohlcv = await fetch_all_ohlcv(ALL_CODES)
-                    update_ohlcv(ohlcv)
+                    strip = is_market_time() or _is_nxt_premarket()  # 장중 + NXT 프리마켓 (KIS가 미확정 봉 내려줌)
+                    if strip:
+                        logger.info("장중 갱신 — OHLCV 당일 봉 제거 (strip_today=True)")
+                    update_ohlcv(ohlcv, strip_today=strip)
                     _last_ohlcv_fetch = now_kst()
                 else:
                     logger.info("OHLCV fetch 스킵 — 장중 (15:31 이후 갱신, 당일 봉 미확정 방지)")

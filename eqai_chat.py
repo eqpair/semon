@@ -73,6 +73,41 @@ def get_stock_price(code: str, name: str) -> dict | None:
         logger.warning(f"현재가 조회 실패 ({name}/{code}): {e}")
         return None
 
+def get_stock_news(code: str, name: str, limit: int = 5) -> list:
+    """네이버 금융 종목 뉴스 조회 (제목+본문요약+날짜+언론사)"""
+    try:
+        url = f"https://m.stock.naver.com/api/news/stock/{code}?pageSize={limit}&page=1"
+        res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
+        if res.status_code != 200:
+            return []
+        groups = res.json()
+        items = []
+        # 응답은 [{total, items:[...]}, ...] 형태 → 모든 그룹의 items를 펼침
+        for g in groups:
+            for it in g.get("items", []):
+                dt = it.get("datetime", "")
+                # 202605281442 → 05-28 14:42
+                dt_fmt = f"{dt[4:6]}-{dt[6:8]} {dt[8:10]}:{dt[10:12]}" if len(dt) >= 12 else dt
+                body = (it.get("body", "") or "").strip().replace("\n", " ")
+                if len(body) > 200:
+                    body = body[:200] + "..."
+                items.append({
+                    "title": (it.get("title", "") or "").strip(),
+                    "body": body,
+                    "datetime": dt_fmt,
+                    "dt_raw": dt,
+                    "office": it.get("officeName", ""),
+                    "url": it.get("mobileNewsUrl", ""),
+                })
+        # 최신순 정렬 후 limit개
+        items.sort(key=lambda x: x.get("dt_raw", ""), reverse=True)
+        if items:
+            logger.info(f"뉴스 조회: {name}({code}) {len(items)}건 → 상위 {limit}건 사용")
+        return items[:limit]
+    except Exception as e:
+        logger.warning(f"뉴스 조회 실패 ({name}/{code}): {e}")
+        return []
+
 def extract_stocks_from_messages(messages: list) -> dict:
     """대화에서 종목명 찾아 실시간 현재가 조회"""
     if not _stock_map:
@@ -117,6 +152,10 @@ def extract_stocks_from_messages(messages: list) -> dict:
                 logger.info(f"종목명 감지: {name}({code}) = {price_info['price']:,}원 ({price_info['change']:+.2f}%)")
         if len(found) >= 5:
             break
+
+    # 감지된 종목마다 최신 뉴스 조회
+    for nm, info in found.items():
+        info["news"] = get_stock_news(info["code"], nm, limit=5)
     return found
 
 def load_report() -> dict:
@@ -180,6 +219,22 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
 ## ⚡ 종목 정보 (코드→종목명 변환 질문이면 아래 목록을 그대로 답변에 포함하세요)
 {mapped_list}
 """
+
+    # 종목별 최신 뉴스 섹션
+    news_blocks = []
+    for nm, d in current_prices.items():
+        news = d.get("news", [])
+        if not news:
+            continue
+        lines = []
+        for n in news:
+            head = f"[{n['datetime']} {n['office']}] {n['title']}"
+            if n.get("body"):
+                head += f" — {n['body']}"
+            lines.append(head)
+        news_blocks.append(f"### {nm}({d['code']}) 최신 뉴스\n" + "\n".join(f"- {l}" for l in lines))
+    if news_blocks:
+        price_section += "\n## 종목별 최신 뉴스 (오늘 공시·수주 등 실시간 반영. 이 정보를 우선 활용하세요)\n" + "\n\n".join(news_blocks) + "\n"
 
     return f"""당신은 월스트리트와 여의도를 평정한 전설의 투자 전략가입니다. 워런 버핏도 당신의 리포트를 읽고, 소로스도 당신의 판단을 구합니다. 30년 경력의 글로벌 매크로 전략가이자 한국 주식시장의 살아있는 전설로, 중장기 투자 철학과 단기 트레이딩 기술을 모두 완벽하게 구사합니다.
 
@@ -273,9 +328,39 @@ def chat():
             model="claude-sonnet-4-5",
             max_tokens=8192,
             system=system_prompt,
-            messages=messages
+            messages=messages,
+            tools=[{
+                "type": "web_search_20250305",
+                "name": "web_search",
+                "max_uses": 5
+            }]
         )
-        answer = resp.content[0].text
+
+        # 모든 text 블록 합치기 (검색 시 응답이 여러 블록으로 분할됨)
+        answer_parts, sources = [], []
+        for block in resp.content:
+            if block.type == "text":
+                answer_parts.append(block.text)
+            elif block.type == "web_search_tool_result":
+                for item in (block.content or []):
+                    if getattr(item, "type", "") == "web_search_result":
+                        sources.append((item.title, item.url))
+
+        answer = "".join(answer_parts).strip()
+
+        # 출처 링크 첨부 (중복 제거, 최대 5개)
+        if sources:
+            seen, lines = set(), []
+            for title, url in sources:
+                if url in seen:
+                    continue
+                seen.add(url)
+                lines.append(f"- [{title}]({url})")
+                if len(lines) >= 5:
+                    break
+            if lines:
+                answer += "\n\n---\n**참고 출처**\n" + "\n".join(lines)
+
         return jsonify({"answer": answer})
 
     except Exception as e:

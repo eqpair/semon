@@ -67,7 +67,7 @@ def update_kospi(closes: list[float]) -> None:
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
 #RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
 #RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_cap20"
-RRG_VERSION = f"bloomberg_v3_s{MA_SHORT}_l{MA_LONG}_kospi"
+RRG_VERSION = f"bloomberg_v4_s{MA_SHORT}_l{MA_LONG}_kospi_nocap"
 
 # 섹터 RRG용 rrg_history 키 접두사
 _SECTOR_KEY_PREFIX = "sector:"
@@ -163,7 +163,7 @@ def _rebase(closes: list[float]) -> list[float]:
 
 
 def _make_benchmark(rebased_map: dict[str, list[float]]) -> list[float]:
-    CAP_WEIGHT = 0.20
+    CAP_WEIGHT = 1.0  # 캡 제거 — 순수 시총가중 (실제 시총 그대로 반영)
 
     codes  = list(rebased_map.keys())
     n_code = len(codes)
