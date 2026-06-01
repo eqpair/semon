@@ -284,7 +284,7 @@
                     <a href="./momentum.html"
                         class="px-3 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium">Momentum</a>
                     <a href="./heatmap.html"
-                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Heatmap</a>
+                        class="px-3 py-1 text-xs rounded bg-green-100 text-green-700 hover:bg-green-200 transition-colors font-medium">Heatmap</a>
                     <a href="./stats.html"
                         class="px-3 py-1 text-xs rounded bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors font-medium">Stats</a>
                     <a href="./cal.html"
@@ -480,9 +480,9 @@
                 const t = h * 60 + m
                 const weekday = d >= 1 && d <= 5
                 if (weekday && t >= 540 && t <= 930) {
-                    badge.textContent = "\ud83d\udfe2 KRX"; badge.className = "font-bold text-gray-700"
+                    badge.textContent = "\ud83d\udfe2 KRX"; badge.className = "font-bold text-green-600"
                 } else if (weekday && ((t >= 480 && t < 540) || (t > 930 && t <= 1200))) {
-                    badge.textContent = "\ud83d\udd35 NXT"; badge.className = "font-bold text-gray-600"
+                    badge.textContent = "\ud83d\udd35 NXT"; badge.className = "font-bold text-blue-600"
                 } else {
                     badge.textContent = "\u26ab Market Closed"; badge.className = "font-bold text-gray-400"
                 }
