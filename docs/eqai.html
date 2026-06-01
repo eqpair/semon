@@ -516,11 +516,38 @@
         `
         }
 
+        async function mergeMacroLive() {
+            try {
+                const res = await fetch("./data/macro_live.json?t=" + Date.now())
+                if (!res.ok) return
+                const live = await res.json()
+                if (!live || !live.macro || !eqaiData || !eqaiData.macro) return
+                for (const [name, d] of Object.entries(live.macro)) {
+                    if (eqaiData.macro[name]) {
+                        eqaiData.macro[name].price = d.price
+                        eqaiData.macro[name].change = d.change
+                    } else {
+                        eqaiData.macro[name] = d
+                    }
+                }
+                eqaiData._macro_live_at = live.generated_at || null
+            } catch (e) { /* macro_live 없으면 무시 */ }
+        }
+
+        async function refreshMacroLive() {
+            if (!eqaiData) return
+            await mergeMacroLive()
+            renderMacro()
+            const t = document.getElementById("macro-time")
+            if (t && eqaiData._macro_live_at) t.textContent = "시세 " + eqaiData._macro_live_at
+        }
+
         async function loadData() {
             try {
                 const res = await fetch("./data/eqai_report.json?t=" + Date.now())
                 if (!res.ok) throw new Error()
                 eqaiData = await res.json()
+                await mergeMacroLive()
                 render()
             } catch (e) {
                 document.getElementById("loading-state").innerHTML = `
@@ -942,6 +969,7 @@
 
         loadData()
         setInterval(loadData, 60 * 1000)
+        setInterval(refreshMacroLive, 30 * 1000)
     </script>
 </body>
 
