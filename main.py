@@ -53,7 +53,12 @@ def _need_ohlcv_refresh() -> bool:
     global _last_ohlcv_fetch
     if _last_ohlcv_fetch is None:
         return True
-    return (now_kst() - _last_ohlcv_fetch).total_seconds() >= OHLCV_REFRESH_INTERVAL
+    elapsed = (now_kst() - _last_ohlcv_fetch).total_seconds()
+    _n = now_kst()
+    # 마감 직후(15:31~16:10)엔 당일 KRX 봉을 빨리 확정 반영 — 2분 주기
+    if (_n.hour == 15 and _n.minute >= 31) or (_n.hour == 16 and _n.minute <= 10):
+        return elapsed >= 120
+    return elapsed >= OHLCV_REFRESH_INTERVAL
 
 
 def _is_after_market_close() -> bool:
