@@ -239,7 +239,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 
         resp = client.messages.create(
             model="claude-sonnet-4-5",
-            max_tokens=8000,
+            max_tokens=16000,
             messages=[{"role": "user", "content": prompt}]
         )
         text = resp.content[0].text
@@ -532,11 +532,24 @@ def run():
         merged["drivers"] = mr.get("drivers", [])
         macro_with_reasons[name] = merged
 
+    # 공개 리포트에는 원문 본문(body)을 저장하지 않는다 (저작권).
+    # 가공된 요약은 news_categories가 담당하고, 여기서는 출처 링크 목록만 보존한다.
+    sources = [
+        {
+            "source":    a.get("source", ""),
+            "title":     a.get("title", ""),
+            "link":      a.get("link", ""),
+            "published": a.get("published", ""),
+        }
+        for a in news_data.get("articles", [])[:15]
+        if a.get("link")
+    ]
+
     report = {
         "generated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
         "macro":        macro_with_reasons,
         "sector_rrg":   rrg_data.get("sector_rrg", {}),
-        "articles":     news_data.get("articles", [])[:10],
+        "sources":      sources,
         **analysis,
     }
 

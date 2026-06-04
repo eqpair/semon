@@ -287,8 +287,6 @@
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
                         &nbsp;|&nbsp;
                         Market: <span id="market-badge" class="font-bold text-gray-400">-</span>
-                        &nbsp;|&nbsp;
-                        Next Update: <span id="next-update" class="font-medium text-gray-600">-</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
@@ -760,8 +758,7 @@
             } else {
                 badge.textContent = "Market Closed"; badge.className = "font-bold text-gray-400"
             }
-            const nextEl = document.getElementById("next-update")
-            if (nextEl) nextEl.textContent = getNextUpdate()
+
         }
 
         // ── 채팅 ──────────────────────────────────────────────────────
