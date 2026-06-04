@@ -916,7 +916,7 @@
                 setRefreshBtn(true); showToast("업데이트 요청 중...")
                 const res = await fetch(TRIGGER_URL, { method: "POST" })
                 const data = await res.json()
-                if (data.ok) { showToast("분석 시작 — 수 분 소요됩니다"); startPolling() }
+                if (data.ok) { showToast("분석 시작 — 잠시만 기다려주세요"); startPolling() }
                 else {
                     showToast(data.message, "#d97706"); hideToast(3000); setRefreshBtn(false)
                     if (data.status?.running) startPolling()
