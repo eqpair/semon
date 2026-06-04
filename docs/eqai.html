@@ -904,7 +904,7 @@
                     } else {
                         showToast("분석 중... (" + elapsed + "초 경과)")
                     }
-                    if (elapsed >= 240) {
+                    if (elapsed >= 320) {
                         clearInterval(pollTimer); pollTimer = null; setRefreshBtn(false)
                         showToast("타임아웃 — 나중에 다시 시도해주세요", "#d97706"); hideToast(4000)
                     }
@@ -916,7 +916,7 @@
                 setRefreshBtn(true); showToast("업데이트 요청 중...")
                 const res = await fetch(TRIGGER_URL, { method: "POST" })
                 const data = await res.json()
-                if (data.ok) { showToast("분석 시작 — 1분 이내 완료 예정"); startPolling() }
+                if (data.ok) { showToast("분석 시작 — 수 분 소요됩니다"); startPolling() }
                 else {
                     showToast(data.message, "#d97706"); hideToast(3000); setRefreshBtn(false)
                     if (data.status?.running) startPolling()
