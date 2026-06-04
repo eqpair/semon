@@ -735,19 +735,15 @@
         function getNextUpdate() {
             const now = new Date()
             const kst = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000)
-            const h = kst.getHours(), m = kst.getMinutes(), d = kst.getDay()
-            if (d === 0 || d === 6) return "다음 평일 07:30"
-            const schedules = [{ h: 7, m: 30 }, { h: 10, m: 0 }, { h: 12, m: 0 }, { h: 14, m: 0 }, { h: 15, m: 30 }, { h: 20, m: 0 }]
+            const h = kst.getHours(), m = kst.getMinutes()
             const nowMin = h * 60 + m
-            for (const s of schedules) {
-                const sMin = s.h * 60 + s.m
-                if (sMin > nowMin) {
-                    const diff = sMin - nowMin, dh = Math.floor(diff / 60), dm = diff % 60
-                    const timeStr = String(s.h).padStart(2, "0") + ":" + String(s.m).padStart(2, "0")
-                    return `${timeStr} (${dh > 0 ? `${dh}시간 ${dm}분 후` : `${dm}분 후`})`
-                }
+            const target = 7 * 60
+            if (nowMin < target) {
+                const diff = target - nowMin, dh = Math.floor(diff / 60), dm = diff % 60
+                return `07:00 (${dh > 0 ? `${dh}시간 ${dm}분 후` : `${dm}분 후`})`
             }
-            return "다음 평일 07:30"
+            const diff = (24 * 60 - nowMin) + target, dh = Math.floor(diff / 60), dm = diff % 60
+            return `내일 07:00 (${dh}시간 ${dm}분 후)`
         }
 
         function updateMarketBadge() {
