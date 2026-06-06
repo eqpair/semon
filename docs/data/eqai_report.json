@@ -1,173 +1,176 @@
 {
-  "generated_at": "2026-06-06 07:02:19",
+  "generated_at": "2026-06-07 07:02:05",
   "macro": {
     "S&P500": {
       "price": 7383.74,
       "change": -2.64,
-      "reason": "5월 고용 17만2000명 증가(예상치 2배)로 금리인상 기대 확산, 30년 국채 5.0% 돌파하며 밸류에이션 부담 → 기술주·성장주 동반 급락",
+      "reason": "Marvell·Micron 등 반도체주 급락으로 AI 밸류에이션 거품 우려 확산 — 2개월 80% 랠리의 반동 매물",
       "drivers": [
-        "고용호조 → 금리인상 기대",
-        "장기금리 급등 압박"
+        "반도체 섹터 -10.26% 급락",
+        "VIX +39.68% 공포지수 폭등"
       ]
     },
     "NASDAQ": {
       "price": 25709.43,
       "change": -4.18,
-      "reason": "금리인상 기대 + 반도체·빅테크 동반 급락 — 마블·마이크론 폭락, 메타 증자 우려, AI 과다지출 경계로 기술주 전면 타격",
+      "reason": "Marvell·Micron 급락이 기술주 전반으로 전이 — 빅테크 AI 투자 예산 축소 시그널(Uber·MS·NVDA 인력 전환)",
       "drivers": [
-        "필라반도체 -10.26%",
-        "메타 증자 우려 -5%"
+        "필라델피아반도체 -10.26%",
+        "AI 버블 우려 확산"
       ]
     },
     "DOW": {
       "price": 50866.78,
       "change": -1.35,
-      "reason": "금리인상 기대 확산에 따른 전반적 위험회피 — 기술주 대비 상대적 선방, 경기민감·금융주 혼조",
+      "reason": "반도체 급락에도 방어주 중심 구성으로 낙폭 제한 — ECB 긴축 우려는 부담",
       "drivers": [
-        "고용호조 → 금리인상 기대",
-        "가치주 상대 방어"
+        "반도체 외 섹터 상대적 방어",
+        "ECB 금리인상 예고"
       ]
     },
     "VIX": {
       "price": 21.51,
       "change": 39.68,
-      "reason": "금리인상 기대·반도체 급락·빅테크 자금조달 우려 복합 → 투자심리 급랭, 변동성 폭발",
+      "reason": "2개월간 80% 반도체 랠리의 급격한 반전 — 칩 섹터 6년 만에 최악의 날로 시장 공포 급등",
       "drivers": [
-        "나스닥 -4.18% 충격",
-        "필라반도체 -10.26%"
+        "필라델피아반도체 -10.26%",
+        "AI 밸류에이션 재평가"
       ]
     },
     "필라델피아반도체": {
       "price": 12220.76,
       "change": -10.26,
-      "reason": "마블·마이크론 주도 6년래 최악 낙폭 — AI 모델라우팅 확산(저비용 모델 선호)으로 반도체 수요 둔화 우려, 금리인상 기대 추가 압박",
+      "reason": "Marvell·Micron 급락이 촉매 — 6년 만에 최악의 하루로 2개월 80% 랠리 반동",
       "drivers": [
-        "마블·마이크론 급락",
-        "AI 과다지출 경계·모델라우팅"
+        "Marvell 급락",
+        "Micron 급락"
       ]
     },
     "러셀2000": {
       "price": 2833.5,
       "change": -3.47,
-      "reason": "금리인상 기대 강화 → 중소형주 밸류에이션·자금조달 부담 심화, 나스닥 동조 급락",
+      "reason": "대형주 반도체 충격이 중소형주로 전이 — 리스크오프 심리에 동조 하락",
       "drivers": [
-        "장기금리 5.0% 돌파",
-        "위험회피 심리 확산"
+        "반도체 급락 파급",
+        "VIX 급등 공포 확산"
       ]
     },
     "영국FTSE": {
-      "price": 10368.05,
-      "change": 0.07,
-      "reason": "미국 금리인상 기대에도 유럽 현지 이슈 부재 — 에너지·방어주 지지로 소폭 상승 마감",
+      "price": 10368.1,
+      "change": 0.08,
+      "reason": "미국 반도체 쇼크와 분리 — Frasers 쇼핑센터 5억파운드 인수 관측 등 내수 이슈로 소폭 상승",
       "drivers": [
-        "유럽 현지 촉매 없음",
-        "에너지 섹터 방어"
+        "미국 시장과 디커플링",
+        "내수 M&A 이슈"
       ]
     },
     "독일DAX": {
-      "price": 24944.95,
-      "change": 0.6,
-      "reason": "미국 금리인상 우려 속 유럽 경기 안정 기대 — 산업재·수출주 견조, 미국 충격 분리",
+      "price": 24759.05,
+      "change": -0.75,
+      "reason": "ECB 금리인상 예고로 긴축 우려 부담 — 반도체 글로벌 충격 동조 하락",
       "drivers": [
-        "유럽 경기 안정",
-        "미국 리스크 분리"
+        "ECB 금리인상 시그널",
+        "글로벌 반도체 급락"
       ]
     },
     "니케이": {
-      "price": 67470.69,
-      "change": -1.36,
-      "reason": "미국 금리인상 기대·나스닥 급락 동조 — 반도체·수출주 하락, 엔화 약세 제한적 지지",
+      "price": 66588.12,
+      "change": -1.31,
+      "reason": "필라델피아반도체 -10.26% 충격파 — 아시아 반도체 공급망 동조 하락",
       "drivers": [
-        "나스닥 -4.18% 충격",
-        "반도체 섹터 압박"
+        "글로벌 반도체 급락",
+        "달러/엔 변동성"
       ]
     },
     "항셍": {
-      "price": 25253.4,
-      "change": -1.48,
-      "reason": "미국 금리인상 기대·기술주 급락 동조 — 중국 현지 촉매 부재, 홍콩 테크 약세",
+      "price": 24961.95,
+      "change": -1.15,
+      "reason": "미국 반도체 급락 여파 — 중국 테크주 동조 약세",
       "drivers": [
-        "나스닥 급락 동조",
-        "중국 현지 이슈 없음"
+        "미 반도체 -10.26%",
+        "글로벌 리스크오프"
       ]
     },
     "달러인덱스": {
       "price": 100.07,
       "change": 0.66,
-      "reason": "5월 고용 호조 → 연준 금리인상 기대 강화, 안전자산 선호 복합 → 달러 수요 급증",
+      "reason": "ECB 금리인상 예고에도 VIX 급등 안전자산 수요로 달러 강세 — 연준 이사의 규제완화 경고도 지지",
       "drivers": [
-        "금리인상 기대",
+        "VIX +39.68% 공포",
         "안전자산 선호"
       ]
     },
     "국채10Y": {
       "price": 4.54,
       "change": 1.32,
-      "reason": "5월 고용 17만2000명(예상치 2배) → 인플레 재점화·금리인상 기대 확산, 채권 매도 압력 증가",
+      "reason": "ECB 긴축 시그널 + 연준 이사 규제완화 비판으로 장기 긴축 우려 — 채권 매도",
       "drivers": [
-        "고용호조 → 금리인상 기대",
-        "장기채 매도 압력"
+        "ECB 금리인상 예고",
+        "연준 이사 타카 발언"
       ]
     },
     "국채30Y": {
       "price": 5.0,
       "change": 0.42,
-      "reason": "고용호조로 장기 인플레 우려 재부상 → 30년물 5.0% 심리선 돌파, 장기채 매도 집중",
+      "reason": "ECB 금리인상 예고로 글로벌 긴축 리스크 재부상 — 장기물 금리 상승",
       "drivers": [
-        "장기 인플레 우려",
-        "30년물 5.0% 돌파"
+        "ECB 긴축 시그널",
+        "장기 금리 압력"
       ]
     },
     "코스피": {
-      "price": NaN,
-      "change": NaN,
-      "reason": "데이터 없음 — 주말 휴장",
+      "price": 8160.59,
+      "change": -5.54,
+      "reason": "필라델피아반도체 -10.26% 글로벌 쇼크 + 한은 7~8월 연속 금리인상 전망 + 신용대출 3일 만에 1조원 빚투 후폭풍 공포",
       "drivers": [
-        "휴장"
+        "필라델피아반도체 -10.26%",
+        "한은 연속 금리인상 전망",
+        "빚투 후폭풍"
       ]
     },
     "코스닥": {
-      "price": NaN,
-      "change": NaN,
-      "reason": "데이터 없음 — 주말 휴장",
+      "price": 1002.44,
+      "change": -4.5,
+      "reason": "글로벌 반도체 급락 + 국내 금리인상 공포로 중소형 기술주 동반 급락",
       "drivers": [
-        "휴장"
+        "필라델피아반도체 급락",
+        "한은 긴축 우려"
       ]
     },
     "금": {
-      "price": 4353.9,
-      "change": -2.72,
-      "reason": "美금리인상 기대 강화 + 달러 강세 → 금 선물 급락, 연초 수준으로 회귀하며 올해 상승분 전량 반납",
+      "price": 4337.1,
+      "change": -3.1,
+      "reason": "VIX 급등에도 달러 강세 +0.66%에 역상관 작동 — 안전자산 수요보다 달러 압력 우세",
       "drivers": [
-        "달러 강세 +0.66%",
-        "금리인상 기대"
+        "달러인덱스 +0.66%",
+        "실질금리 상승 압력"
       ]
     },
     "WTI유가": {
-      "price": 90.25,
-      "change": -3.0,
-      "reason": "금리인상 기대 → 경기 둔화·수요 감소 우려, 달러 강세 추가 압박 → 유가 3% 급락",
+      "price": 90.54,
+      "change": -2.69,
+      "reason": "글로벌 반도체 급락·VIX 급등으로 경기침체 우려 확산 — 수요 둔화 전망",
       "drivers": [
-        "금리인상 → 수요 우려",
-        "달러 강세"
+        "리스크오프 심리",
+        "경기 둔화 우려"
       ]
     },
     "원달러": {
       "price": 1558.84,
-      "change": 1.88,
-      "reason": "달러인덱스 강세 +0.66% + 美금리인상 기대 확산 → 신흥국 통화 전반 약세, 원화 1558원대 급등",
+      "change": 1.68,
+      "reason": "코스피 -5.54% 급락 + 외국인 이탈 + 달러인덱스 +0.66% 강세 동조 — 1558원대 급등",
       "drivers": [
-        "달러 강세",
-        "금리인상 기대"
+        "코스피 급락",
+        "달러 강세"
       ]
     },
     "구리": {
-      "price": 6.28,
-      "change": -3.62,
-      "reason": "금리인상 기대 → 제조업·건설 수요 둔화 우려, 달러 강세 압박 → 구리 3.62% 급락",
+      "price": 6.26,
+      "change": -3.8,
+      "reason": "글로벌 반도체 급락으로 AI 인프라 수요 재평가 — 산업금속 동반 약세",
       "drivers": [
-        "금리인상 → 수요 우려",
-        "달러 강세"
+        "반도체 급락 파급",
+        "경기 둔화 우려"
       ]
     }
   },
@@ -7542,122 +7545,122 @@
   "sources": [
     {
       "source": "marketwatch",
-      "title": "First Google, now Meta? Big Tech may increasingly sell stock to bankroll $820 billion AI boom.",
-      "link": "https://www.marketwatch.com/story/first-google-then-meta-big-tech-may-increasingly-sell-stock-to-bankroll-820-billion-ai-boom-83c69030?mod=mw_rss_topstories",
-      "published": "Fri, 05 Jun 2026 21:15:00 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Google to pay SpaceX $920 million a month for compute capacity at xAI data centers",
-      "link": "https://www.cnbc.com/2026/06/05/google-to-pay-spacex-920-million-a-month-for-xai-compute-capacity.html",
-      "published": "Fri, 05 Jun 2026 21:01:53 GMT"
-    },
-    {
-      "source": "ft",
-      "title": "SpaceX signs $30bn deal to lease computing capacity to Google",
-      "link": "https://www.ft.com/content/77982a06-7d75-45a4-a64f-f8dc89a6a626",
-      "published": "Fri, 05 Jun 2026 21:21:02 GMT"
+      "title": "Busted AI budgets at Uber, Microsoft and Nvidia spur hiring — because human workers are cheaper",
+      "link": "https://www.marketwatch.com/story/the-job-market-is-actually-getting-a-boost-from-ai-turns-out-human-workers-are-cheaper-35b03640?mod=mw_rss_topstories",
+      "published": "Sat, 06 Jun 2026 15:55:00 GMT"
     },
     {
       "source": "yonhap",
-      "title": "뉴욕증시, 연준 금리인상 전망에 힘실리자 급락…나스닥 4%↓",
-      "link": "https://www.yna.co.kr/view/AKR20260606005700072",
-      "published": "Sat, 6 Jun 2026 05:06:57 +0900"
+      "title": "\"서울 집값 하방 제한\"…세제·금리 변수에 지역별 온도차 확대",
+      "link": "https://www.yna.co.kr/view/AKR20260606045500003",
+      "published": "Sun, 7 Jun 2026 06:25:00 +0900"
     },
     {
       "source": "yonhap",
-      "title": "국제금값, 美연준 금리인상 기대에 3%↓…올해 인상분 반납",
-      "link": "https://www.yna.co.kr/view/AKR20260606005300072",
-      "published": "Sat, 6 Jun 2026 04:31:00 +0900"
-    },
-    {
-      "source": "ft",
-      "title": "Meta weighs big equity raising after blockbuster Google deal",
-      "link": "https://www.ft.com/content/e6df645d-1709-4a77-b15d-aa43a0209efd",
-      "published": "Fri, 05 Jun 2026 18:12:32 GMT"
-    },
-    {
-      "source": "fnnews",
-      "title": "테슬라도 BYD도 껄끄러운 '공급망 40점'…한국의 전기차 줄타기[이유범의 에코&에너지]",
-      "link": "https://www.fnnews.com/news/202606051217423477",
-      "published": "Sat,6 Jun 2026 06:00:00 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "\"韓에 선물로 엔비디아 4개사업 가져와\"",
-      "link": "https://www.mk.co.kr/news/business/12067297",
-      "published": "Fri, 05 Jun 2026 23:21:43 +09:00"
+      "title": "신용대출 사흘 만에 1조…고금리 속 '빚투 후폭풍' 당국 고심",
+      "link": "https://www.yna.co.kr/view/AKR20260606038200002",
+      "published": "Sun, 7 Jun 2026 05:49:01 +0900"
     },
     {
       "source": "yonhap",
-      "title": "엔비디아, 한국 AI기술센터 설립 착수…젠슨 황 \"서울 유력\"(종합)",
-      "link": "https://www.yna.co.kr/view/AKR20260605141051017",
-      "published": "Fri, 5 Jun 2026 21:01:21 +0900"
+      "title": "금리인상 아직인데…저소득층은 이자에·2030은 월세에 허덕인다",
+      "link": "https://www.yna.co.kr/view/AKR20260606001100002",
+      "published": "Sun, 7 Jun 2026 05:45:03 +0900"
     },
     {
-      "source": "cnbc_world",
-      "title": "Trump administration, OpenAI discussing possible government stake in the AI startup",
-      "link": "https://www.cnbc.com/2026/06/05/trump-open-ai-altman-stake.html",
-      "published": "Fri, 05 Jun 2026 21:12:29 GMT"
+      "source": "yonhap",
+      "title": "기준금리 연속 인상?…대출금리 한달새 0.33%p↑ '빚투족' 패닉",
+      "link": "https://www.yna.co.kr/view/AKR20260606045100002",
+      "published": "Sun, 7 Jun 2026 05:45:00 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "'은행규제 강화론자' 美연준 이사 \"규제완화 단기 흥분제 불과\"",
+      "link": "https://www.yna.co.kr/view/AKR20260607002400072",
+      "published": "Sun, 7 Jun 2026 04:00:55 +0900"
     },
     {
       "source": "marketwatch",
       "title": "Marvell, Micron shares tumble as the chip sector suffers its worst day in 6 years",
       "link": "https://www.marketwatch.com/story/marvell-micron-shares-tumble-as-the-chip-sector-suffers-its-worst-day-in-6-years-a7c1701a?mod=mw_rss_topstories",
-      "published": "Fri, 05 Jun 2026 21:03:00 GMT"
+      "published": "Sat, 06 Jun 2026 15:41:00 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "SpaceX IPO positioned for an oversubscription ‌rate of two times: Reuters",
+      "link": "https://seekingalpha.com/news/4601213-spacex-ipo-over-two-times-oversubscribed?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 06 Jun 2026 13:07:40 -0400"
+    },
+    {
+      "source": "bloomberg",
+      "title": "ECB Steps Up as G7’s Lead Hawk With Interest-Rate Hike Primed",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-06/ecb-steps-up-as-g7-s-lead-hawk-with-interest-rate-hike-primed",
+      "published": "Sat, 06 Jun 2026 20:00:00 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Wall Street hated these 15 stocks. Then their earnings proved the analysts wrong.",
+      "link": "https://www.marketwatch.com/story/wall-street-hated-these-15-stocks-then-their-earnings-proved-the-analysts-wrong-fceb1c96?mod=mw_rss_topstories",
+      "published": "Sat, 06 Jun 2026 17:20:00 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Frasers Weighs £500 Million Bid for Shopping Center, Sky Reports",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-06/frasers-weighs-500-million-bid-for-shopping-center-sky-reports",
+      "published": "Sat, 06 Jun 2026 14:19:41 GMT"
     },
     {
       "source": "yonhap",
-      "title": "美금리인상 기대강화에 주식·채권·금 동반급락…달러는 강세(종합)",
-      "link": "https://www.yna.co.kr/view/AKR20260606005751072",
-      "published": "Sat, 6 Jun 2026 05:59:44 +0900"
+      "title": "반도체 호황에도…OECD \"내년 韓 잠재성장률 사상 첫 1.5% 하회\"",
+      "link": "https://www.yna.co.kr/view/AKR20260606041400002",
+      "published": "Sun, 7 Jun 2026 05:53:01 +0900"
     },
     {
-      "source": "cnbc_world",
-      "title": "Meta's stock sinks on report company could raise tens of billions of dollars to fund AI push",
-      "link": "https://www.cnbc.com/2026/06/05/meta-stock-sinks-on-report-company-could-raise-tens-of-billions-for-ai.html",
-      "published": "Fri, 05 Jun 2026 20:22:44 GMT"
+      "source": "yonhap",
+      "title": "한국 1분기 성장률 OECD 2위…반도체 특수에 연 3%도 바라본다",
+      "link": "https://www.yna.co.kr/view/AKR20260606044200002",
+      "published": "Sun, 7 Jun 2026 05:47:00 +0900"
     },
     {
-      "source": "cnbc_world",
-      "title": "Model routing is a fix for AI overspending. That's a problem for OpenAI and Anthropic",
-      "link": "https://www.cnbc.com/2026/06/05/model-routing-on-ai-is-a-problem-for-openai-and-anthropic.html",
-      "published": "Fri, 05 Jun 2026 18:24:25 GMT"
+      "source": "bloomberg",
+      "title": "DoubleLine, Oaktree Brace for Potential AI Pain",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-06/doubleline-oaktree-brace-for-potential-ai-pain-credit-weekly",
+      "published": "Sat, 06 Jun 2026 19:00:00 GMT"
     },
     {
-      "source": "cnbc_world",
-      "title": "Apple's WWDC: Tim Cook's AI legacy at stake in his final developer conference as CEO",
-      "link": "https://www.cnbc.com/2026/06/05/apple-wwdc-tim-cook-ai-siri-ternus.html",
-      "published": "Fri, 05 Jun 2026 16:59:20 GMT"
+      "source": "marketwatch",
+      "title": "This investing strategy digs deeper to find hidden stocks riding the AI wave",
+      "link": "https://www.marketwatch.com/story/this-investing-strategy-digs-deeper-to-find-hidden-stocks-riding-the-ai-wave-2cfcccd9?mod=mw_rss_topstories",
+      "published": "Sat, 06 Jun 2026 16:21:00 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "5월 美고용 17만2000명 증가(예상 2배 상회) → 연준 금리인상 기대 강화 → 나스닥 -4.18%, 필라반도체 -10.26% 급락, VIX 39.68% 폭등",
+  "sentiment_reason": "필라델피아반도체 -10.26% 급락, VIX +39.68% 공포지수 급등으로 AI 버블 우려 본격화 — 한국 코스피 -5.54% 동반 붕괴",
   "key_factors": [
-    "5월 美비농업 일자리 17만2000명 증가(예상치 2배) — 금리인상 기대 확산, 30년 국채 5.0% 돌파",
-    "필라델피아반도체 -10.26%, 마블·마이크론 주도 반도체 6년래 최악 낙폭 — AI 과다지출 우려·모델라우팅 확산",
-    "구글·메타 거액 자금조달 계획(SpaceX 월 9.2억달러 AI컴퓨팅 리스 계약, 메타 수백억달러 증자 검토) — AI 투자 지속성 우려 증폭"
+    "글로벌 반도체 섹터 6년 만에 최악의 하루 — Marvell·Micron 급락으로 AI 밸류에이션 재평가 시작",
+    "ECB 기준금리 인상 예고 + 연준 이사 규제완화 경고로 긴축 리스크 재부상",
+    "한국 신용대출 3일 만에 1조원 폭증 + 한은 7~8월 연속 금리인상 전망에 빚투족 패닉"
   ],
-  "news_summary": "5월 美비농업 일자리 17만2000명 증가(예상치 2배, 전월 11만5000명 대비 확대) — 연준 금리인상 기대 확산, 30년 국채 5.0% 돌파\n美 30년 국채 5.02%(+0.04%p), 10년물 4.54%(+0.06%p) 급등 — 고용호조로 장기 인플레 우려 재점화, 채권·주식·금 동반 급락\n국제 금 선물 -3% 급락, 연초 수준 회귀 — 금리인상 기대·달러 강세로 올해 상승분 전량 반납, 온스당 5500달러 고점 대비 조정\n달러인덱스 100.07(+0.66%) — 금리인상 기대·안전자산 선호로 신흥국 통화 전반 약세, 원화 1558원대 급등\n트럼프 행정부·OpenAI, 정부 지분 투자 논의 중 — 2025년부터 1년 이상 협상, AI 국가 전략 차원 정부 자본 참여 가능성\nOpenAI, 트럼프 행정령(AI 모델 사전 정부 검토) 준수 확인 — 조지 오스본 국가책임자 \"연방정부 평가 수용\" 공식화\n한국 정부, 7월부터 전기차 보조금에 공급망 평가 도입 — 테슬라·BYD 등 외산 전기차 탈락 가능성, 미국 통상마찰 우려\n필라델피아반도체 -10.26%, 마블·마이크론 주도 6년래 최악 낙폭 — AI 모델라우팅 확산(저비용 모델 선호)으로 반도체 수요 둔화 우려, 금리인상 기대 추가 타격\n구글, SpaceX에 월 9.2억달러(총 300억달러 규모) AI 컴퓨팅 리스 계약 — xAI 데이터센터 엔비디아 GPU 11만개 사용권 확보, IPO 직전 SpaceX 현금흐름 강화\n메타, 수백억달러 규모 증자 검토 — FT 보도, 구글 거액 AI투자 이후 빅테크 자금조달 도미노 우려, 메타 주가 -5% 급락\n엔비디아, 한국 AI기술센터 설립 착수 — 젠슨 황 \"서울 유력\" 발언, 피지컬AI 솔루션 아키텍트 채용 시작, 4개 신사업(베라루빈·베라CPU·RTX스파크·로보틱스) 한국 제공\n애플 WWDC(6월 9일), 팀 쿡 CEO 마지막 개발자컨퍼런스 — 2년 전 약속한 AI 경험 실현 여부 핵심, 아이폰 모멘텀 개선 속 주가 신고가 근접\nAI 모델라우팅 확산 — CFO·이사회가 과다 AI지출 통제, 최고성능 모델 대신 저비용 모델 선호 증가, OpenAI·Anthropic 매출 압박 구조\n소프트뱅크 손정의 \"OpenAI 차기 모델, AI가 설계 중 — 초지능(superintelligence) 신호\" CNBC 인터뷰",
+  "news_summary": "ECB, G7 중 가장 매파적 기조 강화 — 금리인상 예고로 유럽 긴축 리스크 재부상\n연준 마이클 바 이사, 트럼프 행정부 은행규제 완화를 \"단기 흥분제, 장기 사회비용 초래\" 비판 — 금융안정 리스크 경고\nVIX +39.68% 폭등 — 2개월 반도체 80% 랠리 급반전으로 6년 만에 최악의 공포지수 급등\n미국 국채 10년물 4.54%(+1.32%), 30년물 5.0% — ECB 긴축 시그널에 글로벌 장기금리 상승 압력\n미국 무역법 301조 강제노동 관세 12.5% 7월 부과 예고 + EU 7월부터 철강 고율관세 — 한국 통상전략 재시험대\n한국 지방선거 후 과천·용산 주택공급 대책 순항 불확실 — 정부·지자체 갈등 지속\nDoubleLine·Oaktree 등 채권운용사, AI 거품 붕괴 리스크 대비 포지션 구축 중\nMarvell·Micron 급락으로 반도체 섹터 6년 만에 최악의 하루 — AI 밸류에이션 재평가 시작\nUber·Microsoft·Nvidia, AI 예산 축소 후 인력 채용 확대 — \"AI보다 인간이 저렴\" 시그널로 AI 투자 열기 냉각 우려\nEli Lilly 비만치료제 retatrutide, 2상 임상서 체중감소·당뇨·관절염·수면무호흡 개선 광범위 효과 입증 — GLP-1 차세대 경쟁 본격화\nSpaceX IPO 청약 2배 초과 달성 전망(로이터) — 우주 산업 민간투자 열기 지속\nBoeing 787 드림라이너, 사우디 Riyadh Air에 첫 인도 — 중동 항공 수요 확대",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "5월 美비농업 일자리 17만2000명 증가(예상치 2배, 전월 11만5000명 대비 확대) — 연준 금리인상 기대 확산, 30년 국채 5.0% 돌파",
+          "text": "ECB, G7 중 가장 매파적 기조 강화 — 금리인상 예고로 유럽 긴축 리스크 재부상",
           "impact": "high"
         },
         {
-          "text": "美 30년 국채 5.02%(+0.04%p), 10년물 4.54%(+0.06%p) 급등 — 고용호조로 장기 인플레 우려 재점화, 채권·주식·금 동반 급락",
+          "text": "연준 마이클 바 이사, 트럼프 행정부 은행규제 완화를 \"단기 흥분제, 장기 사회비용 초래\" 비판 — 금융안정 리스크 경고",
           "impact": "high"
         },
         {
-          "text": "국제 금 선물 -3% 급락, 연초 수준 회귀 — 금리인상 기대·달러 강세로 올해 상승분 전량 반납, 온스당 5500달러 고점 대비 조정",
-          "impact": "high"
+          "text": "VIX +39.68% 폭등 — 2개월 반도체 80% 랠리 급반전으로 6년 만에 최악의 공포지수 급등",
+          "impact": "mid"
         },
         {
-          "text": "달러인덱스 100.07(+0.66%) — 금리인상 기대·안전자산 선호로 신흥국 통화 전반 약세, 원화 1558원대 급등",
+          "text": "미국 국채 10년물 4.54%(+1.32%), 30년물 5.0% — ECB 긴축 시그널에 글로벌 장기금리 상승 압력",
           "impact": "mid"
         }
       ]
@@ -7667,15 +7670,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "트럼프 행정부·OpenAI, 정부 지분 투자 논의 중 — 2025년부터 1년 이상 협상, AI 국가 전략 차원 정부 자본 참여 가능성",
+          "text": "미국 무역법 301조 강제노동 관세 12.5% 7월 부과 예고 + EU 7월부터 철강 고율관세 — 한국 통상전략 재시험대",
           "impact": "high"
         },
         {
-          "text": "OpenAI, 트럼프 행정령(AI 모델 사전 정부 검토) 준수 확인 — 조지 오스본 국가책임자 \"연방정부 평가 수용\" 공식화",
+          "text": "한국 지방선거 후 과천·용산 주택공급 대책 순항 불확실 — 정부·지자체 갈등 지속",
           "impact": "mid"
         },
         {
-          "text": "한국 정부, 7월부터 전기차 보조금에 공급망 평가 도입 — 테슬라·BYD 등 외산 전기차 탈락 가능성, 미국 통상마찰 우려",
+          "text": "DoubleLine·Oaktree 등 채권운용사, AI 거품 붕괴 리스크 대비 포지션 구축 중",
           "impact": "mid"
         }
       ]
@@ -7685,31 +7688,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "필라델피아반도체 -10.26%, 마블·마이크론 주도 6년래 최악 낙폭 — AI 모델라우팅 확산(저비용 모델 선호)으로 반도체 수요 둔화 우려, 금리인상 기대 추가 타격",
+          "text": "Marvell·Micron 급락으로 반도체 섹터 6년 만에 최악의 하루 — AI 밸류에이션 재평가 시작",
           "impact": "high"
         },
         {
-          "text": "구글, SpaceX에 월 9.2억달러(총 300억달러 규모) AI 컴퓨팅 리스 계약 — xAI 데이터센터 엔비디아 GPU 11만개 사용권 확보, IPO 직전 SpaceX 현금흐름 강화",
+          "text": "Uber·Microsoft·Nvidia, AI 예산 축소 후 인력 채용 확대 — \"AI보다 인간이 저렴\" 시그널로 AI 투자 열기 냉각 우려",
           "impact": "high"
         },
         {
-          "text": "메타, 수백억달러 규모 증자 검토 — FT 보도, 구글 거액 AI투자 이후 빅테크 자금조달 도미노 우려, 메타 주가 -5% 급락",
+          "text": "Eli Lilly 비만치료제 retatrutide, 2상 임상서 체중감소·당뇨·관절염·수면무호흡 개선 광범위 효과 입증 — GLP-1 차세대 경쟁 본격화",
           "impact": "high"
         },
         {
-          "text": "엔비디아, 한국 AI기술센터 설립 착수 — 젠슨 황 \"서울 유력\" 발언, 피지컬AI 솔루션 아키텍트 채용 시작, 4개 신사업(베라루빈·베라CPU·RTX스파크·로보틱스) 한국 제공",
-          "impact": "high"
-        },
-        {
-          "text": "애플 WWDC(6월 9일), 팀 쿡 CEO 마지막 개발자컨퍼런스 — 2년 전 약속한 AI 경험 실현 여부 핵심, 아이폰 모멘텀 개선 속 주가 신고가 근접",
+          "text": "SpaceX IPO 청약 2배 초과 달성 전망(로이터) — 우주 산업 민간투자 열기 지속",
           "impact": "mid"
         },
         {
-          "text": "AI 모델라우팅 확산 — CFO·이사회가 과다 AI지출 통제, 최고성능 모델 대신 저비용 모델 선호 증가, OpenAI·Anthropic 매출 압박 구조",
-          "impact": "mid"
-        },
-        {
-          "text": "소프트뱅크 손정의 \"OpenAI 차기 모델, AI가 설계 중 — 초지능(superintelligence) 신호\" CNBC 인터뷰",
+          "text": "Boeing 787 드림라이너, 사우디 Riyadh Air에 첫 인도 — 중동 항공 수요 확대",
           "impact": "mid"
         }
       ]
@@ -7717,222 +7712,221 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "5월 고용 17만2000명 증가(예상치 2배)로 금리인상 기대 확산, 30년 국채 5.0% 돌파하며 밸류에이션 부담 → 기술주·성장주 동반 급락",
+      "reason": "Marvell·Micron 등 반도체주 급락으로 AI 밸류에이션 거품 우려 확산 — 2개월 80% 랠리의 반동 매물",
       "drivers": [
-        "고용호조 → 금리인상 기대",
-        "장기금리 급등 압박"
+        "반도체 섹터 -10.26% 급락",
+        "VIX +39.68% 공포지수 폭등"
       ]
     },
     "NASDAQ": {
-      "reason": "금리인상 기대 + 반도체·빅테크 동반 급락 — 마블·마이크론 폭락, 메타 증자 우려, AI 과다지출 경계로 기술주 전면 타격",
+      "reason": "Marvell·Micron 급락이 기술주 전반으로 전이 — 빅테크 AI 투자 예산 축소 시그널(Uber·MS·NVDA 인력 전환)",
       "drivers": [
-        "필라반도체 -10.26%",
-        "메타 증자 우려 -5%"
+        "필라델피아반도체 -10.26%",
+        "AI 버블 우려 확산"
       ]
     },
     "DOW": {
-      "reason": "금리인상 기대 확산에 따른 전반적 위험회피 — 기술주 대비 상대적 선방, 경기민감·금융주 혼조",
+      "reason": "반도체 급락에도 방어주 중심 구성으로 낙폭 제한 — ECB 긴축 우려는 부담",
       "drivers": [
-        "고용호조 → 금리인상 기대",
-        "가치주 상대 방어"
+        "반도체 외 섹터 상대적 방어",
+        "ECB 금리인상 예고"
       ]
     },
     "VIX": {
-      "reason": "금리인상 기대·반도체 급락·빅테크 자금조달 우려 복합 → 투자심리 급랭, 변동성 폭발",
+      "reason": "2개월간 80% 반도체 랠리의 급격한 반전 — 칩 섹터 6년 만에 최악의 날로 시장 공포 급등",
       "drivers": [
-        "나스닥 -4.18% 충격",
-        "필라반도체 -10.26%"
+        "필라델피아반도체 -10.26%",
+        "AI 밸류에이션 재평가"
       ]
     },
     "필라델피아반도체": {
-      "reason": "마블·마이크론 주도 6년래 최악 낙폭 — AI 모델라우팅 확산(저비용 모델 선호)으로 반도체 수요 둔화 우려, 금리인상 기대 추가 압박",
+      "reason": "Marvell·Micron 급락이 촉매 — 6년 만에 최악의 하루로 2개월 80% 랠리 반동",
       "drivers": [
-        "마블·마이크론 급락",
-        "AI 과다지출 경계·모델라우팅"
+        "Marvell 급락",
+        "Micron 급락"
       ]
     },
     "러셀2000": {
-      "reason": "금리인상 기대 강화 → 중소형주 밸류에이션·자금조달 부담 심화, 나스닥 동조 급락",
+      "reason": "대형주 반도체 충격이 중소형주로 전이 — 리스크오프 심리에 동조 하락",
       "drivers": [
-        "장기금리 5.0% 돌파",
-        "위험회피 심리 확산"
+        "반도체 급락 파급",
+        "VIX 급등 공포 확산"
       ]
     },
     "영국FTSE": {
-      "reason": "미국 금리인상 기대에도 유럽 현지 이슈 부재 — 에너지·방어주 지지로 소폭 상승 마감",
+      "reason": "미국 반도체 쇼크와 분리 — Frasers 쇼핑센터 5억파운드 인수 관측 등 내수 이슈로 소폭 상승",
       "drivers": [
-        "유럽 현지 촉매 없음",
-        "에너지 섹터 방어"
+        "미국 시장과 디커플링",
+        "내수 M&A 이슈"
       ]
     },
     "독일DAX": {
-      "reason": "미국 금리인상 우려 속 유럽 경기 안정 기대 — 산업재·수출주 견조, 미국 충격 분리",
+      "reason": "ECB 금리인상 예고로 긴축 우려 부담 — 반도체 글로벌 충격 동조 하락",
       "drivers": [
-        "유럽 경기 안정",
-        "미국 리스크 분리"
+        "ECB 금리인상 시그널",
+        "글로벌 반도체 급락"
       ]
     },
     "니케이": {
-      "reason": "미국 금리인상 기대·나스닥 급락 동조 — 반도체·수출주 하락, 엔화 약세 제한적 지지",
+      "reason": "필라델피아반도체 -10.26% 충격파 — 아시아 반도체 공급망 동조 하락",
       "drivers": [
-        "나스닥 -4.18% 충격",
-        "반도체 섹터 압박"
+        "글로벌 반도체 급락",
+        "달러/엔 변동성"
       ]
     },
     "항셍": {
-      "reason": "미국 금리인상 기대·기술주 급락 동조 — 중국 현지 촉매 부재, 홍콩 테크 약세",
+      "reason": "미국 반도체 급락 여파 — 중국 테크주 동조 약세",
       "drivers": [
-        "나스닥 급락 동조",
-        "중국 현지 이슈 없음"
+        "미 반도체 -10.26%",
+        "글로벌 리스크오프"
       ]
     },
     "달러인덱스": {
-      "reason": "5월 고용 호조 → 연준 금리인상 기대 강화, 안전자산 선호 복합 → 달러 수요 급증",
+      "reason": "ECB 금리인상 예고에도 VIX 급등 안전자산 수요로 달러 강세 — 연준 이사의 규제완화 경고도 지지",
       "drivers": [
-        "금리인상 기대",
+        "VIX +39.68% 공포",
         "안전자산 선호"
       ]
     },
     "국채10Y": {
-      "reason": "5월 고용 17만2000명(예상치 2배) → 인플레 재점화·금리인상 기대 확산, 채권 매도 압력 증가",
+      "reason": "ECB 긴축 시그널 + 연준 이사 규제완화 비판으로 장기 긴축 우려 — 채권 매도",
       "drivers": [
-        "고용호조 → 금리인상 기대",
-        "장기채 매도 압력"
+        "ECB 금리인상 예고",
+        "연준 이사 타카 발언"
       ]
     },
     "국채30Y": {
-      "reason": "고용호조로 장기 인플레 우려 재부상 → 30년물 5.0% 심리선 돌파, 장기채 매도 집중",
+      "reason": "ECB 금리인상 예고로 글로벌 긴축 리스크 재부상 — 장기물 금리 상승",
       "drivers": [
-        "장기 인플레 우려",
-        "30년물 5.0% 돌파"
+        "ECB 긴축 시그널",
+        "장기 금리 압력"
       ]
     },
     "코스피": {
-      "reason": "데이터 없음 — 주말 휴장",
+      "reason": "필라델피아반도체 -10.26% 글로벌 쇼크 + 한은 7~8월 연속 금리인상 전망 + 신용대출 3일 만에 1조원 빚투 후폭풍 공포",
       "drivers": [
-        "휴장"
+        "필라델피아반도체 -10.26%",
+        "한은 연속 금리인상 전망",
+        "빚투 후폭풍"
       ]
     },
     "코스닥": {
-      "reason": "데이터 없음 — 주말 휴장",
+      "reason": "글로벌 반도체 급락 + 국내 금리인상 공포로 중소형 기술주 동반 급락",
       "drivers": [
-        "휴장"
+        "필라델피아반도체 급락",
+        "한은 긴축 우려"
       ]
     },
     "금": {
-      "reason": "美금리인상 기대 강화 + 달러 강세 → 금 선물 급락, 연초 수준으로 회귀하며 올해 상승분 전량 반납",
+      "reason": "VIX 급등에도 달러 강세 +0.66%에 역상관 작동 — 안전자산 수요보다 달러 압력 우세",
       "drivers": [
-        "달러 강세 +0.66%",
-        "금리인상 기대"
+        "달러인덱스 +0.66%",
+        "실질금리 상승 압력"
       ]
     },
     "WTI유가": {
-      "reason": "금리인상 기대 → 경기 둔화·수요 감소 우려, 달러 강세 추가 압박 → 유가 3% 급락",
+      "reason": "글로벌 반도체 급락·VIX 급등으로 경기침체 우려 확산 — 수요 둔화 전망",
       "drivers": [
-        "금리인상 → 수요 우려",
-        "달러 강세"
+        "리스크오프 심리",
+        "경기 둔화 우려"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 강세 +0.66% + 美금리인상 기대 확산 → 신흥국 통화 전반 약세, 원화 1558원대 급등",
+      "reason": "코스피 -5.54% 급락 + 외국인 이탈 + 달러인덱스 +0.66% 강세 동조 — 1558원대 급등",
       "drivers": [
-        "달러 강세",
-        "금리인상 기대"
+        "코스피 급락",
+        "달러 강세"
       ]
     },
     "구리": {
-      "reason": "금리인상 기대 → 제조업·건설 수요 둔화 우려, 달러 강세 압박 → 구리 3.62% 급락",
+      "reason": "글로벌 반도체 급락으로 AI 인프라 수요 재평가 — 산업금속 동반 약세",
       "drivers": [
-        "금리인상 → 수요 우려",
-        "달러 강세"
+        "반도체 급락 파급",
+        "경기 둔화 우려"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "美금리인상 기대·필라반도체 -10% 충격 → 코스피 반도체·기술주 전면 압박 불가피, 원/달러 급등 수출 마진 악화 우려",
+    "summary": "필라델피아반도체 -10.26% 글로벌 쇼크 + 한은 7~8월 연속 금리인상 전망 + 빚투 3일 만에 1조원 폭증 공포로 코스피 -5.54% 붕괴",
     "positive_factors": [
-      "엔비디아 한국 AI기술센터(서울) 설립 착수 — 삼성전자·SK하이닉스 등 공급망 협력 확대 기대, AI 인프라 투자 지속 시그널",
-      "달러 강세·원화 약세(1558원) — 반도체·자동차 등 수출주 환차익 일부 기대, 정유 섹터 마진 개선 가능"
+      "한국 1분기 성장률 OECD 2위 기록 — 반도체 수출 호조로 연간 3% 성장 전망 부각",
+      "반도체 슈퍼사이클 세수효과 — 올해 초과세수 최대 70조원 전망으로 재정 건전성 개선 기대"
     ],
     "negative_factors": [
-      "필라델피아반도체 -10.26%, 마블·마이크론 급락 — 국내 반도체(삼성전자·SK하이닉스) 동조 하락 압력, AI 과다지출 우려 확산",
-      "美 30년 국채 5.0% 돌파·금리인상 기대 — 글로벌 유동성 긴축·밸류에이션 압박, 외국인 매도 재개 리스크"
+      "필라델피아반도체 -10.26% 6년 만에 최악의 급락 — 국내 반도체 대형·중소형 동반 충격파",
+      "한은 7~8월 연속 금리인상 전망 + 은행 주담대 3년8개월 만에 7.3% 최고 + 신용대출 3일 만에 1조원 폭증 — 빚투족 이자 부담 폭발",
+      "미 301조 강제노동 관세 12.5% + EU 철강 고율관세 7월 동시 부과 — 수출주 통상 리스크 재부상",
+      "OECD, 한국 2027년 잠재성장률 1.46% 사상 첫 1.5% 하회 전망 — 구조적 성장 한계 지적"
     ],
-    "key_watch": "월요일 코스피 개장 — 필라반도체 -10% 충격 흡수 여부, 삼성전자·SK하이닉스 낙폭 제한 가능성·엔비디아 한국 투자 수혜 판단 분기점"
+    "key_watch": "RRG 상 반도체_대형·중소형 Leading 구간이나 글로벌 쇼크로 기술적 붕괴 위험 — VCP 패턴 파괴·52주 신고가 이탈 여부가 스테이지 2→3 전환 분수령"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "반도체_대형",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 113.9·RS-M 106.5 Leading 유지 — 엔비디아 한국 AI센터 착수로 삼성전자·SK하이닉스 공급망 수혜 지속, 글로벌 급락 이후 기술적 반등 기회"
-    },
-    {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 141.9·RS-M 107.6 최강 Leading — 엔비디아 한국 투자·AI 인프라 확대 수혜, 필라반도체 급락 속 상대강도 1위 방어력"
+      "reason": "IT부품 RS-Ratio 141.91 압도적 Leading — 글로벌 반도체 쇼크 속에서도 상대강도 최강 유지, 스테이지2 지속 가능성"
+    },
+    {
+      "sector": "보험",
+      "rrg_quadrant": "leading",
+      "reason": "보험 Leading(RS-R=106.4, RS-M=102.9) — 금리인상 수혜 + 방어주 성격으로 리스크오프 시 자금 유입"
     }
   ],
   "watch": [
     {
-      "sector": "조선",
-      "reason": "RS-R 87.4·RS-M 94.7 Lagging, 글로벌 금리인상 기대로 경기민감 섹터 압박 — 단기 모멘텀 부재, 추가 하락 위험"
+      "sector": "반도체_대형",
+      "reason": "반도체_대형 Leading이나 필라델피아반도체 -10.26% 글로벌 쇼크로 52주 신고가 이탈 시 스테이지2→3 전환 리스크 — 단기 관망 후 VCP 재형성 확인 필요"
     },
     {
-      "sector": "2차전지_셀",
-      "reason": "RS-R 85.7·RS-M 88.4 Lagging, 필라반도체 급락·AI 과다지출 우려 확산 — 2차전지 수요 모멘텀 약화, 기술적 반등 확인 필요"
+      "sector": "반도체_중소형",
+      "reason": "반도체_중소형 Leading이나 글로벌 밸류에이션 재평가 여파로 낙폭 확대 가능성 — 기술적 지지 확인 전까지 신규 진입 보류"
     },
     {
-      "sector": "신재생에너지",
-      "reason": "RS-R 75.7·RS-M 84.7 Lagging, 금리인상 기대·유가 -3% 급락 — 신재생 투자 축소 우려, 모멘텀 회복 시점 불명확"
+      "sector": "AI_인프라",
+      "reason": "AI_인프라 Leading이나 Uber·MS·NVDA AI 예산 축소 시그널로 모멘텀 훼손 우려 — 추세 재확인 대기"
     }
   ],
   "avoid": [],
-  "summary": "美금리인상 기대·필라반도체 -10% 6년래 최악 충격 — 엔비디아 한국 투자 수혜, 반도체_대형·IT부품 Leading 방어 집중",
-  "strategy_brief": "5월 美고용 호조(17만2000명, 예상치 2배)가 금리인상 기대를 촉발하며 나스닥 -4.18%, 필라델피아반도체 -10.26% 급락했고, 30년 국채가 5.0%를 돌파하며 글로벌 위험자산 전면 타격을 입었다. 월요일 코스피는 이 충격을 정면으로 맞을 수밖에 없으나, 엔비디아의 한국 AI기술센터(서울) 설립 착수와 구글의 월 9.2억달러 AI 컴퓨팅 투자는 삼성전자·SK하이닉스 등 국내 반도체 공급망 수혜가 지속됨을 재확인시킨다. 반도체_대형(RS-R 113.9)과 IT부품(RS-R 141.9) 섹터가 Leading 구간을 유지하며 상대강도 방어력을 보이는 만큼, 글로벌 급락 이후 기술적 반등 국면에서 선도 가능성에 집중해야 한다. 원/달러 1558원 급등은 수출주 환차익 기대를 제공하지만, AI 과다지출 우려와 모델라우팅 확산이라는 구조적 리스크가 부상한 만큼 단기 변동성 확대를 전제로 Leading 섹터 중심 방어 전략이 필수다.",
-  "strategy_headline": "美금리인상 충격 흡수 — 반도체·IT부품 Leading 방어 집중",
+  "summary": "AI 밸류에이션 붕괴 쇼크 + 한은 연속 금리인상 공포 — 반도체 Leading 붕괴 리스크, IT부품·보험 방어 집중",
+  "strategy_brief": "필라델피아반도체 -10.26% 6년 만에 최악의 급락과 VIX +39.68% 공포지수 폭등은 2개월간 80% 반도체 랠리의 급격한 반전을 의미하며, Uber·MS·NVDA의 AI 예산 축소 시그널이 밸류에이션 재평가를 촉발했다. 국내는 한은 7~8월 연속 금리인상 전망과 신용대출 3일 만에 1조원 폭증 공포가 코스피 -5.54% 붕괴를 심화시켰고, 반도체_대형·중소형은 Leading 구간이나 글로벌 쇼크로 52주 신고가 이탈 시 스테이지2→3 전환 위험이 현실화된다. 오늘은 IT부품(RS-Ratio 141.91 압도적 Leading)과 보험(금리인상 수혜·방어주 자금 유입) 두 섹터만 선별 대응하고, 반도체는 VCP 재형성과 기술적 지지 확인 전까지 신규 진입을 보류하는 방어 전략이 최우선이다.",
+  "strategy_headline": "AI 밸류에이션 붕괴 쇼크 — 방어주·상대강도 최강 IT부품만 선별",
   "strategy_points": [
-    "5월 美고용 호조(17만2000명) → 30년 국채 5.0% 돌파, 필라반도체 -10% 6년래 최악 — 월요일 코스피 동조 압박 불가피",
-    "엔비디아 한국 AI센터 착수·구글 AI투자 지속 시그널 — 삼성전자·SK하이닉스 공급망 수혜, 반도체_대형·IT부품 Leading 방어력 주목",
-    "원/달러 1558원 급등·달러 강세 — 수출주 환차익 일부 기대, 정유 Leading 섹터 마진 개선 가능성",
-    "AI 과다지출 우려·모델라우팅 확산 리스크 — 단기 변동성 확대, 기술적 반등 확인 후 진입 원칙"
+    "필라델피아반도체 -10.26% 6년 만에 최악의 날 — AI 버블 재평가로 VIX +39.68% 공포 급등",
+    "한은 7~8월 연속 금리인상 전망 + 빚투 3일 만에 1조원 폭증 — 국내 유동성 긴축 이중 충격",
+    "반도체 Leading이나 글로벌 쇼크로 스테이지2→3 전환 리스크 — IT부품(RS-R=141.91)·보험 방어 집중",
+    "미 301조·EU 철강 관세 7월 동시 부과 + OECD 잠재성장률 1.5% 하회 경고 — 중기 구조적 리스크 상존"
   ],
   "top_picks": [
     {
-      "sector": "반도체_대형",
+      "sector": "보험",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 113.9·RS-M 106.5 Leading 유지 — 엔비디아 한국 AI센터 착수로 삼성전자·SK하이닉스 공급망 수혜 지속, 글로벌 급락 이후 기술적 반등 기회",
+      "reason": "보험 Leading(RS-R=106.4, RS-M=102.9) — 금리인상 수혜 + 방어주 성격으로 리스크오프 시 자금 유입",
       "stocks": [
         {
-          "name": "삼성전자",
-          "code": "005930",
+          "name": "삼성화재",
+          "code": "000810",
           "signal": "prime",
-          "reason": "엔비디아 한국 AI센터(서울) 설립 착수 → HBM·파운드리 협력 확대 기대 + 반도체_대형 Leading(RS-R 113.9) 유지 → 필라반도체 급락 후 기술적 반등 선도 가능"
-        },
-        {
-          "name": "SK하이닉스",
-          "code": "000660",
-          "signal": "prime",
-          "reason": "엔비디아 한국 투자·AI 인프라 수혜 지속 판단 + 반도체_대형 Leading 구간 → 글로벌 반도체 급락 속 상대강도 방어, HBM 공급망 수혜 재확인"
+          "reason": "한은 연속 금리인상 전망 수혜 판단 + 보험 Leading(RS-R=106.4) 방어주 자금 유입 포지션"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 141.9·RS-M 107.6 최강 Leading — 엔비디아 한국 투자·AI 인프라 확대 수혜, 필라반도체 급락 속 상대강도 1위 방어력",
+      "reason": "IT부품 RS-Ratio 141.91 압도적 Leading — 글로벌 반도체 쇼크 속에서도 상대강도 최강 유지, 스테이지2 지속 가능성",
       "stocks": [
         {
-          "name": "삼성SDI",
-          "code": "006400",
+          "name": "삼성전기",
+          "code": "009150",
           "signal": "prime",
-          "reason": "IT부품 섹터 RS-R 141.9 최강 Leading + 엔비디아 AI센터·전기차 공급망 평가 도입 → 국내 배터리 기술 경쟁력 부각, 상대강도 1위 방어력"
+          "reason": "글로벌 반도체 쇼크 속 IT부품 RS-Ratio 141.91 압도적 Leading — 상대강도 최강 섹터 대표주"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "조선",
-    "2차전지_셀"
+    "반도체_대형",
+    "반도체_중소형"
   ]
 }
