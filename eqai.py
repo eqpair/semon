@@ -97,7 +97,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         # 본문 확보된 기사만 (상위 30개 후보 중 본문 100자 이상) — 최대 20개
         bodies_pool = [a for a in articles[:30] if (a.get("body") or "").strip() and len(a.get("body", "")) >= 100][:20]
         bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:300]}" for a in bodies_pool])
-        logger.info(f"Claude에 전달: 헤드라인 {min(30,len(articles))}개 + 본문 {len(bodies_pool)}개")
+        logger.info(f"전달: 헤드라인 {min(30,len(articles))}개 + 본문 {len(bodies_pool)}개")
         rrg_text        = _format_rrg(rrg_data)
         candidates_text = _format_candidates(rrg_data, [])
 
@@ -243,11 +243,11 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
             messages=[{"role": "user", "content": prompt}]
         )
         text = resp.content[0].text
-        logger.info(f"Claude XML 분석 완료 ({len(text)}자)")
+        logger.info(f"분석 완료 ({len(text)}자)")
         return _parse_xml_response(text, rrg_data)
 
     except Exception as e:
-        logger.error(f"Claude 분석 실패: {e}")
+        logger.error(f"분석 실패: {e}")
         return _placeholder_analysis(news_data, rrg_data)
 
 
@@ -271,7 +271,15 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
 
     xml_text = m.group()
     xml_text = re.sub(r"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;", xml_text)
-    root = ET.fromstring(xml_text)
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError as pe:
+        import time
+        fail_path = f"/tmp/claude_fail_{int(time.time())}.xml"
+        open(fail_path, "w", encoding="utf-8").write(xml_text)
+        logger.error(f"ET 파싱 실패({pe}) — lxml recover 시도, raw 저장: {fail_path}")
+        from lxml import etree as _lxml_etree
+        root = _lxml_etree.fromstring(xml_text.encode("utf-8"), _lxml_etree.XMLParser(recover=True))
 
     def get(tag, default=""):
         el = root.find(tag)
@@ -425,15 +433,15 @@ def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
 
     return {
         "global_sentiment":  sentiment,
-        "sentiment_reason":  "매크로 지표 기반 자동 판단 (Claude API 미연결)",
-        "key_factors":       ["Claude API 연결 후 상세 분석 제공됩니다"],
-        "news_summary":      f"수집된 기사 {len(news_data.get('articles', []))}개 | Claude API 연결 후 뉴스 분석이 제공됩니다.",
+        "sentiment_reason":  "매크로 지표 기반 자동 판단 (API 미연결)",
+        "key_factors":       ["API 연결 후 상세 분석 제공됩니다"],
+        "news_summary":      f"수집된 기사 {len(news_data.get('articles', []))}개 | API 연결 후 뉴스 분석이 제공됩니다.",
         "news_categories":   [],
         "macro_reasons":     {},
         "strong_buy":        strong_buy,
         "watch":             [{"sector": s, "reason": "RRG Leading — 모멘텀 확인 필요"} for s in leading[:2]],
         "avoid":             [],
-        "summary":           "Claude API 연결 후 종합 판단이 제공됩니다.",
+        "summary":           "API 연결 후 종합 판단이 제공됩니다.",
         "top_picks":         top_picks,
         "caution_sectors":   [],
     }
@@ -519,7 +527,7 @@ def run():
     logger.info("RRG 데이터 fetch 중...")
     rrg_data = fetch_rrg_from_s3()
 
-    logger.info("Claude 분석 중...")
+    logger.info("분석 중...")
     analysis = claude_analyze(news_data, rrg_data)
 
     # ── 매크로 데이터에 원인 병합 ─────────────────────────────
