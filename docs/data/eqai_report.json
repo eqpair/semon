@@ -1,173 +1,177 @@
 {
-  "generated_at": "2026-06-10 15:19:44",
+  "generated_at": "2026-06-10 15:25:49",
   "macro": {
     "S&P500": {
       "price": NaN,
       "change": NaN,
-      "reason": "데이터 결측이나 장 마감 전 CPI 발표 대기 관망세 — 뉴스는 AI 기대감 고조(애플·엔비디아 파트너십)와 SpaceX IPO 과열 우려 혼재",
+      "reason": "데이터 nan이나 필라델피아반도체·러셀2000 강세 및 VIX 급락으로 보아 기술주 중심 상승 추정 - Apple AI 파트너십 및 CPI 발표 전 관망",
       "drivers": [
-        "Apple-Google-Nvidia AI 파트너십",
-        "CPI 발표 대기"
+        "Apple-Google-Nvidia AI 협업 발표",
+        "SpaceX IPO 수요 폭발"
       ]
     },
     "NASDAQ": {
       "price": NaN,
       "change": NaN,
-      "reason": "데이터 결측이나 애플 주가 -3% 하락(Siri 공개 후 실망 매물) + SpaceX IPO 쏠림 우려가 빅테크 일부 조정 유발",
+      "reason": "데이터 nan이나 필라델피아반도체 +5.61%로 보아 AI 반도체 중심 강세 추정 - Apple Intelligence 발표 및 메모리 슈퍼사이클 기대",
       "drivers": [
-        "Apple -3% (Siri AI 기대치 미달)",
-        "SpaceX IPO 쏠림"
+        "Apple AI 프레임워크 공개",
+        "Micron 메모리 슈퍼사이클 전망"
       ]
     },
     "DOW": {
       "price": NaN,
       "change": NaN,
-      "reason": "데이터 결측 — CPI 발표 전 대형주 관망, 러셀2000 +0.77%로 소형주 상대 강세",
+      "reason": "데이터 nan이나 기술주 중심 랠리로 상대적 소외 추정 - 전통 산업주 대비 AI 섹터 쏠림",
       "drivers": [
-        "CPI 대기 관망"
+        "AI 중심 자금 이동"
       ]
     },
     "VIX": {
       "price": 18.92,
       "change": -12.04,
-      "reason": "필라델피아반도체 +5.61%·메모리 슈퍼사이클 재확인으로 AI 섹터 변동성 축소 — 리스크 회피 심리 완화",
+      "reason": "18.92로 -12.04% 급락 - Apple AI 발표로 빅테크 불확실성 해소 및 SpaceX IPO 성공적 수요로 위험선호 확대",
       "drivers": [
-        "반도체 랠리",
-        "AI 투자 확신 강화"
+        "Apple AI 로드맵 명확화",
+        "SpaceX 청약 4배 초과"
       ]
     },
     "필라델피아반도체": {
       "price": 12906.69,
       "change": 5.61,
-      "reason": "Micron 슈퍼사이클 보도(메모리 섹터 강세) + Apple-Nvidia AI 파트너십으로 HBM·AI 칩 수요 재확인 — 반도체 전반 강세",
+      "reason": "12,906.69로 +5.61% 급등 - Apple이 Google·Nvidia와 최첨단 AI 모델 파트너십 발표, Micron 메모리 슈퍼사이클 전망 및 중국 도매물가 3.9% 상승(AI 투자 붐) 신호",
       "drivers": [
-        "Micron 메모리 슈퍼사이클 신호",
-        "Apple-Nvidia AI 파트너십"
+        "Apple-Nvidia AI 협업",
+        "Micron 메모리 슈퍼사이클",
+        "중국 AI 수요 급증"
       ]
     },
     "러셀2000": {
       "price": 2855.42,
       "change": 0.77,
-      "reason": "직접 촉매 약하나 대형 테크 일부 조정 속에 소형주 상대 매력 부각 — SpaceX IPO 수혜주·AI 하드웨어 소형주 순환 매수",
+      "reason": "2,855.42로 +0.77% 상승 - 대형주 중심 랠리 속 소형주도 동조 상승, SpaceX IPO 유동성 효과 일부 파급",
       "drivers": [
-        "SpaceX IPO 테마",
-        "대형주 대비 상대 강세"
+        "대형주 랠리 동조화",
+        "SpaceX IPO 시장 유동성"
       ]
     },
     "영국FTSE": {
       "price": 10373.2,
       "change": 0.05,
-      "reason": "+0.05% 보합 — 유럽 내 직접 촉매 없음, ECB 핀테크 규제 이슈(Revolut) 있으나 영향 제한적",
+      "reason": "10,373.2로 +0.05% 보합 - 미국 기술주 랠리에서 소외, ECB의 Revolut 규제 강화 유럽 금융주 압박",
       "drivers": [
-        "직접 촉매 없음"
+        "미국 AI 랠리 소외",
+        "ECB 핀테크 규제"
       ]
     },
     "독일DAX": {
       "price": 24616.22,
       "change": -0.58,
-      "reason": "-0.58% 약세 — ECB Revolut 자율 규제 개입 우려 + 중국 헬스케어 밸류에이션 급락(AI 자금 이탈) 여파로 유럽 소비·핀테크 섹터 조정",
+      "reason": "24,616.22로 -0.58% 하락 - 미국 AI 섹터 쏠림 속 유럽 제조업 상대적 약세, ECB 규제 우려",
       "drivers": [
-        "ECB Revolut 규제",
-        "중국 헬스케어 AI 자금 이탈"
+        "AI 랠리 지역 편중",
+        "유럽 제조업 둔화"
       ]
     },
     "니케이": {
-      "price": 64201.39,
-      "change": 0.28,
-      "reason": "+0.28% 소폭 상승 — 필라델피아반도체 강세 동조 + 엔화 약세 유지로 수출주 지지",
+      "price": 64313.47,
+      "change": 0.45,
+      "reason": "64,313.47로 +0.45% 소폭 상승 - 필라델피아반도체 강세 동조 효과 제한적, 엔화 약세 수출주 지지",
       "drivers": [
-        "필라델피아반도체 +5.61%",
-        "엔화 약세"
+        "반도체 동조 효과",
+        "엔화 약세 수출 수혜"
       ]
     },
     "항셍": {
-      "price": 24347.37,
-      "change": -1.26,
-      "reason": "-1.26% 하락 — 중국 헬스케어 밸류에이션 사상 최저(AI 자금 쏠림) + 중국 5월 도매물가(PPI) 4년 최고(+3.9%, 이란 전쟁 원자재 비용 급등) 부담",
+      "price": 24384.81,
+      "change": -1.1,
+      "reason": "24,384.81로 -1.10% 하락 - 중국 헬스케어주 사상 최저 밸류에이션(AI 자금 이탈), 도매물가 3.9% 상승에도 소비 부진 지속",
       "drivers": [
-        "중국 헬스케어 밸류에이션 급락",
-        "중국 PPI +3.9% (이란 전쟁 원자재 비용)"
+        "AI 쏠림 헬스케어 이탈",
+        "내수 소비 부진"
       ]
     },
     "달러인덱스": {
-      "price": 99.87,
-      "change": -0.18,
-      "reason": "-0.18% 약세 — CPI 발표 전 달러 차익실현 + 원자재(유가·금) 조정으로 안전자산 선호 약화",
+      "price": 99.85,
+      "change": -0.2,
+      "reason": "99.85로 -0.20% 하락 - CPI 발표 전 관망 및 위험자산 선호로 안전자산 수요 감소",
       "drivers": [
-        "CPI 발표 대기",
-        "금 -0.47%"
+        "CPI 발표 전 관망",
+        "위험자산 선호 확대"
       ]
     },
     "국채10Y": {
       "price": 4.55,
       "change": 0.35,
-      "reason": "+0.35% 상승(4.55%) — 중국 PPI 급등(+3.9%)으로 글로벌 인플레 재점화 우려 + 미국 CPI 발표 전 경계",
+      "reason": "4.55%로 +0.35% 상승(수익률↑ 가격↓) - CPI 발표 앞두고 인플레 우려 재부각, AI 투자 붐 경기 과열 신호",
       "drivers": [
-        "중국 PPI 4년 최고",
-        "CPI 발표 전 긴장"
+        "CPI 인플레 경계",
+        "AI 경기 과열 우려"
       ]
     },
     "국채30Y": {
       "price": 5.02,
       "change": 0.5,
-      "reason": "+0.50% 상승(5.02%) — 장기 인플레 우려 심화(이란 전쟁 원자재 비용) + AI 데이터센터 전력 수요 증가로 에너지 비용 구조적 상승 예상",
+      "reason": "5.02%로 +0.50% 상승(수익률↑ 가격↓) - 장기 인플레 기대 상승, 중국 도매물가 4년來 최고 원자재 압박",
       "drivers": [
-        "이란 전쟁 원자재 비용",
-        "AI 데이터센터 전력 수요"
+        "장기 인플레 기대",
+        "중국 원자재 비용 급등"
       ]
     },
     "코스피": {
-      "price": 7607.54,
-      "change": 1.65,
-      "reason": "+1.65% 강세 — 필라델피아반도체 +5.61% 급등 + 삼성전자 미국 바이오(엘리먼트) 최대주주 취득($175M, 정밀의료 시장 진출) 호재로 반도체·헬스케어 동반 상승",
+      "price": 7629.3,
+      "change": 1.94,
+      "reason": "7,629.3으로 +1.94% 강세 - 필라델피아반도체 +5.61% 영향으로 삼성전자·SK하이닉스 급등, 외환당국의 스페이스X 청약 제한(원화 방어)에도 반도체 모멘텀 압도",
       "drivers": [
-        "필라델피아반도체 +5.61%",
-        "삼성전자 미국 바이오 최대주주"
+        "필라델피아반도체 급등",
+        "Apple AI 파트너십 수혜",
+        "메모리 슈퍼사이클 기대"
       ]
     },
     "코스닥": {
-      "price": 941.75,
-      "change": 3.33,
-      "reason": "+3.33% 급등 — 정부 AI 유니콘 15곳 육성(글로벌 진출 지원) + SpaceX IPO 초과청약 3.3배로 우주·AI 테마주 급등",
+      "price": 941.35,
+      "change": 3.29,
+      "reason": "941.35로 +3.29% 급등 - AI 인프라·IT부품 섹터 Leading 지속, 정부 AI 유니콘 15개사 육성 정책 및 반도체 중소형 동조 강세",
       "drivers": [
-        "정부 AI 유니콘 15곳 육성",
-        "SpaceX IPO 초과청약"
+        "AI 인프라 Leading",
+        "정부 AI 유니콘 육성",
+        "반도체 중소형 동조"
       ]
     },
     "금": {
-      "price": 4239.8,
-      "change": -0.47,
-      "reason": "-0.47% 하락 — 달러인덱스 -0.18% 약세에도 VIX -12.04% 안정화로 안전자산 수요 감소 + AI 반도체 랠리로 위험자산 선호",
+      "price": 4236.1,
+      "change": -0.56,
+      "reason": "4,236.1로 -0.56% 하락 - VIX 급락 및 위험자산 선호 확대로 안전자산 수요 감소, 연준 금리 인하 기대 후퇴",
       "drivers": [
-        "VIX -12.04%",
-        "AI 반도체 랠리"
+        "위험선호 확대",
+        "금리 인하 기대 약화"
       ]
     },
     "WTI유가": {
-      "price": 87.93,
-      "change": -0.31,
-      "reason": "-0.31% 소폭 하락 — 중국 PPI 급등(+3.9%)에도 불구 이란 전쟁 직접 확전 없이 공급 우려 완화 + 달러 약세 제한적",
+      "price": 88.06,
+      "change": -0.16,
+      "reason": "88.06으로 -0.16% 소폭 하락 - 중국 도매물가 상승에도 이란 전쟁 프리미엄 제한적, 수요 둔화 우려",
       "drivers": [
-        "이란 전쟁 직접 확전 없음",
-        "달러 약세 제한적"
+        "중국 수요 불확실성",
+        "이란 전쟁 제한적 영향"
       ]
     },
     "원달러": {
-      "price": 1525.48,
-      "change": -0.22,
-      "reason": "-0.22% 하락(1525.48원) — 코스피 +1.65%·외국인 반도체 매수 유입 기대 + 달러인덱스 -0.18% 약세 동조",
+      "price": 1524.18,
+      "change": -0.31,
+      "reason": "1,524.18로 -0.31% 원화 강세 - 외환당국 스페이스X 기관 청약 30% 배정 제한 원화 방어, 코스피 강세 외국인 유입 기대",
       "drivers": [
-        "코스피 강세",
-        "달러인덱스 -0.18%"
+        "외환당국 원화 방어",
+        "반도체 외국인 매수 기대"
       ]
     },
     "구리": {
-      "price": 6.32,
-      "change": 0.21,
-      "reason": "+0.21% 소폭 상승 — 중국 PPI 급등(+3.9%, AI·전력 수요) + 전력 인프라 수요 구조적 증가 기대(AI 데이터센터·GM 배터리 화학 확장)",
+      "price": 6.31,
+      "change": 0.17,
+      "reason": "6.31로 +0.17% 소폭 상승 - 중국 AI 투자 붐 및 도매물가 급등 원자재 수요 신호, 다만 상승폭 제한적",
       "drivers": [
-        "중국 PPI +3.9%",
-        "AI 데이터센터·GM 배터리 수요"
+        "중국 AI 인프라 수요",
+        "도매물가 원자재 압박"
       ]
     }
   },
@@ -306,7 +310,7 @@
           "rs_momentum": 106.065
         }
       ],
-      "sector_ret_5d": -15.07,
+      "sector_ret_5d": -14.61,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -445,7 +449,7 @@
           "rs_momentum": 109.447
         }
       ],
-      "sector_ret_5d": -7.49,
+      "sector_ret_5d": -6.68,
       "improving_count": 0,
       "watch_count": 1,
       "total": 27
@@ -584,7 +588,7 @@
           "rs_momentum": 96.515
         }
       ],
-      "sector_ret_5d": 10.04,
+      "sector_ret_5d": 10.08,
       "improving_count": 0,
       "watch_count": 0,
       "total": 22
@@ -723,7 +727,7 @@
           "rs_momentum": 93.103
         }
       ],
-      "sector_ret_5d": 2.79,
+      "sector_ret_5d": 3.18,
       "improving_count": 2,
       "watch_count": 1,
       "total": 31
@@ -862,7 +866,7 @@
           "rs_momentum": 88.5
         }
       ],
-      "sector_ret_5d": -14.63,
+      "sector_ret_5d": -14.55,
       "improving_count": 2,
       "watch_count": 0,
       "total": 12
@@ -1001,7 +1005,7 @@
           "rs_momentum": 87.38
         }
       ],
-      "sector_ret_5d": -12.01,
+      "sector_ret_5d": -11.9,
       "improving_count": 4,
       "watch_count": 0,
       "total": 18
@@ -1140,7 +1144,7 @@
           "rs_momentum": 89.475
         }
       ],
-      "sector_ret_5d": -4.84,
+      "sector_ret_5d": -4.92,
       "improving_count": 2,
       "watch_count": 0,
       "total": 17
@@ -1279,7 +1283,7 @@
           "rs_momentum": 85.598
         }
       ],
-      "sector_ret_5d": -6.8,
+      "sector_ret_5d": -6.68,
       "improving_count": 1,
       "watch_count": 1,
       "total": 13
@@ -1418,7 +1422,7 @@
           "rs_momentum": 86.508
         }
       ],
-      "sector_ret_5d": -9.14,
+      "sector_ret_5d": -8.71,
       "improving_count": 1,
       "watch_count": 0,
       "total": 10
@@ -1557,7 +1561,7 @@
           "rs_momentum": 95.514
         }
       ],
-      "sector_ret_5d": -16.56,
+      "sector_ret_5d": -16.25,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -1696,7 +1700,7 @@
           "rs_momentum": 107.697
         }
       ],
-      "sector_ret_5d": -26.68,
+      "sector_ret_5d": -26.6,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -1835,7 +1839,7 @@
           "rs_momentum": 94.013
         }
       ],
-      "sector_ret_5d": -5.07,
+      "sector_ret_5d": -4.88,
       "improving_count": 0,
       "watch_count": 0,
       "total": 17
@@ -1974,7 +1978,7 @@
           "rs_momentum": 84.55
         }
       ],
-      "sector_ret_5d": -2.03,
+      "sector_ret_5d": -2.22,
       "improving_count": 1,
       "watch_count": 0,
       "total": 10
@@ -2113,7 +2117,7 @@
           "rs_momentum": 99.309
         }
       ],
-      "sector_ret_5d": -23.53,
+      "sector_ret_5d": -23.55,
       "improving_count": 1,
       "watch_count": 1,
       "total": 22
@@ -2252,7 +2256,7 @@
           "rs_momentum": 89.538
         }
       ],
-      "sector_ret_5d": -7.63,
+      "sector_ret_5d": -7.87,
       "improving_count": 0,
       "watch_count": 2,
       "total": 17
@@ -2391,7 +2395,7 @@
           "rs_momentum": 103.173
         }
       ],
-      "sector_ret_5d": -13.53,
+      "sector_ret_5d": -13.5,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -2530,7 +2534,7 @@
           "rs_momentum": 109.775
         }
       ],
-      "sector_ret_5d": -21.84,
+      "sector_ret_5d": -21.8,
       "improving_count": 0,
       "watch_count": 1,
       "total": 15
@@ -2669,7 +2673,7 @@
           "rs_momentum": 95.678
         }
       ],
-      "sector_ret_5d": 0.56,
+      "sector_ret_5d": 0.64,
       "improving_count": 1,
       "watch_count": 0,
       "total": 6
@@ -2808,7 +2812,7 @@
           "rs_momentum": 110.063
         }
       ],
-      "sector_ret_5d": -9.97,
+      "sector_ret_5d": -9.76,
       "improving_count": 1,
       "watch_count": 0,
       "total": 12
@@ -2947,7 +2951,7 @@
           "rs_momentum": 94.511
         }
       ],
-      "sector_ret_5d": -11.34,
+      "sector_ret_5d": -11.35,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -3086,7 +3090,7 @@
           "rs_momentum": 108.99
         }
       ],
-      "sector_ret_5d": -19.45,
+      "sector_ret_5d": -19.44,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -3225,7 +3229,7 @@
           "rs_momentum": 92.535
         }
       ],
-      "sector_ret_5d": -6.15,
+      "sector_ret_5d": -6.08,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -3364,7 +3368,7 @@
           "rs_momentum": 90.974
         }
       ],
-      "sector_ret_5d": -5.66,
+      "sector_ret_5d": -5.48,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -3503,7 +3507,7 @@
           "rs_momentum": 95.008
         }
       ],
-      "sector_ret_5d": -10.91,
+      "sector_ret_5d": -11.04,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -3642,7 +3646,7 @@
           "rs_momentum": 88.215
         }
       ],
-      "sector_ret_5d": -6.33,
+      "sector_ret_5d": -6.49,
       "improving_count": 2,
       "watch_count": 1,
       "total": 10
@@ -3781,7 +3785,7 @@
           "rs_momentum": 92.266
         }
       ],
-      "sector_ret_5d": -9.75,
+      "sector_ret_5d": -9.5,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -3920,7 +3924,7 @@
           "rs_momentum": 95.674
         }
       ],
-      "sector_ret_5d": -13.12,
+      "sector_ret_5d": -13.15,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -4059,7 +4063,7 @@
           "rs_momentum": 98.411
         }
       ],
-      "sector_ret_5d": -10.97,
+      "sector_ret_5d": -10.87,
       "improving_count": 0,
       "watch_count": 1,
       "total": 9
@@ -4198,7 +4202,7 @@
           "rs_momentum": 95.635
         }
       ],
-      "sector_ret_5d": -3.93,
+      "sector_ret_5d": -4.44,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -4337,7 +4341,7 @@
           "rs_momentum": 91.816
         }
       ],
-      "sector_ret_5d": 0.52,
+      "sector_ret_5d": 0.71,
       "improving_count": 2,
       "watch_count": 0,
       "total": 9
@@ -4476,7 +4480,7 @@
           "rs_momentum": 89.571
         }
       ],
-      "sector_ret_5d": -5.91,
+      "sector_ret_5d": -5.65,
       "improving_count": 2,
       "watch_count": 0,
       "total": 18
@@ -4615,7 +4619,7 @@
           "rs_momentum": 104.577
         }
       ],
-      "sector_ret_5d": -14.08,
+      "sector_ret_5d": -13.61,
       "improving_count": 1,
       "watch_count": 0,
       "total": 13
@@ -4754,7 +4758,7 @@
           "rs_momentum": 93.115
         }
       ],
-      "sector_ret_5d": -2.67,
+      "sector_ret_5d": -2.36,
       "improving_count": 1,
       "watch_count": 0,
       "total": 6
@@ -4893,7 +4897,7 @@
           "rs_momentum": 89.483
         }
       ],
-      "sector_ret_5d": -9.32,
+      "sector_ret_5d": -8.9,
       "improving_count": 0,
       "watch_count": 1,
       "total": 12
@@ -5032,7 +5036,7 @@
           "rs_momentum": 90.449
         }
       ],
-      "sector_ret_5d": -10.2,
+      "sector_ret_5d": -10.05,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -5171,7 +5175,7 @@
           "rs_momentum": 102.207
         }
       ],
-      "sector_ret_5d": -8.66,
+      "sector_ret_5d": -8.61,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -5310,7 +5314,7 @@
           "rs_momentum": 84.877
         }
       ],
-      "sector_ret_5d": -8.54,
+      "sector_ret_5d": -8.45,
       "improving_count": 3,
       "watch_count": 1,
       "total": 13
@@ -5449,7 +5453,7 @@
           "rs_momentum": 92.564
         }
       ],
-      "sector_ret_5d": -2.76,
+      "sector_ret_5d": -2.63,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -5588,7 +5592,7 @@
           "rs_momentum": 78.204
         }
       ],
-      "sector_ret_5d": -4.39,
+      "sector_ret_5d": -4.5,
       "improving_count": 2,
       "watch_count": 2,
       "total": 11
@@ -5727,7 +5731,7 @@
           "rs_momentum": 86.099
         }
       ],
-      "sector_ret_5d": -5.5,
+      "sector_ret_5d": -5.49,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -5866,7 +5870,7 @@
           "rs_momentum": 93.39
         }
       ],
-      "sector_ret_5d": -9.9,
+      "sector_ret_5d": -9.73,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -6005,7 +6009,7 @@
           "rs_momentum": 92.468
         }
       ],
-      "sector_ret_5d": -4.68,
+      "sector_ret_5d": -4.58,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -6144,7 +6148,7 @@
           "rs_momentum": 97.84
         }
       ],
-      "sector_ret_5d": 0.64,
+      "sector_ret_5d": 0.82,
       "improving_count": 1,
       "watch_count": 1,
       "total": 6
@@ -6283,7 +6287,7 @@
           "rs_momentum": 91.285
         }
       ],
-      "sector_ret_5d": -3.98,
+      "sector_ret_5d": -3.71,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -6422,7 +6426,7 @@
           "rs_momentum": 91.433
         }
       ],
-      "sector_ret_5d": -8.91,
+      "sector_ret_5d": -8.8,
       "improving_count": 1,
       "watch_count": 1,
       "total": 4
@@ -6561,7 +6565,7 @@
           "rs_momentum": 98.294
         }
       ],
-      "sector_ret_5d": -5.16,
+      "sector_ret_5d": -5.23,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -6700,7 +6704,7 @@
           "rs_momentum": 91.889
         }
       ],
-      "sector_ret_5d": -10.44,
+      "sector_ret_5d": -10.35,
       "improving_count": 2,
       "watch_count": 0,
       "total": 11
@@ -6839,7 +6843,7 @@
           "rs_momentum": 93.993
         }
       ],
-      "sector_ret_5d": -2.97,
+      "sector_ret_5d": -3.04,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -6978,7 +6982,7 @@
           "rs_momentum": 86.112
         }
       ],
-      "sector_ret_5d": 1.67,
+      "sector_ret_5d": 1.65,
       "improving_count": 3,
       "watch_count": 3,
       "total": 8
@@ -7117,7 +7121,7 @@
           "rs_momentum": 88.851
         }
       ],
-      "sector_ret_5d": -1.97,
+      "sector_ret_5d": -1.96,
       "improving_count": 1,
       "watch_count": 2,
       "total": 10
@@ -7256,7 +7260,7 @@
           "rs_momentum": 91.154
         }
       ],
-      "sector_ret_5d": -0.78,
+      "sector_ret_5d": -0.65,
       "improving_count": 2,
       "watch_count": 1,
       "total": 9
@@ -7395,7 +7399,7 @@
           "rs_momentum": 89.974
         }
       ],
-      "sector_ret_5d": -0.93,
+      "sector_ret_5d": -0.61,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -7534,7 +7538,7 @@
           "rs_momentum": 94.15
         }
       ],
-      "sector_ret_5d": -4.22,
+      "sector_ret_5d": -4.19,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -7673,7 +7677,7 @@
           "rs_momentum": 101.059
         }
       ],
-      "sector_ret_5d": 16.62,
+      "sector_ret_5d": 16.99,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -7812,7 +7816,7 @@
           "rs_momentum": 94.726
         }
       ],
-      "sector_ret_5d": 3.51,
+      "sector_ret_5d": 3.13,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -7951,7 +7955,7 @@
           "rs_momentum": 91.777
         }
       ],
-      "sector_ret_5d": 4.32,
+      "sector_ret_5d": 4.36,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -8090,7 +8094,7 @@
           "rs_momentum": 94.93
         }
       ],
-      "sector_ret_5d": -1.04,
+      "sector_ret_5d": -0.95,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -8229,7 +8233,7 @@
           "rs_momentum": 104.515
         }
       ],
-      "sector_ret_5d": -12.5,
+      "sector_ret_5d": -12.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -8247,6 +8251,12 @@
       "title": "Apple’s AI could usher in a historic upgrade cycle that investors are overlooking",
       "link": "https://www.marketwatch.com/story/apples-ai-could-usher-in-a-historic-upgrade-cycle-that-investors-are-overlooking-2b47fbb3?mod=mw_rss_topstories",
       "published": "Tue, 09 Jun 2026 22:00:00 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "[단독] 스페이스X 상장, 기관청약 비율 제한…‘원화 방어’ 나선 외환당국",
+      "link": "https://www.mk.co.kr/news/stock/12070577",
+      "published": "Wed, 10 Jun 2026 15:18:26 +09:00"
     },
     {
       "source": "maeil",
@@ -8319,41 +8329,35 @@
       "title": "Angst over SpaceX IPO adds to dive in tech stocks",
       "link": "https://www.marketwatch.com/story/tech-stocks-dive-as-fridays-incoming-spacex-ipo-creates-bad-psychology-9e50510e?mod=mw_rss_topstories",
       "published": "Tue, 09 Jun 2026 21:14:00 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "SpaceX IPO explained: The price is set, but retail allocation still up in the air",
-      "link": "https://www.cnbc.com/2026/06/09/spacex-ipo-explained-stock-price-date.html",
-      "published": "Tue, 09 Jun 2026 20:43:46 GMT"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +5.61% 급등·VIX -12.04% 안정화 속에 코스피 +1.65%, 코스닥 +3.33% 강세 — AI 슈퍼사이클 재확인",
+  "sentiment_reason": "필라델피아반도체 +5.61% 급등 및 코스피/코스닥 강세(+1.94%/+3.29%), VIX 12% 급락으로 AI 반도체 중심 위험선호 확인",
   "key_factors": [
-    "Apple·Google·Nvidia AI 파트너십 체결 + 애플 차세대 Siri 공개로 AI 업그레이드 사이클 개막 기대",
-    "SpaceX IPO 수요 $250B(공모액 $75B 대비 3.3배 초과청약) 달하며 우주·AI 인프라 투자 심리 고조",
-    "Micron 등 메모리 반도체 슈퍼사이클 지속 신호 — 필라델피아반도체 +5.61% 급등, 코스피·코스닥 동반 강세"
+    "필라델피아반도체 +5.61% 급등 - Apple의 Google·Nvidia 파트너십 AI 모델 개발로 반도체 수요 사이클 재점화",
+    "SpaceX IPO 청약 4배 초과(2,500억 달러 수요) - 글로벌 유동성 및 위험자산 선호 극대화 신호",
+    "VIX -12.04% 급락 - 기술주 중심 변동성 해소 및 AI 슈퍼사이클 확신 강화"
   ],
-  "news_summary": "중국 5월 도매물가(PPI) +3.9%로 4년 최고 — 이란 전쟁 원자재 비용 급등 + AI 붐 투자 수요 동시 작용, 글로벌 인플레 재점화 경계\n미 국채 10Y +0.35%(4.55%), 30Y +0.50%(5.02%) — CPI 발표 전 긴장 + AI 데이터센터 전력 수요로 장기 에너지 비용 상승 우려\nVIX -12.04%(18.92) — 반도체 랠리로 AI 섹터 변동성 축소, 리스크 회피 심리 완화\n달러인덱스 -0.18%(99.87) — CPI 발표 전 차익실현 + 금 -0.47% 하락으로 안전자산 선호 약화\n중국 AI 사이버 공격 58% 급증 — 미국 기술 격차 추격 위해 AI 기술 탈취 집중(CrowdStrike 경고), 미중 기술 패권 갈등 심화\nECB, Revolut '자율 미사일' 규제 개입 — 유럽 내 핀테크 자율 확장 견제, 독일DAX -0.58% 하락 일부 영향\n한국 정부, AI 유니콘 후보 15곳 글로벌 진출 지원 — 맞춤형 2개국 진출 연계, 코스닥 AI 테마주 강세 기여\n벤처협회, AI 쏠림으로 바이오·소부장 자금 조달 어려움 호소 — 정책 불균형 우려, 특정 섹터 쏠림 경계 신호\nApple, Google·Nvidia와 AI 파트너십 체결 + 차세대 Siri 공개 — 역대급 업그레이드 사이클 기대 (단, 공개 후 주가 -3% 하락, 단기 실망 매물)\nMicron 등 메모리 반도체 슈퍼사이클 진행 중 — 필라델피아반도체 +5.61% 급등 견인, HBM·AI 칩 수요 지속 확인\nSpaceX IPO 수요 $250B 돌파(공모액 $75B 대비 3.3배 초과청약) — 사상 최대 IPO, 홍콩거래소 CEO \"흥미진진한 딜\" 언급, 우주·위성 테마 급등\n삼성전자, 미국 바이오 엘리먼트 최대주주 취득($175M 투자) — DNA 시퀀싱·멀티노믹스 기술 확보, 차세대 정밀의료 시장 진출 본격화\nSuper Micro $7B 자금 조달 발표($5B 증자 + $2B 전환사채) — AI 서버 주문 확대 대응, 단 주가 -9% 하락(희석 우려)\nGM, 새 배터리 화학 기술로 AI 데이터센터·에너지 저장 사업 확장 — 전력 인프라 수요 구조적 증가 확인\nAnthropic, Mythos급 AI 모델(Claude Fable) 2개월 만에 공개 — 월가 충격 모델 대중 공개, AI 경쟁 가속",
+  "news_summary": "미 국채 10Y 4.55%(+0.35%), 30Y 5.02%(+0.50%) 수익률 상승 - CPI 발표 전 인플레 우려 재부각, AI 투자 붐 경기 과열 신호로 연준 금리 인하 기대 후퇴\n중국 5월 도매물가 3.9% 상승해 4년來 최고 - 이란 전쟁 원자재 비용 급등 및 AI 투자 붐 수요 증가, 글로벌 인플레 압력 확대 신호\nVIX -12.04% 급락(18.92) - Apple AI 발표 및 SpaceX IPO 성공적 수요로 빅테크 불확실성 해소, 위험선호 심리 강화\n달러인덱스 -0.20%(99.85) - CPI 발표 전 관망 및 위험자산 선호 확대로 안전자산 수요 감소, 원달러 1,524원대 강세\n한국 외환당국, 스페이스X 기관 청약 30%만 배정 제한 - 원화 약세 방어 위해 달러 환전 물량 억제, 미래에셋 청약 철회권 부여(원달러 1,524원 -0.31%)\n중국, AI 기술 스파이 활동 확대 - 미국 사이버보안 기업 CrowdStrike 경고, 중국발 사이버공격 58%가 AI 기술 탈취 목적으로 미중 기술 격차 좁히기 시도\nECB, 핀테크 Revolut 유럽 내 '자율미사일' 규제 강화 - 유럽 금융시장 규제 압력 증가, 핀테크 섹터 밸류에이션 압박\n한국 정부, AI 유니콘 후보 15개사 선정 해외 진출 지원 - 글로벌 ICT 미래 유니콘 육성사업, 맞춤형 2개국 진출 연계 지원(코스닥 AI 인프라 Leading 지속)\nApple, Google·Nvidia와 최첨단 AI 모델 파트너십 체결 - WWDC에서 Siri AI 혁신 공개, 역사적 업그레이드 사이클 전망에도 주가 -3% 하락(단기 차익실현), 필라델피아반도체 +5.61% 급등 촉매\nMicron 등 메모리 업체 슈퍼사이클 주도 - 반도체 섹터 내 메모리 부문 강세, AI 서버 수요 폭발로 HBM·DDR5 가격 상승 사이클 본격화\nSpaceX IPO 청약 4배 초과(2,500억 달러) - 목표 750억 달러 대비 수요 폭발, 역대 최대 IPO로 글로벌 유동성 및 위험자산 선호 극대화 신호(홍콩거래소 CEO \"흥미진진한 딜\")\n삼성전자, 美 바이오 기업 엘리먼트 바이오사이언스 최대주주 - 1억7,500만 달러(2,670억원) 투자로 DNA 시퀀싱·멀티노믹스 확보, 반도체·AI와 유전체 분석 결합 정밀의료 시장 선점 전략\nSuper Micro 주가 -9% 급락 - 70억 달러 증자 계획(50억 주식 발행+20억 전환사채) 발표에도 AI 서버 주문 강조, 단기 희석 우려 압도\nOracle 주가 AI 기대감 급등 후 실적 압박 - AI 하이프로 주가 선반영, 이제 실적으로 입증해야 하는 시점 도래\n중국 헬스케어주 사상 최저 밸류에이션 - AI 섹터 자금 쏠림으로 의료 투자 급감, 항셍 -1.10% 하락 주요 원인",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "중국 5월 도매물가(PPI) +3.9%로 4년 최고 — 이란 전쟁 원자재 비용 급등 + AI 붐 투자 수요 동시 작용, 글로벌 인플레 재점화 경계",
+          "text": "미 국채 10Y 4.55%(+0.35%), 30Y 5.02%(+0.50%) 수익률 상승 - CPI 발표 전 인플레 우려 재부각, AI 투자 붐 경기 과열 신호로 연준 금리 인하 기대 후퇴",
           "impact": "high"
         },
         {
-          "text": "미 국채 10Y +0.35%(4.55%), 30Y +0.50%(5.02%) — CPI 발표 전 긴장 + AI 데이터센터 전력 수요로 장기 에너지 비용 상승 우려",
+          "text": "중국 5월 도매물가 3.9% 상승해 4년來 최고 - 이란 전쟁 원자재 비용 급등 및 AI 투자 붐 수요 증가, 글로벌 인플레 압력 확대 신호",
           "impact": "high"
         },
         {
-          "text": "VIX -12.04%(18.92) — 반도체 랠리로 AI 섹터 변동성 축소, 리스크 회피 심리 완화",
+          "text": "VIX -12.04% 급락(18.92) - Apple AI 발표 및 SpaceX IPO 성공적 수요로 빅테크 불확실성 해소, 위험선호 심리 강화",
           "impact": "mid"
         },
         {
-          "text": "달러인덱스 -0.18%(99.87) — CPI 발표 전 차익실현 + 금 -0.47% 하락으로 안전자산 선호 약화",
+          "text": "달러인덱스 -0.20%(99.85) - CPI 발표 전 관망 및 위험자산 선호 확대로 안전자산 수요 감소, 원달러 1,524원대 강세",
           "impact": "mid"
         }
       ]
@@ -8363,19 +8367,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "중국 AI 사이버 공격 58% 급증 — 미국 기술 격차 추격 위해 AI 기술 탈취 집중(CrowdStrike 경고), 미중 기술 패권 갈등 심화",
+          "text": "한국 외환당국, 스페이스X 기관 청약 30%만 배정 제한 - 원화 약세 방어 위해 달러 환전 물량 억제, 미래에셋 청약 철회권 부여(원달러 1,524원 -0.31%)",
           "impact": "high"
         },
         {
-          "text": "ECB, Revolut '자율 미사일' 규제 개입 — 유럽 내 핀테크 자율 확장 견제, 독일DAX -0.58% 하락 일부 영향",
+          "text": "중국, AI 기술 스파이 활동 확대 - 미국 사이버보안 기업 CrowdStrike 경고, 중국발 사이버공격 58%가 AI 기술 탈취 목적으로 미중 기술 격차 좁히기 시도",
           "impact": "mid"
         },
         {
-          "text": "한국 정부, AI 유니콘 후보 15곳 글로벌 진출 지원 — 맞춤형 2개국 진출 연계, 코스닥 AI 테마주 강세 기여",
+          "text": "ECB, 핀테크 Revolut 유럽 내 '자율미사일' 규제 강화 - 유럽 금융시장 규제 압력 증가, 핀테크 섹터 밸류에이션 압박",
           "impact": "mid"
         },
         {
-          "text": "벤처협회, AI 쏠림으로 바이오·소부장 자금 조달 어려움 호소 — 정책 불균형 우려, 특정 섹터 쏠림 경계 신호",
+          "text": "한국 정부, AI 유니콘 후보 15개사 선정 해외 진출 지원 - 글로벌 ICT 미래 유니콘 육성사업, 맞춤형 2개국 진출 연계 지원(코스닥 AI 인프라 Leading 지속)",
           "impact": "mid"
         }
       ]
@@ -8385,31 +8389,31 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "Apple, Google·Nvidia와 AI 파트너십 체결 + 차세대 Siri 공개 — 역대급 업그레이드 사이클 기대 (단, 공개 후 주가 -3% 하락, 단기 실망 매물)",
+          "text": "Apple, Google·Nvidia와 최첨단 AI 모델 파트너십 체결 - WWDC에서 Siri AI 혁신 공개, 역사적 업그레이드 사이클 전망에도 주가 -3% 하락(단기 차익실현), 필라델피아반도체 +5.61% 급등 촉매",
           "impact": "high"
         },
         {
-          "text": "Micron 등 메모리 반도체 슈퍼사이클 진행 중 — 필라델피아반도체 +5.61% 급등 견인, HBM·AI 칩 수요 지속 확인",
+          "text": "Micron 등 메모리 업체 슈퍼사이클 주도 - 반도체 섹터 내 메모리 부문 강세, AI 서버 수요 폭발로 HBM·DDR5 가격 상승 사이클 본격화",
           "impact": "high"
         },
         {
-          "text": "SpaceX IPO 수요 $250B 돌파(공모액 $75B 대비 3.3배 초과청약) — 사상 최대 IPO, 홍콩거래소 CEO \"흥미진진한 딜\" 언급, 우주·위성 테마 급등",
+          "text": "SpaceX IPO 청약 4배 초과(2,500억 달러) - 목표 750억 달러 대비 수요 폭발, 역대 최대 IPO로 글로벌 유동성 및 위험자산 선호 극대화 신호(홍콩거래소 CEO \"흥미진진한 딜\")",
           "impact": "high"
         },
         {
-          "text": "삼성전자, 미국 바이오 엘리먼트 최대주주 취득($175M 투자) — DNA 시퀀싱·멀티노믹스 기술 확보, 차세대 정밀의료 시장 진출 본격화",
+          "text": "삼성전자, 美 바이오 기업 엘리먼트 바이오사이언스 최대주주 - 1억7,500만 달러(2,670억원) 투자로 DNA 시퀀싱·멀티노믹스 확보, 반도체·AI와 유전체 분석 결합 정밀의료 시장 선점 전략",
           "impact": "high"
         },
         {
-          "text": "Super Micro $7B 자금 조달 발표($5B 증자 + $2B 전환사채) — AI 서버 주문 확대 대응, 단 주가 -9% 하락(희석 우려)",
+          "text": "Super Micro 주가 -9% 급락 - 70억 달러 증자 계획(50억 주식 발행+20억 전환사채) 발표에도 AI 서버 주문 강조, 단기 희석 우려 압도",
           "impact": "mid"
         },
         {
-          "text": "GM, 새 배터리 화학 기술로 AI 데이터센터·에너지 저장 사업 확장 — 전력 인프라 수요 구조적 증가 확인",
+          "text": "Oracle 주가 AI 기대감 급등 후 실적 압박 - AI 하이프로 주가 선반영, 이제 실적으로 입증해야 하는 시점 도래",
           "impact": "mid"
         },
         {
-          "text": "Anthropic, Mythos급 AI 모델(Claude Fable) 2개월 만에 공개 — 월가 충격 모델 대중 공개, AI 경쟁 가속",
+          "text": "중국 헬스케어주 사상 최저 밸류에이션 - AI 섹터 자금 쏠림으로 의료 투자 급감, 항셍 -1.10% 하락 주요 원인",
           "impact": "mid"
         }
       ]
@@ -8417,242 +8421,246 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "데이터 결측이나 장 마감 전 CPI 발표 대기 관망세 — 뉴스는 AI 기대감 고조(애플·엔비디아 파트너십)와 SpaceX IPO 과열 우려 혼재",
+      "reason": "데이터 nan이나 필라델피아반도체·러셀2000 강세 및 VIX 급락으로 보아 기술주 중심 상승 추정 - Apple AI 파트너십 및 CPI 발표 전 관망",
       "drivers": [
-        "Apple-Google-Nvidia AI 파트너십",
-        "CPI 발표 대기"
+        "Apple-Google-Nvidia AI 협업 발표",
+        "SpaceX IPO 수요 폭발"
       ]
     },
     "NASDAQ": {
-      "reason": "데이터 결측이나 애플 주가 -3% 하락(Siri 공개 후 실망 매물) + SpaceX IPO 쏠림 우려가 빅테크 일부 조정 유발",
+      "reason": "데이터 nan이나 필라델피아반도체 +5.61%로 보아 AI 반도체 중심 강세 추정 - Apple Intelligence 발표 및 메모리 슈퍼사이클 기대",
       "drivers": [
-        "Apple -3% (Siri AI 기대치 미달)",
-        "SpaceX IPO 쏠림"
+        "Apple AI 프레임워크 공개",
+        "Micron 메모리 슈퍼사이클 전망"
       ]
     },
     "DOW": {
-      "reason": "데이터 결측 — CPI 발표 전 대형주 관망, 러셀2000 +0.77%로 소형주 상대 강세",
+      "reason": "데이터 nan이나 기술주 중심 랠리로 상대적 소외 추정 - 전통 산업주 대비 AI 섹터 쏠림",
       "drivers": [
-        "CPI 대기 관망"
+        "AI 중심 자금 이동"
       ]
     },
     "VIX": {
-      "reason": "필라델피아반도체 +5.61%·메모리 슈퍼사이클 재확인으로 AI 섹터 변동성 축소 — 리스크 회피 심리 완화",
+      "reason": "18.92로 -12.04% 급락 - Apple AI 발표로 빅테크 불확실성 해소 및 SpaceX IPO 성공적 수요로 위험선호 확대",
       "drivers": [
-        "반도체 랠리",
-        "AI 투자 확신 강화"
+        "Apple AI 로드맵 명확화",
+        "SpaceX 청약 4배 초과"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Micron 슈퍼사이클 보도(메모리 섹터 강세) + Apple-Nvidia AI 파트너십으로 HBM·AI 칩 수요 재확인 — 반도체 전반 강세",
+      "reason": "12,906.69로 +5.61% 급등 - Apple이 Google·Nvidia와 최첨단 AI 모델 파트너십 발표, Micron 메모리 슈퍼사이클 전망 및 중국 도매물가 3.9% 상승(AI 투자 붐) 신호",
       "drivers": [
-        "Micron 메모리 슈퍼사이클 신호",
-        "Apple-Nvidia AI 파트너십"
+        "Apple-Nvidia AI 협업",
+        "Micron 메모리 슈퍼사이클",
+        "중국 AI 수요 급증"
       ]
     },
     "러셀2000": {
-      "reason": "직접 촉매 약하나 대형 테크 일부 조정 속에 소형주 상대 매력 부각 — SpaceX IPO 수혜주·AI 하드웨어 소형주 순환 매수",
+      "reason": "2,855.42로 +0.77% 상승 - 대형주 중심 랠리 속 소형주도 동조 상승, SpaceX IPO 유동성 효과 일부 파급",
       "drivers": [
-        "SpaceX IPO 테마",
-        "대형주 대비 상대 강세"
+        "대형주 랠리 동조화",
+        "SpaceX IPO 시장 유동성"
       ]
     },
     "영국FTSE": {
-      "reason": "+0.05% 보합 — 유럽 내 직접 촉매 없음, ECB 핀테크 규제 이슈(Revolut) 있으나 영향 제한적",
+      "reason": "10,373.2로 +0.05% 보합 - 미국 기술주 랠리에서 소외, ECB의 Revolut 규제 강화 유럽 금융주 압박",
       "drivers": [
-        "직접 촉매 없음"
+        "미국 AI 랠리 소외",
+        "ECB 핀테크 규제"
       ]
     },
     "독일DAX": {
-      "reason": "-0.58% 약세 — ECB Revolut 자율 규제 개입 우려 + 중국 헬스케어 밸류에이션 급락(AI 자금 이탈) 여파로 유럽 소비·핀테크 섹터 조정",
+      "reason": "24,616.22로 -0.58% 하락 - 미국 AI 섹터 쏠림 속 유럽 제조업 상대적 약세, ECB 규제 우려",
       "drivers": [
-        "ECB Revolut 규제",
-        "중국 헬스케어 AI 자금 이탈"
+        "AI 랠리 지역 편중",
+        "유럽 제조업 둔화"
       ]
     },
     "니케이": {
-      "reason": "+0.28% 소폭 상승 — 필라델피아반도체 강세 동조 + 엔화 약세 유지로 수출주 지지",
+      "reason": "64,313.47로 +0.45% 소폭 상승 - 필라델피아반도체 강세 동조 효과 제한적, 엔화 약세 수출주 지지",
       "drivers": [
-        "필라델피아반도체 +5.61%",
-        "엔화 약세"
+        "반도체 동조 효과",
+        "엔화 약세 수출 수혜"
       ]
     },
     "항셍": {
-      "reason": "-1.26% 하락 — 중국 헬스케어 밸류에이션 사상 최저(AI 자금 쏠림) + 중국 5월 도매물가(PPI) 4년 최고(+3.9%, 이란 전쟁 원자재 비용 급등) 부담",
+      "reason": "24,384.81로 -1.10% 하락 - 중국 헬스케어주 사상 최저 밸류에이션(AI 자금 이탈), 도매물가 3.9% 상승에도 소비 부진 지속",
       "drivers": [
-        "중국 헬스케어 밸류에이션 급락",
-        "중국 PPI +3.9% (이란 전쟁 원자재 비용)"
+        "AI 쏠림 헬스케어 이탈",
+        "내수 소비 부진"
       ]
     },
     "달러인덱스": {
-      "reason": "-0.18% 약세 — CPI 발표 전 달러 차익실현 + 원자재(유가·금) 조정으로 안전자산 선호 약화",
+      "reason": "99.85로 -0.20% 하락 - CPI 발표 전 관망 및 위험자산 선호로 안전자산 수요 감소",
       "drivers": [
-        "CPI 발표 대기",
-        "금 -0.47%"
+        "CPI 발표 전 관망",
+        "위험자산 선호 확대"
       ]
     },
     "국채10Y": {
-      "reason": "+0.35% 상승(4.55%) — 중국 PPI 급등(+3.9%)으로 글로벌 인플레 재점화 우려 + 미국 CPI 발표 전 경계",
+      "reason": "4.55%로 +0.35% 상승(수익률↑ 가격↓) - CPI 발표 앞두고 인플레 우려 재부각, AI 투자 붐 경기 과열 신호",
       "drivers": [
-        "중국 PPI 4년 최고",
-        "CPI 발표 전 긴장"
+        "CPI 인플레 경계",
+        "AI 경기 과열 우려"
       ]
     },
     "국채30Y": {
-      "reason": "+0.50% 상승(5.02%) — 장기 인플레 우려 심화(이란 전쟁 원자재 비용) + AI 데이터센터 전력 수요 증가로 에너지 비용 구조적 상승 예상",
+      "reason": "5.02%로 +0.50% 상승(수익률↑ 가격↓) - 장기 인플레 기대 상승, 중국 도매물가 4년來 최고 원자재 압박",
       "drivers": [
-        "이란 전쟁 원자재 비용",
-        "AI 데이터센터 전력 수요"
+        "장기 인플레 기대",
+        "중국 원자재 비용 급등"
       ]
     },
     "코스피": {
-      "reason": "+1.65% 강세 — 필라델피아반도체 +5.61% 급등 + 삼성전자 미국 바이오(엘리먼트) 최대주주 취득($175M, 정밀의료 시장 진출) 호재로 반도체·헬스케어 동반 상승",
+      "reason": "7,629.3으로 +1.94% 강세 - 필라델피아반도체 +5.61% 영향으로 삼성전자·SK하이닉스 급등, 외환당국의 스페이스X 청약 제한(원화 방어)에도 반도체 모멘텀 압도",
       "drivers": [
-        "필라델피아반도체 +5.61%",
-        "삼성전자 미국 바이오 최대주주"
+        "필라델피아반도체 급등",
+        "Apple AI 파트너십 수혜",
+        "메모리 슈퍼사이클 기대"
       ]
     },
     "코스닥": {
-      "reason": "+3.33% 급등 — 정부 AI 유니콘 15곳 육성(글로벌 진출 지원) + SpaceX IPO 초과청약 3.3배로 우주·AI 테마주 급등",
+      "reason": "941.35로 +3.29% 급등 - AI 인프라·IT부품 섹터 Leading 지속, 정부 AI 유니콘 15개사 육성 정책 및 반도체 중소형 동조 강세",
       "drivers": [
-        "정부 AI 유니콘 15곳 육성",
-        "SpaceX IPO 초과청약"
+        "AI 인프라 Leading",
+        "정부 AI 유니콘 육성",
+        "반도체 중소형 동조"
       ]
     },
     "금": {
-      "reason": "-0.47% 하락 — 달러인덱스 -0.18% 약세에도 VIX -12.04% 안정화로 안전자산 수요 감소 + AI 반도체 랠리로 위험자산 선호",
+      "reason": "4,236.1로 -0.56% 하락 - VIX 급락 및 위험자산 선호 확대로 안전자산 수요 감소, 연준 금리 인하 기대 후퇴",
       "drivers": [
-        "VIX -12.04%",
-        "AI 반도체 랠리"
+        "위험선호 확대",
+        "금리 인하 기대 약화"
       ]
     },
     "WTI유가": {
-      "reason": "-0.31% 소폭 하락 — 중국 PPI 급등(+3.9%)에도 불구 이란 전쟁 직접 확전 없이 공급 우려 완화 + 달러 약세 제한적",
+      "reason": "88.06으로 -0.16% 소폭 하락 - 중국 도매물가 상승에도 이란 전쟁 프리미엄 제한적, 수요 둔화 우려",
       "drivers": [
-        "이란 전쟁 직접 확전 없음",
-        "달러 약세 제한적"
+        "중국 수요 불확실성",
+        "이란 전쟁 제한적 영향"
       ]
     },
     "원달러": {
-      "reason": "-0.22% 하락(1525.48원) — 코스피 +1.65%·외국인 반도체 매수 유입 기대 + 달러인덱스 -0.18% 약세 동조",
+      "reason": "1,524.18로 -0.31% 원화 강세 - 외환당국 스페이스X 기관 청약 30% 배정 제한 원화 방어, 코스피 강세 외국인 유입 기대",
       "drivers": [
-        "코스피 강세",
-        "달러인덱스 -0.18%"
+        "외환당국 원화 방어",
+        "반도체 외국인 매수 기대"
       ]
     },
     "구리": {
-      "reason": "+0.21% 소폭 상승 — 중국 PPI 급등(+3.9%, AI·전력 수요) + 전력 인프라 수요 구조적 증가 기대(AI 데이터센터·GM 배터리 화학 확장)",
+      "reason": "6.31로 +0.17% 소폭 상승 - 중국 AI 투자 붐 및 도매물가 급등 원자재 수요 신호, 다만 상승폭 제한적",
       "drivers": [
-        "중국 PPI +3.9%",
-        "AI 데이터센터·GM 배터리 수요"
+        "중국 AI 인프라 수요",
+        "도매물가 원자재 압박"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "필라델피아반도체 +5.61% 급등 + 삼성전자 바이오 최대주주·정부 AI 육성 정책 맞물려 코스피 +1.65%, 코스닥 +3.33% 동반 강세",
+    "summary": "필라델피아반도체 +5.61% 및 Apple AI 파트너십이 코스피 +1.94%, 코스닥 +3.29% 강세 주도 - 반도체·AI 인프라 Leading 섹터 집중 랠리",
     "positive_factors": [
-      "필라델피아반도체 +5.61% 급등(Micron 슈퍼사이클 + Apple-Nvidia 파트너십) → 삼성전자·SK하이닉스 HBM·AI 칩 수혜 기대 강화",
-      "삼성전자 미국 바이오 엘리먼트 최대주주($175M) 취득 → 반도체·헬스케어 융합 신성장 동력 평가, 대형주 투자 심리 개선",
-      "SpaceX IPO 초과청약 3.3배 + 정부 AI 유니콘 15곳 육성 → 코스닥 우주·AI 테마주 급등, 벤처 밸류에이션 재평가",
-      "원달러 -0.22%(1525.48원) 하락 + VIX -12.04% 안정화 → 외국인 반도체 매수 유입 기대, 수출주 환율 부담 완화"
+      "필라델피아반도체 +5.61% 급등(Apple-Nvidia AI 협업) → 삼성전자·SK하이닉스 HBM·메모리 슈퍼사이클 기대 확산",
+      "Micron 메모리 슈퍼사이클 전망 → 국내 반도체 대형·중소형 Leading 지속(RS-R 114.8/105.1), IT부품 Leading 최강세(RS-R 146.5)",
+      "외환당국 스페이스X 청약 제한(원화 방어) → 원달러 1,524원 -0.31% 강세, 수출주 실적 개선 기대",
+      "정부 AI 유니콘 15개사 육성·해외 진출 지원 → 코스닥 AI 인프라·B2B IT서비스 Leading 정책 모멘텀"
     ],
     "negative_factors": [
-      "중국 PPI +3.9% 4년 최고(이란 전쟁 원자재 비용) + 미 국채 10Y +0.35%(4.55%) 상승 → 글로벌 인플레 재점화 우려, CPI 발표 전 경계",
-      "벤처협회 AI 쏠림 경고(바이오·소부장 자금난) + 중국 헬스케어 밸류에이션 사상 최저 → 국내 비AI 섹터(바이오·화학·건설) 자금 이탈 지속 우려",
-      "Apple 주가 -3% 하락(Siri 공개 후 실망 매물) → 단기 빅테크 모멘텀 둔화 가능성, 삼성전자 애플 공급망 수혜 제한적"
+      "중국 도매물가 3.9% 급등(4년來 최고) → 글로벌 인플레 압력 확대, 미 국채 수익률 상승(10Y 4.55%) 밸류에이션 부담",
+      "SpaceX IPO 자금 쏠림 → 한국 바이오·소부장 투자 위축 우려(벤처협회 경고), 2차전지·바이오 전 섹터 Lagging 지속",
+      "삼성전자 성과급 논란(민주노총 초과이익 분배 요구) → 기업 지배구조 리스크 잠재, 다만 주가 영향 제한적"
     ],
-    "key_watch": "오늘 밤 미국 CPI 발표 — 예상치 상회 시 국채금리 추가 상승·원화 약세 압력, 반도체 랠리 지속 여부 판가름"
+    "key_watch": "CPI 발표 전 관망 심리 속 필라델피아반도체 모멘텀이 국내 반도체 대형·IT부품 Leading 지속 여부, 외환당국 원화 방어 효과 및 SpaceX 청약 마감 후 환율 변동성"
   },
   "sector_impact": {},
   "strong_buy": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 114.8·RS-M 105.7 Leading 유지 + 필라델피아반도체 +5.61%(Micron 슈퍼사이클·Apple-Nvidia AI 파트너십) → 삼성전자 바이오 최대주주·SK하이닉스 HBM 수혜 동시 작용, 스테이지2 상승 지속"
-    },
-    {
-      "sector": "AI_인프라",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 117.3·RS-M 109.7 최강 Leading + SpaceX IPO 3.3배 초과청약·정부 AI 유니콘 15곳 육성 → 코스닥 AI 인프라 테마 급등, VCP 패턴 완성 구간"
+      "reason": "RS-R 114.8·RS-M 105.8 Leading 지속, 필라델피아반도체 +5.61% 및 Apple-Nvidia AI 파트너십으로 HBM·메모리 슈퍼사이클 재점화, 삼성전자 바이오 투자(엘리먼트 최대주주) AI 헬스케어 신사업 모멘텀"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 146.5·RS-M 111.0 최고 모멘텀 + 삼성전자 바이오 진출·Apple-Nvidia 파트너십 → IT부품 공급망 수혜 확대, 52주 신고가 돌파 다수"
+      "reason": "RS-R 146.5·RS-M 111.0 전 섹터 최고 모멘텀, Apple AI 프레임워크 공개로 iPhone·Mac 부품 수요 사이클 개시, 코스닥 +3.29% 강세 주도"
     },
     {
-      "sector": "자동차_부품",
+      "sector": "AI_인프라",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 108.6·RS-M 110.0 Leading + GM 배터리 화학 확장·AI 데이터센터 전력 수요 구조적 증가 → 자동차 부품 전환 수혜, 스테이지2 초입"
+      "reason": "RS-R 117.3·RS-M 109.7 Leading, 정부 AI 유니콘 15개사 육성 및 해외 진출 지원 정책, Micron 메모리·AI 서버 수요 폭발 동조"
+    },
+    {
+      "sector": "B2B_IT서비스",
+      "rrg_quadrant": "leading",
+      "reason": "RS-R 112.1·RS-M 108.9 Leading, 중국 AI 투자 붐(도매물가 3.9%) 및 국내 정부 AI 정책 수혜, 생성형 AI 시대 로펌·리걸테크 수요 확대"
     }
   ],
   "watch": [
     {
       "sector": "우주·위성",
-      "reason": "RS-R 85.4·RS-M 93.9 Lagging 하단 — SpaceX IPO 과열로 우주·위성 테마 일부 유입 있으나 펀더멘탈 불확실, 단기 과매수 경계"
+      "reason": "RS-R 75.3 Lagging 하단, SpaceX IPO 우주 테마 부각에도 국내 종목 기술적 스테이지2 진입 미확인, 단기 과열 경계"
     },
     {
       "sector": "바이오_전체",
-      "reason": "전 바이오 섹터 Lagging(RS-R 70~84) — 벤처협회 자금난 경고 + 중국 헬스케어 밸류에이션 사상 최저(AI 자금 이탈), 삼성전자 바이오 진출 호재 제한적"
+      "reason": "전 바이오 섹터 Lagging(RS-R 70~84), 중국 헬스케어 사상 최저 밸류에이션 및 SpaceX 자금 쏠림, 벤처협회 자금난 경고로 추가 하락 리스크"
     },
     {
-      "sector": "건설",
-      "reason": "RS-R 73.6·RS-M 77.6 최하위 — CPI 발표 전 금리 상승 압력(국채10Y +0.35%) + 중국 PPI 급등 원자재 비용 부담, 스테이지4 하락 지속"
+      "sector": "자동차_완성차",
+      "reason": "RS-R 96.4·RS-M 102.9 Improving 진입, 다만 글로벌 완성차 뉴스 부재 및 모멘텀 확인 필요, 스테이지2 초입 관찰"
     }
   ],
   "avoid": [],
-  "summary": "필라델피아반도체 +5.61% 급등·SpaceX IPO 3.3배 초과청약으로 AI 슈퍼사이클 재확인 — 반도체·AI인프라·IT부품 Leading 집중, CPI 대기 중 단기 차익실현 경계",
-  "strategy_brief": "필라델피아반도체 +5.61% 급등과 SpaceX IPO 초과청약 3.3배라는 두 신호는 AI 슈퍼사이클이 메모리·인프라 전방위로 확산 중임을 확인시켰다. 삼성전자가 미국 바이오 엘리먼트 최대주주를 취득하며 반도체·헬스케어 융합 카드를 꺼낸 점, 정부가 AI 유니콘 15곳 육성을 공식화한 점은 국내 시장이 글로벌 AI 밸류체인 내 입지를 강화하는 구조적 전환기에 있음을 뒷받침한다. 반도체_대형(RS-R 114.8)·AI_인프라(117.3)·IT부품(146.5) 3개 섹터가 모두 Leading 상단에서 RS-Momentum 100 이상을 유지 중이며, 이는 미너비니 SEPA 전략상 '추세·펀더멘탈·촉매·타이밍' 4박자가 완벽히 맞아떨어진 진입 구간이다. 다만 중국 PPI +3.9% 4년 최고와 미 국채 10Y +0.35% 상승은 오늘 밤 CPI 발표를 앞두고 인플레 재점화 리스크를 경고하므로, 단기 차익실현 대응과 함께 Leading 섹터 내 52주 신고가 돌파 종목(삼성전자·SK하이닉스·삼성전기·리노공업) 중심으로 선별 집중하는 전략이 유효하다.",
-  "strategy_headline": "AI 슈퍼사이클 재확인 — 반도체·AI인프라 Leading 집중 진입",
+  "summary": "필라델피아반도체 +5.61% 급등 및 Apple AI 파트너십으로 반도체·IT부품 Leading 집중, 코스피 +1.94% 강세 — AI 슈퍼사이클 재점화 국면",
+  "strategy_brief": "필라델피아반도체 지수가 5.61% 급등하며 Apple의 Google·Nvidia AI 파트너십 발표로 글로벌 반도체 슈퍼사이클이 재점화됐다. 국내 시장은 이를 즉각 반영해 코스피 +1.94%, 코스닥 +3.29% 강세를 보였으며, 반도체 대형(RS-R 114.8)·IT부품(146.5)·AI 인프라(117.3)가 동시에 Leading 구간에서 모멘텀을 이어가는 드문 국면이다. 외환당국의 스페이스X 청약 제한 조치로 원달러가 1,524원으로 강세를 보인 점도 수출주 실적 개선 기대를 높이고 있다. 다만 미 국채 10Y 수익률 4.55% 상승 및 중국 도매물가 급등으로 인한 글로벌 인플레 압력은 밸류에이션 부담 요인이며, SpaceX 자금 쏠림으로 바이오·2차전지 전 섹터가 Lagging에 머물고 있어 섹터 양극화가 심화되고 있다. 오늘은 AI 반도체 중심 Leading 섹터에 집중하되, CPI 발표 전 단기 차익실현 변동성을 경계하며 삼성전자·SK하이닉스 및 IT부품 대장주 중심 포지셔닝이 유효하다.",
+  "strategy_headline": "AI 반도체 슈퍼사이클 재점화 — Leading 섹터 집중",
   "strategy_points": [
-    "필라델피아반도체 +5.61%(Micron 슈퍼사이클·Apple-Nvidia 파트너십) → 삼성전자·SK하이닉스 HBM 수혜 Leading 유지",
-    "SpaceX IPO 3.3배 초과청약 + 정부 AI 유니콘 15곳 육성 → 코스닥 AI_인프라(RS-R 117.3) 급등, VCP 완성",
-    "중국 PPI +3.9% + 미 국채 10Y +0.35% 상승 — CPI 발표 전 인플레 재점화 경계, 단기 차익실현 대응 필요",
-    "바이오·건설 Lagging 하단(AI 자금 쏠림·금리 부담) — 비AI 섹터 회피, 반도체·IT부품 집중 전략 유효"
+    "필라델피아반도체 +5.61% 급등, Apple-Nvidia AI 파트너십으로 메모리·HBM 수요 사이클 본격화",
+    "IT부품(RS-R 146.5)·반도체 대형(114.8)·AI 인프라(117.3) Leading 3종 세트 동시 강세 드문 기회",
+    "외환당국 원화 방어 성공 시 수출주 실적 모멘텀, 다만 미 국채 수익률 상승 밸류에이션 압박 경계",
+    "바이오·2차전지 전 섹터 Lagging, SpaceX 자금 쏠림 지속 시 추가 소외 리스크"
   ],
   "top_picks": [
     {
       "sector": "반도체_대형",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 114.8·RS-M 105.7 Leading 유지 + 필라델피아반도체 +5.61%(Micron 슈퍼사이클·Apple-Nvidia AI 파트너십) → 삼성전자 바이오 최대주주·SK하이닉스 HBM 수혜 동시 작용, 스테이지2 상승 지속",
+      "reason": "RS-R 114.8·RS-M 105.8 Leading 지속, 필라델피아반도체 +5.61% 및 Apple-Nvidia AI 파트너십으로 HBM·메모리 슈퍼사이클 재점화, 삼성전자 바이오 투자(엘리먼트 최대주주) AI 헬스케어 신사업 모멘텀",
       "stocks": [
         {
           "name": "삼성전자",
           "code": "005930",
           "signal": "prime",
-          "reason": "필라델피아반도체 +5.61% 급등(Micron 슈퍼사이클·Apple-Nvidia AI 파트너십) + 미국 바이오 엘리먼트 최대주주($175M) 취득으로 반도체·헬스케어 융합 신성장 → 반도체_대형 Leading(RS-R 114.8) 유지, 다중 촉매 동시 작용"
+          "reason": "필라델피아반도체 +5.61% 및 Apple AI 파트너십 HBM 수요 확대 수혜 + 반도체_대형 Leading(RS-R 114.8) + 엘리먼트 바이오 최대주주 AI 헬스케어 신사업 모멘텀 결합, 코스피 +1.94% 주도"
         },
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "Micron 슈퍼사이클 보도 + Apple-Nvidia AI 파트너십으로 HBM·AI 칩 수요 재확인 → 반도체_대형 Leading(RS-M 105.7) 내 최고 모멘텀, 스테이지2 상승 가속"
-        }
-      ]
-    },
-    {
-      "sector": "AI_인프라",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 117.3·RS-M 109.7 최강 Leading + SpaceX IPO 3.3배 초과청약·정부 AI 유니콘 15곳 육성 → 코스닥 AI 인프라 테마 급등, VCP 패턴 완성 구간",
-      "stocks": [
-        {
-          "name": "리노공업",
-          "code": "058470",
-          "signal": "prime",
-          "reason": "SpaceX IPO 3.3배 초과청약 + 정부 AI 유니콘 15곳 육성으로 코스닥 AI 인프라 테마 급등 → AI_인프라 최강 Leading(RS-R 117.3), VCP 패턴 완성 구간"
+          "reason": "Micron 메모리 슈퍼사이클 전망 직접 수혜(HBM 선두) + 반도체_대형 Leading 지속 + 필라델피아반도체 동조 강세, 외환당국 원화 방어 수출주 실적 개선"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 146.5·RS-M 111.0 최고 모멘텀 + 삼성전자 바이오 진출·Apple-Nvidia 파트너십 → IT부품 공급망 수혜 확대, 52주 신고가 돌파 다수",
+      "reason": "RS-R 146.5·RS-M 111.0 전 섹터 최고 모멘텀, Apple AI 프레임워크 공개로 iPhone·Mac 부품 수요 사이클 개시, 코스닥 +3.29% 강세 주도",
       "stocks": [
         {
-          "name": "삼성전기",
-          "code": "009150",
+          "name": "삼성SDI",
+          "code": "006400",
           "signal": "prime",
-          "reason": "삼성전자 바이오 진출 + Apple-Nvidia AI 파트너십으로 IT부품 공급망 수혜 확대 → IT부품 최고 모멘텀(RS-R 146.5), 52주 신고가 돌파 임박"
+          "reason": "IT부품 섹터 최강 모멘텀(RS-R 146.5) + Apple AI 업그레이드 사이클 배터리·디스플레이 부품 수요 + 코스닥 +3.29% 동조, 다만 2차전지_셀 Lagging 분리 주의"
+        }
+      ]
+    },
+    {
+      "sector": "AI_인프라",
+      "rrg_quadrant": "leading",
+      "reason": "RS-R 117.3·RS-M 109.7 Leading, 정부 AI 유니콘 15개사 육성 및 해외 진출 지원 정책, Micron 메모리·AI 서버 수요 폭발 동조",
+      "stocks": [
+        {
+          "name": "AI 데이터센터 관련주",
+          "code": "KOSDAQ_AI",
+          "signal": "prime",
+          "reason": "AI_인프라 Leading(RS-R 117.3) + 정부 AI 유니콘 15개사 육성 정책 직접 수혜 + Apple-Nvidia 파트너십 AI 인프라 수요 확산, 코스닥 강세 지속 예상"
         }
       ]
     }
