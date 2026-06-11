@@ -495,6 +495,8 @@
                 eqaiData = await res.json()
                 await mergeMacroLive()
                 render()
+                const t0 = document.getElementById("macro-time")
+                if (t0 && eqaiData._macro_live_at) t0.textContent = "시세 " + eqaiData._macro_live_at
             } catch (e) {
                 document.getElementById("loading-state").innerHTML = `
                 <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
