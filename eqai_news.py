@@ -141,7 +141,11 @@ def fetch_macro() -> dict:
             continue
         try:
             hist = yf.Ticker(symbol).history(period="5d")
-            closes = hist["Close"].dropna()  # NaN 봉 제거 (NaN이 JSON에 들어가면 브라우저 파싱 실패)
+            if len(hist) and hist["Close"].isna().iloc[-1]:
+                # 최신 봉이 NaN = 소스 깨짐 → 이번 회차 건너뛰고 직전 정상값 유지 (merge)
+                logger.warning(f"매크로 최신 봉 NaN ({name}) — 갱신 건너뜀")
+                continue
+            closes = hist["Close"].dropna()  # 중간 NaN 봉 제거
             if len(closes) >= 2:
                 prev = float(closes.iloc[-2])
                 curr = float(closes.iloc[-1])

@@ -46,9 +46,16 @@ def main():
     if not macro:
         print("macro data empty - skip")
         return
+    # 이번 회차에 빠진 지표(소스 깨짐 등)는 기존 파일의 직전 정상값 유지
+    old_macro = {}
+    try:
+        with open(OUT_PATH, encoding="utf-8") as f:
+            old_macro = json.load(f).get("macro", {})
+    except Exception:
+        pass
     payload = {
         "generated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
-        "macro": macro,
+        "macro": {**old_macro, **macro},
     }
     tmp = OUT_PATH + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
