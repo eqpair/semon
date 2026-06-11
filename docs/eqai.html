@@ -464,7 +464,7 @@
 
         async function mergeMacroLive() {
             try {
-                const res = await fetch("./data/macro_live.json?t=" + Date.now())
+                const res = await fetch("https://eqmon.duckdns.org/macro_live.json?t=" + Date.now())
                 if (!res.ok) return
                 const live = await res.json()
                 if (!live || !live.macro || !eqaiData || !eqaiData.macro) return
