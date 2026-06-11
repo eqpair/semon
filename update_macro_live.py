@@ -55,7 +55,7 @@ def main():
         json.dump(payload, f, ensure_ascii=False, indent=2)
     os.replace(tmp, OUT_PATH)
     print(f"OK {len(macro)} indices saved - {payload['generated_at']}")
-    git_push()
+    # git_push()  # nginx 직접 서빙으로 전환 — Pages 배포 불필요 (2026-06-11)
 
 
 if __name__ == "__main__":
