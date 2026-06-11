@@ -78,9 +78,67 @@ MACRO_TICKERS = {
     "구리":      "HG=F",
 }
 
+# ── 한국 지수: KIS 업종지수 API (yfinance ^KS11/^KQ11 데이터 오염 대응) ──
+#
+# yfinance는 한국 지수의 일봉 누락(06-10 누락 사례)과 오염된 봉이 빈번해
+# "iloc[-2] = 전일 종가" 가정이 깨짐. 코스피/코스닥은 KIS 공식 시세로 대체.
+#
+# inquire-index-price (tr_id FHPUP02100000) 응답:
+#   bstp_nmix_prpr      현재지수
+#   bstp_nmix_prdy_ctrt 전일대비율(%) — 부호 포함, 거래소 공식 기준가 기반
+
+KIS_INDEX_URL = "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-index-price"
+KIS_INDEX_CODES = {"코스피": "0001", "코스닥": "1001"}
+
+
+def fetch_kr_index_kis() -> dict:
+    """코스피/코스닥 현재지수·전일대비율을 KIS API로 조회. 실패 시 빈 dict."""
+    import os
+    import asyncio
+    from pathlib import Path
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).parent / ".env")
+    result = {}
+    try:
+        from kis_auth import get_access_token
+        token = asyncio.run(get_access_token())
+        headers = {
+            "authorization": f"Bearer {token}",
+            "appkey":        os.getenv("KIS_APP_KEY"),
+            "appsecret":     os.getenv("KIS_APP_SECRET"),
+            "tr_id":         "FHPUP02100000",
+        }
+        for name, iscd in KIS_INDEX_CODES.items():
+            try:
+                r = requests.get(
+                    KIS_INDEX_URL,
+                    headers=headers,
+                    params={
+                        "FID_COND_MRKT_DIV_CODE": "U",
+                        "FID_INPUT_ISCD":         iscd,
+                    },
+                    timeout=5,
+                )
+                out = r.json().get("output", {}) or {}
+                price = float(out.get("bstp_nmix_prpr") or 0)
+                ctrt  = float(out.get("bstp_nmix_prdy_ctrt") or 0)
+                if price > 0:
+                    result[name] = {"price": round(price, 2), "change": round(ctrt, 2)}
+            except Exception as e:
+                logger.warning(f"KIS 지수 조회 실패 ({name}): {e}")
+    except Exception as e:
+        logger.warning(f"KIS 지수 조회 불가 (토큰/모듈): {e}")
+    return result
+
+
 def fetch_macro() -> dict:
     result = {}
+    kis_kr = fetch_kr_index_kis()   # 코스피/코스닥은 KIS 공식 시세 우선
     for name, symbol in MACRO_TICKERS.items():
+        if name in kis_kr:
+            result[name] = kis_kr[name]
+            continue
         try:
             hist = yf.Ticker(symbol).history(period="5d")
             if len(hist) >= 2:
