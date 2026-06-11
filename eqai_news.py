@@ -141,16 +141,20 @@ def fetch_macro() -> dict:
             continue
         try:
             hist = yf.Ticker(symbol).history(period="5d")
-            if len(hist) >= 2:
-                prev  = hist["Close"].iloc[-2]
-                curr  = hist["Close"].iloc[-1]
-                chg   = (curr - prev) / prev * 100
-                result[name] = {
-                    "price":  round(float(curr), 2),
-                    "change": round(float(chg), 2),
-                }
+            closes = hist["Close"].dropna()  # NaN 봉 제거 (NaN이 JSON에 들어가면 브라우저 파싱 실패)
+            if len(closes) >= 2:
+                prev = float(closes.iloc[-2])
+                curr = float(closes.iloc[-1])
+                if prev > 0:
+                    chg = (curr - prev) / prev * 100
+                    result[name] = {
+                        "price":  round(curr, 2),
+                        "change": round(chg, 2),
+                    }
+                else:
+                    logger.warning(f"매크로 기준가 비정상 ({name}): prev={prev}")
             else:
-                logger.warning(f"매크로 데이터 부족 ({name}): {len(hist)}일치")
+                logger.warning(f"매크로 데이터 부족 ({name}): {len(closes)}일치")
         except Exception as e:
             logger.warning(f"매크로 fetch 실패 ({name}): {e}")
     return result
