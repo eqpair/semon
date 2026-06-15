@@ -68,14 +68,14 @@ MACRO_TICKERS = {
 
     # 채권 / 환율 / 원자재
     "달러인덱스": "DX-Y.NYB",
+    "국채2Y":    "^IRX",
     "국채10Y":   "^TNX",
-    "국채30Y":   "^TYX",
     "코스피":     "^KS11",
     "코스닥":     "^KQ11",
     "금":        "GC=F",    # 수정: COMEX 금 선물 ($/oz)  ← GLD에서 변경
     "WTI유가":   "CL=F",    # 수정: NYMEX WTI 선물 ($/bbl) ← USO에서 변경
     "원달러":    "KRW=X",
-    "BTC":       "BTC-USD",
+    "알루미늄":  "ALI=F",
     "구리":      "HG=F",
 }
 
