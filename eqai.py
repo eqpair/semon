@@ -42,6 +42,21 @@ KST           = ZoneInfo("Asia/Seoul")
 S3_BUCKET     = "semon-eqai-data"
 S3_KEY        = "rrg_latest.json"
 REPORT_PATH   = Path("/home/ubuntu/semon/docs/data/eqai_report.json")
+STOCK_MAP_PATH = Path("/home/ubuntu/semon/stock_map.json")
+
+# 종목명→코드 정답표 (Claude가 생성한 코드의 hallucination 교정용)
+try:
+    _STOCK_MAP = json.loads(STOCK_MAP_PATH.read_text(encoding="utf-8"))
+except Exception:
+    _STOCK_MAP = {}
+
+def _fix_code(name: str, claude_code: str) -> str:
+    """종목명으로 stock_map에서 정확한 코드를 찾아 교정. 없으면 Claude 코드 유지."""
+    name = (name or "").strip()
+    real = _STOCK_MAP.get(name)
+    if real:
+        return real
+    return (claude_code or "").strip()
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 
 
@@ -364,9 +379,10 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
             sq = next((s.get("rrg_quadrant","") for s in strong_buy if s["sector"]==sector), "")
             sr = next((s.get("reason","") for s in strong_buy if s["sector"]==sector), "")
             top_picks_raw[sector] = {"sector": sector, "rrg_quadrant": sq, "reason": sr, "stocks": []}
+        _nm = el.get("name", "")
         top_picks_raw[sector]["stocks"].append({
-            "name":   el.get("name", ""),
-            "code":   el.get("code", ""),
+            "name":   _nm,
+            "code":   _fix_code(_nm, el.get("code", "")),
             "signal": "prime",
             "reason": el.get("reason", ""),
         })
