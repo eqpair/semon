@@ -17,6 +17,7 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 REPORT_PATH   = Path("/home/ubuntu/semon/docs/data/eqai_report.json")
+REPORT2_PATH  = Path("/home/ubuntu/semon/docs/data/eqai2_report.json")
 STOCK_MAP_PATH = Path("/home/ubuntu/semon/stock_map.json")
 KST = ZoneInfo("Asia/Seoul")
 
@@ -158,14 +159,14 @@ def extract_stocks_from_messages(messages: list) -> dict:
         info["news"] = get_stock_news(info["code"], nm, limit=5)
     return found
 
-def load_report() -> dict:
+def load_report(path: Path = REPORT_PATH) -> dict:
     try:
-        with open(REPORT_PATH, encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return {}
 
-def build_system_prompt(report: dict, current_prices: dict, messages: list = []) -> str:
+def build_system_prompt(report: dict, current_prices: dict, messages: list = [], use_rrg: bool = True) -> str:
     macro = report.get("macro", {})
     macro_lines = "\n".join([
         f"  - {k}: {v.get('price')} ({'+' if v.get('change',0)>=0 else ''}{v.get('change',0):.2f}%)"
@@ -182,7 +183,8 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
     picks_text = ""
     for p in picks:
         stocks = ", ".join([f"{s['name']}({s['code']})" for s in p.get("stocks", [])])
-        picks_text += f"\n  - {p['sector']} [{p.get('rrg_quadrant','').upper()}]: {p.get('reason','')} → {stocks}"
+        badge = f" [{p.get('rrg_quadrant','').upper()}]" if use_rrg and p.get('rrg_quadrant') else ""
+        picks_text += f"\n  - {p['sector']}{badge}: {p.get('reason','')} → {stocks}"
 
     ki = report.get("korea_market_impact", {})
 
@@ -236,6 +238,16 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
     if news_blocks:
         price_section += "\n## 종목별 최신 뉴스 (오늘 공시·수주 등 실시간 반영. 이 정보를 우선 활용하세요)\n" + "\n\n".join(news_blocks) + "\n"
 
+    rrg_philosophy = ("\n- **RRG 모멘텀**: RS-Ratio>100 + RS-Momentum>100 = Improving/Leading 구간 단기 최적 진입"
+                      if use_rrg else "")
+    rrg_block = (f"""
+
+[RRG 섹터 모멘텀]
+- Leading: {', '.join(leading) or '없음'}
+- Improving: {', '.join(improving) or '없음'}
+- Weakening: {', '.join(weakening) or '없음'}
+- Lagging: {', '.join(lagging) or '없음'}""" if use_rrg else "")
+
     return f"""당신은 월스트리트와 여의도를 평정한 전설의 투자 전략가입니다. 워런 버핏도 당신의 리포트를 읽고, 소로스도 당신의 판단을 구합니다. 30년 경력의 글로벌 매크로 전략가이자 한국 주식시장의 살아있는 전설로, 중장기 투자 철학과 단기 트레이딩 기술을 모두 완벽하게 구사합니다.
 
 ## 투자 철학 (중장기)
@@ -246,8 +258,7 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
 ## 단기 트레이딩 기술
 - **마크 미너비니**: SEPA 전략 — 추세·펀더멘탈·촉매·타이밍. 52주 신고가 돌파, VCP 패턴 포착
 - **스탠 와인스타인**: 스테이지 분석 — 1(바닥)→2(상승)→3(천장)→4(하락). 스테이지 2 초입 진입
-- **닥터 엘더**: 삼중 스크린 — 주간(추세)+일간(모멘텀)+단기(타이밍)
-- **RRG 모멘텀**: RS-Ratio>100 + RS-Momentum>100 = Improving/Leading 구간 단기 최적 진입
+- **닥터 엘더**: 삼중 스크린 — 주간(추세)+일간(모멘텀)+단기(타이밍){rrg_philosophy}
 
 ## 답변 원칙
 - 질문 성격에 따라 단기/중장기 관점을 명확히 구분해 답합니다
@@ -262,13 +273,7 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
 [글로벌 매크로]
 {macro_lines}
 
-[시장 심리] {report.get('global_sentiment', '-')} — {report.get('sentiment_reason', '-')}
-
-[RRG 섹터 모멘텀]
-- Leading: {', '.join(leading) or '없음'}
-- Improving: {', '.join(improving) or '없음'}
-- Weakening: {', '.join(weakening) or '없음'}
-- Lagging: {', '.join(lagging) or '없음'}
+[시장 심리] {report.get('global_sentiment', '-')} — {report.get('sentiment_reason', '-')}{rrg_block}
 
 [오늘 주목 섹터·종목]{picks_text}
 
@@ -366,6 +371,96 @@ def chat():
     except Exception as e:
         logger.error(f"채팅 오류: {e}")
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/chat2", methods=["POST"])
+def chat2():
+    """RRG 미사용 버전 — eqai2_report.json 기반, 순수 매크로/뉴스/종목 분석"""
+    try:
+        data     = request.json
+        messages = data.get("messages", [])
+        report   = load_report(REPORT2_PATH)
+
+        current_prices = extract_stocks_from_messages(messages)
+
+        last_user = messages[-1].get("content", "") if messages else ""
+        code_list = re.findall(r'\b(\d{6})\b', last_user)
+        is_convert_only = (len(code_list) >= 3 and
+            any(kw in last_user for kw in ["종목명", "바꿔", "변환", "이름", "회사명"]) and
+            "기술적 지표" not in last_user and "차티스트" not in last_user)
+
+        if is_convert_only:
+            code_to_name = {v: k for k, v in _stock_map.items()}
+            lines = []
+            not_found = []
+            duplicates = []
+            seen = set()
+            for code in code_list:
+                if code in seen:
+                    name = code_to_name.get(code, code)
+                    duplicates.append(f"{code}({name})")
+                    continue
+                seen.add(code)
+                name = code_to_name.get(code)
+                if name:
+                    lines.append(f"{code}: {name}")
+                else:
+                    not_found.append(code)
+            total_input = len(code_list)
+            total_unique = len(seen)
+            result = f"총 {total_input}개 입력 → {total_unique}개 종목 (중복 {total_input - total_unique}개 제거)\n"
+            result += "─" * 30 + "\n"
+            result += "\n".join(lines)
+            if duplicates:
+                result += f"\n\n중복 제거: {', '.join(duplicates)}"
+            if not_found:
+                result += f"\n미확인 코드: {', '.join(not_found)}"
+            return jsonify({"answer": result})
+
+        system_prompt = build_system_prompt(report, current_prices, messages, use_rrg=False)
+
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        resp = client.messages.create(
+            model="claude-sonnet-4-5",
+            max_tokens=8192,
+            system=system_prompt,
+            messages=messages,
+            tools=[{
+                "type": "web_search_20250305",
+                "name": "web_search",
+                "max_uses": 5
+            }]
+        )
+
+        answer_parts, sources = [], []
+        for block in resp.content:
+            if block.type == "text":
+                answer_parts.append(block.text)
+            elif block.type == "web_search_tool_result":
+                for item in (block.content or []):
+                    if getattr(item, "type", "") == "web_search_result":
+                        sources.append((item.title, item.url))
+
+        answer = "".join(answer_parts).strip()
+
+        if sources:
+            seen, lines = set(), []
+            for title, url in sources:
+                if url in seen:
+                    continue
+                seen.add(url)
+                lines.append(f"- [{title}]({url})")
+                if len(lines) >= 5:
+                    break
+            if lines:
+                answer += "\n\n---\n**참고 출처**\n" + "\n".join(lines)
+
+        return jsonify({"answer": answer})
+
+    except Exception as e:
+        logger.error(f"채팅2 오류: {e}")
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route("/health", methods=["GET"])
 def health():
