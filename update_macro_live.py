@@ -17,7 +17,7 @@ def in_market_window() -> bool:
     now = datetime.now(KST)
     if now.weekday() >= 5:
         return False
-    return 7 <= now.hour <= 23
+    return 7 <= now.hour <= 20
 
 
 def git_push():
@@ -53,6 +53,11 @@ def main():
             old_macro = json.load(f).get("macro", {})
     except Exception:
         pass
+    # frozen-feed 감지: 한국 지수가 직전과 소수점까지 동일하면 경고 (KIS 피드 멈춤 가능성)
+    for _k in ("코스피", "코스닥"):
+        _n, _o = macro.get(_k, {}).get("price"), old_macro.get(_k, {}).get("price")
+        if _n is not None and _o is not None and _n == _o:
+            print(f"[WARN] {_k} 가격 직전과 동일({_n}) — KIS 피드 멈춤 의심")
     payload = {
         "generated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
         "macro": {**old_macro, **macro},

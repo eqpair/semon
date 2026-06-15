@@ -126,6 +126,7 @@ def fetch_kr_index_kis() -> dict:
                 ctrt  = float(out.get("bstp_nmix_prdy_ctrt") or 0)
                 if price > 0:
                     result[name] = {"price": round(price, 2), "change": round(ctrt, 2)}
+                    logger.info(f"KIS 지수 {name}: {price} ({ctrt:+.2f}%)")
             except Exception as e:
                 logger.warning(f"KIS 지수 조회 실패 ({name}): {e}")
     except Exception as e:
