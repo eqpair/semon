@@ -65,6 +65,8 @@ def main():
         _n, _o = macro.get(_k, {}).get("price"), old_macro.get(_k, {}).get("price")
         if _n is not None and _o is not None and _n == _o:
             print(f"[WARN] {_k} 가격 직전과 동일({_n}) — KIS 피드 멈춤 의심")
+    # fetch_macro 티커에서 빠진(=삭제된) 키는 old에서도 버려 부활 방지
+    old_macro = {k: v for k, v in old_macro.items() if k in macro}
     payload = {
         "generated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
         "macro": {**old_macro, **macro},
