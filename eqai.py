@@ -536,8 +536,16 @@ def run():
     for name, d in news_data.get("macro", {}).items():
         merged = dict(d)
         mr = macro_reasons.get(name, {})
-        merged["reason"]  = mr.get("reason", "")
-        merged["drivers"] = mr.get("drivers", [])
+        reason  = mr.get("reason", "")
+        drivers = mr.get("drivers", [])
+        # 폴백: AI가 reason을 누락한 경우 등락 기반 기본 문구 (특히 BTC 등 신규 지표)
+        if not reason:
+            chg = d.get("change")
+            if chg is not None:
+                direction = "상승" if chg >= 0 else "하락"
+                reason = f"{name} {abs(chg):.2f}% {direction} — 상세 코멘트 생성 전"
+        merged["reason"]  = reason
+        merged["drivers"] = drivers
         macro_with_reasons[name] = merged
 
     # 공개 리포트에는 원문 본문(body)을 저장하지 않는다 (저작권).

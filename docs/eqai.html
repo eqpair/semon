@@ -557,6 +557,11 @@
                 const group = (MACRO_META[name]?.group) || "us"
                 groups[group].push([name, d])
             }
+            // 그룹 내 카드 순서를 MACRO_META 정의 순서로 고정 (JSON/merge 순서 무관)
+            const metaOrder = Object.keys(MACRO_META)
+            for (const g of Object.keys(groups)) {
+                groups[g].sort((a, b) => metaOrder.indexOf(a[0]) - metaOrder.indexOf(b[0]))
+            }
             document.getElementById("macro-us").innerHTML = groups.us.map(([n, d]) => makeMacroCard(n, d)).join("")
             document.getElementById("macro-global").innerHTML = groups.global.map(([n, d]) => makeMacroCard(n, d)).join("")
             document.getElementById("macro-korea").innerHTML = groups.korea.map(([n, d]) => makeMacroCard(n, d)).join("")
