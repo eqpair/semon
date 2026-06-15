@@ -5,6 +5,8 @@ import json
 import os
 import subprocess
 from datetime import datetime, timezone, timedelta
+import logging
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 KST = timezone(timedelta(hours=9))
 REPO = os.path.dirname(os.path.abspath(__file__))
@@ -45,6 +47,11 @@ def main():
     macro = fetch_macro()
     if not macro:
         print("macro data empty - skip")
+        return
+    # 대량 실패 방어: 절반 미만만 수집되면 파이프라인 일시 장애로 보고 건너뜀
+    # (merge가 old값 전체를 새 데이터인 양 저장해 전체 frozen 되는 것을 방지)
+    if len(macro) < 10:
+        print(f"macro 수집 부족({len(macro)}/20) - 일시 장애 의심, 이번 회차 건너뜀")
         return
     # 이번 회차에 빠진 지표(소스 깨짐 등)는 기존 파일의 직전 정상값 유지
     old_macro = {}
