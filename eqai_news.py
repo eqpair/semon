@@ -75,6 +75,7 @@ MACRO_TICKERS = {
     "금":        "GC=F",    # 수정: COMEX 금 선물 ($/oz)  ← GLD에서 변경
     "WTI유가":   "CL=F",    # 수정: NYMEX WTI 선물 ($/bbl) ← USO에서 변경
     "원달러":    "KRW=X",
+    "BTC":       "BTC-USD",
     "구리":      "HG=F",
 }
 
