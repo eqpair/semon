@@ -194,6 +194,29 @@ def _format_alert(sector_name: str, sector_rrg: dict,
 
 # ── 메인 감지 함수 ────────────────────────────────────────────
 
+# ── EQAI 회피 섹터 로드 (fail-open) ──
+EQAI_REPORT_PATH = "/home/ubuntu/semon/docs/data/eqai_report.json"
+
+def _load_eqai_caution() -> set:
+    """오늘자 EQAI 리포트의 caution_sectors를 반환.
+    리포트 없음/에러/날짜불일치 시 빈 set (fail-open — radar 정상 작동)."""
+    try:
+        with open(EQAI_REPORT_PATH, encoding="utf-8") as fp:
+            r = json.load(fp)
+        gen = (r.get("generated_at", "") or "")[:10]
+        today = now_kst().strftime("%Y-%m-%d")
+        if gen != today:
+            logger.info(f"EQAI 리포트 날짜 불일치({gen} != {today}) — caution 미적용")
+            return set()
+        cautions = set(r.get("caution_sectors", []))
+        if cautions:
+            logger.info(f"EQAI caution 섹터 로드: {cautions}")
+        return cautions
+    except Exception as e:
+        logger.info(f"EQAI 리포트 로드 실패({e}) — caution 미적용 (fail-open)")
+        return set()
+
+
 async def run_radar(signals: dict) -> None:
     """
     signals: calc_all_signals() 반환값
@@ -206,6 +229,7 @@ async def run_radar(signals: dict) -> None:
     sector_rrg = signals.get("sector_rrg", {})
     sent       = _load_sent()
     today      = now_kst().strftime("%Y-%m-%d")
+    eqai_caution = _load_eqai_caution()  # EQAI 회피 섹터 (fail-open)
 
     for sector_name, sector_data in sectors.items():
         rrg   = sector_rrg.get(sector_name, {})
@@ -217,6 +241,10 @@ async def run_radar(signals: dict) -> None:
         if quad != "improving":
             continue
         if ret1d is None or ret1d < 0:
+            continue
+        # EQAI 회피 섹터 차단 (오늘자 리포트 있을 때만 — 중도 방식)
+        if sector_name in eqai_caution:
+            logger.info(f"radar 차단: {sector_name} (EQAI caution)")
             continue
 
         # ── 2단계: 종목 필터 ──────────────────────────────────
