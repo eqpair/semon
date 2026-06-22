@@ -7,8 +7,9 @@ sector_signal.py  —  RRG 기반 소외주 탐색
   3. RS          = rebased / benchmark × 100           (상대강도 원시값)
   4. RS_Ratio    = 100 × (RS_MA10 / RS_MA40)
                    단기(10일) MA가 장기(40일) MA 대비 위에 있으면 > 100
-  5. RS_Momentum = 100 × (RS_Ratio_MA10 / RS_Ratio_MA40)
-                   RS_Ratio 자체의 단기/장기 MA 비율
+  5. RS_Momentum = 100 × (RS_Ratio / RS_Ratio_MA40)
+                   RS_Ratio 현재값이 자기 장기추세 대비 가속(>100)/감속(<100)
+                   = 블룸버그식 변화율(ROC) 성격 — 변곡점 감지에 더 민감
 
   ※ Z-score 방식 대비 장점:
      - STD 분모가 없으므로 횡보 구간에서 값이 폭발하지 않음
@@ -67,7 +68,7 @@ def update_kospi(closes: list[float]) -> None:
 # 재시작 시 rrg_history를 자동으로 무효화하고 소급 재계산한다.
 #RRG_VERSION = f"bloomberg_v1_s{MA_SHORT}_l{MA_LONG}"
 #RRG_VERSION = f"bloomberg_v2_s{MA_SHORT}_l{MA_LONG}_cap20"
-RRG_VERSION = f"bloomberg_v4_s{MA_SHORT}_l{MA_LONG}_kospi_nocap"
+RRG_VERSION = f"bloomberg_v5_s{MA_SHORT}_l{MA_LONG}_kospi_nocap_roc_mom"
 
 # 섹터 RRG용 rrg_history 키 접두사
 _SECTOR_KEY_PREFIX = "sector:"
@@ -221,6 +222,8 @@ def _calc_rs_ratio(rebased: list[float], benchmark: list[float]) -> list[float |
 
 
 def _calc_rs_momentum(rs_ratio: list[float | None]) -> list[float | None]:
+    # 블룸버그식 RS-Momentum: RS-Ratio의 현재값 / 추세(MA_LONG)
+    # = RS-Ratio가 자기 장기추세 위로 가속(>100)/감속(<100)하는지 (변화율 성격)
     n = len(rs_ratio)
 
     valid_indices = [i for i, v in enumerate(rs_ratio) if v is not None]
@@ -229,15 +232,14 @@ def _calc_rs_momentum(rs_ratio: list[float | None]) -> list[float | None]:
     if len(valid_values) < MA_LONG:
         return [None] * n
 
-    ma_short = _ma(valid_values, MA_SHORT)
-    ma_long  = _ma(valid_values, MA_LONG)
+    ma_long = _ma(valid_values, MA_LONG)
 
     result: list[float | None] = [None] * n
     for j, orig_i in enumerate(valid_indices):
-        s = ma_short[j]
-        l = ma_long[j]
-        if s is not None and l is not None and l != 0:
-            result[orig_i] = 100.0 * s / l
+        cur = valid_values[j]
+        l   = ma_long[j]
+        if cur is not None and l is not None and l != 0:
+            result[orig_i] = 100.0 * cur / l
 
     return result
 

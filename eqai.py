@@ -74,6 +74,25 @@ def fetch_rrg_from_s3() -> dict:
         return {}
 
 
+# 코드→실제섹터 역인덱스 (로컬 signals.json 기준 — S3 축약본엔 sectors 없음)
+def _load_code2sector() -> dict:
+    """docs/data/signals.json의 sectors에서 코드→섹터 맵 생성.
+    S3 rrg_latest.json은 sector_rrg/top_candidates만 담아 sectors가 없으므로
+    RRG 유니버스 추적여부/실제섹터 판정은 로컬 전체 파일에서 읽는다."""
+    try:
+        with open("/home/ubuntu/semon/docs/data/signals.json", encoding="utf-8") as fp:
+            sig = json.load(fp)
+        idx = {}
+        for _sec, _sd in sig.get("sectors", {}).items():
+            for _c in _sd.get("candidates", []):
+                idx[_c.get("code")] = _sec
+        logger.info(f"코드→섹터 역인덱스 로드: {len(idx)}개 종목")
+        return idx
+    except Exception as e:
+        logger.error(f"역인덱스 로드 실패: {e}")
+        return {}
+
+
 # ── Claude 분석 ──────────────────────────────────────────────────
 
 def _extract_json(text: str) -> dict:
@@ -353,12 +372,21 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         "key_watch":        ki.find("watch_point").text.strip() if ki is not None and ki.find("watch_point") is not None else "",
     }
 
+    # RRG 실측 quadrant 조회용 (Claude가 쓴 값 대신 signals.json 신뢰)
+    _sector_rrg = rrg_data.get("sector_rrg", {})
+    # 코드→실제섹터 역인덱스 (로컬 signals.json — S3엔 sectors 없음)
+    _code2sector = _load_code2sector()
+
     strong_buy = []
     for el in root.findall("strong_buy/sector"):
         if el.text:
+            _sec = el.text.strip()
+            # RRG 실측 quadrant로 강제 (없으면 Claude 값 폴백)
+            _rrg_q = _sector_rrg.get(_sec, {}).get("quadrant", "")
             strong_buy.append({
-                "sector":       el.text.strip(),
-                "rrg_quadrant": el.get("quadrant", ""),
+                "sector":       _sec,
+                "rrg_quadrant": _rrg_q or el.get("quadrant", ""),
+                "claude_quadrant": el.get("quadrant", ""),  # Claude 원판단 보존(감사용)
                 "reason":       el.get("reason", ""),
             })
 
@@ -380,11 +408,16 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
             sr = next((s.get("reason","") for s in strong_buy if s["sector"]==sector), "")
             top_picks_raw[sector] = {"sector": sector, "rrg_quadrant": sq, "reason": sr, "stocks": []}
         _nm = el.get("name", "")
+        _cd = _fix_code(_nm, el.get("code", ""))
+        _actual_sec = _code2sector.get(_cd)  # RRG 유니버스상 실제 섹터
         top_picks_raw[sector]["stocks"].append({
             "name":   _nm,
-            "code":   _fix_code(_nm, el.get("code", "")),
+            "code":   _cd,
             "signal": "prime",
             "reason": el.get("reason", ""),
+            "rrg_tracked":       _actual_sec is not None,      # RRG 추적 종목인가
+            "rrg_actual_sector": _actual_sec or "",            # 실제 소속 섹터(EQAI 분류와 다를 수 있음)
+            "rrg_sector_match":  (_actual_sec == sector),      # EQAI 분류 = RRG 분류 일치?
         })
     top_picks = list(top_picks_raw.values())
 
@@ -414,9 +447,13 @@ def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
     improving = [s for s, d in sector_rrg.items() if d.get("quadrant") == "improving"]
     leading   = [s for s, d in sector_rrg.items() if d.get("quadrant") == "leading"]
 
+    # 코드→실제섹터 역인덱스 (로컬 signals.json — 정상 경로와 동일)
+    _code2sector = _load_code2sector()
+
     strong_buy = [
         {"sector": s, "reason": "RRG Improving 진입 — 모멘텀 전환 신호",
-         "rrg_quadrant": "improving"}
+         "rrg_quadrant": sector_rrg.get(s, {}).get("quadrant", "improving"),
+         "claude_quadrant": ""}  # 폴백은 Claude 판단 없음
         for s in improving[:3]
     ]
 
@@ -428,11 +465,14 @@ def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
         if stocks:
             top_picks.append({
                 "sector":       sector,
-                "rrg_quadrant": "improving",
+                "rrg_quadrant": sector_rrg.get(sector, {}).get("quadrant", "improving"),
                 "reason":       "RRG Improving + prime/confirm 신호 종목 보유",
                 "stocks": [
                     {"code": s["code"], "name": s["name"],
-                     "signal": s["signal"], "reason": "RRG prime/confirm 신호"}
+                     "signal": s["signal"], "reason": "RRG prime/confirm 신호",
+                     "rrg_tracked":       _code2sector.get(s["code"]) is not None,
+                     "rrg_actual_sector": _code2sector.get(s["code"], ""),
+                     "rrg_sector_match":  (_code2sector.get(s["code"]) == sector)}
                     for s in stocks
                 ]
             })
