@@ -75,6 +75,27 @@ def fetch_rrg_from_s3() -> dict:
 
 
 # 코드→실제섹터 역인덱스 (로컬 signals.json 기준 — S3 축약본엔 sectors 없음)
+def _load_code2rrg() -> dict:
+    """코드→RRG 정보 {sector, signal, quadrant, rs_ratio} (로컬 signals.json).
+    추천 종목의 실제 RRG 상태로 lagging 필터링/태깅에 사용."""
+    try:
+        with open("/home/ubuntu/semon/docs/data/signals.json", encoding="utf-8") as fp:
+            sig = json.load(fp)
+        idx = {}
+        for _sec, _sd in sig.get("sectors", {}).items():
+            for _c in _sd.get("candidates", []):
+                idx[_c.get("code")] = {
+                    "sector":    _sec,
+                    "signal":    _c.get("signal", ""),
+                    "quadrant":  _c.get("quadrant", ""),
+                    "rs_ratio":  _c.get("rs_ratio"),
+                }
+        return idx
+    except Exception as e:
+        logger.error(f"code2rrg 로드 실패: {e}")
+        return {}
+
+
 def _load_code2sector() -> dict:
     """docs/data/signals.json의 sectors에서 코드→섹터 맵 생성.
     S3 rrg_latest.json은 sector_rrg/top_candidates만 담아 sectors가 없으므로
@@ -199,6 +220,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 [종합 판단 원칙 — 글로벌에서 국내로, 국내에서 종목으로 / 매우 중요]
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
 - top_picks의 각 pick reason은 반드시 두 근거를 한 문장에 엮으세요: (1) 위 korea_impact 판단 중 어느 요인/시장 흐름에서 파생됐는지, (2) 해당 종목의 RRG·기술적 신호(스테이지2 초입, VCP, prime/confirm 등). (예: "달러 강세 수출주 수혜 판단 + 반도체_대형 Leading·신고가 돌파 → 삼성전자")
+- top_picks는 RRG 신호가 양호한(prime/confirm/improving/leading/weakening) 종목만 선정하세요. RRG상 lagging(상대강도·모멘텀 모두 약세) 종목은 뉴스 호재가 있어도 핵심종목으로 추천하지 마세요. 제공된 종목 후보 리스트 내에서 우선 선정하고, 후보 밖 종목 추가 시 그 종목이 RRG lagging이 아닌지 반드시 확인하세요.
 - summary는 "글로벌 환경 → 국내 시장 한 줄 판단 → 핵심 진입 아이디어" 순서의 한 흐름으로 쓰세요.
 - strategy_headline은 오늘 국내 시장의 핵심 논지를 한 줄(공백 포함 40자 이내)로 압축하세요. 예: "AI 수출 슈퍼사이클 확인 — 반도체·IT부품 Leading 집중"
 - strategy_points는 투자자가 한눈에 봐야 할 요점 3~4개로 쓰세요. 각 요점은 한 줄(1문장, 짧게)이며 서로 다른 측면(글로벌 동인 / 국내 수급·지표 / 섹터 모멘텀 / 리스크)을 담으세요.
@@ -375,7 +397,7 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
     # RRG 실측 quadrant 조회용 (Claude가 쓴 값 대신 signals.json 신뢰)
     _sector_rrg = rrg_data.get("sector_rrg", {})
     # 코드→실제섹터 역인덱스 (로컬 signals.json — S3엔 sectors 없음)
-    _code2sector = _load_code2sector()
+    _code2rrg = _load_code2rrg()
 
     strong_buy = []
     for el in root.findall("strong_buy/sector"):
@@ -409,17 +431,25 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
             top_picks_raw[sector] = {"sector": sector, "rrg_quadrant": sq, "reason": sr, "stocks": []}
         _nm = el.get("name", "")
         _cd = _fix_code(_nm, el.get("code", ""))
-        _actual_sec = _code2sector.get(_cd)  # RRG 유니버스상 실제 섹터
+        _rrg = _code2rrg.get(_cd)  # RRG 정보 {sector, signal, quadrant, rs_ratio}
+        _actual_sec = _rrg.get("sector") if _rrg else None
+        _rrg_signal = _rrg.get("signal", "") if _rrg else ""
+        # RRG lagging 종목은 핵심종목 제외 (뉴스 호재만으로 약세주 추천 방지)
+        if _rrg_signal == "lagging":
+            logger.info(f"top_pick 제외: {_nm}({_cd}) — RRG lagging (실제섹터={_actual_sec}, rs_ratio={_rrg.get('rs_ratio')})")
+            continue
         top_picks_raw[sector]["stocks"].append({
             "name":   _nm,
             "code":   _cd,
             "signal": "prime",
             "reason": el.get("reason", ""),
-            "rrg_tracked":       _actual_sec is not None,      # RRG 추적 종목인가
-            "rrg_actual_sector": _actual_sec or "",            # 실제 소속 섹터(EQAI 분류와 다를 수 있음)
-            "rrg_sector_match":  (_actual_sec == sector),      # EQAI 분류 = RRG 분류 일치?
+            "rrg_tracked":       _actual_sec is not None,
+            "rrg_actual_sector": _actual_sec or "",
+            "rrg_sector_match":  (_actual_sec == sector),
+            "rrg_signal":        _rrg_signal,                  # 실제 RRG 신호(투명성)
         })
-    top_picks = list(top_picks_raw.values())
+    # lagging 제외로 종목이 0개가 된 섹터는 top_picks에서 제거
+    top_picks = [tp for tp in top_picks_raw.values() if tp.get("stocks")]
 
     return {
         "global_sentiment":    sentiment,
@@ -448,7 +478,7 @@ def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
     leading   = [s for s, d in sector_rrg.items() if d.get("quadrant") == "leading"]
 
     # 코드→실제섹터 역인덱스 (로컬 signals.json — 정상 경로와 동일)
-    _code2sector = _load_code2sector()
+    _code2rrg = _load_code2rrg()
 
     strong_buy = [
         {"sector": s, "reason": "RRG Improving 진입 — 모멘텀 전환 신호",
@@ -470,9 +500,10 @@ def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
                 "stocks": [
                     {"code": s["code"], "name": s["name"],
                      "signal": s["signal"], "reason": "RRG prime/confirm 신호",
-                     "rrg_tracked":       _code2sector.get(s["code"]) is not None,
-                     "rrg_actual_sector": _code2sector.get(s["code"], ""),
-                     "rrg_sector_match":  (_code2sector.get(s["code"]) == sector)}
+                     "rrg_tracked":       _code2rrg.get(s["code"]) is not None,
+                     "rrg_actual_sector": (_code2rrg.get(s["code"]) or {}).get("sector", ""),
+                     "rrg_sector_match":  ((_code2rrg.get(s["code"]) or {}).get("sector") == sector),
+                     "rrg_signal":        (_code2rrg.get(s["code"]) or {}).get("signal", "")}
                     for s in stocks
                 ]
             })
