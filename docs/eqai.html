@@ -646,10 +646,15 @@
             const sl = gs === "risk_on" ? "RISK-ON" : gs === "risk_off" ? "RISK-OFF" : "NEUTRAL"
             const picks = d.top_picks || []
             const picksSummary = picks.slice(0, 3).map((p, i) => {
-                const stocks = (p.stocks || []).slice(0, 2).map(s =>
-                    `<a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
-                    style="color:#374151;font-weight:600;text-decoration:none;">${s.name}</a>`
-                ).join(", ")
+                const stocks = (p.stocks || []).slice(0, 2).map(s => {
+                    const rrgTag = (s.rrg_tracked === false)
+                        ? ' <span style="font-size:9px;color:#9ca3af;">(미추적)</span>'
+                        : ((s.rrg_sector_match === false && s.rrg_actual_sector)
+                            ? ` <span style="font-size:9px;color:#9ca3af;">(실제:${s.rrg_actual_sector})</span>`
+                            : "")
+                    return `<a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
+                    style="color:#374151;font-weight:600;text-decoration:none;">${s.name}</a>${rrgTag}`
+                }).join(", ")
                 const qc = p.rrg_quadrant === "leading" ? "#374151" : p.rrg_quadrant === "improving" ? "#6b7280" : "#9ca3af"
                 return `<div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f3f4f6;">
                 <span style="background:${qc};color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;margin-top:1px;">${i + 1}</span>
@@ -719,12 +724,19 @@
                         ${q ? `<span style="font-size:9px;color:${color};border:1px solid ${color}55;padding:1px 6px;border-radius:8px;font-weight:600;">${q.toUpperCase()}</span>` : ""}
                     </div>
                     <div class="space-y-1.5">
-                        ${(pick.stocks || []).map(s => `
+                        ${(pick.stocks || []).map(s => {
+                            const rrgTag = (s.rrg_tracked === false)
+                                ? ' <span style="font-size:9px;color:#9ca3af;">(RRG 미추적)</span>'
+                                : ((s.rrg_sector_match === false && s.rrg_actual_sector)
+                                    ? ` <span style="font-size:9px;color:#9ca3af;">(실제: ${s.rrg_actual_sector})</span>`
+                                    : "")
+                            return `
                         <div class="flex items-baseline gap-2 text-xs leading-relaxed">
                             <a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
-                               class="font-semibold text-gray-800 hover:underline whitespace-nowrap flex-shrink-0">${s.name}</a>
+                               class="font-semibold text-gray-800 hover:underline whitespace-nowrap flex-shrink-0">${s.name}</a>${rrgTag}
                             <span class="text-gray-500">${s.reason || ""}</span>
-                        </div>`).join("")}
+                        </div>`
+                        }).join("")}
                     </div>
                 </div>`
             }
