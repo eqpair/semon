@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 load_dotenv("/home/ubuntu/semon/.env")
 
 from config import SECTORS, WAIT_TIME
-from crawler import fetch_kospi_ohlcv
+from crawler import fetch_kospi_ohlcv, fetch_kosdaq_ohlcv
 from kis_price import fetch_all_prices_kis as fetch_all_prices, fetch_all_ohlcv_kis as fetch_all_ohlcv
 from sector_signal import (update_prices, update_ohlcv, calc_all_signals,
-                           load_market_caps_into_store, update_kospi,
+                           load_market_caps_into_store, update_kospi, update_kosdaq,
                            save_rrg_history, load_rrg_history)
 from utils import is_market_time, is_near_market_close, is_nxt_time, now_kst, save_and_push, save_closing, save_to_s3
 from fetch_stocks import fetch_all_market_caps, save_market_caps, load_market_caps
@@ -162,7 +162,7 @@ async def run():
                 success = sum(1 for v in caps.values() if v > 0)
                 logger.info(f"시총 갱신 완료: {success}/{len(ALL_CODES)}개")
 
-            # 2. KOSPI 갱신 — 하루 1회
+            # 2. KOSPI + KOSDAQ 갱신 — 하루 1회
             if _kospi_date != today:
                 logger.info("KOSPI 일봉 fetch 시작")
                 kospi_closes = await fetch_kospi_ohlcv()
@@ -171,6 +171,12 @@ async def run():
                     _kospi_date = today
                 else:
                     logger.warning("KOSPI fetch 실패 — 섹터 평균으로 폴백")
+                logger.info("KOSDAQ 일봉 fetch 시작")
+                kosdaq_closes = await fetch_kosdaq_ohlcv()
+                if kosdaq_closes:
+                    update_kosdaq(kosdaq_closes)
+                else:
+                    logger.warning("KOSDAQ fetch 실패 — 합성 벤치마크에서 제외")
 
             # 3. OHLCV 갱신 — 15:31 이후 + 1시간마다
             #    장중에 받으면 당일 봉 close=0.0 (미확정)이 들어와

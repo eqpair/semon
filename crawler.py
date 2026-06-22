@@ -23,6 +23,10 @@ KOSPI_URL = (
     "https://fchart.stock.naver.com/sise.nhn"
     "?symbol=KOSPI&timeframe=day&count=500&requestType=0"
 )
+KOSDAQ_URL = (
+    "https://fchart.stock.naver.com/sise.nhn"
+    "?symbol=KOSDAQ&timeframe=day&count=500&requestType=0"
+)
 
 
 async def fetch_price(session: aiohttp.ClientSession, code: str) -> tuple[str, float | None, float | None]:
@@ -122,6 +126,45 @@ async def fetch_kospi_ohlcv() -> list[float] | None:
 
     except Exception as e:
         logger.warning(f"KOSPI OHLCV 오류: {e}")
+        return None
+
+
+async def fetch_kosdaq_ohlcv() -> list[float] | None:
+    """
+    KOSDAQ 지수 일봉 fetch (KOSPI와 동일 형식)
+    반환: closes 리스트 (오래된 순 → 최신 순)
+    """
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(KOSDAQ_URL, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+                if resp.status != 200:
+                    logger.warning(f"KOSDAQ fetch 실패: {resp.status}")
+                    return None
+                text = await resp.text(encoding="euc-kr")
+
+        soup = BeautifulSoup(text, "html.parser")
+        items = soup.find_all("item")
+        if not items:
+            return None
+
+        closes = []
+        for item in items:
+            raw = item.get("data", "")
+            parts = raw.split("|")
+            if len(parts) >= 5:
+                try:
+                    closes.append(float(parts[4]))  # 종가
+                except ValueError:
+                    continue
+
+        if not closes:
+            return None
+
+        logger.info(f"KOSDAQ fetch 완료: {len(closes)}일치")
+        return closes
+
+    except Exception as e:
+        logger.warning(f"KOSDAQ OHLCV 오류: {e}")
         return None
 
 
