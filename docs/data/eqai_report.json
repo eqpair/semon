@@ -1,185 +1,176 @@
 {
-  "generated_at": "2026-06-22 14:08:39",
+  "generated_at": "2026-06-22 14:31:32",
   "macro": {
     "S&P500": {
       "price": 7500.58,
       "change": 1.08,
-      "reason": "AI 하드웨어 랠리 확산 — 필라델피아반도체 +6.4%·러셀2000 +2.1%로 폭넓은 위험선호, 하이퍼스케일러 약세에도 지수 견조",
+      "reason": "반도체 섹터 +6.4% 폭등이 지수 견인, VIX -11% 급락으로 위험선호 심리 강화",
       "drivers": [
-        "필라델피아반도체 +6.42% 급등",
-        "러셀2000 +2.12% 동반 상승"
+        "필라델피아반도체 +6.42%",
+        "나스닥 +1.91% 아웃퍼폼"
       ]
     },
     "NASDAQ": {
       "price": 26517.93,
       "change": 1.91,
-      "reason": "AI 하드웨어·메모리 중심 반도체 랠리 — 나스닥 +1.91% 견인, 하이퍼스케일러 피로감 속 장비·칩 업종 차별화",
+      "reason": "AI 하드웨어 부족 재확인으로 메모리·반도체 장비주 집중 매수, 하이퍼스케일러 약세 대비 하드웨어 강세 극명",
       "drivers": [
-        "필라델피아반도체 +6.42%",
-        "AI 인프라 섹터 재평가"
+        "메모리 반도체 강세",
+        "하이퍼스케일러 대비 하드웨어 차별화"
       ]
     },
     "DOW": {
       "price": 51564.7,
       "change": 0.14,
-      "reason": "산업재 부진으로 +0.14% 소폭 상승 — 반도체·기술주 중심 랠리에서 소외, 경기민감 섹터 저조",
+      "reason": "반도체·기술주 랠리에 전통 산업 자금 이탈, 섹터 로테이션으로 소폭 상승 제한",
       "drivers": [
-        "반도체 편중 랠리",
-        "산업재 부진"
+        "기술주 쏠림",
+        "전통 산업 상대 약세"
       ]
     },
     "VIX": {
       "price": 16.4,
       "change": -11.06,
-      "reason": "AI 하드웨어 모멘텀 재점화로 -11.06% 급락 — 필라델피아반도체 6% 이상 급등하며 변동성 압력 완화",
+      "reason": "필라델피아반도체 6% 급등·SK하이닉스 시총 1위로 AI 슈퍼사이클 확신 강화, 변동성 프리미엄 급락",
       "drivers": [
-        "필라델피아반도체 강세",
-        "광범위 위험선호"
+        "반도체 섹터 모멘텀",
+        "위험선호 심리 확대"
       ]
     },
     "필라델피아반도체": {
       "price": 14341.78,
       "change": 6.42,
-      "reason": "+6.42% 급등 — AI 하드웨어 슈퍼사이클 재확인, 하이퍼스케일러(MSFT·AMZN·GOOGL·META) 약세 속 메모리·장비 차별화 강세, SK하이닉스 코스피 1위 등극 영향",
+      "reason": "CNBC \"AI 하드웨어 부족이 하이퍼스케일러 약세 원인\" 분석 + SK하이닉스 시총 1위 등극으로 메모리 슈퍼사이클 재점화",
       "drivers": [
-        "하이퍼스케일러 투자 피로감 → 하드웨어 주도권 이동",
-        "SK하이닉스 시총 1위 — 메모리 불장 절정 신호",
-        "CNBC \"AI 트레이드, 하이퍼스케일러 제치고 반도체 장비·칩 선도\""
+        "AI 하드웨어 공급 부족",
+        "SK하이닉스 HBM 주도권"
       ]
     },
     "러셀2000": {
       "price": 2979.77,
       "change": 2.12,
-      "reason": "+2.12% 급등 — 대형주 중심 랠리 확산, 위험선호 심리 강화로 중소형주 동반 상승",
+      "reason": "나스닥 강세 동조 + 금리 안정화로 중소형주 위험선호 확대",
       "drivers": [
-        "광범위 위험선호",
-        "필라델피아반도체 6% 급등 파급"
+        "대형 기술주 랠리 확산",
+        "10년물 -2.7bp 하락"
       ]
     },
     "영국FTSE": {
       "price": 10363.3,
       "change": -0.35,
-      "reason": "-0.35% 소폭 하락 — 직접 촉매 없음, 유럽 증시 전반 부진 속 원자재·금융주 조정",
+      "reason": "직접 촉매 없음 — 유럽 세션 반도체 랠리 전 마감으로 미국 강세 미반영",
       "drivers": [
-        "유럽 증시 동조 약세",
-        "원자재 가격 하락"
+        "시차 효과"
       ]
     },
     "독일DAX": {
       "price": 24985.82,
       "change": -0.16,
-      "reason": "-0.16% 소폭 하락 — 미국 AI 랠리와 디커플링, 유럽 내수 경기 둔화 우려 지속",
+      "reason": "직접 촉매 없음 — 영국과 동일하게 미국 반도체 랠리 전 마감, 유럽 내수 섹터 부진",
       "drivers": [
-        "유럽 내수 부진",
-        "미국 반도체 랠리 미파급"
+        "시차 효과"
       ]
     },
     "니케이": {
-      "price": 72555.46,
-      "change": 1.83,
-      "reason": "+1.83% 강세 — 필라델피아반도체 +6.4% 영향, 도쿄일렉트론·어드밴테스트 등 반도체 장비주 급등",
+      "price": 72532.67,
+      "change": 1.8,
+      "reason": "필라델피아반도체 전일 강세 기대감 + 엔화 안정 속 반도체 장비·부품주 동반 상승",
       "drivers": [
-        "필라델피아반도체 랠리",
-        "일본 반도체 장비주 강세"
+        "글로벌 반도체 모멘텀",
+        "도쿄일렉·어드밴테스트 강세"
       ]
     },
     "항셍": {
-      "price": 23690.86,
-      "change": -0.98,
-      "reason": "-0.98% 하락 — 중국 내수 부진 지속, 미국 AI 반도체 랠리 수혜 제한적 (중국 반도체 규제 영향)",
+      "price": 23695.33,
+      "change": -0.96,
+      "reason": "중국 AI 주식 랠리(Tencent AI 어시스턴트 테스트) 속 기술주 일부 강세했으나, 정책 기대감 제한으로 지수 하락",
       "drivers": [
-        "중국 내수 경기 둔화",
-        "미국 반도체 랠리 미수혜"
+        "Tencent AI 모멘텀",
+        "중국 내수 섹터 약세"
       ]
     },
     "달러인덱스": {
-      "price": 100.93,
-      "change": 0.08,
-      "reason": "+0.08% 보합 — 연준 정책 기대 안정, 중동 종전 합의 이후 안전자산 수요 중립",
+      "price": 100.9,
+      "change": 0.05,
+      "reason": "연준 정책 변화 없는 가운데 박스권 등락, 위험선호 확대에도 달러 수요 유지",
       "drivers": [
-        "연준 중립 기조",
-        "중동 종전 합의 — 안전자산 수요 완화"
+        "중립 통화정책 기대"
       ]
     },
     "국채2Y": {
       "price": 3.66,
       "change": 0.3,
-      "reason": "+0.30% (3.66%) 상승 — 한국 국고채 금리 동반 상승 (3년물 3.811%), 단기 금리 상승 압력",
+      "reason": "국고채 금리 일제히 상승 — 3년물 장중 3.811% 기록, 단기 채권 조정 압력",
       "drivers": [
-        "한국 국고채 금리 상승 (3년물 3.811%)",
-        "단기 금리 상승 압력"
+        "한국 국고채 금리 동반 상승"
       ]
     },
     "국채10Y": {
       "price": 4.45,
       "change": -0.27,
-      "reason": "-0.27% (4.45%) 하락 — 장기 금리 안정, 중동 종전 합의로 인플레 압력 완화 기대",
+      "reason": "반도체 랠리로 위험선호 확대, 장기채 안전자산 수요 감소",
       "drivers": [
-        "중동 종전 합의 — 유가 하락 (-1.45%)",
-        "장기 인플레 압력 완화"
+        "기술주 강세",
+        "국채 매도 압력"
       ]
     },
     "코스피": {
-      "price": 9045.79,
-      "change": -0.07,
-      "reason": "-0.07% 보합 — SK하이닉스 급등(시총 1위 등극)에도 삼성전자 부진, 외국인 매도 지속으로 지수 정체",
+      "price": 9107.82,
+      "change": 0.61,
+      "reason": "SK하이닉스 시총 1위 등극 + 필라델피아반도체 강세 기대감으로 반도체 대형주 주도 상승",
       "drivers": [
-        "SK하이닉스 급등 vs 삼성전자 부진",
-        "외국인 매도 지속"
+        "SK하이닉스 대장주 교체",
+        "글로벌 반도체 모멘텀"
       ]
     },
     "코스닥": {
-      "price": 955.56,
-      "change": -1.14,
-      "reason": "-1.14% 하락 — 중소형주 조정, 반도체 대형주 쏠림 심화로 자금 이탈",
+      "price": 960.22,
+      "change": -0.66,
+      "reason": "대형 반도체주 쏠림으로 중소형·기술주 자금 이탈, 코스피 대비 상대 약세",
       "drivers": [
-        "반도체 대형주 쏠림",
-        "중소형주 자금 이탈"
+        "코스피 쏠림",
+        "중소형 소외"
       ]
     },
     "금": {
-      "price": 4195.5,
-      "change": -0.68,
-      "reason": "-0.68% (4195.5달러) 하락 — 중동 종전 합의로 안전자산 수요 감소, 위험선호 심리 강화",
+      "price": 4204.9,
+      "change": -0.45,
+      "reason": "달러 강보합 + 위험선호 확대로 안전자산 수요 감소",
       "drivers": [
-        "중동 종전 합의 (미국-이란)",
-        "위험선호 → 안전자산 이탈"
+        "반도체 랠리",
+        "VIX -11%"
       ]
     },
     "WTI유가": {
-      "price": 75.49,
-      "change": -1.45,
-      "reason": "-1.45% (75.49달러) 하락 — 미국-이란 종전 합의·호르무즈해협 재개방으로 공급 우려 완화, 장기 유가 안정 전망",
+      "price": 75.27,
+      "change": -1.74,
+      "reason": "직접 촉매 없음 — 수요 우려 지속, Precious Shipping 운임 강세 전망에도 유가는 조정",
       "drivers": [
-        "미국-이란 종전 합의",
-        "호르무즈해협 재개방 — 공급 정상화"
+        "수요 불확실성"
       ]
     },
     "원달러": {
-      "price": 1537.47,
-      "change": -0.01,
-      "reason": "-0.01% (1537.47원) 보합 — 중동 종전 합의로 환율 안정 기대, 한경련 \"향후 3개월 1480원 안팎\" 전망",
+      "price": 1536.88,
+      "change": -0.04,
+      "reason": "코스피 강세 속 외국인 수급 안정, 달러 약보합으로 원화 소폭 강세",
       "drivers": [
-        "중동 종전 합의 — 위험 프리미엄 완화",
-        "한경련 환율 안정 전망 (1480원대)"
+        "외국인 수급"
       ]
     },
     "알루미늄": {
       "price": 3693.75,
       "change": -0.68,
-      "reason": "-0.68% 하락 — 직접 촉매 없음, 구리 등 산업금속 동반 조정",
+      "reason": "직접 촉매 없음 — 중국 수요 둔화 우려 지속",
       "drivers": [
-        "산업금속 전반 약세",
-        "중국 내수 부진 우려"
+        "중국 내수 약세"
       ]
     },
     "구리": {
       "price": 6.32,
-      "change": -0.91,
-      "reason": "-0.91% 하락 — 중국 내수 경기 둔화 우려 지속, 항셍 -0.98% 동조",
+      "change": -0.87,
+      "reason": "직접 촉매 없음 — 알루미늄 동조, 산업 금속 전반 약세",
       "drivers": [
-        "중국 내수 부진",
-        "항셍 -0.98% 동조"
+        "중국 수요 우려"
       ]
     }
   },
@@ -346,7 +337,7 @@
           "rs_momentum": 98.345
         }
       ],
-      "sector_ret_5d": 14.5,
+      "sector_ret_5d": 15.76,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -513,9 +504,9 @@
           "rs_momentum": 92.334
         }
       ],
-      "sector_ret_5d": 3.92,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 4.92,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 27
     },
     "반도체_장비": {
@@ -680,7 +671,7 @@
           "rs_momentum": 102.955
         }
       ],
-      "sector_ret_5d": -8.28,
+      "sector_ret_5d": -7.47,
       "improving_count": 0,
       "watch_count": 1,
       "total": 22
@@ -847,9 +838,9 @@
           "rs_momentum": 98.904
         }
       ],
-      "sector_ret_5d": -6.78,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -5.87,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 31
     },
     "2차전지_셀": {
@@ -1014,7 +1005,7 @@
           "rs_momentum": 87.592
         }
       ],
-      "sector_ret_5d": -7.76,
+      "sector_ret_5d": -7.48,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -1181,7 +1172,7 @@
           "rs_momentum": 85.212
         }
       ],
-      "sector_ret_5d": -12.07,
+      "sector_ret_5d": -11.91,
       "improving_count": 0,
       "watch_count": 0,
       "total": 18
@@ -1348,7 +1339,7 @@
           "rs_momentum": 83.246
         }
       ],
-      "sector_ret_5d": -4.79,
+      "sector_ret_5d": -4.18,
       "improving_count": 0,
       "watch_count": 1,
       "total": 17
@@ -1515,7 +1506,7 @@
           "rs_momentum": 91.077
         }
       ],
-      "sector_ret_5d": -6.66,
+      "sector_ret_5d": -6.09,
       "improving_count": 0,
       "watch_count": 3,
       "total": 13
@@ -1682,7 +1673,7 @@
           "rs_momentum": 87.506
         }
       ],
-      "sector_ret_5d": -6.44,
+      "sector_ret_5d": -5.97,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -1849,7 +1840,7 @@
           "rs_momentum": 93.188
         }
       ],
-      "sector_ret_5d": -8.81,
+      "sector_ret_5d": -8.4,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2016,7 +2007,7 @@
           "rs_momentum": 100.98
         }
       ],
-      "sector_ret_5d": -10.63,
+      "sector_ret_5d": -10.42,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2183,7 +2174,7 @@
           "rs_momentum": 94.464
         }
       ],
-      "sector_ret_5d": -9.18,
+      "sector_ret_5d": -8.87,
       "improving_count": 2,
       "watch_count": 0,
       "total": 17
@@ -2350,7 +2341,7 @@
           "rs_momentum": 97.149
         }
       ],
-      "sector_ret_5d": 1.59,
+      "sector_ret_5d": 1.65,
       "improving_count": 1,
       "watch_count": 0,
       "total": 10
@@ -2517,7 +2508,7 @@
           "rs_momentum": 92.445
         }
       ],
-      "sector_ret_5d": -14.12,
+      "sector_ret_5d": -13.49,
       "improving_count": 0,
       "watch_count": 0,
       "total": 22
@@ -2684,7 +2675,7 @@
           "rs_momentum": 95.932
         }
       ],
-      "sector_ret_5d": -5.9,
+      "sector_ret_5d": -5.67,
       "improving_count": 0,
       "watch_count": 1,
       "total": 17
@@ -2851,7 +2842,7 @@
           "rs_momentum": 95.84
         }
       ],
-      "sector_ret_5d": -9.52,
+      "sector_ret_5d": -9.22,
       "improving_count": 0,
       "watch_count": 1,
       "total": 3
@@ -3018,7 +3009,7 @@
           "rs_momentum": 95.197
         }
       ],
-      "sector_ret_5d": -12.53,
+      "sector_ret_5d": -12.23,
       "improving_count": 1,
       "watch_count": 2,
       "total": 15
@@ -3185,7 +3176,7 @@
           "rs_momentum": 107.766
         }
       ],
-      "sector_ret_5d": -12.82,
+      "sector_ret_5d": -12.54,
       "improving_count": 0,
       "watch_count": 3,
       "total": 6
@@ -3352,7 +3343,7 @@
           "rs_momentum": 100.434
         }
       ],
-      "sector_ret_5d": 5.24,
+      "sector_ret_5d": 5.99,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -3519,7 +3510,7 @@
           "rs_momentum": 106.74
         }
       ],
-      "sector_ret_5d": -9.64,
+      "sector_ret_5d": -9.51,
       "improving_count": 2,
       "watch_count": 0,
       "total": 4
@@ -3686,7 +3677,7 @@
           "rs_momentum": 95.838
         }
       ],
-      "sector_ret_5d": -13.43,
+      "sector_ret_5d": -13.0,
       "improving_count": 2,
       "watch_count": 0,
       "total": 9
@@ -4020,7 +4011,7 @@
           "rs_momentum": 98.387
         }
       ],
-      "sector_ret_5d": -7.62,
+      "sector_ret_5d": -7.63,
       "improving_count": 0,
       "watch_count": 1,
       "total": 5
@@ -4187,7 +4178,7 @@
           "rs_momentum": 104.814
         }
       ],
-      "sector_ret_5d": 0.02,
+      "sector_ret_5d": 1.04,
       "improving_count": 2,
       "watch_count": 2,
       "total": 10
@@ -4354,7 +4345,7 @@
           "rs_momentum": 94.982
         }
       ],
-      "sector_ret_5d": -1.59,
+      "sector_ret_5d": -1.43,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -4521,7 +4512,7 @@
           "rs_momentum": 99.976
         }
       ],
-      "sector_ret_5d": -6.08,
+      "sector_ret_5d": -6.04,
       "improving_count": 2,
       "watch_count": 2,
       "total": 10
@@ -4688,7 +4679,7 @@
           "rs_momentum": 104.259
         }
       ],
-      "sector_ret_5d": -11.41,
+      "sector_ret_5d": -10.6,
       "improving_count": 1,
       "watch_count": 1,
       "total": 9
@@ -4855,7 +4846,7 @@
           "rs_momentum": 93.255
         }
       ],
-      "sector_ret_5d": -10.73,
+      "sector_ret_5d": -10.56,
       "improving_count": 0,
       "watch_count": 2,
       "total": 9
@@ -5022,7 +5013,7 @@
           "rs_momentum": 99.545
         }
       ],
-      "sector_ret_5d": -0.57,
+      "sector_ret_5d": -0.11,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -5189,7 +5180,7 @@
           "rs_momentum": 104.582
         }
       ],
-      "sector_ret_5d": -7.51,
+      "sector_ret_5d": -7.38,
       "improving_count": 3,
       "watch_count": 5,
       "total": 9
@@ -5356,7 +5347,7 @@
           "rs_momentum": 90.73
         }
       ],
-      "sector_ret_5d": -8.87,
+      "sector_ret_5d": -8.39,
       "improving_count": 0,
       "watch_count": 3,
       "total": 18
@@ -5523,9 +5514,9 @@
           "rs_momentum": 108.949
         }
       ],
-      "sector_ret_5d": 3.81,
-      "improving_count": 1,
-      "watch_count": 7,
+      "sector_ret_5d": 4.38,
+      "improving_count": 2,
+      "watch_count": 6,
       "total": 13
     },
     "핀테크·결제": {
@@ -5690,7 +5681,7 @@
           "rs_momentum": 102.734
         }
       ],
-      "sector_ret_5d": -6.36,
+      "sector_ret_5d": -6.22,
       "improving_count": 0,
       "watch_count": 2,
       "total": 6
@@ -5857,7 +5848,7 @@
           "rs_momentum": 84.158
         }
       ],
-      "sector_ret_5d": -12.4,
+      "sector_ret_5d": -12.15,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -6024,7 +6015,7 @@
           "rs_momentum": 93.181
         }
       ],
-      "sector_ret_5d": -9.55,
+      "sector_ret_5d": -8.89,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -6191,7 +6182,7 @@
           "rs_momentum": 97.212
         }
       ],
-      "sector_ret_5d": 1.38,
+      "sector_ret_5d": 2.64,
       "improving_count": 1,
       "watch_count": 0,
       "total": 5
@@ -6358,7 +6349,7 @@
           "rs_momentum": 86.445
         }
       ],
-      "sector_ret_5d": -10.68,
+      "sector_ret_5d": -10.37,
       "improving_count": 0,
       "watch_count": 0,
       "total": 13
@@ -6525,7 +6516,7 @@
           "rs_momentum": 101.878
         }
       ],
-      "sector_ret_5d": -8.18,
+      "sector_ret_5d": -7.66,
       "improving_count": 0,
       "watch_count": 4,
       "total": 8
@@ -6692,7 +6683,7 @@
           "rs_momentum": 85.301
         }
       ],
-      "sector_ret_5d": -8.04,
+      "sector_ret_5d": -7.35,
       "improving_count": 0,
       "watch_count": 1,
       "total": 11
@@ -6859,7 +6850,7 @@
           "rs_momentum": 96.074
         }
       ],
-      "sector_ret_5d": -10.13,
+      "sector_ret_5d": -9.58,
       "improving_count": 0,
       "watch_count": 2,
       "total": 4
@@ -7026,7 +7017,7 @@
           "rs_momentum": 96.306
         }
       ],
-      "sector_ret_5d": -8.46,
+      "sector_ret_5d": -7.64,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -7193,7 +7184,7 @@
           "rs_momentum": 102.855
         }
       ],
-      "sector_ret_5d": -7.99,
+      "sector_ret_5d": -8.11,
       "improving_count": 0,
       "watch_count": 2,
       "total": 6
@@ -7360,7 +7351,7 @@
           "rs_momentum": 107.409
         }
       ],
-      "sector_ret_5d": -10.49,
+      "sector_ret_5d": -9.82,
       "improving_count": 3,
       "watch_count": 2,
       "total": 6
@@ -7527,7 +7518,7 @@
           "rs_momentum": 100.908
         }
       ],
-      "sector_ret_5d": -8.43,
+      "sector_ret_5d": -8.26,
       "improving_count": 1,
       "watch_count": 3,
       "total": 8
@@ -7694,7 +7685,7 @@
           "rs_momentum": 99.699
         }
       ],
-      "sector_ret_5d": -8.8,
+      "sector_ret_5d": -8.66,
       "improving_count": 1,
       "watch_count": 2,
       "total": 4
@@ -7861,7 +7852,7 @@
           "rs_momentum": 106.075
         }
       ],
-      "sector_ret_5d": -3.82,
+      "sector_ret_5d": -3.34,
       "improving_count": 1,
       "watch_count": 2,
       "total": 8
@@ -8028,7 +8019,7 @@
           "rs_momentum": 96.608
         }
       ],
-      "sector_ret_5d": -4.07,
+      "sector_ret_5d": -4.28,
       "improving_count": 3,
       "watch_count": 1,
       "total": 11
@@ -8195,7 +8186,7 @@
           "rs_momentum": 103.984
         }
       ],
-      "sector_ret_5d": -9.43,
+      "sector_ret_5d": -9.57,
       "improving_count": 0,
       "watch_count": 3,
       "total": 8
@@ -8362,7 +8353,7 @@
           "rs_momentum": 94.653
         }
       ],
-      "sector_ret_5d": -9.82,
+      "sector_ret_5d": -9.72,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -8529,9 +8520,9 @@
           "rs_momentum": 94.514
         }
       ],
-      "sector_ret_5d": -4.73,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -4.43,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 10
     },
     "K푸드_수출": {
@@ -8696,7 +8687,7 @@
           "rs_momentum": 95.795
         }
       ],
-      "sector_ret_5d": -5.76,
+      "sector_ret_5d": -5.81,
       "improving_count": 0,
       "watch_count": 3,
       "total": 9
@@ -8863,7 +8854,7 @@
           "rs_momentum": 102.662
         }
       ],
-      "sector_ret_5d": -5.74,
+      "sector_ret_5d": -5.77,
       "improving_count": 0,
       "watch_count": 2,
       "total": 5
@@ -9030,7 +9021,7 @@
           "rs_momentum": 101.794
         }
       ],
-      "sector_ret_5d": -7.0,
+      "sector_ret_5d": -6.98,
       "improving_count": 3,
       "watch_count": 3,
       "total": 11
@@ -9197,7 +9188,7 @@
           "rs_momentum": 112.016
         }
       ],
-      "sector_ret_5d": -3.21,
+      "sector_ret_5d": -3.3,
       "improving_count": 0,
       "watch_count": 1,
       "total": 7
@@ -9364,7 +9355,7 @@
           "rs_momentum": 102.386
         }
       ],
-      "sector_ret_5d": -10.89,
+      "sector_ret_5d": -10.57,
       "improving_count": 0,
       "watch_count": 4,
       "total": 11
@@ -9531,7 +9522,7 @@
           "rs_momentum": 99.178
         }
       ],
-      "sector_ret_5d": -8.26,
+      "sector_ret_5d": -8.01,
       "improving_count": 0,
       "watch_count": 3,
       "total": 11
@@ -9698,7 +9689,7 @@
           "rs_momentum": 100.47
         }
       ],
-      "sector_ret_5d": -6.8,
+      "sector_ret_5d": -6.69,
       "improving_count": 3,
       "watch_count": 1,
       "total": 8
@@ -9865,7 +9856,7 @@
           "rs_momentum": 98.139
         }
       ],
-      "sector_ret_5d": 26.64,
+      "sector_ret_5d": 27.32,
       "improving_count": 0,
       "watch_count": 1,
       "total": 5
@@ -9883,12 +9874,6 @@
       "title": "SK하이닉스, 삼전 제치고 코스피 시총 1위…25년만 대장주 교체(종합)",
       "link": "https://www.yna.co.kr/view/AKR20260622063151008",
       "published": "Mon, 22 Jun 2026 13:02:41 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "“스페이스X 믿었는데”...우주항공ETF 수익률 ‘직격탄’",
-      "link": "https://www.mk.co.kr/news/economy/12079720",
-      "published": "Mon, 22 Jun 2026 11:12:19 +09:00"
     },
     {
       "source": "seeking_alpha",
@@ -9909,14 +9894,8 @@
       "published": "Mon, 22 Jun 2026 11:40:35 +0900"
     },
     {
-      "source": "seeking_alpha",
-      "title": "Microsoft’s Satya Nadella calls for AI reset beyond frontier model race",
-      "link": "https://seekingalpha.com/news/4605322-microsoft-s-satya-nadella-calls-for-ai-reset-beyond-frontier-model-race?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sun, 21 Jun 2026 22:17:20 -0400"
-    },
-    {
       "source": "bloomberg",
-      "title": "Asset Manager CSOP Lifts Options Cap for SK Hynix Leveraged Fund",
+      "title": "Asset Manager CSOP Lifts Options Cap for SK Hynix ETF",
       "link": "https://www.bloomberg.com/news/articles/2026-06-22/asset-manager-csop-lifts-options-cap-for-sk-hynix-leveraged-fund",
       "published": "Mon, 22 Jun 2026 03:27:23 GMT"
     },
@@ -9933,16 +9912,16 @@
       "published": "Sun, 21 Jun 2026 22:41:00 GMT"
     },
     {
-      "source": "seeking_alpha",
-      "title": "Here are the major earnings before the open Monday",
-      "link": "https://seekingalpha.com/news/4605281-here-are-the-major-earnings-before-the-open-monday?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sun, 21 Jun 2026 18:00:00 -0400"
-    },
-    {
       "source": "marketwatch",
       "title": "I’m spending $170,000 to upgrade my home for my aging parents. Can I get tax breaks?",
       "link": "https://www.marketwatch.com/story/im-spending-170-000-to-upgrade-my-home-for-my-aging-parents-can-i-get-tax-breaks-3adf0236?mod=mw_rss_topstories",
       "published": "Sun, 21 Jun 2026 19:00:00 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Tencent steps up AI race, tests WeChat assistant 'Xiaowei'",
+      "link": "https://seekingalpha.com/news/4605331-tencent-steps-up-ai-race-tests-wechat-assistant-xiaowei?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Mon, 22 Jun 2026 01:16:46 -0400"
     },
     {
       "source": "seeking_alpha",
@@ -9957,39 +9936,47 @@
       "published": "Mon, 22 Jun 2026 14:02:39 +09:00"
     },
     {
+      "source": "bloomberg",
+      "title": "Chinese AI Stocks Rally on Demand Optimism and Policy Support",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-22/chinese-ai-stocks-rally-on-demand-optimism-and-policy-support",
+      "published": "Mon, 22 Jun 2026 05:01:32 GMT"
+    },
+    {
       "source": "ft",
       "title": "Bain tests software takeover targets by vibecoding AI replicas",
       "link": "https://www.ft.com/content/e5bac4d1-b1f8-43a4-bd54-b182d5357af0",
       "published": "Mon, 22 Jun 2026 04:00:07 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "The AI trade has left the hyperscalers in the dust. What will it take for that to change?",
+      "link": "https://www.cnbc.com/2026/06/21/the-ai-trade-has-left-the-hyperscalers-in-the-dust-what-will-it-take-for-that-to-change-.html",
+      "published": "Mon, 22 Jun 2026 02:44:31 GMT"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +6.42% 급등·VIX 11% 급락하며 AI 섹터 모멘텀 재점화, SK하이닉스 시총 1위 등극으로 국내 반도체 투자심리 절정",
+  "sentiment_reason": "필라델피아반도체 +6.42% 급등·VIX -11% 급락, SK하이닉스 시총 1위 등극으로 메모리 슈퍼사이클 재확인",
   "key_factors": [
-    "필라델피아반도체 +6.42% — AI 하드웨어 슈퍼사이클 재확인, 하이퍼스케일러 약세 속 반도체 장비·메모리 차별화 강세",
-    "SK하이닉스 25년 7개월 만에 코스피 시총 1위 탈환 (2084.7조원) — 삼성전자 추월, 메모리 불장 정점 신호",
-    "MSFT 나델라 \"AI 프론티어 모델 경쟁 넘어 범용 접근·비용 절감\" 제언 — 하이퍼스케일러 투자 피로감, 하드웨어·인프라 주도권 이동"
+    "필라델피아반도체 +6.42% 급등 — 글로벌 AI 반도체 수요 재점화로 메모리·장비 동반 강세",
+    "SK하이닉스 삼성전자 제치고 코스피 시총 1위 등극 — 25년만 대장주 교체, HBM 슈퍼사이클 시장 재평가",
+    "중국 AI 주식 랠리 지속 + Tencent WeChat AI 어시스턴트 테스트 — 아시아 AI 생태계 확장 기대"
   ],
-  "news_summary": "미국-이란 종전 합의·호르무즈해협 재개방 — WTI유가 -1.45% (75.49달러), 금 -0.68%, 장기 인플레 압력 완화 기대\n한국 국고채 금리 일제히 상승 — 3년물 장중 연 3.811%, 10년물 4.193%로 2.2bp 상승\n한경련 \"중동 종전 합의로 환율 안정 전망 — 향후 3개월 원달러 1480원 안팎, 반도체 호황·경상수지 흑자 영향\"\n달러인덱스 +0.08% 보합 — 연준 정책 기대 안정, 중동 리스크 완화 속 중립 기조\n러시아 \"모스크바 향하던 드론 59대 격추\" — 모스크바 공항 4곳 한때 운영 중단, 우크라이나 본토 공격 지속\n공정위, SM그룹 6개 계열사 심의 착수 — 총수 딸 회사에 유망 개발사업 기회 제공·저금리 대출 혐의, 특수관계인 부당 이익제공 혐의\n경찰청장 대행 \"잠실 투표함, 사회적 합의 이뤄져야 사안 해결\" — 불법행위 엄정 대응 기조 재확인\nSK하이닉스, 25년 7개월 만에 코스피 시총 1위 등극 (2084.7조원) — 삼성전자(2084.2조원) 제치며 대장주 교체, 메모리 불장 절정 신호\nMSFT 나델라 \"AI 리셋 필요 — 프론티어 모델 경쟁 넘어 범용 접근·비용 절감 집중해야\" — 하이퍼스케일러 투자 피로감, 하드웨어·인프라 주도권 이동 시사\nCNBC \"AI 트레이드, 하이퍼스케일러 제치고 반도체 장비·칩 선도 — 메모리 칩 부족 심화, AMZN·GOOGL·MSFT·META 약세\" — 필라델피아반도체 +6.42% 급등 배경\nSpaceX IPO 후 우주항공 ETF 직격탄 — TIGER 미국우주테크 일주일간 -24.7% (국내 전체 ETF 최하위), 레드와이어 급락·우주 데이터센터 회의론 부각\nInsilico-SK바이오팜 AI 신약 계약 (총 25억달러 규모) — CNS 신경면역 질환 공동 개발, 선급금 1800만달러\nGetty Images-OpenAI 파트너십 — ChatGPT 검색에 라이선스 이미지 제공, AI 저작권 문제 해법 모색\n국민연금 기금 소진 시점 4~7년 연기 — 삼성전자·SK하이닉스 등 반도체 불장 덕분에 투자수익률 개선, 고액 성과급 물가 상승 우려 동시 제기",
+  "news_summary": "한국 국고채 금리 일제히 상승 — 3년물 장중 3.811%, 2년물 +3.3bp·5년물 +2.9bp·10년물 +2.2bp 동반 상승\n국민연금 기금 소진 시점 4~7년 연장 — 코스피 9000 돌파 등 주식 투자수익률 호조로 재정 안정성 개선\nMarketwatch \"연준 Warsh 체제 하 금리 인상으로 강세장 종료 없을 것\" 전망 — 통화정책 안정 기대\n공정위 SM그룹 심의 착수 — 6개 계열사(SMAMC투자대부·삼환기업·SM상선·SM하이플러스·에이치엔이앤씨·삼라마이다) 총수 일가 회사에 개발사업 기회·저금리 대출 제공 혐의\n무보 9억유로 수출금융 제공 — 현대엔지니어링 세르비아 1200MW급 태양광 발전 프로젝트 지원, 동유럽 신재생 시장 진출 교두보\n탈모약 건보 적용 시 연 1797억원 소요 — 본인부담률 30% 기준, 7월 4일 정책 토론회 개최 예정\nSK하이닉스 삼성전자 제치고 코스피 시총 1위 등극 — 장중 시총 208.5조원으로 삼성전자(208.4조) 추월, 25년 7개월 만에 대장주 교체\nCNBC \"AI 하드웨어 부족이 하이퍼스케일러 약세 원인\" 분석 — Amazon·Alphabet·Microsoft·Meta 주가 정체 vs 메모리·반도체 장비 강세 대조\n자산운용사 CSOP, SK하이닉스 ETF 옵션 한도 확대 — 기관 수요 확대 반영\nTencent, WeChat AI 어시스턴트 'Xiaowei' 테스트 착수 — 중국 AI 경쟁 가속화, 슈퍼앱 내 AI 통합\nInsilico-SK바이오팜 25억달러 AI 신약 파트너십 체결 — AI 기반 신약 개발 협력 본격화\nGetty Images-OpenAI 파트너십 체결 — ChatGPT 검색에 라이선스 이미지 통합, 저작권 이슈 해결 시도\nSilicon Data, AI 컴퓨팅 파워 거래 가능한 상품화 추진 — AI 인프라 선물 시장 조성 시도",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "미국-이란 종전 합의·호르무즈해협 재개방 — WTI유가 -1.45% (75.49달러), 금 -0.68%, 장기 인플레 압력 완화 기대",
+          "text": "한국 국고채 금리 일제히 상승 — 3년물 장중 3.811%, 2년물 +3.3bp·5년물 +2.9bp·10년물 +2.2bp 동반 상승",
           "impact": "high"
         },
         {
-          "text": "한국 국고채 금리 일제히 상승 — 3년물 장중 연 3.811%, 10년물 4.193%로 2.2bp 상승",
-          "impact": "high"
-        },
-        {
-          "text": "한경련 \"중동 종전 합의로 환율 안정 전망 — 향후 3개월 원달러 1480원 안팎, 반도체 호황·경상수지 흑자 영향\"",
+          "text": "국민연금 기금 소진 시점 4~7년 연장 — 코스피 9000 돌파 등 주식 투자수익률 호조로 재정 안정성 개선",
           "impact": "mid"
         },
         {
-          "text": "달러인덱스 +0.08% 보합 — 연준 정책 기대 안정, 중동 리스크 완화 속 중립 기조",
+          "text": "Marketwatch \"연준 Warsh 체제 하 금리 인상으로 강세장 종료 없을 것\" 전망 — 통화정책 안정 기대",
           "impact": "mid"
         }
       ]
@@ -9999,15 +9986,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "러시아 \"모스크바 향하던 드론 59대 격추\" — 모스크바 공항 4곳 한때 운영 중단, 우크라이나 본토 공격 지속",
+          "text": "공정위 SM그룹 심의 착수 — 6개 계열사(SMAMC투자대부·삼환기업·SM상선·SM하이플러스·에이치엔이앤씨·삼라마이다) 총수 일가 회사에 개발사업 기회·저금리 대출 제공 혐의",
           "impact": "high"
         },
         {
-          "text": "공정위, SM그룹 6개 계열사 심의 착수 — 총수 딸 회사에 유망 개발사업 기회 제공·저금리 대출 혐의, 특수관계인 부당 이익제공 혐의",
+          "text": "무보 9억유로 수출금융 제공 — 현대엔지니어링 세르비아 1200MW급 태양광 발전 프로젝트 지원, 동유럽 신재생 시장 진출 교두보",
           "impact": "mid"
         },
         {
-          "text": "경찰청장 대행 \"잠실 투표함, 사회적 합의 이뤄져야 사안 해결\" — 불법행위 엄정 대응 기조 재확인",
+          "text": "탈모약 건보 적용 시 연 1797억원 소요 — 본인부담률 30% 기준, 7월 4일 정책 토론회 개최 예정",
           "impact": "mid"
         }
       ]
@@ -10017,31 +10004,31 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "SK하이닉스, 25년 7개월 만에 코스피 시총 1위 등극 (2084.7조원) — 삼성전자(2084.2조원) 제치며 대장주 교체, 메모리 불장 절정 신호",
+          "text": "SK하이닉스 삼성전자 제치고 코스피 시총 1위 등극 — 장중 시총 208.5조원으로 삼성전자(208.4조) 추월, 25년 7개월 만에 대장주 교체",
           "impact": "high"
         },
         {
-          "text": "MSFT 나델라 \"AI 리셋 필요 — 프론티어 모델 경쟁 넘어 범용 접근·비용 절감 집중해야\" — 하이퍼스케일러 투자 피로감, 하드웨어·인프라 주도권 이동 시사",
+          "text": "CNBC \"AI 하드웨어 부족이 하이퍼스케일러 약세 원인\" 분석 — Amazon·Alphabet·Microsoft·Meta 주가 정체 vs 메모리·반도체 장비 강세 대조",
           "impact": "high"
         },
         {
-          "text": "CNBC \"AI 트레이드, 하이퍼스케일러 제치고 반도체 장비·칩 선도 — 메모리 칩 부족 심화, AMZN·GOOGL·MSFT·META 약세\" — 필라델피아반도체 +6.42% 급등 배경",
+          "text": "자산운용사 CSOP, SK하이닉스 ETF 옵션 한도 확대 — 기관 수요 확대 반영",
           "impact": "high"
         },
         {
-          "text": "SpaceX IPO 후 우주항공 ETF 직격탄 — TIGER 미국우주테크 일주일간 -24.7% (국내 전체 ETF 최하위), 레드와이어 급락·우주 데이터센터 회의론 부각",
-          "impact": "high"
-        },
-        {
-          "text": "Insilico-SK바이오팜 AI 신약 계약 (총 25억달러 규모) — CNS 신경면역 질환 공동 개발, 선급금 1800만달러",
+          "text": "Tencent, WeChat AI 어시스턴트 'Xiaowei' 테스트 착수 — 중국 AI 경쟁 가속화, 슈퍼앱 내 AI 통합",
           "impact": "mid"
         },
         {
-          "text": "Getty Images-OpenAI 파트너십 — ChatGPT 검색에 라이선스 이미지 제공, AI 저작권 문제 해법 모색",
+          "text": "Insilico-SK바이오팜 25억달러 AI 신약 파트너십 체결 — AI 기반 신약 개발 협력 본격화",
           "impact": "mid"
         },
         {
-          "text": "국민연금 기금 소진 시점 4~7년 연기 — 삼성전자·SK하이닉스 등 반도체 불장 덕분에 투자수익률 개선, 고액 성과급 물가 상승 우려 동시 제기",
+          "text": "Getty Images-OpenAI 파트너십 체결 — ChatGPT 검색에 라이선스 이미지 통합, 저작권 이슈 해결 시도",
+          "impact": "mid"
+        },
+        {
+          "text": "Silicon Data, AI 컴퓨팅 파워 거래 가능한 상품화 추진 — AI 인프라 선물 시장 조성 시도",
           "impact": "mid"
         }
       ]
@@ -10049,159 +10036,152 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "AI 하드웨어 랠리 확산 — 필라델피아반도체 +6.4%·러셀2000 +2.1%로 폭넓은 위험선호, 하이퍼스케일러 약세에도 지수 견조",
+      "reason": "반도체 섹터 +6.4% 폭등이 지수 견인, VIX -11% 급락으로 위험선호 심리 강화",
       "drivers": [
-        "필라델피아반도체 +6.42% 급등",
-        "러셀2000 +2.12% 동반 상승"
+        "필라델피아반도체 +6.42%",
+        "나스닥 +1.91% 아웃퍼폼"
       ]
     },
     "NASDAQ": {
-      "reason": "AI 하드웨어·메모리 중심 반도체 랠리 — 나스닥 +1.91% 견인, 하이퍼스케일러 피로감 속 장비·칩 업종 차별화",
+      "reason": "AI 하드웨어 부족 재확인으로 메모리·반도체 장비주 집중 매수, 하이퍼스케일러 약세 대비 하드웨어 강세 극명",
       "drivers": [
-        "필라델피아반도체 +6.42%",
-        "AI 인프라 섹터 재평가"
+        "메모리 반도체 강세",
+        "하이퍼스케일러 대비 하드웨어 차별화"
       ]
     },
     "DOW": {
-      "reason": "산업재 부진으로 +0.14% 소폭 상승 — 반도체·기술주 중심 랠리에서 소외, 경기민감 섹터 저조",
+      "reason": "반도체·기술주 랠리에 전통 산업 자금 이탈, 섹터 로테이션으로 소폭 상승 제한",
       "drivers": [
-        "반도체 편중 랠리",
-        "산업재 부진"
+        "기술주 쏠림",
+        "전통 산업 상대 약세"
       ]
     },
     "VIX": {
-      "reason": "AI 하드웨어 모멘텀 재점화로 -11.06% 급락 — 필라델피아반도체 6% 이상 급등하며 변동성 압력 완화",
+      "reason": "필라델피아반도체 6% 급등·SK하이닉스 시총 1위로 AI 슈퍼사이클 확신 강화, 변동성 프리미엄 급락",
       "drivers": [
-        "필라델피아반도체 강세",
-        "광범위 위험선호"
+        "반도체 섹터 모멘텀",
+        "위험선호 심리 확대"
       ]
     },
     "필라델피아반도체": {
-      "reason": "+6.42% 급등 — AI 하드웨어 슈퍼사이클 재확인, 하이퍼스케일러(MSFT·AMZN·GOOGL·META) 약세 속 메모리·장비 차별화 강세, SK하이닉스 코스피 1위 등극 영향",
+      "reason": "CNBC \"AI 하드웨어 부족이 하이퍼스케일러 약세 원인\" 분석 + SK하이닉스 시총 1위 등극으로 메모리 슈퍼사이클 재점화",
       "drivers": [
-        "하이퍼스케일러 투자 피로감 → 하드웨어 주도권 이동",
-        "SK하이닉스 시총 1위 — 메모리 불장 절정 신호",
-        "CNBC \"AI 트레이드, 하이퍼스케일러 제치고 반도체 장비·칩 선도\""
+        "AI 하드웨어 공급 부족",
+        "SK하이닉스 HBM 주도권"
       ]
     },
     "러셀2000": {
-      "reason": "+2.12% 급등 — 대형주 중심 랠리 확산, 위험선호 심리 강화로 중소형주 동반 상승",
+      "reason": "나스닥 강세 동조 + 금리 안정화로 중소형주 위험선호 확대",
       "drivers": [
-        "광범위 위험선호",
-        "필라델피아반도체 6% 급등 파급"
+        "대형 기술주 랠리 확산",
+        "10년물 -2.7bp 하락"
       ]
     },
     "영국FTSE": {
-      "reason": "-0.35% 소폭 하락 — 직접 촉매 없음, 유럽 증시 전반 부진 속 원자재·금융주 조정",
+      "reason": "직접 촉매 없음 — 유럽 세션 반도체 랠리 전 마감으로 미국 강세 미반영",
       "drivers": [
-        "유럽 증시 동조 약세",
-        "원자재 가격 하락"
+        "시차 효과"
       ]
     },
     "독일DAX": {
-      "reason": "-0.16% 소폭 하락 — 미국 AI 랠리와 디커플링, 유럽 내수 경기 둔화 우려 지속",
+      "reason": "직접 촉매 없음 — 영국과 동일하게 미국 반도체 랠리 전 마감, 유럽 내수 섹터 부진",
       "drivers": [
-        "유럽 내수 부진",
-        "미국 반도체 랠리 미파급"
+        "시차 효과"
       ]
     },
     "니케이": {
-      "reason": "+1.83% 강세 — 필라델피아반도체 +6.4% 영향, 도쿄일렉트론·어드밴테스트 등 반도체 장비주 급등",
+      "reason": "필라델피아반도체 전일 강세 기대감 + 엔화 안정 속 반도체 장비·부품주 동반 상승",
       "drivers": [
-        "필라델피아반도체 랠리",
-        "일본 반도체 장비주 강세"
+        "글로벌 반도체 모멘텀",
+        "도쿄일렉·어드밴테스트 강세"
       ]
     },
     "항셍": {
-      "reason": "-0.98% 하락 — 중국 내수 부진 지속, 미국 AI 반도체 랠리 수혜 제한적 (중국 반도체 규제 영향)",
+      "reason": "중국 AI 주식 랠리(Tencent AI 어시스턴트 테스트) 속 기술주 일부 강세했으나, 정책 기대감 제한으로 지수 하락",
       "drivers": [
-        "중국 내수 경기 둔화",
-        "미국 반도체 랠리 미수혜"
+        "Tencent AI 모멘텀",
+        "중국 내수 섹터 약세"
       ]
     },
     "달러인덱스": {
-      "reason": "+0.08% 보합 — 연준 정책 기대 안정, 중동 종전 합의 이후 안전자산 수요 중립",
+      "reason": "연준 정책 변화 없는 가운데 박스권 등락, 위험선호 확대에도 달러 수요 유지",
       "drivers": [
-        "연준 중립 기조",
-        "중동 종전 합의 — 안전자산 수요 완화"
+        "중립 통화정책 기대"
       ]
     },
     "국채2Y": {
-      "reason": "+0.30% (3.66%) 상승 — 한국 국고채 금리 동반 상승 (3년물 3.811%), 단기 금리 상승 압력",
+      "reason": "국고채 금리 일제히 상승 — 3년물 장중 3.811% 기록, 단기 채권 조정 압력",
       "drivers": [
-        "한국 국고채 금리 상승 (3년물 3.811%)",
-        "단기 금리 상승 압력"
+        "한국 국고채 금리 동반 상승"
       ]
     },
     "국채10Y": {
-      "reason": "-0.27% (4.45%) 하락 — 장기 금리 안정, 중동 종전 합의로 인플레 압력 완화 기대",
+      "reason": "반도체 랠리로 위험선호 확대, 장기채 안전자산 수요 감소",
       "drivers": [
-        "중동 종전 합의 — 유가 하락 (-1.45%)",
-        "장기 인플레 압력 완화"
+        "기술주 강세",
+        "국채 매도 압력"
       ]
     },
     "코스피": {
-      "reason": "-0.07% 보합 — SK하이닉스 급등(시총 1위 등극)에도 삼성전자 부진, 외국인 매도 지속으로 지수 정체",
+      "reason": "SK하이닉스 시총 1위 등극 + 필라델피아반도체 강세 기대감으로 반도체 대형주 주도 상승",
       "drivers": [
-        "SK하이닉스 급등 vs 삼성전자 부진",
-        "외국인 매도 지속"
+        "SK하이닉스 대장주 교체",
+        "글로벌 반도체 모멘텀"
       ]
     },
     "코스닥": {
-      "reason": "-1.14% 하락 — 중소형주 조정, 반도체 대형주 쏠림 심화로 자금 이탈",
+      "reason": "대형 반도체주 쏠림으로 중소형·기술주 자금 이탈, 코스피 대비 상대 약세",
       "drivers": [
-        "반도체 대형주 쏠림",
-        "중소형주 자금 이탈"
+        "코스피 쏠림",
+        "중소형 소외"
       ]
     },
     "금": {
-      "reason": "-0.68% (4195.5달러) 하락 — 중동 종전 합의로 안전자산 수요 감소, 위험선호 심리 강화",
+      "reason": "달러 강보합 + 위험선호 확대로 안전자산 수요 감소",
       "drivers": [
-        "중동 종전 합의 (미국-이란)",
-        "위험선호 → 안전자산 이탈"
+        "반도체 랠리",
+        "VIX -11%"
       ]
     },
     "WTI유가": {
-      "reason": "-1.45% (75.49달러) 하락 — 미국-이란 종전 합의·호르무즈해협 재개방으로 공급 우려 완화, 장기 유가 안정 전망",
+      "reason": "직접 촉매 없음 — 수요 우려 지속, Precious Shipping 운임 강세 전망에도 유가는 조정",
       "drivers": [
-        "미국-이란 종전 합의",
-        "호르무즈해협 재개방 — 공급 정상화"
+        "수요 불확실성"
       ]
     },
     "원달러": {
-      "reason": "-0.01% (1537.47원) 보합 — 중동 종전 합의로 환율 안정 기대, 한경련 \"향후 3개월 1480원 안팎\" 전망",
+      "reason": "코스피 강세 속 외국인 수급 안정, 달러 약보합으로 원화 소폭 강세",
       "drivers": [
-        "중동 종전 합의 — 위험 프리미엄 완화",
-        "한경련 환율 안정 전망 (1480원대)"
+        "외국인 수급"
       ]
     },
     "알루미늄": {
-      "reason": "-0.68% 하락 — 직접 촉매 없음, 구리 등 산업금속 동반 조정",
+      "reason": "직접 촉매 없음 — 중국 수요 둔화 우려 지속",
       "drivers": [
-        "산업금속 전반 약세",
-        "중국 내수 부진 우려"
+        "중국 내수 약세"
       ]
     },
     "구리": {
-      "reason": "-0.91% 하락 — 중국 내수 경기 둔화 우려 지속, 항셍 -0.98% 동조",
+      "reason": "직접 촉매 없음 — 알루미늄 동조, 산업 금속 전반 약세",
       "drivers": [
-        "중국 내수 부진",
-        "항셍 -0.98% 동조"
+        "중국 수요 우려"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "필라델피아반도체 +6.42% 급등·SK하이닉스 시총 1위 등극으로 반도체 투자심리 절정, 코스피 -0.07% 보합 — 대형주 쏠림 심화·외국인 매도 지속",
+    "summary": "SK하이닉스 시총 1위 등극으로 HBM 슈퍼사이클 재확인, 필라델피아반도체 +6.4% 강세가 국내 반도체·IT부품 투자심리 견인",
     "positive_factors": [
-      "필라델피아반도체 +6.42% 급등 — AI 하드웨어 슈퍼사이클 재확인, SK하이닉스 시총 1위 등극으로 국내 메모리 투자심리 절정 국면",
-      "중동 종전 합의(미국-이란)·호르무즈해협 재개방 — 유가 -1.45%, 환율 안정 기대 (한경련 3개월 1480원 전망), 반도체 수출주 원가 부담 완화",
-      "하이퍼스케일러 약세 속 반도체 장비·메모리 차별화 강세 — MSFT 나델라 \"AI 리셋\" 발언, 하드웨어 주도권 이동 신호"
+      "필라델피아반도체 +6.42% 급등 + CNBC \"AI 하드웨어 부족\" 분석 → 메모리·반도체 장비 슈퍼사이클 재점화",
+      "SK하이닉스 25년만 대장주 등극 + CSOP ETF 옵션 한도 확대 → 국내 반도체 대형주 재평가·외국인 수급 개선 기대",
+      "Insilico-SK바이오팜 25억달러 AI 신약 파트너십 → 국내 바이오 기술이전 섹터 모멘텀 강화",
+      "나스닥 +1.91%·VIX -11% → 글로벌 위험선호 확대, 코스피 외국인 매수 심리 지속 전망"
     ],
     "negative_factors": [
-      "코스닥 -1.14% 하락 — 반도체 대형주 쏠림 심화로 중소형주 자금 이탈, 외국인 매도 지속",
-      "국고채 금리 일제히 상승 (3년물 3.811%, 10년물 4.193%) — 채권 조정 압력, 성장주 밸류에이션 부담 잠재"
+      "코스닥 -0.66% 하락 — 대형 반도체주 쏠림으로 중소형·기술주 자금 이탈 지속",
+      "국고채 금리 일제히 상승(3년물 3.811%) — 채권 조정 압력, 성장주 밸류에이션 부담 확대 가능성",
+      "WTI -1.74%·구리 -0.87% → 경기 민감 원자재 약세, 2차전지·철강 등 소재 섹터 역풍"
     ],
-    "key_watch": "SK하이닉스 시총 1위 지속 여부 — 삼성전자 반격 또는 메모리 불장 정점 신호 판단 분수령, IT부품(RS-R 132.2) Leading 지속력"
+    "key_watch": "SK하이닉스 시총 1위 유지 여부 + 필라델피아반도체 모멘텀 지속성 — 삼성전자 반등 vs SK하이닉스 추가 상승 분기점"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10209,105 +10189,106 @@
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 103.2·RS-M 103.0 Leading — 필라델피아반도체 +6.42% 급등, 하이퍼스케일러 약세 속 장비·인프라 주도권 이동, 일본 도쿄일렉트론 강세 파급"
+      "reason": "RS-R 103.2·RS-M 103.0으로 Leading 구간 진입, 필라델피아반도체 +6.4% 급등으로 글로벌 반도체 장비 슈퍼사이클 재확인"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 132.2·RS-M 100.4 Leading (RRG 최고 RS-Ratio) — SK하이닉스 시총 1위 등극, 반도체 불장 속 IT부품 모멘텀 절정, 미너비니 52주 신고가 돌파 국면"
-    },
-    {
-      "sector": "AI_인프라",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "RS-R 102.5·RS-M 101.0 Leading — AI 하드웨어 인프라 재평가, MSFT 나델라 '범용 AI' 발언, 메모리 칩 부족 심화 수혜"
+      "reason": "RS-R 132.2·RS-M 100.4로 압도적 상대강도, SK하이닉스 시총 1위 등극 + CNBC AI 하드웨어 부족 분석으로 메모리·IT부품 수혜 극대화"
     },
     {
       "sector": "보험",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 112.2·RS-M 108.9 Leading — 위험선호 심리 강화, VIX -11% 급락 속 금융주 밸류에이션 재평가"
+      "reason": "RS-R 112.2·RS-M 108.9로 Leading 구간 안착, 국민연금 기금 연장 + 금융주 안정적 모멘텀 지속"
     },
     {
       "sector": "타이어",
       "rrg_quadrant": "improving",
       "claude_quadrant": "improving",
-      "reason": "RS-R 98.0·RS-M 107.8 Improving — 중동 종전 합의로 유가 안정(-1.45%), 글로벌 물류 정상화 기대 속 타이어 수출 모멘텀"
+      "reason": "RS-M 107.8로 모멘텀 전환, 항공·해운 동반 개선 흐름 + Precious Shipping 운임 강세 전망"
     }
   ],
   "watch": [
     {
-      "sector": "우주·위성",
-      "reason": "RS-R 79.4·RS-M 95.9 Lagging — SpaceX IPO 후 우주항공 ETF -24.7% 급락, 레드와이어 동반 조정, 우주 데이터센터 회의론 부각으로 단기 모멘텀 상실"
+      "sector": "조선",
+      "reason": "RS-R 87.9·RS-M 94.5로 Lagging, 직접 촉매 부재 — 반도체 쏠림 속 소외, 중장기 수주 모멘텀 대기"
     },
     {
-      "sector": "반도체_중소형",
-      "reason": "RS-R 99.4·RS-M 92.3 Lagging — 필라델피아반도체 강세에도 RS-Momentum 100 미달, 대형주(SK하이닉스) 쏠림으로 중소형 소외"
+      "sector": "2차전지_셀",
+      "reason": "RS-R 82.5·RS-M 87.6으로 Lagging, WTI -1.7%·구리 -0.9% 원자재 약세 + 중국 수요 우려로 단기 모멘텀 제한"
+    },
+    {
+      "sector": "2차전지_소재부품",
+      "reason": "RS-R 78.7·RS-M 85.2로 Lagging, 셀 업체 부진 동조 — 원자재 약세·중국 리스크 지속"
     }
   ],
   "avoid": [],
-  "summary": "SK하이닉스 25년 만에 코스피 1위 등극 — 필라 반도체 +6.42% 급등, 반도체 장비·IT부품 Leading 집중 국면",
-  "strategy_brief": "필라델피아반도체가 +6.42% 급등하며 AI 하드웨어 슈퍼사이클을 재확인한 가운데, SK하이닉스가 25년 7개월 만에 코스피 시총 1위(2084.7조원)로 등극하며 국내 메모리 투자심리가 절정에 도달했다. MSFT 나델라의 'AI 리셋' 발언은 하이퍼스케일러 투자 피로감 속에서 반도체 장비·인프라로 주도권이 이동하는 신호이며, 반도체_장비(RS-R 103.2)·IT부품(RS-R 132.2)·AI_인프라(RS-R 102.5) 등 Leading 섹터가 미너비니 SEPA 전략의 52주 신고가·VCP 패턴을 완성하고 있다. 다만 코스닥 -1.14% 하락과 국고채 금리 상승(3년물 3.811%)은 대형주 쏠림 심화와 밸류에이션 부담을 시사하므로, SK하이닉스·원익IPS·리노공업 등 Leading 섹터 내 기술적 강자에 집중하되 중소형주는 선별 접근이 필요하다.",
-  "strategy_headline": "SK하이닉스 25년 만에 왕좌 — 반도체 장비·IT부품 Leading 집중",
+  "summary": "SK하이닉스 25년만 시총 1위 등극 + 필라델피아반도체 +6.4% 급등으로 HBM 슈퍼사이클 재확인 — 반도체·IT부품 Leading 집중 국면",
+  "strategy_brief": "필라델피아반도체 지수가 6.4% 급등하며 글로벌 AI 하드웨어 슈퍼사이클을 재확인했고, SK하이닉스가 25년 7개월 만에 삼성전자를 제치고 코스피 시총 1위에 등극하며 HBM 주도권이 시장에서 완전히 재평가되는 역사적 전환점을 맞았다. CNBC는 \"하이퍼스케일러 약세의 원인이 AI 하드웨어 공급 부족\"이라고 분석하며 메모리·반도체 장비 강세를 뒷받침했고, 자산운용사 CSOP의 SK하이닉스 ETF 옵션 한도 확대는 기관 수요 확대를 시사한다. 반도체_장비(RS-M 103.0)와 IT부품(RS-R 132.2)이 Leading 구간에 안착했으며, 보험(RS-R 112.2)도 국민연금 기금 연장 수혜로 안정적 흐름을 이어가고 있어 이들 섹터 중심 포지셔닝이 유효하다. 다만 코스닥 -0.66% 하락과 국고채 금리 일제히 상승(3년물 3.811%)은 중소형주 소외와 밸류에이션 부담을 경고하므로, 실적 가시성 높은 대형 Leading 종목에 집중하는 전략이 필요하다.",
+  "strategy_headline": "HBM 대장주 교체 확인 — 반도체·IT부품 Leading 집중",
   "strategy_points": [
-    "필라델피아반도체 +6.42% 급등 — 하이퍼스케일러 약세 속 하드웨어·메모리 주도권 이동, 국내 반도체 투자심리 절정",
-    "SK하이닉스 시총 1위(2084.7조원) — 25년 7개월 만에 삼성전자 제치며 대장주 교체, IT부품 RS-R 132.2 Leading 최고치",
-    "반도체_장비·AI_인프라 Leading 섹터 — MSFT 나델라 'AI 리셋' 발언, 장비·인프라 재평가 국면 진입",
-    "코스닥 -1.14% — 대형주 쏠림 심화·중소형주 자금 이탈, 국고채 금리 상승(3년물 3.811%) 밸류에이션 부담"
+    "필라델피아반도체 +6.4% 급등 + CNBC \"AI 하드웨어 부족\" 분석 → 메모리·장비 슈퍼사이클 재점화",
+    "SK하이닉스 25년만 시총 1위 등극 — HBM 주도권 시장 재평가, 반도체_장비·IT부품 Leading 진입",
+    "코스닥 -0.66% vs 코스피 +0.61% — 대형 반도체주 쏠림 지속, 중소형 소외 심화",
+    "국고채 금리 일제히 상승 — 성장주 밸류에이션 부담 확대 가능성, 실적 가시성 높은 종목 선별 필요"
   ],
   "top_picks": [
     {
-      "sector": "IT부품",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 132.2·RS-M 100.4 Leading (RRG 최고 RS-Ratio) — SK하이닉스 시총 1위 등극, 반도체 불장 속 IT부품 모멘텀 절정, 미너비니 52주 신고가 돌파 국면",
+      "sector": "반도체_대형",
+      "rrg_quadrant": "",
+      "reason": "",
       "stocks": [
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "25년 7개월 만에 코스피 시총 1위(2084.7조원) 등극 + IT부품 섹터 RS-R 132.2 Leading·52주 신고가 돌파 — 메모리 불장 절정·미너비니 SEPA 촉매 완성",
+          "reason": "필라델피아반도체 +6.4% 급등·AI 하드웨어 부족 재확인 수혜 + 25년만 코스피 시총 1위 등극으로 HBM 슈퍼사이클 대장주 지위 확립·CSOP ETF 옵션 한도 확대",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_대형",
-          "rrg_sector_match": false
+          "rrg_sector_match": true,
+          "rrg_signal": "weakening"
         }
       ]
     },
     {
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 103.2·RS-M 103.0 Leading — 필라델피아반도체 +6.42% 급등, 하이퍼스케일러 약세 속 장비·인프라 주도권 이동, 일본 도쿄일렉트론 강세 파급",
+      "reason": "RS-R 103.2·RS-M 103.0으로 Leading 구간 진입, 필라델피아반도체 +6.4% 급등으로 글로벌 반도체 장비 슈퍼사이클 재확인",
       "stocks": [
         {
           "name": "원익IPS",
           "code": "240810",
           "signal": "prime",
-          "reason": "필라델피아반도체 +6.42% 급등·하이퍼스케일러 약세 속 장비 주도권 이동 + 반도체_장비 RS-R 103.2 Leading·스테이지2 초입 — AI 인프라 재평가 수혜",
+          "reason": "반도체_장비 Leading 진입(RS-M 103.0) + 필라델피아반도체 강세·SK하이닉스 HBM 증설 수혜로 장비 발주 사이클 본격화",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_장비",
-          "rrg_sector_match": true
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
         }
       ]
     },
     {
-      "sector": "AI_인프라",
+      "sector": "보험",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 102.5·RS-M 101.0 Leading — AI 하드웨어 인프라 재평가, MSFT 나델라 '범용 AI' 발언, 메모리 칩 부족 심화 수혜",
+      "reason": "RS-R 112.2·RS-M 108.9로 Leading 구간 안착, 국민연금 기금 연장 + 금융주 안정적 모멘텀 지속",
       "stocks": [
         {
-          "name": "리노공업",
-          "code": "058470",
+          "name": "삼성생명",
+          "code": "032830",
           "signal": "prime",
-          "reason": "MSFT 나델라 'AI 리셋·범용 접근' 발언으로 하드웨어 인프라 재조명 + AI_인프라 RS-R 102.5 Leading·VCP 패턴 진행 — 메모리 칩 부족 수혜",
+          "reason": "보험 섹터 Leading(RS-R 112.2·RS-M 108.9) + 국민연금 기금 소진 4~7년 연장으로 장기 자산운용 안정성 수혜",
           "rrg_tracked": true,
-          "rrg_actual_sector": "반도체_소재부품",
-          "rrg_sector_match": false
+          "rrg_actual_sector": "보험",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "우주·위성",
-    "반도체_중소형"
+    "조선",
+    "2차전지_셀"
   ]
 }
