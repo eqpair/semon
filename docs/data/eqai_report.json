@@ -1,184 +1,174 @@
 {
-  "generated_at": "2026-06-23 11:15:50",
+  "generated_at": "2026-06-24 07:01:59",
   "macro": {
     "S&P500": {
-      "price": 7472.79,
-      "change": -0.37,
-      "reason": "SpaceX IPO 후폭풍·국채금리 급등으로 기술주 중심 매물 출회, 대형주 디펜시브 회전",
+      "price": 7365.46,
+      "change": -1.44,
+      "reason": "반도체주 투매 확산으로 기술주 급락, 연준 금리인상 우려로 밸류에이션 부담 가중",
       "drivers": [
-        "SpaceX -16.4% (고평가 IPO 거품 우려)",
-        "국채10Y 4.51% (+1.30%) — 밸류에이션 압박"
+        "마이크론·샌디스크 -13% 폭락",
+        "국채금리 급등(2Y +0.87%, 10Y +0.94%)"
       ]
     },
     "NASDAQ": {
-      "price": 26166.6,
-      "change": -1.32,
-      "reason": "Alphabet -5% (AI 핵심 인재 이탈), SpaceX 급락이 기술주 전반 투심 악화 촉발",
+      "price": 25587.04,
+      "change": -2.21,
+      "reason": "AI 과열 우려 현실화 — 마이크론·샌디스크 -13% 폭락하며 반도체주 중심 투매 확산",
       "drivers": [
-        "Alphabet 1년래 최대 낙폭 (AI 경쟁력 우려)",
-        "SpaceX 3일간 $400bn 시총 증발"
+        "마이크론·샌디스크 급락",
+        "Cerebras 첫 실적 후 -8% 하락"
       ]
     },
     "DOW": {
-      "price": 51712.71,
-      "change": 0.29,
-      "reason": "금리 상승 수혜 금융·에너지주 회전 매수 + 기술주 대비 상대적 안전자산 선호",
+      "price": 51666.84,
+      "change": -0.09,
+      "reason": "Alphabet의 다우 편입 발표에도 기술주 약세 영향 제한적, 상대적 방어",
       "drivers": [
-        "기술주→금융주 회전 수혜",
-        "SpaceX 리스크 회피 자금 유입"
+        "Alphabet 다우 편입(Verizon 교체)",
+        "FedEx 실적 호조"
       ]
     },
     "VIX": {
-      "price": 17.28,
-      "change": 5.37,
-      "reason": "SpaceX 변동성·국채금리 급등·Alphabet AI 우려 등 다층적 리스크로 변동성 지표 상승",
+      "price": 19.49,
+      "change": 12.79,
+      "reason": "반도체 급락과 금리인상 우려 동반 부상으로 변동성 지수 12.79% 급등",
       "drivers": [
-        "SpaceX 3일 연속 급락 충격",
-        "빅테크 AI 경쟁력 재평가"
+        "나스닥 -2.21% 급락",
+        "필라델피아반도체 -7.87% 폭락"
       ]
     },
     "필라델피아반도체": {
-      "price": 14634.72,
-      "change": 2.04,
-      "reason": "Micron·Anthropic 파트너십, Super Micro·Nvidia 협력 확대 등 개별 호재로 AI 인프라 재평가",
+      "price": 13482.51,
+      "change": -7.87,
+      "reason": "마이크론·샌디스크 -13% 폭락하며 AI 과열 우려 현실화, 역레버리지 ETF(SOXS) 거래량 3배 급증",
       "drivers": [
-        "Micron·Anthropic 파트너십 (AI 수요 가시화)",
-        "Super Micro·Nvidia 협력 모멘텀"
+        "마이크론·샌디스크 -13% 동반 급락",
+        "Cerebras 첫 실적 후 -8%",
+        "SOXS 옵션 거래량 폭증"
       ]
     },
     "러셀2000": {
-      "price": 3004.4,
-      "change": 0.83,
-      "reason": "금리 상승에도 중소형주는 밸류 매력 + 대형 기술주 대비 상대 강세 회전",
+      "price": 2975.48,
+      "change": -0.96,
+      "reason": "금리인상 우려로 소형주 밸류에이션 압박, 기술주 약세 동조화",
       "drivers": [
-        "기술주 이탈 자금 중소형 유입",
-        "밸류 회전 수혜"
+        "국채금리 급등"
       ]
     },
     "영국FTSE": {
-      "price": 10437.9,
-      "change": 0.72,
-      "reason": "유럽 경기 방어 심리 + 달러 강세 속 지역 내수주 안정적 흐름",
+      "price": 10428.85,
+      "change": -0.09,
+      "reason": "직접 촉매 없음 — 글로벌 기술주 약세 영향 제한적, 횡보",
       "drivers": [
-        "유럽 내수 디펜시브 선호",
-        "기술주 리스크 회피"
+        "유럽 시장 상대적 방어"
       ]
     },
     "독일DAX": {
       "price": 25139.69,
       "change": 0.62,
-      "reason": "ECB 완화 기대 유지 + 미국 기술주 변동성 회피 자금이 유럽 제조업주로 이동",
+      "reason": "미국 기술주 급락에도 유럽 시장 독자 랠리 — 직접 촉매는 약하나 상대강도 유지",
       "drivers": [
-        "ECB 완화 기대 지속",
-        "미국 기술주 대비 안전 선호"
+        "미국 리스크오프와 디커플링"
       ]
     },
     "니케이": {
-      "price": 71728.21,
-      "change": -0.86,
-      "reason": "SpaceX 변동성·엔고 압력·미국 기술주 급락 동조화로 수출주 중심 하락",
+      "price": 72353.96,
+      "change": 1.55,
+      "reason": "AI 붐 속 일본 투자자들이 가치주에서 성장주로 자금 이동(블룸버그 보도) — 기술주 강세",
       "drivers": [
-        "SpaceX 리스크 아시아 파급",
-        "엔화 강세 수출주 역풍"
+        "가치주→성장주 자금 이동",
+        "미국 반도체 급락 전 장 마감"
       ]
     },
     "항셍": {
-      "price": 23777.41,
-      "change": 0.04,
-      "reason": "중국 내수 부양 기대 잔존 + 홍콩 테크주는 미국 변동성에서 상대 격리",
+      "price": 23768.52,
+      "change": -0.65,
+      "reason": "직접 촉매 없음 — 미중 기술 긴장 지속 속 약보합",
       "drivers": [
-        "중국 정책 기대 잔존",
-        "미국 기술주 대비 격리 효과"
+        "글로벌 기술주 약세 우려"
       ]
     },
     "달러인덱스": {
-      "price": 101.01,
-      "change": 0.16,
-      "reason": "국채금리 급등 + 기술주 리스크로 안전자산 달러 수요 소폭 증가",
+      "price": 101.36,
+      "change": 0.34,
+      "reason": "연준 금리인상 베팅 강화로 11월 이후 최고치 경신 — 옵션시장이 선물 공격적 인상 베팅 반영",
       "drivers": [
-        "국채금리 상승 동반",
-        "리스크회피 달러 선호"
+        "국채금리 급등",
+        "연준 매파 전환 기대"
       ]
     },
     "국채2Y": {
-      "price": 3.68,
-      "change": 0.6,
-      "reason": "연준 긴축 장기화 우려 — 단기금리 재평가 압력",
+      "price": 3.69,
+      "change": 0.87,
+      "reason": "연준 금리인상 베팅 강화 — 옵션시장이 선물 대비 보수적이나 단기물 금리 급등",
       "drivers": [
-        "연준 긴축 우려 재점화",
-        "SpaceX 변동성 안전자산 수요"
+        "연준 매파 전환 기대"
       ]
     },
     "국채10Y": {
-      "price": 4.51,
-      "change": 1.3,
-      "reason": "SpaceX 등 고평가 IPO 후폭풍 + 인플레 재점화 우려로 장기금리 급등세",
+      "price": 4.49,
+      "change": 0.94,
+      "reason": "금리인상 우려로 장기물까지 동반 상승 — 기술주 밸류에이션 압박 요인",
       "drivers": [
-        "IPO 거품 우려→밸류에이션 리스크",
-        "인플레 재점화 경계"
+        "연준 매파 전환 우려"
       ]
     },
     "코스피": {
-      "price": 8744.69,
-      "change": -4.06,
-      "reason": "글로벌 기술주 급락·금리 급등 동조 + 외국인 대규모 매도로 반도체·2차전지 동반 폭락",
+      "price": 8203.84,
+      "change": 0.0,
+      "reason": "미국 반도체 급락 이후 장 마감으로 직접 충격 회피 — 보합 마감",
       "drivers": [
-        "나스닥 -1.32% 동조 하락",
-        "외국인 매도 출회 (삼성전자·SK하이닉스 집중)"
+        "시차 효과"
       ]
     },
     "코스닥": {
-      "price": 919.77,
-      "change": -5.02,
-      "reason": "기술주 리스크 회피 + 중소형 유동성 경색으로 2차전지·IT 소재 동반 급락",
+      "price": 891.52,
+      "change": 0.0,
+      "reason": "미국 기술주 급락 영향 익일 반영 예정 — 당일 보합",
       "drivers": [
-        "나스닥 변동성 파급",
-        "중소형 유동성 경색"
+        "시차 효과"
       ]
     },
     "금": {
-      "price": 4178.0,
-      "change": -1.09,
-      "reason": "달러 강세 + 국채금리 급등으로 무이자자산 금 매력 약화",
+      "price": 4129.0,
+      "change": -1.26,
+      "reason": "금리인상 우려로 무수익 자산 약세 — 금·은 동반 급락(-1.26%, -5%)",
       "drivers": [
-        "국채10Y 4.51% 급등",
-        "달러인덱스 101 상승"
+        "국채금리 급등",
+        "달러 강세"
       ]
     },
     "WTI유가": {
-      "price": 73.84,
-      "change": -3.6,
-      "reason": "글로벌 경기 둔화 우려 재점화 + 중국 수요 부진 지속으로 수급 압박",
+      "price": 73.05,
+      "change": -2.37,
+      "reason": "직접 촉매는 약하나 이란 전쟁 영향력 약화(매일경제 보도) 속 수요 우려 반영",
       "drivers": [
-        "중국 수요 부진 지속",
-        "금리 상승→경기 우려"
+        "이란 전쟁 프리미엄 축소"
       ]
     },
     "원달러": {
-      "price": 1534.71,
-      "change": 0.22,
-      "reason": "달러 강세 + 코스피 급락·외국인 매도로 원화 약세 압력 소폭 지속",
+      "price": 1531.36,
+      "change": -0.5,
+      "reason": "달러인덱스 11월 이후 최고치에도 원화는 상대적 강세 — 직접 촉매 불명확",
       "drivers": [
-        "달러인덱스 101 상승",
-        "외국인 매도 환전 수요"
+        "글로벌 달러 강세 제한적 반영"
       ]
     },
     "알루미늄": {
-      "price": 3517.25,
-      "change": -4.78,
-      "reason": "중국 제조업 둔화 + 유가 급락 등 글로벌 경기 민감 원자재 전반 약세",
+      "price": 3397.0,
+      "change": -12.01,
+      "reason": "-12.01% 폭락 — 직접 뉴스 근거 없으나 중국 수요 우려 또는 재고 급증 가능성",
       "drivers": [
-        "중국 제조업 부진",
-        "글로벌 경기 우려 동조"
+        "구리 -3.64% 동반 약세"
       ]
     },
     "구리": {
-      "price": 6.32,
-      "change": -0.81,
-      "reason": "AI 인프라 수요 기대 잔존하나 단기 경기 우려로 조정",
+      "price": 6.12,
+      "change": -3.64,
+      "reason": "금리인상 우려로 경기 민감 산업금속 약세 — 제조업 수요 둔화 우려",
       "drivers": [
-        "단기 경기 우려 압도",
-        "AI 수요는 중장기 지지 요인"
+        "국채금리 급등",
+        "알루미늄 -12% 동반 폭락"
       ]
     }
   },
@@ -349,7 +339,7 @@
           "rs_momentum": 98.345
         }
       ],
-      "sector_ret_5d": 7.11,
+      "sector_ret_5d": -0.86,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -520,7 +510,7 @@
           "rs_momentum": 92.334
         }
       ],
-      "sector_ret_5d": -4.18,
+      "sector_ret_5d": -9.36,
       "improving_count": 1,
       "watch_count": 1,
       "total": 27
@@ -691,9 +681,9 @@
           "rs_momentum": 102.955
         }
       ],
-      "sector_ret_5d": -8.23,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -12.92,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 22
     },
     "반도체_소재부품": {
@@ -862,9 +852,9 @@
           "rs_momentum": 98.904
         }
       ],
-      "sector_ret_5d": -7.5,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -12.36,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 31
     },
     "2차전지_셀": {
@@ -1033,7 +1023,7 @@
           "rs_momentum": 87.592
         }
       ],
-      "sector_ret_5d": -10.87,
+      "sector_ret_5d": -15.33,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -1204,7 +1194,7 @@
           "rs_momentum": 85.212
         }
       ],
-      "sector_ret_5d": -16.32,
+      "sector_ret_5d": -20.77,
       "improving_count": 0,
       "watch_count": 0,
       "total": 18
@@ -1375,9 +1365,9 @@
           "rs_momentum": 83.246
         }
       ],
-      "sector_ret_5d": -6.12,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -12.2,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 17
     },
     "신재생에너지": {
@@ -1546,9 +1536,9 @@
           "rs_momentum": 91.077
         }
       ],
-      "sector_ret_5d": -18.85,
-      "improving_count": 1,
-      "watch_count": 2,
+      "sector_ret_5d": -23.16,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 13
     },
     "원전": {
@@ -1717,7 +1707,7 @@
           "rs_momentum": 87.506
         }
       ],
-      "sector_ret_5d": -11.54,
+      "sector_ret_5d": -15.59,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -1888,7 +1878,7 @@
           "rs_momentum": 93.188
         }
       ],
-      "sector_ret_5d": -11.13,
+      "sector_ret_5d": -14.02,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2059,7 +2049,7 @@
           "rs_momentum": 100.98
         }
       ],
-      "sector_ret_5d": -14.15,
+      "sector_ret_5d": -18.44,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2230,9 +2220,9 @@
           "rs_momentum": 94.464
         }
       ],
-      "sector_ret_5d": -13.81,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": -18.0,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 17
     },
     "방산": {
@@ -2401,9 +2391,9 @@
           "rs_momentum": 97.149
         }
       ],
-      "sector_ret_5d": -9.41,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -14.49,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 10
     },
     "로봇": {
@@ -2572,7 +2562,7 @@
           "rs_momentum": 92.445
         }
       ],
-      "sector_ret_5d": -17.19,
+      "sector_ret_5d": -21.32,
       "improving_count": 0,
       "watch_count": 0,
       "total": 22
@@ -2743,7 +2733,7 @@
           "rs_momentum": 95.932
         }
       ],
-      "sector_ret_5d": -14.08,
+      "sector_ret_5d": -20.33,
       "improving_count": 1,
       "watch_count": 1,
       "total": 17
@@ -2914,7 +2904,7 @@
           "rs_momentum": 95.84
         }
       ],
-      "sector_ret_5d": -16.37,
+      "sector_ret_5d": -20.16,
       "improving_count": 1,
       "watch_count": 0,
       "total": 3
@@ -3085,7 +3075,7 @@
           "rs_momentum": 95.197
         }
       ],
-      "sector_ret_5d": -20.6,
+      "sector_ret_5d": -24.44,
       "improving_count": 2,
       "watch_count": 1,
       "total": 15
@@ -3256,9 +3246,9 @@
           "rs_momentum": 107.766
         }
       ],
-      "sector_ret_5d": -14.32,
-      "improving_count": 0,
-      "watch_count": 5,
+      "sector_ret_5d": -14.13,
+      "improving_count": 3,
+      "watch_count": 2,
       "total": 6
     },
     "IT부품": {
@@ -3427,7 +3417,7 @@
           "rs_momentum": 100.434
         }
       ],
-      "sector_ret_5d": -4.65,
+      "sector_ret_5d": -9.37,
       "improving_count": 0,
       "watch_count": 1,
       "total": 12
@@ -3598,9 +3588,9 @@
           "rs_momentum": 106.74
         }
       ],
-      "sector_ret_5d": -13.96,
-      "improving_count": 0,
-      "watch_count": 3,
+      "sector_ret_5d": -16.72,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 4
     },
     "B2B_IT서비스": {
@@ -3769,9 +3759,9 @@
           "rs_momentum": 95.838
         }
       ],
-      "sector_ret_5d": -16.68,
-      "improving_count": 0,
-      "watch_count": 3,
+      "sector_ret_5d": -21.13,
+      "improving_count": 1,
+      "watch_count": 2,
       "total": 9
     },
     "바이오_대형CDMO": {
@@ -3940,9 +3930,9 @@
           "rs_momentum": 101.59
         }
       ],
-      "sector_ret_5d": -3.53,
-      "improving_count": 1,
-      "watch_count": 2,
+      "sector_ret_5d": -6.96,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 5
     },
     "CMO_CDMO": {
@@ -4111,7 +4101,7 @@
           "rs_momentum": 98.387
         }
       ],
-      "sector_ret_5d": -7.63,
+      "sector_ret_5d": -11.9,
       "improving_count": 1,
       "watch_count": 1,
       "total": 5
@@ -4282,9 +4272,9 @@
           "rs_momentum": 104.814
         }
       ],
-      "sector_ret_5d": -2.4,
-      "improving_count": 2,
-      "watch_count": 3,
+      "sector_ret_5d": -7.87,
+      "improving_count": 3,
+      "watch_count": 2,
       "total": 10
     },
     "바이오_임상단계": {
@@ -4453,7 +4443,7 @@
           "rs_momentum": 94.982
         }
       ],
-      "sector_ret_5d": -3.89,
+      "sector_ret_5d": -8.0,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -4624,9 +4614,9 @@
           "rs_momentum": 99.976
         }
       ],
-      "sector_ret_5d": -8.16,
-      "improving_count": 1,
-      "watch_count": 3,
+      "sector_ret_5d": -11.74,
+      "improving_count": 4,
+      "watch_count": 0,
       "total": 10
     },
     "중소제약": {
@@ -4795,7 +4785,7 @@
           "rs_momentum": 104.259
         }
       ],
-      "sector_ret_5d": -13.91,
+      "sector_ret_5d": -18.1,
       "improving_count": 2,
       "watch_count": 3,
       "total": 9
@@ -4966,7 +4956,7 @@
           "rs_momentum": 93.255
         }
       ],
-      "sector_ret_5d": -13.01,
+      "sector_ret_5d": -16.04,
       "improving_count": 2,
       "watch_count": 1,
       "total": 9
@@ -5137,7 +5127,7 @@
           "rs_momentum": 99.545
         }
       ],
-      "sector_ret_5d": 1.73,
+      "sector_ret_5d": -3.46,
       "improving_count": 0,
       "watch_count": 1,
       "total": 9
@@ -5308,9 +5298,9 @@
           "rs_momentum": 104.582
         }
       ],
-      "sector_ret_5d": -8.5,
-      "improving_count": 4,
-      "watch_count": 4,
+      "sector_ret_5d": -8.96,
+      "improving_count": 7,
+      "watch_count": 1,
       "total": 9
     },
     "증권": {
@@ -5479,9 +5469,9 @@
           "rs_momentum": 90.73
         }
       ],
-      "sector_ret_5d": -11.76,
-      "improving_count": 2,
-      "watch_count": 2,
+      "sector_ret_5d": -16.07,
+      "improving_count": 3,
+      "watch_count": 1,
       "total": 18
     },
     "보험": {
@@ -5650,9 +5640,9 @@
           "rs_momentum": 108.949
         }
       ],
-      "sector_ret_5d": 0.84,
-      "improving_count": 1,
-      "watch_count": 7,
+      "sector_ret_5d": -4.26,
+      "improving_count": 6,
+      "watch_count": 2,
       "total": 13
     },
     "핀테크·결제": {
@@ -5821,9 +5811,9 @@
           "rs_momentum": 102.734
         }
       ],
-      "sector_ret_5d": -7.58,
-      "improving_count": 1,
-      "watch_count": 2,
+      "sector_ret_5d": -8.46,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 6
     },
     "철강": {
@@ -5992,7 +5982,7 @@
           "rs_momentum": 84.158
         }
       ],
-      "sector_ret_5d": -15.57,
+      "sector_ret_5d": -18.95,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -6163,7 +6153,7 @@
           "rs_momentum": 93.181
         }
       ],
-      "sector_ret_5d": -14.44,
+      "sector_ret_5d": -17.88,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -6334,9 +6324,9 @@
           "rs_momentum": 97.212
         }
       ],
-      "sector_ret_5d": -0.6,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -6.5,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 5
     },
     "석유화학": {
@@ -6505,7 +6495,7 @@
           "rs_momentum": 86.445
         }
       ],
-      "sector_ret_5d": -18.04,
+      "sector_ret_5d": -21.08,
       "improving_count": 0,
       "watch_count": 0,
       "total": 13
@@ -6676,9 +6666,9 @@
           "rs_momentum": 101.878
         }
       ],
-      "sector_ret_5d": -6.5,
-      "improving_count": 3,
-      "watch_count": 2,
+      "sector_ret_5d": -10.5,
+      "improving_count": 4,
+      "watch_count": 1,
       "total": 8
     },
     "건설": {
@@ -6847,9 +6837,9 @@
           "rs_momentum": 85.301
         }
       ],
-      "sector_ret_5d": -21.28,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -24.91,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 11
     },
     "시멘트": {
@@ -7018,7 +7008,7 @@
           "rs_momentum": 96.074
         }
       ],
-      "sector_ret_5d": -12.82,
+      "sector_ret_5d": -14.49,
       "improving_count": 2,
       "watch_count": 1,
       "total": 4
@@ -7189,9 +7179,9 @@
           "rs_momentum": 96.306
         }
       ],
-      "sector_ret_5d": -11.6,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -14.85,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 8
     },
     "해운": {
@@ -7360,9 +7350,9 @@
           "rs_momentum": 102.855
         }
       ],
-      "sector_ret_5d": -13.96,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -15.82,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 6
     },
     "항공": {
@@ -7531,9 +7521,9 @@
           "rs_momentum": 107.409
         }
       ],
-      "sector_ret_5d": -11.18,
-      "improving_count": 1,
-      "watch_count": 5,
+      "sector_ret_5d": -12.22,
+      "improving_count": 5,
+      "watch_count": 1,
       "total": 6
     },
     "물류·육운": {
@@ -7702,9 +7692,9 @@
           "rs_momentum": 100.908
         }
       ],
-      "sector_ret_5d": -11.38,
-      "improving_count": 1,
-      "watch_count": 3,
+      "sector_ret_5d": -13.23,
+      "improving_count": 4,
+      "watch_count": 0,
       "total": 8
     },
     "통신": {
@@ -7873,9 +7863,9 @@
           "rs_momentum": 99.699
         }
       ],
-      "sector_ret_5d": -8.1,
-      "improving_count": 0,
-      "watch_count": 3,
+      "sector_ret_5d": -10.1,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 4
     },
     "엔터·음악": {
@@ -8044,9 +8034,9 @@
           "rs_momentum": 106.075
         }
       ],
-      "sector_ret_5d": -9.83,
-      "improving_count": 1,
-      "watch_count": 4,
+      "sector_ret_5d": -13.29,
+      "improving_count": 3,
+      "watch_count": 2,
       "total": 8
     },
     "게임": {
@@ -8215,9 +8205,9 @@
           "rs_momentum": 96.608
         }
       ],
-      "sector_ret_5d": -4.85,
-      "improving_count": 3,
-      "watch_count": 1,
+      "sector_ret_5d": -7.56,
+      "improving_count": 4,
+      "watch_count": 0,
       "total": 11
     },
     "미디어·콘텐츠": {
@@ -8386,9 +8376,9 @@
           "rs_momentum": 103.984
         }
       ],
-      "sector_ret_5d": -10.4,
-      "improving_count": 0,
-      "watch_count": 4,
+      "sector_ret_5d": -11.98,
+      "improving_count": 2,
+      "watch_count": 2,
       "total": 8
     },
     "화장품_브랜드": {
@@ -8557,7 +8547,7 @@
           "rs_momentum": 94.653
         }
       ],
-      "sector_ret_5d": -7.1,
+      "sector_ret_5d": -11.48,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -8728,9 +8718,9 @@
           "rs_momentum": 94.514
         }
       ],
-      "sector_ret_5d": -2.52,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": -7.32,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 10
     },
     "K푸드_수출": {
@@ -8899,9 +8889,9 @@
           "rs_momentum": 95.795
         }
       ],
-      "sector_ret_5d": -5.6,
-      "improving_count": 2,
-      "watch_count": 2,
+      "sector_ret_5d": -7.83,
+      "improving_count": 3,
+      "watch_count": 1,
       "total": 9
     },
     "중국내수식품": {
@@ -9070,9 +9060,9 @@
           "rs_momentum": 102.662
         }
       ],
-      "sector_ret_5d": -6.14,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -7.84,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 5
     },
     "내수식품": {
@@ -9241,9 +9231,9 @@
           "rs_momentum": 101.794
         }
       ],
-      "sector_ret_5d": -7.95,
-      "improving_count": 2,
-      "watch_count": 5,
+      "sector_ret_5d": -9.82,
+      "improving_count": 6,
+      "watch_count": 1,
       "total": 11
     },
     "유통": {
@@ -9412,7 +9402,7 @@
           "rs_momentum": 112.016
         }
       ],
-      "sector_ret_5d": -6.55,
+      "sector_ret_5d": -10.55,
       "improving_count": 1,
       "watch_count": 0,
       "total": 7
@@ -9583,9 +9573,9 @@
           "rs_momentum": 102.386
         }
       ],
-      "sector_ret_5d": -9.56,
-      "improving_count": 1,
-      "watch_count": 5,
+      "sector_ret_5d": -10.46,
+      "improving_count": 4,
+      "watch_count": 2,
       "total": 11
     },
     "레저·여행": {
@@ -9754,9 +9744,9 @@
           "rs_momentum": 99.178
         }
       ],
-      "sector_ret_5d": -13.24,
-      "improving_count": 2,
-      "watch_count": 3,
+      "sector_ret_5d": -14.9,
+      "improving_count": 3,
+      "watch_count": 2,
       "total": 11
     },
     "생활용품": {
@@ -9925,9 +9915,9 @@
           "rs_momentum": 100.47
         }
       ],
-      "sector_ret_5d": -5.55,
-      "improving_count": 0,
-      "watch_count": 4,
+      "sector_ret_5d": -6.51,
+      "improving_count": 4,
+      "watch_count": 0,
       "total": 8
     },
     "지주·복합기업": {
@@ -10096,132 +10086,131 @@
           "rs_momentum": 98.139
         }
       ],
-      "sector_ret_5d": 24.1,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 12.93,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 5
     }
   },
   "sources": [
     {
+      "source": "bloomberg",
+      "title": "Tesla Holders Bet on SpaceX Merger as Musk’s Real Endgame",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-23/tesla-stockholders-bet-on-spacex-merger-as-musk-s-real-endgame",
+      "published": "Tue, 23 Jun 2026 11:42:35 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "SpaceX closes nearly 1% higher, snapping three-day losing streak",
+      "link": "https://www.cnbc.com/2026/06/23/spacex-stock-tech-sell-off.html",
+      "published": "Tue, 23 Jun 2026 20:05:57 GMT"
+    },
+    {
       "source": "marketwatch",
-      "title": "A 40% market crash is lurking in the IPO pipeline. SpaceX and OpenAI could trigger it.",
-      "link": "https://www.marketwatch.com/story/a-40-market-crash-is-lurking-in-the-ipo-pipeline-spacex-and-openai-could-trigger-it-64ae4026?mod=mw_rss_topstories",
-      "published": "Mon, 22 Jun 2026 22:18:00 GMT"
-    },
-    {
-      "source": "fnnews",
-      "title": "\"목표가 430만원 간다\"…SK하이닉스, 역대 최고치 전망 나온 이유",
-      "link": "https://www.fnnews.com/news/202606221609032198",
-      "published": "Tue,23 Jun 2026 04:30:00 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "“살 사람은 다 샀다”…스페이스X, 하루 만에 615조원 증발",
-      "link": "https://www.mk.co.kr/news/business/12080653",
-      "published": "Tue, 23 Jun 2026 10:39:08 +09:00"
-    },
-    {
-      "source": "fnnews",
-      "title": "\"천 씨였으면 1000주 샀을 텐데\"…삼성전자 '700% 잭팟' 터진 빽가",
-      "link": "https://www.fnnews.com/news/202606221645146214",
-      "published": "Tue,23 Jun 2026 04:50:00 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "신한은행, 중금리대출 지원 패키지…\"중저신용자 부담 낮춰\"",
-      "link": "https://www.yna.co.kr/view/AKR20260623047200002",
-      "published": "Tue, 23 Jun 2026 10:09:58 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "[MK시그널] 두산, AI 반도체 소재 및 에너지 사업 가치 부각 등에 주가 상승세... MK시그널 추천 후 상승률 9.34% 기록",
-      "link": "https://www.mk.co.kr/news/stock/12080587",
-      "published": "Tue, 23 Jun 2026 09:41:35 +09:00"
+      "title": "Micron and Sandisk lead a sharp tech selloff in a ‘gut-check’ moment for AI stocks",
+      "link": "https://www.marketwatch.com/story/micron-and-sandisk-lead-a-sharp-tech-selloff-in-a-gut-check-moment-for-ai-stocks-cd92fa5d?mod=mw_rss_topstories",
+      "published": "Tue, 23 Jun 2026 21:23:00 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "Alphabet has its worst day in over a year on AI concerns after high-profile exits",
-      "link": "https://www.cnbc.com/2026/06/22/alphabet-goog-stock-ai-departures.html",
-      "published": "Mon, 22 Jun 2026 21:04:29 GMT"
+      "title": "Google’s online dominance is showing signs of cracking in AI era",
+      "link": "https://www.cnbc.com/2026/06/23/googles-online-dominance-is-showing-signs-of-cracking-in-ai-era.html",
+      "published": "Tue, 23 Jun 2026 15:21:38 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "Nvidia's stock struggles as Kalshi traders bet chip prices are coming down",
-      "link": "https://www.cnbc.com/2026/06/22/nvidias-stock-struggles-as-kalshi-traders-bet-chip-prices-are-coming-down.html",
-      "published": "Mon, 22 Jun 2026 20:09:04 GMT"
+      "title": "Alphabet added to Dow Jones Industrial Average, replacing Verizon",
+      "link": "https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html",
+      "published": "Tue, 23 Jun 2026 21:59:11 GMT"
     },
     {
-      "source": "cnbc_tech",
-      "title": "SpaceX signs computing power deal with open-source AI startup Reflection worth up to $6.3 billion",
-      "link": "https://www.cnbc.com/2026/06/22/spacex-ai-colossus-data-center-reflection.html",
-      "published": "Mon, 22 Jun 2026 15:00:01 GMT"
+      "source": "marketwatch",
+      "title": "Alphabet’s stock is set to join the Dow. Here’s which company is getting the boot.",
+      "link": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
+      "published": "Tue, 23 Jun 2026 21:53:00 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "SpaceX reveals pricing details for what could be one of the year’s biggest debt deals",
+      "link": "https://www.marketwatch.com/story/spacex-reveals-pricing-details-for-what-could-be-one-of-the-years-biggest-debt-deals-8c027a85?mod=mw_rss_topstories",
+      "published": "Tue, 23 Jun 2026 21:42:00 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "SpaceX raises $25 billion in debt sale less than two weeks after IPO",
+      "link": "https://www.cnbc.com/2026/06/23/spacex-debt-bond-market-ipo.html",
+      "published": "Tue, 23 Jun 2026 21:29:33 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "SpaceX succumbs to gravity as the stock briefly dips below its debut price on Nasdaq",
+      "link": "https://www.marketwatch.com/story/spacex-succumbs-to-gravity-as-its-stock-price-briefly-dips-below-its-ipo-trading-debut-a06e4321?mod=mw_rss_topstories",
+      "published": "Tue, 23 Jun 2026 21:16:00 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Cerebras falls 8% after chipmaker forecasts shrinking margin in first earnings report since IPO",
+      "link": "https://www.cnbc.com/2026/06/23/cerebras-cbrs-q1-earnings-report-2026.html",
+      "published": "Tue, 23 Jun 2026 21:14:35 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "SpaceX stock’s wild price swings since its IPO show how risky leveraged ETFs can be",
+      "link": "https://www.marketwatch.com/story/spacex-stocks-wild-price-swings-since-its-ipo-show-how-risky-leveraged-etfs-can-be-17edf612?mod=mw_rss_topstories",
+      "published": "Tue, 23 Jun 2026 21:12:00 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Meta is building a prediction markets app. These stocks fell in response",
+      "link": "https://www.cnbc.com/2026/06/23/nyt-says-meta-builds-prediction-market-these-stocks-are-falling.html",
+      "published": "Tue, 23 Jun 2026 20:09:00 GMT"
     },
     {
       "source": "bloomberg",
-      "title": "‘A Lot of Leeway’: SpaceX’s High-Grade Debt Brings Out Skeptics",
-      "link": "https://www.bloomberg.com/news/articles/2026-06-23/-a-lot-of-leeway-spacex-s-high-grade-debt-brings-out-skeptics",
-      "published": "Tue, 23 Jun 2026 00:57:51 GMT"
+      "title": "SpaceX Set to Raise $25 Billion of Bonds in Debut Offer",
+      "link": "https://www.bloomberg.com/news/videos/2026-06-23/spacex-set-to-raise-25-billion-of-bonds-in-debut-offer-video",
+      "published": "Tue, 23 Jun 2026 19:51:27 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "Tesla faces federal probe after Model 3 slams into Texas home, killing 76-year-old",
-      "link": "https://www.cnbc.com/2026/06/22/tesla-nhtsa-model-3-crash-autopilot-katy-texas.html",
-      "published": "Tue, 23 Jun 2026 00:44:14 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Big Tech has split into two artificial-intelligence camps — but the smart money isn’t chasing the next OpenAI",
-      "link": "https://www.marketwatch.com/story/big-tech-is-splitting-into-two-artificial-intelligence-camps-here-is-the-better-bet-e75c9876?mod=mw_rss_topstories",
-      "published": "Mon, 22 Jun 2026 22:21:00 GMT"
+      "title": "SpaceX seeing some interest from short sellers, but many still afraid to bet against Musk",
+      "link": "https://www.cnbc.com/2026/06/23/spacex-seeing-interest-from-short-sellers-but-most-afraid-to-go-against-musk.html",
+      "published": "Tue, 23 Jun 2026 19:33:07 GMT"
     },
     {
       "source": "ft",
-      "title": "SpaceX sheds $400bn in market value as debut rally hits reverse",
-      "link": "https://www.ft.com/content/c11d08ed-6668-4678-b829-1d50acbd12d4",
-      "published": "Mon, 22 Jun 2026 21:28:31 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Super Micro’s stock is seeing its best run in a year thanks to Nvidia partnership",
-      "link": "https://www.marketwatch.com/story/super-micros-stock-is-seeing-its-best-run-in-a-year-thanks-to-nvidia-partnership-f619e58e?mod=mw_rss_topstories",
-      "published": "Mon, 22 Jun 2026 20:58:00 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Micron’s stock momentum builds as the company inks a new Anthropic partnership",
-      "link": "https://www.marketwatch.com/story/microns-stock-momentum-builds-as-the-company-inks-a-new-anthropic-partnership-484e3845?mod=mw_rss_topstories",
-      "published": "Mon, 22 Jun 2026 20:53:00 GMT"
+      "title": "SpaceX pitches investors juicy yields in $25bn bond deal",
+      "link": "https://www.ft.com/content/7ea76b60-ea21-4e50-b0e2-bbcc842af289",
+      "published": "Tue, 23 Jun 2026 18:44:53 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "국채금리 급등(10Y +1.30%)·SpaceX IPO 후폭풍으로 글로벌 기술주 변동성 확대, 코스피 -4.06% 급락",
+  "sentiment_reason": "마이크론·샌디스크 -13% 폭락하며 필라델피아반도체 -7.87% 급락, 연준 금리인상 우려 재점화로 나스닥 -2.21% 기록",
   "key_factors": [
-    "미국 국채 10년물 4.51% 급등 — 연준 긴축 우려 재점화로 기술주 밸류에이션 압박 심화",
-    "SpaceX 상장 후 3거래일 연속 급락(-16.4%) — 고평가 IPO 거품 우려가 나스닥 전반으로 전이",
-    "코스피 -4.06%, 코스닥 -5.02% — 외국인 매물 출회 속 반도체·2차전지 동반 급락",
-    "필라반도체 +2.04% 단독 강세 — Micron·Super Micro 등 AI 인프라 개별 호재로 섹터 내 양극화"
+    "마이크론·샌디스크 13% 폭락으로 필라델피아반도체 -7.87% 급락 — AI 과열 우려 현실화",
+    "연준 금리인상 베팅 강화로 국채2Y +0.87%, 10Y +0.94% 상승 — 기술주 밸류에이션 압박",
+    "달러인덱스 101.36(+0.34%) 11월 이후 최고치 — 신흥국 자산 유출 압력"
   ],
-  "news_summary": "미국 국채 10년물 4.51% (+1.30%) 급등 — SpaceX IPO 거품 우려·인플레 재점화 경계로 기술주 밸류에이션 압박 심화\nSpaceX 상장 후 3거래일 연속 급락, 하루 -16.4% 폭락 — 시총 $400bn(약 615조원) 증발, 평균 매수가 대비 손실권 진입으로 고평가 IPO 거품 우려 확산\nVIX 17.28 (+5.37%) — SpaceX 변동성·빅테크 AI 우려·금리 급등 등 다층 리스크로 변동성 지수 상승\nSpaceX $200억 회사채 발행 공시 — IPO 직후 브리지론 상환용, 현금 $100.8bn 보유 공개했으나 IPO 후 추가 자금조달은 시장에 부담 요인\n한국 정부, 반도체 핵심부품 멤브레인 관세 폐지 — CMP 장비용 웨이퍼 고정 부품을 '반도체 제조 기계 부분품'으로 재분류, 국내 반도체 장비·소재 경쟁력 개선 기대\n민선9기 지자체 AI 공약 분석 — 단순 행정혁신 넘어 지역산업 육성·주민서비스 개선 핵심 정책 수단화, 데이터·인재·실증 생태계 구축이 성패 좌우\nAmazon Prime Day 조기 개최 (4일 연장) — 인플레 피로 소비자 대상 필수품 수요 확보 전략, 월가는 소비심리·재고 회전율 주목\n한화투자증권, SK하이닉스 목표가 430만원으로 상향 (기존 163만원 대비 +164%) — LTA 확대·HBM 독점 지위·구조적 체질개선 근거, 국내 증권가 최고 목표가 경신\nMicron, Anthropic과 파트너십 체결 — AI 스타트업 협력 확대로 HBM·DDR5 수요 가시화, 주가 모멘텀 1년래 최고 수준\nSuper Micro, Nvidia 파트너십 강화 — AI 서버 공급망 협력 확대로 주가 1년래 최대 상승세 기록\nAlphabet -5% (1년래 최대 낙폭) — AI 핵심 연구진 2명 최근 수일간 경쟁사 이탈, AI 경쟁력 우려로 투심 악화\nNvidia 주가 부진 지속 — Kalshi 트레이더들이 칩 가격 하락 베팅 확대, 2026년 +12% 상승에도 최근 1개월 -3% 조정\nQualcomm, AI 칩 스타트업 Modular 인수 임박 — AI 칩 경쟁력 강화 위한 전략적 M&A\nTesla Model 3, 텍사스 주택 충돌로 76세 사망 — NHTSA 특별 충돌 조사 착수, 자율주행 안전성 재조명\nSpaceX, 오픈소스 AI 스타트업 Reflection과 최대 $6.3bn 컴퓨팅파워 계약 체결 — Nvidia GB300 칩 즉시 공급, Colossus 인프라 외부 개방 확대\nChevron, Microsoft 텍사스 데이터센터에 20년 천연가스 공급 계약 — 2.7GW 전력(200만 가구 상당) 소비 Project Kilby, AI 전력 수요 가시화\nMeta WhatsApp 수장 Will Cathcart 퇴임 — 인도 핀테크 Cred 창업자 Kunal Shah로 교체, 7년 리더십 변화",
+  "news_summary": "연준 금리인상 베팅 강화로 달러인덱스 101.36 기록, 11월 이후 최고치 경신 — 옵션시장이 선물 공격적 인상 전망 반영\n국채 2Y +0.87%, 10Y +0.94% 급등 — 금리인상 우려로 기술주 밸류에이션 압박 가중\n금·은 동반 급락(금 -1.3%, 은 -5% 이상) — 금리인상 우려로 무수익 자산 투매\nKevin Warsh 연준 의장의 애틀랜타 연은 총재 선정 과정 주목 — FOMC 재편 신호\n이란 전쟁 영향력 약화 — 유가 -2.37% 하락하며 지정학 프리미엄 축소\nAI PAC, 뉴욕 민주당 예비선거에 2천만 달러 투입 — AI 규제 정책 주도권 경쟁 격화\nMSCI, 불가리아를 프런티어로 승격 — 베트남·아르헨티나는 유지\n마이크론·샌디스크 -13% 폭락하며 AI 주식 '현실 점검(gut-check)' 국면 진입 — 필라델피아반도체 -7.87% 급락\nCerebras 상장 후 첫 실적 발표, 매출 두 배 증가에도 마진 축소 전망으로 -8% 급락 — Q1 매출 $193.4M, EPS -$0.22\nSpaceX IPO 후 2주 만에 $25B 회사채 발행 완료 — 당초 $20B에서 증액, 공모가 $150 아래 일시 하락\nAlphabet, 다우존스 산업평균지수 편입 확정 — Verizon 교체, 메가캡 기술주 다우 비중 확대\nGoogle 온라인 지배력 균열 조짐 — DuckDuckGo 설치율 주간 최대 40% 급증, AI 시대 검색 경쟁 격화\nMeta, $299 스마트 글라스 출시 — 2세대 Ray-Ban 대비 $80 이상 저렴, 예측 시장 플랫폼 개발 중\nFedEx 화물 부문 분사 전 마지막 분기 실적 예상치 상회 — 6월 1일 FedEx Freight 별도 상장",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "미국 국채 10년물 4.51% (+1.30%) 급등 — SpaceX IPO 거품 우려·인플레 재점화 경계로 기술주 밸류에이션 압박 심화",
+          "text": "연준 금리인상 베팅 강화로 달러인덱스 101.36 기록, 11월 이후 최고치 경신 — 옵션시장이 선물 공격적 인상 전망 반영",
           "impact": "high"
         },
         {
-          "text": "SpaceX 상장 후 3거래일 연속 급락, 하루 -16.4% 폭락 — 시총 $400bn(약 615조원) 증발, 평균 매수가 대비 손실권 진입으로 고평가 IPO 거품 우려 확산",
+          "text": "국채 2Y +0.87%, 10Y +0.94% 급등 — 금리인상 우려로 기술주 밸류에이션 압박 가중",
           "impact": "high"
         },
         {
-          "text": "VIX 17.28 (+5.37%) — SpaceX 변동성·빅테크 AI 우려·금리 급등 등 다층 리스크로 변동성 지수 상승",
+          "text": "금·은 동반 급락(금 -1.3%, 은 -5% 이상) — 금리인상 우려로 무수익 자산 투매",
           "impact": "mid"
         },
         {
-          "text": "SpaceX $200억 회사채 발행 공시 — IPO 직후 브리지론 상환용, 현금 $100.8bn 보유 공개했으나 IPO 후 추가 자금조달은 시장에 부담 요인",
+          "text": "Kevin Warsh 연준 의장의 애틀랜타 연은 총재 선정 과정 주목 — FOMC 재편 신호",
           "impact": "mid"
         }
       ]
@@ -10231,15 +10220,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "한국 정부, 반도체 핵심부품 멤브레인 관세 폐지 — CMP 장비용 웨이퍼 고정 부품을 '반도체 제조 기계 부분품'으로 재분류, 국내 반도체 장비·소재 경쟁력 개선 기대",
-          "impact": "high"
-        },
-        {
-          "text": "민선9기 지자체 AI 공약 분석 — 단순 행정혁신 넘어 지역산업 육성·주민서비스 개선 핵심 정책 수단화, 데이터·인재·실증 생태계 구축이 성패 좌우",
+          "text": "이란 전쟁 영향력 약화 — 유가 -2.37% 하락하며 지정학 프리미엄 축소",
           "impact": "mid"
         },
         {
-          "text": "Amazon Prime Day 조기 개최 (4일 연장) — 인플레 피로 소비자 대상 필수품 수요 확보 전략, 월가는 소비심리·재고 회전율 주목",
+          "text": "AI PAC, 뉴욕 민주당 예비선거에 2천만 달러 투입 — AI 규제 정책 주도권 경쟁 격화",
+          "impact": "mid"
+        },
+        {
+          "text": "MSCI, 불가리아를 프런티어로 승격 — 베트남·아르헨티나는 유지",
           "impact": "mid"
         }
       ]
@@ -10249,43 +10238,31 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "한화투자증권, SK하이닉스 목표가 430만원으로 상향 (기존 163만원 대비 +164%) — LTA 확대·HBM 독점 지위·구조적 체질개선 근거, 국내 증권가 최고 목표가 경신",
+          "text": "마이크론·샌디스크 -13% 폭락하며 AI 주식 '현실 점검(gut-check)' 국면 진입 — 필라델피아반도체 -7.87% 급락",
           "impact": "high"
         },
         {
-          "text": "Micron, Anthropic과 파트너십 체결 — AI 스타트업 협력 확대로 HBM·DDR5 수요 가시화, 주가 모멘텀 1년래 최고 수준",
+          "text": "Cerebras 상장 후 첫 실적 발표, 매출 두 배 증가에도 마진 축소 전망으로 -8% 급락 — Q1 매출 $193.4M, EPS -$0.22",
           "impact": "high"
         },
         {
-          "text": "Super Micro, Nvidia 파트너십 강화 — AI 서버 공급망 협력 확대로 주가 1년래 최대 상승세 기록",
+          "text": "SpaceX IPO 후 2주 만에 $25B 회사채 발행 완료 — 당초 $20B에서 증액, 공모가 $150 아래 일시 하락",
           "impact": "high"
         },
         {
-          "text": "Alphabet -5% (1년래 최대 낙폭) — AI 핵심 연구진 2명 최근 수일간 경쟁사 이탈, AI 경쟁력 우려로 투심 악화",
-          "impact": "high"
-        },
-        {
-          "text": "Nvidia 주가 부진 지속 — Kalshi 트레이더들이 칩 가격 하락 베팅 확대, 2026년 +12% 상승에도 최근 1개월 -3% 조정",
+          "text": "Alphabet, 다우존스 산업평균지수 편입 확정 — Verizon 교체, 메가캡 기술주 다우 비중 확대",
           "impact": "mid"
         },
         {
-          "text": "Qualcomm, AI 칩 스타트업 Modular 인수 임박 — AI 칩 경쟁력 강화 위한 전략적 M&A",
+          "text": "Google 온라인 지배력 균열 조짐 — DuckDuckGo 설치율 주간 최대 40% 급증, AI 시대 검색 경쟁 격화",
           "impact": "mid"
         },
         {
-          "text": "Tesla Model 3, 텍사스 주택 충돌로 76세 사망 — NHTSA 특별 충돌 조사 착수, 자율주행 안전성 재조명",
+          "text": "Meta, $299 스마트 글라스 출시 — 2세대 Ray-Ban 대비 $80 이상 저렴, 예측 시장 플랫폼 개발 중",
           "impact": "mid"
         },
         {
-          "text": "SpaceX, 오픈소스 AI 스타트업 Reflection과 최대 $6.3bn 컴퓨팅파워 계약 체결 — Nvidia GB300 칩 즉시 공급, Colossus 인프라 외부 개방 확대",
-          "impact": "mid"
-        },
-        {
-          "text": "Chevron, Microsoft 텍사스 데이터센터에 20년 천연가스 공급 계약 — 2.7GW 전력(200만 가구 상당) 소비 Project Kilby, AI 전력 수요 가시화",
-          "impact": "mid"
-        },
-        {
-          "text": "Meta WhatsApp 수장 Will Cathcart 퇴임 — 인도 핀테크 Cred 창업자 Kunal Shah로 교체, 7년 리더십 변화",
+          "text": "FedEx 화물 부문 분사 전 마지막 분기 실적 예상치 상회 — 6월 1일 FedEx Freight 별도 상장",
           "impact": "mid"
         }
       ]
@@ -10293,159 +10270,147 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "SpaceX IPO 후폭풍·국채금리 급등으로 기술주 중심 매물 출회, 대형주 디펜시브 회전",
+      "reason": "반도체주 투매 확산으로 기술주 급락, 연준 금리인상 우려로 밸류에이션 부담 가중",
       "drivers": [
-        "SpaceX -16.4% (고평가 IPO 거품 우려)",
-        "국채10Y 4.51% (+1.30%) — 밸류에이션 압박"
+        "마이크론·샌디스크 -13% 폭락",
+        "국채금리 급등(2Y +0.87%, 10Y +0.94%)"
       ]
     },
     "NASDAQ": {
-      "reason": "Alphabet -5% (AI 핵심 인재 이탈), SpaceX 급락이 기술주 전반 투심 악화 촉발",
+      "reason": "AI 과열 우려 현실화 — 마이크론·샌디스크 -13% 폭락하며 반도체주 중심 투매 확산",
       "drivers": [
-        "Alphabet 1년래 최대 낙폭 (AI 경쟁력 우려)",
-        "SpaceX 3일간 $400bn 시총 증발"
+        "마이크론·샌디스크 급락",
+        "Cerebras 첫 실적 후 -8% 하락"
       ]
     },
     "DOW": {
-      "reason": "금리 상승 수혜 금융·에너지주 회전 매수 + 기술주 대비 상대적 안전자산 선호",
+      "reason": "Alphabet의 다우 편입 발표에도 기술주 약세 영향 제한적, 상대적 방어",
       "drivers": [
-        "기술주→금융주 회전 수혜",
-        "SpaceX 리스크 회피 자금 유입"
+        "Alphabet 다우 편입(Verizon 교체)",
+        "FedEx 실적 호조"
       ]
     },
     "VIX": {
-      "reason": "SpaceX 변동성·국채금리 급등·Alphabet AI 우려 등 다층적 리스크로 변동성 지표 상승",
+      "reason": "반도체 급락과 금리인상 우려 동반 부상으로 변동성 지수 12.79% 급등",
       "drivers": [
-        "SpaceX 3일 연속 급락 충격",
-        "빅테크 AI 경쟁력 재평가"
+        "나스닥 -2.21% 급락",
+        "필라델피아반도체 -7.87% 폭락"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Micron·Anthropic 파트너십, Super Micro·Nvidia 협력 확대 등 개별 호재로 AI 인프라 재평가",
+      "reason": "마이크론·샌디스크 -13% 폭락하며 AI 과열 우려 현실화, 역레버리지 ETF(SOXS) 거래량 3배 급증",
       "drivers": [
-        "Micron·Anthropic 파트너십 (AI 수요 가시화)",
-        "Super Micro·Nvidia 협력 모멘텀"
+        "마이크론·샌디스크 -13% 동반 급락",
+        "Cerebras 첫 실적 후 -8%",
+        "SOXS 옵션 거래량 폭증"
       ]
     },
     "러셀2000": {
-      "reason": "금리 상승에도 중소형주는 밸류 매력 + 대형 기술주 대비 상대 강세 회전",
+      "reason": "금리인상 우려로 소형주 밸류에이션 압박, 기술주 약세 동조화",
       "drivers": [
-        "기술주 이탈 자금 중소형 유입",
-        "밸류 회전 수혜"
+        "국채금리 급등"
       ]
     },
     "영국FTSE": {
-      "reason": "유럽 경기 방어 심리 + 달러 강세 속 지역 내수주 안정적 흐름",
+      "reason": "직접 촉매 없음 — 글로벌 기술주 약세 영향 제한적, 횡보",
       "drivers": [
-        "유럽 내수 디펜시브 선호",
-        "기술주 리스크 회피"
+        "유럽 시장 상대적 방어"
       ]
     },
     "독일DAX": {
-      "reason": "ECB 완화 기대 유지 + 미국 기술주 변동성 회피 자금이 유럽 제조업주로 이동",
+      "reason": "미국 기술주 급락에도 유럽 시장 독자 랠리 — 직접 촉매는 약하나 상대강도 유지",
       "drivers": [
-        "ECB 완화 기대 지속",
-        "미국 기술주 대비 안전 선호"
+        "미국 리스크오프와 디커플링"
       ]
     },
     "니케이": {
-      "reason": "SpaceX 변동성·엔고 압력·미국 기술주 급락 동조화로 수출주 중심 하락",
+      "reason": "AI 붐 속 일본 투자자들이 가치주에서 성장주로 자금 이동(블룸버그 보도) — 기술주 강세",
       "drivers": [
-        "SpaceX 리스크 아시아 파급",
-        "엔화 강세 수출주 역풍"
+        "가치주→성장주 자금 이동",
+        "미국 반도체 급락 전 장 마감"
       ]
     },
     "항셍": {
-      "reason": "중국 내수 부양 기대 잔존 + 홍콩 테크주는 미국 변동성에서 상대 격리",
+      "reason": "직접 촉매 없음 — 미중 기술 긴장 지속 속 약보합",
       "drivers": [
-        "중국 정책 기대 잔존",
-        "미국 기술주 대비 격리 효과"
+        "글로벌 기술주 약세 우려"
       ]
     },
     "달러인덱스": {
-      "reason": "국채금리 급등 + 기술주 리스크로 안전자산 달러 수요 소폭 증가",
+      "reason": "연준 금리인상 베팅 강화로 11월 이후 최고치 경신 — 옵션시장이 선물 공격적 인상 베팅 반영",
       "drivers": [
-        "국채금리 상승 동반",
-        "리스크회피 달러 선호"
+        "국채금리 급등",
+        "연준 매파 전환 기대"
       ]
     },
     "국채2Y": {
-      "reason": "연준 긴축 장기화 우려 — 단기금리 재평가 압력",
+      "reason": "연준 금리인상 베팅 강화 — 옵션시장이 선물 대비 보수적이나 단기물 금리 급등",
       "drivers": [
-        "연준 긴축 우려 재점화",
-        "SpaceX 변동성 안전자산 수요"
+        "연준 매파 전환 기대"
       ]
     },
     "국채10Y": {
-      "reason": "SpaceX 등 고평가 IPO 후폭풍 + 인플레 재점화 우려로 장기금리 급등세",
+      "reason": "금리인상 우려로 장기물까지 동반 상승 — 기술주 밸류에이션 압박 요인",
       "drivers": [
-        "IPO 거품 우려→밸류에이션 리스크",
-        "인플레 재점화 경계"
+        "연준 매파 전환 우려"
       ]
     },
     "코스피": {
-      "reason": "글로벌 기술주 급락·금리 급등 동조 + 외국인 대규모 매도로 반도체·2차전지 동반 폭락",
+      "reason": "미국 반도체 급락 이후 장 마감으로 직접 충격 회피 — 보합 마감",
       "drivers": [
-        "나스닥 -1.32% 동조 하락",
-        "외국인 매도 출회 (삼성전자·SK하이닉스 집중)"
+        "시차 효과"
       ]
     },
     "코스닥": {
-      "reason": "기술주 리스크 회피 + 중소형 유동성 경색으로 2차전지·IT 소재 동반 급락",
+      "reason": "미국 기술주 급락 영향 익일 반영 예정 — 당일 보합",
       "drivers": [
-        "나스닥 변동성 파급",
-        "중소형 유동성 경색"
+        "시차 효과"
       ]
     },
     "금": {
-      "reason": "달러 강세 + 국채금리 급등으로 무이자자산 금 매력 약화",
+      "reason": "금리인상 우려로 무수익 자산 약세 — 금·은 동반 급락(-1.26%, -5%)",
       "drivers": [
-        "국채10Y 4.51% 급등",
-        "달러인덱스 101 상승"
+        "국채금리 급등",
+        "달러 강세"
       ]
     },
     "WTI유가": {
-      "reason": "글로벌 경기 둔화 우려 재점화 + 중국 수요 부진 지속으로 수급 압박",
+      "reason": "직접 촉매는 약하나 이란 전쟁 영향력 약화(매일경제 보도) 속 수요 우려 반영",
       "drivers": [
-        "중국 수요 부진 지속",
-        "금리 상승→경기 우려"
+        "이란 전쟁 프리미엄 축소"
       ]
     },
     "원달러": {
-      "reason": "달러 강세 + 코스피 급락·외국인 매도로 원화 약세 압력 소폭 지속",
+      "reason": "달러인덱스 11월 이후 최고치에도 원화는 상대적 강세 — 직접 촉매 불명확",
       "drivers": [
-        "달러인덱스 101 상승",
-        "외국인 매도 환전 수요"
+        "글로벌 달러 강세 제한적 반영"
       ]
     },
     "알루미늄": {
-      "reason": "중국 제조업 둔화 + 유가 급락 등 글로벌 경기 민감 원자재 전반 약세",
+      "reason": "-12.01% 폭락 — 직접 뉴스 근거 없으나 중국 수요 우려 또는 재고 급증 가능성",
       "drivers": [
-        "중국 제조업 부진",
-        "글로벌 경기 우려 동조"
+        "구리 -3.64% 동반 약세"
       ]
     },
     "구리": {
-      "reason": "AI 인프라 수요 기대 잔존하나 단기 경기 우려로 조정",
+      "reason": "금리인상 우려로 경기 민감 산업금속 약세 — 제조업 수요 둔화 우려",
       "drivers": [
-        "단기 경기 우려 압도",
-        "AI 수요는 중장기 지지 요인"
+        "국채금리 급등",
+        "알루미늄 -12% 동반 폭락"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "글로벌 기술주 급락·금리 급등 동조 + 외국인 대규모 매도로 코스피 -4.06% 폭락, 반도체·2차전지 동반 급락",
+    "summary": "필라델피아반도체 -7.87% 폭락과 금리인상 우려는 익일 코스피·코스닥에 직격탄 예고 — 반도체 대형주 급락 불가피",
     "positive_factors": [
-      "필라델피아반도체 +2.04% — Micron·Super Micro AI 파트너십 호재로 반도체 장비·소재(RRG Leading) 상대 강세 지속",
-      "SK하이닉스 목표가 430만원 파격 상향 — 한화투자 LTA·HBM 독점 평가로 국내 메모리 펀더멘탈 재평가 모멘텀",
-      "정부 반도체 멤브레인 관세 폐지 — 원익큐엔씨 등 반도체 소재부품(RRG Leading) 정책 수혜 기대"
+      "니케이 +1.55% 상승(가치주→성장주 자금 이동) — 아시아 기술주 수급 일부 긍정",
+      "원달러 -0.50% 하락 — 달러 강세 속 원화 상대 강세로 외국인 매도 압력 제한적"
     ],
     "negative_factors": [
-      "나스닥 -1.32%, SpaceX IPO 후폭풍 파급 — 국내 기술주 투심 위축, 외국인 매도 출회로 코스피 -4.06% 급락",
-      "국채10Y 4.51% 급등 — 밸류에이션 압박 심화로 삼성전자·SK하이닉스 등 대형주 급락, 반도체_대형 RRG Weakening 진입",
-      "2차전지·원자재 동반 급락 — 알루미늄 -4.78%, 유가 -3.60% 폭락으로 2차전지_셀·소재부품(RRG Lagging) 추가 약세"
+      "마이크론·샌디스크 -13% 폭락 → 삼성전자·SK하이닉스 동반 급락 압력 — 반도체_대형 weakening 국면 진입 우려",
+      "국채금리 급등(2Y +0.87%, 10Y +0.94%) + 달러 11월 최고치 → 외국인 수급 악화 및 성장주 밸류에이션 압박"
     ],
-    "key_watch": "반도체 장비·소재(RRG Leading) vs 대형 메모리(RRG Weakening) 양극화 — 필라반도체 강세 속 개별 호재 종목(원익큐엔씨·HBM 공급망) 선별 진입 타이밍"
+    "key_watch": "반도체_대형(RS-R 113.152, weakening) 100선 이탈 여부 — 이탈 시 lagging 전환으로 추세 반전 신호"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10453,79 +10418,73 @@
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "필라반도체 +2.04%, Micron·Super Micro AI 파트너십 + 정부 멤브레인 관세폐지 정책 수혜로 RS-R=105.081·RS-M=104.416 Leading 유지"
-    },
-    {
-      "sector": "반도체_소재부품",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "원익큐엔씨 쿼츠 소재 글로벌1위 + 멤브레인 관세폐지·HBM 공급망 확대로 RS-R=100.074·RS-M=100.339 Leading 진입, 정책·펀더멘탈 촉매 동시 점화"
-    },
-    {
-      "sector": "유통",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "유통 RS-R=116.974·RS-M=112.165 최상위 Leading, Amazon Prime Day 조기 개최·내수 소비 회복 기대 + 금리 상승기 디펜시브 회전 수혜"
+      "reason": "RS-R 105.081·RS-M 104.416 Leading 유지 — 미국 반도체 급락에도 장비주는 상대강도 방어, ASML·램리서치 수주 사이클 지속"
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "IT부품 RS-R=131.737·RS-M=100.223 최고 상대강도, AI 인프라 부품 수요(Micron·Super Micro 파트너십) 지속 + 대형주 대비 밸류 매력"
+      "reason": "RS-R 131.737·RS-M 100.223 Leading 최상위 — 금리 상승에도 IT부품 수출 모멘텀 견조, 달러 강세 수혜"
+    },
+    {
+      "sector": "유통",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "RS-R 116.974·RS-M 112.165 Leading — 내수 방어주 자금 이동, 금리 상승기 실적 가시성 우위"
     }
   ],
   "watch": [
     {
       "sector": "반도체_대형",
-      "reason": "반도체_대형 RS-R=113.152·RS-M=99.93 Weakening 전환 — SK하이닉스 목표가 상향 호재에도 외국인 매도·금리 급등 압박으로 단기 조정, 추가 하락 후 Leading 복귀 시점 재진입 대기"
+      "reason": "RS-R 113.152·RS-M 99.93 weakening — 마이크론 -13% 직격탄으로 100선 이탈 시 lagging 전환 우려, 단기 관망"
     },
     {
       "sector": "AI_인프라",
-      "reason": "AI_인프라 RS-R=100.631·RS-M=99.064 Weakening — SpaceX 급락·Alphabet AI 우려 파급으로 모멘텀 약화, 개별 호재(Chevron·Microsoft 전력 계약) 있으나 섹터 전반 관망"
+      "reason": "RS-R 100.631·RS-M 99.064 weakening — 금리 상승기 성장주 밸류에이션 압박, 모멘텀 둔화"
     },
     {
-      "sector": "2차전지_셀",
-      "reason": "2차전지_셀·소재부품 모두 Lagging (RS-M 80대) — 유가·원자재 급락·중국 수요 부진 지속, 스테이지4 하락 국면 지속으로 진입 부적합"
+      "sector": "정유",
+      "reason": "RS-R 101.684·RS-M 97.828 weakening — 유가 -2.37% 하락으로 마진 압박, 모멘텀 상실"
     }
   ],
   "avoid": [],
-  "summary": "SpaceX 급락·금리 급등으로 나스닥 동조 하락, 코스피 -4.06% 폭락 — 필라반도체 +2.04% 단독 강세 속 반도체 장비·소재 Leading 선별 진입",
-  "strategy_brief": "SpaceX IPO 후폭풍과 미국 국채 10년물 4.51% 급등이 글로벌 기술주 밸류에이션을 압박하면서 나스닥 -1.32%, 코스피 -4.06% 동반 급락했다. 그러나 필라델피아반도체는 +2.04% 단독 강세를 기록했는데, Micron·Anthropic 파트너십, Super Micro·Nvidia 협력 확대 등 AI 인프라 개별 호재가 섹터 내 양극화를 촉발했기 때문이다. 국내에서는 정부의 반도체 멤브레인 관세 폐지 정책이 반도체 소재부품(RRG Leading) 섹터에 직접 수혜를 주고, SK하이닉스 목표가 430만원 파격 상향으로 메모리 펀더멘탈 재평가 모멘텀이 점화됐지만, 외국인 대규모 매도와 금리 급등 압박으로 반도체_대형은 Weakening 전환했다. 따라서 오늘은 대형 메모리 조정을 관망하며, 반도체 장비·소재(원익큐엔씨), IT부품(삼성전기), 유통·보험 등 RRG Leading 섹터 중심으로 선별 진입하는 전략이 유효하다.",
-  "strategy_headline": "장비·소재 Leading 집중 — 대형 조정기 공급망 선별 진입",
+  "summary": "마이크론 -13% 폭락으로 필라반도체 -7.87% 급락 — 반도체_대형 weakening 국면, 장비·IT부품 Leading 방어 집중",
+  "strategy_brief": "마이크론·샌디스크 -13% 폭락으로 필라델피아반도체가 -7.87% 급락하며 AI 과열 우려가 현실화됐고, 연준 금리인상 베팅 강화(국채 2Y +0.87%)로 나스닥은 -2.21% 기록했다. 국내 시장은 시차로 당일 보합 마감했으나 익일 삼성전자·SK하이닉스 급락은 불가피하며, 반도체_대형은 RS-R 113에서 weakening 국면으로 100선 이탈 시 lagging 전환 리스크가 크다. 다만 반도체_장비(Leading, RS-R 105)와 IT부품(Leading, RS-R 131)은 상대강도를 방어하고 있어 수출 모멘텀 견조 종목 중심 선별 매수 전략이 유효하다. 금리 상승기에는 유통·보험 등 Leading 내수주로 방어 자금이 이동하므로 단기 변동성 대응은 섹터 로테이션에 집중해야 한다.",
+  "strategy_headline": "반도체 폭락 직격탄 — 장비·IT부품 Leading 방어 집중",
   "strategy_points": [
-    "SpaceX 615조 증발·국채10Y 4.51% 급등 — 나스닥 -1.32%, 국내 기술주 동조 급락으로 코스피 -4.06% 폭락",
-    "필라반도체 +2.04% 단독 강세 — Micron·Super Micro AI 파트너십 + 멤브레인 관세폐지로 반도체 장비·소재 Leading 유지",
-    "반도체_대형 Weakening 전환 — SK하이닉스 목표가 430만원 호재에도 외국인 매도 압도, 추가 조정 후 재진입 대기",
-    "IT부품·유통·보험 Leading — 밸류·디펜시브 회전 수혜 섹터로 변동성 완충 포지션 구축"
+    "마이크론 -13% 폭락으로 필라반도체 -7.87% 급락 — 삼성전자·SK하이닉스 동반 급락 불가피",
+    "반도체_대형 weakening, RS-R 113→100 이탈 시 추세 반전 — 단기 비중 축소 대응",
+    "반도체_장비(Leading)·IT부품(RS-R 131 최고) 상대강도 방어 — 수출 모멘텀 견조 종목 선별 매수",
+    "금리 급등 시 유통·보험 Leading 섹터로 방어 자금 이동 — 내수 실적주 주목"
   ],
   "top_picks": [
     {
-      "sector": "반도체_소재부품",
+      "sector": "반도체_장비",
       "rrg_quadrant": "leading",
-      "reason": "원익큐엔씨 쿼츠 소재 글로벌1위 + 멤브레인 관세폐지·HBM 공급망 확대로 RS-R=100.074·RS-M=100.339 Leading 진입, 정책·펀더멘탈 촉매 동시 점화",
+      "reason": "RS-R 105.081·RS-M 104.416 Leading 유지 — 미국 반도체 급락에도 장비주는 상대강도 방어, ASML·램리서치 수주 사이클 지속",
       "stocks": [
         {
-          "name": "원익큐엔씨",
-          "code": "074600",
+          "name": "원익IPS",
+          "code": "240810",
           "signal": "prime",
-          "reason": "반도체 장비·소재 Leading + 멤브레인 관세폐지 정책 직접 수혜·쿼츠 글로벌1위 공급 안정성으로 HBM 슈퍼사이클 초격차 수혜 → RRG Leading 구간 진입 타이밍",
+          "reason": "필라반도체 급락에도 장비 섹터 Leading 유지 판단 + 반도체_장비 RS-R 105 상회·스테이지2 지속 → 삼성 파운드리 CAPEX 수혜주",
           "rrg_tracked": true,
-          "rrg_actual_sector": "반도체_소재부품",
+          "rrg_actual_sector": "반도체_장비",
           "rrg_sector_match": true,
-          "rrg_signal": "confirm"
+          "rrg_signal": "leading"
         }
       ]
     },
     {
       "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "IT부품 RS-R=131.737·RS-M=100.223 최고 상대강도, AI 인프라 부품 수요(Micron·Super Micro 파트너십) 지속 + 대형주 대비 밸류 매력",
+      "reason": "RS-R 131.737·RS-M 100.223 Leading 최상위 — 금리 상승에도 IT부품 수출 모멘텀 견조, 달러 강세 수혜",
       "stocks": [
         {
           "name": "삼성전기",
           "code": "009150",
           "signal": "prime",
-          "reason": "IT부품 섹터 RS-R=131.737 최고 상대강도 + Micron·Super Micro AI 파트너십 파급으로 MLCC·기판 수요 재평가 → Leading 모멘텀 지속",
+          "reason": "달러 강세 수출주 수혜 + IT부품 RS-R 131 최고 수준·Leading 국면 → MLCC 공급 타이트 지속",
           "rrg_tracked": true,
           "rrg_actual_sector": "IT부품",
           "rrg_sector_match": true,
@@ -10536,32 +10495,15 @@
     {
       "sector": "유통",
       "rrg_quadrant": "leading",
-      "reason": "유통 RS-R=116.974·RS-M=112.165 최상위 Leading, Amazon Prime Day 조기 개최·내수 소비 회복 기대 + 금리 상승기 디펜시브 회전 수혜",
+      "reason": "RS-R 116.974·RS-M 112.165 Leading — 내수 방어주 자금 이동, 금리 상승기 실적 가시성 우위",
       "stocks": [
         {
           "name": "신세계",
           "code": "004170",
           "signal": "prime",
-          "reason": "유통 섹터 RS-R=116.974·RS-M=112.165 최상위 Leading + Amazon Prime Day 조기 개최·내수 소비 회복 기대로 디펜시브 회전 수혜 → 금리 상승기 안정 포지션",
+          "reason": "금리 상승기 내수 방어 자금 유입 + 유통 RS-R 116·Leading 국면 → 면세·백화점 실적 개선",
           "rrg_tracked": true,
           "rrg_actual_sector": "유통",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "보험",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "삼성화재",
-          "code": "000810",
-          "signal": "prime",
-          "reason": "보험 RS-R=112.505·RS-M=108.962 Leading + 금리 상승기 투자수익 개선·디펜시브 회전 수혜로 안정적 상승 → 기술주 변동성 회피 자금 유입",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "보험",
           "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
