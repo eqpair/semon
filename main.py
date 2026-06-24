@@ -159,7 +159,7 @@ async def run():
                 save_market_caps(caps, MARKET_CAP_PATH)
                 load_market_caps_into_store(caps)
                 _market_cap_date = today
-                success = sum(1 for v in caps.values() if v > 0)
+                success = sum(1 for v in caps.values() if (v.get("cap", 0) if isinstance(v, dict) else v) > 0)
                 logger.info(f"시총 갱신 완료: {success}/{len(ALL_CODES)}개")
 
             # 2. KOSPI + KOSDAQ 갱신 — 하루 1회
