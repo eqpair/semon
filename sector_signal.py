@@ -48,15 +48,37 @@ current_price:  dict[str, float]      = {}
 current_volume: dict[str, float]      = {}  # 장중 누적 거래량
 prev_close:     dict[str, float]      = {}  # KIS stck_sdpr — 전일 확정 종가(HTS 기준가)
 rrg_history:    dict[str, list[dict]] = {}
-market_cap_store: dict[str, int]      = {}  # { code: 시총(억원) }
+market_cap_store: dict[str, int]      = {}  # { code: 시총(억원) — 기준일 종가 기준 }
+shares_store:     dict[str, float]    = {}  # { code: 상장주식수(억주) — 실시간 시총 재계산용 }
 kospi_store:      list[float]          = []   # KOSPI 지수 일봉 closes
 kosdaq_store:     list[float]          = []   # KOSDAQ 지수 일봉 closes
 
 
-def load_market_caps_into_store(caps: dict[str, int]) -> None:
-    """main.py에서 시총 데이터를 주입할 때 호출"""
+def load_market_caps_into_store(caps: dict) -> None:
+    """main.py에서 시총 데이터를 주입할 때 호출.
+    신포맷 {code:{cap,shares}} / 구포맷 {code:int} 모두 허용."""
     market_cap_store.clear()
-    market_cap_store.update({k: v for k, v in caps.items() if v > 0})
+    shares_store.clear()
+    for k, v in caps.items():
+        if isinstance(v, dict):
+            cap = int(v.get("cap", 0))
+            sh  = float(v.get("shares", 0))
+            if cap > 0:
+                market_cap_store[k] = cap
+            if sh > 0:
+                shares_store[k] = sh
+        else:
+            if v > 0:
+                market_cap_store[k] = int(v)
+
+def _live_market_cap(code: str, now_price: float) -> int:
+    """실시간 시총(억원) = now_price(원) * shares(억주).
+    shares 미보유 시 기준일 종가 기준 저장 시총으로 폴백."""
+    sh = shares_store.get(code, 0)
+    if sh and now_price:
+        return int(round(now_price * sh))
+    return market_cap_store.get(code, 0)
+
 
 def update_kospi(closes: list[float]) -> None:
     """main.py에서 KOSPI 일봉 데이터를 주입할 때 호출"""
@@ -529,7 +551,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "rs_20d":         round(rs_20d, 3)    if rs_20d is not None else None,
             "rs_60d":         round(rs_60d, 3)    if rs_60d is not None else None,
             "vol_ratio":      round(vol,    3)    if vol    is not None else None,
-            "market_cap":     market_cap_store.get(code, 0),
+            "market_cap":     _live_market_cap(code, now_price),
             "rs_ratio":       round(curr_ratio, 3) if curr_ratio is not None else None,
             "rs_momentum":    round(curr_mom,   3) if curr_mom   is not None else None,
             "quadrant":       quad,

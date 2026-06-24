@@ -101,7 +101,7 @@ async def fetch_price_info(session, code):
         return {}
 
 
-async def fetch_market_cap(session, code) -> int:
+async def fetch_market_cap(session, code) -> dict:
     """
     시가총액 (억원) fetch
     api.finance.naver.com/service/itemSummary.nhn
@@ -115,9 +115,12 @@ async def fetch_market_cap(session, code) -> int:
                 return 0
             data = await resp.json(content_type=None)
             val = data.get("marketSum") or 0
-            return int(val) // 100  # 백만원 → 억원
+            cap = int(val) // 100  # 백만원 → 억원
+            now = data.get("now") or 0
+            shares = (cap / now) if (cap and now) else 0  # 억원/원 = 억주
+            return {"cap": cap, "shares": round(shares, 6)}
     except Exception:
-        return 0
+        return {"cap": 0, "shares": 0}
 
 
 async def main():
@@ -223,13 +226,13 @@ if __name__ == "__main__":
 # SECTORS 종목 시총 자동 갱신 — main.py에서 하루 1회 호출
 # ══════════════════════════════════════════════════════════════
 
-async def fetch_all_market_caps(code_list: list[str]) -> dict[str, int]:
+async def fetch_all_market_caps(code_list: list[str]) -> dict[str, dict]:
     """
-    config.SECTORS 종목들의 시총(억원)을 비동기로 fetch.
-    반환: { code: market_cap_억원 }  실패 종목은 0
+    config.SECTORS 종목들의 시총(억원)+상장주식수(억주)를 비동기로 fetch.
+    반환: { code: {"cap": 억원, "shares": 억주} }  실패 종목은 {"cap":0,"shares":0}
     """
     chunk = 20
-    results: dict[str, int] = {}
+    results: dict[str, dict] = {}
 
     async with aiohttp.ClientSession() as session:
         for i in range(0, len(code_list), chunk):
@@ -241,11 +244,11 @@ async def fetch_all_market_caps(code_list: list[str]) -> dict[str, int]:
             if i + chunk < len(code_list):
                 await asyncio.sleep(0.5)
 
-    success = sum(1 for v in results.values() if v > 0)
+    success = sum(1 for v in results.values() if v.get("cap", 0) > 0)
     return results
 
 
-def save_market_caps(caps: dict[str, int], path: str) -> None:
+def save_market_caps(caps: dict[str, dict], path: str) -> None:
     """시총 데이터를 JSON으로 저장"""
     import json, os
     from pathlib import Path
@@ -256,11 +259,20 @@ def save_market_caps(caps: dict[str, int], path: str) -> None:
     os.replace(tmp, path)
 
 
-def load_market_caps(path: str) -> dict[str, int]:
-    """저장된 시총 JSON 로드. 파일 없으면 빈 dict 반환"""
+def load_market_caps(path: str) -> dict[str, dict]:
+    """저장된 시총 JSON 로드. 파일 없으면 빈 dict 반환.
+    신포맷 {code:{cap,shares}} / 구포맷 {code:int} 모두 허용."""
     import json
     try:
         with open(path, encoding="utf-8") as f:
-            return {k: int(v) for k, v in json.load(f).items()}
+            raw = json.load(f)
+        out = {}
+        for k, v in raw.items():
+            if isinstance(v, dict):
+                out[k] = {"cap": int(v.get("cap", 0)),
+                          "shares": float(v.get("shares", 0))}
+            else:
+                out[k] = {"cap": int(v), "shares": 0}
+        return out
     except Exception:
         return {}
