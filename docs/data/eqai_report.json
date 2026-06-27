@@ -1,168 +1,167 @@
 {
-  "generated_at": "2026-06-27 07:02:41",
+  "generated_at": "2026-06-28 07:02:10",
   "macro": {
     "S&P500": {
       "price": 7354.02,
       "change": -0.05,
-      "reason": "기술주 양극화 속 방어적 보합 — 반도체 -5%대 급락했으나 러셀2000 소폭 상승·금융주 견조로 지수는 -0.05% 소폭 하락 마감",
+      "reason": "메모리 가격 급등으로 IT기기 가격 인상 도미노 시작 → AI 수요 둔화 우려, 칩주 매도 압력에 빅테크 동반 약세로 소폭 하락",
       "drivers": [
-        "필라델피아반도체 -5.29% 드래그",
-        "러셀2000 +0.07% 소형주 방어"
+        "Nvidia·Alphabet 등 메가캡 테크 반등 실패",
+        "메모리 부족·AI 인프라 비용 급등 우려"
       ]
     },
     "NASDAQ": {
       "price": 25297.62,
       "change": -0.24,
-      "reason": "빅테크 양극화 심화 — 엔비디아·알파벳 매도 지속, 메타 AI 이니셔티브 무반응, 반도체 매도가 나스닥 -0.24% 견인",
+      "reason": "칩주 전반 매도세 (Sandisk -10%, Marvell -5%) 확산, Micron 호실적 이후 AI 투자 비용 부담 재조명으로 기술주 약세",
       "drivers": [
-        "엔비디아·알파벳 약세 지속",
-        "메타 AI 투자 무반응"
+        "필라델피아반도체 -5.29% 급락",
+        "메모리 공급 부족·가격 급등 수요 파괴 우려"
       ]
     },
     "DOW": {
       "price": 51876.11,
       "change": -0.09,
-      "reason": "경기방어주 중심 소폭 하락 — 기술주 급락 영향 제한적, 러셀2000 소형주 견조로 다우 -0.09% 제한적 낙폭",
+      "reason": "기술주 약세 여파 제한적, 러셀2000 +0.07% 소형주 선방으로 경기민감주 방어 성공해 소폭 하락",
       "drivers": [
-        "기술주 급락 영향 제한",
-        "소형주 견조 흐름"
+        "칩주 급락에도 방어주 상대 강세",
+        "러셀2000 소형주 선방"
       ]
     },
     "VIX": {
       "price": 18.41,
       "change": -2.54,
-      "reason": "변동성 소폭 완화 — 반도체 급락에도 S&P500 낙폭 제한·러셀2000 플러스로 공포지수 -2.54% 하락, 단 18.4 수준 유지로 경계 지속",
+      "reason": "칩주 급락에도 S&P500 낙폭 제한(-0.05%)으로 공포 심리 소폭 완화, 지정학 리스크는 변수로 남음",
       "drivers": [
-        "S&P500 낙폭 -0.05% 제한",
-        "러셀2000 +0.07% 방어"
+        "S&P500 낙폭 제한",
+        "호르무즈 해협 유조선 피격 긴장 일부 반영"
       ]
     },
     "필라델피아반도체": {
       "price": 13203.57,
       "change": -5.29,
-      "reason": "마이크론 차익실현·AI 인프라 투자 우려 동시 분출 — 마이크론 6% 급락, 인텔 -3%·Arm -4%·마벨 -5% 동반 매도, 메모리칩 가격 상승이 소비재 수요 압박",
+      "reason": "Micron 목표가 상향에도 AI 투자 비용 우려 부각 — 메모리 가격 급등으로 소형 업체 '실존적 위기', 칩주 전반 매도 (Sandisk -10%, Marvell -5%, Arm -4%)",
       "drivers": [
-        "마이크론 -6% 차익실현",
-        "메모리칩 원가 상승 압박",
-        "오라클 AI 투자 우려 전이"
+        "메모리 부족·가격 급등으로 IT기기 300달러 인상",
+        "AI 수요 지속성 의문 확산"
       ]
     },
     "러셀2000": {
       "price": 3010.08,
       "change": 0.07,
-      "reason": "빅테크 자금 일부 소형주 이동 — 기술주 급락 속 소형주로 방어 자금 유입, dLocal 러셀2000 편입 발표·GameStop EBITDA 가이던스로 +0.07% 소폭 상승",
+      "reason": "기술주 약세 속 경기민감 소형주 방어 — 칩주 급락에도 내수 중심 포트폴리오 선방",
       "drivers": [
-        "dLocal 러셀2000 편입",
-        "기술주 급락 속 방어 매수"
+        "칩주 급락 영향 제한",
+        "경기민감 내수주 방어"
       ]
     },
     "영국FTSE": {
-      "price": 10508.02,
+      "price": 10508.0,
       "change": -0.21,
-      "reason": "직접 촉매 약함 — 글로벌 반도체 급락 영향 제한적, 유럽 경기 중립 속 -0.21% 소폭 하락",
+      "reason": "직접 촉매 없음 — 글로벌 칩주 약세·지정학 리스크 동조로 소폭 하락",
       "drivers": [
-        "반도체 노출 제한적",
-        "유럽 매크로 중립"
+        "글로벌 칩주 급락 여파",
+        "호르무즈 긴장 동조"
       ]
     },
     "독일DAX": {
-      "price": 24994.83,
-      "change": 1.03,
-      "reason": "반도체 급락과 무관한 유럽 경기회복 반영 — 독일 내수·금융주 중심 +1.03% 상승, 필라델피아반도체 급락 영향 차단",
+      "price": 24671.22,
+      "change": -1.29,
+      "reason": "ECB Schnabel 평화협정에도 인플레 상방 리스크 경고로 긴축 우려, 칩주 급락 여파로 유럽 기술주 동반 약세",
       "drivers": [
-        "독일 내수주 견조",
-        "반도체 노출 제한"
+        "ECB 인플레 상방 리스크 경고",
+        "글로벌 칩주 급락 동조"
       ]
     },
     "니케이": {
-      "price": 72366.34,
-      "change": 4.61,
-      "reason": "엔저 수혜·반도체 급락 이전 흐름 — 달러인덱스 -0.06% 속 엔화 약세 지속, 수출주 중심 +4.61% 급등, 한국 반도체 급락은 금요일 시차 반영 前",
+      "price": 69360.88,
+      "change": -4.15,
+      "reason": "필라델피아반도체 -5.29% 급락 직격탄 — 도쿄일렉트론·어드밴테스트 등 반도체 장비·부품 동반 급락으로 역대급 낙폭",
       "drivers": [
-        "엔저 수출주 수혜",
-        "한국발 급락 시차"
+        "필라델피아반도체 -5.29% 급락",
+        "반도체 공급망 전반 매도"
       ]
     },
     "항셍": {
-      "price": 23076.91,
-      "change": -1.43,
-      "reason": "베이징 시틱타워 경비행기 충돌 사고·중국 소비 부진 — 베이징 랜드마크 108층 건물 항공기 충돌로 심리 악화, 중국 내수 부진 지속으로 -1.43% 하락",
+      "price": 22671.86,
+      "change": -1.76,
+      "reason": "글로벌 칩주 급락·애플의 중국 블랙리스트 기업 메모리 구매 로비(FT 보도) 긴장 고조로 중국 기술주 약세",
       "drivers": [
-        "베이징 시틱타워 충돌 사고",
-        "중국 내수 부진"
+        "애플 중국 블랙리스트 칩 구매 로비 보도",
+        "글로벌 칩주 급락 동조"
       ]
     },
     "달러인덱스": {
-      "price": 101.37,
-      "change": -0.06,
-      "reason": "Kashkari 금리인상 발언에도 보합 — 미니애폴리스 연은 총재 \"연내 인상 예상\" 발언 있었으나 인플레 4% 수준·트럼프 압박 완화로 -0.06% 소폭 하락",
+      "price": 101.36,
+      "change": -0.07,
+      "reason": "호르무즈 해협 유조선 피격에도 연준 정책 변화 없어 달러 수요 제한, 금 안전자산 선호 이동으로 소폭 하락",
       "drivers": [
-        "Kashkari 연내 금리인상 전망",
-        "트럼프 연준 압박 완화"
+        "지정학 리스크에도 연준 정책 중립",
+        "금 +1.20% 안전자산 선호"
       ]
     },
     "코스피": {
       "price": 8411.21,
       "change": -5.81,
-      "reason": "SK하이닉스·삼성전자 급락 주도 — 외신 \"한국발 AI 급락이 글로벌 반도체 핵심 변수\" 보도, 레버리지 ETF 2900억달러 우려·차익실현 매물로 -5.81% 폭락",
+      "reason": "필라델피아반도체 -5.29% 직격탄 + 구제역 발생(경북 예천) 국내 리스크 프리미엄 확대 — 반도체·IT부품 동반 패닉 셀링으로 역대급 낙폭",
       "drivers": [
-        "SK하이닉스·삼성전자 급락",
-        "레버리지 ETF 2900억달러 청산 우려",
-        "글로벌 반도체 동반 매도"
+        "필라델피아반도체 -5.29% 급락",
+        "구제역 위기경보 '심각' 상향",
+        "외국인·기관 동반 매도"
       ]
     },
     "코스닥": {
       "price": 851.37,
       "change": -4.1,
-      "reason": "반도체 중소형·IT부품 동반 급락 — 코스피 반도체 급락이 중소형주·2차전지로 전이, AI 투자 심리 급냉각으로 -4.10% 하락",
+      "reason": "글로벌 칩주 급락 여파 + 2차전지·바이오 등 성장주 전반 리스크오프 — 외국인 매도 지속으로 4% 이상 급락",
       "drivers": [
-        "반도체 중소형 동반 급락",
-        "AI 투자 심리 위축"
+        "글로벌 기술주 약세 동조",
+        "성장주 전반 리스크오프"
       ]
     },
     "금": {
-      "price": 4103.0,
-      "change": 1.8,
-      "reason": "미국의 이란 보복 타격 지정학 리스크 — 미국, 이란 보복 공습 확정으로 중동 긴장 재고조, 연내 금리인상 전망에도 안전자산 선호로 +1.80% 급등",
+      "price": 4078.7,
+      "change": 1.2,
+      "reason": "호르무즈 해협 유조선 피격 → 미-이란 긴장 고조, 안전자산 수요 확대 + 달러 약세 동조",
       "drivers": [
-        "미국 이란 보복 타격",
-        "중동 긴장 고조"
+        "호르무즈 해협 유조선 피격",
+        "지정학 리스크 프리미엄"
       ]
     },
     "WTI유가": {
-      "price": 70.24,
-      "change": -2.34,
-      "reason": "미국 이란 타격 후 차익실현 — 미국 보복 공습 발표 직후 장중 상승했으나 중동 확전 우려 제한·글로벌 수요 둔화로 -2.34% 반락",
+      "price": 69.23,
+      "change": -3.74,
+      "reason": "호르무즈 긴장에도 글로벌 경기 둔화·AI 수요 둔화 우려 부각 → 수요 파괴 시그널 우선 반영으로 급락",
       "drivers": [
-        "미국 이란 타격 차익실현",
-        "글로벌 수요 둔화 우려"
+        "AI 수요 둔화 우려",
+        "글로벌 경기 둔화 시그널"
       ]
     },
     "원달러": {
       "price": 1535.0,
       "change": -0.5,
-      "reason": "원화 소폭 강세 — 달러인덱스 -0.06% 약세·외국인 매도 일단락 기대감으로 1535원 -0.50% 하락, 단 코스피 급락에도 방어적",
+      "reason": "2분기 평균 환율 1,500원 돌파(외환위기 이후 처음) 고점 부담, 코스피 급락에도 달러 약세로 소폭 하락",
       "drivers": [
-        "달러인덱스 약세",
-        "외국인 매도 진정 기대"
+        "2Q 평균 환율 1,500원 돌파 고점 부담",
+        "달러인덱스 -0.07% 약세"
       ]
     },
     "알루미늄": {
-      "price": 3324.5,
-      "change": -8.91,
-      "reason": "중국 수요 둔화·경기 우려 폭발 — 베이징 사고·중국 내수 부진 심화, 글로벌 반도체 급락이 산업금속 수요 전망 악화로 -8.91% 급락",
+      "price": 3697.5,
+      "change": 1.31,
+      "reason": "직접 촉매 없음 — 구리 동조 상승 + GE Vernova AI 데이터센터 가스터빈 생산 확대 수혜 기대",
       "drivers": [
-        "중국 내수 부진",
-        "반도체 수요 둔화 우려"
+        "구리 +1.17% 동조",
+        "AI 인프라 수요 기대"
       ]
     },
     "구리": {
-      "price": 6.2,
-      "change": 2.09,
-      "reason": "AI 인프라 투자 기대 일부 유지 — 알루미늄 급락과 대조, 데이터센터·전력망 수요 기대감 잔존으로 +2.09% 상승",
+      "price": 6.14,
+      "change": 1.17,
+      "reason": "GE Vernova AI 데이터센터 가스터빈 생산 확대(200명 신규 채용) → 전력 인프라 수요 재확인, 금속 수요 기대",
       "drivers": [
-        "AI 인프라 전력 수요",
-        "알루미늄 대비 차별화"
+        "GE Vernova AI 데이터센터 인프라 확대",
+        "전력 인프라 수요"
       ]
     }
   },
@@ -10088,124 +10087,124 @@
   },
   "sources": [
     {
-      "source": "maeil",
-      "title": "주요 외신 “삼성전자·SK하이닉스, 글로벌 반도체주 핵심 변수됐다”",
-      "link": "https://www.mk.co.kr/news/stock/12084445",
-      "published": "Fri, 26 Jun 2026 21:42:22 +09:00"
-    },
-    {
       "source": "cnbc_tech",
       "title": "Nvidia, Alphabet sit out megacap tech bounce as chip stocks sink",
       "link": "https://www.cnbc.com/2026/06/26/global-tech-stocks-ai-infrastructure-costs-selloff-softbank-apple.html",
-      "published": "Fri, 26 Jun 2026 21:06:00 GMT"
+      "published": "Sat, 27 Jun 2026 11:38:57 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "'The cult of Elon': SpaceX investors grapple with volatility amid big swings",
-      "link": "https://www.cnbc.com/2026/06/26/spacex-volatility.html",
-      "published": "Fri, 26 Jun 2026 11:35:26 GMT"
+      "title": "The memory shortage shaking Apple and Microsoft is 'existential crisis' for smaller players",
+      "link": "https://www.cnbc.com/2026/06/27/memory-crunch-shaking-apple-and-microsoft-existential-for-small-guys.html",
+      "published": "Sat, 27 Jun 2026 13:21:37 GMT"
     },
     {
-      "source": "maeil",
-      "title": "“그래도 1조 달러는 받아야”…냉랭해진 IPO시장, 오픈AI 상장 연기",
-      "link": "https://www.mk.co.kr/news/world/12084387",
-      "published": "Fri, 26 Jun 2026 19:25:05 +09:00"
+      "source": "yonhap",
+      "title": "애플도 올렸다…IT기기 '가격 인상' 도미노 시작되나",
+      "link": "https://www.yna.co.kr/view/AKR20260626131400017",
+      "published": "Sun, 28 Jun 2026 06:13:00 +0900"
     },
     {
-      "source": "cnbc_world",
-      "title": "Micron sinks 6%, wrapping a wild week of trading that saw big swings",
-      "link": "https://www.cnbc.com/2026/06/26/micron-stock-earnings-tech-selloff-ai.html",
-      "published": "Fri, 26 Jun 2026 21:07:55 GMT"
+      "source": "seeking_alpha",
+      "title": "Apple lobbying to buy memory chips from blacklisted Chinese firm: FT",
+      "link": "https://seekingalpha.com/news/4607880-apple-seeking-memory-chips-blacklisted-chinese-firm?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 27 Jun 2026 14:00:06 -0400"
     },
     {
-      "source": "ft",
-      "title": "SpaceX bonds sell off days after AI and rocket group’s $25bn debt deal",
-      "link": "https://www.ft.com/content/04f98e21-4ce7-43d2-8651-44557e12c31c",
-      "published": "Fri, 26 Jun 2026 20:50:59 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "SpaceX’s new bonds are flashing a warning sign, as investors pump the brakes on AI frenzy",
-      "link": "https://www.marketwatch.com/story/spacexs-new-bonds-are-flashing-a-warning-sign-as-investors-pump-the-brakes-on-ai-frenzy-752ad44b?mod=mw_rss_topstories",
-      "published": "Fri, 26 Jun 2026 20:42:00 GMT"
+      "source": "yonhap",
+      "title": "경북 예천 돼지농장서 구제역 발생…위기경보 '심각' 상향",
+      "link": "https://www.yna.co.kr/view/AKR20260627048400030",
+      "published": "Sun, 28 Jun 2026 00:06:05 +0900"
     },
     {
       "source": "cnbc_tech",
-      "title": "Meta's flurry of AI initiatives this month hasn't helped lift the stock. What will?",
-      "link": "https://www.cnbc.com/2026/06/26/metas-flurry-of-ai-initiatives-this-month-hasnt-helped-lift-the-stock-what-will.html",
-      "published": "Fri, 26 Jun 2026 17:45:09 GMT"
+      "title": "Alphabet burnishes one of its best weapons in the battle for AI supremacy",
+      "link": "https://www.cnbc.com/2026/06/27/alphabet-burnishes-one-of-its-best-weapons-in-the-battle-for-ai-supremacy.html",
+      "published": "Sat, 27 Jun 2026 13:21:04 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "OpenAI is reportedly delaying its IPO. Here's when Kalshi traders think it will announce",
-      "link": "https://www.cnbc.com/2026/06/26/openai-ipo-timeline-delayed-kalshi-predictions.html",
-      "published": "Fri, 26 Jun 2026 17:45:05 GMT"
+      "title": "SpaceX to join the Nasdaq-100 in a fast-tracked process that will drive huge ETF buying demand",
+      "link": "https://www.cnbc.com/2026/06/26/spacex-added-to-nasdaq-100.html",
+      "published": "Sat, 27 Jun 2026 21:34:59 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "OpenAI hasn't held pre-IPO investor meetings or set timeline yet, sources say",
-      "link": "https://www.cnbc.com/2026/06/26/open-ai-ipo-timeline-investors.html",
-      "published": "Fri, 26 Jun 2026 17:18:03 GMT"
+      "title": "SpaceX stock has cooled. Hiring for jobs in the space economy hasn't",
+      "link": "https://www.cnbc.com/2026/06/27/spacex-jobs-stem-careers-labor-economy.html",
+      "published": "Sat, 27 Jun 2026 13:17:30 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "ECB’s Schnabel Sees Upside Inflation Risks Despite Peace Deal",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-27/ecb-s-schnabel-sees-upside-inflation-risks-despite-peace-deal",
+      "published": "Sat, 27 Jun 2026 14:14:45 GMT"
+    },
+    {
+      "source": "yonhap",
+      "title": "AI 시대 고용불안, 한국은 버티고 미국은 움직였다",
+      "link": "https://www.yna.co.kr/view/AKR20260626144100017",
+      "published": "Sun, 28 Jun 2026 06:55:01 +0900"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "SA Asks: What's the most attractive chip stock right now?",
+      "link": "https://seekingalpha.com/news/4607881-sa-asks-whats-the-most-attractive-chip-stock-right-now?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 27 Jun 2026 17:19:25 -0400"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Tech Equity Sales Renew AI Debt-Binge Worries",
+      "link": "https://www.bloomberg.com/news/articles/2026-06-27/tech-equity-sales-renew-ai-debt-binge-worries-credit-weekly",
+      "published": "Sat, 27 Jun 2026 19:00:00 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "OpenAI limits new AI models to 'trusted partners' at request of U.S. government",
-      "link": "https://www.cnbc.com/2026/06/26/openai-limits-new-ai-models-to-trusted-partners-request-us-government.html",
-      "published": "Fri, 26 Jun 2026 17:02:44 GMT"
+      "title": "The AI trade cooled and oil sank. A closer look at Wall Street's volatile week",
+      "link": "https://www.cnbc.com/2026/06/27/the-ai-trade-cooled-and-oil-sank-a-closer-look-at-wall-streets-volatile-week.html",
+      "published": "Sat, 27 Jun 2026 16:39:52 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "OpenAI and Anthropic face new AI reality as users shift from 'tokenmaxxing' to efficiency",
-      "link": "https://www.cnbc.com/2026/06/26/openai-anthropic-new-ai-spending-reality-as-users-shift-to-efficiency.html",
-      "published": "Fri, 26 Jun 2026 15:33:31 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Iran’s ship attack tests the shipping-insurance market just as war-risk premiums had plunged",
-      "link": "https://www.marketwatch.com/story/irans-ship-attack-tests-the-shipping-insurance-market-just-as-war-risk-premiums-had-plunged-8c4ef14d?mod=mw_rss_topstories",
-      "published": "Fri, 26 Jun 2026 21:06:00 GMT"
+      "title": "How GE Vernova builds the massive gas turbines powering the AI data center boom",
+      "link": "https://www.cnbc.com/2026/06/27/ge-vernova-gas-turbines-ai-data-centers.html",
+      "published": "Sat, 27 Jun 2026 12:00:01 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "Trump eases pressure on Fed Chairman Kevin Warsh as inflation tops 4%",
-      "link": "https://www.cnbc.com/2026/06/26/trump-warsh-fed-rate-cuts-inflation.html",
-      "published": "Fri, 26 Jun 2026 17:39:09 GMT"
-    },
-    {
-      "source": "cnbc_finance",
-      "title": "Warsh reaches within the Fed for latest advisory appointments",
-      "link": "https://www.cnbc.com/2026/06/26/warsh-reaches-within-the-fed-for-latest-advisory-appointments.html",
-      "published": "Fri, 26 Jun 2026 16:52:10 GMT"
+      "title": "Tanker struck in Strait of Hormuz as U.S.-Iran tensions escalate",
+      "link": "https://www.cnbc.com/2026/06/27/tanker-struck-in-strait-of-hormuz-as-us-iran-tensions-escalate.html",
+      "published": "Sat, 27 Jun 2026 21:51:51 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "필라델피아반도체 -5.29% 급락·마이크론 차익실현 매물에 한국 반도체 급락(-5.8%), AI 인프라 투자 우려 확산·VIX 18대 유지로 방어 국면",
+  "sentiment_reason": "필라델피아반도체 -5.29% 급락·메모리 가격 급등에 따른 IT기기 가격 인상 우려로 수요 둔화 시그널 확산, 코스피 -5.81% 패닉 셀링",
   "key_factors": [
-    "필라델피아반도체 -5.29% 급락 — 마이크론 6% 하락·엔비디아·인텔 동반 매도로 글로벌 반도체주 차익실현",
-    "한국발 AI 급락 전이 — SK하이닉스·삼성전자 급락이 미국·유럽 반도체 매도 촉발, 외신 \"한국이 글로벌 반도체 핵심 변수\"",
-    "메모리칩 가격 상승 압박 — AI 수요로 메모리칩 원가 상승, 소비재 수요 둔화 우려·오라클 AI 투자 과잉 논란 겹침",
-    "연준 매파 전환 — 미니애폴리스 연은 Kashkari \"연내 금리 인상 예상\", 인플레 4% 돌파로 트럼프 정부도 금리인하 압박 완화"
+    "AI 인프라 비용 급등 우려 — 메모리 부족으로 애플·MS 등 IT기기 300달러 가격 인상, 수요 둔화 시그널 확산",
+    "필라델피아반도체 -5.29% 급락 — Micron 호실적 이후 AI 투자 비용 우려로 칩주 전반 매도 (Intel -3%, Sandisk -10%, Arm -4%, Marvell -5%)",
+    "지정학 리스크 재점화 — 호르무즈 해협 유조선 피격, 미-이란 긴장 고조로 안전자산 선호 (금 +1.20%, WTI -3.74%)",
+    "일본·중국 동반 급락 — 니케이 -4.15%, 항셍 -1.76%, 한국 구제역 발생으로 국내 리스크 프리미엄 확대"
   ],
-  "news_summary": "미니애폴리스 연은 Kashkari 총재 \"연내 금리 인상 예상\" 전환 발언 — 인플레 4% 돌파로 매파 전환, 트럼프 정부도 즉각 인하 압박 완화\n트럼프, 연준 의장 Warsh 압박 완화 — 인플레 4% 상황에서 즉각 금리인하 요구 중단, Warsh에 정치적 유예기간 부여\nWarsh 연준 의장, 내부 인사로 자문단 구성 — 연준 경제관·정책 접근 방식 개편 착수, 광범위한 변화 예고\n달러인덱스 101.37 -0.06% 보합 — Kashkari 금리인상 전망에도 트럼프 압박 완화·인플레 피크 기대로 달러 약세\n미국, 이란 보복 공습 확정 — 이란 선박 공격에 대응 타격, 장외거래서 유가 급등했으나 본장에서 -2.34% 반락\n이란 선박 공격, 해운보험 시장 테스트 — 전쟁 리스크 프리미엄 급락 직후 재점화, 해운·보험 변동성 확대\n베이징 시틱타워(108층) 경비행기 충돌 — 베이징 랜드마크 건물 상층부 파손·도로 파편 낙하, 중국 심리 악화 촉발\nOpenAI, 미국 정부 요청으로 신규 AI 모델 '신뢰 파트너'로만 제한 공개 — 3개 신모델 발표했으나 광범위 접근 지연\n한국 정부, USTR 보고서 '신안 염전노예' 명시 대응 착수 — 미·EU 통상규제 분석 시작, 인권·노동 이슈 무역 리스크 부상\n마이크론 -6% 급락, 실적 호조 후 차익실현 — 3분기 어닝 서프라이즈 후 변동성 심화, 주간 등락 폭 극대화\n필라델피아반도체 -5.29% — 엔비디아·알파벳 빅캡 반등 불참, 인텔 -3%·샌디스크 -10%·Arm -4%·마벨 -5% 동반 급락\n외신 \"삼성전자·SK하이닉스, 글로벌 반도체주 핵심 변수\" — 블룸버그 \"한국발 AI 급락이 2900억달러 레버리지 ETF 우려 촉발\", 한국이 AI 투자 심리 좌우\n오라클 1주일 -19%, 2001년 닷컴버블 이후 최악 — AI 투자 과잉·부채 부담 우려로 5일 연속 -2.6% 이상 하락\n메모리칩 가격 상승, 소비재 리테일러 압박 — AI 경쟁 가속으로 RAM 원가 상승, 노트북·스마트폰 소매가·마진 압박 시작\nOpenAI IPO 2027년으로 연기 검토 — 샘 올트먼 기업가치 1조달러 고수, SpaceX 부진·AI 고평가 논란에 속도 조절, 아직 투자자 미팅 미개최\nSpaceX 채권 매도세 — IPO 후 250억달러 부채 발행 직후 채권 가격 급락, AI·우주 투자 열풍 경계 신호\n메타 AI 이니셔티브 무반응 — 저가 스마트글라스·엔터프라이즈 도구·Qualcomm 파트너십 발표에도 주가 무감, 투자자 AI 피로감\nOpenAI·Anthropic, 사용자 'tokenmaxxing'에서 효율성으로 이동 — Lindy CEO, Anthropic Claude에서 DeepSeek로 100% 전환, 비용 절감 압박",
+  "news_summary": "ECB Schnabel 중동 평화협정에도 인플레이션 상방 리스크 경고 — 긴축 장기화 우려 부각, 독일DAX -1.29% 유럽 증시 압박\n2분기 평균 환율 1,500원 돌파 — 외환위기 이후 처음, 수출주 수혜 vs 수입 원가 부담 양면 국면\nWTI -3.74% 급락 — 호르무즈 유조선 피격에도 글로벌 경기 둔화·AI 수요 둔화 우려로 수요 파괴 시그널 우선 반영\n건설생산 24개월 연속 감소 — 외환·금융위기 넘은 최장 감소세, 통계 작성 이래 최악\n호르무즈 해협 유조선 피격 — 미-이란 긴장 고조, 미군 추가 공습 감행으로 에너지 공급망 리스크 재점화 (금 +1.20%)\n애플, 중국 블랙리스트 메모리 기업 구매 로비 중(FT 보도) — 메모리 부족에 제재 우회 시도, 미중 기술 갈등 재점화 가능성\n경북 예천 구제역 발생 — 2월 경기 고양 이후 추가 확진, 위기경보 '심각' 상향으로 내수 소비 위축 우려\n정부 하반기 성장전략 '3고(高) 극복' 초점 — 고물가·고금리·고환율 대응, 청년 고용 활로 모색·성장률 3% 상향 검토\n필라델피아반도체 -5.29% 급락 — Micron 호실적 이후 AI 투자 비용 우려 부각, Intel -3%, Sandisk -10%, Arm -4%, Marvell -5% 동반 매도\n메모리 부족으로 IT기기 가격 인상 도미노 — 애플 맥북 100~300달러·아이패드 100~200달러 인상, 소형 업체는 '실존적 위기'(CNBC) 수요 둔화 시그널\nSpaceX 나스닥100 편입 — 초고속 편입 절차로 패시브 ETF 매수 수요 대규모 유입 예정, 우주산업 대표주 지위 공고화\nAlphabet 자체 TPU 칩 경쟁력 재확인 — Gemini 챗봇 엔진으로 AI 주권 확보, 엔비디아 의존도 낮춰 투자자 안심\nGE Vernova AI 데이터센터 가스터빈 생산 확대 — 사우스캐롤라이나 공장 200명 신규 채용, AI 전력 인프라 수요 폭발 확인",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "미니애폴리스 연은 Kashkari 총재 \"연내 금리 인상 예상\" 전환 발언 — 인플레 4% 돌파로 매파 전환, 트럼프 정부도 즉각 인하 압박 완화",
+          "text": "ECB Schnabel 중동 평화협정에도 인플레이션 상방 리스크 경고 — 긴축 장기화 우려 부각, 독일DAX -1.29% 유럽 증시 압박",
           "impact": "high"
         },
         {
-          "text": "트럼프, 연준 의장 Warsh 압박 완화 — 인플레 4% 상황에서 즉각 금리인하 요구 중단, Warsh에 정치적 유예기간 부여",
-          "impact": "high"
-        },
-        {
-          "text": "Warsh 연준 의장, 내부 인사로 자문단 구성 — 연준 경제관·정책 접근 방식 개편 착수, 광범위한 변화 예고",
+          "text": "2분기 평균 환율 1,500원 돌파 — 외환위기 이후 처음, 수출주 수혜 vs 수입 원가 부담 양면 국면",
           "impact": "mid"
         },
         {
-          "text": "달러인덱스 101.37 -0.06% 보합 — Kashkari 금리인상 전망에도 트럼프 압박 완화·인플레 피크 기대로 달러 약세",
+          "text": "WTI -3.74% 급락 — 호르무즈 유조선 피격에도 글로벌 경기 둔화·AI 수요 둔화 우려로 수요 파괴 시그널 우선 반영",
+          "impact": "mid"
+        },
+        {
+          "text": "건설생산 24개월 연속 감소 — 외환·금융위기 넘은 최장 감소세, 통계 작성 이래 최악",
           "impact": "mid"
         }
       ]
@@ -10215,23 +10214,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미국, 이란 보복 공습 확정 — 이란 선박 공격에 대응 타격, 장외거래서 유가 급등했으나 본장에서 -2.34% 반락",
+          "text": "호르무즈 해협 유조선 피격 — 미-이란 긴장 고조, 미군 추가 공습 감행으로 에너지 공급망 리스크 재점화 (금 +1.20%)",
           "impact": "high"
         },
         {
-          "text": "이란 선박 공격, 해운보험 시장 테스트 — 전쟁 리스크 프리미엄 급락 직후 재점화, 해운·보험 변동성 확대",
+          "text": "애플, 중국 블랙리스트 메모리 기업 구매 로비 중(FT 보도) — 메모리 부족에 제재 우회 시도, 미중 기술 갈등 재점화 가능성",
           "impact": "mid"
         },
         {
-          "text": "베이징 시틱타워(108층) 경비행기 충돌 — 베이징 랜드마크 건물 상층부 파손·도로 파편 낙하, 중국 심리 악화 촉발",
+          "text": "경북 예천 구제역 발생 — 2월 경기 고양 이후 추가 확진, 위기경보 '심각' 상향으로 내수 소비 위축 우려",
           "impact": "mid"
         },
         {
-          "text": "OpenAI, 미국 정부 요청으로 신규 AI 모델 '신뢰 파트너'로만 제한 공개 — 3개 신모델 발표했으나 광범위 접근 지연",
-          "impact": "mid"
-        },
-        {
-          "text": "한국 정부, USTR 보고서 '신안 염전노예' 명시 대응 착수 — 미·EU 통상규제 분석 시작, 인권·노동 이슈 무역 리스크 부상",
+          "text": "정부 하반기 성장전략 '3고(高) 극복' 초점 — 고물가·고금리·고환율 대응, 청년 고용 활로 모색·성장률 3% 상향 검토",
           "impact": "mid"
         }
       ]
@@ -10241,39 +10236,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "마이크론 -6% 급락, 실적 호조 후 차익실현 — 3분기 어닝 서프라이즈 후 변동성 심화, 주간 등락 폭 극대화",
+          "text": "필라델피아반도체 -5.29% 급락 — Micron 호실적 이후 AI 투자 비용 우려 부각, Intel -3%, Sandisk -10%, Arm -4%, Marvell -5% 동반 매도",
           "impact": "high"
         },
         {
-          "text": "필라델피아반도체 -5.29% — 엔비디아·알파벳 빅캡 반등 불참, 인텔 -3%·샌디스크 -10%·Arm -4%·마벨 -5% 동반 급락",
+          "text": "메모리 부족으로 IT기기 가격 인상 도미노 — 애플 맥북 100~300달러·아이패드 100~200달러 인상, 소형 업체는 '실존적 위기'(CNBC) 수요 둔화 시그널",
           "impact": "high"
         },
         {
-          "text": "외신 \"삼성전자·SK하이닉스, 글로벌 반도체주 핵심 변수\" — 블룸버그 \"한국발 AI 급락이 2900억달러 레버리지 ETF 우려 촉발\", 한국이 AI 투자 심리 좌우",
+          "text": "SpaceX 나스닥100 편입 — 초고속 편입 절차로 패시브 ETF 매수 수요 대규모 유입 예정, 우주산업 대표주 지위 공고화",
           "impact": "high"
         },
         {
-          "text": "오라클 1주일 -19%, 2001년 닷컴버블 이후 최악 — AI 투자 과잉·부채 부담 우려로 5일 연속 -2.6% 이상 하락",
-          "impact": "high"
-        },
-        {
-          "text": "메모리칩 가격 상승, 소비재 리테일러 압박 — AI 경쟁 가속으로 RAM 원가 상승, 노트북·스마트폰 소매가·마진 압박 시작",
-          "impact": "high"
-        },
-        {
-          "text": "OpenAI IPO 2027년으로 연기 검토 — 샘 올트먼 기업가치 1조달러 고수, SpaceX 부진·AI 고평가 논란에 속도 조절, 아직 투자자 미팅 미개최",
+          "text": "Alphabet 자체 TPU 칩 경쟁력 재확인 — Gemini 챗봇 엔진으로 AI 주권 확보, 엔비디아 의존도 낮춰 투자자 안심",
           "impact": "mid"
         },
         {
-          "text": "SpaceX 채권 매도세 — IPO 후 250억달러 부채 발행 직후 채권 가격 급락, AI·우주 투자 열풍 경계 신호",
-          "impact": "mid"
-        },
-        {
-          "text": "메타 AI 이니셔티브 무반응 — 저가 스마트글라스·엔터프라이즈 도구·Qualcomm 파트너십 발표에도 주가 무감, 투자자 AI 피로감",
-          "impact": "mid"
-        },
-        {
-          "text": "OpenAI·Anthropic, 사용자 'tokenmaxxing'에서 효율성으로 이동 — Lindy CEO, Anthropic Claude에서 DeepSeek로 100% 전환, 비용 절감 압박",
+          "text": "GE Vernova AI 데이터센터 가스터빈 생산 확대 — 사우스캐롤라이나 공장 200명 신규 채용, AI 전력 인프라 수요 폭발 확인",
           "impact": "mid"
         }
       ]
@@ -10281,240 +10260,214 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "기술주 양극화 속 방어적 보합 — 반도체 -5%대 급락했으나 러셀2000 소폭 상승·금융주 견조로 지수는 -0.05% 소폭 하락 마감",
+      "reason": "메모리 가격 급등으로 IT기기 가격 인상 도미노 시작 → AI 수요 둔화 우려, 칩주 매도 압력에 빅테크 동반 약세로 소폭 하락",
       "drivers": [
-        "필라델피아반도체 -5.29% 드래그",
-        "러셀2000 +0.07% 소형주 방어"
+        "Nvidia·Alphabet 등 메가캡 테크 반등 실패",
+        "메모리 부족·AI 인프라 비용 급등 우려"
       ]
     },
     "NASDAQ": {
-      "reason": "빅테크 양극화 심화 — 엔비디아·알파벳 매도 지속, 메타 AI 이니셔티브 무반응, 반도체 매도가 나스닥 -0.24% 견인",
+      "reason": "칩주 전반 매도세 (Sandisk -10%, Marvell -5%) 확산, Micron 호실적 이후 AI 투자 비용 부담 재조명으로 기술주 약세",
       "drivers": [
-        "엔비디아·알파벳 약세 지속",
-        "메타 AI 투자 무반응"
+        "필라델피아반도체 -5.29% 급락",
+        "메모리 공급 부족·가격 급등 수요 파괴 우려"
       ]
     },
     "DOW": {
-      "reason": "경기방어주 중심 소폭 하락 — 기술주 급락 영향 제한적, 러셀2000 소형주 견조로 다우 -0.09% 제한적 낙폭",
+      "reason": "기술주 약세 여파 제한적, 러셀2000 +0.07% 소형주 선방으로 경기민감주 방어 성공해 소폭 하락",
       "drivers": [
-        "기술주 급락 영향 제한",
-        "소형주 견조 흐름"
+        "칩주 급락에도 방어주 상대 강세",
+        "러셀2000 소형주 선방"
       ]
     },
     "VIX": {
-      "reason": "변동성 소폭 완화 — 반도체 급락에도 S&P500 낙폭 제한·러셀2000 플러스로 공포지수 -2.54% 하락, 단 18.4 수준 유지로 경계 지속",
+      "reason": "칩주 급락에도 S&P500 낙폭 제한(-0.05%)으로 공포 심리 소폭 완화, 지정학 리스크는 변수로 남음",
       "drivers": [
-        "S&P500 낙폭 -0.05% 제한",
-        "러셀2000 +0.07% 방어"
+        "S&P500 낙폭 제한",
+        "호르무즈 해협 유조선 피격 긴장 일부 반영"
       ]
     },
     "필라델피아반도체": {
-      "reason": "마이크론 차익실현·AI 인프라 투자 우려 동시 분출 — 마이크론 6% 급락, 인텔 -3%·Arm -4%·마벨 -5% 동반 매도, 메모리칩 가격 상승이 소비재 수요 압박",
+      "reason": "Micron 목표가 상향에도 AI 투자 비용 우려 부각 — 메모리 가격 급등으로 소형 업체 '실존적 위기', 칩주 전반 매도 (Sandisk -10%, Marvell -5%, Arm -4%)",
       "drivers": [
-        "마이크론 -6% 차익실현",
-        "메모리칩 원가 상승 압박",
-        "오라클 AI 투자 우려 전이"
+        "메모리 부족·가격 급등으로 IT기기 300달러 인상",
+        "AI 수요 지속성 의문 확산"
       ]
     },
     "러셀2000": {
-      "reason": "빅테크 자금 일부 소형주 이동 — 기술주 급락 속 소형주로 방어 자금 유입, dLocal 러셀2000 편입 발표·GameStop EBITDA 가이던스로 +0.07% 소폭 상승",
+      "reason": "기술주 약세 속 경기민감 소형주 방어 — 칩주 급락에도 내수 중심 포트폴리오 선방",
       "drivers": [
-        "dLocal 러셀2000 편입",
-        "기술주 급락 속 방어 매수"
+        "칩주 급락 영향 제한",
+        "경기민감 내수주 방어"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 약함 — 글로벌 반도체 급락 영향 제한적, 유럽 경기 중립 속 -0.21% 소폭 하락",
+      "reason": "직접 촉매 없음 — 글로벌 칩주 약세·지정학 리스크 동조로 소폭 하락",
       "drivers": [
-        "반도체 노출 제한적",
-        "유럽 매크로 중립"
+        "글로벌 칩주 급락 여파",
+        "호르무즈 긴장 동조"
       ]
     },
     "독일DAX": {
-      "reason": "반도체 급락과 무관한 유럽 경기회복 반영 — 독일 내수·금융주 중심 +1.03% 상승, 필라델피아반도체 급락 영향 차단",
+      "reason": "ECB Schnabel 평화협정에도 인플레 상방 리스크 경고로 긴축 우려, 칩주 급락 여파로 유럽 기술주 동반 약세",
       "drivers": [
-        "독일 내수주 견조",
-        "반도체 노출 제한"
+        "ECB 인플레 상방 리스크 경고",
+        "글로벌 칩주 급락 동조"
       ]
     },
     "니케이": {
-      "reason": "엔저 수혜·반도체 급락 이전 흐름 — 달러인덱스 -0.06% 속 엔화 약세 지속, 수출주 중심 +4.61% 급등, 한국 반도체 급락은 금요일 시차 반영 前",
+      "reason": "필라델피아반도체 -5.29% 급락 직격탄 — 도쿄일렉트론·어드밴테스트 등 반도체 장비·부품 동반 급락으로 역대급 낙폭",
       "drivers": [
-        "엔저 수출주 수혜",
-        "한국발 급락 시차"
+        "필라델피아반도체 -5.29% 급락",
+        "반도체 공급망 전반 매도"
       ]
     },
     "항셍": {
-      "reason": "베이징 시틱타워 경비행기 충돌 사고·중국 소비 부진 — 베이징 랜드마크 108층 건물 항공기 충돌로 심리 악화, 중국 내수 부진 지속으로 -1.43% 하락",
+      "reason": "글로벌 칩주 급락·애플의 중국 블랙리스트 기업 메모리 구매 로비(FT 보도) 긴장 고조로 중국 기술주 약세",
       "drivers": [
-        "베이징 시틱타워 충돌 사고",
-        "중국 내수 부진"
+        "애플 중국 블랙리스트 칩 구매 로비 보도",
+        "글로벌 칩주 급락 동조"
       ]
     },
     "달러인덱스": {
-      "reason": "Kashkari 금리인상 발언에도 보합 — 미니애폴리스 연은 총재 \"연내 인상 예상\" 발언 있었으나 인플레 4% 수준·트럼프 압박 완화로 -0.06% 소폭 하락",
+      "reason": "호르무즈 해협 유조선 피격에도 연준 정책 변화 없어 달러 수요 제한, 금 안전자산 선호 이동으로 소폭 하락",
       "drivers": [
-        "Kashkari 연내 금리인상 전망",
-        "트럼프 연준 압박 완화"
+        "지정학 리스크에도 연준 정책 중립",
+        "금 +1.20% 안전자산 선호"
       ]
     },
     "코스피": {
-      "reason": "SK하이닉스·삼성전자 급락 주도 — 외신 \"한국발 AI 급락이 글로벌 반도체 핵심 변수\" 보도, 레버리지 ETF 2900억달러 우려·차익실현 매물로 -5.81% 폭락",
+      "reason": "필라델피아반도체 -5.29% 직격탄 + 구제역 발생(경북 예천) 국내 리스크 프리미엄 확대 — 반도체·IT부품 동반 패닉 셀링으로 역대급 낙폭",
       "drivers": [
-        "SK하이닉스·삼성전자 급락",
-        "레버리지 ETF 2900억달러 청산 우려",
-        "글로벌 반도체 동반 매도"
+        "필라델피아반도체 -5.29% 급락",
+        "구제역 위기경보 '심각' 상향",
+        "외국인·기관 동반 매도"
       ]
     },
     "코스닥": {
-      "reason": "반도체 중소형·IT부품 동반 급락 — 코스피 반도체 급락이 중소형주·2차전지로 전이, AI 투자 심리 급냉각으로 -4.10% 하락",
+      "reason": "글로벌 칩주 급락 여파 + 2차전지·바이오 등 성장주 전반 리스크오프 — 외국인 매도 지속으로 4% 이상 급락",
       "drivers": [
-        "반도체 중소형 동반 급락",
-        "AI 투자 심리 위축"
+        "글로벌 기술주 약세 동조",
+        "성장주 전반 리스크오프"
       ]
     },
     "금": {
-      "reason": "미국의 이란 보복 타격 지정학 리스크 — 미국, 이란 보복 공습 확정으로 중동 긴장 재고조, 연내 금리인상 전망에도 안전자산 선호로 +1.80% 급등",
+      "reason": "호르무즈 해협 유조선 피격 → 미-이란 긴장 고조, 안전자산 수요 확대 + 달러 약세 동조",
       "drivers": [
-        "미국 이란 보복 타격",
-        "중동 긴장 고조"
+        "호르무즈 해협 유조선 피격",
+        "지정학 리스크 프리미엄"
       ]
     },
     "WTI유가": {
-      "reason": "미국 이란 타격 후 차익실현 — 미국 보복 공습 발표 직후 장중 상승했으나 중동 확전 우려 제한·글로벌 수요 둔화로 -2.34% 반락",
+      "reason": "호르무즈 긴장에도 글로벌 경기 둔화·AI 수요 둔화 우려 부각 → 수요 파괴 시그널 우선 반영으로 급락",
       "drivers": [
-        "미국 이란 타격 차익실현",
-        "글로벌 수요 둔화 우려"
+        "AI 수요 둔화 우려",
+        "글로벌 경기 둔화 시그널"
       ]
     },
     "원달러": {
-      "reason": "원화 소폭 강세 — 달러인덱스 -0.06% 약세·외국인 매도 일단락 기대감으로 1535원 -0.50% 하락, 단 코스피 급락에도 방어적",
+      "reason": "2분기 평균 환율 1,500원 돌파(외환위기 이후 처음) 고점 부담, 코스피 급락에도 달러 약세로 소폭 하락",
       "drivers": [
-        "달러인덱스 약세",
-        "외국인 매도 진정 기대"
+        "2Q 평균 환율 1,500원 돌파 고점 부담",
+        "달러인덱스 -0.07% 약세"
       ]
     },
     "알루미늄": {
-      "reason": "중국 수요 둔화·경기 우려 폭발 — 베이징 사고·중국 내수 부진 심화, 글로벌 반도체 급락이 산업금속 수요 전망 악화로 -8.91% 급락",
+      "reason": "직접 촉매 없음 — 구리 동조 상승 + GE Vernova AI 데이터센터 가스터빈 생산 확대 수혜 기대",
       "drivers": [
-        "중국 내수 부진",
-        "반도체 수요 둔화 우려"
+        "구리 +1.17% 동조",
+        "AI 인프라 수요 기대"
       ]
     },
     "구리": {
-      "reason": "AI 인프라 투자 기대 일부 유지 — 알루미늄 급락과 대조, 데이터센터·전력망 수요 기대감 잔존으로 +2.09% 상승",
+      "reason": "GE Vernova AI 데이터센터 가스터빈 생산 확대(200명 신규 채용) → 전력 인프라 수요 재확인, 금속 수요 기대",
       "drivers": [
-        "AI 인프라 전력 수요",
-        "알루미늄 대비 차별화"
+        "GE Vernova AI 데이터센터 인프라 확대",
+        "전력 인프라 수요"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "코스피 -5.81% 폭락 — SK하이닉스·삼성전자 급락이 글로벌 반도체 핵심 변수로 부상, 외신 \"한국발 AI 급락\" 진단·레버리지 ETF 청산 우려 확산",
+    "summary": "필라델피아반도체 -5.29% 직격탄 + 구제역 발생 국내 리스크 프리미엄 확대로 코스피 -5.81% 패닉 셀링, 반도체·IT부품 동반 급락",
     "positive_factors": [
-      "니케이 +4.61% 엔저 수출주 랠리 — 아시아 수출 경쟁국 수혜 흐름, 한국 자동차·조선 중장기 수출 수혜 기대",
-      "달러인덱스 -0.06%·원달러 -0.50% 1535원 — 외국인 매도 진정 가능성·환율 방어, 수출주 환차익 부담 완화",
-      "구리 +2.09% AI 인프라 수요 잔존 — 알루미늄 급락과 대조, 데이터센터·전력망 투자 기대 일부 유지"
+      "2분기 평균 환율 1,500원 돌파 → 수출 대기업(반도체·자동차·조선) 이익 개선 기대, 외국인 한류 소비 3개월 연속 1조원 돌파(5월 1.4조원) 내수 회복 시그널",
+      "SpaceX 나스닥100 편입 → 우주·위성 섹터 관심 확대, 한화에어로스페이스 등 방산·우주 테마 수혜 가능"
     ],
     "negative_factors": [
-      "필라델피아반도체 -5.29%·마이크론 -6% 차익실현 — 글로벌 반도체주 동반 매도, 한국 반도체 -5.8% 급락 촉발",
-      "외신 \"한국발 AI 급락이 2900억달러 레버리지 ETF 우려 촉발\" — 블룸버그 진단, 한국 반도체 급락이 미·유럽 반도체주 매도 확산 주도",
-      "메모리칩 가격 상승→소비재 수요 둔화 우려 — AI 수요로 RAM 원가 상승, 노트북·스마트폰 리테일 마진 압박·수요 감소 우려",
-      "Kashkari \"연내 금리 인상 예상\"·인플레 4% — 연준 매파 전환, 글로벌 유동성 긴축·밸류에이션 부담 재부상"
+      "필라델피아반도체 -5.29% 급락 → 삼성전자·SK하이닉스 등 반도체 대형주 매도 압력, 메모리 가격 급등에도 수요 둔화 우려로 밸류에이션 부담",
+      "구제역 위기경보 '심각' 상향 → 축산·식품 섹터 타격 + 내수 소비심리 위축, 코스피 리스크 프리미엄 확대",
+      "메모리 부족·IT기기 가격 인상 도미노 → AI 수요 지속성 의문 확산, 반도체·IT부품 밸류에이션 재평가 압력"
     ],
-    "key_watch": "월요일 외국인 수급·레버리지 ETF 청산 규모 — 블룸버그 \"2900억달러 우려\" 실제 청산 여부가 반등 타이밍 결정, 반도체 장비·소재 상대강도 분화 주목"
+    "key_watch": "반도체_대형 RS-R=113.62 weakening 국면 진입 — 추가 조정 vs 저점 매수 기회 판단 분기점, 외국인 매도 지속 여부 모니터링 필수"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "반도체_장비",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "RS-R 103.4·RS-M 102.7 Leading 유지 — 필라델피아반도체 급락에도 상대강도 선방, 반도체 대형 급락 시 장비·소재 분화 패턴·월요일 반등 선도 가능성"
-    },
-    {
       "sector": "보험",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 111.7·RS-M 107.3 Leading 최강 — 금리인상 전망·은행 improving 동조, 방어 자금 유입·배당 매력 부각"
+      "reason": "보험 RS-R=111.746·RS-M=107.254 Leading 유지 — 금리 장기화 수혜 + 안전자산 선호로 방어 포트폴리오 핵심"
     },
     {
       "sector": "유통",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 112.2·RS-M 106.8 Leading — 반도체 급락 속 방어 섹터 선호, 유통 내수 견조·상대강도 최상위"
+      "reason": "유통 RS-R=112.243·RS-M=106.794 Leading 유지 — 외국인 한류 소비 1.4조원 돌파 + 내수 회복 시그널로 상대 강세"
     },
     {
       "sector": "지주·복합기업",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 123.1·RS-M 104.4 Leading 최고 — 복합 포트폴리오 방어력, 반도체 급락 시 지주 자금 대피처 역할"
+      "reason": "지주·복합기업 RS-R=123.145·RS-M=104.388 Leading 최강 — 포트폴리오 분산 효과 + 밸류에이션 매력"
     },
     {
-      "sector": "방산",
+      "sector": "은행",
       "rrg_quadrant": "improving",
       "claude_quadrant": "improving",
-      "reason": "RS-M 103.8 improving 전환 — 반도체 급락 속 방산 상대강도 개선, 중동 긴장(미국 이란 타격)·지정학 리스크 수혜"
+      "reason": "은행 RS-R=93.439·RS-M=105.037 Improving — 금리 장기화 수혜 + 2Q 실적 기대감 부각"
     },
     {
       "sector": "항공",
       "rrg_quadrant": "improving",
       "claude_quadrant": "improving",
-      "reason": "RS-M 108.4 improving 최강 — 항공 모멘텀 급등, 중동 긴장에도 여행 수요 회복·유가 -2.34% 원가 부담 완화"
+      "reason": "항공 RS-R=97.572·RS-M=108.449 Improving 최고 모멘텀 — 외국인 관광 회복 + 유가 급락(-3.74%) 원가 부담 완화"
     }
   ],
   "watch": [
     {
       "sector": "반도체_대형",
-      "reason": "RS-R 113.6 weakening 전환 — 반도체 대형 급락 주도, 레버리지 ETF 청산 우려·차익실현 매물 지속, 월요일 외국인 수급 확인 전까지 관망"
+      "reason": "반도체_대형 RS-R=113.62·RS-M=99.854 weakening 진입 — 필라델피아반도체 급락 직격탄, 추가 조정 vs 저점 매수 기회 판단 분기점"
     },
     {
       "sector": "IT부품",
-      "reason": "RS-R 125.4 weakening 급락 — IT부품 상대강도 최고였으나 모멘텀 꺾임, 반도체 동반 매도·삼성전기·LG이노텍 급락 시 재진입 타이밍 대기"
+      "reason": "IT부품 RS-R=125.372·RS-M=94.784 weakening — 메모리 부족·가격 인상 수요 둔화 우려로 모멘텀 꺾임, 재진입 타이밍 대기"
     },
     {
       "sector": "정유",
-      "reason": "RS-R 104.9 weakening — 유가 -2.34% 급락, 중동 긴장에도 수요 둔화 우려 우세·정유 모멘텀 약화"
+      "reason": "정유 RS-R=104.873·RS-M=99.752 weakening — WTI -3.74% 급락에도 호르무즈 리스크 변수, 방향성 불확실"
     }
   ],
   "avoid": [],
-  "summary": "필라 반도체 -5.29% 급락·한국발 AI 급락 전이로 코스피 -5.81% 폭락 — 반도체 대형 weakening 관망, 장비 Leading·보험·유통·방산·항공 분화 국면 집중",
-  "strategy_brief": "필라델피아반도체 -5.29% 급락과 마이크론 차익실현이 한국 반도체 -5.8% 폭락을 촉발했고, 블룸버그가 \"한국발 AI 급락이 2900억달러 레버리지 ETF 우려를 일으켰다\"고 진단하며 글로벌 영향력을 재확인했다. Kashkari 연내 금리인상 전망·인플레 4% 돌파로 유동성 긴축 우려가 재부상하는 가운데, 반도체 대형(weakening)과 IT부품(weakening)은 월요일 외국인 수급·ETF 청산 규모 확인 전까지 관망이 유리하다. 반면 반도체_장비는 RS-R 103.4 Leading을 유지하며 대형 급락 시 분화 패턴을 보이고 있어 선반등 가능성에 주목하고, 보험·유통·지주 등 Leading 최강 방어 섹터와 미국 이란 타격으로 중동 긴장이 재고조된 가운데 방산·항공 improving 섹터에 집중하는 전략이 유효하다.",
-  "strategy_headline": "반도체 급락 후 분화 국면 — 장비·방어 Leading 집중",
+  "summary": "칩주 패닉·구제역 더블 쇼크로 코스피 -5.81% 급락 — 방어주(보험·유통·항공) Leading 섹터 집중, 반도체 weakening 진입 추가 조정 경계",
+  "strategy_brief": "필라델피아반도체 -5.29% 급락과 구제역 발생이 겹치며 코스피 -5.81% 패닉 셀링이 발생했다. 메모리 가격 급등에도 IT기기 300달러 인상으로 수요 둔화 우려가 확산되면서 반도체·IT부품은 weakening 국면 진입, 추가 조정 가능성에 무게를 둔다. 이런 리스크오프 국면에서는 보험(RS-R=111.746)·유통(RS-R=112.243)·지주복합(RS-R=123.145) 등 Leading 섹터로 방어 전환이 필수다. 특히 항공은 RS-M=108.449 최고 모멘텀에 WTI -3.74% 원가 완화·외국인 관광 1.4조원 돌파 수혜가 겹쳐 집중 매수 기회로 판단한다. 반도체 대형주는 외국인 매도 지속 여부를 확인한 뒤 저점 매수 타이밍을 노리되, 섣부른 진입은 금물이다.",
+  "strategy_headline": "칩주 패닉에 방어 전환 — 보험·유통·항공 Leading 집중",
   "strategy_points": [
-    "필라 반도체 -5.29%·한국발 급락 전이, 월요일 레버리지 ETF 청산 규모 확인 전까지 반도체 대형 관망",
-    "반도체_장비 RS-R 103 Leading 유지 — 대형 급락 시 장비·소재 분화 패턴, 선반등 가능성 주목",
-    "보험·유통·지주 Leading 최강 — 금리인상 전망·방어 자금 유입, 항공·방산 improving 중동 리스크 수혜",
-    "Kashkari 금리인상 전망·인플레 4% — 유동성 긴축 재부상, 고밸류 기술주 부담 지속"
+    "필라델피아반도체 -5.29% 급락 → 메모리 가격 급등에도 수요 둔화 우려, 국내 반도체 추가 조정 경계",
+    "구제역 발생·코스피 -5.81% 패닉 → 리스크오프 국면, 방어주(보험·은행·유통) Leading 섹터로 피난",
+    "항공 RS-M=108.449 최고 모멘텀 + WTI -3.74% 원가 완화 → 외국인 관광 회복 수혜 집중 매수 기회",
+    "반도체_대형 weakening 진입 — 저점 매수 vs 추가 조정 분기점, 외국인 매도 지속 시 관망 우선"
   ],
   "top_picks": [
     {
-      "sector": "반도체_장비",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 103.4·RS-M 102.7 Leading 유지 — 필라델피아반도체 급락에도 상대강도 선방, 반도체 대형 급락 시 장비·소재 분화 패턴·월요일 반등 선도 가능성",
-      "stocks": [
-        {
-          "name": "원익IPS",
-          "code": "240810",
-          "signal": "prime",
-          "reason": "필라델피아반도체 -5.29% 급락에도 반도체_장비 RS-R 103.4 Leading 유지 + 반도체 대형 급락 시 장비 상대강도 분화 패턴·레버리지 ETF 청산 진정 후 선반등 기대",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "반도체_장비",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
       "sector": "보험",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 111.7·RS-M 107.3 Leading 최강 — 금리인상 전망·은행 improving 동조, 방어 자금 유입·배당 매력 부각",
+      "reason": "보험 RS-R=111.746·RS-M=107.254 Leading 유지 — 금리 장기화 수혜 + 안전자산 선호로 방어 포트폴리오 핵심",
       "stocks": [
         {
           "name": "삼성화재",
           "code": "000810",
           "signal": "prime",
-          "reason": "Kashkari 금리인상 전망·금리 상승 수혜 + 보험 RS-R 111.7·RS-M 107.3 Leading 최강·방어 자금 유입 지속",
+          "reason": "보험 Leading(RS-R=111.746) + 금리 장기화·안전자산 선호로 방어 포트폴리오 핵심, 리스크오프 국면 최적 피난처",
           "rrg_tracked": true,
           "rrg_actual_sector": "보험",
           "rrg_sector_match": true,
@@ -10523,53 +10476,36 @@
       ]
     },
     {
-      "sector": "유통",
-      "rrg_quadrant": "leading",
-      "reason": "RS-R 112.2·RS-M 106.8 Leading — 반도체 급락 속 방어 섹터 선호, 유통 내수 견조·상대강도 최상위",
-      "stocks": [
-        {
-          "name": "신세계",
-          "code": "004170",
-          "signal": "prime",
-          "reason": "반도체 급락 속 방어 섹터 선호 + 유통 RS-R 112.2 Leading·내수 견조 흐름 유지",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "유통",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "방산",
-      "rrg_quadrant": "improving",
-      "reason": "RS-M 103.8 improving 전환 — 반도체 급락 속 방산 상대강도 개선, 중동 긴장(미국 이란 타격)·지정학 리스크 수혜",
-      "stocks": [
-        {
-          "name": "한화에어로스페이스",
-          "code": "012450",
-          "signal": "prime",
-          "reason": "미국 이란 보복 타격·중동 긴장 재고조 + 방산 RS-M 103.8 improving 전환·지정학 리스크 수혜 지속",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "방산",
-          "rrg_sector_match": true,
-          "rrg_signal": "prime"
-        }
-      ]
-    },
-    {
       "sector": "항공",
       "rrg_quadrant": "improving",
-      "reason": "RS-M 108.4 improving 최강 — 항공 모멘텀 급등, 중동 긴장에도 여행 수요 회복·유가 -2.34% 원가 부담 완화",
+      "reason": "항공 RS-R=97.572·RS-M=108.449 Improving 최고 모멘텀 — 외국인 관광 회복 + 유가 급락(-3.74%) 원가 부담 완화",
       "stocks": [
         {
           "name": "대한항공",
           "code": "003490",
           "signal": "prime",
-          "reason": "유가 -2.34% 원가 부담 완화·여행 수요 회복 + 항공 RS-M 108.4 improving 최강·모멘텀 급등",
+          "reason": "항공 Improving(RS-M=108.449 최고) + 외국인 관광 회복·WTI -3.74% 원가 완화로 이익 개선 기대",
           "rrg_tracked": true,
           "rrg_actual_sector": "항공",
           "rrg_sector_match": true,
           "rrg_signal": "prime"
+        }
+      ]
+    },
+    {
+      "sector": "은행",
+      "rrg_quadrant": "improving",
+      "reason": "은행 RS-R=93.439·RS-M=105.037 Improving — 금리 장기화 수혜 + 2Q 실적 기대감 부각",
+      "stocks": [
+        {
+          "name": "KB금융",
+          "code": "105560",
+          "signal": "prime",
+          "reason": "은행 Improving(RS-M=105.037) + 금리 장기화·2Q 실적 기대감으로 방어주 선호 수혜",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "은행",
+          "rrg_sector_match": true,
+          "rrg_signal": "confirm"
         }
       ]
     }
