@@ -872,7 +872,7 @@
             const sectorRRG = allData.sector_rrg || {}
             const items = Object.entries(sectors).map(([name, d]) => {
                 const quad = sectorRRG[name]?.quadrant ?? "neutral"
-                return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0 }
+                return { name, quad, ret: d.sector_ret_5d, imp: d.improving_count || 0, watch: d.watch_count || 0, total: d.total || (d.candidates ? d.candidates.length : 0) }
             })
 
             // 사분면별 그룹핑
@@ -892,11 +892,8 @@
             const chip = (item) => {
                 const retCls = item.ret > 0 ? "text-red-600" : item.ret < 0 ? "text-blue-500" : "text-gray-400"
                 const retStr = item.ret != null ? (item.ret > 0 ? "+" : "") + item.ret.toFixed(1) + "%" : "-"
-                const badge = item.imp > 0
-                    ? `<span style="font-size:9px;color:#2563eb;font-weight:700;">${item.imp}</span>`
-                    : item.watch > 0
-                        ? `<span style="font-size:9px;color:#9ca3af;font-weight:700;">${item.watch}</span>`
-                        : ""
+                const badgeColor = item.imp > 0 ? "#2563eb" : "#9ca3af"
+                const badge = `<span style="font-size:9px;color:${badgeColor};font-weight:700;">${item.total}</span>`
                 return `<div onclick="selectSector('${item.name}'); switchTab('stock')"
                     style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;margin:2px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;background:#fff;transition:background .12s;"
                     onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">
@@ -935,11 +932,7 @@
                 return `<div class="sector-chip ${sel}" onclick="selectSector('${name}')">
       <span class="dot-sm" style="background:${quadrantColor(quad)};"></span>
       <span>${name}</span>
-      ${d.improving_count > 0
-                        ? `<span style="font-size:10px;color:#2563eb;font-weight:600;">${d.improving_count}</span>`
-                        : d.watch_count > 0
-                            ? `<span style="font-size:10px;color:#9ca3af;font-weight:600;">${d.watch_count}</span>`
-                            : ""}
+      <span style="font-size:10px;color:${d.improving_count > 0 ? '#2563eb' : '#9ca3af'};font-weight:600;">${d.total || (d.candidates ? d.candidates.length : 0)}</span>
     </div>`
             }).join("")
         }
