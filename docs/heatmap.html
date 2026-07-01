@@ -414,9 +414,12 @@
             var H = Math.max(500, window.innerHeight - 200);
 
             var allStocks = [];
+            var _seenCodes = {};
             Object.keys(sectors).forEach(function (sname) {
                 sectors[sname].candidates.forEach(function (c) {
                     if (!c.market_cap) return;
+                    if (_seenCodes[c.code]) return;  // 다중소속 종목 중복 제거
+                    _seenCodes[c.code] = true;
                     allStocks.push({
                         name: c.name, code: c.code, value: c.market_cap,
                         ret: c[currentRet], cap: c.market_cap, sector: sname,
