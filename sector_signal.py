@@ -529,6 +529,13 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
         r60 = _get_return(code, 60)
         vol = _get_vol_ratio(code)
 
+        # 당일 거래대금 (억원) — 장중 실시간 누적, 없으면 전일 거래량 폴백
+        _tv = current_volume.get(code)
+        if _tv is None:
+            _e = ohlcv_store.get(code)
+            _tv = _e["volumes"][-2] if _e and len(_e.get("volumes", [])) >= 2 else None
+        value = (now_price * _tv / 1e8) if (_tv and now_price) else None
+
         rs_5d  = (r5  / sector_ret_5d)  if r5  is not None and sector_ret_5d  else None
         rs_20d = (r20 / sector_ret_20d) if r20 is not None and sector_ret_20d else None
         rs_60d = (r60 / sector_ret_60d) if r60 is not None and sector_ret_60d else None
@@ -551,6 +558,7 @@ def calc_sector_signals(sector: str, codes: list[tuple[str, str]]) -> dict:
             "rs_20d":         round(rs_20d, 3)    if rs_20d is not None else None,
             "rs_60d":         round(rs_60d, 3)    if rs_60d is not None else None,
             "vol_ratio":      round(vol,    3)    if vol    is not None else None,
+            "value":          round(value,  1)    if value  is not None else None,
             "market_cap":     _live_market_cap(code, now_price),
             "rs_ratio":       round(curr_ratio, 3) if curr_ratio is not None else None,
             "rs_momentum":    round(curr_mom,   3) if curr_mom   is not None else None,
@@ -687,7 +695,7 @@ def calc_sector_rrg(sector_results: dict) -> dict:
     min_req = MA_LONG * 2 + 5
     valid = {
         s: v for s, v in _sector_rebased_cache.items()
-        if len(v) >= min_req
+        if len(v) >= min_req and s != "미분류"   # 미분류는 섹터 집계 제외
     }
 
     if len(valid) < 2:
