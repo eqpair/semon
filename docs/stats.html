@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>SEMon Stats</title>
+    <title>SEMon MID Stats</title>
     <link rel="icon" href="./favicon.svg" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         :root {
             --bg: #f9fafb;
@@ -15,11 +14,10 @@
             --text: #1f2937;
             --muted: #4b5563;
             --dim: #6b7280;
-            --prime: #4b5563;
-            --confirm: #374151;
+            --accent: #374151;
             --green: #16a34a;
             --red: #dc2626;
-            --gold: #6b7280;
+            --blue: #2563eb;
         }
 
         * {
@@ -55,7 +53,10 @@
             flex-wrap: wrap;
         }
 
-        .nav-link { font-size: 12px; color: #374151; background: #f3f4f6;
+        .nav-link {
+            font-size: 12px;
+            color: #374151;
+            background: #f3f4f6;
             text-decoration: none;
             padding: 4px 12px;
             border-radius: 6px;
@@ -63,18 +64,33 @@
             transition: background 0.15s;
             white-space: nowrap;
         }
-        .nav-link:hover { background: #e5e7eb; }
-        .nav-link.green { color: #374151; background: #f3f4f6; }
-        .nav-link.green:hover { background: #e5e7eb; }
-        .nav-link.purple { color: #374151; background: #f3f4f6; }
-        .nav-link.purple:hover { background: #e5e7eb; }
-        .nav-link.dark { color: #fff; background: #1e293b; border: 1px solid #334155; }
-        .nav-link.dark:hover { background: #0f172a; }
+
+        .nav-link:hover {
+            background: #e5e7eb;
+        }
+
+        .nav-link.dark {
+            color: #fff;
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .nav-link.dark:hover {
+            background: #0f172a;
+        }
 
         .container {
             max-width: 80rem;
             margin: 0 auto;
             padding: 20px 16px;
+        }
+
+        /* 요약 카드 */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 14px;
         }
 
         .stat-card {
@@ -93,14 +109,7 @@
             left: 0;
             right: 0;
             height: 3px;
-        }
-
-        .stat-card.prime::before {
-            background: var(--prime);
-        }
-
-        .stat-card.confirm::before {
-            background: var(--confirm);
+            background: var(--accent);
         }
 
         .stat-label {
@@ -121,42 +130,88 @@
         .stat-sub {
             font-size: 12px;
             color: #6b7280;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
-        .filter-btn {
-            padding: 4px 10px;
-            border-radius: 20px;
+        .stat-note {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* 검증 진행 게이지 */
+        .gauge-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .gauge-label {
             font-size: 11px;
             font-weight: 600;
-            cursor: pointer;
-            border: 1px solid var(--border);
-            background: #ffffff;
             color: #6b7280;
-            transition: all 0.15s;
             white-space: nowrap;
         }
 
-        .filter-btn:hover { background: #f9fafb; }
-
-        .filter-btn.active {
-            border-color: currentColor;
-            background: #f9fafb;
+        .gauge-track {
+            flex: 1;
+            min-width: 160px;
+            height: 6px;
+            background: #f3f4f6;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
-        .filter-btn.all.active {
+        .gauge-fill {
+            height: 100%;
+            background: #1f2937;
+            border-radius: 3px;
+            width: 0;
+            transition: width .4s;
+        }
+
+        .gauge-count {
+            font-size: 12px;
+            font-weight: 600;
             color: var(--text);
-            border-color: var(--text);
+            white-space: nowrap;
         }
 
-        .filter-btn.prime.active {
-            color: var(--prime);
-            border-color: var(--prime);
+        /* 진행 중 카드 */
+        .active-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
 
-        .filter-btn.confirm.active {
-            color: var(--confirm);
-            border-color: var(--confirm);
+        .active-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .section-sub {
+            font-size: 11px;
+            color: #6b7280;
+            margin-left: 8px;
+            font-weight: 400;
         }
 
         /* 테이블 */
@@ -182,7 +237,8 @@
         }
 
         .data-table th:first-child,
-        .data-table th:nth-child(2) {
+        .data-table th:nth-child(2),
+        .data-table th:nth-child(3) {
             text-align: left;
         }
 
@@ -195,7 +251,8 @@
         }
 
         .data-table td:first-child,
-        .data-table td:nth-child(2) {
+        .data-table td:nth-child(2),
+        .data-table td:nth-child(3) {
             text-align: left;
         }
 
@@ -203,11 +260,11 @@
             background: #f9fafb;
         }
 
-        .exited-row td {
-            opacity: 0.45;
+        .done-row td {
+            opacity: 0.55;
         }
 
-        .signal-badge {
+        .status-badge {
             display: inline-block;
             padding: 2px 8px;
             border-radius: 4px;
@@ -215,107 +272,63 @@
             font-weight: 700;
         }
 
-        .signal-badge.prime { background: #e5e7eb; color: #374151; }
-
-        .signal-badge.confirm { background: #e5e7eb; color: #374151; }
-
-        .exit-badge {
-            display: inline-block;
-            padding: 1px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            font-weight: 600;
-            background: #f3f4f6;
-            color: #9ca3af;
-            margin-left: 4px;
+        .status-badge.open {
+            background: #ffffff;
+            color: #4b5563;
+            border: 1px solid #d1d5db;
         }
 
-        .quad-badge {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            font-weight: 500;
-        }
-
-        .quad-badge.improving {
-            color: #1e40af;
-            background: #dbeafe;
-        }
-
-        .quad-badge.leading {
-            color: #14532d;
-            background: #dcfce7;
-        }
-
-        .quad-badge.lagging {
-            color: #92400e;
-            background: #fef3c7;
-        }
-
-        .quad-badge.weakening {
-            color: #7f1d1d;
+        .status-badge.win {
             background: #fee2e2;
+            color: #dc2626;
         }
 
-        .quad-badge.null {
-            color: #6b7280;
+        .status-badge.loss {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .status-badge.timeout {
             background: #f3f4f6;
+            color: #6b7280;
         }
 
-        /* 분석 그리드: 데스크탑 3열, 모바일 1열 */
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
+        .filter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .analysis-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px;
+        .filter-btns {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
         }
 
-        .analysis-title {
+        .filter-btn {
+            padding: 4px 10px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: #ffffff;
             color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 10px;
+            transition: all 0.15s;
+            white-space: nowrap;
         }
 
-        .analysis-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-            border-bottom: 1px solid #f3f4f6;
-            font-size: 12px;
+        .filter-btn:hover {
+            background: #f9fafb;
         }
 
-        .analysis-row:last-child {
-            border-bottom: none;
-        }
-
-        /* 요약 카드 그리드 */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        /* 종목 매매 현황 그리드 */
-        .active-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .null-val {
-            color: #d1d5db;
+        .filter-btn.active {
+            color: var(--text);
+            border-color: var(--text);
+            background: #f9fafb;
         }
 
         .ret-pos {
@@ -332,43 +345,8 @@
             color: #9ca3af;
         }
 
-        .section-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 10px;
-        }
-
-        .section-sub {
-            font-size: 11px;
-            color: #6b7280;
-            margin-left: 8px;
-            font-weight: 400;
-        }
-
-        .active-item {
-            padding: 7px 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .active-item:last-child {
-            border-bottom: none;
-        }
-
-        /* 필터/정렬 행 */
-        .filter-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .filter-btns {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
+        .null-val {
+            color: #d1d5db;
         }
 
         ::-webkit-scrollbar {
@@ -381,27 +359,16 @@
             border-radius: 2px;
         }
 
-        /* ── 모바일 ── */
         @media (max-width: 640px) {
             .container {
                 padding: 14px 10px;
             }
 
-            .stat-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* 요약카드 1열 */
-            .analysis-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* 분석 1열 */
+            .stat-grid,
             .active-grid {
                 grid-template-columns: 1fr;
             }
 
-            /* 매매현황 1열 */
             .stat-value {
                 font-size: 22px;
             }
@@ -418,14 +385,17 @@
     <div class="header">
         <div class="header-inner">
             <div>
-                <h1 style="font-size:30px;font-weight:700;color:#1f2937;line-height:1.1;">Stats <span style="font-size:18px;font-weight:400;color:#9ca3af;">Signal Statistics</span></h1>
-                <div style="font-size:14px;color:#6b7280;margin-top:4px;">신호 검증 로그 &nbsp;|&nbsp; <span id="updated" style="font-weight:500;color:#374151;">-</span></div>
+                <h1 style="font-size:30px;font-weight:700;color:#1f2937;line-height:1.1;">MID Stats <span
+                        style="font-size:18px;font-weight:400;color:#9ca3af;">Live Scoring</span></h1>
+                <div style="font-size:14px;color:#6b7280;margin-top:4px;">
+                    검증 조합 실전 채점 &nbsp;|&nbsp; <span id="updated" style="font-weight:500;color:#374151;">-</span>
+                </div>
             </div>
             <div class="nav-links">
                 <a href="./index.html" class="nav-link">RRG</a>
                 <a href="./momentum.html" class="nav-link">Momentum</a>
-                <a href="./heatmap.html" class="nav-link green">Heatmap</a>
-                <a href="./cal.html" class="nav-link purple">Calendar</a>
+                <a href="./heatmap.html" class="nav-link">Heatmap</a>
+                <a href="./cal.html" class="nav-link">Calendar</a>
                 <a href="https://eqmon.duckdns.org" class="nav-link dark">HOME</a>
             </div>
         </div>
@@ -435,140 +405,80 @@
 
         <!-- 요약 카드 -->
         <div class="stat-grid">
-            <div class="stat-card prime">
-                <div class="stat-label">PRIME</div>
-                <div class="stat-value" id="prime-count">-</div>
-                <div class="stat-sub">5D 적중률 <span id="prime-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균
-                    <span id="prime-avg5">-</span></div>
-                <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="prime-wr20"
-                        style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="prime-avg20">-</span></div>
-                <div
-                    style="margin-top:10px;padding-top:8px;border-top:1px solid #e5e7eb;font-size:11px;color:#6b7280;line-height:1.6;">
-                    섹터가 KOSPI 대비 살아나는 중, Lagging→Improving 전환 + 모멘텀 가속<br>
-                    <span style="color:var(--prime);">→ 가장 이른 매수 타이밍</span>
+            <div class="stat-card">
+                <div class="stat-label">라이브 적중률 (확정건 기준)</div>
+                <div class="stat-value" id="hit-rate">-</div>
+                <div class="stat-sub" id="hit-detail">-</div>
+                <div class="stat-sub" id="hit-bench">백테스트 벤치마크 <span style="font-weight:600;color:#374151;">52.3%</span>
+                    (n=614)</div>
+                <div class="stat-note">
+                    WIN = 30거래일 내 고가 +10% 도달 (저가 -7% 선행 시 LOSS)<br>
+                    백테스트와 동일 규칙 — 확정 30건 도달 시 조합 신뢰 확정
                 </div>
             </div>
-            <div class="stat-card confirm">
-                <div class="stat-label">Confirm</div>
-                <div class="stat-value" id="confirm-count">-</div>
-                <div class="stat-sub">5D 적중률 <span id="confirm-wr5" style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균
-                    <span id="confirm-avg5">-</span></div>
-                <div class="stat-sub" style="margin-top:4px;">20D 적중률 <span id="confirm-wr20"
-                        style="color:var(--gold);">-</span> &nbsp;|&nbsp; 평균 <span id="confirm-avg20">-</span></div>
-                <div
-                    style="margin-top:10px;padding-top:8px;border-top:1px solid #e5e7eb;font-size:11px;color:#6b7280;line-height:1.6;">
-                    섹터 Improving + Improving 2회 이상 확인 + 복합점수 3점 만점<br>
-                    <span style="color:var(--confirm);">→ 전환이 확인된 안정적 종목</span>
+            <div class="stat-card">
+                <div class="stat-label">평균 실현수익 (확정건)</div>
+                <div class="stat-value" id="avg-ret">-</div>
+                <div class="stat-sub">진행중 <span id="open-count" style="font-weight:600;color:#374151;">-</span>
+                    &nbsp;|&nbsp; 누적 시그널 <span id="total-count" style="font-weight:600;color:#374151;">-</span></div>
+                <div class="stat-sub">진행중 평균 <span id="open-avg">-</span></div>
+                <div class="stat-note">
+                    조합: 전일 Lagging→Improving 전환 + 섹터 Imp/Lead + 대금 상위50% (바이오/제약 제외)<br>
+                    프로필: 30거래일 · TP +10% / SL -7% · 진입 = 시그널일 종가
                 </div>
             </div>
         </div>
 
-        <!-- 종목 매매 현황 -->
-        <div style="margin-bottom:24px;">
-            <div class="section-title" onclick="toggleSection('active-section')"
-                style="cursor:pointer;user-select:none;">
-                종목 매매 현황 <span class="section-sub">진행 중인 신호 (조건 사라지면 자동 종료)</span>
-                <span id="active-section-icon" style="color:#6b7280;font-size:11px;margin-left:8px;">▶ 펼치기</span>
+        <!-- 검증 진행 게이지 -->
+        <div class="gauge-card">
+            <span class="gauge-label">라이브 검증 진행</span>
+            <div class="gauge-track">
+                <div class="gauge-fill" id="gauge-fill"></div>
             </div>
-            <div id="active-section" style="display:none;">
-                <div class="active-grid">
-                    <div
-                        style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
-                        <div
-                            style="font-size:11px;font-weight:600;color:var(--prime);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e5e7eb;">PRIME</div>
-                        <div id="active-prime">
-                            <div style="color:#334155;font-size:12px;">없음</div>
-                        </div>
-                    </div>
-                    <div
-                        style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
-                        <div
-                            style="font-size:11px;font-weight:600;color:var(--confirm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e5e7eb;">Confirm</div>
-                        <div id="active-confirm">
-                            <div style="color:#334155;font-size:12px;">없음</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <span class="gauge-count" id="gauge-count">확정 0 / 30건</span>
         </div>
 
-        <!-- 조건별 분석 -->
+        <!-- 진행 중 포지션 -->
         <div style="margin-bottom:24px;">
-            <div class="section-title" onclick="toggleSection('analysis-section')"
-                style="cursor:pointer;user-select:none;">
-                조건별 분석 <span class="section-sub">5D 수익률 기준 (데이터 누적 후 유효)</span>
-                <span id="analysis-section-icon" style="color:#6b7280;font-size:11px;margin-left:8px;">▶ 펼치기</span>
-            </div>
-            <div id="analysis-section" style="display:none;">
-                <div class="analysis-grid">
-                    <div class="analysis-card">
-                        <div class="analysis-title">섹터 사분면별</div>
-                        <div id="anal-sector-quad"></div>
-                    </div>
-                    <div class="analysis-card">
-                        <div class="analysis-title">GAP 수준별</div>
-                        <div id="anal-gap"></div>
-                    </div>
-                    <div class="analysis-card">
-                        <div class="analysis-title">거래량 수준별</div>
-                        <div id="anal-vol"></div>
-                    </div>
-                    <div class="analysis-card">
-                        <div class="analysis-title">복합점수별</div>
-                        <div id="anal-combo"></div>
-                    </div>
-                    <div class="analysis-card">
-                        <div class="analysis-title">RS-Ratio 수준별</div>
-                        <div id="anal-rsr"></div>
-                    </div>
-                    <div class="analysis-card">
-                        <div class="analysis-title">RS-Momentum 수준별</div>
-                        <div id="anal-rsm"></div>
-                    </div>
-                </div>
+            <div class="section-title">진행 중 <span class="section-sub">30거래일 시계 작동 중 · TP/SL 미도달</span></div>
+            <div class="active-grid" id="open-grid">
+                <div style="color:#9ca3af;font-size:12px;">-</div>
             </div>
         </div>
 
         <!-- 상세 테이블 -->
         <div>
             <div class="filter-row">
-                <div class="section-title" style="margin-bottom:0;">상세 기록</div>
+                <div class="section-title" style="margin-bottom:0;">전체 기록</div>
                 <div class="filter-btns">
-                    <button class="filter-btn all active" onclick="filterSignal('all', event)">ALL</button>
-                    <button class="filter-btn prime" onclick="filterSignal('prime', event)">PRIME</button>
-                    <button class="filter-btn confirm" onclick="filterSignal('confirm', event)">Confirm</button>
+                    <button class="filter-btn active" onclick="setFilter('all', event)">ALL</button>
+                    <button class="filter-btn" onclick="setFilter('open', event)">진행중</button>
+                    <button class="filter-btn" onclick="setFilter('win', event)">WIN</button>
+                    <button class="filter-btn" onclick="setFilter('loss', event)">LOSS</button>
+                    <button class="filter-btn" onclick="setFilter('timeout', event)">T/O</button>
                     <div style="width:1px;background:var(--border);margin:0 2px;"></div>
-                    <button class="filter-btn all" onclick="sortBy('date', event)">날짜↓</button>
-                    <button class="filter-btn all" onclick="sortBy('ret5', event)">5D↓</button>
-                    <button class="filter-btn all" onclick="sortBy('ret20', event)">20D↓</button>
+                    <button class="filter-btn" onclick="setSort('date', event)">날짜↓</button>
+                    <button class="filter-btn" onclick="setSort('ret', event)">수익↓</button>
                 </div>
             </div>
             <div class="table-scroll">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>날짜</th>
+                            <th>시그널일</th>
                             <th>종목</th>
                             <th>섹터</th>
-                            <th>신호</th>
-                            <th>진입가</th>
-                            <th>섹터Q</th>
+                            <th>진입(종가)</th>
+                            <th>알림가</th>
                             <th>RS-R</th>
                             <th>RS-M</th>
-                            <th>GAP</th>
-                            <th>VOL</th>
-                            <th>RS-5</th>
-                            <th>점수</th>
-                            <th>1D</th>
-                            <th>5D</th>
-                            <th>20D</th>
-                            <th>60D</th>
-                            <th>MAX5D</th>
-                            <th>MIN5D</th>
-                            <th>Q→5D</th>
-                            <th>Q→20D</th>
+                            <th>대금</th>
+                            <th>상태</th>
+                            <th>수익률</th>
+                            <th>MAX</th>
+                            <th>MIN</th>
+                            <th>D</th>
                             <th>종료일</th>
-                            <th>종료수익</th>
                         </tr>
                     </thead>
                     <tbody id="log-tbody"></tbody>
@@ -578,37 +488,24 @@
     </div>
 
     <script>
-        var logData = [];
-        var currentFilter = 'all';
-        var currentSort = 'date';
-
-        function toggleSection(id) {
-            var el = document.getElementById(id);
-            var icon = document.getElementById(id + '-icon');
-            if (el.style.display === 'none') { el.style.display = 'block'; icon.textContent = '▼ 접기'; }
-            else { el.style.display = 'none'; icon.textContent = '▶ 펼치기'; }
-        }
-
-        function getSignalKey(e) {
-            if (e.signal === 'prime') return 'prime';
-            if (e.signal === 'confirm') return 'confirm';
-            return 'other';
-        }
+        var midData = [];
+        var curFilter = 'all';
+        var curSort = 'date';
+        var BENCH = 52.3, TARGET_N = 30;
 
         async function loadData() {
             try {
-                var res = await fetch('./data/signal_log.json?t=' + Date.now());
+                var res = await fetch('./data/mid_log.json?t=' + Date.now());
                 if (!res.ok) throw new Error();
-                logData = await res.json();
-                logData.sort(function (a, b) { return b.logged_at.localeCompare(a.logged_at); });
+                midData = await res.json();
+                var ts = midData.length && midData[0].updated_at ? midData[0].updated_at : null;
                 document.getElementById('updated').textContent =
-                    new Date().toLocaleString('ko-KR') + ' 기준 ' + logData.length + '건';
+                    (ts ? '채점 ' + ts : '채점 대기') + ' · ' + midData.length + '건';
                 renderStats();
-                renderActive();
-                renderAnalysis();
+                renderOpen();
                 renderTable();
             } catch (e) {
-                document.getElementById('updated').textContent = '데이터 없음';
+                document.getElementById('updated').textContent = '데이터 없음 (첫 알림 후 생성)';
             }
         }
 
@@ -617,184 +514,125 @@
             var cls = v > 0 ? 'ret-pos' : v < 0 ? 'ret-neg' : '';
             return '<span class="' + cls + '">' + (v > 0 ? '+' : '') + v.toFixed(2) + '%</span>';
         }
-        function fmtVal(v, digits, suffix) {
-            if (v == null) return '<span class="null-val">-</span>';
-            return v.toFixed(digits || 1) + (suffix || '');
+        function fmtPrice(v) {
+            return v != null ? Math.round(v).toLocaleString() : '<span class="null-val">-</span>';
         }
-        function quadBadge(q) {
-            if (!q) return '<span class="quad-badge null">-</span>';
-            return '<span class="quad-badge ' + q + '">' + q + '</span>';
+        function statusBadge(st, days) {
+            if (st === 'win') return '<span class="status-badge win">WIN</span>';
+            if (st === 'loss') return '<span class="status-badge loss">LOSS</span>';
+            if (st === 'timeout') return '<span class="status-badge timeout">T/O</span>';
+            return '<span class="status-badge open">D+' + (days != null ? days : 0) + '</span>';
         }
 
         function renderStats() {
-            var groups = { prime: [], confirm: [] };
-            logData.forEach(function (e) { var k = getSignalKey(e); if (groups[k]) groups[k].push(e); });
-            Object.keys(groups).forEach(function (sig) {
-                var items = groups[sig];
-                document.getElementById(sig + '-count').textContent = items.length + '건';
-                var r5 = items.map(function (e) { return e.ret_5d; }).filter(function (v) { return v != null; });
-                if (r5.length > 0) {
-                    var avg5 = r5.reduce(function (s, v) { return s + v; }, 0) / r5.length;
-                    var wr5 = r5.filter(function (v) { return v > 0; }).length / r5.length * 100;
-                    var el = document.getElementById(sig + '-avg5');
-                    el.textContent = (avg5 >= 0 ? '+' : '') + avg5.toFixed(2) + '%';
-                    el.style.color = avg5 >= 0 ? '#dc2626' : '#2563eb';
-                    document.getElementById(sig + '-wr5').textContent = wr5.toFixed(0) + '%';
-                }
-                var r20 = items.map(function (e) { return e.ret_20d; }).filter(function (v) { return v != null; });
-                if (r20.length > 0) {
-                    var avg20 = r20.reduce(function (s, v) { return s + v; }, 0) / r20.length;
-                    var wr20 = r20.filter(function (v) { return v > 0; }).length / r20.length * 100;
-                    var el20 = document.getElementById(sig + '-avg20');
-                    el20.textContent = (avg20 >= 0 ? '+' : '') + avg20.toFixed(2) + '%';
-                    el20.style.color = avg20 >= 0 ? '#dc2626' : '#2563eb';
-                    document.getElementById(sig + '-wr20').textContent = wr20.toFixed(0) + '%';
-                }
-            });
+            var done = midData.filter(function (e) { return ['win', 'loss', 'timeout'].indexOf(e.status) >= 0; });
+            var opens = midData.filter(function (e) { return e.status === 'open'; });
+            var wins = done.filter(function (e) { return e.status === 'win'; }).length;
+            var losses = done.filter(function (e) { return e.status === 'loss'; }).length;
+            var tos = done.filter(function (e) { return e.status === 'timeout'; }).length;
+
+            var hitEl = document.getElementById('hit-rate');
+            if (done.length) {
+                var hit = wins / done.length * 100;
+                hitEl.textContent = hit.toFixed(1) + '%';
+                hitEl.style.color = hit >= BENCH ? '#dc2626' : '#2563eb';
+                document.getElementById('hit-detail').innerHTML =
+                    'WIN ' + wins + ' · LOSS ' + losses + ' · T/O ' + tos +
+                    ' &nbsp;(벤치마크 대비 <b>' + (hit - BENCH >= 0 ? '+' : '') + (hit - BENCH).toFixed(1) + '%p</b>)';
+            } else {
+                hitEl.textContent = '-';
+                document.getElementById('hit-detail').textContent = '확정건 없음 — 첫 TP/SL/타임아웃 발생 후 집계';
+            }
+
+            var avgEl = document.getElementById('avg-ret');
+            if (done.length) {
+                var rets = done.map(function (e) { return e.ret_exit; }).filter(function (v) { return v != null; });
+                var avg = rets.reduce(function (s, v) { return s + v; }, 0) / rets.length;
+                avgEl.textContent = (avg >= 0 ? '+' : '') + avg.toFixed(2) + '%';
+                avgEl.style.color = avg >= 0 ? '#dc2626' : '#2563eb';
+            } else { avgEl.textContent = '-'; }
+
+            var or = opens.map(function (e) { return e.ret_current; }).filter(function (v) { return v != null; });
+            var oa = document.getElementById('open-avg');
+            if (or.length) {
+                var oavg = or.reduce(function (s, v) { return s + v; }, 0) / or.length;
+                oa.innerHTML = fmtRet(oavg);
+            } else { oa.textContent = '-'; }
+
+            document.getElementById('open-count').textContent = opens.length + '건';
+            document.getElementById('total-count').textContent = midData.length + '건';
+
+            var pct = Math.min(100, done.length / TARGET_N * 100);
+            document.getElementById('gauge-fill').style.width = pct + '%';
+            document.getElementById('gauge-count').textContent = '확정 ' + done.length + ' / ' + TARGET_N + '건';
         }
 
-        function renderActive() {
-            var now = new Date();
-            var groups = { prime: [], confirm: [] };
-            logData.forEach(function (e) {
-                var k = getSignalKey(e);
-                if (k === 'other') return;
-                if (!e.exited) groups[k].push(e);
-            });
-            ['prime', 'confirm'].forEach(function (sig) {
-                var el = document.getElementById('active-' + sig);
-                var items = groups[sig];
-                if (!items.length) { el.innerHTML = '<div style="color:#9ca3af;font-size:12px;padding:4px 0;">없음</div>'; return; }
-                items.sort(function (a, b) { return b.logged_at.localeCompare(a.logged_at); });
-                el.innerHTML = items.map(function (e) {
-                    var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
-                    var d1 = new Date(e.logged_at);
-                    var diffDays = Math.floor((now - d1) / (1000 * 60 * 60 * 24));
-                    var maxRet = e.max_ret_5d, minRet = e.min_ret_5d;
-                    var maxCol = maxRet > 0 ? '#dc2626' : maxRet < 0 ? '#2563eb' : '#6b7280';
-                    var minCol = minRet > 0 ? '#dc2626' : minRet < 0 ? '#2563eb' : '#6b7280';
-                    return '<div class="active-item">' +
-                        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
-                        '<a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-size:12px;font-weight:600;">' + e.name + '</a>' +
-                        '<span style="font-size:10px;color:#9ca3af;">D+' + diffDays + '</span></div>' +
-                        '<div style="font-size:11px;color:#6b7280;margin-bottom:3px;">' + e.sector + ' · ' + (e.price_at_signal ? e.price_at_signal.toLocaleString() + '원' : '-') + '</div>' +
-                        '<div style="display:flex;gap:8px;font-size:11px;flex-wrap:wrap;">' +
-                        '<span>MAX <span style="color:' + maxCol + ';font-weight:600;">' + (maxRet != null ? (maxRet > 0 ? '+' : '') + maxRet.toFixed(2) + '%' : '-') + '</span></span>' +
-                        '<span>MIN <span style="color:' + minCol + ';font-weight:600;">' + (minRet != null ? (minRet > 0 ? '+' : '') + minRet.toFixed(2) + '%' : '-') + '</span></span>' +
-                        '<span style="color:#6b7280;">GAP ' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</span>' +
-                        '<span style="color:#6b7280;">VOL ' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</span>' +
-                        '</div></div>';
-                }).join('');
-            });
+        function renderOpen() {
+            var el = document.getElementById('open-grid');
+            var opens = midData.filter(function (e) { return e.status === 'open'; });
+            if (!opens.length) {
+                el.innerHTML = '<div style="color:#9ca3af;font-size:12px;padding:4px 0;">진행 중 없음</div>';
+                return;
+            }
+            opens.sort(function (a, b) { return b.signal_date.localeCompare(a.signal_date); });
+            el.innerHTML = opens.map(function (e) {
+                var url = 'https://finance.naver.com/item/main.naver?code=' + e.code;
+                return '<div class="active-card">' +
+                    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
+                    '<a href="' + url + '" target="_blank" style="color:var(--text);text-decoration:none;font-size:12px;font-weight:600;">' + e.name + '</a>' +
+                    '<span style="font-size:10px;color:#9ca3af;">D+' + (e.days_held != null ? e.days_held : 0) + ' / 30</span></div>' +
+                    '<div style="font-size:11px;color:#6b7280;margin-bottom:4px;">' + (e.sector || '-') + ' · 진입 ' +
+                    (e.entry_close != null ? Math.round(e.entry_close).toLocaleString() + '원' : '채점 대기') + '</div>' +
+                    '<div style="display:flex;gap:10px;font-size:11px;flex-wrap:wrap;">' +
+                    '<span>현재 ' + fmtRet(e.ret_current) + '</span>' +
+                    '<span>MAX ' + fmtRet(e.max_ret) + '</span>' +
+                    '<span>MIN ' + fmtRet(e.min_ret) + '</span>' +
+                    '</div></div>';
+            }).join('');
         }
 
-        function renderAnalGroup(elId, groups) {
-            var el = document.getElementById(elId);
-            var html = '';
-            Object.keys(groups).forEach(function (label) {
-                var items = groups[label];
-                var r5 = items.map(function (e) { return e.ret_5d; }).filter(function (v) { return v != null; });
-                var avg = r5.length > 0 ? r5.reduce(function (s, v) { return s + v; }, 0) / r5.length : null;
-                var wr = r5.length > 0 ? r5.filter(function (v) { return v > 0; }).length / r5.length * 100 : null;
-                html += '<div class="analysis-row">' +
-                    '<span style="color:#374151;">' + label + ' <span style="color:#6b7280;font-size:10px;">(' + items.length + ')</span></span>' +
-                    '<span>' + (avg != null
-                        ? '<span style="color:' + (avg >= 0 ? '#dc2626' : '#2563eb') + ';font-weight:600;">' + (avg >= 0 ? '+' : '') + avg.toFixed(1) + '%</span>' +
-                        (wr != null ? ' <span style="color:var(--gold);font-size:10px;">' + wr.toFixed(0) + '%</span>' : '')
-                        : '<span style="color:#d1d5db;">-</span>') + '</span></div>';
-            });
-            el.innerHTML = html || '<div style="color:#9ca3af;font-size:12px;padding:8px 0;">데이터 누적 중...</div>';
-        }
-
-        function renderAnalysis() {
-            var quadGroups = {};
-            logData.forEach(function (e) {
-                var q = e.sector_quadrant || 'neutral';
-                if (!quadGroups[q]) quadGroups[q] = [];
-                quadGroups[q].push(e);
-            });
-            renderAnalGroup('anal-sector-quad', quadGroups);
-            renderAnalGroup('anal-gap', {
-                'GAP ≥ 3%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d >= 3; }),
-                'GAP 1~3%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d >= 1 && e.gap_1d < 3; }),
-                'GAP < 1%': logData.filter(function (e) { return e.gap_1d != null && e.gap_1d < 1; }),
-            });
-            renderAnalGroup('anal-vol', {
-                'VOL ≥ 2x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio >= 2; }),
-                'VOL 1.5~2x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio >= 1.5 && e.vol_ratio < 2; }),
-                'VOL < 1.5x': logData.filter(function (e) { return e.vol_ratio != null && e.vol_ratio < 1.5; }),
-            });
-            renderAnalGroup('anal-combo', {
-                '3점': logData.filter(function (e) { return e.combo_score >= 3; }),
-                '2점': logData.filter(function (e) { return e.combo_score === 2; }),
-                '1점': logData.filter(function (e) { return e.combo_score === 1; }),
-            });
-            renderAnalGroup('anal-rsr', {
-                'RS-R < 95': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio < 95; }),
-                'RS-R 95~100': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio >= 95 && e.rs_ratio < 100; }),
-                'RS-R ≥ 100': logData.filter(function (e) { return e.rs_ratio != null && e.rs_ratio >= 100; }),
-            });
-            renderAnalGroup('anal-rsm', {
-                'RS-M ≥ 105': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum >= 105; }),
-                'RS-M 100~105': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum >= 100 && e.rs_momentum < 105; }),
-                'RS-M < 100': logData.filter(function (e) { return e.rs_momentum != null && e.rs_momentum < 100; }),
-            });
-        }
-
-        function filterSignal(f, ev) {
-            currentFilter = f;
+        function setFilter(f, ev) {
+            curFilter = f;
             document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
             if (ev && ev.target) ev.target.classList.add('active');
             renderTable();
         }
-        function sortBy(key) { currentSort = key; renderTable(); }
+        function setSort(k, ev) { curSort = k; renderTable(); }
 
         function renderTable() {
-            var filtered = logData.filter(function (e) {
-                if (currentFilter === 'all') return true;
-                return getSignalKey(e) === currentFilter;
+            var rows = midData.filter(function (e) {
+                return curFilter === 'all' ? true : e.status === curFilter;
             });
-            filtered.sort(function (a, b) {
-                if (currentSort === 'date') return b.logged_at.localeCompare(a.logged_at);
-                if (currentSort === 'ret5') return (b.ret_5d || -999) - (a.ret_5d || -999);
-                if (currentSort === 'ret20') return (b.ret_20d || -999) - (a.ret_20d || -999);
-                return 0;
+            rows.sort(function (a, b) {
+                if (curSort === 'date') return b.signal_date.localeCompare(a.signal_date) || a.code.localeCompare(b.code);
+                var ra = a.ret_exit != null ? a.ret_exit : (a.ret_current != null ? a.ret_current : -999);
+                var rb = b.ret_exit != null ? b.ret_exit : (b.ret_current != null ? b.ret_current : -999);
+                return rb - ra;
             });
             var tbody = document.getElementById('log-tbody');
-            if (!filtered.length) {
-                tbody.innerHTML = '<tr><td colspan="22" style="text-align:center;padding:40px;color:#9ca3af;">기록 없음</td></tr>';
+            if (!rows.length) {
+                tbody.innerHTML = '<tr><td colspan="14" style="text-align:center;padding:40px;color:#9ca3af;">기록 없음</td></tr>';
                 return;
             }
-            tbody.innerHTML = filtered.map(function (e) {
-                var sigKey = getSignalKey(e);
-                var sigLabel = sigKey === 'prime' ? 'PRIME' : 'Confirm';
-                var naverUrl = 'https://finance.naver.com/item/main.naver?code=' + e.code;
-                var isExited = e.exited === true;
-                var trClass = isExited ? ' class="exited-row"' : '';
-                var exitBadge = isExited ? '<span class="exit-badge">종료 ' + (e.exit_at || '') + '</span>' : '';
-                return '<tr' + trClass + '>' +
-                    '<td style="color:#374151;">' + e.logged_at + '</td>' +
-                    '<td><a href="' + naverUrl + '" target="_blank" style="color:var(--text);text-decoration:none;font-weight:500;">' + e.name + '</a> <span style="color:#9ca3af;font-size:10px;">' + e.code + '</span>' + exitBadge + '</td>' +
+            tbody.innerHTML = rows.map(function (e) {
+                var url = 'https://finance.naver.com/item/main.naver?code=' + e.code;
+                var isDone = ['win', 'loss', 'timeout'].indexOf(e.status) >= 0;
+                var ret = isDone ? e.ret_exit : e.ret_current;
+                return '<tr' + (isDone ? ' class="done-row"' : '') + '>' +
+                    '<td style="color:#374151;">' + e.signal_date + '</td>' +
+                    '<td><a href="' + url + '" target="_blank" style="color:var(--text);text-decoration:none;font-weight:500;">' + e.name + '</a> <span style="color:#9ca3af;font-size:10px;">' + e.code + '</span></td>' +
                     '<td style="color:#374151;">' + (e.sector || '-') + '</td>' +
-                    '<td><span class="signal-badge ' + sigKey + '">' + sigLabel + '</span></td>' +
-                    '<td>' + (e.price_at_signal ? e.price_at_signal.toLocaleString() : '-') + '</td>' +
-                    '<td>' + quadBadge(e.sector_quadrant) + '</td>' +
-                    '<td>' + fmtVal(e.rs_ratio, 1) + '</td>' +
-                    '<td>' + fmtVal(e.rs_momentum, 1) + '</td>' +
-                    '<td style="color:' + (e.gap_1d >= 3 ? '#374151' : '#6b7280') + ';">' + (e.gap_1d != null ? (e.gap_1d > 0 ? '+' : '') + e.gap_1d.toFixed(1) + '%' : '-') + '</td>' +
-                    '<td style="color:' + (e.vol_ratio >= 1.5 ? '#374151' : '#6b7280') + ';">' + (e.vol_ratio != null ? e.vol_ratio.toFixed(1) + 'x' : '-') + '</td>' +
-                    '<td>' + fmtVal(e.rs_5d, 1, 'x') + '</td>' +
-                    '<td style="color:var(--gold);">' + (e.combo_score || 0) + '</td>' +
-                    '<td>' + fmtRet(e.ret_1d) + '</td>' +
-                    '<td>' + fmtRet(e.ret_5d) + '</td>' +
-                    '<td>' + fmtRet(e.ret_20d) + '</td>' +
-                    '<td>' + fmtRet(e.ret_60d) + '</td>' +
-                    '<td>' + fmtRet(e.max_ret_5d) + '</td>' +
-                    '<td>' + fmtRet(e.min_ret_5d) + '</td>' +
-                    '<td>' + quadBadge(e.quadrant_5d) + '</td>' +
-                    '<td>' + quadBadge(e.quadrant_20d) + '</td>' +
-                    '<td style="color:#9ca3af;font-size:11px;">' + (e.exit_at || '-') + '</td>' +
-                    '<td>' + fmtRet(e.ret_exit) + '</td>' +
+                    '<td>' + fmtPrice(e.entry_close) + '</td>' +
+                    '<td style="color:#9ca3af;">' + fmtPrice(e.price_at_signal) + '</td>' +
+                    '<td>' + (e.rs_ratio != null ? e.rs_ratio.toFixed(1) : '-') + '</td>' +
+                    '<td>' + (e.rs_momentum != null ? e.rs_momentum.toFixed(1) : '-') + '</td>' +
+                    '<td>' + (e.value != null ? Math.round(e.value).toLocaleString() + '억' : '-') + '</td>' +
+                    '<td>' + statusBadge(e.status, e.days_held) + '</td>' +
+                    '<td>' + fmtRet(ret) + '</td>' +
+                    '<td>' + fmtRet(e.max_ret) + '</td>' +
+                    '<td>' + fmtRet(e.min_ret) + '</td>' +
+                    '<td style="color:#6b7280;">' + (e.days_held != null ? e.days_held : '-') + '</td>' +
+                    '<td style="color:#9ca3af;font-size:11px;">' + (e.exit_date || '-') + '</td>' +
                     '</tr>';
             }).join('');
         }
