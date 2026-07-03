@@ -331,6 +331,35 @@
             background: #f9fafb;
         }
 
+        .date-row td {
+            background: #f3f4f6;
+            color: #374151;
+            font-weight: 600;
+            text-align: left !important;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .date-row:hover td {
+            background: #e5e7eb;
+        }
+
+        .date-row .date-sub {
+            font-weight: 400;
+            color: #6b7280;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+
+        .toggle-icon {
+            color: #6b7280;
+            font-size: 11px;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
         .ret-pos {
             color: #dc2626;
             font-weight: 600;
@@ -438,11 +467,17 @@
             <span class="gauge-count" id="gauge-count">확정 0 / 30건</span>
         </div>
 
-        <!-- 진행 중 포지션 -->
+        <!-- 진행 중 포지션 (기본 접힘) -->
         <div style="margin-bottom:24px;">
-            <div class="section-title">진행 중 <span class="section-sub">30거래일 시계 작동 중 · TP/SL 미도달</span></div>
-            <div class="active-grid" id="open-grid">
-                <div style="color:#9ca3af;font-size:12px;">-</div>
+            <div class="section-title" onclick="toggleSection('open-section')" style="cursor:pointer;user-select:none;">
+                진행 중 <span id="open-title-count" style="color:#6b7280;">(-)</span>
+                <span class="section-sub">30거래일 시계 작동 중 · TP/SL 미도달</span>
+                <span class="toggle-icon" id="open-section-icon">▶ 펼치기</span>
+            </div>
+            <div id="open-section" style="display:none;">
+                <div class="active-grid" id="open-grid">
+                    <div style="color:#9ca3af;font-size:12px;">-</div>
+                </div>
             </div>
         </div>
 
@@ -492,6 +527,19 @@
         var curFilter = 'all';
         var curSort = 'date';
         var BENCH = 52.3, TARGET_N = 30;
+        var expandedDates = {};   // 날짜별 펼침 상태 (새로고침 간 유지)
+
+        function toggleSection(id) {
+            var el = document.getElementById(id);
+            var icon = document.getElementById(id + '-icon');
+            if (el.style.display === 'none') { el.style.display = 'block'; icon.textContent = '▼ 접기'; }
+            else { el.style.display = 'none'; icon.textContent = '▶ 펼치기'; }
+        }
+
+        function toggleDate(d) {
+            expandedDates[d] = !expandedDates[d];
+            renderTable();
+        }
 
         async function loadData() {
             try {
@@ -570,6 +618,7 @@
         function renderOpen() {
             var el = document.getElementById('open-grid');
             var opens = midData.filter(function (e) { return e.status === 'open'; });
+            document.getElementById('open-title-count').textContent = '(' + opens.length + ')';
             if (!opens.length) {
                 el.innerHTML = '<div style="color:#9ca3af;font-size:12px;padding:4px 0;">진행 중 없음</div>';
                 return;
@@ -603,38 +652,74 @@
             var rows = midData.filter(function (e) {
                 return curFilter === 'all' ? true : e.status === curFilter;
             });
-            rows.sort(function (a, b) {
-                if (curSort === 'date') return b.signal_date.localeCompare(a.signal_date) || a.code.localeCompare(b.code);
-                var ra = a.ret_exit != null ? a.ret_exit : (a.ret_current != null ? a.ret_current : -999);
-                var rb = b.ret_exit != null ? b.ret_exit : (b.ret_current != null ? b.ret_current : -999);
-                return rb - ra;
-            });
             var tbody = document.getElementById('log-tbody');
             if (!rows.length) {
                 tbody.innerHTML = '<tr><td colspan="14" style="text-align:center;padding:40px;color:#9ca3af;">기록 없음</td></tr>';
                 return;
             }
-            tbody.innerHTML = rows.map(function (e) {
-                var url = 'https://finance.naver.com/item/main.naver?code=' + e.code;
-                var isDone = ['win', 'loss', 'timeout'].indexOf(e.status) >= 0;
-                var ret = isDone ? e.ret_exit : e.ret_current;
-                return '<tr' + (isDone ? ' class="done-row"' : '') + '>' +
-                    '<td style="color:#374151;">' + e.signal_date + '</td>' +
-                    '<td><a href="' + url + '" target="_blank" style="color:var(--text);text-decoration:none;font-weight:500;">' + e.name + '</a> <span style="color:#9ca3af;font-size:10px;">' + e.code + '</span></td>' +
-                    '<td style="color:#374151;">' + (e.sector || '-') + '</td>' +
-                    '<td>' + fmtPrice(e.entry_close) + '</td>' +
-                    '<td style="color:#9ca3af;">' + fmtPrice(e.price_at_signal) + '</td>' +
-                    '<td>' + (e.rs_ratio != null ? e.rs_ratio.toFixed(1) : '-') + '</td>' +
-                    '<td>' + (e.rs_momentum != null ? e.rs_momentum.toFixed(1) : '-') + '</td>' +
-                    '<td>' + (e.value != null ? Math.round(e.value).toLocaleString() + '억' : '-') + '</td>' +
-                    '<td>' + statusBadge(e.status, e.days_held) + '</td>' +
-                    '<td>' + fmtRet(ret) + '</td>' +
-                    '<td>' + fmtRet(e.max_ret) + '</td>' +
-                    '<td>' + fmtRet(e.min_ret) + '</td>' +
-                    '<td style="color:#6b7280;">' + (e.days_held != null ? e.days_held : '-') + '</td>' +
-                    '<td style="color:#9ca3af;font-size:11px;">' + (e.exit_date || '-') + '</td>' +
-                    '</tr>';
-            }).join('');
+
+            // 날짜별 그룹 (최신 날짜 먼저)
+            var groups = {};
+            rows.forEach(function (e) {
+                (groups[e.signal_date] = groups[e.signal_date] || []).push(e);
+            });
+            var dates = Object.keys(groups).sort().reverse();
+
+            var html = '';
+            dates.forEach(function (d) {
+                var g = groups[d];
+                var w = 0, l = 0, t = 0, o = 0, sum = 0, ns = 0;
+                g.forEach(function (e) {
+                    if (e.status === 'win') w++; else if (e.status === 'loss') l++;
+                    else if (e.status === 'timeout') t++; else o++;
+                    var r = e.ret_exit != null ? e.ret_exit : e.ret_current;
+                    if (r != null) { sum += r; ns++; }
+                });
+                var avg = ns ? sum / ns : null;
+                var isOpen = !!expandedDates[d];
+                var parts = [];
+                if (o) parts.push('진행중 ' + o);
+                if (w) parts.push('WIN ' + w);
+                if (l) parts.push('LOSS ' + l);
+                if (t) parts.push('T/O ' + t);
+                html += '<tr class="date-row" onclick="toggleDate(\'' + d + '\')"><td colspan="14">' +
+                    (isOpen ? '▼' : '▶') + ' ' + d +
+                    '<span class="date-sub">' + g.length + '건 · ' + parts.join(' · ') +
+                    (avg != null ? ' · 평균 ' + (avg >= 0 ? '+' : '') + avg.toFixed(2) + '%' : '') +
+                    '</span></td></tr>';
+                if (!isOpen) return;
+
+                g.sort(function (a, b) {
+                    if (curSort === 'ret') {
+                        var ra = a.ret_exit != null ? a.ret_exit : (a.ret_current != null ? a.ret_current : -999);
+                        var rb = b.ret_exit != null ? b.ret_exit : (b.ret_current != null ? b.ret_current : -999);
+                        return rb - ra;
+                    }
+                    return a.code.localeCompare(b.code);
+                });
+                html += g.map(function (e) {
+                    var url = 'https://finance.naver.com/item/main.naver?code=' + e.code;
+                    var isDone = ['win', 'loss', 'timeout'].indexOf(e.status) >= 0;
+                    var ret = isDone ? e.ret_exit : e.ret_current;
+                    return '<tr' + (isDone ? ' class="done-row"' : '') + '>' +
+                        '<td style="color:#9ca3af;font-size:11px;">' + e.signal_date + '</td>' +
+                        '<td><a href="' + url + '" target="_blank" style="color:var(--text);text-decoration:none;font-weight:500;">' + e.name + '</a> <span style="color:#9ca3af;font-size:10px;">' + e.code + '</span></td>' +
+                        '<td style="color:#374151;">' + (e.sector || '-') + '</td>' +
+                        '<td>' + fmtPrice(e.entry_close) + '</td>' +
+                        '<td style="color:#9ca3af;">' + fmtPrice(e.price_at_signal) + '</td>' +
+                        '<td>' + (e.rs_ratio != null ? e.rs_ratio.toFixed(1) : '-') + '</td>' +
+                        '<td>' + (e.rs_momentum != null ? e.rs_momentum.toFixed(1) : '-') + '</td>' +
+                        '<td>' + (e.value != null ? Math.round(e.value).toLocaleString() + '억' : '-') + '</td>' +
+                        '<td>' + statusBadge(e.status, e.days_held) + '</td>' +
+                        '<td>' + fmtRet(ret) + '</td>' +
+                        '<td>' + fmtRet(e.max_ret) + '</td>' +
+                        '<td>' + fmtRet(e.min_ret) + '</td>' +
+                        '<td style="color:#6b7280;">' + (e.days_held != null ? e.days_held : '-') + '</td>' +
+                        '<td style="color:#9ca3af;font-size:11px;">' + (e.exit_date || '-') + '</td>' +
+                        '</tr>';
+                }).join('');
+            });
+            tbody.innerHTML = html;
         }
 
         loadData();
