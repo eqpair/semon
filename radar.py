@@ -29,6 +29,8 @@ RADAR_SENT_PATH  = "/home/ubuntu/semon/data/radar_sent.json"
 # 감지 임계값
 VOL_BREAKOUT_THRESHOLD = 1.5   # Breakout 인정 최소 거래량 배수
 
+LEGACY_RADAR_ALERTS = False  # 구세대 PRIME/Breakout 텔레그램 발송 (MID radar는 항상 발송)
+
 
 # ── radar_sent 관리 ───────────────────────────────────────────
 
@@ -223,6 +225,41 @@ def _load_eqai_caution() -> set:
 # 프로필: 30일 보유, TP +10% / SL -7%, 검증 적중률 52.3% (n=614, net +2.1%)
 MID_RADAR_START = "14:30"   # 종가 진입 기준 검증이므로 장 후반만 평가
 MID_EXCLUDE_SECTOR_KEYWORDS = ("바이오", "제약")
+MID_LOG_PATH = "/home/ubuntu/semon/docs/data/mid_log.json"
+
+
+def _mid_log_append(hits: list, today: str) -> None:
+    """MID 알림 종목을 mid_log.json에 기록. 진입 채점은 mid_track.py가 수행."""
+    try:
+        try:
+            with open(MID_LOG_PATH, encoding="utf-8") as f:
+                log = json.load(f)
+        except Exception:
+            log = []
+        seen = {(e.get("signal_date"), e.get("code")) for e in log}
+        for sec_name, sq, s in hits:
+            if (today, s.get("code")) in seen:
+                continue
+            log.append({
+                "signal_date":     today,
+                "code":            s.get("code"),
+                "name":            s.get("name"),
+                "sector":          sec_name,
+                "sector_quadrant": sq,
+                "price_at_signal": s.get("price"),
+                "rs_ratio":        s.get("rs_ratio"),
+                "rs_momentum":     s.get("rs_momentum"),
+                "value":           s.get("value"),
+                "status":          "open",
+                "entry_close":     None,
+            })
+        Path(MID_LOG_PATH).parent.mkdir(parents=True, exist_ok=True)
+        with open(MID_LOG_PATH, "w", encoding="utf-8") as f:
+            json.dump(log, f, ensure_ascii=False)
+    except Exception as e:
+        logger.warning(f"mid_log 기록 실패: {e}")
+
+
 
 
 def _tail_prev_quadrant(tail: list) -> str | None:
@@ -303,6 +340,7 @@ async def _run_mid_radar(sectors: dict, sector_rrg: dict,
     ok = await _send_telegram("\n".join(lines).strip())
     if ok:
         logger.info(f"MID radar 알림: {len(hits)}개 종목")
+        _mid_log_append(hits, today)
     else:
         for sec_name, sq, s in hits:
             sent.pop(f"{today}:MID:{s.get('code','')}", None)
@@ -368,7 +406,7 @@ async def run_radar(signals: dict) -> None:
 
         # ── 알림 전송 ──────────────────────────────────────────
         msg = _format_alert(sector_name, rrg, sector_data, alert_stocks)
-        if msg.strip():
+        if msg.strip() and LEGACY_RADAR_ALERTS:
             ok = await _send_telegram(msg)
             if ok:
                 logger.info(f"radar 알림: {sector_name} {len(alert_stocks)}개 종목")
