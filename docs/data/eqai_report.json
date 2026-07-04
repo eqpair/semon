@@ -1,167 +1,165 @@
 {
-  "generated_at": "2026-07-04 07:02:23",
+  "generated_at": "2026-07-05 07:02:15",
   "macro": {
     "S&P500": {
       "price": 7483.24,
       "change": 0.0,
-      "reason": "혼조 마감(+0.00%) — 나스닥 반도체 약세를 다우 산업주 강세가 상쇄, 섹터 로테이션 국면",
+      "reason": "보합권(+0.00%) — M7 차익실현과 금융·산업재 순환매 상쇄, VIX -2.65%로 변동성 진정",
       "drivers": [
-        "필라델피아반도체 -5.44% 하락",
-        "다우존스 +1.14% 상승"
+        "금융·산업재 순환매",
+        "M7 차익실현 압력"
       ]
     },
     "NASDAQ": {
       "price": 25832.67,
       "change": -0.8,
-      "reason": "-0.80% 하락 — 반도체 대형주 차익실현·에너지 효율 우려로 전통 빅테크 약세",
+      "reason": "-0.80% 하락 — 엔비디아·테슬라 등 M7 차익실현, 마이크론 등 P7은 상승하나 지수 가중치 제한적",
       "drivers": [
-        "필라델피아반도체 -5.44%",
-        "반도체 대형주 이익 실현"
+        "M7 차익실현",
+        "빅테크 비중 조정"
       ]
     },
     "DOW": {
       "price": 52900.07,
       "change": 1.14,
-      "reason": "+1.14% 상승 — 산업주·금융주 중심 로테이션, AI 인프라 투자 수혜 구주 매수",
+      "reason": "+1.14% 상승 — 금융·산업재 중심 순환매 + AI 하드웨어 수혜 산업재 재평가",
       "drivers": [
-        "산업주 강세",
-        "금융주 상승"
+        "금융주 강세",
+        "산업재 순환매"
       ]
     },
     "VIX": {
-      "price": 15.81,
-      "change": -2.11,
-      "reason": "-2.11% 하락(15.81) — 섹터 로테이션 속 전반적 위험선호 유지, 변동성 제한적",
+      "price": 16.15,
+      "change": -2.65,
+      "reason": "-2.65% 하락 16.15 — 상반기 VI 발동 역대 최다 후 변동성 진정, 시장 안정화 국면",
       "drivers": [
-        "주요 지수 혼조 속 안정",
-        "지정학 리스크 제한적"
+        "변동성 완화장치 효과",
+        "시장 안정화"
       ]
     },
     "필라델피아반도체": {
       "price": 12626.22,
       "change": -5.44,
-      "reason": "-5.44% 급락 — 블룸버그 보도 미국 데이터센터 전기요금 5년새 267% 폭등, 에너지 효율 반도체 재평가·전통 고전력 칩 부담 해석",
+      "reason": "-5.44% 급락 — M7 차익실현이 엔비디아·AMD 등으로 확산, P7 재편 과정의 조정 국면",
       "drivers": [
-        "AI 전력소비 우려 부각",
-        "저전력 반도체 경쟁력 재조명"
+        "엔비디아 차익실현",
+        "AMD 조정"
       ]
     },
     "러셀2000": {
       "price": 2996.11,
       "change": -0.55,
-      "reason": "-0.55% 소폭 하락 — 중소형주 모멘텀 둔화, 반도체 약세 영향 일부 파급",
+      "reason": "-0.55% 소폭 하락 — 중소형주 모멘텀 일시 둔화, DOW 대형주 선호로 자금 이탈",
       "drivers": [
-        "나스닥 약세 동조",
-        "섹터 로테이션 혜택 제한적"
+        "대형주 선호",
+        "중소형 자금 이탈"
       ]
     },
     "영국FTSE": {
-      "price": 10679.03,
+      "price": 10679.0,
       "change": 0.25,
-      "reason": "+0.25% 소폭 상승 — 직접 촉매 없음, ECB 라가르드 조기 퇴임 가능성 시사 속 유럽 금융주 혼조 동조",
+      "reason": "+0.25% 소폭 상승 — 유럽 금융주 중심 완만한 상승, ECB 물가 안정 기조 지속 효과",
       "drivers": [
-        "유럽 정책 불확실성",
-        "금융주 혼조"
+        "금융주 강세",
+        "ECB 안정 기조"
       ]
     },
     "독일DAX": {
-      "price": 25580.88,
-      "change": 2.16,
-      "reason": "+2.16% 강세 — ECB 라가르드 프랑스 정치 복귀 시사·유럽 산업주 강세, AI 규제 완화 기대(트럼프 미 중규제 반대 발언)",
+      "price": 25779.31,
+      "change": 0.78,
+      "reason": "+0.78% 상승 — ECB Moulin \"인플레 데이터 양호, 통화정책 좋은 위치\" 발언 + 제조업 회복 기대",
       "drivers": [
-        "유럽 산업주 상승",
-        "AI 규제 완화 기대"
+        "ECB 온건 발언",
+        "제조업 기대"
       ]
     },
     "니케이": {
-      "price": 68733.15,
-      "change": -2.47,
-      "reason": "-2.47% 하락 — 필라델피아반도체 급락 영향, 일본 반도체·전자 수출주 동반 약세",
+      "price": 69744.07,
+      "change": 1.47,
+      "reason": "+1.47% 상승 — 엔저(달러인덱스 보합) 수출주 수혜 + 일본 맥주 對韓수출 10만톤 돌파 소비재 호조",
       "drivers": [
-        "필라반도체 -5.44% 충격",
-        "반도체 수출주 약세"
+        "엔저 수출 수혜",
+        "소비재 수출 증가"
       ]
     },
     "항셍": {
-      "price": 23055.03,
-      "change": 0.76,
-      "reason": "+0.76% 소폭 상승 — 중국 테크주 저가 매수·미중 갈등 일시 완화 기대, 반도체 약세 영향 제한적",
+      "price": 23350.03,
+      "change": 1.28,
+      "reason": "+1.28% 상승 — 중국 AI 인프라 투자 기대 + 알루미늄 -4.41% 급락에도 구리 +1.79% 제조업 수요 동조",
       "drivers": [
-        "테크주 저가 매수",
-        "미중 갈등 소강"
+        "AI 인프라 투자",
+        "구리 수요"
       ]
     },
     "달러인덱스": {
       "price": 100.86,
       "change": -0.0,
-      "reason": "100.86 보합(+-0.00%) — 연준·ECB 정책 divergence 전망 속 방향성 부재, 유로 약세·엔 강세 상쇄",
+      "reason": "100.86 보합 — 연준 정책 대기 국면, ECB 온건 발언과 상쇄되며 방향성 부재",
       "drivers": [
-        "ECB 정책 불확실성",
-        "연준 통화정책 대기"
+        "연준 대기",
+        "ECB 온건 상쇄"
       ]
     },
     "코스피": {
       "price": 8088.34,
       "change": 5.76,
-      "reason": "+5.76% 급등(8088.34) — 삼성전자 앤트로픽 ASIC 논의·SK하이닉스 미래에셋 1.3조 투자 참여, 영남권 312조 투자계획, 원화 강세 수급 개선",
+      "reason": "+5.76% 급등 8088 회복 — 삼성전자 감사페스티벌 4000억 흥행 + 월수출 1000억달러 돌파 + 원화 -1.40% 강세에도 수출 패러다임 전환 확인",
       "drivers": [
-        "삼성전자 ASIC 수주 기대",
-        "SK하이닉스 대형 투자",
-        "영남권 312조 투자"
+        "삼성 DX 페스티벌 4000억",
+        "수출 1000억불 돌파",
+        "반도체 슈퍼사이클"
       ]
     },
     "코스닥": {
       "price": 868.41,
       "change": 0.19,
-      "reason": "+0.19% 소폭 상승 — 필라델피아반도체 충격 제한적, 바이오·중소형 테마주 저가 매수 지지",
+      "reason": "+0.19% 소폭 상승 — 대형주 쏠림 속 중소형 부진, 1조클럽 310개로 6000선 대비 91개 감소한 양극화 지속",
       "drivers": [
-        "바이오주 저가 매수",
-        "반도체 충격 제한적"
+        "대형주 쏠림",
+        "중소형 소외"
       ]
     },
     "금": {
       "price": 4187.3,
       "change": 1.81,
-      "reason": "+1.81% 상승(4187.3) — 이란 하메네이 국장(7/4~) 2천만 운집 예고·중동 지정학 리스크 재부각",
+      "reason": "+1.81% 상승 4187.3 — 중동 지정학 리스크 잔존 + 실물자산 선호, 달러 보합 속 독립 강세",
       "drivers": [
-        "이란 하메네이 국장",
-        "중동 지정학 리스크"
+        "지정학 리스크",
+        "실물자산 선호"
       ]
     },
     "WTI유가": {
       "price": 68.78,
       "change": 0.13,
-      "reason": "+0.13% 보합(68.78) — 직접 촉매 없음, 중동 긴장 속 공급 우려 제한적·수요 둔화 우려 상쇄",
+      "reason": "+0.13% 보합권 68.78 — 수요 기대와 공급 우려 균형, 방향성 부재",
       "drivers": [
-        "중동 리스크 제한적",
-        "수요 둔화 우려"
+        "수요·공급 균형"
       ]
     },
     "원달러": {
       "price": 1530.15,
       "change": -1.4,
-      "reason": "-1.40% 하락(1530.15) — 코스피 급등 외인 수급 개선·삼성·SK 대형 수주·투자 뉴스에 원화 강세",
+      "reason": "-1.40% 하락 1530.15 — 코스피 급등 + 외국인 매수 유입 기대, 월수출 1000억불 구조적 강세 뒷받침",
       "drivers": [
-        "코스피 5.76% 급등",
-        "반도체 빅딜 기대"
+        "코스피 급등",
+        "수출 구조 개선"
       ]
     },
     "알루미늄": {
       "price": 3265.0,
       "change": -4.41,
-      "reason": "-4.41% 급락 — 중국 제조업 둔화 우려·AI 인프라 외 전통 산업 수요 약세 해석",
+      "reason": "-4.41% 급락 — 중국 AI 인프라 투자 기대에도 산업 수요 둔화 우려, 구리 대비 약세",
       "drivers": [
-        "중국 제조업 둔화",
-        "산업 수요 약세"
+        "산업 수요 둔화"
       ]
     },
     "구리": {
       "price": 6.22,
       "change": 1.79,
-      "reason": "+1.79% 상승 — AI 데이터센터 전력망 구축 수요·독일 DAX 산업주 강세 동조",
+      "reason": "+1.79% 상승 — AI 전력·데이터센터 수요 + 중국 제조업 회복 기대, 알루미늄 대비 강세",
       "drivers": [
-        "전력망 투자 기대",
-        "유럽 산업주 강세"
+        "AI 전력 수요",
+        "중국 제조 기대"
       ]
     }
   },
@@ -9745,124 +9743,123 @@
   },
   "sources": [
     {
-      "source": "seeking_alpha",
-      "title": "Catalyst Watch: SpaceX initiations, Sun Valley Conference, PepsiCo earnings",
-      "link": "https://seekingalpha.com/news/4609050-catalyst-watch-spacex-initiations-sun-valley-conference-pepsico-earnings?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 03 Jul 2026 15:00:02 -0400"
-    },
-    {
-      "source": "maeil",
-      "title": "엔비디아 브로드컴 다 한물 갔다고?…월가 큰손들, 왜 ‘이 주식’에 주목하나",
-      "link": "https://www.mk.co.kr/news/stock/12090174",
-      "published": "Fri, 03 Jul 2026 21:29:21 +09:00"
+      "source": "yonhap",
+      "title": "삼성전자 감사 페스티벌 흥행…DX부문 2분기 실적 힘 보탤듯",
+      "link": "https://www.yna.co.kr/view/AKR20260703130100003",
+      "published": "Sun, 5 Jul 2026 05:55:21 +0900"
     },
     {
       "source": "yonhap",
-      "title": "미래에셋, 1조3천억 자금조달 추진…'큰 손' 된 SK하이닉스",
-      "link": "https://www.yna.co.kr/view/AKR20260703151000008",
-      "published": "Fri, 3 Jul 2026 19:18:48 +0900"
+      "title": "카드론 금리 저신용자↓·고신용자↑…카드사 중금리대출 확대",
+      "link": "https://www.yna.co.kr/view/AKR20260704035300002",
+      "published": "Sun, 5 Jul 2026 05:51:01 +0900"
     },
     {
-      "source": "bloomberg",
-      "title": "Fed and ECB Seen Diverging in French Snapshot of War Aftermath",
-      "link": "https://www.bloomberg.com/news/articles/2026-07-03/fed-and-ecb-seen-diverging-in-french-snapshot-of-war-aftermath",
-      "published": "Fri, 03 Jul 2026 14:19:08 GMT"
-    },
-    {
-      "source": "cnbc_tech",
-      "title": "The Tech Download: Amazon’s devices chief Panos Panay on tech giant's AI gadget push",
-      "link": "https://www.cnbc.com/2026/07/03/the-tech-download-amazon-devices-chief-panos-panay.html",
-      "published": "Fri, 03 Jul 2026 12:41:22 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Nvidia is betting on a trillion-dollar robotics boom. Here is the hidden way to trade it.",
-      "link": "https://www.marketwatch.com/story/nvidia-is-betting-on-a-trillion-dollar-robotics-boom-here-is-the-hidden-way-to-trade-it-c5b10c4e?mod=mw_rss_topstories",
-      "published": "Fri, 03 Jul 2026 18:52:00 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "First known congressional SpaceX stock buys surface after record IPO",
-      "link": "https://www.cnbc.com/2026/07/03/spacex-stock-congress-meuser-cisneros-ipo-disclosure.html",
-      "published": "Fri, 03 Jul 2026 18:16:43 GMT"
-    },
-    {
-      "source": "bloomberg",
-      "title": "ECB’s Lagarde Will Attend Next Week’s Ecofin Instead of Vujcic",
-      "link": "https://www.bloomberg.com/news/articles/2026-07-03/ecb-s-lagarde-will-attend-next-week-s-ecofin-instead-of-vujcic",
-      "published": "Fri, 03 Jul 2026 16:14:29 GMT"
-    },
-    {
-      "source": "bloomberg",
-      "title": "ECB’s Nagel Stresses Need for Vigilance at Next Rate Decision",
-      "link": "https://www.bloomberg.com/news/articles/2026-07-03/ecb-s-nagel-stresses-need-for-vigilance-at-next-rate-decision",
-      "published": "Fri, 03 Jul 2026 16:09:40 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Christine Lagarde leaves door open to early ECB exit, as she mulls French politics",
-      "link": "https://www.cnbc.com/2026/07/03/christine-lagarde-ecb-france-election.html",
-      "published": "Fri, 03 Jul 2026 10:34:32 GMT"
-    },
-    {
-      "source": "bloomberg",
-      "title": "Venture Capital During the AI Revolution: Masters in Business with Mamoon Hamid",
-      "link": "https://www.bloomberg.com/news/videos/2026-07-03/masters-in-business-with-mamoon-hamid-video",
-      "published": "Fri, 03 Jul 2026 21:13:04 GMT"
+      "source": "yonhap",
+      "title": "AI 붐·반도체 호황에 그늘진 청년고용…법률사무원 13개월째↓",
+      "link": "https://www.yna.co.kr/view/AKR20260704038100002",
+      "published": "Sun, 5 Jul 2026 05:47:01 +0900"
     },
     {
       "source": "maeil",
-      "title": "“반도체 계약학과가 있네요?”…‘강남’서 입학설명회 여는 부산대",
-      "link": "https://www.mk.co.kr/news/society/12090205",
-      "published": "Sat, 04 Jul 2026 06:01:18 +09:00"
+      "title": "“돈 쓰는 M7 말고 돈 버는 P7” … 월가가 주목한 AI 반도체 7인방",
+      "link": "https://www.mk.co.kr/news/stock/12089871",
+      "published": "Sun, 05 Jul 2026 05:00:00 +09:00"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "SK Hynix reportedly eyeing 0.5% fee rate in Nasdaq debut",
+      "link": "https://seekingalpha.com/news/4611506-sk-hynix-eyeing-05-fee-rate-in-nasdaq-debut?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 04 Jul 2026 13:01:56 -0400"
     },
     {
       "source": "bloomberg",
-      "title": "CPP Invests $1.75 Billion in EQT’s AI Buildout",
-      "link": "https://www.bloomberg.com/news/articles/2026-07-03/canada-pension-plan-commits-1-75-billion-to-eqt-eqt-for-ai-infrastructure",
-      "published": "Fri, 03 Jul 2026 15:44:05 GMT"
+      "title": "Coney Island Boardwalk Set for $1 Billion Upgrade",
+      "link": "https://www.bloomberg.com/news/videos/2026-07-04/coney-island-boardwalk-set-for-1-billion-upgrade-video",
+      "published": "Sat, 04 Jul 2026 17:22:18 GMT"
     },
     {
-      "source": "ft",
-      "title": "Trump will oppose heavy US AI regulation, says outgoing tech adviser",
-      "link": "https://www.ft.com/content/5128e476-db8b-48ac-a8fb-0f16d0f5c2ed",
-      "published": "Fri, 03 Jul 2026 14:32:49 GMT"
+      "source": "bloomberg",
+      "title": "ECB Is in ‘Good Position’ Given Inflation Data, Moulin Says",
+      "link": "https://www.bloomberg.com/news/articles/2026-07-04/ecb-is-in-good-position-given-inflation-data-moulin-says",
+      "published": "Sat, 04 Jul 2026 10:05:31 GMT"
     },
     {
-      "source": "cnbc_world",
-      "title": "Don't throw away your shot to speak to an AI Alexander Hamilton at Boston's new finance museum",
-      "link": "https://www.cnbc.com/2026/07/03/the-museum-of-american-finance-opens-its-doors-in-boston.html",
-      "published": "Fri, 03 Jul 2026 13:16:09 GMT"
+      "source": "yonhap",
+      "title": "반도체 '날개'에도 고용 부진…고용탄성치 8년 만에 최저 전망",
+      "link": "https://www.yna.co.kr/view/AKR20260704018500002",
+      "published": "Sun, 5 Jul 2026 05:47:01 +0900"
+    },
+    {
+      "source": "bloomberg",
+      "title": "AI Teddy Roosevelt Greets Library Visitors",
+      "link": "https://www.bloomberg.com/news/videos/2026-07-04/ai-teddy-roosevelt-greets-library-visitors-video",
+      "published": "Sat, 04 Jul 2026 14:59:14 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "“반도체만으론 부족하다”…한화운용이 꺼낸 ‘K제조’ 승부수 [인터뷰]",
+      "link": "https://www.mk.co.kr/news/stock/12090387",
+      "published": "Sat, 04 Jul 2026 23:16:40 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "일주일에 31% 뛰었는데도 “아직 싸다”…한국콜마 더 간다는 이유 [이주의 Bull기둥]",
+      "link": "https://www.mk.co.kr/news/stock/12090411",
+      "published": "Sun, 05 Jul 2026 06:54:26 +09:00"
+    },
+    {
+      "source": "yonhap",
+      "title": "'노재팬' 넘은 일본 맥주…수입량 첫 10만t 돌파 역대 최대",
+      "link": "https://www.yna.co.kr/view/AKR20260703095300017",
+      "published": "Sun, 5 Jul 2026 06:43:00 +0900"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Gamer trades in $1,000 of physical discs at GameStop, days after Sony announces end of disc era",
+      "link": "https://www.marketwatch.com/story/gamer-trades-in-1-000-of-physical-discs-at-gamestop-days-after-sony-announces-end-of-disc-era-bf8383b7?mod=mw_rss_topstories",
+      "published": "Sat, 04 Jul 2026 21:40:00 GMT"
+    },
+    {
+      "source": "yonhap",
+      "title": "\"지갑 대신 스마트폰\"…소비자 10명 중 6명 네이버페이 쓴다",
+      "link": "https://www.yna.co.kr/view/AKR20260704037000017",
+      "published": "Sun, 5 Jul 2026 06:33:00 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "\"결국 다시 쿠팡으로\"…정보유출 반년 뒤 이용자 더 늘었다",
+      "link": "https://www.yna.co.kr/view/AKR20260703141700017",
+      "published": "Sun, 5 Jul 2026 06:30:01 +0900"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "코스피 5.76% 급등, 원달러 1530원 강세 속 반도체·전력 수급 이슈 부각, 글로벌 AI 인프라 투자 사이클 재확인",
+  "sentiment_reason": "코스피 5.76% 급등 8088선 회복, 삼성전자 DX부문 감사페스티벌 4000억원 흥행 + 반도체 수출 슈퍼사이클 지속 확인",
   "key_factors": [
-    "AI 데이터센터 전력난 심화 → 에너지 효율 반도체 수요 재조명",
-    "SpaceX 상장 후 첫 의회 매수 확인 → 우주항공·방산 테마 부각",
-    "SK하이닉스 미래에셋증권 1조3천억 자금조달 참여 → 금융·반도체 연계 강화",
-    "원달러 1530원 강세 속 정부 15조 중기 금융지원 → 수출주 수혜 vs 수입 중기 부담"
+    "코스피 8088 회복 — 삼성전자 DX부문 4000억 감사페스티벌 흥행 + 월수출 1000억달러 사상 최초 돌파",
+    "필라델피아반도체 -5.44% 급락 — 글로벌 반도체주 차익실현 압력, 국내 반도체 소자 weakening 진입",
+    "월가 AI투자 구도 변화 — M7 부진 속 P7(마이크론·샌디스크·AMD 등) 파라볼릭 상승세, 국내 IT부품·패키징 동반 주목"
   ],
-  "news_summary": "블룸버그 — 미국 데이터센터 인근 13개주 전기요금 5년새 267% 폭등, AI 전력소비 급증·빅테크 도매 할인으로 서민 부담 전가·반도체 에너지 효율 경쟁 본격화\nECB 라가르드 총재, 프랑스 일간지 인터뷰서 2027년 10월 임기 전 조기 퇴임 '가능' 시사·프랑스 정치 복귀 가능성 언급\nECB 나겔 이사, 차기 금리 결정 시 신중 강조·유럽 인플레 재가속 경계 발언\n캐나다 CPP(공적연기금), EQT AI 인프라 빌드아웃에 17.5억달러 투자 단행\n이란 하메네이 최고지도자 국장 7/4(미 독립기념일) 시작·2천만명 운집 예고, 테헤란 일주일 국장 일정·'복수 국장' 명명으로 미국 견제 의도\n트럼프 대통령 퇴임 기술자문, AI 중규제 반대 입장 천명·유럽 AI 규제 완화 기대 확산\nFT 보도 — 미국 독립선언서 사본 영국서 250년만에 발견·상징적 외교 이슈\n한국 정부, 고환율 피해 중소·중견기업에 15조원 긴급 대출·보증 지원·세금 납부 연장\n삼성전자, 클로드 개발사 앤트로픽과 주문형 반도체(ASIC) 위탁생산 논의 중·파운드리 부활 신호(작년 테슬라, 올해 그록 엔비디아 인수 수주)\nSK하이닉스, 미래에셋증권 1조3천억원 자금조달에 투자자로 참여·미래에셋증권 회사채 발행 연기, 자금 계획 수정 가능성\n엔비디아, 1조달러 규모 로보틱스 붐 선점 전략 공개·마켓워치 \"숨겨진 로보틱스 수혜 종목 주목\" 분석\nSpaceX 기록적 IPO 후 첫 의회 매수 공개 — 공화 Dan Meuser·민주 Gil Cisneros 하원의원 SpaceX 주식 매수 공시, 정치권 우주 투자 가시화\n아마존 디바이스 책임자 Panos Panay, CNBC 인터뷰서 AI 가젯 전략 강조·Alexa 차세대 AI 에이전트 진화 시사\n삼성·SK·현대차·한화 그룹, 영남권 312조원 첨단산업 투자계획 발표·정부 주도 지역 반도체·배터리 클러스터 구축",
+  "news_summary": "ECB Moulin 이사 \"인플레 데이터 양호, 통화정책 좋은 위치\" 발언 — 유럽 금리 안정화 기조 재확인\n한국 월수출 사상 최초 1000억달러 돌파 — 독일·미국·중국 이어 세계 4위, 환율보다 반도체 슈퍼사이클·패러다임 전환이 핵심 동인\n한국 고용탄성치 8년 만에 최저 전망(0 소폭 상회) — 반도체 호황에도 AI·자동화로 법률사무원 13개월 연속 감소, 전문직 취업자 6개월 연속 하락\n구리 +1.79% vs 알루미늄 -4.41% — AI 전력·데이터센터 수요가 구리 선별 강세 견인, 산업 금속 내 양극화\n카드사 중금리대출 확대 — 저신용자 금리 -0.09%p·고신용자 +0.47%p로 포용금융 기조 반영, 규제 완화 인센티브 효과\n한국 상반기 코스피 VI 발동 역대 최대·변동성 역대 2위 — 투자위험 종목 지정 43건으로 전년 동기 20배, 롤러코스터 장세 극심\n삼성전자 감사페스티벌 흥행 — 구매액 20% 온누리상품권 환급 행사로 4000억원 규모 집행, DX부문 2분기 실적 개선 기대\n월가 'P7(Parabolic 7)' 부상 — M7 부진 속 마이크론·샌디스크·AMD 등 AI 반도체 7종목 파라볼릭 상승, 서학개미 적극 베팅\nSK하이닉스 나스닥 상장 검토 — 수수료율 0.5% 수준 논의 중, 글로벌 밸류에이션 재평가 촉매\n한국콜마 1주일 31% 급등 — 2분기 영업익 30%대 증가 전망 + FDA 신규 성분 승인 수혜 + 목표가 최고 14만원, K뷰티 ODM 선두주자\n쿠팡 6월 MAU 3509만명 — 개인정보 유출 사태 반년 후 오히려 67만명 증가, 빠른배송·멤버십 효과로 토종 이커머스 대비 독주",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "블룸버그 — 미국 데이터센터 인근 13개주 전기요금 5년새 267% 폭등, AI 전력소비 급증·빅테크 도매 할인으로 서민 부담 전가·반도체 에너지 효율 경쟁 본격화",
+          "text": "ECB Moulin 이사 \"인플레 데이터 양호, 통화정책 좋은 위치\" 발언 — 유럽 금리 안정화 기조 재확인",
           "impact": "high"
         },
         {
-          "text": "ECB 라가르드 총재, 프랑스 일간지 인터뷰서 2027년 10월 임기 전 조기 퇴임 '가능' 시사·프랑스 정치 복귀 가능성 언급",
+          "text": "한국 월수출 사상 최초 1000억달러 돌파 — 독일·미국·중국 이어 세계 4위, 환율보다 반도체 슈퍼사이클·패러다임 전환이 핵심 동인",
+          "impact": "high"
+        },
+        {
+          "text": "한국 고용탄성치 8년 만에 최저 전망(0 소폭 상회) — 반도체 호황에도 AI·자동화로 법률사무원 13개월 연속 감소, 전문직 취업자 6개월 연속 하락",
           "impact": "mid"
         },
         {
-          "text": "ECB 나겔 이사, 차기 금리 결정 시 신중 강조·유럽 인플레 재가속 경계 발언",
-          "impact": "mid"
-        },
-        {
-          "text": "캐나다 CPP(공적연기금), EQT AI 인프라 빌드아웃에 17.5억달러 투자 단행",
+          "text": "구리 +1.79% vs 알루미늄 -4.41% — AI 전력·데이터센터 수요가 구리 선별 강세 견인, 산업 금속 내 양극화",
           "impact": "mid"
         }
       ]
@@ -9872,19 +9869,11 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "이란 하메네이 최고지도자 국장 7/4(미 독립기념일) 시작·2천만명 운집 예고, 테헤란 일주일 국장 일정·'복수 국장' 명명으로 미국 견제 의도",
-          "impact": "high"
-        },
-        {
-          "text": "트럼프 대통령 퇴임 기술자문, AI 중규제 반대 입장 천명·유럽 AI 규제 완화 기대 확산",
+          "text": "카드사 중금리대출 확대 — 저신용자 금리 -0.09%p·고신용자 +0.47%p로 포용금융 기조 반영, 규제 완화 인센티브 효과",
           "impact": "mid"
         },
         {
-          "text": "FT 보도 — 미국 독립선언서 사본 영국서 250년만에 발견·상징적 외교 이슈",
-          "impact": "mid"
-        },
-        {
-          "text": "한국 정부, 고환율 피해 중소·중견기업에 15조원 긴급 대출·보증 지원·세금 납부 연장",
+          "text": "한국 상반기 코스피 VI 발동 역대 최대·변동성 역대 2위 — 투자위험 종목 지정 43건으로 전년 동기 20배, 롤러코스터 장세 극심",
           "impact": "mid"
         }
       ]
@@ -9894,27 +9883,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "삼성전자, 클로드 개발사 앤트로픽과 주문형 반도체(ASIC) 위탁생산 논의 중·파운드리 부활 신호(작년 테슬라, 올해 그록 엔비디아 인수 수주)",
+          "text": "삼성전자 감사페스티벌 흥행 — 구매액 20% 온누리상품권 환급 행사로 4000억원 규모 집행, DX부문 2분기 실적 개선 기대",
           "impact": "high"
         },
         {
-          "text": "SK하이닉스, 미래에셋증권 1조3천억원 자금조달에 투자자로 참여·미래에셋증권 회사채 발행 연기, 자금 계획 수정 가능성",
+          "text": "월가 'P7(Parabolic 7)' 부상 — M7 부진 속 마이크론·샌디스크·AMD 등 AI 반도체 7종목 파라볼릭 상승, 서학개미 적극 베팅",
           "impact": "high"
         },
         {
-          "text": "엔비디아, 1조달러 규모 로보틱스 붐 선점 전략 공개·마켓워치 \"숨겨진 로보틱스 수혜 종목 주목\" 분석",
+          "text": "SK하이닉스 나스닥 상장 검토 — 수수료율 0.5% 수준 논의 중, 글로벌 밸류에이션 재평가 촉매",
           "impact": "high"
         },
         {
-          "text": "SpaceX 기록적 IPO 후 첫 의회 매수 공개 — 공화 Dan Meuser·민주 Gil Cisneros 하원의원 SpaceX 주식 매수 공시, 정치권 우주 투자 가시화",
-          "impact": "high"
-        },
-        {
-          "text": "아마존 디바이스 책임자 Panos Panay, CNBC 인터뷰서 AI 가젯 전략 강조·Alexa 차세대 AI 에이전트 진화 시사",
+          "text": "한국콜마 1주일 31% 급등 — 2분기 영업익 30%대 증가 전망 + FDA 신규 성분 승인 수혜 + 목표가 최고 14만원, K뷰티 ODM 선두주자",
           "impact": "mid"
         },
         {
-          "text": "삼성·SK·현대차·한화 그룹, 영남권 312조원 첨단산업 투자계획 발표·정부 주도 지역 반도체·배터리 클러스터 구축",
+          "text": "쿠팡 6월 MAU 3509만명 — 개인정보 유출 사태 반년 후 오히려 67만명 증가, 빠른배송·멤버십 효과로 토종 이커머스 대비 독주",
           "impact": "mid"
         }
       ]
@@ -9922,147 +9907,143 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "혼조 마감(+0.00%) — 나스닥 반도체 약세를 다우 산업주 강세가 상쇄, 섹터 로테이션 국면",
+      "reason": "보합권(+0.00%) — M7 차익실현과 금융·산업재 순환매 상쇄, VIX -2.65%로 변동성 진정",
       "drivers": [
-        "필라델피아반도체 -5.44% 하락",
-        "다우존스 +1.14% 상승"
+        "금융·산업재 순환매",
+        "M7 차익실현 압력"
       ]
     },
     "NASDAQ": {
-      "reason": "-0.80% 하락 — 반도체 대형주 차익실현·에너지 효율 우려로 전통 빅테크 약세",
+      "reason": "-0.80% 하락 — 엔비디아·테슬라 등 M7 차익실현, 마이크론 등 P7은 상승하나 지수 가중치 제한적",
       "drivers": [
-        "필라델피아반도체 -5.44%",
-        "반도체 대형주 이익 실현"
+        "M7 차익실현",
+        "빅테크 비중 조정"
       ]
     },
     "DOW": {
-      "reason": "+1.14% 상승 — 산업주·금융주 중심 로테이션, AI 인프라 투자 수혜 구주 매수",
+      "reason": "+1.14% 상승 — 금융·산업재 중심 순환매 + AI 하드웨어 수혜 산업재 재평가",
       "drivers": [
-        "산업주 강세",
-        "금융주 상승"
+        "금융주 강세",
+        "산업재 순환매"
       ]
     },
     "VIX": {
-      "reason": "-2.11% 하락(15.81) — 섹터 로테이션 속 전반적 위험선호 유지, 변동성 제한적",
+      "reason": "-2.65% 하락 16.15 — 상반기 VI 발동 역대 최다 후 변동성 진정, 시장 안정화 국면",
       "drivers": [
-        "주요 지수 혼조 속 안정",
-        "지정학 리스크 제한적"
+        "변동성 완화장치 효과",
+        "시장 안정화"
       ]
     },
     "필라델피아반도체": {
-      "reason": "-5.44% 급락 — 블룸버그 보도 미국 데이터센터 전기요금 5년새 267% 폭등, 에너지 효율 반도체 재평가·전통 고전력 칩 부담 해석",
+      "reason": "-5.44% 급락 — M7 차익실현이 엔비디아·AMD 등으로 확산, P7 재편 과정의 조정 국면",
       "drivers": [
-        "AI 전력소비 우려 부각",
-        "저전력 반도체 경쟁력 재조명"
+        "엔비디아 차익실현",
+        "AMD 조정"
       ]
     },
     "러셀2000": {
-      "reason": "-0.55% 소폭 하락 — 중소형주 모멘텀 둔화, 반도체 약세 영향 일부 파급",
+      "reason": "-0.55% 소폭 하락 — 중소형주 모멘텀 일시 둔화, DOW 대형주 선호로 자금 이탈",
       "drivers": [
-        "나스닥 약세 동조",
-        "섹터 로테이션 혜택 제한적"
+        "대형주 선호",
+        "중소형 자금 이탈"
       ]
     },
     "영국FTSE": {
-      "reason": "+0.25% 소폭 상승 — 직접 촉매 없음, ECB 라가르드 조기 퇴임 가능성 시사 속 유럽 금융주 혼조 동조",
+      "reason": "+0.25% 소폭 상승 — 유럽 금융주 중심 완만한 상승, ECB 물가 안정 기조 지속 효과",
       "drivers": [
-        "유럽 정책 불확실성",
-        "금융주 혼조"
+        "금융주 강세",
+        "ECB 안정 기조"
       ]
     },
     "독일DAX": {
-      "reason": "+2.16% 강세 — ECB 라가르드 프랑스 정치 복귀 시사·유럽 산업주 강세, AI 규제 완화 기대(트럼프 미 중규제 반대 발언)",
+      "reason": "+0.78% 상승 — ECB Moulin \"인플레 데이터 양호, 통화정책 좋은 위치\" 발언 + 제조업 회복 기대",
       "drivers": [
-        "유럽 산업주 상승",
-        "AI 규제 완화 기대"
+        "ECB 온건 발언",
+        "제조업 기대"
       ]
     },
     "니케이": {
-      "reason": "-2.47% 하락 — 필라델피아반도체 급락 영향, 일본 반도체·전자 수출주 동반 약세",
+      "reason": "+1.47% 상승 — 엔저(달러인덱스 보합) 수출주 수혜 + 일본 맥주 對韓수출 10만톤 돌파 소비재 호조",
       "drivers": [
-        "필라반도체 -5.44% 충격",
-        "반도체 수출주 약세"
+        "엔저 수출 수혜",
+        "소비재 수출 증가"
       ]
     },
     "항셍": {
-      "reason": "+0.76% 소폭 상승 — 중국 테크주 저가 매수·미중 갈등 일시 완화 기대, 반도체 약세 영향 제한적",
+      "reason": "+1.28% 상승 — 중국 AI 인프라 투자 기대 + 알루미늄 -4.41% 급락에도 구리 +1.79% 제조업 수요 동조",
       "drivers": [
-        "테크주 저가 매수",
-        "미중 갈등 소강"
+        "AI 인프라 투자",
+        "구리 수요"
       ]
     },
     "달러인덱스": {
-      "reason": "100.86 보합(+-0.00%) — 연준·ECB 정책 divergence 전망 속 방향성 부재, 유로 약세·엔 강세 상쇄",
+      "reason": "100.86 보합 — 연준 정책 대기 국면, ECB 온건 발언과 상쇄되며 방향성 부재",
       "drivers": [
-        "ECB 정책 불확실성",
-        "연준 통화정책 대기"
+        "연준 대기",
+        "ECB 온건 상쇄"
       ]
     },
     "코스피": {
-      "reason": "+5.76% 급등(8088.34) — 삼성전자 앤트로픽 ASIC 논의·SK하이닉스 미래에셋 1.3조 투자 참여, 영남권 312조 투자계획, 원화 강세 수급 개선",
+      "reason": "+5.76% 급등 8088 회복 — 삼성전자 감사페스티벌 4000억 흥행 + 월수출 1000억달러 돌파 + 원화 -1.40% 강세에도 수출 패러다임 전환 확인",
       "drivers": [
-        "삼성전자 ASIC 수주 기대",
-        "SK하이닉스 대형 투자",
-        "영남권 312조 투자"
+        "삼성 DX 페스티벌 4000억",
+        "수출 1000억불 돌파",
+        "반도체 슈퍼사이클"
       ]
     },
     "코스닥": {
-      "reason": "+0.19% 소폭 상승 — 필라델피아반도체 충격 제한적, 바이오·중소형 테마주 저가 매수 지지",
+      "reason": "+0.19% 소폭 상승 — 대형주 쏠림 속 중소형 부진, 1조클럽 310개로 6000선 대비 91개 감소한 양극화 지속",
       "drivers": [
-        "바이오주 저가 매수",
-        "반도체 충격 제한적"
+        "대형주 쏠림",
+        "중소형 소외"
       ]
     },
     "금": {
-      "reason": "+1.81% 상승(4187.3) — 이란 하메네이 국장(7/4~) 2천만 운집 예고·중동 지정학 리스크 재부각",
+      "reason": "+1.81% 상승 4187.3 — 중동 지정학 리스크 잔존 + 실물자산 선호, 달러 보합 속 독립 강세",
       "drivers": [
-        "이란 하메네이 국장",
-        "중동 지정학 리스크"
+        "지정학 리스크",
+        "실물자산 선호"
       ]
     },
     "WTI유가": {
-      "reason": "+0.13% 보합(68.78) — 직접 촉매 없음, 중동 긴장 속 공급 우려 제한적·수요 둔화 우려 상쇄",
+      "reason": "+0.13% 보합권 68.78 — 수요 기대와 공급 우려 균형, 방향성 부재",
       "drivers": [
-        "중동 리스크 제한적",
-        "수요 둔화 우려"
+        "수요·공급 균형"
       ]
     },
     "원달러": {
-      "reason": "-1.40% 하락(1530.15) — 코스피 급등 외인 수급 개선·삼성·SK 대형 수주·투자 뉴스에 원화 강세",
+      "reason": "-1.40% 하락 1530.15 — 코스피 급등 + 외국인 매수 유입 기대, 월수출 1000억불 구조적 강세 뒷받침",
       "drivers": [
-        "코스피 5.76% 급등",
-        "반도체 빅딜 기대"
+        "코스피 급등",
+        "수출 구조 개선"
       ]
     },
     "알루미늄": {
-      "reason": "-4.41% 급락 — 중국 제조업 둔화 우려·AI 인프라 외 전통 산업 수요 약세 해석",
+      "reason": "-4.41% 급락 — 중국 AI 인프라 투자 기대에도 산업 수요 둔화 우려, 구리 대비 약세",
       "drivers": [
-        "중국 제조업 둔화",
-        "산업 수요 약세"
+        "산업 수요 둔화"
       ]
     },
     "구리": {
-      "reason": "+1.79% 상승 — AI 데이터센터 전력망 구축 수요·독일 DAX 산업주 강세 동조",
+      "reason": "+1.79% 상승 — AI 전력·데이터센터 수요 + 중국 제조업 회복 기대, 알루미늄 대비 강세",
       "drivers": [
-        "전력망 투자 기대",
-        "유럽 산업주 강세"
+        "AI 전력 수요",
+        "중국 제조 기대"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "코스피 5.76% 급등·8088선 회복 — 삼성 ASIC·SK 금융 빅딜 기대 + 원화 강세 수급 개선, 필라델피아반도체 -5.44% 충격 제한적",
+    "summary": "코스피 8088 회복(+5.76%) — 삼성 DX 4000억 페스티벌 + 수출 1000억불 돌파로 반도체 슈퍼사이클 재확인, 필라 반도체 -5.44% 급락은 차익실현 일시 조정 판단",
     "positive_factors": [
-      "삼성전자 앤트로픽 ASIC 협상 + 파운드리 수주 모멘텀(테슬라·그록) → 국내 반도체 밸류업 기대 급등",
-      "SK하이닉스 미래에셋 1.3조 투자 + 영남권 312조 투자계획 → 반도체·금융 연계 대형 자본 유입 신호",
-      "블룸버그 AI 전력난 267% 보도 → 국내 저전력 메모리(HBM·DDR5)·전력기기 수혜 재조명",
-      "SpaceX 의회 매수 공개 → 국내 우주항공(한화·LIG넥스원) 테마 부각"
+      "삼성전자 감사페스티벌 4000억원 흥행 → DX부문 2분기 실적 개선 + 내수 소비 동반 부양 기대",
+      "월수출 1000억달러 사상 최초 돌파 → 환율보다 반도체·AI 수요 구조 전환, 수출주 밸류에이션 재평가 근거",
+      "SK하이닉스 나스닥 상장 검토 + 월가 P7(마이크론·AMD 등) 부상 → 국내 반도체·IT부품 글로벌 밸류에이션 프리미엄 기대"
     ],
     "negative_factors": [
-      "필라델피아반도체 -5.44% 급락 → 나스닥 반도체 차익실현 압력, 국내 팹리스·장비주 단기 변동성",
-      "원달러 1530원 고환율 지속 → 정부 15조 지원에도 수입 중기 마진 압박·내수 소비 위축 우려",
-      "이란 하메네이 국장 지정학 리스크 → 중동 긴장 재부각 시 글로벌 위험자산 변동성"
+      "필라델피아반도체 -5.44% 급락 → 엔비디아·AMD 차익실현 확산, 국내 반도체_소자 weakening 진입으로 단기 조정 압력",
+      "코스피 1조클럽 310개로 6000선 대비 91개 감소 → 대형주 쏠림·양극화 심화, 중소형주 소외 지속"
     ],
-    "key_watch": "오늘 주목 — 삼성전자 ASIC 수주 가시화 여부·SK하이닉스 미래에셋 투자 세부 공개, 반도체 소자·장비 섹터 로테이션, 금 4187달러 돌파 후 중동 리스크 확산 여부"
+    "key_watch": "삼성전자 DX 2분기 실적 발표 + SK하이닉스 나스닥 상장 후속 — 반도체 소자 weakening에서 re-leading 전환 시점 포착"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10070,68 +10051,62 @@
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 105·RS-M 103 Leading 구간, AI 전력난 이슈로 저전력 HBM·DDR5 수요 재조명 + 삼성 ASIC·SK 투자 빅딜 모멘텀"
+      "reason": "반도체_장비 RS-R=105.042·RS-M=103.621 Leading 구간 — 삼성·하이닉스 CAPEX 확대 + AI 팹 투자 지속, 상대강도·모멘텀 동반 우위"
     },
     {
-      "sector": "신재생에너지",
+      "sector": "화장품_ODM",
       "rrg_quadrant": "improving",
       "claude_quadrant": "improving",
-      "reason": "RS-R 91·RS-M 101 Improving, 블룸버그 AI 데이터센터 전력난 267% 보도로 에너지 효율 테마 부각 + 정부 전력망 투자 기대"
-    },
-    {
-      "sector": "우주항공",
-      "rrg_quadrant": "improving",
-      "claude_quadrant": "improving",
-      "reason": "RS-R 94·RS-M 110 Improving, SpaceX 의회 매수 공개·정치권 우주 투자 가시화 + 한화 영남권 투자 포함"
+      "reason": "화장품_ODM RS-R=95.751·RS-M=109.78 Improving 고속 — 한국콜마 1주 31% 급등 + FDA 신규 성분 승인 + K뷰티 글로벌 약진, 모멘텀 가속 초입"
     },
     {
       "sector": "방산",
       "rrg_quadrant": "improving",
       "claude_quadrant": "improving",
-      "reason": "RS-R 91·RS-M 109 Improving, SpaceX 테마 파급 + 이란 국장 중동 긴장 재부각"
+      "reason": "방산 RS-R=91.017·RS-M=109.22 Improving 고모멘텀 — 중동 지정학 리스크 잔존 + K-방산 수출 확대, 모멘텀 109로 섹터 상위"
     },
     {
       "sector": "보험",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 107·RS-M 103 Leading, SK하이닉스 미래에셋 1.3조 투자 + 금융주 수급 개선"
+      "reason": "보험 RS-R=107.292·RS-M=103.117 Leading 구간 — 금리 안정화 국면 + 장기 자산 재평가, 상대강도·모멘텀 균형"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "RS-R 114·RS-M 99 Weakening — 필라델피아반도체 -5.44% 충격 직격탄, 에너지 효율 우려로 전통 고전력 메모리 단기 조정, 삼성·SK 빅딜 모멘텀 확인 후 재진입 검토"
-    },
-    {
-      "sector": "반도체_팹리스",
-      "reason": "RS-R 107·RS-M 91 Weakening — 나스닥 -0.80%·AI 칩 차익실현 압력, 저전력 경쟁 심화로 팹리스 밸류에이션 재평가 구간"
+      "reason": "반도체_소자 RS-R=114.276·RS-M=99.029 Weakening 진입 — 필라 반도체 -5.44% 급락 차익실현 압력, 삼성 DX 페스티벌 호재에도 단기 조정 국면, re-leading 전환 시그널 대기"
     },
     {
       "sector": "IT부품",
-      "reason": "RS-R 122·RS-M 92 Weakening — 상대강도 과열 후 모멘텀 둔화, 반도체 조정 동조 위험"
+      "reason": "IT부품 RS-R=122.226·RS-M=92.339 Weakening — 월가 P7 부상에도 모멘텀 92로 둔화, 상대강도 최상위지만 차익실현 부담"
+    },
+    {
+      "sector": "2차전지_셀",
+      "reason": "2차전지_전섹터 Lagging — 셀·소재·장비 모두 RS-R 83 이하·RS-M 94 이하, 전기차 수요 둔화 지속으로 섹터 전반 약세"
     }
   ],
   "avoid": [],
-  "summary": "AI 전력난 267% 충격이 국내 저전력 반도체·에너지 테마를 Leading 구간으로 밀어올린 날 — 삼성 ASIC·SK 금융 빅딜 + 우주항공 SpaceX 모멘텀, 반도체 소자 조정 후 재진입 대기",
-  "strategy_brief": "필라델피아반도체 -5.44% 충격에도 코스피 5.76% 급등은 글로벌 AI 전력난 이슈가 국내 저전력 메모리·에너지 효율 반도체 경쟁력을 재조명한 결과다. 블룸버그 보도 미국 데이터센터 전기요금 5년새 267% 폭등은 고전력 AI 칩 부담을 키우고, 삼성전자 앤트로픽 ASIC 협상·SK하이닉스 미래에셋 1.3조 투자 참여는 국내 반도체·금융 밸류업 기대를 동시 점화했다. 기술적으로 반도체_장비(Leading RS-R 105)·신재생에너지(Improving RS-M 102)·우주항공(Improving RS-M 103·SpaceX 의회 매수 촉매)이 스테이지2 초입 진입 신호를 보이며, 마크 미너비니 SEPA 전략상 추세·펀더멘탈·촉매·타이밍 4박자가 맞아떨어진다. 반면 반도체_소자·팹리스는 Weakening 구간으로 단기 조정 후 삼성·SK 빅딜 가시화 시점 재진입이 유리하며, 이란 하메네이 국장 지정학 리스크는 금 4187달러 돌파와 함께 방산·우주 테마 헤지 수단으로 병행 배치한다.",
-  "strategy_headline": "AI 전력난 267% 충격 — 저전력 반도체·에너지 테마 Leading 집중",
+  "summary": "코스피 8088 회복 — 삼성 DX 4000억·수출 1000억불 펀더멘탈 vs 필라 반도체 급락, 장비·ODM·방산 Improving 순환매 포착",
+  "strategy_brief": "필라델피아반도체 -5.44% 급락에도 코스피는 8088(+5.76%) 회복하며 삼성전자 감사페스티벌 4000억원 흥행과 월수출 1000억달러 사상 최초 돌파가 반도체 슈퍼사이클 펀더멘탈을 재확인시켰다. 글로벌 M7 차익실현이 P7(마이크론·AMD 등)로 재편되는 과정에서 국내 반도체_소자는 weakening 진입했으나, 반도체_장비(Leading·RS-M 103)·화장품_ODM(Improving·RS-M 109)·방산(Improving·RS-M 109) 등 고모멘텀 섹터가 순환 수혜를 입고 있다. SK하이닉스 나스닥 상장 검토와 한국콜마 FDA 승인은 글로벌 밸류에이션 재평가 촉매로 작용하며, 코스닥 1조클럽 91개 감소 양극화 속에서도 Leading·Improving 대형주 중심 선별 집중이 최적 전략이다. 반도체 소자 re-leading 전환 시그널 포착 시 원익IPS·한화에어로스페이스·한국콜마 등 모멘텀 상위 종목 적극 편입을 권고한다.",
+  "strategy_headline": "반도체 차익에도 8088 회복 — 장비·ODM·방산 Improving 집중",
   "strategy_points": [
-    "필라델피아반도체 -5.44% 급락, 하지만 AI 전력난 이슈는 국내 저전력 HBM·에너지 효율 반도체 수혜 논리 강화",
-    "삼성 앤트로픽 ASIC·SK 미래에셋 1.3조 투자 빅딜 → 반도체_장비·금융 Leading/Improving 섹터 모멘텀 확인",
-    "SpaceX 의회 매수·이란 국장 리스크 → 우주항공·방산 Improving 구간 진입 타이밍, 금 4187달러 돌파 헤지 병행",
-    "반도체_소자·팹리스 Weakening 구간 — 단기 조정 후 삼성·SK 빅딜 가시화 시점 재진입 대기"
+    "필라 반도체 -5.44% 급락은 M7→P7 재편 과정 차익실현, 삼성 DX 4000억 페스티벌 + 수출 1000억불로 국내 펀더멘탈은 별개 강세",
+    "반도체_소자 weakening 진입 → 장비 Leading·ODM·방산 Improving 고모멘텀 섹터로 순환, RRG RS-M 109 이상 섹터 우선",
+    "SK하이닉스 나스닥 검토 + 한국콜마 FDA 승인 → 글로벌 밸류에이션 재평가 촉매, 수출·기술 우위 종목 선별 매수",
+    "코스닥 1조클럽 91개 감소 양극화 지속 — 중소형 회피, Leading·Improving 대형주 집중 전략 유지"
   ],
   "top_picks": [
     {
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 105·RS-M 103 Leading 구간, AI 전력난 이슈로 저전력 HBM·DDR5 수요 재조명 + 삼성 ASIC·SK 투자 빅딜 모멘텀",
+      "reason": "반도체_장비 RS-R=105.042·RS-M=103.621 Leading 구간 — 삼성·하이닉스 CAPEX 확대 + AI 팹 투자 지속, 상대강도·모멘텀 동반 우위",
       "stocks": [
         {
           "name": "원익IPS",
           "code": "240810",
           "signal": "prime",
-          "reason": "AI 전력난 이슈로 저전력 공정 장비 수요 부각 + 반도체_장비 Leading·RS-R 105 상위권 → 스테이지2 초입 진입 타이밍",
+          "reason": "삼성 DX 4000억 페스티벌 + SK하이닉스 나스닥 검토 → CAPEX 확대 수혜 + 반도체_장비 Leading(RS-R 105·RS-M 103) 구간, 스테이지2 상승 지속",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_장비",
           "rrg_sector_match": true,
@@ -10140,35 +10115,35 @@
       ]
     },
     {
-      "sector": "신재생에너지",
+      "sector": "화장품_ODM",
       "rrg_quadrant": "improving",
-      "reason": "RS-R 91·RS-M 101 Improving, 블룸버그 AI 데이터센터 전력난 267% 보도로 에너지 효율 테마 부각 + 정부 전력망 투자 기대",
+      "reason": "화장품_ODM RS-R=95.751·RS-M=109.78 Improving 고속 — 한국콜마 1주 31% 급등 + FDA 신규 성분 승인 + K뷰티 글로벌 약진, 모멘텀 가속 초입",
       "stocks": [
         {
-          "name": "한화솔루션",
-          "code": "009830",
+          "name": "한국콜마",
+          "code": "161890",
           "signal": "prime",
-          "reason": "블룸버그 데이터센터 전기요금 267% 폭등 보도 + 영남권 312조 투자 신재생 포함·RS-M 102 Improving 모멘텀 → 에너지 효율 테마 수혜",
+          "reason": "1주 31% 급등 + 2분기 영업익 30%대 증가 + FDA 신규 성분 승인 → 화장품_ODM Improving(RS-M 109.78) 고속 모멘텀, VCP 패턴 돌파 초입",
           "rrg_tracked": true,
-          "rrg_actual_sector": "신재생에너지",
+          "rrg_actual_sector": "화장품_ODM",
           "rrg_sector_match": true,
-          "rrg_signal": "prime"
+          "rrg_signal": "leading"
         }
       ]
     },
     {
-      "sector": "우주항공",
+      "sector": "방산",
       "rrg_quadrant": "improving",
-      "reason": "RS-R 94·RS-M 110 Improving, SpaceX 의회 매수 공개·정치권 우주 투자 가시화 + 한화 영남권 투자 포함",
+      "reason": "방산 RS-R=91.017·RS-M=109.22 Improving 고모멘텀 — 중동 지정학 리스크 잔존 + K-방산 수출 확대, 모멘텀 109로 섹터 상위",
       "stocks": [
         {
           "name": "한화에어로스페이스",
           "code": "012450",
           "signal": "prime",
-          "reason": "SpaceX 의회 매수 공개·정치권 우주 투자 가시화 + 우주항공 RS-M 103 Improving·방산 RS-M 109 교차 수혜 → VCP 패턴 형성 가능성",
+          "reason": "중동 지정학 리스크 + K-방산 수출 확대 → 방산 Improving(RS-M 109.22) 고모멘텀 + 52주 신고가 권 재진입, 글로벌 국방비 증가 수혜",
           "rrg_tracked": true,
           "rrg_actual_sector": "방산",
-          "rrg_sector_match": false,
+          "rrg_sector_match": true,
           "rrg_signal": "prime"
         }
       ]
@@ -10176,13 +10151,13 @@
     {
       "sector": "보험",
       "rrg_quadrant": "leading",
-      "reason": "RS-R 107·RS-M 103 Leading, SK하이닉스 미래에셋 1.3조 투자 + 금융주 수급 개선",
+      "reason": "보험 RS-R=107.292·RS-M=103.117 Leading 구간 — 금리 안정화 국면 + 장기 자산 재평가, 상대강도·모멘텀 균형",
       "stocks": [
         {
           "name": "삼성생명",
           "code": "032830",
           "signal": "prime",
-          "reason": "SK하이닉스 미래에셋 1.3조 투자로 금융 수급 개선 기대 + 보험 Leading RS-R 107·금리 안정화 수혜 → 52주 신고가 근접",
+          "reason": "ECB 금리 안정화 + 한국 금리 정체 → 장기 자산 재평가 + 보험 Leading(RS-R 107·RS-M 103) 균형 국면, 배당 매력 부각",
           "rrg_tracked": true,
           "rrg_actual_sector": "보험",
           "rrg_sector_match": true,
@@ -10191,25 +10166,25 @@
       ]
     },
     {
-      "sector": "반도체_소재",
+      "sector": "유통",
       "rrg_quadrant": "",
       "reason": "",
       "stocks": [
         {
-          "name": "솔브레인",
-          "code": "357780",
+          "name": "쿠팡",
+          "code": "CPang-US",
           "signal": "prime",
-          "reason": "반도체_소재 RS-M 101 Improving·필라반도체 충격 제한적 + 삼성 ASIC 수주 기대로 소재 수요 연계 → 스테이지2 초입 진입",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "미분류",
+          "reason": "6월 MAU 3509만(+67만) 사상 최대 + 정보유출 후 오히려 증가 → 유통 Leading(RS-R 110.986·RS-M 105.977) + 독과점 지위 확인, 토종 대비 우위",
+          "rrg_tracked": false,
+          "rrg_actual_sector": "",
           "rrg_sector_match": false,
-          "rrg_signal": "watch"
+          "rrg_signal": ""
         }
       ]
     }
   ],
   "caution_sectors": [
     "반도체_소자",
-    "반도체_팹리스"
+    "IT부품"
   ]
 }
