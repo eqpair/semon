@@ -219,7 +219,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 
 [종합 판단 원칙 — 글로벌에서 국내로, 국내에서 종목으로 / 매우 중요]
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
-- top_picks의 각 pick reason은 반드시 두 근거를 한 문장에 엮으세요: (1) 위 korea_impact 판단 중 어느 요인/시장 흐름에서 파생됐는지, (2) 해당 종목의 RRG·기술적 신호(스테이지2 초입, VCP, prime/confirm 등). (예: "달러 강세 수출주 수혜 판단 + 반도체_대형 Leading·신고가 돌파 → 삼성전자")
+- top_picks의 각 pick reason은 반드시 두 근거를 한 문장에 엮으세요: (1) 위 korea_impact 판단 중 어느 요인/시장 흐름에서 파생됐는지, (2) 해당 종목의 RRG·기술적 신호(스테이지2 초입, VCP, prime/confirm 등). (예: "달러 강세 수출주 수혜 판단 + 반도체_소자 Leading·신고가 돌파 → 삼성전자")
 - top_picks는 RRG 신호가 양호한(prime/confirm/improving/leading/weakening) 종목만 선정하세요. RRG상 lagging(상대강도·모멘텀 모두 약세) 종목은 뉴스 호재가 있어도 핵심종목으로 추천하지 마세요. 제공된 종목 후보 리스트 내에서 우선 선정하고, 후보 밖 종목 추가 시 그 종목이 RRG lagging이 아닌지 반드시 확인하세요.
 - summary는 "글로벌 환경 → 국내 시장 한 줄 판단 → 핵심 진입 아이디어" 순서의 한 흐름으로 쓰세요.
 - strategy_headline은 오늘 국내 시장의 핵심 논지를 한 줄(공백 포함 40자 이내)로 압축하세요. 예: "AI 수출 슈퍼사이클 확인 — 반도체·IT부품 Leading 집중"
@@ -273,15 +273,15 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
     <watch_point>오늘 주목 포인트</watch_point>
   </korea_impact>
   <strong_buy>
-    <sector quadrant="leading" reason="선정근거">반도체_대형</sector>
+    <sector quadrant="leading" reason="선정근거">반도체_소자</sector>
     <sector quadrant="improving" reason="선정근거">2차전지_셀</sector>
   </strong_buy>
   <watch_sectors>
     <sector reason="관망이유">조선</sector>
   </watch_sectors>
   <top_picks>
-    <pick sector="반도체_대형" name="삼성전자" code="005930" reason="선정근거"/>
-    <pick sector="반도체_대형" name="SK하이닉스" code="000660" reason="선정근거"/>
+    <pick sector="반도체_소자" name="삼성전자" code="005930" reason="선정근거"/>
+    <pick sector="반도체_소자" name="SK하이닉스" code="000660" reason="선정근거"/>
   </top_picks>
   <strategy_headline>오늘 국내 시장을 한 줄로 압축한 핵심 논지 (간결한 헤드라인)</strategy_headline>
   <strategy_points>
