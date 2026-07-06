@@ -1,0 +1,99 @@
+========================================================================
+[단독 팩터] 5일 보유 기준 엣지 순 (신호수>=200)
+========================================================================
+  vol_high     n= 36480 | edge +0.39%p | 상승 49.5% | sharpe +0.037
+  leading      n= 62382 | edge +0.37%p | 상승 50.5% | sharpe +0.037
+  C_accel      n= 45937 | edge +0.19%p | 상승 50.2% | sharpe +0.021
+  A_vol_lead   n= 11231 | edge +0.18%p | 상승 49.8% | sharpe +0.021
+  ret5d_pos    n=107912 | edge +0.16%p | 상승 49.8% | sharpe +0.017
+  mom_rising   n= 91258 | edge +0.13%p | 상승 50.3% | sharpe +0.015
+  B_traj       n= 51333 | edge +0.12%p | 상승 50.6% | sharpe +0.015
+  weakening    n= 17616 | edge +0.11%p | 상승 48.7% | sharpe +0.012
+  improving    n= 40235 | edge +0.00%p | 상승 49.9% | sharpe +0.000
+  rs_mid       n= 61246 | edge -0.07%p | 상승 49.8% | sharpe -0.009
+  ret5d_neg    n=107070 | edge -0.15%p | 상승 49.3% | sharpe -0.018
+  laggard      n=137284 | edge -0.18%p | 상승 49.2% | sharpe -0.023
+  lagging      n= 97049 | edge -0.26%p | 상승 48.9% | sharpe -0.031
+  rs_low       n= 76038 | edge -0.27%p | 상승 48.7% | sharpe -0.032
+
+========================================================================
+[2팩터 조합] 5일 엣지 상위 20 (신호수>=200)
+========================================================================
+  A_vol_lead+C_accel           n= 3010 | edge +0.83%p | 상승 53.7% | sharpe +0.088
+  vol_high+C_accel             n=12367 | edge +0.79%p | 상승 51.0% | sharpe +0.069
+  leading+vol_high             n=12240 | edge +0.67%p | 상승 50.3% | sharpe +0.059
+  vol_high+mom_rising          n=20033 | edge +0.59%p | 상승 50.3% | sharpe +0.053
+  vol_high+ret5d_pos           n=26495 | edge +0.59%p | 상승 49.4% | sharpe +0.052
+  A_vol_lead+B_traj            n= 3274 | edge +0.57%p | 상승 51.4% | sharpe +0.062
+  weakening+vol_high           n= 2292 | edge +0.54%p | 상승 48.8% | sharpe +0.043
+  vol_high+B_traj              n=10156 | edge +0.53%p | 상승 50.5% | sharpe +0.051
+  leading+A_vol_lead           n= 3404 | edge +0.52%p | 상승 51.2% | sharpe +0.055
+  A_vol_lead+mom_rising        n= 6225 | edge +0.50%p | 상승 51.9% | sharpe +0.053
+  A_vol_lead+ret5d_pos         n= 7646 | edge +0.49%p | 상승 50.4% | sharpe +0.053
+  leading+C_accel              n=10504 | edge +0.48%p | 상승 50.9% | sharpe +0.046
+  weakening+ret5d_pos          n= 8503 | edge +0.47%p | 상승 50.1% | sharpe +0.045
+  leading+ret5d_neg            n=25575 | edge +0.46%p | 상승 51.7% | sharpe +0.050
+  leading+mom_rising           n=25667 | edge +0.35%p | 상승 50.7% | sharpe +0.035
+  leading+ret5d_pos            n=36243 | edge +0.32%p | 상승 49.7% | sharpe +0.031
+  C_accel+ret5d_pos            n=31733 | edge +0.25%p | 상승 49.8% | sharpe +0.026
+  vol_high+rs_low              n=11825 | edge +0.24%p | 상승 49.2% | sharpe +0.024
+  lagging+vol_high             n=14981 | edge +0.23%p | 상승 49.6% | sharpe +0.024
+  laggard+vol_high             n=21948 | edge +0.21%p | 상승 49.2% | sharpe +0.022
+
+========================================================================
+[3팩터 조합] 5일 엣지 상위 20 (신호수>=200)
+========================================================================
+  A_vol_lead+C_accel+rs_low                n= 1102 | edge +1.32%p | 상승 54.9% | sharpe +0.130
+  leading+A_vol_lead+C_accel               n=  843 | edge +1.28%p | 상승 54.9% | sharpe +0.126
+  vol_high+C_accel+rs_low                  n= 4169 | edge +1.03%p | 상승 52.2% | sharpe +0.092
+  lagging+A_vol_lead+C_accel               n= 1360 | edge +1.02%p | 상승 55.1% | sharpe +0.106
+  A_vol_lead+C_accel+ret5d_pos             n= 2547 | edge +1.01%p | 상승 53.7% | sharpe +0.103
+  A_vol_lead+B_traj+rs_low                 n= 1445 | edge +0.94%p | 상승 53.1% | sharpe +0.093
+  lagging+A_vol_lead+B_traj                n= 1755 | edge +0.93%p | 상승 54.6% | sharpe +0.098
+  weakening+vol_high+C_accel               n=  627 | edge +0.93%p | 상승 48.3% | sharpe +0.071
+  lagging+vol_high+C_accel                 n= 4945 | edge +0.85%p | 상승 52.2% | sharpe +0.078
+  leading+vol_high+C_accel                 n= 4208 | edge +0.84%p | 상승 51.0% | sharpe +0.068
+  A_vol_lead+C_accel+B_traj                n= 1681 | edge +0.83%p | 상승 53.4% | sharpe +0.089
+  A_vol_lead+vol_high+C_accel              n= 3010 | edge +0.83%p | 상승 53.7% | sharpe +0.088
+  A_vol_lead+C_accel+mom_rising            n= 3010 | edge +0.83%p | 상승 53.7% | sharpe +0.088
+  vol_high+C_accel+ret5d_pos               n=11338 | edge +0.83%p | 상승 50.6% | sharpe +0.071
+  weakening+vol_high+ret5d_pos             n= 1676 | edge +0.81%p | 상승 48.3% | sharpe +0.059
+  weakening+vol_high+mom_rising            n=  956 | edge +0.81%p | 상승 48.8% | sharpe +0.059
+  vol_high+C_accel+mom_rising              n=12367 | edge +0.79%p | 상승 51.0% | sharpe +0.069
+  laggard+A_vol_lead+C_accel               n= 2016 | edge +0.77%p | 상승 53.3% | sharpe +0.084
+  lagging+A_vol_lead+ret5d_pos             n= 2765 | edge +0.76%p | 상승 52.2% | sharpe +0.082
+  A_vol_lead+rs_low+ret5d_pos              n= 2102 | edge +0.76%p | 상승 51.4% | sharpe +0.077
+
+========================================================================
+[상위 3조합] 보유기간별(3·5·10·20일) 엣지
+========================================================================
+
+  [A_vol_lead+C_accel+rs_low] n=1102
+     3일: edge +1.03%p | 상승 53.5% | sharpe +0.121
+     5일: edge +1.32%p | 상승 54.9% | sharpe +0.130
+    10일: edge +1.73%p | 상승 57.6% | sharpe +0.137
+    20일: edge +0.41%p | 상승 51.5% | sharpe +0.023
+
+  [leading+A_vol_lead+C_accel] n=843
+     3일: edge +0.73%p | 상승 51.0% | sharpe +0.089
+     5일: edge +1.28%p | 상승 54.9% | sharpe +0.126
+    10일: edge +1.37%p | 상승 53.7% | sharpe +0.099
+    20일: edge +2.25%p | 상승 54.0% | sharpe +0.102
+
+  [vol_high+C_accel+rs_low] n=4169
+     3일: edge +0.65%p | 상승 50.9% | sharpe +0.075
+     5일: edge +1.03%p | 상승 52.2% | sharpe +0.092
+    10일: edge +1.37%p | 상승 53.9% | sharpe +0.091
+    20일: edge +0.58%p | 상승 51.1% | sharpe +0.027
+
+  [lagging+A_vol_lead+C_accel] n=1360
+     3일: edge +0.87%p | 상승 53.4% | sharpe +0.109
+     5일: edge +1.02%p | 상승 55.1% | sharpe +0.106
+    10일: edge +1.24%p | 상승 57.5% | sharpe +0.104
+    20일: edge +0.27%p | 상승 52.5% | sharpe +0.016
+
+  [A_vol_lead+C_accel+ret5d_pos] n=2547
+     3일: edge +0.69%p | 상승 51.6% | sharpe +0.087
+     5일: edge +1.01%p | 상승 53.7% | sharpe +0.103
+    10일: edge +0.95%p | 상승 53.2% | sharpe +0.073
+    20일: edge +0.84%p | 상승 51.7% | sharpe +0.043
