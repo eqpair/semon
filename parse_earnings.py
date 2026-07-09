@@ -67,8 +67,24 @@ for yyyymm in months:
 
 all_data.sort(key=lambda x: x["date"])
 
-with open("docs/data/earnings.json", "w", encoding="utf-8") as f:
-    json.dump({"updated": today.isoformat(), "count": len(all_data), "sectors": len(SECTORS), "tracked": sum(len(v) for v in SECTORS.values()), "earnings": all_data}, f, ensure_ascii=False, indent=2)
+# --- 누적 저장: 과거 항목 보존 + 미래 항목은 최신 크롤링으로 교체 ---
+import os
+OUT = "docs/data/earnings.json"
+prev = []
+if os.path.exists(OUT):
+    try:
+        with open(OUT, encoding="utf-8") as f:
+            prev = json.load(f).get("earnings", [])
+    except Exception:
+        prev = []
+today_str = today.isoformat()
+past_kept = [e for e in prev if e.get("date", "") < today_str]
+seen = {(e.get("date"), e.get("name")) for e in past_kept}
+merged = past_kept + [e for e in all_data if (e.get("date"), e.get("name")) not in seen]
+merged.sort(key=lambda e: e.get("date", ""))
+with open(OUT, "w", encoding="utf-8") as f:
+    json.dump({"updated": today_str, "count": len(merged), "sectors": len(SECTORS), "tracked": sum(len(v) for v in SECTORS.values()), "earnings": merged}, f, ensure_ascii=False, indent=2)
+print(f"  누적: 과거 {len(past_kept)}개 보존 + 미래/신규 {len(merged)-len(past_kept)}개 = 총 {len(merged)}개")
 
 matched = sum(1 for e in all_data if "code" in e)
 log.info(f"  총 {len(all_data)}개 저장 / 코드 매칭 {matched}개")
