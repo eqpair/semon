@@ -329,6 +329,8 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
 
     xml_text = m.group()
     xml_text = re.sub(r"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;", xml_text)
+    # 태그가 아닌 위치의 < 를 이스케이프 (본문 내 "<예상", "<3%" 등으로 파싱 깨짐 방지)
+    xml_text = re.sub(r"<(?![a-zA-Z/!?])", "&lt;", xml_text)
     try:
         root = ET.fromstring(xml_text)
     except ET.ParseError as pe:
@@ -658,6 +660,9 @@ def run():
         **analysis,
     }
 
+    if not report.get("strategy_headline") and not report.get("top_picks"):
+        logger.error("빈 리포트 감지(headline·top_picks 모두 없음) — 저장·푸시 스킵, 기존 리포트 보존")
+        raise SystemExit(1)
     save_report(report)
     git_push_report()
 
