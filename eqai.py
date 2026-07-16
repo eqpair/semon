@@ -147,6 +147,14 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
         macro_text      = _format_macro(news_data.get("macro", {}))
+        # US 섹터 로테이션 컨텍스트 (fail-open: 없으면 기존과 동일)
+        try:
+            from us_context import us_rotation_block
+            _us_rot = us_rotation_block()
+            if _us_rot:
+                macro_text = macro_text + "\n\n" + _us_rot
+        except Exception:
+            pass
         articles        = news_data.get("articles", [])
         titles_text     = "\n".join([f"- {a.get('title','')} [{a.get('source','')}]" for a in articles[:30]])
         # 본문 확보된 기사만 (상위 30개 후보 중 본문 100자 이상) — 최대 20개
