@@ -237,6 +237,11 @@ def _mid_log_append(hits: list, today: str) -> None:
         except Exception:
             log = []
         seen = {(e.get("signal_date"), e.get("code")) for e in log}
+        # US 카운터파트 순풍 여부 — 섀도우 로깅 전용 (fail-open, 판정 미관여)
+        try:
+            from us_context import us_tailwind as _us_tw
+        except Exception:
+            _us_tw = lambda _: None
         for sec_name, sq, s in hits:
             if (today, s.get("code")) in seen:
                 continue
@@ -250,6 +255,7 @@ def _mid_log_append(hits: list, today: str) -> None:
                 "rs_ratio":        s.get("rs_ratio"),
                 "rs_momentum":     s.get("rs_momentum"),
                 "value":           s.get("value"),
+                "us_tailwind":     _us_tw(sec_name),
                 "status":          "open",
                 "entry_close":     None,
             })
