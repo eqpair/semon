@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RRG · US Sectors</title>
+    <style>
+        /* ── 모노크롬 디자인 시스템: 색은 red(강세)/blue(약세)만 ── */
+        :root {
+            --bg: #111214;
+            --panel: #1a1b1e;
+            --line: #2a2c30;
+            --line2: #3a3d42;
+            --txt: #e8e8e8;
+            --txt2: #9a9da3;
+            --txt3: #6a6d73;
+            --up: #e5484d;
+            --dn: #4c8dff;
+            --up-dim: rgba(229, 72, 77, .10);
+            --dn-dim: rgba(76, 141, 255, .10);
+            font-size: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--txt);
+            font-family: -apple-system, "Segoe UI", "Noto Sans KR", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: inherit
+        }
+
+        header {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            flex-wrap: wrap;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--line)
+        }
+
+        header h1 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: .02em
+        }
+
+        header .meta {
+            color: var(--txt2);
+            font-size: 12px
+        }
+
+        header .meta b {
+            color: var(--txt);
+            font-weight: 600
+        }
+
+        .wrap {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 16px;
+            padding: 16px 20px;
+            max-width: 1280px;
+            margin: 0 auto
+        }
+
+        @media(max-width:900px) {
+            .wrap {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px
+        }
+
+        /* 차트 */
+        #chartPanel {
+            padding: 10px
+        }
+
+        #chart {
+            width: 100%;
+            height: auto;
+            display: block
+        }
+
+        .ctl {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 6px 2px;
+            color: var(--txt2);
+            font-size: 12px
+        }
+
+        .ctl input[type=range] {
+            flex: 1;
+            accent-color: #888;
+            max-width: 220px
+        }
+
+        .ctl .val {
+            color: var(--txt);
+            min-width: 2ch;
+            text-align: right
+        }
+
+        /* 사이드 리스트 */
+        #list {
+            overflow: hidden
+        }
+
+        #list h2 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--txt2);
+            padding: 12px 14px 8px;
+            letter-spacing: .05em
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            border-top: 1px solid var(--line);
+            cursor: pointer;
+            transition: background .12s
+        }
+
+        .row:hover,
+        .row.on {
+            background: #212327
+        }
+
+        .row .tk {
+            font-weight: 700;
+            width: 44px;
+            font-variant-numeric: tabular-nums
+        }
+
+        .row .nm {
+            flex: 1;
+            color: var(--txt2);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .row .rm {
+            font-size: 11px;
+            color: var(--txt3);
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+            line-height: 1.35
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 3px;
+            border: 1px solid var(--line2);
+            color: var(--txt2);
+            width: 76px;
+            text-align: center
+        }
+
+        .badge.Leading {
+            color: var(--up);
+            border-color: var(--up);
+            background: var(--up-dim)
+        }
+
+        .badge.Improving {
+            color: var(--up);
+            border-color: rgba(229, 72, 77, .45)
+        }
+
+        .badge.Weakening {
+            color: var(--dn);
+            border-color: rgba(76, 141, 255, .45)
+        }
+
+        .badge.Lagging {
+            color: var(--dn);
+            border-color: var(--dn);
+            background: var(--dn-dim)
+        }
+
+        /* SVG 내부 */
+        .qlabel {
+            fill: var(--txt3);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em
+        }
+
+        .axis {
+            stroke: var(--line2);
+            stroke-width: 1
+        }
+
+        .grid {
+            stroke: var(--line);
+            stroke-width: 1
+        }
+
+        .tick {
+            fill: var(--txt3);
+            font-size: 10px
+        }
+
+        .tail {
+            fill: none;
+            stroke: #7d8087;
+            stroke-width: 1.3;
+            opacity: .55
+        }
+
+        .taildot {
+            fill: #5a5d63
+        }
+
+        .head {
+            stroke: #0e0f11;
+            stroke-width: 1.2
+        }
+
+        .head.Leading,
+        .head.Improving {
+            fill: var(--up)
+        }
+
+        .head.Weakening,
+        .head.Lagging {
+            fill: var(--dn)
+        }
+
+        .lbl {
+            fill: var(--txt);
+            font-size: 11px;
+            font-weight: 700;
+            paint-order: stroke;
+            stroke: #111214;
+            stroke-width: 3px
+        }
+
+        .g-sec {
+            cursor: pointer
+        }
+
+        .g-sec.dim {
+            opacity: .14
+        }
+
+        .g-sec.hi .tail {
+            opacity: 1;
+            stroke: #c9ccd2
+        }
+
+        #err {
+            padding: 40px;
+            text-align: center;
+            color: var(--txt2)
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>RRG · US SECTORS</h1>
+        <span class="meta">벤치마크 <b id="mBench">–</b></span>
+        <span class="meta">기준일 <b id="mAsof">–</b></span>
+        <span class="meta" id="mUpd">–</span>
+        <span class="meta" id="mVer" style="margin-left:auto">–</span>
+    </header>
+
+    <div class="wrap">
+        <div class="panel" id="chartPanel">
+            <div class="ctl">
+                TAIL <input type="range" id="tailRange" min="2" max="15" value="10">
+                <span class="val" id="tailVal">10</span>일
+                <span style="margin-left:auto;color:var(--txt3)">종목 클릭 = 강조 · 배경 클릭 = 해제</span>
+            </div>
+            <svg id="chart" viewBox="0 0 760 640" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+
+        <div class="panel" id="list">
+            <h2>SECTORS</h2>
+            <div id="rows"></div>
+        </div>
+    </div>
+
+    <div id="err" hidden></div>
+
+    <script>
+        "use strict";
+        const SIG_URL = "signals_us.json";
+        const NS = "http://www.w3.org/2000/svg";
+        const W = 760, H = 640, PAD = { l: 52, r: 18, t: 16, b: 40 };
+
+        let DATA = null, tailLen = 10, focus = null;
+
+        const $ = q => document.querySelector(q);
+        const el = (t, a) => {
+            const e = document.createElementNS(NS, t);
+            for (const k in a) e.setAttribute(k, a[k]); return e
+        };
+
+        fetch(SIG_URL + "?t=" + Date.now())
+            .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json() })
+            .then(j => { DATA = j; initHeader(); render(); })
+            .catch(e => {
+                const b = $("#err"); b.hidden = false;
+                b.textContent = "signals_us.json 로드 실패: " + e.message;
+            });
+
+        function initHeader() {
+            $("#mBench").textContent = DATA.benchmark;
+            $("#mAsof").textContent = DATA.as_of || "–";
+            $("#mUpd").textContent = "updated " + (DATA.updated_at || "–");
+            $("#mVer").textContent = DATA.version || "";
+            const maxTail = Math.max(...DATA.sectors.map(s => s.tail.length));
+            const r = $("#tailRange"); r.max = maxTail;
+            r.addEventListener("input", () => {
+                tailLen = +r.value;
+                $("#tailVal").textContent = tailLen; render();
+            });
+        }
+
+        function extent() {
+            let lo = 97, hi = 103;
+            for (const s of DATA.sectors)
+                for (const p of s.tail.slice(-tailLen)) {
+                    lo = Math.min(lo, p[1], p[2]); hi = Math.max(hi, p[1], p[2]);
+                }
+            const m = Math.max(100 - lo, hi - 100) * 1.12;
+            return [100 - m, 100 + m];
+        }
+
+        function render() {
+            const svg = $("#chart"); svg.innerHTML = "";
+            const [lo, hi] = extent();
+            const x = v => PAD.l + (v - lo) / (hi - lo) * (W - PAD.l - PAD.r);
+            const y = v => H - PAD.b - (v - lo) / (hi - lo) * (H - PAD.t - PAD.b);
+
+            // 사분면 배경 (극히 옅은 red/blue 틴트 — 나머지는 무채색)
+            svg.append(
+                el("rect", { x: x(100), y: PAD.t, width: x(hi) - x(100), height: y(100) - PAD.t, fill: "rgba(229,72,77,.045)" }),
+                el("rect", { x: PAD.l, y: y(100), width: x(100) - PAD.l, height: H - PAD.b - y(100), fill: "rgba(76,141,255,.045)" })
+            );
+
+            // 그리드 + 눈금
+            const step = (hi - lo) / 6;
+            for (let i = 0; i <= 6; i++) {
+                const v = lo + step * i, tv = v.toFixed(1);
+                svg.append(el("line", { x1: x(v), y1: PAD.t, x2: x(v), y2: H - PAD.b, class: "grid" }));
+                svg.append(el("line", { x1: PAD.l, y1: y(v), x2: W - PAD.r, y2: y(v), class: "grid" }));
+                const tx = el("text", { x: x(v), y: H - PAD.b + 16, class: "tick", "text-anchor": "middle" });
+                tx.textContent = tv; svg.append(tx);
+                const ty = el("text", { x: PAD.l - 8, y: y(v) + 3, class: "tick", "text-anchor": "end" });
+                ty.textContent = tv; svg.append(ty);
+            }
+            // 100 축선
+            svg.append(el("line", { x1: x(100), y1: PAD.t, x2: x(100), y2: H - PAD.b, class: "axis" }));
+            svg.append(el("line", { x1: PAD.l, y1: y(100), x2: W - PAD.r, y2: y(100), class: "axis" }));
+
+            // 사분면 라벨
+            const ql = (t, px, py, anchor) => {
+                const e = el("text", { x: px, y: py, class: "qlabel", "text-anchor": anchor });
+                e.textContent = t; svg.append(e)
+            };
+            ql("LEADING", W - PAD.r - 6, PAD.t + 16, "end");
+            ql("IMPROVING", PAD.l + 6, PAD.t + 16, "start");
+            ql("LAGGING", PAD.l + 6, H - PAD.b - 8, "start");
+            ql("WEAKENING", W - PAD.r - 6, H - PAD.b - 8, "end");
+
+            // 배경 클릭 → 포커스 해제
+            const bgHit = el("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent" });
+            bgHit.addEventListener("click", () => setFocus(null));
+            svg.append(bgHit);
+
+            // 궤적
+            for (const s of DATA.sectors) {
+                const pts = s.tail.slice(-tailLen);
+                const g = el("g", { class: "g-sec", "data-tk": s.ticker });
+                if (focus && focus !== s.ticker) g.classList.add("dim");
+                if (focus === s.ticker) g.classList.add("hi");
+
+                const d = pts.map((p, i) => (i ? "L" : "M") + x(p[1]).toFixed(1) + " " + y(p[2]).toFixed(1)).join(" ");
+                g.append(el("path", { d, class: "tail" }));
+                pts.slice(0, -1).forEach(p =>
+                    g.append(el("circle", { cx: x(p[1]), cy: y(p[2]), r: 2, class: "taildot" })));
+
+                const last = pts[pts.length - 1];
+                g.append(el("circle", { cx: x(last[1]), cy: y(last[2]), r: 5.5, class: "head " + s.quadrant }));
+                const lb = el("text", { x: x(last[1]) + 8, y: y(last[2]) + 4, class: "lbl" });
+                lb.textContent = s.ticker; g.append(lb);
+
+                const tt = el("title", {});
+                tt.textContent = `${s.ticker} ${s.name}\n${s.quadrant}\nRatio ${last[1]}  Mom ${last[2]}  (${last[0]})`;
+                g.append(tt);
+                g.addEventListener("click", ev => {
+                    ev.stopPropagation();
+                    setFocus(focus === s.ticker ? null : s.ticker)
+                });
+                svg.append(g);
+            }
+            renderList();
+        }
+
+        function renderList() {
+            const box = $("#rows"); box.innerHTML = "";
+            const order = { Leading: 0, Improving: 1, Weakening: 2, Lagging: 3 };
+            const rows = [...DATA.sectors].sort((a, b) =>
+                order[a.quadrant] - order[b.quadrant] || b.ratio - a.ratio);
+            for (const s of rows) {
+                const d = document.createElement("div");
+                d.className = "row" + (focus === s.ticker ? " on" : "");
+                d.innerHTML =
+                    `<span class="tk">${s.ticker}</span>` +
+                    `<span class="nm">${s.name}</span>` +
+                    `<span class="rm">R ${s.ratio.toFixed(1)}<br>M ${s.momentum.toFixed(1)}</span>` +
+                    `<span class="badge ${s.quadrant}">${s.quadrant}</span>`;
+                d.addEventListener("click", () => setFocus(focus === s.ticker ? null : s.ticker));
+                box.append(d);
+            }
+        }
+
+        function setFocus(tk) { focus = tk; render(); }
+    </script>
+</body>
+
+</html>
