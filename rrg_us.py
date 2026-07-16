@@ -154,7 +154,7 @@ def atomic_write(path: str, obj: dict):
     os.replace(tmp, path)
 
 
-def build_signals(rrg: dict) -> dict:
+def build_signals(rrg: dict, prices: pd.DataFrame) -> dict:
     now = datetime.now(KST)
     items = []
     for t, name in UNIVERSE.items():
@@ -163,12 +163,17 @@ def build_signals(rrg: dict) -> dict:
             continue
         last = df.iloc[-1]
         tail = df.iloc[-TAIL_LEN:]
+        px = prices[t].dropna()
+        ret_1d = round(float(px.iloc[-1] / px.iloc[-2] - 1) * 100, 2) if len(px) >= 2 else None
+        ret_5d = round(float(px.iloc[-1] / px.iloc[-6] - 1) * 100, 2) if len(px) >= 6 else None
         items.append({
             "ticker": t,
             "name": name,
             "ratio": round(float(last["ratio"]), 3),
             "momentum": round(float(last["momentum"]), 3),
             "quadrant": quadrant(last["ratio"], last["momentum"]),
+            "ret_1d": ret_1d,
+            "ret_5d": ret_5d,
             "tail": [
                 [d.strftime("%Y-%m-%d"),
                  round(float(r["ratio"]), 3),
@@ -245,7 +250,7 @@ def main():
 
     rrg = compute_rrg(prices, bench, RATIO_WINDOW, MOMENTUM_WINDOW)
 
-    signals = build_signals(rrg)
+    signals = build_signals(rrg, prices)
     if len(signals["sectors"]) < len(UNIVERSE):
         got = {s["ticker"] for s in signals["sectors"]}
         raise RuntimeError(f"섹터 누락: {set(UNIVERSE) - got}")

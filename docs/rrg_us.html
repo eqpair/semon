@@ -2,447 +2,676 @@
 <html lang="ko">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RRG · US Sectors</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SEMon RRG US</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        /* ── 모노크롬 디자인 시스템: 색은 red(강세)/blue(약세)만 ── */
         :root {
-            --bg: #111214;
-            --panel: #1a1b1e;
-            --line: #2a2c30;
-            --line2: #3a3d42;
-            --txt: #e8e8e8;
-            --txt2: #9a9da3;
-            --txt3: #6a6d73;
-            --up: #e5484d;
-            --dn: #4c8dff;
-            --up-dim: rgba(229, 72, 77, .10);
-            --dn-dim: rgba(76, 141, 255, .10);
-            font-size: 14px;
+            --improving: #2563eb;
+            --lagging: #d97706;
+            --leading: #16a34a;
+            --weakening: #dc2626;
+            --neutral: #9ca3af;
+            --axis: rgba(100, 116, 139, 0.3);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--txt);
-            font-family: -apple-system, "Segoe UI", "Noto Sans KR", Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased
-        }
-
-        a {
-            color: inherit
-        }
-
-        header {
-            display: flex;
-            align-items: baseline;
-            gap: 14px;
-            flex-wrap: wrap;
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--line)
-        }
-
-        header h1 {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: .02em
-        }
-
-        header .meta {
-            color: var(--txt2);
-            font-size: 12px
-        }
-
-        header .meta b {
-            color: var(--txt);
-            font-weight: 600
-        }
-
-        .wrap {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 16px;
-            padding: 16px 20px;
-            max-width: 1280px;
-            margin: 0 auto
-        }
-
-        @media(max-width:900px) {
-            .wrap {
-                grid-template-columns: 1fr
-            }
-        }
-
-        .panel {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 8px
-        }
-
-        /* 차트 */
-        #chartPanel {
-            padding: 10px
-        }
-
-        #chart {
-            width: 100%;
-            height: auto;
-            display: block
-        }
-
-        .ctl {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 6px 2px;
-            color: var(--txt2);
-            font-size: 12px
-        }
-
-        .ctl input[type=range] {
-            flex: 1;
-            accent-color: #888;
-            max-width: 220px
-        }
-
-        .ctl .val {
-            color: var(--txt);
-            min-width: 2ch;
-            text-align: right
-        }
-
-        /* 사이드 리스트 */
-        #list {
-            overflow: hidden
-        }
-
-        #list h2 {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--txt2);
-            padding: 12px 14px 8px;
-            letter-spacing: .05em
-        }
-
-        .row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 14px;
-            border-top: 1px solid var(--line);
-            cursor: pointer;
-            transition: background .12s
-        }
-
-        .row:hover,
-        .row.on {
-            background: #212327
-        }
-
-        .row .tk {
-            font-weight: 700;
-            width: 44px;
-            font-variant-numeric: tabular-nums
-        }
-
-        .row .nm {
-            flex: 1;
-            color: var(--txt2);
-            font-size: 12px;
-            white-space: nowrap;
+        .rrg-canvas {
+            position: relative;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
             overflow: hidden;
-            text-overflow: ellipsis
         }
 
-        .row .rm {
-            font-size: 11px;
-            color: var(--txt3);
-            font-variant-numeric: tabular-nums;
-            text-align: right;
-            line-height: 1.35
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 10;
         }
 
-        .badge {
+        .dot:hover {
+            transform: translate(-50%, -50%) scale(1.6);
+            z-index: 20;
+        }
+
+        .dot.improving {
+            background: var(--improving);
+            box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+        }
+
+        .dot.lagging {
+            background: var(--lagging);
+            box-shadow: 0 0 5px rgba(217, 119, 6, 0.4);
+        }
+
+        .dot.leading {
+            background: var(--leading);
+            box-shadow: 0 0 5px rgba(22, 163, 74, 0.4);
+        }
+
+        .dot.weakening {
+            background: var(--weakening);
+            box-shadow: 0 0 5px rgba(220, 38, 38, 0.4);
+        }
+
+        .dot.neutral {
+            background: var(--neutral);
+        }
+
+        .dot-label {
+            position: absolute;
             font-size: 10px;
-            font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 3px;
-            border: 1px solid var(--line2);
-            color: var(--txt2);
-            width: 76px;
-            text-align: center
+            font-weight: 500;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 15;
+            transform: translate(-50%, 8px);
+            color: #374151;
         }
 
-        .badge.Leading {
-            color: var(--up);
-            border-color: var(--up);
-            background: var(--up-dim)
+        .tail-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
         }
 
-        .badge.Improving {
-            color: var(--up);
-            border-color: rgba(229, 72, 77, .45)
+        #tooltip {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 100;
+            min-width: 160px;
+            display: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
         }
 
-        .badge.Weakening {
-            color: var(--dn);
-            border-color: rgba(76, 141, 255, .45)
+        .q-btn {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: #f9fafb;
+            color: #6b7280;
         }
 
-        .badge.Lagging {
-            color: var(--dn);
-            border-color: var(--dn);
-            background: var(--dn-dim)
+        .q-btn:hover {
+            background: #f3f4f6;
         }
 
-        /* SVG 내부 */
-        .qlabel {
-            fill: var(--txt3);
-            font-size: 11px;
+        .q-btn.active { background: #f3f4f6; border-color: #9ca3af; color: #111827; }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: .08em
         }
 
-        .axis {
-            stroke: var(--line2);
-            stroke-width: 1
+        .pill.improving {
+            background: #dbeafe;
+            color: #1e40af;
         }
 
-        .grid {
-            stroke: var(--line);
-            stroke-width: 1
+        .pill.lagging {
+            background: #fef3c7;
+            color: #92400e;
         }
 
-        .tick {
-            fill: var(--txt3);
-            font-size: 10px
+        .pill.leading {
+            background: #dcfce7;
+            color: #14532d;
         }
 
-        .tail {
-            fill: none;
-            stroke: #7d8087;
-            stroke-width: 1.3;
-            opacity: .55
+        .pill.weakening {
+            background: #fee2e2;
+            color: #7f1d1d;
         }
 
-        .taildot {
-            fill: #5a5d63
+        .pill.neutral {
+            background: #f3f4f6;
+            color: #9ca3af;
         }
 
-        .head {
-            stroke: #0e0f11;
-            stroke-width: 1.2
+        ::-webkit-scrollbar {
+            width: 4px;
         }
 
-        .head.Leading,
-        .head.Improving {
-            fill: var(--up)
+        ::-webkit-scrollbar-track {
+            background: transparent;
         }
 
-        .head.Weakening,
-        .head.Lagging {
-            fill: var(--dn)
-        }
-
-        .lbl {
-            fill: var(--txt);
-            font-size: 11px;
-            font-weight: 700;
-            paint-order: stroke;
-            stroke: #111214;
-            stroke-width: 3px
-        }
-
-        .g-sec {
-            cursor: pointer
-        }
-
-        .g-sec.dim {
-            opacity: .14
-        }
-
-        .g-sec.hi .tail {
-            opacity: 1;
-            stroke: #c9ccd2
-        }
-
-        #err {
-            padding: 40px;
-            text-align: center;
-            color: var(--txt2)
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 2px;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-gray-50 min-h-screen">
 
-    <header>
-        <h1>RRG · US SECTORS</h1>
-        <span class="meta">벤치마크 <b id="mBench">–</b></span>
-        <span class="meta">기준일 <b id="mAsof">–</b></span>
-        <span class="meta" id="mUpd">–</span>
-        <span class="meta" id="mVer" style="margin-left:auto">–</span>
-    </header>
+    <div id="tooltip"></div>
 
-    <div class="wrap">
-        <div class="panel" id="chartPanel">
-            <div class="ctl">
-                TAIL <input type="range" id="tailRange" min="2" max="15" value="10">
-                <span class="val" id="tailVal">10</span>일
-                <span style="margin-left:auto;color:var(--txt3)">종목 클릭 = 강조 · 배경 클릭 = 해제</span>
+    <div class="container mx-auto px-4 py-6 max-w-screen-2xl">
+
+        <!-- 헤더 -->
+        <header class="mb-6">
+            <div class="flex justify-between items-center flex-wrap gap-3">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">RRG US <span class="text-lg font-normal text-gray-400">Relative Rotation Graph · SPDR Sectors</span></h1>
+                    <div class="text-sm text-gray-500 mt-1">
+                        Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
+                        &nbsp;|&nbsp;
+                        Market: <span id="market-badge" class="font-bold text-gray-400">-</span>
+                        &nbsp;|&nbsp;
+                        Benchmark: <span id="benchmark" class="font-medium text-gray-700">-</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="./rrg.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">RRG KR</a>
+                    <a href="./momentum.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Momentum</a>
+                    <a href="./heatmap.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Heatmap</a>
+                    <a href="./stats.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Stats</a>
+                    <a href="./cal.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Calendar</a>
+                    <a href="https://eqmon.duckdns.org"
+                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
+                </div>
             </div>
-            <svg id="chart" viewBox="0 0 760 640" xmlns="http://www.w3.org/2000/svg"></svg>
+        </header>
+
+        <!-- 범례 -->
+        <div
+            class="flex flex-wrap gap-4 mb-5 items-center bg-white rounded-lg px-4 py-3 shadow-sm border border-gray-100">
+            <span class="text-xs text-gray-400 mr-1 font-medium">사분면</span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--improving)"></span><span class="text-blue-600 font-medium">Improving</span><span class="text-gray-400">모멘텀 전환</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--lagging)"></span><span
+                    class="text-amber-600 font-medium">Lagging</span><span class="text-gray-400">소외 지속</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--leading)"></span><span
+                    class="text-green-600 font-medium">Leading</span><span class="text-gray-400">상승 주도</span></span>
+            <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
+                    style="background:var(--weakening)"></span><span
+                    class="text-red-500 font-medium">Weakening</span><span class="text-gray-400">모멘텀 약화</span></span>
         </div>
 
-        <div class="panel" id="list">
-            <h2>SECTORS</h2>
-            <div id="rows"></div>
+        <!-- ═══ 섹터 RRG ═══ -->
+        <div id="view-sector">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+                <div>
+                    <div class="flex gap-2 mb-3 flex-wrap">
+                        <button class="q-btn active" onclick="filterSector('all')">ALL</button>
+                        <button class="q-btn" onclick="filterSector('improving')">Improving</button>
+                        <button class="q-btn" onclick="filterSector('lagging')">Lagging</button>
+                        <button class="q-btn" onclick="filterSector('leading')">Leading</button>
+                        <button class="q-btn" onclick="filterSector('weakening')">Weakening</button>
+                    </div>
+                    <div class="rrg-canvas" id="sector-rrg" style="height:540px;">
+                        <svg class="tail-svg" id="sector-tail-svg"></svg>
+                        <div id="sector-dots"></div>
+                        <div id="sector-loading"
+                            style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
+                            데이터 로딩 중...</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-2">* 점 클릭 시 Yahoo Finance로 이동 &nbsp;|&nbsp; 궤적은 최근 3주 이동 경로 (마우스 오버 시 표시)
+                    </div>
+                </div>
+
+                <!-- 섹터 목록 -->
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4">
+                    <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">섹터 현황</div>
+                    <div id="sector-list" class="overflow-y-auto" style="height:490px;max-height:490px;">
+                        <div class="text-gray-400 text-sm">로딩 중...</div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
-    <div id="err" hidden></div>
-
     <script>
-        "use strict";
-        const SIG_URL = "data/signals_us.json";
-        const NS = "http://www.w3.org/2000/svg";
-        const W = 760, H = 640, PAD = { l: 52, r: 18, t: 16, b: 40 };
+        const REFRESH_MS = 10 * 60 * 1000
+        let allData = null
+        let sectorFilter = "all"
 
-        let DATA = null, tailLen = 10, focus = null;
-
-        const $ = q => document.querySelector(q);
-        const el = (t, a) => {
-            const e = document.createElementNS(NS, t);
-            for (const k in a) e.setAttribute(k, a[k]); return e
-        };
-
-        fetch(SIG_URL + "?t=" + Date.now())
-            .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json() })
-            .then(j => { DATA = j; initHeader(); render(); })
-            .catch(e => {
-                const b = $("#err"); b.hidden = false;
-                b.textContent = "signals_us.json 로드 실패: " + e.message;
-            });
-
-        function initHeader() {
-            $("#mBench").textContent = DATA.benchmark;
-            $("#mAsof").textContent = DATA.as_of || "–";
-            $("#mUpd").textContent = "updated " + (DATA.updated_at || "–");
-            $("#mVer").textContent = DATA.version || "";
-            const maxTail = Math.max(...DATA.sectors.map(s => s.tail.length));
-            const r = $("#tailRange"); r.max = maxTail;
-            r.addEventListener("input", () => {
-                tailLen = +r.value;
-                $("#tailVal").textContent = tailLen; render();
-            });
-        }
-
-        function extent() {
-            let lo = 97, hi = 103;
-            for (const s of DATA.sectors)
-                for (const p of s.tail.slice(-tailLen)) {
-                    lo = Math.min(lo, p[1], p[2]); hi = Math.max(hi, p[1], p[2]);
-                }
-            const m = Math.max(100 - lo, hi - 100) * 1.12;
-            return [100 - m, 100 + m];
+        async function loadData() {
+            try {
+                let res = await fetch("./data/signals_us.json?t=" + Date.now())
+                if (!res.ok) throw new Error()
+                allData = await res.json()
+                render()
+            } catch (e) {
+                document.getElementById("sector-loading").textContent = "데이터 로드 실패"
+            }
         }
 
         function render() {
-            const svg = $("#chart"); svg.innerHTML = "";
-            const [lo, hi] = extent();
-            const x = v => PAD.l + (v - lo) / (hi - lo) * (W - PAD.l - PAD.r);
-            const y = v => H - PAD.b - (v - lo) / (hi - lo) * (H - PAD.t - PAD.b);
+            document.getElementById("updated").textContent = allData.updated_at || "-"
+            document.getElementById("benchmark").textContent = allData.benchmark || "-"
 
-            // 사분면 배경 (극히 옅은 red/blue 틴트 — 나머지는 무채색)
-            svg.append(
-                el("rect", { x: x(100), y: PAD.t, width: x(hi) - x(100), height: y(100) - PAD.t, fill: "rgba(229,72,77,.045)" }),
-                el("rect", { x: PAD.l, y: y(100), width: x(100) - PAD.l, height: H - PAD.b - y(100), fill: "rgba(76,141,255,.045)" })
-            );
-
-            // 그리드 + 눈금
-            const step = (hi - lo) / 6;
-            for (let i = 0; i <= 6; i++) {
-                const v = lo + step * i, tv = v.toFixed(1);
-                svg.append(el("line", { x1: x(v), y1: PAD.t, x2: x(v), y2: H - PAD.b, class: "grid" }));
-                svg.append(el("line", { x1: PAD.l, y1: y(v), x2: W - PAD.r, y2: y(v), class: "grid" }));
-                const tx = el("text", { x: x(v), y: H - PAD.b + 16, class: "tick", "text-anchor": "middle" });
-                tx.textContent = tv; svg.append(tx);
-                const ty = el("text", { x: PAD.l - 8, y: y(v) + 3, class: "tick", "text-anchor": "end" });
-                ty.textContent = tv; svg.append(ty);
+            // market-badge — 뉴욕 정규장 (09:30–16:00 ET, DST 자동 반영)
+            const badge = document.getElementById("market-badge")
+            if (badge) {
+                try {
+                    const parts = new Intl.DateTimeFormat("en-US", {
+                        timeZone: "America/New_York",
+                        hour: "numeric", minute: "numeric", weekday: "short", hour12: false
+                    }).formatToParts(new Date())
+                    const get = t => parts.find(p => p.type === t)?.value
+                    const h = parseInt(get("hour"), 10) % 24
+                    const m = parseInt(get("minute"), 10)
+                    const wd = get("weekday")
+                    const t = h * 60 + m
+                    const weekday = !["Sat", "Sun"].includes(wd)
+                    if (weekday && t >= 570 && t < 960) {
+                        badge.textContent = "NYSE"; badge.className = "font-bold text-green-600"
+                    } else if (weekday && ((t >= 240 && t < 570) || (t >= 960 && t <= 1200))) {
+                        badge.textContent = h < 12 ? "Pre-Market" : "After-Hours"
+                        badge.className = "font-bold text-gray-600"
+                    } else {
+                        badge.textContent = "Market Closed"; badge.className = "font-bold text-gray-400"
+                    }
+                } catch (e) {
+                    badge.textContent = "-"
+                }
             }
-            // 100 축선
-            svg.append(el("line", { x1: x(100), y1: PAD.t, x2: x(100), y2: H - PAD.b, class: "axis" }));
-            svg.append(el("line", { x1: PAD.l, y1: y(100), x2: W - PAD.r, y2: y(100), class: "axis" }));
 
-            // 사분면 라벨
-            const ql = (t, px, py, anchor) => {
-                const e = el("text", { x: px, y: py, class: "qlabel", "text-anchor": anchor });
-                e.textContent = t; svg.append(e)
-            };
-            ql("LEADING", W - PAD.r - 6, PAD.t + 16, "end");
-            ql("IMPROVING", PAD.l + 6, PAD.t + 16, "start");
-            ql("LAGGING", PAD.l + 6, H - PAD.b - 8, "start");
-            ql("WEAKENING", W - PAD.r - 6, H - PAD.b - 8, "end");
-
-            // 배경 클릭 → 포커스 해제
-            const bgHit = el("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent" });
-            bgHit.addEventListener("click", () => setFocus(null));
-            svg.append(bgHit);
-
-            // 궤적
-            for (const s of DATA.sectors) {
-                const pts = s.tail.slice(-tailLen);
-                const g = el("g", { class: "g-sec", "data-tk": s.ticker });
-                if (focus && focus !== s.ticker) g.classList.add("dim");
-                if (focus === s.ticker) g.classList.add("hi");
-
-                const d = pts.map((p, i) => (i ? "L" : "M") + x(p[1]).toFixed(1) + " " + y(p[2]).toFixed(1)).join(" ");
-                g.append(el("path", { d, class: "tail" }));
-                pts.slice(0, -1).forEach(p =>
-                    g.append(el("circle", { cx: x(p[1]), cy: y(p[2]), r: 2, class: "taildot" })));
-
-                const last = pts[pts.length - 1];
-                g.append(el("circle", { cx: x(last[1]), cy: y(last[2]), r: 5.5, class: "head " + s.quadrant }));
-                const lb = el("text", { x: x(last[1]) + 8, y: y(last[2]) + 4, class: "lbl" });
-                lb.textContent = s.ticker; g.append(lb);
-
-                const tt = el("title", {});
-                tt.textContent = `${s.ticker} ${s.name}\n${s.quadrant}\nRatio ${last[1]}  Mom ${last[2]}  (${last[0]})`;
-                g.append(tt);
-                g.addEventListener("click", ev => {
-                    ev.stopPropagation();
-                    setFocus(focus === s.ticker ? null : s.ticker)
-                });
-                svg.append(g);
-            }
-            renderList();
+            renderSectorRRG()
+            renderSectorList()
         }
 
-        function renderList() {
-            const box = $("#rows"); box.innerHTML = "";
-            const order = { Leading: 0, Improving: 1, Weakening: 2, Lagging: 3 };
-            const rows = [...DATA.sectors].sort((a, b) =>
-                order[a.quadrant] - order[b.quadrant] || b.ratio - a.ratio);
-            for (const s of rows) {
-                const d = document.createElement("div");
-                d.className = "row" + (focus === s.ticker ? " on" : "");
-                d.innerHTML =
-                    `<span class="tk">${s.ticker}</span>` +
-                    `<span class="nm">${s.name}</span>` +
-                    `<span class="rm">R ${s.ratio.toFixed(1)}<br>M ${s.momentum.toFixed(1)}</span>` +
-                    `<span class="badge ${s.quadrant}">${s.quadrant}</span>`;
-                d.addEventListener("click", () => setFocus(focus === s.ticker ? null : s.ticker));
-                box.append(d);
-            }
+        function quadrantColor(q) {
+            return { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", neutral: "#9ca3af" }[q] || "#9ca3af"
+        }
+        function quadrantLabel(q) {
+            return { improving: "Improving", lagging: "Lagging", leading: "Leading", weakening: "Weakening", neutral: "-" }[q] || "-"
         }
 
-        function setFocus(tk) { focus = tk; render(); }
+        // signals_us.json → 렌더용 포인트 변환
+        // sectors: [{ticker, name, ratio, momentum, quadrant, tail:[[date, r, m], ...], ret_1d?, ret_5d?}]
+        function getPoints() {
+            return (allData?.sectors || [])
+                .filter(s => s.ratio != null && s.momentum != null)
+                .map(s => ({
+                    ticker: s.ticker,
+                    name: s.name,
+                    ratio: s.ratio,
+                    mom: s.momentum,
+                    quad: (s.quadrant || "neutral").toLowerCase(),
+                    tail: (s.tail || []).map(t => ({ date: t[0], rs_ratio: t[1], rs_momentum: t[2] })),
+                    ret_1d: s.ret_1d,
+                    ret_5d: s.ret_5d,
+                }))
+        }
+
+        // ── 공통 축/그리드 렌더링 (rrg.html과 동일) ──────────────────
+        function drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax) {
+            const ns = "http://www.w3.org/2000/svg"
+
+            const cx = pad + ((100 - rMin) / (rMax - rMin)) * (W - pad * 2)
+            const cy = (H - pad) - ((100 - mMin) / (mMax - mMin)) * (H - pad * 2)
+
+            const quads = [
+                { x: pad, y: pad, w: cx - pad, h: cy - pad, fill: "rgba(37,99,235,0.04)" }, // improving
+                { x: cx, y: pad, w: W - pad - cx, h: cy - pad, fill: "rgba(22,163,74,0.04)" }, // leading
+                { x: pad, y: cy, w: cx - pad, h: H - pad - cy, fill: "rgba(217,119,6,0.04)" }, // lagging
+                { x: cx, y: cy, w: W - pad - cx, h: H - pad - cy, fill: "rgba(220,38,38,0.04)" }, // weakening
+            ]
+            quads.forEach(q => {
+                const r = document.createElementNS(ns, "rect")
+                r.setAttribute("x", q.x.toFixed(1))
+                r.setAttribute("y", q.y.toFixed(1))
+                r.setAttribute("width", Math.max(0, q.w).toFixed(1))
+                r.setAttribute("height", Math.max(0, q.h).toFixed(1))
+                r.setAttribute("fill", q.fill)
+                svg.appendChild(r)
+            })
+
+            const axisColor = "rgba(100,116,139,0.35)"
+            const vLine = document.createElementNS(ns, "line")
+            vLine.setAttribute("x1", cx.toFixed(1)); vLine.setAttribute("y1", pad)
+            vLine.setAttribute("x2", cx.toFixed(1)); vLine.setAttribute("y2", (H - pad).toFixed(1))
+            vLine.setAttribute("stroke", axisColor); vLine.setAttribute("stroke-width", "1")
+            svg.appendChild(vLine)
+
+            const hLine = document.createElementNS(ns, "line")
+            hLine.setAttribute("x1", pad); hLine.setAttribute("y1", cy.toFixed(1))
+            hLine.setAttribute("x2", (W - pad).toFixed(1)); hLine.setAttribute("y2", cy.toFixed(1))
+            hLine.setAttribute("stroke", axisColor); hLine.setAttribute("stroke-width", "1")
+            svg.appendChild(hLine)
+
+            const labels = [
+                { x: pad + 8, y: pad + 14, text: "IMPROVING", color: "rgba(37,99,235,0.55)" },
+                { x: W - pad - 8, y: pad + 14, text: "LEADING", color: "rgba(22,163,74,0.55)", anchor: "end" },
+                { x: pad + 8, y: H - pad - 8, text: "LAGGING", color: "rgba(217,119,6,0.55)" },
+                { x: W - pad - 8, y: H - pad - 8, text: "WEAKENING", color: "rgba(220,38,38,0.55)", anchor: "end" },
+            ]
+            labels.forEach(l => {
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", l.x.toFixed(1))
+                t.setAttribute("y", l.y.toFixed(1))
+                t.setAttribute("font-size", "10")
+                t.setAttribute("font-weight", "600")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", l.color)
+                if (l.anchor) t.setAttribute("text-anchor", l.anchor)
+                t.textContent = l.text
+                svg.appendChild(t)
+            })
+
+            const xTicks = getAxisTicks(rMin, rMax, 5)
+            xTicks.forEach(val => {
+                const px = pad + ((val - rMin) / (rMax - rMin)) * (W - pad * 2)
+                if (px < pad + 4 || px > W - pad - 4) return
+
+                const tick = document.createElementNS(ns, "line")
+                tick.setAttribute("x1", px.toFixed(1)); tick.setAttribute("y1", (H - pad).toFixed(1))
+                tick.setAttribute("x2", px.toFixed(1)); tick.setAttribute("y2", (H - pad + 4).toFixed(1))
+                tick.setAttribute("stroke", "#cbd5e1"); tick.setAttribute("stroke-width", "1")
+                svg.appendChild(tick)
+
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", px.toFixed(1))
+                t.setAttribute("y", (H - pad + 14).toFixed(1))
+                t.setAttribute("font-size", "9")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", val === 100 ? "#64748b" : "#9ca3af")
+                t.setAttribute("font-weight", val === 100 ? "600" : "400")
+                t.setAttribute("text-anchor", "middle")
+                t.textContent = val.toFixed(1)
+                svg.appendChild(t)
+            })
+
+            const yTicks = getAxisTicks(mMin, mMax, 5)
+            yTicks.forEach(val => {
+                const py = (H - pad) - ((val - mMin) / (mMax - mMin)) * (H - pad * 2)
+                if (py < pad + 4 || py > H - pad - 4) return
+
+                const tick = document.createElementNS(ns, "line")
+                tick.setAttribute("x1", (pad - 4).toFixed(1)); tick.setAttribute("y1", py.toFixed(1))
+                tick.setAttribute("x2", pad.toFixed(1)); tick.setAttribute("y2", py.toFixed(1))
+                tick.setAttribute("stroke", "#cbd5e1"); tick.setAttribute("stroke-width", "1")
+                svg.appendChild(tick)
+
+                const t = document.createElementNS(ns, "text")
+                t.setAttribute("x", (pad - 6).toFixed(1))
+                t.setAttribute("y", (py + 3).toFixed(1))
+                t.setAttribute("font-size", "9")
+                t.setAttribute("font-family", "sans-serif")
+                t.setAttribute("fill", val === 100 ? "#64748b" : "#9ca3af")
+                t.setAttribute("font-weight", val === 100 ? "600" : "400")
+                t.setAttribute("text-anchor", "end")
+                t.textContent = val.toFixed(1)
+                svg.appendChild(t)
+            })
+
+            const xLabel = document.createElementNS(ns, "text")
+            xLabel.setAttribute("x", (W / 2).toFixed(1))
+            xLabel.setAttribute("y", (H - 2).toFixed(1))
+            xLabel.setAttribute("font-size", "9"); xLabel.setAttribute("font-family", "sans-serif")
+            xLabel.setAttribute("fill", "#9ca3af"); xLabel.setAttribute("text-anchor", "middle")
+            xLabel.textContent = "RS-Ratio →"
+            svg.appendChild(xLabel)
+
+            const yLabel = document.createElementNS(ns, "text")
+            yLabel.setAttribute("x", "10")
+            yLabel.setAttribute("y", (H / 2).toFixed(1))
+            yLabel.setAttribute("font-size", "9"); yLabel.setAttribute("font-family", "sans-serif")
+            yLabel.setAttribute("fill", "#9ca3af"); yLabel.setAttribute("text-anchor", "middle")
+            yLabel.setAttribute("transform", "rotate(-90, 10, " + (H / 2).toFixed(1) + ")")
+            yLabel.textContent = "RS-Mom →"
+            svg.appendChild(yLabel)
+        }
+
+        function getAxisTicks(min, max, approxCount) {
+            const range = max - min
+            const rawStep = range / approxCount
+            const step = Math.max(0.5, Math.round(rawStep * 2) / 2)
+            const start = Math.ceil(min / step) * step
+            const ticks = []
+            for (let v = start; v <= max + 1e-9; v += step) {
+                ticks.push(Math.round(v * 10) / 10)
+            }
+            if (!ticks.some(t => Math.abs(t - 100) < 0.01)) ticks.push(100)
+            return ticks.sort((a, b) => a - b)
+        }
+
+        // ── 섹터 RRG ────────────────────────────────────────────────
+        function renderSectorRRG() {
+            if (!allData) return
+            const container = document.getElementById("sector-dots")
+            const svg = document.getElementById("sector-tail-svg")
+            const loading = document.getElementById("sector-loading")
+            const el = document.getElementById("sector-rrg")
+            container.innerHTML = ""
+            svg.innerHTML = ""
+
+            const points = getPoints()
+
+            if (!points.length) {
+                loading.style.display = "flex"
+                loading.textContent = "데이터가 없습니다"
+                return
+            }
+            loading.style.display = "none"
+
+            const W = el.offsetWidth || 600
+            const H = el.offsetHeight || 480
+            const pad = 50
+
+            const allR = points.flatMap(p => [p.ratio, ...p.tail.map(t => t.rs_ratio)])
+            const allM = points.flatMap(p => [p.mom, ...p.tail.map(t => t.rs_momentum)])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
+
+            function toPos(r, m) {
+                const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
+                const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
+                return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
+            }
+
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
+
+            // tail 궤적 — 기본 숨김, hover 시만 표시
+            points.forEach(pt => {
+                if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
+                if (pt.tail.length < 2) return
+
+                const color = quadrantColor(pt.quad)
+
+                const pts = pt.tail.map(t => {
+                    const p = toPos(t.rs_ratio, t.rs_momentum)
+                    return p.x + "," + p.y
+                }).join(" ")
+                const pl = document.createElementNS("http://www.w3.org/2000/svg", "polyline")
+                pl.setAttribute("points", pts)
+                pl.setAttribute("fill", "none")
+                pl.setAttribute("stroke", color)
+                pl.setAttribute("stroke-width", "2")
+                pl.setAttribute("stroke-opacity", "0.7")
+                pl.setAttribute("stroke-dasharray", "4,2")
+                pl.setAttribute("visibility", "hidden")
+                pl.setAttribute("data-sector-tail", pt.ticker)
+                svg.appendChild(pl)
+
+                // 시작점 빈 원
+                const fp = toPos(pt.tail[0].rs_ratio, pt.tail[0].rs_momentum)
+                const startDot = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                startDot.setAttribute("cx", fp.x.toFixed(1))
+                startDot.setAttribute("cy", fp.y.toFixed(1))
+                startDot.setAttribute("r", "3")
+                startDot.setAttribute("fill", "none")
+                startDot.setAttribute("stroke", color)
+                startDot.setAttribute("stroke-width", "1.5")
+                startDot.setAttribute("visibility", "hidden")
+                startDot.setAttribute("data-sector-tail", pt.ticker)
+                svg.appendChild(startDot)
+            })
+
+            // 점 + 라벨
+            points.forEach(pt => {
+                if (sectorFilter !== "all" && pt.quad !== sectorFilter) return
+                const pos = toPos(pt.ratio, pt.mom)
+                const color = quadrantColor(pt.quad)
+                const size = 11
+
+                const dot = document.createElement("div")
+                dot.className = "dot " + pt.quad
+                dot.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;width:" + size + "px;height:" + size + "px;"
+                dot.addEventListener("mouseenter", e => {
+                    svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    svg.querySelectorAll(`[data-sector-tail="${pt.ticker}"]`).forEach(el => el.setAttribute("visibility", "visible"))
+                    showSectorTooltip(e, pt)
+                })
+                dot.addEventListener("mouseleave", () => {
+                    svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    hideTooltip()
+                })
+                dot.addEventListener("click", () => {
+                    window.open("https://finance.yahoo.com/quote/" + pt.ticker, "_blank")
+                })
+                container.appendChild(dot)
+
+                const lbl = document.createElement("div")
+                lbl.className = "dot-label"
+                lbl.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;color:" + color + ";"
+                lbl.textContent = pt.ticker
+                container.appendChild(lbl)
+            })
+        }
+
+        function showSectorTooltip(e, pt) {
+            const tip = document.getElementById("tooltip")
+            const fmtRet = v => v != null
+                ? `<span style="color:${v > 0 ? '#dc2626' : v < 0 ? '#2563eb' : '#9ca3af'};">${(v > 0 ? '+' : '') + v.toFixed(2)}%</span>`
+                : '<span style="color:#9ca3af;">-</span>'
+            tip.innerHTML = `
+    <div style="font-weight:600;margin-bottom:4px;color:#111827;">${pt.ticker} <span style="font-weight:400;color:#9ca3af;font-size:11px;">${pt.name}</span></div>
+    <div style="color:${quadrantColor(pt.quad)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(pt.quad)}</div>
+    <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${pt.ratio.toFixed(2)}</span></div>
+    <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${pt.mom.toFixed(2)}</span></div>
+    <div style="color:#6b7280;font-size:11px;margin-top:4px;">1D: ${fmtRet(pt.ret_1d)}</div>
+    <div style="color:#6b7280;font-size:11px;">1W: ${fmtRet(pt.ret_5d)}</div>
+    <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → Yahoo Finance</div>`
+            tip.style.display = "block"
+            moveTooltip(e)
+        }
+
+        function moveTooltip(e) {
+            const tip = document.getElementById("tooltip")
+            const tw = tip.offsetWidth || 180
+            const th = tip.offsetHeight || 160
+            const vw = window.innerWidth
+            const vh = window.innerHeight
+            const margin = 16
+
+            const x = (e.clientX + margin + tw < vw)
+                ? e.clientX + margin
+                : e.clientX - tw - margin
+
+            const y = (e.clientY + margin + th < vh)
+                ? e.clientY + margin
+                : e.clientY - th - margin
+
+            tip.style.left = Math.max(0, x) + "px"
+            tip.style.top = Math.max(0, y) + "px"
+        }
+        function hideTooltip() { document.getElementById("tooltip").style.display = "none" }
+        document.addEventListener("mousemove", e => {
+            if (document.getElementById("tooltip").style.display !== "none") moveTooltip(e)
+        })
+
+        // ── 섹터 목록 ────────────────────────────────────────────────
+        function renderSectorList() {
+            if (!allData) return
+            const list = document.getElementById("sector-list")
+            const items = getPoints()
+
+            const groups = { leading: [], improving: [], weakening: [], lagging: [], neutral: [] }
+            items.forEach(it => { (groups[it.quad] || groups.neutral).push(it) })
+            Object.values(groups).forEach(arr => arr.sort((a, b) => b.ratio - a.ratio))
+
+            const meta = [
+                { key: "leading",   label: "Leading",   desc: "상승 주도" },
+                { key: "improving", label: "Improving", desc: "모멘텀 전환" },
+                { key: "weakening", label: "Weakening", desc: "모멘텀 약화" },
+                { key: "lagging",   label: "Lagging",   desc: "소외 지속" },
+            ]
+
+            const chip = (item) => {
+                const ret = item.ret_5d
+                const retCls = ret > 0 ? "text-red-600" : ret < 0 ? "text-blue-500" : "text-gray-400"
+                const retStr = ret != null ? (ret > 0 ? "+" : "") + ret.toFixed(1) + "%" : ""
+                return `<div onclick="window.open('https://finance.yahoo.com/quote/${item.ticker}','_blank')"
+                    style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;margin:2px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;background:#fff;transition:background .12s;"
+                    onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">
+                    <span style="width:6px;height:6px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;"></span>
+                    <span style="font-size:11px;font-weight:600;color:#374151;">${item.ticker}</span>
+                    <span style="font-size:10px;color:#9ca3af;">${item.name}</span>
+                    <span style="font-size:9px;color:#6b7280;">R ${item.ratio.toFixed(1)} · M ${item.mom.toFixed(1)}</span>
+                    ${retStr ? `<span style="font-size:10px;font-weight:600;" class="${retCls}">${retStr}</span>` : ""}
+                </div>`
+            }
+
+            list.innerHTML = meta.map(mt => {
+                const arr = groups[mt.key]
+                if (!arr.length) return ""
+                const col = quadrantColor(mt.key)
+                return `<div style="margin-bottom:10px;">
+                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid #f3f4f6;">
+                        <span style="width:8px;height:8px;border-radius:50%;background:${col};"></span>
+                        <span style="font-size:11px;font-weight:700;color:#374151;">${mt.label}</span>
+                        <span style="font-size:10px;color:#9ca3af;">${mt.desc}</span>
+                        <span style="font-size:10px;color:#9ca3af;margin-left:auto;">${arr.length}</span>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;">${arr.map(chip).join("")}</div>
+                </div>`
+            }).join("")
+        }
+
+        // ── 필터 ──────────────────────────────────────────────────
+        function filterSector(q) {
+            sectorFilter = q
+            document.querySelectorAll(".q-btn").forEach(b => b.classList.remove("active"))
+            event.target.classList.add("active")
+            renderSectorRRG()
+        }
+
+        loadData()
+        setInterval(loadData, REFRESH_MS)
     </script>
 </body>
 
