@@ -58,7 +58,7 @@ UNIVERSE = {
 }
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-OUT_SIGNALS = os.path.join(BASE_DIR, "docs", "signals_us.json")
+OUT_SIGNALS = os.path.join(BASE_DIR, "docs", "data", "signals_us.json")
 OUT_HISTORY = os.path.join(BASE_DIR, "data", "rrg_history_us.json")
 HISTORY_KEEP_DAYS = 250   # history 보존 기간 (거래일 기준 약 1년)
 
@@ -217,6 +217,26 @@ def merge_history(rrg: dict):
     atomic_write(OUT_HISTORY, hist)
 
 
+def push_signals():
+    """signals_us.json 커밋/push (update_earnings.sh 패턴, 실패해도 계산 결과는 보존)"""
+    import subprocess
+    def run(*cmd):
+        return subprocess.run(cmd, cwd=BASE_DIR, capture_output=True, text=True)
+    try:
+        run("git", "add", "docs/data/signals_us.json")
+        r = run("git", "commit", "-m", "Update US RRG signals")
+        if "nothing to commit" in r.stdout + r.stderr:
+            print("[rrg_us] no signal change, skip push")
+            return
+        run("git", "pull", "--rebase")
+        r = run("git", "push")
+        if r.returncode != 0:
+            raise RuntimeError(r.stderr.strip()[-300:])
+        print("[rrg_us] git push 완료")
+    except Exception as e:
+        print(f"[rrg_us] git push 실패 (signals는 저장됨): {e}", file=sys.stderr)
+
+
 # ──────────────────────────────────────────────────────────────
 def main():
     close = fetch_prices()
@@ -232,6 +252,7 @@ def main():
 
     atomic_write(OUT_SIGNALS, signals)
     merge_history(rrg)
+    push_signals()
 
     q = {s["ticker"]: s["quadrant"] for s in signals["sectors"]}
     print(f"[rrg_us] OK as_of={signals['as_of']} {q}")
