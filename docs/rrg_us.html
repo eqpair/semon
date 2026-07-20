@@ -116,7 +116,11 @@
             background: #f3f4f6;
         }
 
-        .q-btn.active { background: #f3f4f6; border-color: #9ca3af; color: #111827; }
+        .q-btn.active {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+            color: #111827;
+        }
 
         .legend-dot {
             width: 10px;
@@ -183,7 +187,8 @@
         <header class="mb-6">
             <div class="flex justify-between items-center flex-wrap gap-3">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">RRG US <span class="text-lg font-normal text-gray-400">Relative Rotation Graph · SPDR Sectors</span></h1>
+                    <h1 class="text-3xl font-bold text-gray-800">RRG US <span
+                            class="text-lg font-normal text-gray-400">Relative Rotation Graph · SPDR Sectors</span></h1>
                     <div class="text-sm text-gray-500 mt-1">
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
                         &nbsp;|&nbsp;
@@ -193,10 +198,9 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
-                    <a href="./index.html"
-                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">RRG KR</a>
-                    <a href="./cross.html"
-                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Cross</a>
+                    <a href="./rrg.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">RRG
+                        KR</a>
                     <a href="./momentum.html"
                         class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Momentum</a>
                     <a href="./heatmap.html"
@@ -216,7 +220,8 @@
             class="flex flex-wrap gap-4 mb-5 items-center bg-white rounded-lg px-4 py-3 shadow-sm border border-gray-100">
             <span class="text-xs text-gray-400 mr-1 font-medium">사분면</span>
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
-                    style="background:var(--improving)"></span><span class="text-blue-600 font-medium">Improving</span><span class="text-gray-400">모멘텀 전환</span></span>
+                    style="background:var(--improving)"></span><span
+                    class="text-blue-600 font-medium">Improving</span><span class="text-gray-400">모멘텀 전환</span></span>
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
                     style="background:var(--lagging)"></span><span
                     class="text-amber-600 font-medium">Lagging</span><span class="text-gray-400">소외 지속</span></span>
@@ -226,6 +231,18 @@
             <span class="flex items-center gap-1.5 text-xs"><span class="legend-dot"
                     style="background:var(--weakening)"></span><span
                     class="text-red-500 font-medium">Weakening</span><span class="text-gray-400">모멘텀 약화</span></span>
+        </div>
+
+        <!-- 탭 -->
+        <div class="flex gap-2 mb-5">
+            <button id="tab-sector" onclick="switchTab('sector')"
+                class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-gray-800 text-white shadow-sm">
+                섹터 RRG
+            </button>
+            <button id="tab-stock" onclick="switchTab('stock')"
+                class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-white text-gray-500 border border-gray-200 hover:text-gray-700">
+                대표주식 RRG
+            </button>
         </div>
 
         <!-- ═══ 섹터 RRG ═══ -->
@@ -246,7 +263,8 @@
                             style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
                             데이터 로딩 중...</div>
                     </div>
-                    <div class="text-xs text-gray-400 mt-2">* 점 클릭 시 Yahoo Finance로 이동 &nbsp;|&nbsp; 궤적은 최근 3주 이동 경로 (마우스 오버 시 표시)
+                    <div class="text-xs text-gray-400 mt-2">* 점 클릭 시 Yahoo Finance로 이동 &nbsp;|&nbsp; 궤적은 최근 3주 이동 경로
+                        (마우스 오버 시 표시)
                     </div>
                 </div>
 
@@ -260,12 +278,58 @@
             </div>
         </div>
 
+        <!-- ═══ 대표주식 RRG ═══ -->
+        <div id="view-stock" style="display:none;">
+            <div class="mb-4">
+                <div class="text-xs text-gray-400 mb-2 font-medium">섹터 선택</div>
+                <div id="sector-chips" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <!-- 섹터 정보 카드 -->
+            <div id="sector-info" class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 mb-4"
+                style="display:none;">
+                <div class="flex items-baseline gap-2 flex-wrap mb-1">
+                    <span id="info-ticker" class="text-lg font-bold text-gray-800"></span>
+                    <span id="info-name" class="text-sm text-gray-400"></span>
+                    <span id="info-quad" class="pill neutral"></span>
+                </div>
+                <p id="info-desc" class="text-sm text-gray-600 leading-relaxed mb-2"></p>
+                <div id="info-points" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+                <div>
+                    <div class="text-sm font-medium text-gray-700 mb-3" id="stock-sector-label">섹터를 선택하세요</div>
+                    <div class="rrg-canvas" id="stock-rrg" style="height:540px;">
+                        <svg class="tail-svg" id="stock-tail-svg"></svg>
+                        <div id="stock-dots"></div>
+                        <div id="stock-loading"
+                            style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;">
+                            섹터를 선택하세요</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-2">* 궤적은 최근 이동 경로 (마우스 오버 시 표시) &nbsp;|&nbsp; 점 클릭 → Yahoo
+                        Finance
+                    </div>
+                </div>
+
+                <!-- 종목 테이블 -->
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col">
+                    <div class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">대표주식 상세</div>
+                    <div id="stock-table" class="overflow-y-auto" style="height:490px;max-height:490px;">
+                        <div class="text-gray-400 text-sm">섹터를 선택하세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
         const REFRESH_MS = 10 * 60 * 1000
         let allData = null
         let sectorFilter = "all"
+        let currentTab = "sector"
+        let currentSector = null
 
         async function loadData() {
             try {
@@ -309,8 +373,41 @@
                 }
             }
 
+            // URL 파라미터: ?sector=XLK → 종목 탭 직행 (index.html과 동일 패턴)
+            const params = new URLSearchParams(location.search)
+            const urlSector = params.get('sector')
+            if (urlSector && (allData.sectors || []).some(s => s.ticker === urlSector)) {
+                currentSector = urlSector
+                currentTab = "stock"
+                history.replaceState(null, '', location.pathname)
+            }
+
             renderSectorRRG()
             renderSectorList()
+            renderSectorChips()
+            syncTabs()
+            if (currentSector) renderStockView(currentSector)
+        }
+
+        function syncTabs() {
+            const isStock = currentTab === "stock"
+            document.getElementById("tab-sector").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${!isStock ? "bg-gray-800 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("tab-stock").className = `px-4 py-2 rounded-lg text-sm font-medium transition-all ${isStock ? "bg-gray-800 text-white shadow-sm" : "bg-white text-gray-500 border border-gray-200 hover:text-gray-700"}`
+            document.getElementById("view-sector").style.display = isStock ? "none" : "block"
+            document.getElementById("view-stock").style.display = isStock ? "block" : "none"
+        }
+
+        function switchTab(tab) {
+            currentTab = tab
+            syncTabs()
+        }
+
+        function selectSector(ticker) {
+            currentSector = ticker
+            currentTab = "stock"
+            syncTabs()
+            renderSectorChips()
+            renderStockView(ticker)
         }
 
         function quadrantColor(q) {
@@ -562,9 +659,7 @@
                     svg.querySelectorAll("[data-sector-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
                     hideTooltip()
                 })
-                dot.addEventListener("click", () => {
-                    window.open("https://finance.yahoo.com/quote/" + pt.ticker, "_blank")
-                })
+                dot.addEventListener("click", () => selectSector(pt.ticker))
                 container.appendChild(dot)
 
                 const lbl = document.createElement("div")
@@ -587,7 +682,7 @@
     <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${pt.mom.toFixed(2)}</span></div>
     <div style="color:#6b7280;font-size:11px;margin-top:4px;">1D: ${fmtRet(pt.ret_1d)}</div>
     <div style="color:#6b7280;font-size:11px;">1W: ${fmtRet(pt.ret_5d)}</div>
-    <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → Yahoo Finance</div>`
+    <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → 대표주식 RRG</div>`
             tip.style.display = "block"
             moveTooltip(e)
         }
@@ -627,17 +722,17 @@
             Object.values(groups).forEach(arr => arr.sort((a, b) => b.ratio - a.ratio))
 
             const meta = [
-                { key: "leading",   label: "Leading",   desc: "상승 주도" },
+                { key: "leading", label: "Leading", desc: "상승 주도" },
                 { key: "improving", label: "Improving", desc: "모멘텀 전환" },
                 { key: "weakening", label: "Weakening", desc: "모멘텀 약화" },
-                { key: "lagging",   label: "Lagging",   desc: "소외 지속" },
+                { key: "lagging", label: "Lagging", desc: "소외 지속" },
             ]
 
             const chip = (item) => {
                 const ret = item.ret_5d
                 const retCls = ret > 0 ? "text-red-600" : ret < 0 ? "text-blue-500" : "text-gray-400"
                 const retStr = ret != null ? (ret > 0 ? "+" : "") + ret.toFixed(1) + "%" : ""
-                return `<div onclick="window.open('https://finance.yahoo.com/quote/${item.ticker}','_blank')"
+                return `<div onclick="selectSector('${item.ticker}')"
                     style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;margin:2px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;background:#fff;transition:background .12s;"
                     onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">
                     <span style="width:6px;height:6px;border-radius:50%;background:${quadrantColor(item.quad)};flex-shrink:0;"></span>
@@ -662,6 +757,212 @@
                     <div style="display:flex;flex-wrap:wrap;">${arr.map(chip).join("")}</div>
                 </div>`
             }).join("")
+        }
+
+        // ── 종목 탭: 섹터 칩 ────────────────────────────────────────
+        function renderSectorChips() {
+            if (!allData) return
+            const chips = document.getElementById("sector-chips")
+            chips.innerHTML = (allData.sectors || []).map(s => {
+                const q = (s.quadrant || "neutral").toLowerCase()
+                const sel = s.ticker === currentSector
+                return `<div onclick="selectSector('${s.ticker}')"
+                    style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid ${sel ? '#9ca3af' : '#e5e7eb'};background:${sel ? '#f3f4f6' : '#f9fafb'};color:${sel ? '#111827' : '#374151'};transition:all .15s;">
+                    <span style="width:6px;height:6px;border-radius:50%;background:${quadrantColor(q)};flex-shrink:0;"></span>
+                    <span style="font-weight:600;">${s.ticker}</span>
+                    <span style="color:#9ca3af;">${s.name}</span>
+                </div>`
+            }).join("")
+        }
+
+        // ── 종목 탭: 정보 카드 + RRG + 테이블 ───────────────────────
+        function getSector(ticker) {
+            return (allData.sectors || []).find(s => s.ticker === ticker)
+        }
+
+        function renderStockView(ticker) {
+            const sec = getSector(ticker)
+            if (!sec) return
+            const q = (sec.quadrant || "neutral").toLowerCase()
+
+            // 정보 카드
+            const info = document.getElementById("sector-info")
+            info.style.display = "block"
+            document.getElementById("info-ticker").textContent = sec.ticker
+            document.getElementById("info-name").textContent = sec.name
+            const qEl = document.getElementById("info-quad")
+            qEl.className = "pill " + q
+            qEl.textContent = quadrantLabel(q)
+            document.getElementById("info-desc").textContent = sec.desc || ""
+            document.getElementById("info-points").innerHTML = (sec.points || []).map(p =>
+                `<span style="font-size:11px;padding:3px 10px;border-radius:12px;background:#f3f4f6;color:#374151;">✔ ${p}</span>`
+            ).join("")
+
+            document.getElementById("stock-sector-label").textContent = `▸ ${sec.ticker} ${sec.name} — 대표주식`
+            renderStockRRG(sec)
+            renderStockTable(sec)
+        }
+
+        function renderStockRRG(sec) {
+            const container = document.getElementById("stock-dots")
+            const svg = document.getElementById("stock-tail-svg")
+            const loading = document.getElementById("stock-loading")
+            container.innerHTML = ""
+            svg.innerHTML = ""
+
+            const stocks = (sec.stocks || []).filter(s => s.ratio != null && s.momentum != null)
+            if (!stocks.length) {
+                loading.style.display = "flex"
+                loading.textContent = "대표주식 데이터 없음"
+                return
+            }
+            loading.style.display = "none"
+
+            const el = document.getElementById("stock-rrg")
+            const W = el.offsetWidth || 600
+            const H = el.offsetHeight || 480
+            const pad = 50
+
+            const allR = stocks.flatMap(s => [s.ratio, ...(s.tail || []).map(t => t[1])])
+            const allM = stocks.flatMap(s => [s.momentum, ...(s.tail || []).map(t => t[2])])
+            const rMin = Math.min(...allR, 99) - 0.5
+            const rMax = Math.max(...allR, 101) + 0.5
+            const mMin = Math.min(...allM, 99) - 0.5
+            const mMax = Math.max(...allM, 101) + 0.5
+
+            function toPos(r, m) {
+                const x = pad + ((r - rMin) / (rMax - rMin)) * (W - pad * 2)
+                const y = (H - pad) - ((m - mMin) / (mMax - mMin)) * (H - pad * 2)
+                return { x: Math.max(8, Math.min(W - 8, x)), y: Math.max(8, Math.min(H - 8, y)) }
+            }
+
+            drawGrid(svg, W, H, pad, rMin, rMax, mMin, mMax)
+
+            // 궤적 (hover 시 표시)
+            stocks.forEach(st => {
+                const tail = (st.tail || []).map(t => ({ r: t[1], m: t[2] }))
+                if (tail.length < 2) return
+                const q = (st.quadrant || "neutral").toLowerCase()
+                const color = quadrantColor(q)
+
+                const pts = tail.map(t => {
+                    const p = toPos(t.r, t.m)
+                    return p.x + "," + p.y
+                }).join(" ")
+                const pl = document.createElementNS("http://www.w3.org/2000/svg", "polyline")
+                pl.setAttribute("points", pts)
+                pl.setAttribute("fill", "none")
+                pl.setAttribute("stroke", color)
+                pl.setAttribute("stroke-width", "2")
+                pl.setAttribute("stroke-opacity", "0.7")
+                pl.setAttribute("stroke-dasharray", "4,2")
+                pl.setAttribute("visibility", "hidden")
+                pl.setAttribute("data-stock-tail", st.ticker)
+                svg.appendChild(pl)
+
+                const fp = toPos(tail[0].r, tail[0].m)
+                const startDot = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                startDot.setAttribute("cx", fp.x.toFixed(1))
+                startDot.setAttribute("cy", fp.y.toFixed(1))
+                startDot.setAttribute("r", "3")
+                startDot.setAttribute("fill", "none")
+                startDot.setAttribute("stroke", color)
+                startDot.setAttribute("stroke-width", "1.5")
+                startDot.setAttribute("visibility", "hidden")
+                startDot.setAttribute("data-stock-tail", st.ticker)
+                svg.appendChild(startDot)
+            })
+
+            // 점 + 라벨
+            stocks.forEach(st => {
+                const q = (st.quadrant || "neutral").toLowerCase()
+                const pos = toPos(st.ratio, st.momentum)
+                const color = quadrantColor(q)
+
+                const dot = document.createElement("div")
+                dot.className = "dot " + q
+                dot.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;width:9px;height:9px;"
+                dot.addEventListener("mouseenter", e => {
+                    svg.querySelectorAll("[data-stock-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    svg.querySelectorAll(`[data-stock-tail="${st.ticker}"]`).forEach(el => el.setAttribute("visibility", "visible"))
+                    showStockTooltip(e, st)
+                })
+                dot.addEventListener("mouseleave", () => {
+                    svg.querySelectorAll("[data-stock-tail]").forEach(el => el.setAttribute("visibility", "hidden"))
+                    hideTooltip()
+                })
+                dot.addEventListener("click", () => {
+                    window.open("https://finance.yahoo.com/quote/" + st.ticker, "_blank")
+                })
+                container.appendChild(dot)
+
+                const lbl = document.createElement("div")
+                lbl.className = "dot-label"
+                lbl.style.cssText = "left:" + pos.x + "px;top:" + pos.y + "px;color:" + color + ";font-size:9px;"
+                lbl.textContent = st.ticker
+                container.appendChild(lbl)
+            })
+        }
+
+        function showStockTooltip(e, st) {
+            const q = (st.quadrant || "neutral").toLowerCase()
+            const tip = document.getElementById("tooltip")
+            const fmtRet = v => v != null
+                ? `<span style="color:${v > 0 ? '#dc2626' : v < 0 ? '#2563eb' : '#9ca3af'};">${(v > 0 ? '+' : '') + v.toFixed(2)}%</span>`
+                : '<span style="color:#9ca3af;">-</span>'
+            tip.innerHTML = `
+    <div style="font-weight:600;margin-bottom:4px;color:#111827;">${st.ticker} <span style="font-weight:400;color:#9ca3af;font-size:11px;">${st.name}</span></div>
+    <div style="color:${quadrantColor(q)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(q)}</div>
+    <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${st.ratio.toFixed(2)}</span></div>
+    <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${st.momentum.toFixed(2)}</span></div>
+    <div style="color:#6b7280;font-size:11px;margin-top:4px;">1D: ${fmtRet(st.ret_1d)}</div>
+    <div style="color:#6b7280;font-size:11px;">1W: ${fmtRet(st.ret_5d)}</div>
+    <div style="color:#9ca3af;font-size:10px;margin-top:5px;">클릭 → Yahoo Finance</div>`
+            tip.style.display = "block"
+            moveTooltip(e)
+        }
+
+        function renderStockTable(sec) {
+            const tableEl = document.getElementById("stock-table")
+            const stocks = sec.stocks || []
+            if (!stocks.length) {
+                tableEl.innerHTML = '<div class="text-gray-400 text-sm">데이터 없음</div>'
+                return
+            }
+            const order = { leading: 0, improving: 1, weakening: 2, lagging: 3, neutral: 4 }
+            const sorted = [...stocks].sort((a, b) => {
+                const qa = (a.quadrant || "neutral").toLowerCase(), qb = (b.quadrant || "neutral").toLowerCase()
+                return (order[qa] ?? 4) - (order[qb] ?? 4) || b.ratio - a.ratio
+            })
+            tableEl.innerHTML = `
+    <table style="width:100%;border-collapse:collapse;font-size:11px;">
+      <thead>
+        <tr style="color:#9ca3af;border-bottom:1px solid #f3f4f6;">
+          <th style="padding:6px 8px;text-align:left;font-weight:500;">종목</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">1D</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">1W</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-R</th>
+          <th style="padding:6px 4px;text-align:right;font-weight:500;">RS-M</th>
+          <th style="padding:6px 8px;text-align:right;font-weight:500;">사분면</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${sorted.map(st => {
+                const q = (st.quadrant || "neutral").toLowerCase()
+                const r1c = st.ret_1d > 0 ? '#dc2626' : st.ret_1d < 0 ? '#2563eb' : '#9ca3af'
+                const r5c = st.ret_5d > 0 ? '#dc2626' : st.ret_5d < 0 ? '#2563eb' : '#9ca3af'
+                return `<tr style="border-bottom:1px solid #f3f4f6;border-left:3px solid ${quadrantColor(q)};">
+                <td style="padding:7px 8px;"><a href="https://finance.yahoo.com/quote/${st.ticker}" target="_blank" style="color:#111827;text-decoration:none;font-weight:600;">${st.ticker}</a>
+                    <span style="color:#9ca3af;font-size:10px;"> ${st.name}</span></td>
+                <td style="padding:7px 4px;text-align:right;color:${r1c};">${st.ret_1d != null ? (st.ret_1d > 0 ? '+' : '') + st.ret_1d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:${r5c};">${st.ret_5d != null ? (st.ret_5d > 0 ? '+' : '') + st.ret_5d.toFixed(1) + '%' : '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:#6b7280;">${st.ratio?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 4px;text-align:right;color:#6b7280;">${st.momentum?.toFixed(1) ?? '-'}</td>
+                <td style="padding:7px 8px;text-align:right;"><span class="pill ${q}">${quadrantLabel(q)}</span></td>
+            </tr>`
+            }).join("")}
+      </tbody>
+    </table>`
         }
 
         // ── 필터 ──────────────────────────────────────────────────
