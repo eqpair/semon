@@ -301,7 +301,11 @@
                     <span class="pill ${r.krQ}">${QLABEL[r.krQ]}</span>
                 </div>
                 <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs text-gray-500">${r.usTicker}${confMark} <span class="text-gray-400">${r.usName}</span></span>
+                    <span class="text-xs text-gray-500">
+                        <span onclick="event.stopPropagation();location.href='./rrg_us.html?sector=${r.usTicker}'"
+                              style="text-decoration:underline dotted;cursor:pointer;" title="US 대표주식 RRG 보기">${r.usTicker}</span>${confMark}
+                        <span class="text-gray-400">${r.usName}</span>
+                    </span>
                     <span class="pill ${r.usQ}">${QLABEL[r.usQ]}</span>
                 </div>
                 <div class="text-xs text-gray-500 flex flex-wrap gap-x-3 gap-y-0.5">
