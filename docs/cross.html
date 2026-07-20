@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SEMon RRG Cross · KR×US</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --improving: #2563eb;
+            --lagging: #d97706;
+            --leading: #16a34a;
+            --weakening: #dc2626;
+            --neutral: #9ca3af;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .pill.improving {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .pill.lagging {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .pill.leading {
+            background: #dcfce7;
+            color: #14532d;
+        }
+
+        .pill.weakening {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .pill.neutral {
+            background: #f3f4f6;
+            color: #9ca3af;
+        }
+
+        .sec-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: box-shadow .15s, transform .15s;
+        }
+
+        .sec-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+            transform: translateY(-1px);
+        }
+
+        .cat-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .cat-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: #374151;
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 1px 8px;
+        }
+
+        .mx-cell {
+            border: 1px solid #f3f4f6;
+            min-height: 54px;
+            padding: 4px;
+            font-size: 10px;
+            vertical-align: top;
+        }
+
+        .mx-chip {
+            display: inline-block;
+            padding: 1px 6px;
+            margin: 1px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            font-size: 9.5px;
+            color: #374151;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .mx-chip:hover {
+            background: #f3f4f6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <div class="container mx-auto px-4 py-6 max-w-screen-2xl">
+
+        <!-- 헤더 -->
+        <header class="mb-6">
+            <div class="flex justify-between items-center flex-wrap gap-3">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">RRG Cross <span
+                            class="text-lg font-normal text-gray-400">KR × US Sector Alignment</span></h1>
+                    <div class="text-sm text-gray-500 mt-1">
+                        KR: <span id="kr-updated" class="font-medium text-gray-700">-</span>
+                        &nbsp;|&nbsp;
+                        US: <span id="us-asof" class="font-medium text-gray-700">-</span> <span
+                            class="text-gray-400">(전일 마감)</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="./index.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">RRG
+                        KR</a>
+                    <a href="./rrg_us.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">RRG
+                        US</a>
+                    <a href="./momentum.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Momentum</a>
+                    <a href="./heatmap.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Heatmap</a>
+                    <a href="./stats.html"
+                        class="px-3 py-1 text-xs rounded bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">Stats</a>
+                    <a href="https://eqmon.duckdns.org"
+                        style="font-size:12px;color:#fff;text-decoration:none;padding:4px 10px;border:1px solid #334155;border-radius:6px;background:#1e293b;">HOME</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 요약 스트립 -->
+        <div id="summary" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
+
+        <!-- 카테고리 섹션 -->
+        <div id="categories" class="space-y-6">
+            <div class="text-gray-400 text-sm">데이터 로딩 중...</div>
+        </div>
+
+        <!-- 4×4 매트릭스 -->
+        <div class="mt-8 bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+            <div class="mb-3">
+                <h2 class="text-sm font-semibold text-gray-800">정렬 매트릭스</h2>
+                <p class="text-xs text-gray-400 mt-0.5">행 = KR 섹터 사분면 · 열 = US 카운터파트 사분면 · 칩 클릭 시 KR 종목 RRG로 이동</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table id="matrix" style="width:100%;border-collapse:collapse;"></table>
+            </div>
+        </div>
+
+        <!-- 미매핑 -->
+        <div id="unmapped-wrap" class="mt-4 text-xs text-gray-400" style="display:none;">
+            매핑 제외: <span id="unmapped"></span>
+        </div>
+
+        <div class="mt-6 text-xs text-gray-400 leading-relaxed">
+            * US 사분면은 전일 뉴욕 마감(SPY 대비) 기준이며, 시차상 국내 당일 판단의 선행 정보로 사용합니다.
+            "US 선행 · 전환 관찰"은 미국 카운터파트가 먼저 회전했으나 국내가 아직 소외/약화 구간인 섹터로,
+            MID-RADAR(Lag→Imp)와 동일한 관점의 조기 관찰 대상입니다. ΔM = KR RS-Mom − US RS-Mom.
+        </div>
+
+    </div>
+
+    <script>
+        const REFRESH_MS = 10 * 60 * 1000
+        let KR = null, US = null, MAP = null
+
+        const QCOLOR = { improving: "#2563eb", lagging: "#d97706", leading: "#16a34a", weakening: "#dc2626", neutral: "#9ca3af" }
+        const QLABEL = { improving: "Improving", lagging: "Lagging", leading: "Leading", weakening: "Weakening", neutral: "-" }
+        const STRONG = ["leading", "improving"]
+        const QORDER = ["leading", "improving", "weakening", "lagging"]
+
+        async function loadAll() {
+            try {
+                const t = Date.now()
+                const [kr, us, map] = await Promise.all([
+                    fetch("./data/signals.json?t=" + t).then(r => { if (!r.ok) throw 0; return r.json() }),
+                    fetch("./data/signals_us.json?t=" + t).then(r => { if (!r.ok) throw 0; return r.json() }),
+                    fetch("./data/kr_us_sector_map.json?t=" + t).then(r => { if (!r.ok) throw 0; return r.json() }),
+                ])
+                KR = kr; US = us; MAP = map
+                render()
+            } catch (e) {
+                document.getElementById("categories").innerHTML =
+                    '<div class="text-sm text-gray-400">데이터 로드 실패 — signals.json / signals_us.json / kr_us_sector_map.json 확인</div>'
+            }
+        }
+
+        // ── 조인: KR 섹터 + US 카운터파트 ──────────────────────────
+        function joinRows() {
+            const usByTicker = {}
+            for (const s of (US.sectors || [])) usByTicker[s.ticker] = s
+
+            const rows = [], unmapped = []
+            const sectorRRG = KR.sector_rrg || {}
+            const sectors = KR.sectors || {}
+
+            for (const [name, rrg] of Object.entries(sectorRRG)) {
+                const krQ = (rrg.quadrant || "neutral").toLowerCase()
+                const m = (MAP.map || {})[name]
+                const meta = sectors[name] || {}
+                if (!m || !m.us || !m.us.length) {
+                    unmapped.push(name)
+                    continue
+                }
+                const usT = usByTicker[m.us[0]]
+                if (!usT) { unmapped.push(name); continue }
+                rows.push({
+                    name,
+                    krQ,
+                    krR: rrg.rs_ratio, krM: rrg.rs_momentum,
+                    usTicker: usT.ticker,
+                    usName: usT.name,
+                    usQ: (usT.quadrant || "neutral").toLowerCase(),
+                    usR: usT.ratio, usM: usT.momentum,
+                    usRet5d: usT.ret_5d,
+                    conf: m.confidence,
+                    imp: meta.improving_count || 0,
+                    watch: meta.watch_count || 0,
+                    total: meta.total || (meta.candidates ? meta.candidates.length : 0),
+                    ret5d: meta.sector_ret_5d,
+                    dM: (rrg.rs_momentum != null && usT.momentum != null)
+                        ? rrg.rs_momentum - usT.momentum : null,
+                })
+            }
+            return { rows, unmapped }
+        }
+
+        // ── 카테고리 분류 ───────────────────────────────────────────
+        function classify(r) {
+            const krS = STRONG.includes(r.krQ), usS = STRONG.includes(r.usQ)
+            if (krS && usS) return "double"
+            if (!krS && usS) return "uslead"
+            if (krS && !usS) return "kronly"
+            return "weak"
+        }
+
+        const CATS = [
+            { key: "uslead", icon: "🔵", title: "US 선행 · 전환 관찰", desc: "미국은 이미 회전, 국내는 아직 소외/약화 — Lag→Imp 조기 후보군", accent: "#2563eb" },
+            { key: "double", icon: "🟢", title: "더블 순풍", desc: "KR·US 동반 강세 — 글로벌 뒷받침이 확인된 주도 섹터", accent: "#16a34a" },
+            { key: "kronly", icon: "🟠", title: "국내 단독 강세", desc: "US 카운터파트 약세 — 수급/테마 주도, 지속성 점검 필요", accent: "#d97706" },
+            { key: "weak", icon: "⚪", title: "정렬 약세", desc: "KR·US 동반 약세", accent: "#9ca3af" },
+        ]
+
+        function fmtRet(v) {
+            if (v == null) return '<span class="text-gray-400">-</span>'
+            const cls = v > 0 ? "text-red-600" : v < 0 ? "text-blue-500" : "text-gray-400"
+            return `<span class="${cls} font-medium">${(v > 0 ? "+" : "") + v.toFixed(1)}%</span>`
+        }
+
+        function card(r) {
+            const dMStr = r.dM != null
+                ? `<span style="color:${r.dM > 0 ? '#16a34a' : '#dc2626'};font-weight:600;">${(r.dM > 0 ? '+' : '') + r.dM.toFixed(1)}</span>`
+                : '-'
+            const confMark = r.conf === "low" ? '<span class="text-gray-400" title="저신뢰 매핑">?</span>' : ''
+            const impBadge = r.imp > 0
+                ? `<span style="font-size:10px;color:#2563eb;font-weight:700;">Imp ${r.imp}</span>`
+                : `<span style="font-size:10px;color:#c4c7cc;">Imp 0</span>`
+            return `<div class="sec-card" onclick="location.href='./index.html?sector=${encodeURIComponent(r.name)}'">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-sm font-semibold text-gray-800">${r.name}</span>
+                    <span class="pill ${r.krQ}">${QLABEL[r.krQ]}</span>
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs text-gray-500">${r.usTicker}${confMark} <span class="text-gray-400">${r.usName}</span></span>
+                    <span class="pill ${r.usQ}">${QLABEL[r.usQ]}</span>
+                </div>
+                <div class="text-xs text-gray-500 flex flex-wrap gap-x-3 gap-y-0.5">
+                    <span>KR M <b class="text-gray-700">${r.krM != null ? r.krM.toFixed(1) : '-'}</b></span>
+                    <span>US M <b class="text-gray-700">${r.usM != null ? r.usM.toFixed(1) : '-'}</b></span>
+                    <span>ΔM ${dMStr}</span>
+                </div>
+                <div class="text-xs text-gray-500 flex flex-wrap gap-x-3 gap-y-0.5 mt-1">
+                    <span>KR 5D ${fmtRet(r.ret5d)}</span>
+                    <span>US 5D ${fmtRet(r.usRet5d)}</span>
+                    ${impBadge}
+                </div>
+            </div>`
+        }
+
+        // 카테고리별 정렬: 각 관점에서 "먼저 볼 것"이 위로
+        function sortRows(key, arr) {
+            const a = [...arr]
+            if (key === "uslead") a.sort((x, y) => (y.usR ?? 0) - (x.usR ?? 0) || (y.imp - x.imp))   // US 강도순
+            else if (key === "double") a.sort((x, y) => (y.krM ?? 0) - (x.krM ?? 0))                 // KR 모멘텀순
+            else if (key === "kronly") a.sort((x, y) => (y.krR ?? 0) - (x.krR ?? 0))
+            else a.sort((x, y) => (y.dM ?? -99) - (x.dM ?? -99))                                     // 약세 중 회복 기미순
+            return a
+        }
+
+        function render() {
+            document.getElementById("kr-updated").textContent = KR.updated_at || "-"
+            document.getElementById("us-asof").textContent = US.as_of || "-"
+
+            const { rows, unmapped } = joinRows()
+            const groups = { double: [], uslead: [], kronly: [], weak: [] }
+            rows.forEach(r => groups[classify(r)].push(r))
+
+            // 요약 스트립
+            document.getElementById("summary").innerHTML = CATS.map(c => `
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm px-4 py-3">
+                    <div class="text-xs text-gray-400">${c.icon} ${c.title}</div>
+                    <div class="text-2xl font-bold mt-0.5" style="color:${c.accent};">${groups[c.key].length}<span class="text-sm text-gray-400 font-normal"> 섹터</span></div>
+                </div>`).join("")
+
+            // 카테고리 섹션
+            document.getElementById("categories").innerHTML = CATS.map(c => {
+                const arr = sortRows(c.key, groups[c.key])
+                if (!arr.length) return ""
+                const grid = c.key === "weak"
+                    ? `<details><summary class="text-xs text-gray-400 cursor-pointer mb-2">펼치기 (${arr.length})</summary>
+                       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">${arr.map(card).join("")}</div></details>`
+                    : `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">${arr.map(card).join("")}</div>`
+                return `<div>
+                    <div class="cat-header">
+                        <span class="text-base font-bold text-gray-800">${c.icon} ${c.title}</span>
+                        <span class="cat-count">${arr.length}</span>
+                        <span class="text-xs text-gray-400">${c.desc}</span>
+                    </div>
+                    ${grid}
+                </div>`
+            }).join("")
+
+            renderMatrix(rows)
+
+            if (unmapped.length) {
+                document.getElementById("unmapped-wrap").style.display = "block"
+                document.getElementById("unmapped").textContent = unmapped.join(", ")
+            }
+        }
+
+        // ── 4×4 매트릭스 ────────────────────────────────────────────
+        function renderMatrix(rows) {
+            const cell = {}
+            QORDER.forEach(k => QORDER.forEach(u => cell[k + "|" + u] = []))
+            rows.forEach(r => {
+                const key = r.krQ + "|" + r.usQ
+                if (cell[key]) cell[key].push(r)
+            })
+
+            const th = q => `<th style="padding:6px;font-size:10px;font-weight:700;color:${QCOLOR[q]};border:1px solid #f3f4f6;background:#fafafa;">${QLABEL[q]}</th>`
+            const html = [`<tr><th style="padding:6px;font-size:10px;color:#9ca3af;border:1px solid #f3f4f6;background:#fafafa;">KR ↓ · US →</th>${QORDER.map(th).join("")}</tr>`]
+
+            for (const kq of QORDER) {
+                const tds = QORDER.map(uq => {
+                    const arr = cell[kq + "|" + uq]
+                    // 의미 강조: KR약+US강(좌하 개념) = 파랑 틴트, 둘다 강 = 초록 틴트
+                    const krS = STRONG.includes(kq), usS = STRONG.includes(uq)
+                    const bg = (krS && usS) ? "rgba(22,163,74,0.05)"
+                        : (!krS && usS) ? "rgba(37,99,235,0.06)"
+                        : (krS && !usS) ? "rgba(217,119,6,0.05)" : "#fff"
+                    const chips = arr.map(r =>
+                        `<span class="mx-chip" onclick="location.href='./index.html?sector=${encodeURIComponent(r.name)}'">${r.name}</span>`).join("")
+                    return `<td class="mx-cell" style="background:${bg};">${chips || '<span style="color:#e5e7eb;">·</span>'}</td>`
+                }).join("")
+                html.push(`<tr>${th(kq)}${tds}</tr>`)
+            }
+            document.getElementById("matrix").innerHTML = html.join("")
+        }
+
+        loadAll()
+        setInterval(loadAll, REFRESH_MS)
+    </script>
+</body>
+
+</html>
