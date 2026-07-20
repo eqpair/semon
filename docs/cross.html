@@ -156,7 +156,7 @@
         </header>
 
         <!-- 요약 스트립 -->
-        <div id="summary" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
+        <div id="summary" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 mb-6"></div>
 
         <!-- 카테고리 섹션 -->
         <div id="categories" class="space-y-6">
@@ -181,8 +181,11 @@
 
         <div class="mt-6 text-xs text-gray-400 leading-relaxed">
             * US 사분면은 전일 뉴욕 마감(SPY 대비) 기준이며, 시차상 국내 당일 판단의 선행 정보로 사용합니다.
-            "US 선행 · 전환 관찰"은 미국 카운터파트가 먼저 회전했으나 국내가 아직 소외/약화 구간인 섹터로,
-            MID-RADAR(Lag→Imp)와 동일한 관점의 조기 관찰 대상입니다. ΔM = KR RS-Mom − US RS-Mom.
+            우선순위 논리: ① US Leading은 Improving의 가짜 반등 리스크를 통과한 검증된 추세이므로, 그 위에서
+            KR이 Improving으로 도는 조합이 확인×조기성이 최적. ② 동조 전환은 리드타임이 길지만 확인 강도가 낮음.
+            ③ 대기 풀은 매수 리스트가 아니라 "KR Lag→Imp 발생 시 어느 섹터 신호를 더 신뢰할지"의 감시 리스트.
+            섹터별 KR-US 커플링 강도는 균일하지 않음(반도체 강함, 은행·화장품 약함) — us_tailwind 실증 데이터
+            축적 후 보정 예정. ΔM = KR RS-Mom − US RS-Mom.
         </div>
 
     </div>
@@ -252,18 +255,28 @@
             return { rows, unmapped }
         }
 
-        // ── 카테고리 분류 ───────────────────────────────────────────
+        // ── 카테고리 분류: 우선순위 체계 ────────────────────────────
+        // ① exec  : US Leading + KR Improving — 검증된 추세 + 조기 진입 (최우선)
+        // ② sync  : US Improving + KR Improving — 동조 전환 (조기 베팅)
+        // ③ wait  : US 강세 + KR 미전환 — KR Lag→Imp 발생이 트리거인 감시 풀
+        //    hold  : KR Leading + US 강세 — 보유 지속 판단용, 신규 진입엔 늦음
+        //    kronly: KR 강세 + US 약세 — 수급/테마 주도, 지속성 의심
+        //    weak  : 동반 약세
         function classify(r) {
             const krS = STRONG.includes(r.krQ), usS = STRONG.includes(r.usQ)
-            if (krS && usS) return "double"
-            if (!krS && usS) return "uslead"
+            if (r.usQ === "leading" && r.krQ === "improving") return "exec"
+            if (r.usQ === "improving" && r.krQ === "improving") return "sync"
+            if (usS && !krS) return "wait"
+            if (r.krQ === "leading" && usS) return "hold"
             if (krS && !usS) return "kronly"
             return "weak"
         }
 
         const CATS = [
-            { key: "uslead", icon: "🔵", title: "US 선행 · 전환 관찰", desc: "미국은 이미 회전, 국내는 아직 소외/약화 — Lag→Imp 조기 후보군", accent: "#2563eb" },
-            { key: "double", icon: "🟢", title: "더블 순풍", desc: "KR·US 동반 강세 — 글로벌 뒷받침이 확인된 주도 섹터", accent: "#16a34a" },
+            { key: "exec", icon: "①", title: "실행 우선 · US Lead + KR Imp", desc: "미국은 추세 검증 완료, 국내는 전환 초입 — 확인×조기성 최적 조합", accent: "#16a34a" },
+            { key: "sync", icon: "②", title: "동조 전환 · US Imp + KR Imp", desc: "양 시장 동시 회전 — 리드타임 길지만 미국 쪽 확인 강도 낮음", accent: "#2563eb" },
+            { key: "wait", icon: "③", title: "대기 풀 · US 선행", desc: "미국 회전 완료, 국내 미전환 — KR Lag→Imp 신호 발생이 진입 트리거", accent: "#7c3aed" },
+            { key: "hold", icon: "🟢", title: "동반 주도", desc: "KR Leading + US 강세 — 보유 지속 근거, 신규 진입엔 늦은 구간", accent: "#6b7280" },
             { key: "kronly", icon: "🟠", title: "국내 단독 강세", desc: "US 카운터파트 약세 — 수급/테마 주도, 지속성 점검 필요", accent: "#d97706" },
             { key: "weak", icon: "⚪", title: "정렬 약세", desc: "KR·US 동반 약세", accent: "#9ca3af" },
         ]
@@ -307,8 +320,11 @@
         // 카테고리별 정렬: 각 관점에서 "먼저 볼 것"이 위로
         function sortRows(key, arr) {
             const a = [...arr]
-            if (key === "uslead") a.sort((x, y) => (y.usR ?? 0) - (x.usR ?? 0) || (y.imp - x.imp))   // US 강도순
-            else if (key === "double") a.sort((x, y) => (y.krM ?? 0) - (x.krM ?? 0))                 // KR 모멘텀순
+            if (key === "exec") a.sort((x, y) => (y.krM ?? 0) - (x.krM ?? 0))                        // KR 전환 강도순
+            else if (key === "sync") a.sort((x, y) => (y.usM ?? 0) - (x.usM ?? 0))                   // US 모멘텀순 (확인 강도)
+            else if (key === "wait") a.sort((x, y) =>                                                // US Lead 먼저, 강도순, Imp종목 배지순
+                (y.usQ === "leading") - (x.usQ === "leading") || (y.usR ?? 0) - (x.usR ?? 0) || (y.imp - x.imp))
+            else if (key === "hold") a.sort((x, y) => (y.krR ?? 0) - (x.krR ?? 0))
             else if (key === "kronly") a.sort((x, y) => (y.krR ?? 0) - (x.krR ?? 0))
             else a.sort((x, y) => (y.dM ?? -99) - (x.dM ?? -99))                                     // 약세 중 회복 기미순
             return a
@@ -319,7 +335,7 @@
             document.getElementById("us-asof").textContent = US.as_of || "-"
 
             const { rows, unmapped } = joinRows()
-            const groups = { double: [], uslead: [], kronly: [], weak: [] }
+            const groups = { exec: [], sync: [], wait: [], hold: [], kronly: [], weak: [] }
             rows.forEach(r => groups[classify(r)].push(r))
 
             // 요약 스트립
@@ -333,7 +349,7 @@
             document.getElementById("categories").innerHTML = CATS.map(c => {
                 const arr = sortRows(c.key, groups[c.key])
                 if (!arr.length) return ""
-                const grid = c.key === "weak"
+                const grid = (c.key === "weak" || c.key === "hold")
                     ? `<details><summary class="text-xs text-gray-400 cursor-pointer mb-2">펼치기 (${arr.length})</summary>
                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">${arr.map(card).join("")}</div></details>`
                     : `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">${arr.map(card).join("")}</div>`
@@ -372,9 +388,11 @@
                     const arr = cell[kq + "|" + uq]
                     // 의미 강조: KR약+US강(좌하 개념) = 파랑 틴트, 둘다 강 = 초록 틴트
                     const krS = STRONG.includes(kq), usS = STRONG.includes(uq)
-                    const bg = (krS && usS) ? "rgba(22,163,74,0.05)"
-                        : (!krS && usS) ? "rgba(37,99,235,0.06)"
-                        : (krS && !usS) ? "rgba(217,119,6,0.05)" : "#fff"
+                    const isExec = (kq === "improving" && uq === "leading")
+                    const bg = isExec ? "rgba(22,163,74,0.14)"
+                        : (krS && usS) ? "rgba(22,163,74,0.05)"
+                            : (!krS && usS) ? "rgba(124,58,237,0.06)"
+                                : (krS && !usS) ? "rgba(217,119,6,0.05)" : "#fff"
                     const chips = arr.map(r =>
                         `<span class="mx-chip" onclick="location.href='./index.html?sector=${encodeURIComponent(r.name)}'">${r.name}</span>`).join("")
                     return `<td class="mx-cell" style="background:${bg};">${chips || '<span style="color:#e5e7eb;">·</span>'}</td>`
