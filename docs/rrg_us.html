@@ -431,6 +431,7 @@
                     tail: (s.tail || []).map(t => ({ date: t[0], rs_ratio: t[1], rs_momentum: t[2] })),
                     ret_1d: s.ret_1d,
                     ret_5d: s.ret_5d,
+                    desc: s.desc || "",
                 }))
         }
 
@@ -678,6 +679,7 @@
             tip.innerHTML = `
     <div style="font-weight:600;margin-bottom:4px;color:#111827;">${pt.ticker} <span style="font-weight:400;color:#9ca3af;font-size:11px;">${pt.name}</span></div>
     <div style="color:${quadrantColor(pt.quad)};font-size:11px;margin-bottom:4px;font-weight:500;">${quadrantLabel(pt.quad)}</div>
+    ${pt.desc ? `<div style="color:#6b7280;font-size:10.5px;line-height:1.5;max-width:230px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #f3f4f6;">${pt.desc}</div>` : ''}
     <div style="color:#6b7280;font-size:11px;">RS-Ratio: <span style="color:#111827;">${pt.ratio.toFixed(2)}</span></div>
     <div style="color:#6b7280;font-size:11px;">RS-Mom: <span style="color:#111827;">${pt.mom.toFixed(2)}</span></div>
     <div style="color:#6b7280;font-size:11px;margin-top:4px;">1D: ${fmtRet(pt.ret_1d)}</div>
