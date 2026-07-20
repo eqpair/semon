@@ -61,7 +61,7 @@ UNIVERSE = {
 SECTOR_META = {
     "XLK": {
         "desc": "반도체, 소프트웨어, 클라우드, AI, 하드웨어 기업. 최근 10년 이상 미국 증시를 이끌어온 핵심 섹터.",
-        "points": ["AI 성장 최대 수혜", "가장 높은 장기 수익률(연평균 ~20%)", "성장성 매우 높음"],
+        "points": ["AI 성장 최대 수혜", "장기 수익률 전 섹터 최상위", "성장성 매우 높음"],
         "stocks": {"AAPL": "Apple", "MSFT": "Microsoft", "NVDA": "NVIDIA", "AVGO": "Broadcom",
                    "ORCL": "Oracle", "AMD": "AMD", "CSCO": "Cisco", "ADBE": "Adobe", "CRM": "Salesforce"},
     },
