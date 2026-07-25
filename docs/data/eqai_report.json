@@ -1,179 +1,186 @@
 {
-  "generated_at": "2026-07-25 07:02:35",
+  "generated_at": "2026-07-26 07:02:27",
   "macro": {
     "S&P500": {
       "price": 7411.98,
       "change": 0.05,
-      "reason": "방어섹터(헬스케어·에너지·금융) 강세와 기술주 약세가 상쇄 — AI 투자 우려 속 섹터 로테이션(자금 이동)으로 지수 보합권 유지",
+      "reason": "방어주(헬스케어·금융·유틸리티) 주도로 소폭 상승했으나 기술주 약세가 상쇄, 변동성 확대 속 혼조세",
       "drivers": [
-        "헬스케어XLV +상승(R106.2/M100.5 Leading)",
-        "기술XLK 급락(Lagging)"
+        "헬스케어XLV RS-R 106.2 방어 매수",
+        "기술XLK lagging 전환으로 지수 압박"
       ]
     },
     "NASDAQ": {
       "price": 24975.82,
       "change": -0.64,
-      "reason": "Moody's의 빅테크 신용등급 우려와 테슬라 18% 주간 폭락, AI 투자 지속가능성 의문 제기로 기술주 집단 약세",
+      "reason": "AI 회의론 부상과 중국 Kimi K3 경쟁 우려로 빅테크 중심 매도, 커뮤니케이션 섹터도 lagging 동참",
       "drivers": [
-        "TSLA 주간 -18%(2022년 이후 최악)",
-        "빅테크 채권 스프레드 확대"
+        "AI 회의론 정치 연합 형성 리스크",
+        "중국 Kimi K3 AI 모델 경쟁력 부각"
       ]
     },
     "DOW": {
       "price": 51947.25,
       "change": 0.46,
-      "reason": "방어섹터·금융주 강세에 힘입어 상승 — AI 투자 부담 없는 전통 산업·배당주로 자금 이동",
+      "reason": "금융XLF(RS-R 105.9)·산업재XLI(RS-R 103.7) 중심 방어 매수로 +0.46% 상승, 기술주 비중 낮아 상대 강세",
       "drivers": [
-        "금융XLF +상승(R105.9/M101.3)",
-        "산업재XLI +상승(R103.7/M101.4)"
+        "금융·산업재 leading 섹터 순환매",
+        "기술주 약세 영향 제한적"
       ]
     },
     "VIX": {
       "price": 18.58,
       "change": -0.64,
-      "reason": "S&P500 보합권 유지로 단기 변동성은 소폭 감소했으나 18.58 고점권 — 기술주 불안 잠재",
+      "reason": "주요 지수 변동폭 제한적이고 방어주 중심 안정 매수 지속되며 -0.64% 소폭 하락",
       "drivers": [
-        "S&P500 +0.05% 보합"
+        "S&P500 +0.05% 횡보",
+        "헬스케어·금융 방어 매수"
       ]
     },
     "필라델피아반도체": {
-      "price": 11818.89,
+      "price": 11818.88,
       "change": -4.25,
-      "reason": "Nvidia·Microsoft·Meta의 AI 규제 반대 서한과 중국 딥시크 AI 격차 축소 우려, Moody's 신용등급 경고가 겹치며 AI 투자 지속가능성 의문 제기로 급락",
+      "reason": "AI 회의론 연합 부상·중국 Kimi K3 경쟁 우려·트럼프 행정부 칩 부족 악화 지적이 겹치며 -4.25% 급락",
       "drivers": [
-        "Moody's AI 투자 신용 부담 경고",
-        "중국 딥시크 창업자 \"미중 AI 격차 1년\" 발언",
-        "빅테크 채권시장 불안 확산"
+        "트럼프 행정부 칩 부족 악화 비판(민주당)",
+        "AI 회의론 정치 연합 형성",
+        "중국 Kimi K3 경쟁력 부각"
       ]
     },
     "러셀2000": {
       "price": 2930.0,
       "change": -0.35,
-      "reason": "기술주 약세 여파와 소형주 특유의 리스크 회피 성향 — 방어섹터 강세에도 동참 못 함",
+      "reason": "중소형주 특유 변동성 지속, 기술주 약세 여파로 -0.35% 소폭 하락",
       "drivers": [
-        "나스닥 -0.64% 연동"
+        "NASDAQ 약세 동조",
+        "중소형 기술주 매도 압력"
       ]
     },
     "영국FTSE": {
-      "price": 10736.23,
+      "price": 10736.2,
       "change": 0.91,
-      "reason": "에너지·금융 비중 높은 구조에서 방어섹터 강세 수혜 — 미국 기술주 약세 영향 제한적",
+      "reason": "유럽 금융·에너지 섹터 방어 매수 지속, 미국 기술주 리스크와 디커플링(탈동조화)되며 +0.91% 상승",
       "drivers": [
-        "에너지XLE +강세",
-        "금융XLF +강세"
+        "유럽 금융주 강세",
+        "미국 기술주 약세 영향 제한적"
       ]
     },
     "독일DAX": {
-      "price": 24763.12,
-      "change": -1.56,
-      "reason": "제조업·화학 섹터 비중 높은 구조에서 알루미늄 -3.06% 급락과 글로벌 경기둔화 우려 반영",
+      "price": 25099.0,
+      "change": 1.36,
+      "reason": "산업재·금융 중심 leading 섹터 순환매 지속, 미국 반도체 리스크 회피 자금 유입으로 +1.36% 강세",
       "drivers": [
-        "알루미늄 -3.06%",
-        "글로벌 원자재 약세"
+        "유럽 산업재·금융 leading",
+        "미국 기술주 리스크 회피 자금"
       ]
     },
     "니케이": {
-      "price": 66422.6,
-      "change": 0.46,
-      "reason": "전일 미국 기술주 약세에도 엔저 수출 수혜와 아시아 독자 흐름으로 상승 — 한국·중국과 디커플링",
+      "price": 64611.15,
+      "change": -2.73,
+      "reason": "필라델피아반도체 -4.25% 급락 직격탄, 도쿄일렉트론·어드밴테스트 등 반도체 장비주 동반 하락으로 -2.73% 급락",
       "drivers": [
-        "엔저 수출주 수혜"
+        "필라델피아반도체 -4.25% 충격",
+        "일본 반도체 장비주 급락"
       ]
     },
     "항셍": {
-      "price": 25210.81,
-      "change": 1.28,
-      "reason": "중국 딥시크 창업자의 \"미중 AI 격차 1년\" 발언과 AI 굴기 기대감, 이재명 대통령 Anthropic CEO 면담 등 긍정 뉴스로 상승",
+      "price": 24963.23,
+      "change": -0.98,
+      "reason": "중국 Kimi K3 AI 모델 경쟁력 부각에도 글로벌 기술주 약세 동조, 부동산 부진 지속으로 -0.98% 하락",
       "drivers": [
-        "딥시크 AI 경쟁력 부각",
-        "중국 AI 굴기 기대"
+        "글로벌 기술주 약세 동조",
+        "부동산 섹터 부진"
       ]
     },
     "달러인덱스": {
-      "price": 101.46,
-      "change": 0.03,
-      "reason": "국채10년물 -0.51% 급락에도 2년물 +0.13% 상승 — 단기 금리 방어와 유럽 경기 약세로 보합권",
+      "price": 101.47,
+      "change": 0.04,
+      "reason": "국채2Y +0.13%p 상승으로 단기 금리 차 지지 요인 있으나 글로벌 위험회피 흐름 제한적, +0.04% 보합",
       "drivers": [
-        "국채2Y +0.13%",
-        "유럽 경기 불안"
+        "국채2Y +0.13%p 상승",
+        "위험회피 달러 수요 제한적"
       ]
     },
     "국채2Y": {
-      "price": 3.8,
+      "price": 3.81,
       "change": 0.13,
-      "reason": "인플레 재점화 우려와 연준(Fed) 금리 인하 기대 축소 — 단기 금리 상승 압력",
+      "reason": "연준 금리 동결 기대 후퇴 없이 +0.13%p 소폭 상승, 단기 금리 안정세 유지",
       "drivers": [
-        "WTI유가 $100 돌파 우려"
+        "연준 정책 기대 변화 없음",
+        "단기 금리 수요 안정"
       ]
     },
     "국채10Y": {
       "price": 4.68,
       "change": -0.51,
-      "reason": "빅테크 AI 투자 부담과 채권 공급 우려로 장기물 매도 — Alphabet·Amazon·Meta 채권 발행 수요 증가 전망 속 금리 상승",
+      "reason": "기술주 급락에 안전자산 수요 유입, 장기물 매수 강화로 -0.51%p(수익률 하락·채권가격 상승) 강세",
       "drivers": [
-        "Moody's 빅테크 신용 경고",
-        "BlackRock 채권 발행 수요 부진"
+        "기술주 리스크오프 안전자산 수요",
+        "장기 채권 매수 강화"
       ]
     },
     "코스피": {
       "price": 6690.62,
       "change": -5.72,
-      "reason": "필라델피아반도체 -4.25% 급락과 테슬라 폭락, AI 투자 지속가능성 의문 확산으로 반도체·기술주 집중 매도 — 외국인·기관 동반 이탈",
+      "reason": "필라델피아반도체 -4.25% 급락→삼성전자·SK하이닉스 동반 급락, 외국인 대규모 매도로 -5.72% 폭락",
       "drivers": [
-        "필라델피아반도체 -4.25%",
-        "Moody's AI 투자 신용 경고",
-        "반도체_소자 Lagging(RS-R=97.8/M=88.6)"
+        "필라델피아반도체 -4.25% 충격파",
+        "삼성전자·SK하이닉스 급락",
+        "외국인 대규모 매도"
       ]
     },
     "코스닥": {
       "price": 748.22,
       "change": -5.32,
-      "reason": "나스닥 -0.64% 연동과 AI·기술주 밸류에이션 부담 확산 — IT부품(RS-R=88.1/M=71.0 Lagging) 급락 주도",
+      "reason": "반도체_팹리스 lagging 전환, AI·IT부품 동반 약세로 -5.32% 급락",
       "drivers": [
-        "나스닥 -0.64%",
-        "IT부품 Lagging 급락"
+        "반도체_팹리스 lagging",
+        "IT부품 RS-R 88.148 급락"
       ]
     },
     "금": {
-      "price": 4055.7,
-      "change": 0.22,
-      "reason": "리스크오프(위험회피) 수요와 인플레 헤지 선호 지속 — 달러 강세에도 안전자산 선호로 상승",
+      "price": 4067.6,
+      "change": 0.52,
+      "reason": "사우디-예멘 후티 전쟁 격화로 중동 리스크 프리미엄 유입, +0.52% 상승",
       "drivers": [
-        "기술주 불안 심리",
-        "인플레 재점화 우려"
+        "사우디-후티 전쟁 격화",
+        "중동 지정학 리스크 프리미엄"
       ]
     },
     "WTI유가": {
-      "price": 90.47,
-      "change": -1.87,
-      "reason": "직접 촉매 없음 — 단기 차익실현 매물 출회, 다만 시장은 $100 돌파 우려 지속(Bloomberg 보도)",
+      "price": 89.31,
+      "change": -3.12,
+      "reason": "사우디 아람코 유류 시설 2곳 후티 공격 받았으나 미국의 이란 야간 폭격 중단(2주 만에 처음)으로 긴장 완화 기대, -3.12% 급락",
       "drivers": [
-        "단기 차익실현"
+        "미국 이란 폭격 중단",
+        "중동 긴장 완화 기대"
       ]
     },
     "원달러": {
-      "price": 1459.42,
-      "change": -1.1,
-      "reason": "코스피 -5.72% 폭락에도 하락 — 달러 약세(국채10Y -0.51%)와 외국인 채권 매수 유입 추정",
+      "price": 1462.1,
+      "change": -0.81,
+      "reason": "코스피 -5.72% 폭락에도 달러인덱스 보합·외국인 매도 일단락 기대로 -0.81% 하락(원화 강세)",
       "drivers": [
-        "국채10Y -0.51% 달러 약세"
+        "달러인덱스 +0.04% 보합",
+        "외국인 매도 일단락 기대"
       ]
     },
     "알루미늄": {
-      "price": 3455.25,
-      "change": -3.06,
-      "reason": "독일DAX -1.56% 하락과 글로벌 제조업 경기 둔화 우려 — 산업금속 수요 감소 전망",
+      "price": 3528.0,
+      "change": -1.02,
+      "reason": "글로벌 산업재 수요 둔화 우려 지속, -1.02% 하락",
       "drivers": [
-        "독일 제조업 약세"
+        "산업재 수요 둔화 우려",
+        "기술주 약세 동조"
       ]
     },
     "구리": {
-      "price": 6.34,
-      "change": 0.55,
-      "reason": "중국 AI 굴기 기대와 항셍 +1.28% 상승 — 인프라 수요 기대감으로 소폭 반등",
+      "price": 6.32,
+      "change": 0.24,
+      "reason": "중국 인프라 투자 기대 잔존, +0.24% 소폭 상승",
       "drivers": [
-        "항셍 +1.28%",
-        "중국 인프라 기대"
+        "중국 인프라 투자 기대",
+        "전력 수요 안정"
       ]
     }
   },
@@ -9757,123 +9764,123 @@
   },
   "sources": [
     {
-      "source": "cnbc_world",
-      "title": "Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others",
-      "link": "https://www.cnbc.com/2026/07/24/moodys-ai-spending-credit-quality-amazon-meta-alphabet.html",
-      "published": "Fri, 24 Jul 2026 20:33:21 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Nvidia, Microsoft, Meta warn against 'premature restrictions' of open-weight models",
-      "link": "https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html",
-      "published": "Fri, 24 Jul 2026 17:55:37 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Musk's bad week: Tesla suffers worst slump since 2022, SpaceX drops ahead of Starship test flight",
-      "link": "https://www.cnbc.com/2026/07/24/tesla-tsla-spacex-spcx-stock-starship-test-flight-musk-bad-week.html",
-      "published": "Fri, 24 Jul 2026 21:57:01 GMT"
-    },
-    {
-      "source": "maeil",
-      "title": "트럼프, EU ‘구글 과징금’에 “美기업 약탈…큰 대가 치르게 될 것”",
-      "link": "https://www.mk.co.kr/news/world/12107182",
-      "published": "Sat, 25 Jul 2026 06:52:25 +09:00"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Trader who successfully shorted Tesla into earnings now sets sights on this high flyer",
-      "link": "https://www.cnbc.com/2026/07/24/trader-who-successfully-shorted-tesla-into-earnings-now-sets-sights-on-this-high-flyer-.html",
-      "published": "Fri, 24 Jul 2026 17:28:15 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "1 hyperscaler megacap down, 3 to go. Alphabet raises the stakes on AI spending",
-      "link": "https://www.cnbc.com/2026/07/24/1-hyperscaler-megacap-down-3-to-go-alphabet-raises-the-stakes-on-ai-spending.html",
-      "published": "Fri, 24 Jul 2026 19:41:08 GMT"
-    },
-    {
-      "source": "ft",
-      "title": "Nvidia and Palantir urge US not to ban ‘open’ AI models after China scare",
-      "link": "https://www.ft.com/content/3203fc9a-2321-44f8-8093-b7e16c8fc6d7?syn-25a6b1a6=1",
-      "published": "Fri, 24 Jul 2026 15:20:23 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "How a Chinese AI model stopped OpenAI’s ‘unprecedented’ cyber attack",
-      "link": "https://www.cnbc.com/2026/07/24/chinese-ai-model-openai-cyber-attack.html",
-      "published": "Fri, 24 Jul 2026 13:01:54 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Trump defends DOJ subpoenas of NY Times reporters; Google also was targeted",
-      "link": "https://www.cnbc.com/2026/07/24/trump-doj-subpoenas-new-york-times-google.html",
-      "published": "Fri, 24 Jul 2026 20:23:12 GMT"
+      "source": "seeking_alpha",
+      "title": "Samsung nabs $200B chip deal with Broadcom",
+      "link": "https://seekingalpha.com/news/4618429-samsung-nabs-200b-chip-deal-broadcom?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 25 Jul 2026 14:45:03 -0400"
     },
     {
       "source": "seeking_alpha",
-      "title": "Brown &amp; Brown Q2 2026 Earnings Preview",
-      "link": "https://seekingalpha.com/news/4618293-brown-and-brown-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 24 Jul 2026 17:35:56 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Amkor Technology Q2 2026 Earnings Preview",
-      "link": "https://seekingalpha.com/news/4618291-amkor-technology-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 24 Jul 2026 17:35:51 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Rambus Q2 2026 Earnings Preview",
-      "link": "https://seekingalpha.com/news/4618288-rambus-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 24 Jul 2026 17:35:50 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Cincinnati Financial Q2 2026 Earnings Preview",
-      "link": "https://seekingalpha.com/news/4618289-cincinnati-financial-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 24 Jul 2026 17:35:41 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Nucor Q2 2026 Earnings Preview",
-      "link": "https://seekingalpha.com/news/4618302-nucor-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 24 Jul 2026 17:35:40 -0400"
+      "title": "Nvidia to invest $1B in Naver to boost South Korea AI factory infrastructure",
+      "link": "https://seekingalpha.com/news/4618427-nvidia-invest-1b-naver-boost-south-korea-ai-factory-infrastructure?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 25 Jul 2026 14:26:56 -0400"
     },
     {
       "source": "marketwatch",
-      "title": "These 16 states are offering tax-free shopping days as back-to-school costs soar to over $800 per student",
-      "link": "https://www.marketwatch.com/story/these-16-states-are-offering-tax-holidays-as-back-to-school-costs-soar-to-over-800-per-student-0ec92464?mod=mw_rss_topstories",
-      "published": "Fri, 24 Jul 2026 21:21:00 GMT"
+      "title": "‘Time will tell whether that was a good bet’: My adviser got me a full SpaceX IPO allocation. Was I lucky?",
+      "link": "https://www.marketwatch.com/story/time-will-tell-whether-that-was-a-good-bet-my-adviser-got-me-a-full-spacex-ipo-allocation-was-i-lucky-7f319645?mod=mw_rss_topstories",
+      "published": "Sat, 25 Jul 2026 20:00:00 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Saudi military strikes Houthi targets in Yemen after Iran-backed militia attacked Red Sea shipping",
+      "link": "https://www.cnbc.com/2026/07/25/saudi-military-strikes-iran-backed-houthi-targets-yemen.html",
+      "published": "Sat, 25 Jul 2026 20:29:41 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Earnings scorecard: Communication sector sees 4 of 6 stocks top EPS estimates this week",
+      "link": "https://seekingalpha.com/news/4618340-earnings-scorecard-communication-sector-sees-4-of-6-stocks-top-eps-estimates-this-week?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 25 Jul 2026 13:00:53 -0400"
+    },
+    {
+      "source": "ft",
+      "title": "Top Democrat says Trump administration is worsening chip shortage",
+      "link": "https://www.ft.com/content/5bd259ca-d278-498a-a03d-7b4556d9fa8f?syn-25a6b1a6=1",
+      "published": "Sat, 25 Jul 2026 19:33:15 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Yes, the AI stock selloff looks terrifying. But it might actually save the bull market.",
+      "link": "https://www.marketwatch.com/story/yes-the-ai-stock-selloff-looks-terrifying-but-it-might-actually-save-the-bull-market-3bef59be?mod=mw_rss_topstories",
+      "published": "Sat, 25 Jul 2026 18:59:00 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "SA Asks: How much of a threat is China's Kimi K3 to US AI labs?",
+      "link": "https://seekingalpha.com/news/4618428-sa-asks-how-much-of-a-threat-is-chinas-kimi-k3-to-us-ai-labs?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 25 Jul 2026 14:17:21 -0400"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Analysis: A powerful new coalition of AI skeptics is coalescing right in Trump's blind spot",
+      "link": "https://www.cnbc.com/2026/07/25/trump-ai-data-center-backlash.html",
+      "published": "Sat, 25 Jul 2026 12:00:02 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "한국선 191만원, 미국에서는 290만원…똑같은 하이닉스인데 가격 차이 왜?",
+      "link": "https://www.mk.co.kr/news/stock/12107470",
+      "published": "Sun, 26 Jul 2026 06:12:05 +09:00"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Houthis attack two Aramco oil sites as US holds off on nightly bombing of Iran",
+      "link": "https://seekingalpha.com/news/4618430-houthis-attack-two-aramco-oil-sites-us-holds-off-nightly-bombing-iran?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 25 Jul 2026 17:07:54 -0400"
+    },
+    {
+      "source": "marketwatch",
+      "title": "I want to transfer $17,000 in credit-card debt. Why did Wells Fargo offer me only a $4,000 credit limit?",
+      "link": "https://www.marketwatch.com/story/i-wanted-to-transfer-17-000-in-credit-card-debt-why-did-wells-fargo-offer-me-only-a-4-000-credit-limit-7ad0a3f0?mod=mw_rss_topstories",
+      "published": "Sat, 25 Jul 2026 21:00:00 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "“원자재 투자, 아무나 하면 큰일나요”...가격 보다 중요한 한 가지 [Book]",
+      "link": "https://www.mk.co.kr/news/culture/12107465",
+      "published": "Sun, 26 Jul 2026 05:51:12 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "“사람 좋다고? 술 마셔봤어?”...인간 본성·내면 들추는 ‘양날의 검’ [Book]",
+      "link": "https://www.mk.co.kr/news/culture/12107464",
+      "published": "Sun, 26 Jul 2026 05:51:02 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "인간도 공룡도 조연에 불과하다…‘이들’에게 생명을 빚지고 있기에 [Book]",
+      "link": "https://www.mk.co.kr/news/culture/12107462",
+      "published": "Sun, 26 Jul 2026 05:50:31 +09:00"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "필라델피아반도체 -4.25% 급락과 테슬라 18% 주간 폭락, Moody's의 빅테크 신용등급 우려 속 채권 스프레드 확대로 기술주 투자심리 위축",
+  "sentiment_reason": "필라델피아반도체 -4.25% 급락에 코스피·코스닥 각 -5.72%·-5.32% 동반 붕괴, 반도체·기술주 중심 글로벌 리스크오프(위험자산 회피) 본격화",
   "key_factors": [
-    "Moody's, AI 인프라 투자 과열로 Amazon·Meta·Alphabet의 신용등급 악화 경고 — 채권 스프레드 확대와 자금조달 비용 상승",
-    "테슬라 주간 18% 폭락(2022년 이후 최악) + 필라델피아반도체 -4.25% — 기술주 밸류에이션(기업가치 적정성 평가) 부담 가시화",
-    "WTI유가 -1.87% 하락에도 원유 $100 돌파 우려 지속 — 인플레 재점화 가능성에 국채10년물 -0.51% 급락, 커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 예대마진이 개선되는 현상) 심화"
+    "필라델피아반도체 지수 -4.25% 급락으로 국내 반도체_소자·팹리스 lagging 구간 진입, 외국인 매도 가속화",
+    "사우디-예멘 후티 무장세력 전쟁 격화로 WTI -3.12% 하락, 에너지 섹터 변동성 확대",
+    "트럼프 관세 소송·AI 회의론 연합 부상으로 기술주 밸류에이션(적정 주가 수준) 압박, NASDAQ -0.64% 하락"
   ],
-  "news_summary": "Moody's, Amazon·Meta·Alphabet 등 빅테크의 AI 인프라 투자(연간 1조 달러 규모)가 잉여현금흐름을 잠식하고 신용등급 위협한다고 경고 — 채권 스프레드 확대 시작\nBlackRock 채권 발행, AI 부채 셀오프(매도) 여파로 수요 부진 — 빅테크 자금조달 비용 상승 우려 확산\n채권시장, AI capex(자본지출) 예산 증가에 불안 고조 — Google·Amazon·Meta 신용 스프레드 확대 중\n국채10년물 -0.51% 급락, WTI유가 $100 돌파 우려 속 인플레 재점화 가능성에 커브 스티프닝 심화\n트럼프, EU의 Google 10억 달러 과징금 부과에 \"미국 기업 약탈\" 반발 — 무역법 301조 조사 개시 예고, 대EU 관세 보복 가능성\nNvidia·Microsoft·Meta·Palantir 등 20개 기업, 미국 정책당국에 오픈웨이트(open-weight) AI 모델 규제 반대 서한 제출 — 중국 AI 위협 주장에 대응\n중국 딥시크 창업자 량원펑, 투자자 간담회에서 \"미중 AI 격차는 GPU 등 컴퓨팅 자원뿐, 1년 내 중국산으로 대체 가능\" 발언 — AI 경쟁 구도 재편 우려\n이재명 대통령, Anthropic CEO 다리오 아모데이 면담 \"한국 AI 투자 대대적 확대, 각별한 관심 기대\" — 국내 AI 생태계 투자 확대 시사\n테슬라, 주간 18% 폭락($313.03 마감)으로 2022년 이후 최악의 주간 실적 — SpaceX도 7.2% 하락($115.07), Starship 테스트 앞두고 밸류에이션 부담\nAlphabet, AI 투자 지출 기존 전망 초과 확대 예고 — 빅테크 어닝 시즌 시작, Amazon·Meta·Microsoft도 동반 증액 가능성\nIntel, AI 붐에 힘입어 15년래 최고 매출 성장률 기록했으나 주가 하락 — 가이던스 보수적, 시장 기대 미달\n미국 기술기업, AI 투자 붐에도 14만 명 감원 단행(FT) — 비용 효율화 압박 지속\nAnthropic, 신규 AI 모델 출시(Fable 5 대등 성능, 비용 절감) — 기업 고객 비용 부담 완화 경쟁",
+  "news_summary": "미국 국채10Y 수익률 -0.51%p 급락(채권가격 상승)—기술주 급락에 안전자산 수요 유입, 장기물 매수 강화\nWTI 유가 -3.12% 급락—사우디 아람코 유류 시설 후티 공격 받았으나 미국의 이란 야간 폭격 2주 만에 중단, 중동 긴장 완화 기대\n금 +0.52% 상승—사우디-예멘 후티 전쟁 격화로 중동 리스크 프리미엄 유입\n달러인덱스 +0.04% 보합, 국채2Y +0.13%p—연준 정책 기대 변화 없이 단기 금리 안정세 유지\n사우디 공습 예멘 후티 거점 타격, 후티는 사우디 아람코 홍해 유류 시설 2곳 공격—이란 지원 후티 미사일 2발 사우디 방공망 요격, 미국은 이란 폭격 2주 만에 중단\n트럼프 행정부 글로벌 관세 발효 수 시간 만에 소송 제기—전문가들 \"법정서 버티기 어려울 것\" 전망, 무역 정책 핵심 흔들림\n민주당 \"트럼프 행정부가 칩 부족 악화시키고 있다\"—정치권 반도체 공급망 비판 본격화\nAI 회의론 정치 연합 부상—종교 지도자·노동조합·지역 활동가가 AI 경제 격변 우려 목소리 결집, 트럼프에 정치 리스크\n삼성전자, 브로드컴과 2000억 달러(약 280조원) 규모 반도체 공급 계약 체결—글로벌 파운드리 시장 주도권 확보 신호\n엔비디아, 네이버에 10억 달러(약 1.4조원) 투자해 한국 AI 팩토리 인프라 구축—한국 AI 생태계 직접 투자 본격화\nSK하이닉스 ADR(미국주식예탁증서) 290만원 vs 코스피 본주 191만원—나스닥 상장 후 가격 괴리 99만원(약 52%) 발생, 투자자 혼란 가중\n커뮤니케이션 섹터 주간 실적—6개 종목 중 4개 EPS(주당순이익) 예상치 상회, 알파벳 자본 지출·컴캐스트 수익성·AT&T 자사주 매입 주목\n중국 Kimi K3 AI 모델 부상—미국 AI 랩에 위협 수준 도달 여부 논란, 글로벌 AI 경쟁 구도 재편 가능성",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "Moody's, Amazon·Meta·Alphabet 등 빅테크의 AI 인프라 투자(연간 1조 달러 규모)가 잉여현금흐름을 잠식하고 신용등급 위협한다고 경고 — 채권 스프레드 확대 시작",
+          "text": "미국 국채10Y 수익률 -0.51%p 급락(채권가격 상승)—기술주 급락에 안전자산 수요 유입, 장기물 매수 강화",
           "impact": "high"
         },
         {
-          "text": "BlackRock 채권 발행, AI 부채 셀오프(매도) 여파로 수요 부진 — 빅테크 자금조달 비용 상승 우려 확산",
-          "impact": "high"
-        },
-        {
-          "text": "채권시장, AI capex(자본지출) 예산 증가에 불안 고조 — Google·Amazon·Meta 신용 스프레드 확대 중",
+          "text": "WTI 유가 -3.12% 급락—사우디 아람코 유류 시설 후티 공격 받았으나 미국의 이란 야간 폭격 2주 만에 중단, 중동 긴장 완화 기대",
           "impact": "mid"
         },
         {
-          "text": "국채10년물 -0.51% 급락, WTI유가 $100 돌파 우려 속 인플레 재점화 가능성에 커브 스티프닝 심화",
+          "text": "금 +0.52% 상승—사우디-예멘 후티 전쟁 격화로 중동 리스크 프리미엄 유입",
+          "impact": "mid"
+        },
+        {
+          "text": "달러인덱스 +0.04% 보합, 국채2Y +0.13%p—연준 정책 기대 변화 없이 단기 금리 안정세 유지",
           "impact": "mid"
         }
       ]
@@ -9883,19 +9890,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "트럼프, EU의 Google 10억 달러 과징금 부과에 \"미국 기업 약탈\" 반발 — 무역법 301조 조사 개시 예고, 대EU 관세 보복 가능성",
+          "text": "사우디 공습 예멘 후티 거점 타격, 후티는 사우디 아람코 홍해 유류 시설 2곳 공격—이란 지원 후티 미사일 2발 사우디 방공망 요격, 미국은 이란 폭격 2주 만에 중단",
           "impact": "high"
         },
         {
-          "text": "Nvidia·Microsoft·Meta·Palantir 등 20개 기업, 미국 정책당국에 오픈웨이트(open-weight) AI 모델 규제 반대 서한 제출 — 중국 AI 위협 주장에 대응",
+          "text": "트럼프 행정부 글로벌 관세 발효 수 시간 만에 소송 제기—전문가들 \"법정서 버티기 어려울 것\" 전망, 무역 정책 핵심 흔들림",
+          "impact": "high"
+        },
+        {
+          "text": "민주당 \"트럼프 행정부가 칩 부족 악화시키고 있다\"—정치권 반도체 공급망 비판 본격화",
           "impact": "mid"
         },
         {
-          "text": "중국 딥시크 창업자 량원펑, 투자자 간담회에서 \"미중 AI 격차는 GPU 등 컴퓨팅 자원뿐, 1년 내 중국산으로 대체 가능\" 발언 — AI 경쟁 구도 재편 우려",
-          "impact": "mid"
-        },
-        {
-          "text": "이재명 대통령, Anthropic CEO 다리오 아모데이 면담 \"한국 AI 투자 대대적 확대, 각별한 관심 기대\" — 국내 AI 생태계 투자 확대 시사",
+          "text": "AI 회의론 정치 연합 부상—종교 지도자·노동조합·지역 활동가가 AI 경제 격변 우려 목소리 결집, 트럼프에 정치 리스크",
           "impact": "mid"
         }
       ]
@@ -9905,23 +9912,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "테슬라, 주간 18% 폭락($313.03 마감)으로 2022년 이후 최악의 주간 실적 — SpaceX도 7.2% 하락($115.07), Starship 테스트 앞두고 밸류에이션 부담",
+          "text": "삼성전자, 브로드컴과 2000억 달러(약 280조원) 규모 반도체 공급 계약 체결—글로벌 파운드리 시장 주도권 확보 신호",
           "impact": "high"
         },
         {
-          "text": "Alphabet, AI 투자 지출 기존 전망 초과 확대 예고 — 빅테크 어닝 시즌 시작, Amazon·Meta·Microsoft도 동반 증액 가능성",
+          "text": "엔비디아, 네이버에 10억 달러(약 1.4조원) 투자해 한국 AI 팩토리 인프라 구축—한국 AI 생태계 직접 투자 본격화",
           "impact": "high"
         },
         {
-          "text": "Intel, AI 붐에 힘입어 15년래 최고 매출 성장률 기록했으나 주가 하락 — 가이던스 보수적, 시장 기대 미달",
+          "text": "SK하이닉스 ADR(미국주식예탁증서) 290만원 vs 코스피 본주 191만원—나스닥 상장 후 가격 괴리 99만원(약 52%) 발생, 투자자 혼란 가중",
           "impact": "high"
         },
         {
-          "text": "미국 기술기업, AI 투자 붐에도 14만 명 감원 단행(FT) — 비용 효율화 압박 지속",
+          "text": "커뮤니케이션 섹터 주간 실적—6개 종목 중 4개 EPS(주당순이익) 예상치 상회, 알파벳 자본 지출·컴캐스트 수익성·AT&T 자사주 매입 주목",
           "impact": "mid"
         },
         {
-          "text": "Anthropic, 신규 AI 모델 출시(Fable 5 대등 성능, 비용 절감) — 기업 고객 비용 부담 완화 경쟁",
+          "text": "중국 Kimi K3 AI 모델 부상—미국 AI 랩에 위협 수준 도달 여부 논란, 글로벌 AI 경쟁 구도 재편 가능성",
           "impact": "mid"
         }
       ]
@@ -9929,152 +9936,159 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "방어섹터(헬스케어·에너지·금융) 강세와 기술주 약세가 상쇄 — AI 투자 우려 속 섹터 로테이션(자금 이동)으로 지수 보합권 유지",
+      "reason": "방어주(헬스케어·금융·유틸리티) 주도로 소폭 상승했으나 기술주 약세가 상쇄, 변동성 확대 속 혼조세",
       "drivers": [
-        "헬스케어XLV +상승(R106.2/M100.5 Leading)",
-        "기술XLK 급락(Lagging)"
+        "헬스케어XLV RS-R 106.2 방어 매수",
+        "기술XLK lagging 전환으로 지수 압박"
       ]
     },
     "NASDAQ": {
-      "reason": "Moody's의 빅테크 신용등급 우려와 테슬라 18% 주간 폭락, AI 투자 지속가능성 의문 제기로 기술주 집단 약세",
+      "reason": "AI 회의론 부상과 중국 Kimi K3 경쟁 우려로 빅테크 중심 매도, 커뮤니케이션 섹터도 lagging 동참",
       "drivers": [
-        "TSLA 주간 -18%(2022년 이후 최악)",
-        "빅테크 채권 스프레드 확대"
+        "AI 회의론 정치 연합 형성 리스크",
+        "중국 Kimi K3 AI 모델 경쟁력 부각"
       ]
     },
     "DOW": {
-      "reason": "방어섹터·금융주 강세에 힘입어 상승 — AI 투자 부담 없는 전통 산업·배당주로 자금 이동",
+      "reason": "금융XLF(RS-R 105.9)·산업재XLI(RS-R 103.7) 중심 방어 매수로 +0.46% 상승, 기술주 비중 낮아 상대 강세",
       "drivers": [
-        "금융XLF +상승(R105.9/M101.3)",
-        "산업재XLI +상승(R103.7/M101.4)"
+        "금융·산업재 leading 섹터 순환매",
+        "기술주 약세 영향 제한적"
       ]
     },
     "VIX": {
-      "reason": "S&P500 보합권 유지로 단기 변동성은 소폭 감소했으나 18.58 고점권 — 기술주 불안 잠재",
+      "reason": "주요 지수 변동폭 제한적이고 방어주 중심 안정 매수 지속되며 -0.64% 소폭 하락",
       "drivers": [
-        "S&P500 +0.05% 보합"
+        "S&P500 +0.05% 횡보",
+        "헬스케어·금융 방어 매수"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Nvidia·Microsoft·Meta의 AI 규제 반대 서한과 중국 딥시크 AI 격차 축소 우려, Moody's 신용등급 경고가 겹치며 AI 투자 지속가능성 의문 제기로 급락",
+      "reason": "AI 회의론 연합 부상·중국 Kimi K3 경쟁 우려·트럼프 행정부 칩 부족 악화 지적이 겹치며 -4.25% 급락",
       "drivers": [
-        "Moody's AI 투자 신용 부담 경고",
-        "중국 딥시크 창업자 \"미중 AI 격차 1년\" 발언",
-        "빅테크 채권시장 불안 확산"
+        "트럼프 행정부 칩 부족 악화 비판(민주당)",
+        "AI 회의론 정치 연합 형성",
+        "중국 Kimi K3 경쟁력 부각"
       ]
     },
     "러셀2000": {
-      "reason": "기술주 약세 여파와 소형주 특유의 리스크 회피 성향 — 방어섹터 강세에도 동참 못 함",
+      "reason": "중소형주 특유 변동성 지속, 기술주 약세 여파로 -0.35% 소폭 하락",
       "drivers": [
-        "나스닥 -0.64% 연동"
+        "NASDAQ 약세 동조",
+        "중소형 기술주 매도 압력"
       ]
     },
     "영국FTSE": {
-      "reason": "에너지·금융 비중 높은 구조에서 방어섹터 강세 수혜 — 미국 기술주 약세 영향 제한적",
+      "reason": "유럽 금융·에너지 섹터 방어 매수 지속, 미국 기술주 리스크와 디커플링(탈동조화)되며 +0.91% 상승",
       "drivers": [
-        "에너지XLE +강세",
-        "금융XLF +강세"
+        "유럽 금융주 강세",
+        "미국 기술주 약세 영향 제한적"
       ]
     },
     "독일DAX": {
-      "reason": "제조업·화학 섹터 비중 높은 구조에서 알루미늄 -3.06% 급락과 글로벌 경기둔화 우려 반영",
+      "reason": "산업재·금융 중심 leading 섹터 순환매 지속, 미국 반도체 리스크 회피 자금 유입으로 +1.36% 강세",
       "drivers": [
-        "알루미늄 -3.06%",
-        "글로벌 원자재 약세"
+        "유럽 산업재·금융 leading",
+        "미국 기술주 리스크 회피 자금"
       ]
     },
     "니케이": {
-      "reason": "전일 미국 기술주 약세에도 엔저 수출 수혜와 아시아 독자 흐름으로 상승 — 한국·중국과 디커플링",
+      "reason": "필라델피아반도체 -4.25% 급락 직격탄, 도쿄일렉트론·어드밴테스트 등 반도체 장비주 동반 하락으로 -2.73% 급락",
       "drivers": [
-        "엔저 수출주 수혜"
+        "필라델피아반도체 -4.25% 충격",
+        "일본 반도체 장비주 급락"
       ]
     },
     "항셍": {
-      "reason": "중국 딥시크 창업자의 \"미중 AI 격차 1년\" 발언과 AI 굴기 기대감, 이재명 대통령 Anthropic CEO 면담 등 긍정 뉴스로 상승",
+      "reason": "중국 Kimi K3 AI 모델 경쟁력 부각에도 글로벌 기술주 약세 동조, 부동산 부진 지속으로 -0.98% 하락",
       "drivers": [
-        "딥시크 AI 경쟁력 부각",
-        "중국 AI 굴기 기대"
+        "글로벌 기술주 약세 동조",
+        "부동산 섹터 부진"
       ]
     },
     "달러인덱스": {
-      "reason": "국채10년물 -0.51% 급락에도 2년물 +0.13% 상승 — 단기 금리 방어와 유럽 경기 약세로 보합권",
+      "reason": "국채2Y +0.13%p 상승으로 단기 금리 차 지지 요인 있으나 글로벌 위험회피 흐름 제한적, +0.04% 보합",
       "drivers": [
-        "국채2Y +0.13%",
-        "유럽 경기 불안"
+        "국채2Y +0.13%p 상승",
+        "위험회피 달러 수요 제한적"
       ]
     },
     "국채2Y": {
-      "reason": "인플레 재점화 우려와 연준(Fed) 금리 인하 기대 축소 — 단기 금리 상승 압력",
+      "reason": "연준 금리 동결 기대 후퇴 없이 +0.13%p 소폭 상승, 단기 금리 안정세 유지",
       "drivers": [
-        "WTI유가 $100 돌파 우려"
+        "연준 정책 기대 변화 없음",
+        "단기 금리 수요 안정"
       ]
     },
     "국채10Y": {
-      "reason": "빅테크 AI 투자 부담과 채권 공급 우려로 장기물 매도 — Alphabet·Amazon·Meta 채권 발행 수요 증가 전망 속 금리 상승",
+      "reason": "기술주 급락에 안전자산 수요 유입, 장기물 매수 강화로 -0.51%p(수익률 하락·채권가격 상승) 강세",
       "drivers": [
-        "Moody's 빅테크 신용 경고",
-        "BlackRock 채권 발행 수요 부진"
+        "기술주 리스크오프 안전자산 수요",
+        "장기 채권 매수 강화"
       ]
     },
     "코스피": {
-      "reason": "필라델피아반도체 -4.25% 급락과 테슬라 폭락, AI 투자 지속가능성 의문 확산으로 반도체·기술주 집중 매도 — 외국인·기관 동반 이탈",
+      "reason": "필라델피아반도체 -4.25% 급락→삼성전자·SK하이닉스 동반 급락, 외국인 대규모 매도로 -5.72% 폭락",
       "drivers": [
-        "필라델피아반도체 -4.25%",
-        "Moody's AI 투자 신용 경고",
-        "반도체_소자 Lagging(RS-R=97.8/M=88.6)"
+        "필라델피아반도체 -4.25% 충격파",
+        "삼성전자·SK하이닉스 급락",
+        "외국인 대규모 매도"
       ]
     },
     "코스닥": {
-      "reason": "나스닥 -0.64% 연동과 AI·기술주 밸류에이션 부담 확산 — IT부품(RS-R=88.1/M=71.0 Lagging) 급락 주도",
+      "reason": "반도체_팹리스 lagging 전환, AI·IT부품 동반 약세로 -5.32% 급락",
       "drivers": [
-        "나스닥 -0.64%",
-        "IT부품 Lagging 급락"
+        "반도체_팹리스 lagging",
+        "IT부품 RS-R 88.148 급락"
       ]
     },
     "금": {
-      "reason": "리스크오프(위험회피) 수요와 인플레 헤지 선호 지속 — 달러 강세에도 안전자산 선호로 상승",
+      "reason": "사우디-예멘 후티 전쟁 격화로 중동 리스크 프리미엄 유입, +0.52% 상승",
       "drivers": [
-        "기술주 불안 심리",
-        "인플레 재점화 우려"
+        "사우디-후티 전쟁 격화",
+        "중동 지정학 리스크 프리미엄"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 없음 — 단기 차익실현 매물 출회, 다만 시장은 $100 돌파 우려 지속(Bloomberg 보도)",
+      "reason": "사우디 아람코 유류 시설 2곳 후티 공격 받았으나 미국의 이란 야간 폭격 중단(2주 만에 처음)으로 긴장 완화 기대, -3.12% 급락",
       "drivers": [
-        "단기 차익실현"
+        "미국 이란 폭격 중단",
+        "중동 긴장 완화 기대"
       ]
     },
     "원달러": {
-      "reason": "코스피 -5.72% 폭락에도 하락 — 달러 약세(국채10Y -0.51%)와 외국인 채권 매수 유입 추정",
+      "reason": "코스피 -5.72% 폭락에도 달러인덱스 보합·외국인 매도 일단락 기대로 -0.81% 하락(원화 강세)",
       "drivers": [
-        "국채10Y -0.51% 달러 약세"
+        "달러인덱스 +0.04% 보합",
+        "외국인 매도 일단락 기대"
       ]
     },
     "알루미늄": {
-      "reason": "독일DAX -1.56% 하락과 글로벌 제조업 경기 둔화 우려 — 산업금속 수요 감소 전망",
+      "reason": "글로벌 산업재 수요 둔화 우려 지속, -1.02% 하락",
       "drivers": [
-        "독일 제조업 약세"
+        "산업재 수요 둔화 우려",
+        "기술주 약세 동조"
       ]
     },
     "구리": {
-      "reason": "중국 AI 굴기 기대와 항셍 +1.28% 상승 — 인프라 수요 기대감으로 소폭 반등",
+      "reason": "중국 인프라 투자 기대 잔존, +0.24% 소폭 상승",
       "drivers": [
-        "항셍 +1.28%",
-        "중국 인프라 기대"
+        "중국 인프라 투자 기대",
+        "전력 수요 안정"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "필라델피아반도체 -4.25% 급락과 Moody's AI 투자 신용 경고가 직격탄 — 반도체·기술주 중심 외국인·기관 동반 이탈로 코스피 -5.72% 폭락",
+    "summary": "필라델피아반도체 -4.25% 급락·AI 회의론 부상으로 코스피 -5.72% 폭락, 반도체 양대 축 붕괴에 외국인 대규모 매도 가세",
     "positive_factors": [
-      "원달러 -1.10% 하락(1459원)으로 수출주 환차익 개선 — 국채10Y -0.51% 급락 속 외국인 채권 매수 유입 추정",
-      "중국 AI 굴기 기대(딥시크 발언, 항셍 +1.28%)로 한국 AI·광통신 관련주 중장기 수혜 가능성 — 이재명 대통령 Anthropic 면담 등 국내 AI 투자 확대 기대"
+      "엔비디아의 네이버 10억 달러 투자 → 한국 AI 인프라 직접 투자 확대 기대, 플랫폼 섹터(RS-R 105.265, leading) 수혜 가능성",
+      "삼성전자-브로드컴 2000억 달러 계약 → 글로벌 파운드리 점유율 확대 중장기 모멘텀 확보"
     ],
     "negative_factors": [
-      "필라델피아반도체 -4.25% 급락 + Moody's AI 투자 신용 우려로 삼성전자·SK하이닉스 등 반도체_소자(RS-R=97.8/M=88.6 Lagging) 집중 타격 — 반도체 밸류에이션 부담 확산",
-      "테슬라 -18% 폭락과 AI 투자 지속가능성 의문 제기로 2차전지·IT부품(RS-R=88.1/M=71.0 Lagging) 동반 급락 — 기술주 전반 투자심리 위축"
+      "필라델피아반도체 -4.25% 급락·민주당 칩 부족 비판 → 삼성전자·SK하이닉스 동반 급락, 반도체_소자·팹리스 lagging 전환으로 외국인 매도 가속화",
+      "AI 회의론 정치 연합 부상·중국 Kimi K3 경쟁 → 글로벌 AI 밸류에이션 압박, 국내 AI_SW(RS-R 99.175, lagging) 추가 하락 압력"
     ],
-    "key_watch": "다음 주 Amazon·Meta·Microsoft 어닝과 AI 투자 가이던스 — 추가 증액 시 반도체 낙폭 확대 vs 보수적 전망 시 반등 계기"
+    "key_watch": "SK하이닉스 ADR·본주 52% 괴리 해소 여부—차익거래 기회 vs 추가 변동성 확대 분기점, 다음 주 빅테크 실적(23일~) 따라 반도체 방향성 재설정"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10082,62 +10096,62 @@
       "sector": "은행",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "Moody's AI 투자 우려에도 방어섹터 최강 — RS-R=118.7/M=123.7 Leading, 커브 스티프닝으로 예대마진 개선 기대 + 금융XLF(R105.9/M101.3) 글로벌 동조"
+      "reason": "은행 RS-R 118.685·RS-M 123.668 leading 최상단—국채10Y -0.51%p 하락으로 커브 스티프닝(장기금리가 단기금리보다 빠르게 변동해 예대마진 개선 가능성 높아지는 현상) 기대, 기술주 리스크오프 자금 방어 유입"
     },
     {
       "sector": "정유",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "WTI유가 단기 조정에도 $100 돌파 우려 지속(Bloomberg) — RS-R=128.1/M=137.3 최고 모멘텀, 에너지XLE(R106.2/M108.1) Leading + 인플레 헤지 수요"
+      "reason": "정유 RS-R 128.095·RS-M 137.265 전 섹터 최강—WTI -3.12% 하락이 정제마진 개선 요인, 중동 긴장 완화 기대로 공급 안정 수혜"
     },
     {
-      "sector": "우주항공",
+      "sector": "신재생에너지",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "AI 광통신 인프라 수요 급증(국내 ETF 출시) + 트럼프 Google 과징금 보복으로 우주·방산 수혜 — RS-R=100.1/M=119.4 Leading, 방산(R100.9/M115.3) 병행 강세"
+      "reason": "신재생에너지 RS-R 109.396·RS-M 126.949 leading—엔비디아 AI 인프라 투자 확대가 전력 수요 증가 촉매, 전력기기(improving) 동반 상승 가능성"
     },
     {
-      "sector": "플랫폼",
+      "sector": "방산",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "AI 데이터센터 확산으로 광통신 병목 해결 수요 — 국내 광통신 ETF 출시 모멘텀 + 통신장비 Improving(RS-R=87.9/M=107.2) 전환 신호"
+      "reason": "방산 RS-R 100.942·RS-M 115.266 leading—사우디-후티 전쟁 격화·중동 리스크 프리미엄 지속, 지정학 수혜 섹터 대표"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "필라델피아반도체 -4.25% + Moody's 신용 우려로 RS-R=97.8/M=88.6 Lagging 전락 — 다음 주 빅테크 어닝 가이던스 확인 전까지 진입 보류"
+      "reason": "반도체_소자 RS-R 97.848·RS-M 88.567 lagging 진입—필라델피아반도체 -4.25% 직격탄, 삼성-브로드컴 계약 호재에도 AI 회의론·외국인 매도 압도, 다음 주 빅테크 실적 확인 전까지 관망"
     },
     {
-      "sector": "2차전지_셀",
-      "reason": "테슬라 -18% 폭락 여파로 2차전지_셀 Improving(RS-R=98.0/M=114.1)이지만 단기 모멘텀 훼손 — SpaceX 하락 등 수급 불안 지속"
+      "sector": "반도체_팹리스",
+      "reason": "반도체_팹리스 RS-R 96.698·RS-M 88.34 lagging—AI 회의론 부상·중국 Kimi K3 경쟁 우려로 밸류에이션 압박, 모멘텀 회복 신호 없이 진입 부적합"
     },
     {
       "sector": "IT부품",
-      "reason": "IT부품 RS-R=88.1/M=71.0 Lagging 급락 — 나스닥 -0.64% 연동, 기술주 밸류에이션 부담 해소 전까지 관망"
+      "reason": "IT부품 RS-R 88.148·RS-M 71.039 lagging 최하단—기술주 전반 약세 동조, 상대강도·모멘텀 모두 바닥권으로 반등 근거 부재"
     }
   ],
   "avoid": [],
-  "summary": "AI 투자 신용 위기와 테슬라 폭락이 반도체·기술주를 Lagging으로 밀어낸 가운데, 커브 스티프닝·유가 불안이 은행·정유 Leading 섹터로 자금을 이동시키는 방어 로테이션 국면 — 반도체 진입 보류, 은행·정유·우주항공 집중",
-  "strategy_brief": "Moody's가 빅테크의 AI 인프라 투자를 신용등급 위협 요인으로 지목하며 필라델피아반도체가 -4.25% 급락했고, 테슬라는 주간 -18% 폭락으로 2022년 이후 최악의 실적을 기록했다. 이는 국내 반도체_소자(RS-R=97.8/M=88.6)를 Lagging(상대강도·모멘텀 모두 약세 구간)으로 밀어내며 코스피 -5.72% 폭락을 주도했다. 반면 커브 스티프닝(국채10Y -0.51%, 2Y +0.13%)과 금융XLF(R105.9) Leading 신호는 은행(RS-R=118.7/M=123.7)에 예대마진 개선 기대를 제공하고, WTI유가 $100 돌파 우려는 정유(RS-R=128.1/M=137.3)를 최고 모멘텀 섹터로 부각시켰다. 트럼프의 EU 관세 보복 예고와 AI 광통신 인프라 수요는 우주항공(RS-R=100.1/M=119.4)·플랫폼(RS-R=105.3/M=114.5) Leading 구간을 강화하며 방어 로테이션(자금 이동)의 수혜처를 제공한다. 다음 주 Amazon·Meta·Microsoft 어닝 가이던스 확인 전까지는 반도체 진입을 보류하고 은행·정유·우주항공 Leading 섹터에 집중하는 전략이 유효하다.",
-  "strategy_headline": "AI 신용 위기 vs 방어 로테이션 — 반도체 Lagging, 은행·정유 Leading 집중",
+  "summary": "필라델피아반도체 -4.25% 급락·AI 회의론 부상 → 코스피 -5.72% 반도체 붕괴, 방어주(은행·정유 leading 최상단) + AI 인프라·방산 테마로 대응",
+  "strategy_brief": "필라델피아반도체 지수 -4.25% 급락과 AI 회의론 정치 연합 부상이 글로벌 기술주를 강타하며 코스피는 -5.72% 폭락했다. 삼성전자-브로드컴 2000억 달러 계약·엔비디아 네이버 10억 달러 투자 같은 개별 호재에도 불구하고 반도체_소자·팹리스는 lagging(상대강도·모멘텀 모두 약세 구간) 진입, 외국인 대규모 매도가 가세했다. 반면 국채10Y -0.51%p 급락은 은행 섹터에 커브 스티프닝(장기금리 하락으로 예대마진 개선 가능성) 기대를 부여하고, WTI -3.12% 하락은 정유의 정제마진 개선 모멘텀을 강화하며 각각 leading 최상단(은행 RS-R 118.685, 정유 RS-R 128.095)을 기록 중이다. 엔비디아의 AI 인프라 투자 확대는 네이버·신재생에너지 중장기 수혜를, 사우디-후티 전쟁 격화는 방산 지정학 프리미엄을 지지한다. 다음 주 빅테크 실적 발표 전까지는 반도체 진입을 피하고, 방어주(은행·정유·유틸리티)와 테마주(AI 인프라·방산)를 양날개로 삼는 전략이 유효하다.",
+  "strategy_headline": "반도체 급락·AI 회의론 부상 → 방어주 순환매",
   "strategy_points": [
-    "Moody's AI 투자 신용 경고 + 필라델피아반도체 -4.25% → 국내 반도체_소자 Lagging(상대강도·모멘텀 모두 약세 구간) 전락, 진입 보류",
-    "커브 스티프닝(장기금리 급락) + 금융XLF Leading → 은행 RS-R=118.7 최강, 예대마진 개선 방어 최선호",
-    "WTI유가 $100 우려 + 에너지XLE Leading → 정유 RS-R=128.1 최고 모멘텀, 인플레 헤지 집중",
-    "트럼프 EU 보복 + AI 광통신 수요 → 우주항공·플랫폼 Leading, 방산·통신장비 병행 강세"
+    "필라델피아반도체 -4.25%·AI 회의론 정치 연합 부상 → 코스피 -5.72% 폭락, 반도체_소자·팹리스 lagging(상대강도·모멘텀 모두 약세) 전환",
+    "국채10Y -0.51%p·WTI -3.12% 급변동 → 은행(커브 스티프닝 수혜)·정유(정제마진 개선) leading 최상단 부각",
+    "엔비디아 네이버 10억 달러 투자 → 플랫폼·신재생에너지 AI 인프라 수혜, 사우디-후티 전쟁 격화 → 방산 지정학 프리미엄 지속",
+    "다음 주 빅테크 실적(23일~) 전까지 반도체 관망, 방어주(은행·정유·유틸리티) + 테마주(AI 인프라·방산) 양날개 전략"
   ],
   "top_picks": [
     {
       "sector": "은행",
       "rrg_quadrant": "leading",
-      "reason": "Moody's AI 투자 우려에도 방어섹터 최강 — RS-R=118.7/M=123.7 Leading, 커브 스티프닝으로 예대마진 개선 기대 + 금융XLF(R105.9/M101.3) 글로벌 동조",
+      "reason": "은행 RS-R 118.685·RS-M 123.668 leading 최상단—국채10Y -0.51%p 하락으로 커브 스티프닝(장기금리가 단기금리보다 빠르게 변동해 예대마진 개선 가능성 높아지는 현상) 기대, 기술주 리스크오프 자금 방어 유입",
       "stocks": [
         {
           "name": "KB금융",
           "code": "105560",
           "signal": "prime",
-          "reason": "커브 스티프닝(국채10Y -0.51%, 2Y +0.13%)으로 예대마진 개선 기대 + 은행 RS-R=118.7/M=123.7 Leading, 금융XLF(R105.9) 글로벌 동조 — 방어 최선호",
+          "reason": "필라델피아반도체 급락→기술주 리스크오프 방어 자금 은행 유입 판단 + 은행 섹터 leading 최상단(RS-R 118.685)·국채10Y 급락으로 커브 스티프닝 수혜 기대",
           "rrg_tracked": true,
           "rrg_actual_sector": "은행",
           "rrg_sector_match": true,
@@ -10148,13 +10162,13 @@
     {
       "sector": "정유",
       "rrg_quadrant": "leading",
-      "reason": "WTI유가 단기 조정에도 $100 돌파 우려 지속(Bloomberg) — RS-R=128.1/M=137.3 최고 모멘텀, 에너지XLE(R106.2/M108.1) Leading + 인플레 헤지 수요",
+      "reason": "정유 RS-R 128.095·RS-M 137.265 전 섹터 최강—WTI -3.12% 하락이 정제마진 개선 요인, 중동 긴장 완화 기대로 공급 안정 수혜",
       "stocks": [
         {
           "name": "SK이노베이션",
           "code": "096770",
           "signal": "prime",
-          "reason": "WTI유가 $100 돌파 우려(Bloomberg) 속 정유 RS-R=128.1/M=137.3 최고 모멘텀 + 에너지XLE(R106.2/M108.1) Leading 동조 — 인플레 헤지 수혜",
+          "reason": "WTI -3.12% 하락→정제마진 개선 모멘텀 + 정유 섹터 RS-R 128.095 전 섹터 최강·중동 긴장 완화 공급 안정 수혜",
           "rrg_tracked": true,
           "rrg_actual_sector": "정유",
           "rrg_sector_match": true,
@@ -10163,32 +10177,49 @@
       ]
     },
     {
-      "sector": "우주항공",
+      "sector": "신재생에너지",
       "rrg_quadrant": "leading",
-      "reason": "AI 광통신 인프라 수요 급증(국내 ETF 출시) + 트럼프 Google 과징금 보복으로 우주·방산 수혜 — RS-R=100.1/M=119.4 Leading, 방산(R100.9/M115.3) 병행 강세",
+      "reason": "신재생에너지 RS-R 109.396·RS-M 126.949 leading—엔비디아 AI 인프라 투자 확대가 전력 수요 증가 촉매, 전력기기(improving) 동반 상승 가능성",
+      "stocks": [
+        {
+          "name": "한화솔루션",
+          "code": "009830",
+          "signal": "prime",
+          "reason": "엔비디아 AI 인프라 투자 확대→전력 수요 증가 수혜 + 신재생에너지 leading(RS-R 109.396·RS-M 126.949)·전력기기 improving 동반 상승 기대",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "신재생에너지",
+          "rrg_sector_match": true,
+          "rrg_signal": "confirm"
+        }
+      ]
+    },
+    {
+      "sector": "방산",
+      "rrg_quadrant": "leading",
+      "reason": "방산 RS-R 100.942·RS-M 115.266 leading—사우디-후티 전쟁 격화·중동 리스크 프리미엄 지속, 지정학 수혜 섹터 대표",
       "stocks": [
         {
           "name": "한화에어로스페이스",
           "code": "012450",
           "signal": "prime",
-          "reason": "트럼프 EU 관세 보복 예고로 방산 RS-R=100.9/M=115.3 + 우주항공 RS-R=100.1/M=119.4 Leading 병행 강세 — AI 위성통신 인프라 수혜",
+          "reason": "사우디-후티 전쟁 격화→중동 지정학 리스크 프리미엄 지속 + 방산 leading(RS-R 100.942·RS-M 115.266)·방어주 순환매 수혜",
           "rrg_tracked": true,
           "rrg_actual_sector": "방산",
-          "rrg_sector_match": false,
+          "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
       ]
     },
     {
       "sector": "플랫폼",
-      "rrg_quadrant": "leading",
-      "reason": "AI 데이터센터 확산으로 광통신 병목 해결 수요 — 국내 광통신 ETF 출시 모멘텀 + 통신장비 Improving(RS-R=87.9/M=107.2) 전환 신호",
+      "rrg_quadrant": "",
+      "reason": "",
       "stocks": [
         {
           "name": "네이버",
           "code": "035420",
           "signal": "prime",
-          "reason": "AI 광통신 인프라 수요(국내 ETF 출시) + 이재명 Anthropic 면담으로 국내 AI 투자 확대 기대 — 플랫폼 RS-R=105.3/M=114.5 Leading",
+          "reason": "엔비디아 10억 달러 직접 투자→한국 AI 팩토리 핵심 파트너 부각 + 플랫폼 leading(RS-R 105.265·RS-M 114.469)·AI 인프라 중장기 수혜",
           "rrg_tracked": true,
           "rrg_actual_sector": "플랫폼",
           "rrg_sector_match": true,
@@ -10199,6 +10230,6 @@
   ],
   "caution_sectors": [
     "반도체_소자",
-    "2차전지_셀"
+    "반도체_팹리스"
   ]
 }
