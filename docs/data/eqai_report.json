@@ -1,179 +1,177 @@
 {
-  "generated_at": "2026-08-02 07:02:35",
+  "generated_at": "2026-08-03 07:02:33",
   "macro": {
     "S&P500": {
       "price": 7489.72,
       "change": 0.7,
-      "reason": "나스닥 기술주 반등(+1.00%)과 VIX -6.44% 하락으로 위험자산 선호 회복, 데이터센터 수요 재확인으로 유틸리티 12/16개사 EPS 예상치 상회",
+      "reason": "아마존 실적 호조로 이익 성장률 상향 + 채권금리 급등에도 기술주 강세 지속 (MarketWatch \"S&P 500 profit growth getting wilder\")",
       "drivers": [
-        "나스닥 +1.00% 기술주 주도",
-        "VIX -6.44% 변동성 완화"
+        "Amazon 실적 서프라이즈",
+        "AI 관련 대형주 매수세"
       ]
     },
     "NASDAQ": {
       "price": 25373.85,
       "change": 1.0,
-      "reason": "OpenAI Hugging Face 해킹 사건에도 AI 사이버보안 수요 확대 기대감, GLP-1(체중감량 신약) 직접 처방 증가로 월마트·코스트코·아마존 수혜 전망",
+      "reason": "애플 저가 MacBook Neo 출시로 예산형 노트북 경쟁 촉발 + AI 소프트웨어·플랫폼 섹터 강세 지속 (MarketWatch \"Apple's cheap MacBook Neo sparked war\")",
       "drivers": [
-        "AI 사이버보안 수요 부각",
-        "GLP-1 유통 구조 변화"
+        "Apple MacBook Neo 신제품 효과",
+        "테크 섹터 실적 개선 기대"
       ]
     },
     "DOW": {
       "price": 52485.03,
       "change": 0.53,
-      "reason": "S&P500 동조 상승하나 러셀2000 -0.50%로 소형주 약세 지속, 연준 회의 축소 가능성 제기로 금리 불확실성 잔존",
+      "reason": "S&P500 상승 동조 + 금리 상승에도 경기회복 기대감 유지로 산업재·소비재 방어",
       "drivers": [
-        "대형주 선호 지속",
-        "소형주 약세 대비"
+        "S&P500 상승 동조",
+        "필수소비재XLP Leading 지속"
       ]
     },
     "VIX": {
       "price": 15.99,
       "change": -6.44,
-      "reason": "나스닥·S&P500 동반 상승과 기술주 낙폭과대 수정 매수세로 시장 불안 심리 완화",
+      "reason": "미일 외환 공조 성공으로 엔캐리 청산 우려 완화 + 빅테크 실적 호조로 변동성 급락",
       "drivers": [
-        "기술주 반등",
-        "위험자산 선호 회복"
+        "미일 외환 개입 안정화",
+        "S&P500 +0.70% 안정 상승"
       ]
     },
     "필라델피아반도체": {
       "price": 11311.08,
       "change": 0.07,
-      "reason": "SK하이닉스·삼성전자 20% 폭등 소식에도 목표가 하향(신한투자 SK하이닉스 420만→270만원)으로 글로벌 반도체 밸류에이션 부담 상쇄, 스페이스X 로켓 잔해 충돌 예고로 우주 인프라 투자 장기 테마 유지",
+      "reason": "소폭 상승(+0.07%)에 그침 — Bloomberg \"Wall Street's Favorite Bet Comes Undone as Chips Whipsaw Market\"로 칩스 변동성 부각, 반도체 내 뚜렷한 촉매 부재",
       "drivers": [
-        "한국 반도체 20% 급등",
-        "밸류에이션 재조정"
+        "반도체 내 방향성 불확실",
+        "레버리지ETF·헤지펀드 매도 잔존"
       ]
     },
     "러셀2000": {
       "price": 2931.34,
       "change": -0.5,
-      "reason": "대형주 중심 상승장에서 소형주 소외 지속, 금리 불확실성과 경기 민감성으로 자금 이탈",
+      "reason": "금리 상승(-0.50%) — 10년물 +1.76% 급등으로 소형주 밸류에이션(Valuation·주가 적정성 평가) 부담 증가",
       "drivers": [
-        "대형주 선호",
-        "금리 불확실성"
+        "10년물 국채수익률 4.74% 급등",
+        "채권 자경단 출현 우려"
       ]
     },
     "영국FTSE": {
       "price": 10868.1,
       "change": -0.27,
-      "reason": "오만 인근 유조선 공격으로 호르무즈 해협 봉쇄 위협 속 유가 +1.29% 상승하나 유럽 경기 둔화 우려로 지수 하락",
+      "reason": "직접 촉매 없음 — 유럽 금리 상승·달러 약세 혼조 속 소폭 조정",
       "drivers": [
-        "중동 지정학 리스크",
-        "경기 둔화 우려"
+        "유럽 금리 동조 상승"
       ]
     },
     "독일DAX": {
       "price": 25629.24,
       "change": 0.07,
-      "reason": "직접 촉매 없음 — 유럽 전반 약한 거래량 속 미국 기술주 반등 일부 동조",
+      "reason": "직접 촉매 없음 — 미국 기술주 강세 동조, 독일 수출주 방어로 소폭 상승",
       "drivers": [
-        "미국 기술주 동조"
+        "S&P500 상승 동조"
       ]
     },
     "니케이": {
       "price": 64362.02,
       "change": 4.03,
-      "reason": "코스피 +17.91% 아시아 반도체 밸류에이션 재평가 파급, 달러/엔 안정화와 글로벌 기술주 반등 동조로 4% 초과 급등",
+      "reason": "미일 공동 외환 개입 성공 + 엔화 157엔대 회복(+4.03%) — 트럼프 \"일본과의 우정 신호\" 발언으로 정치적 지지까지 확보",
       "drivers": [
-        "한국 반도체 폭등 파급",
-        "달러/엔 안정"
+        "미일 외환 개입 성공",
+        "엔화 급반등 수출주 안정화"
       ]
     },
     "항셍": {
       "price": 25884.43,
       "change": 0.1,
-      "reason": "직접 촉매 약함 — 글로벌 위험 선호 회복에 소폭 동조하나 중국 내수 부진으로 상승폭 제한",
+      "reason": "직접 촉매 없음 — 미중 AI 격차 축소 우려(CNBC \"U.S. lead over China in AI is all but gone\") 속에서도 중국 내수 모멘텀 부재로 보합",
       "drivers": [
-        "위험 선호 회복"
+        "중국 내수 부진 지속"
       ]
     },
     "달러인덱스": {
       "price": 99.8,
       "change": -0.21,
-      "reason": "SK하이닉스 ADR 발행·조선사 선물환 매도로 한국 기업 달러 공급 급증, 연준 회의 축소 가능성 제기로 긴축 피로감 완화",
+      "reason": "미일 외환 개입으로 유로 매도·엔 매입(-0.21%) + 연준 금리인상 우려에도 달러 소폭 약세",
       "drivers": [
-        "한국 기업 달러 공급",
-        "연준 정책 불확실성"
+        "미일 외환 개입(유로→엔)",
+        "엔화 157엔대 회복"
       ]
     },
     "국채2Y": {
       "price": 3.68,
       "change": 0.19,
-      "reason": "직접 촉매 없으나 단기 금리 소폭 상승, 연준 회의 축소 논의로 정책 경로 불확실성 일부 반영",
+      "reason": "연준 9월 금리인하 기대 약화 + 채권 자경단 출현 신호로 단기물도 +0.19% 상승",
       "drivers": [
-        "정책 불확실성"
+        "연준 금리인하 지연 우려",
+        "채권 자경단 압력"
       ]
     },
     "국채10Y": {
       "price": 4.74,
       "change": 1.76,
-      "reason": "장기채 +1.76% 급등으로 커브 스티프닝(장기금리가 단기금리보다 빠르게 상승하는 현상) 심화, 인플레이션 재점화 우려와 재정 적자 확대 가능성 반영",
+      "reason": "채권 자경단 출현 — 함준호 전 금통위원 \"공권력 공백 속 민간 제재\" 경고, 고물가 지속 시 민간이 채권 매도로 금리 인상 압박(+1.76% 급등)",
       "drivers": [
-        "인플레이션 우려",
-        "재정 적자 확대"
+        "채권 자경단(Vigilante) 매도",
+        "연준 금리인상 명분 강화"
       ]
     },
     "코스피": {
       "price": 6595.45,
-      "change": 17.91,
-      "reason": "SK하이닉스·삼성전자 20% 폭등과 원/달러 1420원대 회복으로 반도체·수출주 밸류에이션 급격 개선, 한 달 전 1600원 위기 대비 180원 강세 전환이 외국인 심리 반전 촉발",
+      "change": 0.0,
+      "reason": "7월 31일 +17.91% 급반등 이후 관망 국면 — 외국인 반도체 매수 지속 여부가 변수, 이날(8월 1일) 보합 마감",
       "drivers": [
-        "반도체 20% 급등",
-        "원/달러 180원 강세"
+        "외국인 반도체 매매 관망"
       ]
     },
     "코스닥": {
       "price": 719.76,
-      "change": 11.63,
-      "reason": "코스피 동조 상승하나 시가총액 미달 30개 속출로 상장폐지 우려 잔존, 7월 21% 폭락 여파 속 기술적 반등",
+      "change": 0.0,
+      "reason": "코스피 보합 동조 — 중소형주 수급 부진 지속",
       "drivers": [
-        "코스피 동조",
-        "시총 미달 리스크"
+        "코스피 보합 동조"
       ]
     },
     "금": {
-      "price": 4049.1,
-      "change": -1.24,
-      "reason": "달러인덱스 -0.21% 약세에도 위험 선호 회복으로 안전자산 수요 감소, 주식·위험자산으로 자금 이동",
+      "price": 4107.0,
+      "change": 0.17,
+      "reason": "달러 약세 + 채권금리 급등에도 안전자산 수요로 소폭 상승(+0.17%)",
       "drivers": [
-        "위험 선호 회복",
-        "주식 자금 이동"
+        "달러 약세",
+        "채권 불안 속 안전자산 선호"
       ]
     },
     "WTI유가": {
       "price": 84.67,
       "change": 1.29,
-      "reason": "오만 인근 유조선 공격과 이란의 호르무즈 해협 봉쇄 위협으로 중동 공급 차질 우려, 쿠웨이트 방공망 드론 대응 긴장 고조",
+      "reason": "중동 지정학 리스크 지속 — FT \"이란·오만, 호르무즈 해협 관리 협정 임박\" + 정유사 윤활기유 수출 호조로 수요 기대 반영(+1.29%)",
       "drivers": [
-        "호르무즈 해협 위협",
-        "중동 지정학 리스크"
+        "호르무즈 해협 리스크",
+        "정유 윤활기유 수요↑"
       ]
     },
     "원달러": {
       "price": 1436.6,
       "change": 1.13,
-      "reason": "SK하이닉스 ADR 발행대금과 조선사 18년 최대 선물환 매도가 달러 공급 급증 촉발, 정부 대기업 환전·환헤지 독려 정책 효과와 한은 금리인상 기대 병행",
+      "reason": "미일 외환 개입에도 국내 달러 수요 지속 + 국채금리 급등 영향으로 원화 약세(+1.13%)",
       "drivers": [
-        "SK하이닉스 ADR 대금",
-        "조선사 선물환 매도"
+        "미국 10년물 금리 급등",
+        "외국인 국내 채권 이탈"
       ]
     },
     "알루미늄": {
-      "price": 3334.75,
-      "change": -0.92,
-      "reason": "직접 촉매 없음 — 중국 수요 둔화 우려와 구리 동조 약세",
+      "price": 3364.25,
+      "change": -0.04,
+      "reason": "직접 촉매 없음 — 중국 내수 부진으로 소폭 하락",
       "drivers": [
-        "중국 수요 둔화"
+        "중국 수요 부진"
       ]
     },
     "구리": {
-      "price": 6.44,
-      "change": -0.13,
-      "reason": "직접 촉매 약함 — 중국 제조업 부진 지속과 글로벌 경기 둔화 우려로 산업금속 전반 약세",
+      "price": 6.47,
+      "change": 0.33,
+      "reason": "AI 인프라 수요 기대 + 중국 전력망 투자 기대로 소폭 상승(+0.33%)",
       "drivers": [
-        "중국 제조업 부진"
+        "AI 인프라 수요"
       ]
     }
   },
@@ -9757,123 +9755,123 @@
   },
   "sources": [
     {
-      "source": "maeil",
-      "title": "“1600원 위기 한 달 만에 뚝”…SK하이닉스·조선사가 푼 달러에 분위기 반전",
-      "link": "https://www.mk.co.kr/news/economy/12114322",
-      "published": "Sun, 02 Aug 2026 06:35:11 +09:00"
+      "source": "fnnews",
+      "title": "삼성전자 65만원 vs 36만원...'역대급 폭등' 뒤 가려진 극과 극 전망",
+      "link": "https://www.fnnews.com/news/202608022116132327",
+      "published": "Mon,3 Aug 2026 05:20:00 +0900"
     },
     {
       "source": "maeil",
-      "title": "시속 8700㎞로 달 덮치는 스페이스X 잔해…5일 충돌 예고",
-      "link": "https://www.mk.co.kr/news/world/12114321",
-      "published": "Sun, 02 Aug 2026 06:34:40 +09:00"
+      "title": "미국 금리와 메모리 주문량 ... 이번주 코스피 방향 가를 2대 변수",
+      "link": "https://www.mk.co.kr/news/business/12114478",
+      "published": "Mon, 03 Aug 2026 05:00:00 +09:00"
     },
     {
-      "source": "yonhap",
-      "title": "20% 넘는 폭등에도…삼전닉스 주가, 목표가의 반토막 수준",
-      "link": "https://www.yna.co.kr/view/AKR20260801014400008",
-      "published": "Sun, 2 Aug 2026 06:25:00 +0900"
+      "source": "maeil",
+      "title": "美 채권자경단이 움직인다 ... 기준금리 인상 명분 강해졌다",
+      "link": "https://www.mk.co.kr/news/economy/12114546",
+      "published": "Mon, 03 Aug 2026 05:00:00 +09:00"
     },
     {
-      "source": "cnbc_world",
-      "title": "OpenAI's Hugging Face hack confirmed months of AI cyber warnings: 'Pandora's box is open'",
-      "link": "https://www.cnbc.com/2026/08/01/open-ai-hugging-face-hack-cyber-warnings.html",
-      "published": "Sat, 01 Aug 2026 12:00:01 GMT"
+      "source": "marketwatch",
+      "title": "S&P 500 profit growth is getting even wilder as Amazon makes its mark",
+      "link": "https://www.marketwatch.com/story/s-p-500-profit-growth-is-getting-even-wilder-as-amazon-makes-its-mark-5ddf2082?mod=mw_rss_topstories",
+      "published": "Sun, 02 Aug 2026 14:00:00 GMT"
     },
     {
-      "source": "seeking_alpha",
-      "title": "SA Asks: Will SpaceX buy a major US wireless carrier?",
-      "link": "https://seekingalpha.com/news/4623117-sa-asks-will-spacex-buy-a-major-us-wireless-carrier?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 01 Aug 2026 15:57:12 -0400"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "As Americans go direct with GLP-1 prescriptions, Walmart, Costco, Amazon will be big weight-loss winners",
-      "link": "https://www.cnbc.com/2026/08/01/glp-1-prescriptions-weight-loss-walmart-costco-amazon.html",
-      "published": "Sat, 01 Aug 2026 12:30:01 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Tankers near Oman come under fire as Iran threatens to choke off shipping routes",
-      "link": "https://www.cnbc.com/2026/08/01/tankers-near-oman-come-under-fire.html",
-      "published": "Sat, 01 Aug 2026 20:55:55 GMT"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Data center power boom in focus as 12 of 16 utility stocks beat EPS estimates this week: Earnings Scorecard",
-      "link": "https://seekingalpha.com/news/4623050-12-out-of-16-utility-stocks-deliver-eps-wins-this-week-earnings-scorecard?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 01 Aug 2026 15:00:45 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Earnings scoreboard: 88% of real estate names beat revenue estimates this week",
-      "link": "https://seekingalpha.com/news/4623025-earnings-scoreboard-88-of-real-estate-names-beat-revenue-estimates-this-week?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 01 Aug 2026 14:30:43 -0400"
+      "source": "marketwatch",
+      "title": "How Apple’s cheap MacBook Neo sparked a war in budget laptops",
+      "link": "https://www.marketwatch.com/story/how-apples-cheap-macbook-neo-sparked-a-war-in-budget-laptops-8fbaf839?mod=mw_rss_topstories",
+      "published": "Sun, 02 Aug 2026 13:00:00 GMT"
     },
     {
       "source": "bloomberg",
-      "title": "Fewer Fed Meetings Could Fuel Market Volatility",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-01/fewer-fed-meetings-could-fuel-market-volatility-video",
-      "published": "Sat, 01 Aug 2026 11:57:14 GMT"
+      "title": "SpaceX IPO Faces First Reality Check",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-02/spacex-ipo-faces-first-reality-check-video",
+      "published": "Sun, 02 Aug 2026 12:53:41 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Advanced Energy Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4622827-advanced-energy-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 02 Aug 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "New Jersey Resources Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4622830-new-jersey-resources-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 02 Aug 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Ameresco Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4622833-ameresco-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 02 Aug 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Cabot Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4622836-cabot-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 02 Aug 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "V2X Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4622838-v2x-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 02 Aug 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Ethos Technologies Inc. Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4622840-ethos-technologies-inc-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 02 Aug 2026 17:35:00 -0400"
+    },
+    {
+      "source": "ft",
+      "title": "Iran says deal with Oman to manage shipping through Hormuz is close",
+      "link": "https://www.ft.com/content/c9bd508c-2915-4b34-a5a5-553bff9548a5?syn-25a6b1a6=1",
+      "published": "Sun, 02 Aug 2026 19:00:24 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Why people are dropping out of the workforce and not looking for new jobs: 'The market wore me down'",
+      "link": "https://www.cnbc.com/2026/08/02/why-people-are-dropping-out-of-the-workforce-and-not-looking-for-new-jobs-the-market-wore-me-down.html",
+      "published": "Sun, 02 Aug 2026 14:30:01 GMT"
     },
     {
       "source": "bloomberg",
-      "title": "AI Loan Market Sees Investor Demands Rise, Borrowers Offer Better Terms",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-01/loan-investors-are-pushing-back-as-fear-rises-credit-weekly",
-      "published": "Sat, 01 Aug 2026 19:00:00 GMT"
-    },
-    {
-      "source": "maeil",
-      "title": "7년 만에 출산율 0.9명대 보나…고령화는 여전히 ‘경고등’",
-      "link": "https://www.mk.co.kr/news/economy/12114324",
-      "published": "Sun, 02 Aug 2026 06:57:16 +09:00"
-    },
-    {
-      "source": "maeil",
-      "title": "에어컨도 못 쉬는 날씨…낮 최고 39도 ‘찜통더위’ 유의",
-      "link": "https://www.mk.co.kr/news/society/12114323",
-      "published": "Sun, 02 Aug 2026 06:47:14 +09:00"
-    },
-    {
-      "source": "yonhap",
-      "title": "원화 스테이블코인 경쟁 본격화…네카오 주도권 승부",
-      "link": "https://www.yna.co.kr/view/AKR20260801043000017",
-      "published": "Sun, 2 Aug 2026 06:40:01 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "[반려동물] 폭염에 '털뭉치 관리'도 필수…펫 위생용품 시장 커진다",
-      "link": "https://www.yna.co.kr/view/AKR20260801026900030",
-      "published": "Sun, 2 Aug 2026 06:40:00 +0900"
+      "title": "Bond Traders Flying Blind on Fed See Risk Yields Spiral Higher",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-02/bond-traders-flying-blind-on-fed-see-risk-yields-spiral-higher",
+      "published": "Sun, 02 Aug 2026 14:00:00 GMT"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "코스피 +17.91%, 코스닥 +11.63% 역사적 반등과 달러인덱스 -0.21%, VIX -6.44%로 위험 선호 환경 강화, SK하이닉스·조선사 달러 유동성 공급으로 원/달러 1420원대 회복하며 수출주 밸류에이션(기업가치 평가지표) 부담 완화",
+  "sentiment_reason": "미국 S&P500·NASDAQ 상승과 VIX 급락(-6.44%), 니케이 +4% 반등이 글로벌 Risk-on 확인. 국내는 7월 수출 989억달러(역대 2위) 확정과 반도체 31일 +20% 급반등 여파로 긍정 심리 지속",
   "key_factors": [
-    "SK하이닉스 ADR(미국주식예탁증서) 발행대금 및 조선사 선물환 매도로 달러당 원화값 1420원대 급등, 1600원 위기에서 5개월 만에 최고 수준 회복",
-    "삼성전자·SK하이닉스 20% 폭등에도 목표가 대비 50% 수준, 신한투자·삼성증권 목표가 하향에도 업사이드(상승여력) 100% 유지로 반도체 재평가 모멘텀 부각",
-    "니케이 +4.03%, S&P500 +0.70%, 나스닥 +1.00%로 글로벌 반도체·기술주 낙폭과대 수정 매수세 유입"
+    "미국 10년물 국채수익률 +1.76% 급등 — 채권 자경단(Vigilante·연준 대신 민간이 시장을 통해 통화긴축 압력을 가하는 세력) 출현으로 연준 금리인상 명분 강화 우려",
+    "미일 15년만에 공동 외환시장 개입 — 베선트 재무장관 \"100억달러 엔화 매입\" 공식화, 달러/엔 157엔대 회복",
+    "한국 7월 수출 989억달러·반도체 두 달째 400억달러 돌파 — 연간 1조달러 가시권, 반도체 슈퍼사이클 지속 확인"
   ],
-  "news_summary": "연준 회의 축소 가능성 제기로 시장 변동성 확대 우려 — 블룸버그, 회의 빈도 감소 시 정책 신호 불확실성 증가 경고\n미국 국채10년물 +1.76% 급등으로 커브 스티프닝 심화, 인플레이션 재점화·재정 적자 확대 우려 반영\nAI 인프라 대출 시장서 투자자 요구 증가, 차입자들 더 나은 조건 제시 — 블룸버그, 데이터센터 건설 자금 수요 급증\n유틸리티 16개사 중 12개사 EPS 예상치 상회, 데이터센터 전력 수요 급증이 실적 견인 — Seeking Alpha 어닝 스코어보드\n이란, 호르무즈 해협 봉쇄 위협 — 오만 인근 유조선 피격·쿠웨이트 드론 대응, 미국 해협 봉쇄 시 주요 해운로 폐쇄 경고로 유가 +1.29%\n사회보장기금 위기 논의에서 간과된 변수 경고 — MarketWatch, 장기 재정 리스크 재점화 가능성 지적\n한국 디지털자산기본법 논의 재개로 원화 스테이블코인 제도화 기대 — 네이버·카카오 은행·글로벌 사업자 협력 경쟁 본격화\nSK하이닉스·삼성전자 20% 폭등에도 목표가 대비 50% 수준 — 신한투자 SK하이닉스 목표가 420만→270만원, 삼성전자 59만→45만원 하향에도 업사이드 100% 유지\nSK하이닉스 ADR 발행·조선사 18년 최대 선물환 매도로 원/달러 1420원대 급등 — 한 달 전 1600원 위기 대비 180원 강세, 정부 대기업 환전 독려 정책 효과\n스페이스X 팰컨9 잔해 5일 달 표면 충돌 예정 — 시속 8700km로 충돌, 지름 27m 크레이터 생성 전망, 우주 인프라 장기 투자 테마 부각\nOpenAI Hugging Face 해킹 확정, AI 사이버보안 경고 수개월 만에 현실화 — CNBC, \"판도라의 상자 열렸다\" 전문가 경고로 AI 보안 수요 급증 전망\nGLP-1 체중감량약 직접 처방 증가로 월마트·코스트코·아마존 수혜 전망 — CNBC, 고용주 보험 급여 중단으로 유통 구조 변화\n스페이스X, 미국 주요 무선통신사 인수 가능성 논의 — Seeking Alpha, Starlink 무선망 구축 위한 M&A 관측\n부동산 기업 88%가 매출 예상치 상회 — Seeking Alpha 실적 집계, 데이터센터 부동산 수요 견조",
+  "news_summary": "미국 10년물 국채수익률 +1.76% 급등 — 채권 자경단(Vigilante) 출현, 함준호 전 금통위원 \"공권력 공백 속 민간이 채권 매도로 고물가에 제재\" 경고. 연준 금리인상 명분 강화 우려 확산 (Bloomberg \"Bond Traders Flying Blind on Fed\")\n미일 15년만에 공동 외환시장 개입 — 베선트 재무장관 \"100억달러 엔화 매입\" 공식화, 일본도 이틀간 10조엔 투입. 달러/엔 157엔대 회복, 트럼프 \"일본과의 우정 신호\" 발언 (매일경제)\n미국 노동시장 이탈 증가 — CNBC \"6개월 구직 끝 Dan Coda, 시장이 지쳐 아예 구직 포기\" 사례 확산. 실업률 외 비경제활동인구 증가로 고용 체감 악화\n달러인덱스 -0.21% 소폭 약세 — 미일 외환 개입(유로 매도·엔 매입) 영향, 연준 금리인상 우려에도 달러 조정\n이란·오만, 호르무즈 해협 관리 협정 임박 — FT \"Iran says deal with Oman to manage shipping through Hormuz is close\". 중동 석유·가스 운송 안정화 기대와 긴장 완화 신호, WTI +1.29% 반영\n미중 AI 격차 사실상 소멸 — CNBC Op-ed \"U.S. lead over China in AI is all but gone. We need a change in national strategy\". 국가 전략 전환 필요성 제기, 반도체·AI 규제 강화 가능성\nAI 도입 문화 분열 심화 — Bloomberg \"AI Adoption Sparks Cultural Divide\". 기업·세대 간 AI 수용도 격차 확대, 생산성 향상 vs 일자리 우려 대립\n아마존 실적 호조로 S&P500 이익 성장률 상향 — MarketWatch \"S&P 500 profit growth getting even wilder as Amazon makes its mark\". 2분기 실적 서프라이즈로 연간 EPS 전망치 상향, 기술주 강세 지속 동력\n애플 저가 MacBook Neo 출시로 예산형 노트북 경쟁 격화 — MarketWatch \"How Apple's cheap MacBook Neo sparked a war in budget laptops\". 중저가 시장 공략으로 PC 수요 확대 기대, 애플 점유율 상승 전망\nSpaceX IPO 첫 현실 점검 — Bloomberg \"SpaceX IPO Faces First Reality Check\". 밸류에이션 논란 속 IPO 일정 불확실성 부각, 우주항공 섹터 투자심리 영향 가능\nSnap 2Q 실적 발표 예정(8/3) — 컨센서스 EPS $0.06·매출 $1.53B(+13.3% YoY). 광고 회복세 지속 여부가 소셜미디어 섹터 방향 가늠자 (Seeking Alpha)\n삼성전자·SK하이닉스 목표가 vs 주가 괴리 100% — 7월 31일 +20% 급반등 이후에도 증권가 평균 목표가 대비 주가는 절반 수준. 삼성전자 목표가 65만원 vs 실제 36만원 등 극심한 괴리 지속 (파이낸셜뉴스)",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "연준 회의 축소 가능성 제기로 시장 변동성 확대 우려 — 블룸버그, 회의 빈도 감소 시 정책 신호 불확실성 증가 경고",
+          "text": "미국 10년물 국채수익률 +1.76% 급등 — 채권 자경단(Vigilante) 출현, 함준호 전 금통위원 \"공권력 공백 속 민간이 채권 매도로 고물가에 제재\" 경고. 연준 금리인상 명분 강화 우려 확산 (Bloomberg \"Bond Traders Flying Blind on Fed\")",
           "impact": "high"
         },
         {
-          "text": "미국 국채10년물 +1.76% 급등으로 커브 스티프닝 심화, 인플레이션 재점화·재정 적자 확대 우려 반영",
+          "text": "미일 15년만에 공동 외환시장 개입 — 베선트 재무장관 \"100억달러 엔화 매입\" 공식화, 일본도 이틀간 10조엔 투입. 달러/엔 157엔대 회복, 트럼프 \"일본과의 우정 신호\" 발언 (매일경제)",
           "impact": "high"
         },
         {
-          "text": "AI 인프라 대출 시장서 투자자 요구 증가, 차입자들 더 나은 조건 제시 — 블룸버그, 데이터센터 건설 자금 수요 급증",
+          "text": "미국 노동시장 이탈 증가 — CNBC \"6개월 구직 끝 Dan Coda, 시장이 지쳐 아예 구직 포기\" 사례 확산. 실업률 외 비경제활동인구 증가로 고용 체감 악화",
           "impact": "mid"
         },
         {
-          "text": "유틸리티 16개사 중 12개사 EPS 예상치 상회, 데이터센터 전력 수요 급증이 실적 견인 — Seeking Alpha 어닝 스코어보드",
+          "text": "달러인덱스 -0.21% 소폭 약세 — 미일 외환 개입(유로 매도·엔 매입) 영향, 연준 금리인상 우려에도 달러 조정",
           "impact": "mid"
         }
       ]
@@ -9883,15 +9881,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "이란, 호르무즈 해협 봉쇄 위협 — 오만 인근 유조선 피격·쿠웨이트 드론 대응, 미국 해협 봉쇄 시 주요 해운로 폐쇄 경고로 유가 +1.29%",
+          "text": "이란·오만, 호르무즈 해협 관리 협정 임박 — FT \"Iran says deal with Oman to manage shipping through Hormuz is close\". 중동 석유·가스 운송 안정화 기대와 긴장 완화 신호, WTI +1.29% 반영",
           "impact": "high"
         },
         {
-          "text": "사회보장기금 위기 논의에서 간과된 변수 경고 — MarketWatch, 장기 재정 리스크 재점화 가능성 지적",
+          "text": "미중 AI 격차 사실상 소멸 — CNBC Op-ed \"U.S. lead over China in AI is all but gone. We need a change in national strategy\". 국가 전략 전환 필요성 제기, 반도체·AI 규제 강화 가능성",
           "impact": "mid"
         },
         {
-          "text": "한국 디지털자산기본법 논의 재개로 원화 스테이블코인 제도화 기대 — 네이버·카카오 은행·글로벌 사업자 협력 경쟁 본격화",
+          "text": "AI 도입 문화 분열 심화 — Bloomberg \"AI Adoption Sparks Cultural Divide\". 기업·세대 간 AI 수용도 격차 확대, 생산성 향상 vs 일자리 우려 대립",
           "impact": "mid"
         }
       ]
@@ -9901,31 +9899,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "SK하이닉스·삼성전자 20% 폭등에도 목표가 대비 50% 수준 — 신한투자 SK하이닉스 목표가 420만→270만원, 삼성전자 59만→45만원 하향에도 업사이드 100% 유지",
+          "text": "아마존 실적 호조로 S&P500 이익 성장률 상향 — MarketWatch \"S&P 500 profit growth getting even wilder as Amazon makes its mark\". 2분기 실적 서프라이즈로 연간 EPS 전망치 상향, 기술주 강세 지속 동력",
           "impact": "high"
         },
         {
-          "text": "SK하이닉스 ADR 발행·조선사 18년 최대 선물환 매도로 원/달러 1420원대 급등 — 한 달 전 1600원 위기 대비 180원 강세, 정부 대기업 환전 독려 정책 효과",
+          "text": "애플 저가 MacBook Neo 출시로 예산형 노트북 경쟁 격화 — MarketWatch \"How Apple's cheap MacBook Neo sparked a war in budget laptops\". 중저가 시장 공략으로 PC 수요 확대 기대, 애플 점유율 상승 전망",
           "impact": "high"
         },
         {
-          "text": "스페이스X 팰컨9 잔해 5일 달 표면 충돌 예정 — 시속 8700km로 충돌, 지름 27m 크레이터 생성 전망, 우주 인프라 장기 투자 테마 부각",
+          "text": "SpaceX IPO 첫 현실 점검 — Bloomberg \"SpaceX IPO Faces First Reality Check\". 밸류에이션 논란 속 IPO 일정 불확실성 부각, 우주항공 섹터 투자심리 영향 가능",
           "impact": "high"
         },
         {
-          "text": "OpenAI Hugging Face 해킹 확정, AI 사이버보안 경고 수개월 만에 현실화 — CNBC, \"판도라의 상자 열렸다\" 전문가 경고로 AI 보안 수요 급증 전망",
-          "impact": "high"
-        },
-        {
-          "text": "GLP-1 체중감량약 직접 처방 증가로 월마트·코스트코·아마존 수혜 전망 — CNBC, 고용주 보험 급여 중단으로 유통 구조 변화",
+          "text": "Snap 2Q 실적 발표 예정(8/3) — 컨센서스 EPS $0.06·매출 $1.53B(+13.3% YoY). 광고 회복세 지속 여부가 소셜미디어 섹터 방향 가늠자 (Seeking Alpha)",
           "impact": "mid"
         },
         {
-          "text": "스페이스X, 미국 주요 무선통신사 인수 가능성 논의 — Seeking Alpha, Starlink 무선망 구축 위한 M&A 관측",
-          "impact": "mid"
-        },
-        {
-          "text": "부동산 기업 88%가 매출 예상치 상회 — Seeking Alpha 실적 집계, 데이터센터 부동산 수요 견조",
+          "text": "삼성전자·SK하이닉스 목표가 vs 주가 괴리 100% — 7월 31일 +20% 급반등 이후에도 증권가 평균 목표가 대비 주가는 절반 수준. 삼성전자 목표가 65만원 vs 실제 36만원 등 극심한 괴리 지속 (파이낸셜뉴스)",
           "impact": "mid"
         }
       ]
@@ -9933,206 +9923,244 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "나스닥 기술주 반등(+1.00%)과 VIX -6.44% 하락으로 위험자산 선호 회복, 데이터센터 수요 재확인으로 유틸리티 12/16개사 EPS 예상치 상회",
+      "reason": "아마존 실적 호조로 이익 성장률 상향 + 채권금리 급등에도 기술주 강세 지속 (MarketWatch \"S&P 500 profit growth getting wilder\")",
       "drivers": [
-        "나스닥 +1.00% 기술주 주도",
-        "VIX -6.44% 변동성 완화"
+        "Amazon 실적 서프라이즈",
+        "AI 관련 대형주 매수세"
       ]
     },
     "NASDAQ": {
-      "reason": "OpenAI Hugging Face 해킹 사건에도 AI 사이버보안 수요 확대 기대감, GLP-1(체중감량 신약) 직접 처방 증가로 월마트·코스트코·아마존 수혜 전망",
+      "reason": "애플 저가 MacBook Neo 출시로 예산형 노트북 경쟁 촉발 + AI 소프트웨어·플랫폼 섹터 강세 지속 (MarketWatch \"Apple's cheap MacBook Neo sparked war\")",
       "drivers": [
-        "AI 사이버보안 수요 부각",
-        "GLP-1 유통 구조 변화"
+        "Apple MacBook Neo 신제품 효과",
+        "테크 섹터 실적 개선 기대"
       ]
     },
     "DOW": {
-      "reason": "S&P500 동조 상승하나 러셀2000 -0.50%로 소형주 약세 지속, 연준 회의 축소 가능성 제기로 금리 불확실성 잔존",
+      "reason": "S&P500 상승 동조 + 금리 상승에도 경기회복 기대감 유지로 산업재·소비재 방어",
       "drivers": [
-        "대형주 선호 지속",
-        "소형주 약세 대비"
+        "S&P500 상승 동조",
+        "필수소비재XLP Leading 지속"
       ]
     },
     "VIX": {
-      "reason": "나스닥·S&P500 동반 상승과 기술주 낙폭과대 수정 매수세로 시장 불안 심리 완화",
+      "reason": "미일 외환 공조 성공으로 엔캐리 청산 우려 완화 + 빅테크 실적 호조로 변동성 급락",
       "drivers": [
-        "기술주 반등",
-        "위험자산 선호 회복"
+        "미일 외환 개입 안정화",
+        "S&P500 +0.70% 안정 상승"
       ]
     },
     "필라델피아반도체": {
-      "reason": "SK하이닉스·삼성전자 20% 폭등 소식에도 목표가 하향(신한투자 SK하이닉스 420만→270만원)으로 글로벌 반도체 밸류에이션 부담 상쇄, 스페이스X 로켓 잔해 충돌 예고로 우주 인프라 투자 장기 테마 유지",
+      "reason": "소폭 상승(+0.07%)에 그침 — Bloomberg \"Wall Street's Favorite Bet Comes Undone as Chips Whipsaw Market\"로 칩스 변동성 부각, 반도체 내 뚜렷한 촉매 부재",
       "drivers": [
-        "한국 반도체 20% 급등",
-        "밸류에이션 재조정"
+        "반도체 내 방향성 불확실",
+        "레버리지ETF·헤지펀드 매도 잔존"
       ]
     },
     "러셀2000": {
-      "reason": "대형주 중심 상승장에서 소형주 소외 지속, 금리 불확실성과 경기 민감성으로 자금 이탈",
+      "reason": "금리 상승(-0.50%) — 10년물 +1.76% 급등으로 소형주 밸류에이션(Valuation·주가 적정성 평가) 부담 증가",
       "drivers": [
-        "대형주 선호",
-        "금리 불확실성"
+        "10년물 국채수익률 4.74% 급등",
+        "채권 자경단 출현 우려"
       ]
     },
     "영국FTSE": {
-      "reason": "오만 인근 유조선 공격으로 호르무즈 해협 봉쇄 위협 속 유가 +1.29% 상승하나 유럽 경기 둔화 우려로 지수 하락",
+      "reason": "직접 촉매 없음 — 유럽 금리 상승·달러 약세 혼조 속 소폭 조정",
       "drivers": [
-        "중동 지정학 리스크",
-        "경기 둔화 우려"
+        "유럽 금리 동조 상승"
       ]
     },
     "독일DAX": {
-      "reason": "직접 촉매 없음 — 유럽 전반 약한 거래량 속 미국 기술주 반등 일부 동조",
+      "reason": "직접 촉매 없음 — 미국 기술주 강세 동조, 독일 수출주 방어로 소폭 상승",
       "drivers": [
-        "미국 기술주 동조"
+        "S&P500 상승 동조"
       ]
     },
     "니케이": {
-      "reason": "코스피 +17.91% 아시아 반도체 밸류에이션 재평가 파급, 달러/엔 안정화와 글로벌 기술주 반등 동조로 4% 초과 급등",
+      "reason": "미일 공동 외환 개입 성공 + 엔화 157엔대 회복(+4.03%) — 트럼프 \"일본과의 우정 신호\" 발언으로 정치적 지지까지 확보",
       "drivers": [
-        "한국 반도체 폭등 파급",
-        "달러/엔 안정"
+        "미일 외환 개입 성공",
+        "엔화 급반등 수출주 안정화"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 약함 — 글로벌 위험 선호 회복에 소폭 동조하나 중국 내수 부진으로 상승폭 제한",
+      "reason": "직접 촉매 없음 — 미중 AI 격차 축소 우려(CNBC \"U.S. lead over China in AI is all but gone\") 속에서도 중국 내수 모멘텀 부재로 보합",
       "drivers": [
-        "위험 선호 회복"
+        "중국 내수 부진 지속"
       ]
     },
     "달러인덱스": {
-      "reason": "SK하이닉스 ADR 발행·조선사 선물환 매도로 한국 기업 달러 공급 급증, 연준 회의 축소 가능성 제기로 긴축 피로감 완화",
+      "reason": "미일 외환 개입으로 유로 매도·엔 매입(-0.21%) + 연준 금리인상 우려에도 달러 소폭 약세",
       "drivers": [
-        "한국 기업 달러 공급",
-        "연준 정책 불확실성"
+        "미일 외환 개입(유로→엔)",
+        "엔화 157엔대 회복"
       ]
     },
     "국채2Y": {
-      "reason": "직접 촉매 없으나 단기 금리 소폭 상승, 연준 회의 축소 논의로 정책 경로 불확실성 일부 반영",
+      "reason": "연준 9월 금리인하 기대 약화 + 채권 자경단 출현 신호로 단기물도 +0.19% 상승",
       "drivers": [
-        "정책 불확실성"
+        "연준 금리인하 지연 우려",
+        "채권 자경단 압력"
       ]
     },
     "국채10Y": {
-      "reason": "장기채 +1.76% 급등으로 커브 스티프닝(장기금리가 단기금리보다 빠르게 상승하는 현상) 심화, 인플레이션 재점화 우려와 재정 적자 확대 가능성 반영",
+      "reason": "채권 자경단 출현 — 함준호 전 금통위원 \"공권력 공백 속 민간 제재\" 경고, 고물가 지속 시 민간이 채권 매도로 금리 인상 압박(+1.76% 급등)",
       "drivers": [
-        "인플레이션 우려",
-        "재정 적자 확대"
+        "채권 자경단(Vigilante) 매도",
+        "연준 금리인상 명분 강화"
       ]
     },
     "코스피": {
-      "reason": "SK하이닉스·삼성전자 20% 폭등과 원/달러 1420원대 회복으로 반도체·수출주 밸류에이션 급격 개선, 한 달 전 1600원 위기 대비 180원 강세 전환이 외국인 심리 반전 촉발",
+      "reason": "7월 31일 +17.91% 급반등 이후 관망 국면 — 외국인 반도체 매수 지속 여부가 변수, 이날(8월 1일) 보합 마감",
       "drivers": [
-        "반도체 20% 급등",
-        "원/달러 180원 강세"
+        "외국인 반도체 매매 관망"
       ]
     },
     "코스닥": {
-      "reason": "코스피 동조 상승하나 시가총액 미달 30개 속출로 상장폐지 우려 잔존, 7월 21% 폭락 여파 속 기술적 반등",
+      "reason": "코스피 보합 동조 — 중소형주 수급 부진 지속",
       "drivers": [
-        "코스피 동조",
-        "시총 미달 리스크"
+        "코스피 보합 동조"
       ]
     },
     "금": {
-      "reason": "달러인덱스 -0.21% 약세에도 위험 선호 회복으로 안전자산 수요 감소, 주식·위험자산으로 자금 이동",
+      "reason": "달러 약세 + 채권금리 급등에도 안전자산 수요로 소폭 상승(+0.17%)",
       "drivers": [
-        "위험 선호 회복",
-        "주식 자금 이동"
+        "달러 약세",
+        "채권 불안 속 안전자산 선호"
       ]
     },
     "WTI유가": {
-      "reason": "오만 인근 유조선 공격과 이란의 호르무즈 해협 봉쇄 위협으로 중동 공급 차질 우려, 쿠웨이트 방공망 드론 대응 긴장 고조",
+      "reason": "중동 지정학 리스크 지속 — FT \"이란·오만, 호르무즈 해협 관리 협정 임박\" + 정유사 윤활기유 수출 호조로 수요 기대 반영(+1.29%)",
       "drivers": [
-        "호르무즈 해협 위협",
-        "중동 지정학 리스크"
+        "호르무즈 해협 리스크",
+        "정유 윤활기유 수요↑"
       ]
     },
     "원달러": {
-      "reason": "SK하이닉스 ADR 발행대금과 조선사 18년 최대 선물환 매도가 달러 공급 급증 촉발, 정부 대기업 환전·환헤지 독려 정책 효과와 한은 금리인상 기대 병행",
+      "reason": "미일 외환 개입에도 국내 달러 수요 지속 + 국채금리 급등 영향으로 원화 약세(+1.13%)",
       "drivers": [
-        "SK하이닉스 ADR 대금",
-        "조선사 선물환 매도"
+        "미국 10년물 금리 급등",
+        "외국인 국내 채권 이탈"
       ]
     },
     "알루미늄": {
-      "reason": "직접 촉매 없음 — 중국 수요 둔화 우려와 구리 동조 약세",
+      "reason": "직접 촉매 없음 — 중국 내수 부진으로 소폭 하락",
       "drivers": [
-        "중국 수요 둔화"
+        "중국 수요 부진"
       ]
     },
     "구리": {
-      "reason": "직접 촉매 약함 — 중국 제조업 부진 지속과 글로벌 경기 둔화 우려로 산업금속 전반 약세",
+      "reason": "AI 인프라 수요 기대 + 중국 전력망 투자 기대로 소폭 상승(+0.33%)",
       "drivers": [
-        "중국 제조업 부진"
+        "AI 인프라 수요"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "SK하이닉스 ADR·조선사 달러 공급으로 원/달러 1420원대 회복, 반도체 20% 폭등에도 목표가 100% 업사이드로 추가 상승 여력 부각",
+    "summary": "7월 수출 989억달러(역대 2위) 확정과 반도체 슈퍼사이클 지속 확인 속, 미국 10년물 +1.76% 급등·채권 자경단 출현이 외국인 채권 이탈 압력으로 작용. 원달러 +1.13% 약세 지속 우려",
     "positive_factors": [
-      "SK하이닉스 ADR 발행대금·조선사 18년 최대 선물환 매도로 달러 공급 급증 → 원/달러 한 달 만에 1600원→1420원 180원 강세 전환, 수출주 밸류에이션 부담 완화",
-      "삼성전자·SK하이닉스 20% 폭등 후에도 목표가 대비 50% 수준 유지 → 증권사 목표가 하향(SK하이닉스 270만원, 삼성전자 45만원)에도 업사이드 100% 여력으로 재평가 모멘텀 지속",
-      "니케이 +4.03% 아시아 반도체 밸류에이션 재평가 파급 → 글로벌 낙폭과대 수정 매수세 유입, 외국인 심리 반전 신호"
+      "7월 수출 989억달러·반도체 두 달째 400억달러 돌파 — 연간 1조달러 가시권 진입, 반도체 슈퍼사이클 펀더멘탈 재확인 (산업통상부)",
+      "미일 외환 공조 성공 + 니케이 +4.03% 반등 — 아시아 증시 안정화로 국내 외국인 Risk-on 심리 지속 가능",
+      "삼성전자·SK하이닉스 목표가 괴리 100% — 증권가 목표가 대비 주가 절반 수준으로, 상승 여력(Upside) 50~80% 잠재. 외국인 추가 매수 유인 존재"
     ],
     "negative_factors": [
-      "국채10년물 +1.76% 급등으로 장기금리 상승 압력 → 국내 부동산·건설 이자 부담 확대 우려, 성장주 할인율 상승",
-      "코스닥 시가총액 미달 30개 속출 → 7월 21% 폭락 여파로 상장폐지 리스크 잔존, 중소형주 투자 심리 위축"
+      "미국 10년물 +1.76% 급등·채권 자경단 출현 — 국내 국채금리 동조 상승 시 외국인 채권 이탈 가속, 원달러 추가 약세(+1.13% 이미 반영) 압력",
+      "필라델피아반도체 +0.07% 부진 + Bloomberg \"Chips Whipsaw Market\" — 반도체 변동성 지속, 레버리지ETF·헤지펀드 매도 잔존으로 외국인 반도체 매수 지속 여부 불확실"
     ],
-    "key_watch": "원/달러 1420원대 안착 여부와 반도체 목표가 재상향 시점 — SK하이닉스·삼성전자 추가 상승 모멘텀 확인 필요, 조선·수출주 환율 수혜 지속성 점검"
+    "key_watch": "오늘(8/3) 미국 금리 추가 상승 여부 + Advanced Energy·Snap 등 8/3 어닝 결과가 반도체·소셜미디어 섹터 방향성 결정. 외국인 반도체 순매수 지속 시 코스피 추가 반등, 금리 급등 지속 시 원화 약세·수급 악화 우려"
   },
   "sector_impact": {},
   "strong_buy": [
     {
+      "sector": "정유",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "정유 RS-Ratio 131.4·RS-Momentum 131.7으로 전 섹터 1위 Leading — 중동 호르무즈 협정 임박으로 지정학 리스크 완화 + 윤활기유 공급 부족 지속(에쓰오일 영업이익 1.5조원 전망)으로 2분기 실적 서프라이즈. 스탠 와인스타인 스테이지2(상승기) 중반, 추가 상승 여력 충분"
+    },
+    {
+      "sector": "해운",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "해운 RS-Ratio 120.9·물류 RS-Ratio 122.9 Leading — 7월 수출 989억달러(역대 2위) 확정으로 해상 물동량 증가 지속. 마크 미너비니 SEPA 전략 중 '촉매(Catalyst)' 충족, 글로벌 공급망 정상화 수혜"
+    },
+    {
       "sector": "2차전지_셀",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "코스피 반도체 20% 폭등과 원/달러 180원 강세로 수출 경쟁력 개선, 목표가 대비 50% 수준에서 100% 업사이드 유지 → RRG Leading 2차전지_셀(RS-R 104.3/M 119.0)이 글로벌 EV 수요 회복 신호와 동조"
+      "reason": "2차전지_셀 RS-Ratio 104.3·RS-Momentum 119.0 Leading — 미국 에너지XLE Leading(R105.0/M103.9) 동조, 전기차 수요 회복 + 에너지 저장장치(ESS·Energy Storage System·대규모 배터리) 수요 확대. RRG상 Leading 우상단 위치, 닥터 엘더 삼중 스크린 주간·일간 모두 상승 추세"
     },
     {
-      "sector": "조선",
+      "sector": "철강",
       "rrg_quadrant": "leading",
-      "claude_quadrant": "improving",
-      "reason": "원화 강세로 조선사 선물환 매도 18년 최대 규모 → 조선 RS-R 104.9 Leading 진입 직전, 수주 잔고 환차익 개선과 해운(RS-R 120.9 Leading) 동반 강세"
-    },
-    {
-      "sector": "반도체_소재",
-      "rrg_quadrant": "improving",
       "claude_quadrant": "leading",
-      "reason": "SK하이닉스 ADR 발행·삼성전자 목표가 45만원 유지로 반도체 재평가 지속 → 반도체_소재 RS-M 104.8 Improving, VCP(변동성 축소 패턴) 형성 후 신고가 돌파 대기"
+      "reason": "철강 RS-Ratio 109.3·RS-Momentum 125.9 Leading — 7월 수출 호조 + 중국 인프라 투자 기대, 구리 +0.33% 동조. 스테이지2 초입, 추가 상승 모멘텀 확보"
     }
   ],
   "watch": [
     {
-      "sector": "건설",
-      "reason": "국채10년물 +1.76% 급등으로 장기금리 상승 압력 → 부동산·건설 이자 부담 확대 우려, RRG Leading이나 금리 민감도로 단기 관망"
+      "sector": "반도체_소자",
+      "reason": "반도체_소자·팹리스·장비·패키징 모두 Lagging(RS-R 90~93) — 필라델피아반도체 +0.07% 부진 + Bloomberg '칩스 변동성' 경고. 7월 31일 +20% 급반등 이후 추가 상승 모멘텀 불확실, 외국인 매수 지속 여부 확인 필요. 삼성전자·SK하이닉스 목표가 괴리 100%는 긍정 요인이나 RRG 신호 회복 전까지 관망"
     },
     {
       "sector": "IT부품",
-      "reason": "코스닥 시총 미달 30개 속출로 중소형주 투자 심리 위축 → IT부품 RS-R 85.7/M 74.5 Lagging, 반도체 동반 상승 대기"
+      "reason": "IT부품 RS-Ratio 85.7·RS-Momentum 74.5 Lagging 최하위 — 미국 기술XLK Lagging 동조, 애플 MacBook Neo 저가 공략이 부품사 마진 압박 우려. 스테이지4(하락기) 하단, 반등 신호 부재"
     }
   ],
   "avoid": [],
-  "summary": "원/달러 180원 급락·반도체 목표가 100% 업사이드·니케이 +4% 동조 → 수출주 밸류에이션 재평가, 2차전지·조선·반도체소재 Leading 섹터 스테이지2 초입 집중 진입",
-  "strategy_brief": "SK하이닉스 ADR 발행과 조선사 18년 최대 선물환 매도가 원/달러를 한 달 만에 1600원 위기에서 1420원대로 180원 끌어올리며, 수출주 밸류에이션 부담을 급격히 완화했다. 삼성전자·SK하이닉스가 20% 폭등 후에도 목표가 대비 50% 수준에 머물러 추가 100% 업사이드 여력을 확보한 가운데, 니케이 +4.03% 급등이 아시아 반도체 재평가를 확인했다. RRG에서 2차전지_셀(RS-R 104.3 Leading)·조선(RS-R 104.9)·반도체_소재(RS-M 104.8 Improving)가 스테이지2 초입 진입 신호를 보이며, 마크 미너비니 SEPA 전략의 4박자(추세·펀더멘탈·촉매·타이밍)를 충족했다. 국채10년물 +1.76% 급등으로 장기금리 상승 압력이 있으나, 원화 강세·반도체 목표가 업사이드·글로벌 낙폭과대 수정이라는 3대 촉매가 수출주 중심 강세장을 뒷받침하는 만큼, 2차전지·조선·반도체소재 Leading 섹터에 집중 배분하되 금리 민감 건설·부동산은 단기 관망이 유효하다.",
-  "strategy_headline": "달러 180원 급락·반도체 100% 업사이드 — 수출주 밸류에이션 재평가 집중",
+  "summary": "미 채권 자경단 출현과 10년물 +1.76% 급등 우려에도 한국 7월 수출 989억달러(역대 2위) 확정으로 수출 슈퍼사이클 펀더멘탈 견고. 반도체 Lagging 지속으로 관망, 정유·해운·철강 등 수출 직접 수혜 Leading 섹터 집중 전략 유효",
+  "strategy_brief": "미국 10년물 국채수익률 +1.76% 급등과 채권 자경단(민간이 채권 매도로 금리 인상 압박) 출현으로 국내 원달러 +1.13% 약세 압력이 이어지지만, 7월 수출 989억달러(역대 2위) 확정과 반도체 두 달째 400억달러 돌파로 한국 수출 슈퍼사이클 펀더멘탈은 여전히 견고하다. 미일 외환 공조 성공과 니케이 +4% 반등이 아시아 증시 안정화를 견인하면서 외국인 Risk-on 심리는 유지 가능하다. 반도체는 필라델피아반도체 +0.07% 부진과 RRG Lagging 지속으로 7월 31일 +20% 급반등 이후 추가 상승 모멘텀이 불확실하며, 대신 정유(RS-Ratio 131.4 전 섹터 1위)·해운(120.9)·철강(109.3) 등 수출 호조 직접 수혜 섹터가 Leading 구간에서 스테이지2(상승기) 중반을 달리고 있어 비중 확대가 유효하다. 오늘은 미국 금리 추가 상승 여부와 외국인 반도체 매매 방향을 확인하되, 정유·해운·2차전지 등 Leading 섹터 중심 포트폴리오로 수출 슈퍼사이클을 포착하는 전략이 최선이다.",
+  "strategy_headline": "美 채권 자경단 출현에도 韓 수출 슈퍼사이클 확인 — 정유·해운 Leading 집중",
   "strategy_points": [
-    "SK하이닉스 ADR·조선 선물환 달러 공급으로 원/달러 1600→1420원 — 수출주 환율 부담 180원 완화, 반도체·조선 Leading(주도 상승) 섹터 재진입",
-    "삼성·SK하이닉스 목표가 하향에도 업사이드 100% 유지 — 20% 폭등 후 추가 재평가 여력, 니케이 +4% 아시아 밸류에이션 동조 신호",
-    "2차전지·조선·반도체소재 RRG Improving(상승 전환)→Leading 이동 — 스탠 와인스타인 스테이지2 초입 진입, 52주 신고가 돌파 대기",
-    "국채10년물 +1.76% 급등 리스크 — 건설·부동산 금리 민감 섹터 단기 관망, 수출 중심 포트폴리오 유지"
+    "미국 10년물 +1.76% 급등·채권 자경단 출현 → 국내 채권 이탈 압력, 그러나 7월 수출 989억달러(역대 2위) 확정으로 펀더멘탈(Fundamental·기업 실적·경제 기초체력) 방어",
+    "미일 외환 공조 성공 + 니케이 +4% 반등 → 아시아 Risk-on(위험자산 선호) 지속, 외국인 국내 주식 매수 심리 유지 가능",
+    "정유(RS-Ratio 131.4 전 섹터 1위)·해운(120.9)·철강(109.3) Leading 구간 → 수출 호조 + 중동 안정화 수혜, 스테이지2(상승기) 중반 진입",
+    "반도체 Lagging 지속(필라 반도체 +0.07%) → 7/31 +20% 급반등 이후 추가 모멘텀 불확실, RRG 신호 개선 전까지 비중 축소 관망"
   ],
   "top_picks": [
     {
+      "sector": "정유",
+      "rrg_quadrant": "leading",
+      "reason": "정유 RS-Ratio 131.4·RS-Momentum 131.7으로 전 섹터 1위 Leading — 중동 호르무즈 협정 임박으로 지정학 리스크 완화 + 윤활기유 공급 부족 지속(에쓰오일 영업이익 1.5조원 전망)으로 2분기 실적 서프라이즈. 스탠 와인스타인 스테이지2(상승기) 중반, 추가 상승 여력 충분",
+      "stocks": [
+        {
+          "name": "에쓰오일",
+          "code": "010950",
+          "signal": "prime",
+          "reason": "정유 Leading 1위 + 윤활기유 2분기 영업이익 1.5조원 전망(한국투자증권), 중동 호르무즈 협정 임박으로 공급 안정화 수혜 → RRG Leading·52주 신고가 근접",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "정유",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
+      "sector": "해운",
+      "rrg_quadrant": "leading",
+      "reason": "해운 RS-Ratio 120.9·물류 RS-Ratio 122.9 Leading — 7월 수출 989억달러(역대 2위) 확정으로 해상 물동량 증가 지속. 마크 미너비니 SEPA 전략 중 '촉매(Catalyst)' 충족, 글로벌 공급망 정상화 수혜",
+      "stocks": [
+        {
+          "name": "HMM",
+          "code": "011200",
+          "signal": "prime",
+          "reason": "7월 수출 989억달러 확정 → 해운 RS-Ratio 120.9 Leading, 물동량 증가 지속 + 스테이지2 중반 위치 → VCP(Volatility Contraction Pattern·변동성 축소 패턴) 돌파 임박",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "해운",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
       "sector": "2차전지_셀",
       "rrg_quadrant": "leading",
-      "reason": "코스피 반도체 20% 폭등과 원/달러 180원 강세로 수출 경쟁력 개선, 목표가 대비 50% 수준에서 100% 업사이드 유지 → RRG Leading 2차전지_셀(RS-R 104.3/M 119.0)이 글로벌 EV 수요 회복 신호와 동조",
+      "reason": "2차전지_셀 RS-Ratio 104.3·RS-Momentum 119.0 Leading — 미국 에너지XLE Leading(R105.0/M103.9) 동조, 전기차 수요 회복 + 에너지 저장장치(ESS·Energy Storage System·대규모 배터리) 수요 확대. RRG상 Leading 우상단 위치, 닥터 엘더 삼중 스크린 주간·일간 모두 상승 추세",
       "stocks": [
         {
           "name": "LG에너지솔루션",
           "code": "373220",
           "signal": "prime",
-          "reason": "원/달러 1420원대 회복으로 수출 채산성 개선 판단 + 2차전지_셀 RS-R 104.3 Leading·52주 신고가 근접, 글로벌 EV 보조금 재확대 기대감",
+          "reason": "미국 에너지XLE Leading 동조 + 2차전지_셀 RS-Momentum 119.0 최상위 → ESS 수요 확대, 닥터 엘더 삼중 스크린 주간·일간 상승 추세 일치",
           "rrg_tracked": true,
           "rrg_actual_sector": "2차전지_장비",
           "rrg_sector_match": false,
@@ -10141,59 +10169,25 @@
       ]
     },
     {
-      "sector": "조선",
+      "sector": "철강",
       "rrg_quadrant": "leading",
-      "reason": "원화 강세로 조선사 선물환 매도 18년 최대 규모 → 조선 RS-R 104.9 Leading 진입 직전, 수주 잔고 환차익 개선과 해운(RS-R 120.9 Leading) 동반 강세",
+      "reason": "철강 RS-Ratio 109.3·RS-Momentum 125.9 Leading — 7월 수출 호조 + 중국 인프라 투자 기대, 구리 +0.33% 동조. 스테이지2 초입, 추가 상승 모멘텀 확보",
       "stocks": [
         {
-          "name": "HD현대중공업",
-          "code": "329180",
+          "name": "포스코홀딩스",
+          "code": "005490",
           "signal": "prime",
-          "reason": "조선사 18년 최대 선물환 매도 주역·환차익 개선 직접 수혜 + 조선 RS-R 104.9 Leading 진입 직전, 스테이지2 초입 VCP 완성",
+          "reason": "7월 수출 호조 + 철강 RS-Ratio 109.3 Leading → 구리 +0.33% 동조, 중국 인프라 투자 기대 + 스테이지2 초입 진입",
           "rrg_tracked": true,
-          "rrg_actual_sector": "조선",
+          "rrg_actual_sector": "철강",
           "rrg_sector_match": true,
-          "rrg_signal": "watch"
-        }
-      ]
-    },
-    {
-      "sector": "반도체_소재",
-      "rrg_quadrant": "improving",
-      "reason": "SK하이닉스 ADR 발행·삼성전자 목표가 45만원 유지로 반도체 재평가 지속 → 반도체_소재 RS-M 104.8 Improving, VCP(변동성 축소 패턴) 형성 후 신고가 돌파 대기",
-      "stocks": [
-        {
-          "name": "솔브레인",
-          "code": "357780",
-          "signal": "prime",
-          "reason": "SK하이닉스·삼성전자 20% 폭등 파급 + 반도체_소재 RS-M 104.8 Improving·화학 소재 공급 부족 수혜, 마크 미너비니 SEPA 4박자 충족",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "미분류",
-          "rrg_sector_match": false,
-          "rrg_signal": "confirm"
-        }
-      ]
-    },
-    {
-      "sector": "2차전지_소재",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "포스코퓨처엠",
-          "code": "003670",
-          "signal": "prime",
-          "reason": "원화 강세로 해외 소재 조달 원가 절감 + 2차전지_소재 RS-M 116.0 Improving, 양극재 수요 회복 신호와 RRG 상승 전환 동조",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": false,
-          "rrg_signal": "watch"
+          "rrg_signal": "leading"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "건설",
+    "반도체_소자",
     "IT부품"
   ]
 }
