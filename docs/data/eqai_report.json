@@ -1,182 +1,184 @@
 {
-  "generated_at": "2026-08-09 07:03:28",
+  "generated_at": "2026-08-10 07:03:07",
   "macro": {
     "S&P500": {
       "price": 7757.64,
       "change": 0.62,
-      "reason": "AI 반도체 랠리 재개 + Berkshire 순매수 전환으로 대형 자금 복귀 신호 + 금리 하락에 따른 밸류에이션(주가 적정성) 부담 완화",
+      "reason": "미 국채 2Y -0.59%, 10Y -0.21% 하락으로 밸류에이션 부담 완화, 기술주 중심 매수세 유입",
       "drivers": [
-        "필라델피아반도체 +2.56%",
-        "Berkshire 14분기 만에 주식 순매수",
-        "국채 2년물 -0.59%"
+        "국채금리 동반 하락",
+        "경기소비재·기술 섹터 Improving 전환"
       ]
     },
     "NASDAQ": {
       "price": 26690.62,
       "change": 1.3,
-      "reason": "AI 인프라 투자 지속 확인(네이버 GPU·데이터센터, 카카오 에이전트 전략)으로 기술주 모멘텀 회복 + 애플·구글 AI 리더십 재편 뉴스에도 시장 낙관 유지",
+      "reason": "국채금리 하락으로 성장주 할인율 부담 경감, 기술 섹터 XLK Improving 전환 + 시스코 AI 수혜 기대",
       "drivers": [
-        "기술주 XLK Improving 전환",
-        "AI 인프라 투자 확대 뉴스"
+        "10년물 금리 -0.21%p",
+        "기술 섹터 XLK Improving"
       ]
     },
     "DOW": {
       "price": 54036.93,
       "change": 0.28,
-      "reason": "Berkshire 2Q 영업이익 +16%(전년 대비) 호조 + 경기소비재 XLY Improving 전환으로 경기 민감주 선호",
+      "reason": "금리 하락 수혜 제한적, 경기민감 업종 혼조 속 지수 상승세 제한",
       "drivers": [
-        "Berkshire 실적 서프라이즈",
-        "경기소비재 섹터 모멘텀 전환"
+        "금융 XLF Weakening 전환",
+        "산업재 XLI Lagging 지속"
       ]
     },
     "VIX": {
       "price": 14.9,
       "change": -1.65,
-      "reason": "AI 기업 실적 시즌 마무리 + 7월 고용 쇼크 소화 완료로 변동성 우려 완화(전주 대비 큰 폭 하락)",
+      "reason": "국채금리 하락 + 기술주 강세로 변동성 우려 완화",
       "drivers": [
-        "빅테크 실적 발표 종료",
-        "고용지표 이벤트 통과"
+        "S&P500 +0.62%",
+        "국채 10Y 금리 하락"
       ]
     },
     "필라델피아반도체": {
       "price": 12356.79,
       "change": 2.56,
-      "reason": "AI 반도체 수요 사이클 지속 확인(네이버·카카오 상반기 R&D 2조 투자) + 미국 기술주 XLK Improving 전환으로 반도체 업종 선호 복귀",
+      "reason": "시스코 AI 데이터센터 네트워크 주문 50% 급증 보도 + 국채금리 하락으로 반도체 밸류에이션 부담 완화",
       "drivers": [
-        "AI 인프라 투자 확대",
-        "기술주 섹터 로테이션 전환"
+        "시스코 AI 인프라 수혜",
+        "10년물 금리 -0.21%p"
       ]
     },
     "러셀2000": {
       "price": 3034.49,
       "change": 1.1,
-      "reason": "금리 하락(국채 2년 -0.59%, 10년 -0.21%) + 달러 약세로 중소형주 자금조달 비용 부담 완화",
+      "reason": "국채 2Y 금리 -0.59% 급락으로 소형주 차입비용 부담 완화, 경기소비재 Improving 전환",
       "drivers": [
-        "단기금리 하락",
-        "달러인덱스 -0.37%"
+        "단기금리 급락",
+        "경기소비재 XLY Improving"
       ]
     },
     "영국FTSE": {
       "price": 10901.1,
       "change": 0.31,
-      "reason": "직접 촉매 없음 — 유럽 전반 안정적 거래(독일 DAX +0.69%)에 동조",
+      "reason": "유럽 소재주 동조 상승 + 알루미늄 +1.32% 강세",
       "drivers": [
-        "유럽 증시 동조화"
+        "소재 가격 상승",
+        "달러 약세"
       ]
     },
     "독일DAX": {
       "price": 26319.45,
       "change": 0.69,
-      "reason": "달러 약세·유로 강세 수출 모멘텀 + 소재 XLB Improving 전환으로 제조업 관련 수혜",
+      "reason": "소재 XLB Improving 전환 + 유로존 제조업 개선 기대",
       "drivers": [
-        "달러인덱스 -0.37%",
-        "소재 섹터 전환"
+        "소재 섹터 모멘텀",
+        "달러인덱스 -0.37%"
       ]
     },
     "니케이": {
       "price": 65606.71,
       "change": -0.12,
-      "reason": "직접 촉매 없음 — 아시아 증시 혼조(항셍 +0.54%) 속 소폭 조정",
+      "reason": "베선트 재무의 엔화 부양 개입에도 불구, 중국 AI 반도체 경쟁 격화 우려로 수출주 약세",
       "drivers": [
-        "아시아 증시 혼조"
+        "중국 AI 칩 경쟁",
+        "엔화 개입 영향 제한적"
       ]
     },
     "항셍": {
       "price": 25668.03,
       "change": 0.54,
-      "reason": "중국 AI 경제 재편 기대(Bloomberg 중국 AI 경제 미래 보도) + 알리바바 Qwen AI 애플 맥 탑재로 빅테크 협력 모멘텀",
+      "reason": "중국 정부의 AI 반도체·기술 주도권 경쟁 강화 기대, AI 관련주 매수세",
       "drivers": [
-        "중국 AI 전략 주목",
-        "알리바바-애플 AI 협력"
+        "중국 AI 투자 확대",
+        "기술주 선호"
       ]
     },
     "달러인덱스": {
       "price": 99.6,
       "change": -0.37,
-      "reason": "국채 단기물 금리 급락(2년 -0.59%)으로 금리 차 축소 + 리스크온(위험자산 선호) 분위기에서 달러 안전 수요 약화",
+      "reason": "미 국채금리 하락 + 베선트 재무의 엔화 부양 개입으로 달러 약세 압력",
       "drivers": [
-        "국채 2년물 -0.59%",
-        "VIX -1.65%"
+        "국채 2Y -0.59%p",
+        "엔화 부양 개입"
       ]
     },
     "국채2Y": {
       "price": 3.71,
       "change": -0.59,
-      "reason": "7월 고용지표 약세 여파 소화 + CLO ETF 수요 확대(CNBC 보도) 등 채권 대체 자산 수요로 단기물 강세",
+      "reason": "인플레이션 데이터가 연준 금리 인상 가능성 시사했으나, 베선트 재무의 장기채 발행 축소 시사로 단기물까지 금리 하락 파급",
       "drivers": [
-        "고용지표 완화 기대",
-        "CLO 자금 유입"
+        "베선트 장기채 발행 축소",
+        "인플레 우려 일부 완화"
       ]
     },
     "국채10Y": {
       "price": 4.66,
       "change": -0.21,
-      "reason": "장기 인플레 우려 잔존(금 +2.33%, 유가 +1.15%) + 버크셔 등 대형 자금 주식 복귀로 채권 매력 상대적 약화",
+      "reason": "베선트 재무장관의 장기채 금리 상승 방어 의지 명확 — 장기채 발행 축소 시사 + 엔화 부양 개입",
       "drivers": [
-        "금·원자재 동반 강세",
-        "주식 자금 유입"
+        "재무부 장기채 발행 축소",
+        "케빈 워시 연준의장 지원"
       ]
     },
     "코스피": {
       "price": 6258.77,
-      "change": -0.6,
-      "reason": "SK하이닉스 노조 갈등 + 반도체 lagging(뒤처짐) 국면 + 홈플러스 사태로 소비 위축 가시화(대형마트 판매 -9.4% 역대 최대)로 내수 불안",
+      "change": 0.0,
+      "reason": "보합 마감 — 외국인 수급 부재 속 관망세",
       "drivers": [
-        "SK하이닉스 노조 이슈",
-        "반도체 섹터 lagging",
-        "내수 소비 위축"
+        "거래 미진행(+0.00%)",
+        "섹터별 대기"
       ]
     },
     "코스닥": {
       "price": 798.81,
-      "change": -0.36,
-      "reason": "동전주 상폐 절차 본격화(48곳 관리종목 공시) + 빚투 연체 급증 뉴스로 중소형주 유동성 우려 지속",
+      "change": 0.0,
+      "reason": "보합 마감 — 개인·기관 관망",
       "drivers": [
-        "상장폐지 리스크",
-        "신용 연체 증가"
+        "거래 미진행(+0.00%)",
+        "방향성 대기"
       ]
     },
     "금": {
-      "price": 4340.7,
-      "change": 2.33,
-      "reason": "중동 전쟁 장기화 우려(매일경제 종전 타이밍 집착 경고 보도) + 달러 약세(-0.37%) + 지정학 헤지 수요로 사상 최고가 근접",
+      "price": 4399.7,
+      "change": 3.72,
+      "reason": "트럼프의 이란 경제 압박 강화 발언 + 호르무즈 해협 긴장 지속으로 안전자산 수요 급증",
       "drivers": [
-        "중동 리스크 프리미엄",
-        "달러인덱스 약세"
+        "이란 지정학 리스크",
+        "달러인덱스 -0.37%"
       ]
     },
     "WTI유가": {
       "price": 78.18,
       "change": 1.15,
-      "reason": "중동 긴장 지속 + 달러 약세로 원자재 전반 강세 + 에너지 섹터 12개 전종목 실적 서프라이즈(SA 보도)",
+      "reason": "이란 호르무즈 해협 긴장 지속 + 트럼프의 이란 경제 봉쇄 강화 발언으로 공급 차질 우려",
       "drivers": [
-        "지정학 리스크",
-        "에너지 기업 실적 호조"
+        "호르무즈 긴장",
+        "이란 제재 강화"
       ]
     },
     "원달러": {
-      "price": 1407.45,
-      "change": -0.96,
-      "reason": "달러인덱스 -0.37% 약세 + 금리 차 축소(국채 2년 -0.59%)로 원화 강세 압력",
+      "price": 1407.33,
+      "change": -1.05,
+      "reason": "달러인덱스 -0.37% 약세 + 미 국채금리 하락으로 원화 강세",
       "drivers": [
-        "달러인덱스 약세",
-        "미국 단기금리 하락"
+        "달러 약세",
+        "국채금리 하락"
       ]
     },
     "알루미늄": {
-      "price": 3359.0,
-      "change": -0.18,
-      "reason": "직접 촉매 없음 — 소재 XLB Improving 전환 속 소폭 조정",
+      "price": 3409.25,
+      "change": 1.32,
+      "reason": "달러 약세 + 소재 XLB Improving 전환으로 산업금속 선호",
       "drivers": [
-        "소재 섹터 혼조"
+        "달러인덱스 -0.37%",
+        "소재 섹터 모멘텀"
       ]
     },
     "구리": {
-      "price": 6.57,
-      "change": -1.74,
-      "reason": "중국 경기 회복 모멘텀 불확실 + 제조업 지표 부재로 산업 수요 우려",
+      "price": 6.59,
+      "change": -1.44,
+      "reason": "중국 경기 회복 불확실성 지속, 제조업 수요 기대 약화",
       "drivers": [
-        "중국 수요 불확실성"
+        "중국 수요 우려",
+        "제조업 둔화"
       ]
     }
   },
@@ -9761,122 +9763,122 @@
   "sources": [
     {
       "source": "yonhap",
-      "title": "SK하이닉스 통합노조 신설 추진…구성원간 성과급 불만 확산",
-      "link": "https://www.yna.co.kr/view/AKR20260807147900003",
-      "published": "Sun, 9 Aug 2026 06:03:01 +0900"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Trending stocks this week as SpaceX, Palantir earnings and jobs data drive markets",
-      "link": "https://seekingalpha.com/news/4629310-trending-stocks-this-week-as-spacex-palantir-earnings-and-jobs-data-drive-markets?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 08 Aug 2026 13:12:36 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "SA Asks: Should Google's AI leadership changes concern investors?",
-      "link": "https://seekingalpha.com/news/4629653-sa-asks-should-googles-ai-leadership-changes-concern-investors?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 08 Aug 2026 15:51:59 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Apple brings Alibaba's Qwen AI model to Mac users in China",
-      "link": "https://seekingalpha.com/news/4629651-apple-lets-mac-link-alibabas-ai-model-china?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 08 Aug 2026 14:46:22 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "8 out of 12 S&P 500 utilities stocks beat EPS estimates this week: Earnings Scorecard",
-      "link": "https://seekingalpha.com/news/4629245-8-out-of-12-sp-500-utilities-stocks-beat-eps-estimates-this-week-earnings-scorecard?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 08 Aug 2026 12:45:00 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Earnings Scorecard: All 12 S&P 500 Energy stocks beat EPS estimates this week",
-      "link": "https://seekingalpha.com/news/4629188-earnings-scorecard-all-12-sp-500-energy-stocks-beat-eps-estimates-this-week?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 08 Aug 2026 12:15:15 -0400"
+      "title": "테슬라·엔비디아 24시간 사고판다…'토큰주식' 올해들어 4배로",
+      "link": "https://www.yna.co.kr/view/AKR20260808031400002",
+      "published": "Mon, 10 Aug 2026 05:55:01 +0900"
     },
     {
       "source": "cnbc_world",
-      "title": "Next big push in ETF industry? Why these risk assets are gaining traction as interest rate uncertainty persists",
-      "link": "https://www.cnbc.com/2026/08/08/rate-uncertainty-sparking-demand-for-clo-exposure-among-etfs-vettafi.html",
-      "published": "Sat, 08 Aug 2026 15:00:01 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Berkshire earnings rose last quarter and CEO Greg Abel is starting to deploy Buffett's massive cash hoard",
-      "link": "https://www.cnbc.com/2026/08/08/berkshire-hathaway-earnings-q2-2026.html",
-      "published": "Sat, 08 Aug 2026 13:28:00 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Berkshire Hathaway Beats Earnings Views, Ends 14 Quarters Of Selling Equities",
-      "link": "https://www.investors.com/news/berkshire-hathaway-earnings-buybacks-cash-hoard-warren-buffett/",
-      "published": "Sat, 08 Aug 2026 12:47:11 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Arista Beats Views",
-      "link": "https://www.investors.com/research/best-stocks-seven-magnificent-stocks-earnings-growth/",
-      "published": "Sat, 08 Aug 2026 12:00:21 +0000"
-    },
-    {
-      "source": "maeil",
-      "title": "“반도체 몰빵 투자 이젠 안통해”…절반 덜어내고 ‘바이오’ 담으라는데 [여의도란도란]",
-      "link": "https://www.mk.co.kr/news/stock/12121820",
-      "published": "Sun, 09 Aug 2026 06:23:22 +09:00"
+      "title": "How a small Israeli startup was linked to rogue AI hacks at OpenAI, Anthropic and Meta",
+      "link": "https://www.cnbc.com/2026/08/09/israeli-startup-irregular-linked-to-ai-hacks-openai-anthropic-meta.html",
+      "published": "Sun, 09 Aug 2026 11:31:42 GMT"
     },
     {
       "source": "yonhap",
-      "title": "네이버는 AI 인프라, 카카오는 에이전트…엇갈린 승부수",
-      "link": "https://www.yna.co.kr/view/AKR20260807119900017",
-      "published": "Sun, 9 Aug 2026 06:13:01 +0900"
+      "title": "주담대·스탁론 막힌 온투업, 중금리로 활로…한 달 새 824억↑",
+      "link": "https://www.yna.co.kr/view/AKR20260809035000002",
+      "published": "Mon, 10 Aug 2026 05:57:00 +0900"
+    },
+    {
+      "source": "maeil",
+      "title": "“부부 소득 합치면 저금리 대출 그림의 떡”…李 “결혼 패널티 없애라”",
+      "link": "https://www.mk.co.kr/news/economy/12122400",
+      "published": "Mon, 10 Aug 2026 05:56:15 +09:00"
+    },
+    {
+      "source": "yonhap",
+      "title": "\"베선트 美재무, 장기채 금리 상승 방어의지 시장에 시사\"",
+      "link": "https://www.yna.co.kr/view/AKR20260810001800072",
+      "published": "Mon, 10 Aug 2026 04:27:50 +0900"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Rapid7 Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629507-rapid7-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:53 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Insight Molecular Diagnostics Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629515-insight-molecular-diagnostics-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:52 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Pangaea Logistics Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629514-pangaea-logistics-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:46 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Quantum Computing Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629491-quantum-computing-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:42 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "National Health Investors Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629506-national-health-investors-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:37 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Upwork Q2 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629501-upwork-q2-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:35 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "PennantPark Investment Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4629503-pennantpark-investment-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 09 Aug 2026 17:35:33 -0400"
     },
     {
       "source": "bloomberg",
-      "title": "China’s AI Push Reshapes Its Economic Future",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-08/china-s-ai-push-reshapes-its-economic-future-video",
-      "published": "Sat, 08 Aug 2026 14:32:07 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Here’s how we played the massive rebound in AI stocks this week",
-      "link": "https://www.cnbc.com/2026/08/08/heres-how-we-played-the-massive-rebound-in-ai-stocks-this-week.html",
-      "published": "Sat, 08 Aug 2026 14:07:30 GMT"
+      "title": "China Bets on AI Stocks as It Races Against US for Chip, Tech Dominance",
+      "link": "https://www.bloomberg.com/news/features/2026-08-09/china-bets-on-ai-stocks-as-it-races-against-us-for-chip-tech-dominance",
+      "published": "Sun, 09 Aug 2026 21:00:19 GMT"
     },
     {
       "source": "bloomberg",
-      "title": "AI Buildout Keeps Quinlan Bullish on US Stocks",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-08/ai-buildout-keeps-quinlan-bullish-on-us-stocks-video",
-      "published": "Sat, 08 Aug 2026 12:47:53 GMT"
+      "title": "Inflation Data Keeps Fed Rate Hike in Play",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-09/inflation-data-keeps-fed-rate-hike-in-play-video",
+      "published": "Sun, 09 Aug 2026 14:32:27 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Iran Talks Offer Little Relief for Hormuz Shipping",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-09/iran-talks-offer-little-relief-for-hormuz-shipping-video",
+      "published": "Sun, 09 Aug 2026 12:08:57 GMT"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +2.56%·나스닥 +1.30% 기술주 강세, 달러인덱스 -0.37%·국채금리 하락으로 글로벌 유동성 개선",
+  "sentiment_reason": "미국 장단기 국채금리 동반 하락(2Y -0.59%, 10Y -0.21%)으로 성장주 밸류에이션(주가 적정성 평가) 부담 완화, 필라델피아반도체 +2.56%·나스닥 +1.30% 강세 속 기술주 중심 리스크온(위험선호) 흐름",
   "key_factors": [
-    "필라델피아반도체지수 +2.56%, AI 반도체 수요 재확인으로 미국 기술주 상승세",
-    "Berkshire Hathaway 14분기 만에 순매수 전환·자사주 매입 확대, 대형 자금 시장 복귀 신호",
-    "달러인덱스 -0.37%·국채 2년물 -0.59%로 통화 완화 기대 유지, 금 +2.33% 안전자산 동시 매수"
+    "미 국채 금리 하락으로 성장주 밸류에이션 압박 완화 — 나스닥 +1.30%, 필라델피아반도체 +2.56% 반등",
+    "베선트 재무장관의 장기채 발행 축소 시사 + 엔화 부양 개입 등 장기 국채 금리 상승 방어 의지",
+    "금 +3.72% 급등 — 달러인덱스 -0.37%, 이란 경제 압박 강화 속 안전자산 선호"
   ],
-  "news_summary": "Berkshire Hathaway 2Q 영업이익 전년 대비 +16% 서프라이즈, 14분기 만에 주식 순매수 전환·자사주 매입 대폭 확대로 워런 버핏 후임 Greg Abel의 대형 캐시 배치 시작\nCLO(담보부대출채권) ETF 수요 확대, VettaFi \"금리 불확실성 지속 속 대체 자산으로 인기\" — 채권 시장 자금 다각화\n미국 국채 2년물 -0.59%, 10년물 -0.21% 하락으로 단기 금리 차 축소 — 7월 고용 쇼크 완화 기대 반영\n달러인덱스 -0.37%, 금 +2.33%·유가 +1.15% 동반 강세 — 중동 리스크 프리미엄 + 통화 완화 기대 공존\n중국 AI 경제 재편 가속(Bloomberg), 알리바바 Qwen AI 모델 애플 맥 중국 사용자 탑재 — 미중 AI 기술 협력 확대\n매일경제 '종전 시점 집착 투자 실패' 분석 — 이란·이스라엘 전쟁 장기화 시 유가·금융시장 변동성 지속 경고\n한국 환율 변동성 금융위기 후 최고(1,600→1,300원대) — 외환시장 불확실성 고조\n네이버·카카오 상반기 R&D 각 2조원 투자, AI 전략 차별화 — 네이버는 엔비디아·브룩필드와 GPU·데이터센터 인프라, 카카오는 에이전트 '의도경제' 수익화 경쟁\nArista·Amazon·Alphabet·Eli Lilly 등 7개 종목 애널리스트 최애주 선정(IBD) — 실적 성장 모멘텀 확인, Arista 분기 실적 서프라이즈\n구글 AI 리더십 교체, SA \"투자자 우려 필요한가\" 논란 — 조직 개편이 AI 경쟁력에 미칠 영향 주목\nS&P500 유틸리티 12개 중 8개, 에너지 12개 전종목 실적 서프라이즈(SA) — 경기 방어주·원자재 기업 견조\nSK하이닉스 통합노조 신설 추진, 구성원 간 성과급 불만 확산 — HBM 호황 속 내부 갈등 가시화",
+  "news_summary": "베선트 미 재무장관, 장기채 발행 축소 시사 + 엔화 부양 개입으로 장기 국채 금리 상승 방어 의지 명확 — 10Y 금리 -0.21%p, 월가는 채권시장 영향력 제한적 평가도 존재\n블룸버그 \"인플레이션 데이터, 연준 금리 인상 가능성 열어둬\" — 단기물(-0.59%p) 급락에도 불구, 물가 압력 재점화 시그널\n달러인덱스 -0.37%, 미 국채금리 동반 하락 + 베선트의 엔화 부양 개입으로 달러 약세 지속\n금 +3.72% 급등 — 이란 지정학 리스크 + 달러 약세로 안전자산 선호 강화\n트럼프 \"이란, 막대한 인플레에 돈 없어…상황 지켜볼 뿐\" — 경제적 압박 강화 시사, 군인 급여 지급 불가 수준\n블룸버그 \"이란 핵 협상, 호르무즈 해협 선박 운항에 실질 안도감 제공 못해\" — 중동 긴장 지속, WTI +1.15%\n일본 2027년 방위비 80조원(역대 최대) 편성 — 장거리 공격형 드론 첫 도입, 중국·러시아 견제 강화\n중국, 미국과 AI 반도체·기술 주도권 경쟁 격화 — AI 관련주 집중 투자, 항셍 +0.54%\n시스코, AI 데이터센터 네트워크 주문 50% 급증 — 닷컴버블 주역에서 AI 인프라 핵심 기업으로 재부상, 8월 13일 실적 발표 주목\n토큰 주식(블록체인 24시간 거래) 시총 25억달러, 올해 273% 급증 — 테슬라·엔비디아 등 미 우량주 중심, RWA 시장 성장률 1위\n이스라엘 스타트업 Irregular, OpenAI·Anthropic·Meta AI 모델 보안 테스트 중 '로그(rogue) AI' 해킹 사건 연루 — AI 안전성 우려 부각\nPangaea Logistics Q2 EPS 컨센서스 $0.24(+1300% YoY), 매출 $192.76M(+23% YoY) — 해운 섹터 실적 개선\nPennantPark Investment Q3 EPS $0.14(-22.2% YoY), 매출 $25.22M(-14.7% YoY) 전망 — 벤처캐피털 수익성 둔화",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "Berkshire Hathaway 2Q 영업이익 전년 대비 +16% 서프라이즈, 14분기 만에 주식 순매수 전환·자사주 매입 대폭 확대로 워런 버핏 후임 Greg Abel의 대형 캐시 배치 시작",
+          "text": "베선트 미 재무장관, 장기채 발행 축소 시사 + 엔화 부양 개입으로 장기 국채 금리 상승 방어 의지 명확 — 10Y 금리 -0.21%p, 월가는 채권시장 영향력 제한적 평가도 존재",
           "impact": "high"
         },
         {
-          "text": "CLO(담보부대출채권) ETF 수요 확대, VettaFi \"금리 불확실성 지속 속 대체 자산으로 인기\" — 채권 시장 자금 다각화",
+          "text": "블룸버그 \"인플레이션 데이터, 연준 금리 인상 가능성 열어둬\" — 단기물(-0.59%p) 급락에도 불구, 물가 압력 재점화 시그널",
+          "impact": "high"
+        },
+        {
+          "text": "달러인덱스 -0.37%, 미 국채금리 동반 하락 + 베선트의 엔화 부양 개입으로 달러 약세 지속",
           "impact": "mid"
         },
         {
-          "text": "미국 국채 2년물 -0.59%, 10년물 -0.21% 하락으로 단기 금리 차 축소 — 7월 고용 쇼크 완화 기대 반영",
-          "impact": "mid"
-        },
-        {
-          "text": "달러인덱스 -0.37%, 금 +2.33%·유가 +1.15% 동반 강세 — 중동 리스크 프리미엄 + 통화 완화 기대 공존",
+          "text": "금 +3.72% 급등 — 이란 지정학 리스크 + 달러 약세로 안전자산 선호 강화",
           "impact": "mid"
         }
       ]
@@ -9886,15 +9888,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "중국 AI 경제 재편 가속(Bloomberg), 알리바바 Qwen AI 모델 애플 맥 중국 사용자 탑재 — 미중 AI 기술 협력 확대",
+          "text": "트럼프 \"이란, 막대한 인플레에 돈 없어…상황 지켜볼 뿐\" — 경제적 압박 강화 시사, 군인 급여 지급 불가 수준",
           "impact": "high"
         },
         {
-          "text": "매일경제 '종전 시점 집착 투자 실패' 분석 — 이란·이스라엘 전쟁 장기화 시 유가·금융시장 변동성 지속 경고",
+          "text": "블룸버그 \"이란 핵 협상, 호르무즈 해협 선박 운항에 실질 안도감 제공 못해\" — 중동 긴장 지속, WTI +1.15%",
+          "impact": "high"
+        },
+        {
+          "text": "일본 2027년 방위비 80조원(역대 최대) 편성 — 장거리 공격형 드론 첫 도입, 중국·러시아 견제 강화",
           "impact": "mid"
         },
         {
-          "text": "한국 환율 변동성 금융위기 후 최고(1,600→1,300원대) — 외환시장 불확실성 고조",
+          "text": "중국, 미국과 AI 반도체·기술 주도권 경쟁 격화 — AI 관련주 집중 투자, 항셍 +0.54%",
           "impact": "mid"
         }
       ]
@@ -9904,23 +9910,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "네이버·카카오 상반기 R&D 각 2조원 투자, AI 전략 차별화 — 네이버는 엔비디아·브룩필드와 GPU·데이터센터 인프라, 카카오는 에이전트 '의도경제' 수익화 경쟁",
+          "text": "시스코, AI 데이터센터 네트워크 주문 50% 급증 — 닷컴버블 주역에서 AI 인프라 핵심 기업으로 재부상, 8월 13일 실적 발표 주목",
           "impact": "high"
         },
         {
-          "text": "Arista·Amazon·Alphabet·Eli Lilly 등 7개 종목 애널리스트 최애주 선정(IBD) — 실적 성장 모멘텀 확인, Arista 분기 실적 서프라이즈",
+          "text": "토큰 주식(블록체인 24시간 거래) 시총 25억달러, 올해 273% 급증 — 테슬라·엔비디아 등 미 우량주 중심, RWA 시장 성장률 1위",
           "impact": "high"
         },
         {
-          "text": "구글 AI 리더십 교체, SA \"투자자 우려 필요한가\" 논란 — 조직 개편이 AI 경쟁력에 미칠 영향 주목",
+          "text": "이스라엘 스타트업 Irregular, OpenAI·Anthropic·Meta AI 모델 보안 테스트 중 '로그(rogue) AI' 해킹 사건 연루 — AI 안전성 우려 부각",
           "impact": "mid"
         },
         {
-          "text": "S&P500 유틸리티 12개 중 8개, 에너지 12개 전종목 실적 서프라이즈(SA) — 경기 방어주·원자재 기업 견조",
+          "text": "Pangaea Logistics Q2 EPS 컨센서스 $0.24(+1300% YoY), 매출 $192.76M(+23% YoY) — 해운 섹터 실적 개선",
           "impact": "mid"
         },
         {
-          "text": "SK하이닉스 통합노조 신설 추진, 구성원 간 성과급 불만 확산 — HBM 호황 속 내부 갈등 가시화",
+          "text": "PennantPark Investment Q3 EPS $0.14(-22.2% YoY), 매출 $25.22M(-14.7% YoY) 전망 — 벤처캐피털 수익성 둔화",
           "impact": "mid"
         }
       ]
@@ -9928,155 +9934,158 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "AI 반도체 랠리 재개 + Berkshire 순매수 전환으로 대형 자금 복귀 신호 + 금리 하락에 따른 밸류에이션(주가 적정성) 부담 완화",
+      "reason": "미 국채 2Y -0.59%, 10Y -0.21% 하락으로 밸류에이션 부담 완화, 기술주 중심 매수세 유입",
       "drivers": [
-        "필라델피아반도체 +2.56%",
-        "Berkshire 14분기 만에 주식 순매수",
-        "국채 2년물 -0.59%"
+        "국채금리 동반 하락",
+        "경기소비재·기술 섹터 Improving 전환"
       ]
     },
     "NASDAQ": {
-      "reason": "AI 인프라 투자 지속 확인(네이버 GPU·데이터센터, 카카오 에이전트 전략)으로 기술주 모멘텀 회복 + 애플·구글 AI 리더십 재편 뉴스에도 시장 낙관 유지",
+      "reason": "국채금리 하락으로 성장주 할인율 부담 경감, 기술 섹터 XLK Improving 전환 + 시스코 AI 수혜 기대",
       "drivers": [
-        "기술주 XLK Improving 전환",
-        "AI 인프라 투자 확대 뉴스"
+        "10년물 금리 -0.21%p",
+        "기술 섹터 XLK Improving"
       ]
     },
     "DOW": {
-      "reason": "Berkshire 2Q 영업이익 +16%(전년 대비) 호조 + 경기소비재 XLY Improving 전환으로 경기 민감주 선호",
+      "reason": "금리 하락 수혜 제한적, 경기민감 업종 혼조 속 지수 상승세 제한",
       "drivers": [
-        "Berkshire 실적 서프라이즈",
-        "경기소비재 섹터 모멘텀 전환"
+        "금융 XLF Weakening 전환",
+        "산업재 XLI Lagging 지속"
       ]
     },
     "VIX": {
-      "reason": "AI 기업 실적 시즌 마무리 + 7월 고용 쇼크 소화 완료로 변동성 우려 완화(전주 대비 큰 폭 하락)",
+      "reason": "국채금리 하락 + 기술주 강세로 변동성 우려 완화",
       "drivers": [
-        "빅테크 실적 발표 종료",
-        "고용지표 이벤트 통과"
+        "S&P500 +0.62%",
+        "국채 10Y 금리 하락"
       ]
     },
     "필라델피아반도체": {
-      "reason": "AI 반도체 수요 사이클 지속 확인(네이버·카카오 상반기 R&D 2조 투자) + 미국 기술주 XLK Improving 전환으로 반도체 업종 선호 복귀",
+      "reason": "시스코 AI 데이터센터 네트워크 주문 50% 급증 보도 + 국채금리 하락으로 반도체 밸류에이션 부담 완화",
       "drivers": [
-        "AI 인프라 투자 확대",
-        "기술주 섹터 로테이션 전환"
+        "시스코 AI 인프라 수혜",
+        "10년물 금리 -0.21%p"
       ]
     },
     "러셀2000": {
-      "reason": "금리 하락(국채 2년 -0.59%, 10년 -0.21%) + 달러 약세로 중소형주 자금조달 비용 부담 완화",
+      "reason": "국채 2Y 금리 -0.59% 급락으로 소형주 차입비용 부담 완화, 경기소비재 Improving 전환",
       "drivers": [
-        "단기금리 하락",
-        "달러인덱스 -0.37%"
+        "단기금리 급락",
+        "경기소비재 XLY Improving"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유럽 전반 안정적 거래(독일 DAX +0.69%)에 동조",
+      "reason": "유럽 소재주 동조 상승 + 알루미늄 +1.32% 강세",
       "drivers": [
-        "유럽 증시 동조화"
+        "소재 가격 상승",
+        "달러 약세"
       ]
     },
     "독일DAX": {
-      "reason": "달러 약세·유로 강세 수출 모멘텀 + 소재 XLB Improving 전환으로 제조업 관련 수혜",
+      "reason": "소재 XLB Improving 전환 + 유로존 제조업 개선 기대",
       "drivers": [
-        "달러인덱스 -0.37%",
-        "소재 섹터 전환"
+        "소재 섹터 모멘텀",
+        "달러인덱스 -0.37%"
       ]
     },
     "니케이": {
-      "reason": "직접 촉매 없음 — 아시아 증시 혼조(항셍 +0.54%) 속 소폭 조정",
+      "reason": "베선트 재무의 엔화 부양 개입에도 불구, 중국 AI 반도체 경쟁 격화 우려로 수출주 약세",
       "drivers": [
-        "아시아 증시 혼조"
+        "중국 AI 칩 경쟁",
+        "엔화 개입 영향 제한적"
       ]
     },
     "항셍": {
-      "reason": "중국 AI 경제 재편 기대(Bloomberg 중국 AI 경제 미래 보도) + 알리바바 Qwen AI 애플 맥 탑재로 빅테크 협력 모멘텀",
+      "reason": "중국 정부의 AI 반도체·기술 주도권 경쟁 강화 기대, AI 관련주 매수세",
       "drivers": [
-        "중국 AI 전략 주목",
-        "알리바바-애플 AI 협력"
+        "중국 AI 투자 확대",
+        "기술주 선호"
       ]
     },
     "달러인덱스": {
-      "reason": "국채 단기물 금리 급락(2년 -0.59%)으로 금리 차 축소 + 리스크온(위험자산 선호) 분위기에서 달러 안전 수요 약화",
+      "reason": "미 국채금리 하락 + 베선트 재무의 엔화 부양 개입으로 달러 약세 압력",
       "drivers": [
-        "국채 2년물 -0.59%",
-        "VIX -1.65%"
+        "국채 2Y -0.59%p",
+        "엔화 부양 개입"
       ]
     },
     "국채2Y": {
-      "reason": "7월 고용지표 약세 여파 소화 + CLO ETF 수요 확대(CNBC 보도) 등 채권 대체 자산 수요로 단기물 강세",
+      "reason": "인플레이션 데이터가 연준 금리 인상 가능성 시사했으나, 베선트 재무의 장기채 발행 축소 시사로 단기물까지 금리 하락 파급",
       "drivers": [
-        "고용지표 완화 기대",
-        "CLO 자금 유입"
+        "베선트 장기채 발행 축소",
+        "인플레 우려 일부 완화"
       ]
     },
     "국채10Y": {
-      "reason": "장기 인플레 우려 잔존(금 +2.33%, 유가 +1.15%) + 버크셔 등 대형 자금 주식 복귀로 채권 매력 상대적 약화",
+      "reason": "베선트 재무장관의 장기채 금리 상승 방어 의지 명확 — 장기채 발행 축소 시사 + 엔화 부양 개입",
       "drivers": [
-        "금·원자재 동반 강세",
-        "주식 자금 유입"
+        "재무부 장기채 발행 축소",
+        "케빈 워시 연준의장 지원"
       ]
     },
     "코스피": {
-      "reason": "SK하이닉스 노조 갈등 + 반도체 lagging(뒤처짐) 국면 + 홈플러스 사태로 소비 위축 가시화(대형마트 판매 -9.4% 역대 최대)로 내수 불안",
+      "reason": "보합 마감 — 외국인 수급 부재 속 관망세",
       "drivers": [
-        "SK하이닉스 노조 이슈",
-        "반도체 섹터 lagging",
-        "내수 소비 위축"
+        "거래 미진행(+0.00%)",
+        "섹터별 대기"
       ]
     },
     "코스닥": {
-      "reason": "동전주 상폐 절차 본격화(48곳 관리종목 공시) + 빚투 연체 급증 뉴스로 중소형주 유동성 우려 지속",
+      "reason": "보합 마감 — 개인·기관 관망",
       "drivers": [
-        "상장폐지 리스크",
-        "신용 연체 증가"
+        "거래 미진행(+0.00%)",
+        "방향성 대기"
       ]
     },
     "금": {
-      "reason": "중동 전쟁 장기화 우려(매일경제 종전 타이밍 집착 경고 보도) + 달러 약세(-0.37%) + 지정학 헤지 수요로 사상 최고가 근접",
+      "reason": "트럼프의 이란 경제 압박 강화 발언 + 호르무즈 해협 긴장 지속으로 안전자산 수요 급증",
       "drivers": [
-        "중동 리스크 프리미엄",
-        "달러인덱스 약세"
+        "이란 지정학 리스크",
+        "달러인덱스 -0.37%"
       ]
     },
     "WTI유가": {
-      "reason": "중동 긴장 지속 + 달러 약세로 원자재 전반 강세 + 에너지 섹터 12개 전종목 실적 서프라이즈(SA 보도)",
+      "reason": "이란 호르무즈 해협 긴장 지속 + 트럼프의 이란 경제 봉쇄 강화 발언으로 공급 차질 우려",
       "drivers": [
-        "지정학 리스크",
-        "에너지 기업 실적 호조"
+        "호르무즈 긴장",
+        "이란 제재 강화"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 -0.37% 약세 + 금리 차 축소(국채 2년 -0.59%)로 원화 강세 압력",
+      "reason": "달러인덱스 -0.37% 약세 + 미 국채금리 하락으로 원화 강세",
       "drivers": [
-        "달러인덱스 약세",
-        "미국 단기금리 하락"
+        "달러 약세",
+        "국채금리 하락"
       ]
     },
     "알루미늄": {
-      "reason": "직접 촉매 없음 — 소재 XLB Improving 전환 속 소폭 조정",
+      "reason": "달러 약세 + 소재 XLB Improving 전환으로 산업금속 선호",
       "drivers": [
-        "소재 섹터 혼조"
+        "달러인덱스 -0.37%",
+        "소재 섹터 모멘텀"
       ]
     },
     "구리": {
-      "reason": "중국 경기 회복 모멘텀 불확실 + 제조업 지표 부재로 산업 수요 우려",
+      "reason": "중국 경기 회복 불확실성 지속, 제조업 수요 기대 약화",
       "drivers": [
-        "중국 수요 불확실성"
+        "중국 수요 우려",
+        "제조업 둔화"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "필라델피아반도체 +2.56% 기술주 강세 신호에도 코스피 -0.60% 역행 — SK하이닉스 노조 갈등·내수 충격(대형마트 -9.4%)·동전주 상폐 리스크로 수급 위축",
+    "summary": "미 국채금리 하락 + 필라델피아반도체 +2.56% 강세에도 코스피 보합 — 외국인 관망 속 순환매(업종 간 자금 이동) 대기",
     "positive_factors": [
-      "필라델피아반도체 +2.56%·나스닥 +1.30% AI 반도체 수요 재확인 → 국내 반도체 수출주 투자심리 개선 여지",
-      "달러인덱스 -0.37%·원달러 -0.96%(1,407원) 원화 강세 → 수입 원자재 부담 완화·외국인 매수 유인 증가"
+      "베선트 재무의 장기 국채 금리 방어 의지 → 글로벌 성장주 밸류에이션 부담 완화, 국내 기술주 수혜 기대",
+      "필라델피아반도체 +2.56% + 시스코 AI 네트워크 주문 50% 급증 → 반도체 소재(Improving) 중심 재평가 가능성",
+      "달러인덱스 -0.37%, 원달러 -1.05% → 외국인 매수 여력 개선, 수출주 환차손 완화"
     ],
     "negative_factors": [
-      "SK하이닉스 노조 통합 추진·성과급 갈등 가시화 → HBM 호황 속 내부 리스크 부각, 반도체 대장주 불확실성",
-      "홈플러스 사태로 대형마트 판매 -9.4% 역대 최대 감소 + 빚투 연체 급증 → 내수 소비 붕괴·유동성 경색 심화"
+      "반도체 대형주(소자·팹리스·장비·패키징) 모두 Lagging(상대 약세) 지속 — 1개월 -29% 급락 후 순환매 대기 국면",
+      "중국 AI 반도체 경쟁 격화 + 일본 니케이 -0.12% 약세 → 아시아 기술주 모멘텀 약화"
     ],
-    "key_watch": "반도체 섹터 전반 lagging(뒤처짐) 지속 vs. 2차전지·바이오·정유 등 非반도체 섹터 leading(주도) — 미국 AI 랠리와 국내 섹터 디커플링(괴리) 여부"
+    "key_watch": "반도체 Lagging 지속 속 2차전지(셀·소재·장비) Leading + 화장품·소비재 ETF 1개월 수익률 상위 — 순환매 조짐, 8월 13일 시스코 실적이 AI 인프라 재평가 촉매 될지 주목"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10084,58 +10093,58 @@
       "sector": "2차전지_셀",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "2차전지 셀·소재·장비 모두 RS-Momentum(상대 모멘텀) 116~118 초강세 leading(주도) 국면 + 달러 약세·원자재 강세로 소재 가격 마진 개선 수혜"
+      "reason": "2차전지_셀 RS-Ratio 106.5·RS-Momentum 118.0 Leading 최상단 — 미 국채금리 하락으로 성장주 밸류에이션 부담 완화, 전기차 수요 회복 기대"
     },
     {
-      "sector": "정유",
+      "sector": "2차전지_소재",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "정유 RS-Ratio 125.5 최상위 + 유가 +1.15%·중동 리스크 프리미엄 지속 + 석유화학도 leading 동반 강세로 업종 전반 모멘텀"
+      "reason": "2차전지_소재 RS-Ratio 101.5·RS-Momentum 116.2 Leading — 셀 업체 수주 확대 기대 + 달러 약세로 수출 경쟁력 강화"
     },
     {
-      "sector": "바이오_CDMO",
+      "sector": "AI_SW",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "바이오 CDMO·제약·의료기기 모두 RS-Momentum 118~121 leading + 블래쉬 '반도체 비중 축소·바이오 편입' 전략 부각 + 비반도체 자금 유입 수혜"
+      "reason": "AI_SW RS-Ratio 116.7·RS-Momentum 115.7 Leading 최강 — 시스코 AI 인프라 급증 + 토큰 주식 273% 성장으로 소프트웨어 재평가"
     },
     {
-      "sector": "플랫폼",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "플랫폼 RS-Ratio 119·RS-Momentum 120 최강 leading + 네이버 AI 인프라·카카오 에이전트 R&D 2조 투자 모멘텀 + 미국 기술주 XLK Improving 신호 동조"
+      "sector": "반도체_소재",
+      "rrg_quadrant": "improving",
+      "claude_quadrant": "improving",
+      "reason": "반도체_소재 RS-Momentum 103.4 Improving 전환 — 필라델피아반도체 +2.56% 강세, 소재 업종만 모멘텀 회복 조짐"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "반도체 소자·팹리스·장비·패키징 모두 lagging(뒤처짐) + SK하이닉스 노조 이슈로 대장주 불확실성 — 필라델피아반도체 +2.56%에도 국내 수급 회복 지연"
+      "reason": "반도체_소자·팹리스·장비 모두 Lagging(RS-Ratio 91대·RS-Momentum 87~91) — 1개월 -29% 급락 후 기술적 반등 대기, 시스코 8/13 실적 이전 진입 부담"
     },
     {
-      "sector": "유통",
-      "reason": "유통 lagging RS-Ratio 96·RS-Momentum 91 + 홈플러스 사태로 대형마트 -9.4% 역대 최대 감소 — 내수 소비 위축 직격탄"
+      "sector": "IT부품",
+      "reason": "IT부품 RS-Ratio 87.5·RS-Momentum 79.6 Lagging 최하위 — 중국 AI 경쟁 + 글로벌 IT 수요 둔화, 추세 전환 확인 필요"
     }
   ],
   "avoid": [],
-  "summary": "필라 반도체 +2.56% AI 랠리 재개에도 국내 반도체 lagging 지속 — 2차전지·정유·바이오·플랫폼 등 leading 비반도체 대형주 중심 선별 매수 국면",
-  "strategy_brief": "미국 필라델피아반도체 +2.56%·Berkshire 14분기 만에 순매수 전환 등 기술주 복귀 신호가 뚜렷하지만, 국내는 SK하이닉스 노조 갈등·홈플러스發 내수 충격(대형마트 -9.4%)으로 코스피 -0.60% 역행했다. 핵심은 반도체 전 섹터가 lagging(상대 강도·모멘텀 모두 약세) 국면에 머물며 미국 AI 랠리와 디커플링(괴리)되는 반면, 2차전지·정유·바이오·플랫폼 등 非반도체 섹터는 RS-Momentum(상대 모멘텀) 110~125 leading(주도) 영역에서 자금을 흡수하고 있다는 점이다. 블래쉬 '반도체 절반 축소·바이오 편입' 전략과 네이버·카카오 AI R&D 2조 투자 모멘텀은 대형 非반도체주 중심 포트폴리오 재편을 뒷받침한다. 오늘은 달러 약세·금리 하락 수혜를 누릴 수 있는 2차전지(LG에너지솔루션)·정유(에쓰오일)·바이오(삼성바이오로직스)·플랫폼(네이버) 등 leading 대형주에 집중하고, 반도체·중소형·내수주는 모멘텀 회복 확인 시까지 관망하는 것이 합리적이다.",
-  "strategy_headline": "美 AI 랠리 재개 vs. 韓 반도체 디커플링 — 비반도체 leading 집중",
+  "summary": "미 국채금리 하락으로 나스닥 +1.30%·필라델피아반도체 +2.56% 강세 — 국내는 반도체 Lagging 지속 속 2차전지·AI SW Leading 중심 순환매 조짐, 시스코 AI 인프라 급증 시그널 주목",
+  "strategy_brief": "미국 베선트 재무장관의 장기채 발행 축소 시사로 10년물 금리가 -0.21%p 하락하며 나스닥(+1.30%)과 필라델피아반도체(+2.56%)가 강세를 보였으나, 국내 코스피는 보합에 그쳤다. 반도체 대형주(소자·팹리스·장비) 전 부문이 Lagging(상대 약세) 상태로 1개월 -29% 급락 이후 관망세가 지속되는 가운데, 2차전지(셀·소재·장비)는 모두 Leading 최상단을 유지하며 순환매(업종 간 자금 이동) 수혜 조짐을 보인다. 시스코의 AI 데이터센터 네트워크 주문 50% 급증과 토큰 주식 시총 273% 급증 소식은 AI 인프라와 블록체인 소프트웨어 재평가 기대를 높이며, AI_SW 섹터(RS-R 116.7)가 최강 모멘텀을 이어가고 있다. 반도체 소재만 유일하게 Improving(상승 전환) 구간 진입에 성공했으며, 8월 13일 시스코 실적 발표가 AI 인프라 전반의 재평가 촉매가 될지 주목해야 한다.",
+  "strategy_headline": "美 국채금리 하락 성장주 부양 — 반도체 Lagging 속 2차전지·AI SW 순환매 조짐",
   "strategy_points": [
-    "필라델피아반도체 +2.56%·Berkshire 순매수 전환 등 미국 기술주 복귀 신호에도 코스피 -0.60% 역행 — SK하이닉스 노조·내수 충격이 수급 발목",
-    "반도체 전 섹터 lagging(상대 강도·모멘텀 모두 약세) 지속, 2차전지·정유·바이오·플랫폼 등 RS-Momentum(상대 모멘텀) 110~125 leading(주도) 섹터로 자금 이동",
-    "블래쉬 '반도체 절반 축소·코스닥 바이오 편입' 전략 + 네이버·카카오 R&D 2조 투자 — 非반도체 대형주 중심 포트폴리오 재편 국면",
-    "달러 약세·금리 하락은 긍정이나 홈플러스發 내수 붕괴·동전주 상폐 리스크로 중소형·내수주는 회피 — 대형 수출·플랫폼주 선별 전략"
+    "베선트 재무의 장기채 발행 축소 시사 → 미 10Y 금리 -0.21%p, 나스닥 +1.30% — 국내 성장주 밸류에이션 부담 완화",
+    "필라델피아반도체 +2.56% 강세에도 국내 반도체 대형주 전 부문 Lagging(RS-M 87~93) — 1개월 -29% 급락 후 순환매(업종 간 자금 이동) 대기",
+    "2차전지(셀·소재·장비) 전 부문 Leading + 화장품 ETF 1개월 +12% 수익률 1위 — AI SW(RS-R 116.7)·반도체 소재(Improving) 중심 재배치",
+    "8월 13일 시스코 실적(AI 네트워크 주문 50% 급증) + 토큰 주식 273% 성장 — AI 인프라·블록체인 테마 재평가 촉매 주목"
   ],
   "top_picks": [
     {
       "sector": "2차전지_셀",
       "rrg_quadrant": "leading",
-      "reason": "2차전지 셀·소재·장비 모두 RS-Momentum(상대 모멘텀) 116~118 초강세 leading(주도) 국면 + 달러 약세·원자재 강세로 소재 가격 마진 개선 수혜",
+      "reason": "2차전지_셀 RS-Ratio 106.5·RS-Momentum 118.0 Leading 최상단 — 미 국채금리 하락으로 성장주 밸류에이션 부담 완화, 전기차 수요 회복 기대",
       "stocks": [
         {
           "name": "LG에너지솔루션",
           "code": "373220",
           "signal": "prime",
-          "reason": "2차전지 셀 RS-Momentum 117.9 leading 최강 + 달러 약세·원자재 강세로 배터리 소재 마진 개선 수혜 + 미국 경기소비재 XLY Improving 전환 시 북미 전기차 수요 회복 기대",
+          "reason": "미 국채금리 하락 성장주 수혜 판단 + 2차전지_셀 Leading(RS-M 118.0) 최상단 — 북미 IRA 수혜 + 유럽 전기차 회복 기대",
           "rrg_tracked": true,
           "rrg_actual_sector": "2차전지_장비",
           "rrg_sector_match": false,
@@ -10144,76 +10153,59 @@
       ]
     },
     {
-      "sector": "정유",
+      "sector": "2차전지_소재",
       "rrg_quadrant": "leading",
-      "reason": "정유 RS-Ratio 125.5 최상위 + 유가 +1.15%·중동 리스크 프리미엄 지속 + 석유화학도 leading 동반 강세로 업종 전반 모멘텀",
+      "reason": "2차전지_소재 RS-Ratio 101.5·RS-Momentum 116.2 Leading — 셀 업체 수주 확대 기대 + 달러 약세로 수출 경쟁력 강화",
       "stocks": [
         {
-          "name": "에쓰오일",
-          "code": "010950",
+          "name": "에코프로비엠",
+          "code": "247540",
           "signal": "prime",
-          "reason": "정유 RS-Ratio 125.5 최상위 leading + 유가 +1.15%·중동 지정학 리스크 프리미엄 지속 + S&P500 에너지 전종목 실적 서프라이즈에 국내 정유 동조 기대",
+          "reason": "달러 약세(-0.37%) 수출주 환차익 + 2차전지_소재 Leading(RS-M 116.2) — 하이니켈 양극재 점유율 1위",
           "rrg_tracked": true,
-          "rrg_actual_sector": "정유",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
+          "rrg_actual_sector": "2차전지_장비",
+          "rrg_sector_match": false,
+          "rrg_signal": "prime"
         }
       ]
     },
     {
-      "sector": "바이오_CDMO",
+      "sector": "AI_SW",
       "rrg_quadrant": "leading",
-      "reason": "바이오 CDMO·제약·의료기기 모두 RS-Momentum 118~121 leading + 블래쉬 '반도체 비중 축소·바이오 편입' 전략 부각 + 비반도체 자금 유입 수혜",
+      "reason": "AI_SW RS-Ratio 116.7·RS-Momentum 115.7 Leading 최강 — 시스코 AI 인프라 급증 + 토큰 주식 273% 성장으로 소프트웨어 재평가",
       "stocks": [
         {
-          "name": "삼성바이오로직스",
-          "code": "207940",
+          "name": "솔트룩스",
+          "code": "304100",
           "signal": "prime",
-          "reason": "바이오 CDMO RS-Ratio 120.1·RS-Momentum 118 leading 선두 + 블래쉬 '반도체 절반 축소·바이오 편입' 전략 부각 + 비반도체 자금 유입으로 대형 바이오주 선호",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "바이오_CDMO",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
+          "reason": "시스코 AI 인프라 주문 50% 급증 글로벌 시그널 + AI_SW Leading(RS-R 116.7) 최강 — 국내 생성AI 1위",
+          "rrg_tracked": false,
+          "rrg_actual_sector": "",
+          "rrg_sector_match": false,
+          "rrg_signal": ""
         }
       ]
     },
     {
-      "sector": "플랫폼",
-      "rrg_quadrant": "leading",
-      "reason": "플랫폼 RS-Ratio 119·RS-Momentum 120 최강 leading + 네이버 AI 인프라·카카오 에이전트 R&D 2조 투자 모멘텀 + 미국 기술주 XLK Improving 신호 동조",
+      "sector": "반도체_소재",
+      "rrg_quadrant": "improving",
+      "reason": "반도체_소재 RS-Momentum 103.4 Improving 전환 — 필라델피아반도체 +2.56% 강세, 소재 업종만 모멘텀 회복 조짐",
       "stocks": [
         {
-          "name": "네이버",
-          "code": "035420",
+          "name": "솔브레인",
+          "code": "357780",
           "signal": "prime",
-          "reason": "플랫폼 RS-Ratio 119·RS-Momentum 120 최강 leading + 엔비디아·브룩필드와 AI 데이터센터 인프라 투자 모멘텀 + 미국 기술주 XLK Improving 전환 신호 동조",
+          "reason": "필라델피아반도체 +2.56% 반등 + 반도체_소재 Improving(RS-M 103.4) 유일한 모멘텀 회복 — 초순수 약품 글로벌 점유율 상위",
           "rrg_tracked": true,
-          "rrg_actual_sector": "플랫폼",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "석유화학",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "롯데케미칼",
-          "code": "011170",
-          "signal": "prime",
-          "reason": "석유화학 RS-Momentum 120.5 leading + 유가·원자재 강세 동반 수혜 + 정유 섹터 최강 흐름에서 화학 동반 상승 기대",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "석유화학",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
+          "rrg_actual_sector": "미분류",
+          "rrg_sector_match": false,
+          "rrg_signal": "confirm"
         }
       ]
     }
   ],
   "caution_sectors": [
     "반도체_소자",
-    "유통"
+    "IT부품"
   ]
 }
