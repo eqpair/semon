@@ -1,184 +1,184 @@
 {
-  "generated_at": "2026-08-22 07:02:55",
+  "generated_at": "2026-08-23 07:02:39",
   "macro": {
     "S&P500": {
       "price": 7674.37,
       "change": 0.43,
-      "reason": "Dow·러셀 강세에도 필라델피아반도체 -0.51%로 기술주 무게 상쇄. 엔비디아 실적 대기로 포지션 관망, 금융·에너지 순환매 지지",
+      "reason": "미 10Y 금리 4.74% 급등 속에서도 에너지(XLE R108.7)·헬스케어(XLV R106.1) 방어섹터 주도로 +0.43% 상승, 기술주(XLK Improving) 약세 상쇄",
       "drivers": [
-        "엔비디아 실적 대기(수요일)",
-        "Ross Stores 실적호조(+32% EPS)"
+        "에너지섹터 주도(XLE Leading R108.7/M104.5)",
+        "헬스케어 강세(XLV Leading R106.1/M102.3)"
       ]
     },
     "NASDAQ": {
       "price": 26180.46,
       "change": 0.43,
-      "reason": "기술주 대형 이벤트(엔비디아·Salesforce·Intuit 실적) 전 매수 신중, Broadcom $70B 채무조달 뉴스는 AI 투자 지속 기대 반영",
+      "reason": "기술섹터(XLK Improving) 전환 초입이나 엔비디아 AI 가격 인상 우려로 필라반도체 -0.51% 영향, +0.43% 소폭 상승에 그침",
       "drivers": [
-        "Broadcom AI칩 파이낸싱 $70~80B 추진",
-        "JFrog +159% 랠리 후 실적가속 진입"
+        "엔비디아 AI 가격인상 경고(블룸버그)",
+        "기술섹터 Improving 전환 초기 신중론"
       ]
     },
     "DOW": {
       "price": 53277.01,
       "change": 0.98,
-      "reason": "가치주·경기민감주 순환매 — 금융·에너지·산업재 비중 높아 러셀2000 동반 강세, 기술주 비중 낮아 반도체 약세 영향 제한적",
+      "reason": "에너지·헬스케어 방어섹터 중심 포트폴리오 특성상 금리 급등에도 +0.98% 가장 강한 상승, 러셀2000 +0.85% 동반 강세",
       "drivers": [
-        "러셀2000 +0.85%",
-        "영국FTSE +0.64% 등 글로벌 가치주 동조"
+        "에너지섹터 Leading 강세",
+        "소재섹터(XLB) 동반 상승"
       ]
     },
     "VIX": {
       "price": 15.13,
       "change": -5.5,
-      "reason": "주말 연준의장 Warsh 첫 Jackson Hole 연설 앞 변동성 헤지 수요 청산, 주요지수 반등으로 리스크오프(위험회피) 완화",
+      "reason": "S&P500 상승·에너지·헬스케어 방어섹터 주도로 변동성 우려 완화, -5.50% 하락하며 안정적 위험선호 흐름 시사",
       "drivers": [
-        "Dow·러셀 강세로 방어 수요 감소",
-        "Warsh 연설 대기 중 관망"
+        "방어섹터 주도 안정적 상승",
+        "금리 급등에도 주가 동반 상승"
       ]
     },
     "필라델피아반도체": {
       "price": 11740.37,
       "change": -0.51,
-      "reason": "엔비디아 실적 직전 차익실현 — AI 버블·순환 파이낸싱 우려 재부각, Anthropic IPO 리스크팩터(AI 반발·데이터센터 반대) 언급도 부담",
+      "reason": "엔비디아의 주요 고객사 대상 AI 가격 인상 경고(블룸버그) 속 수익성 우려로 -0.51% 약세, 한국 코스닥 -4.63% 급락 촉매",
       "drivers": [
-        "엔비디아 실적 대기",
-        "Anthropic IPO 우려(AI 반발 리스크팩터)"
+        "엔비디아 AI 가격인상 경고",
+        "반도체 수익성 우려 확산"
       ]
     },
     "러셀2000": {
       "price": 3017.87,
       "change": 0.85,
-      "reason": "Dow 동반 강세 — 가치주·소형주 순환매, 금리 상승에도 재정 확대 기대(Bessent 국채개입) 경기민감주 수혜",
+      "reason": "에너지·소재 중심 방어섹터 강세 및 금 +2.39%·알루미늄 +4.76% 원자재 랠리에 중소형주 동반 상승, +0.85% 강세",
       "drivers": [
-        "Dow +0.98%",
-        "재정 확대 기대"
+        "원자재 가격 급등(금·알루미늄·구리)",
+        "에너지섹터 Leading 주도"
       ]
     },
     "영국FTSE": {
-      "price": 10816.56,
+      "price": 10816.6,
       "change": 0.64,
-      "reason": "유럽 가치주 동조 상승 — 원자재(구리·알루미늄) 강세로 광산·소재주 지지, 달러 약세 수출주 우호적",
+      "reason": "글로벌 에너지·소재섹터 강세 흐름 동조, 금 +2.39%·구리 +1.85% 원자재 랠리 수혜로 +0.64% 상승",
       "drivers": [
-        "구리 +1.86%, 알루미늄 +2.67%",
-        "달러인덱스 -0.06%"
+        "원자재 가격 상승",
+        "에너지섹터 글로벌 강세"
       ]
     },
     "독일DAX": {
-      "price": 25983.04,
-      "change": -0.42,
-      "reason": "ECB 긴축 장기화 우려 — 미국 10Y 급등(+0.89%p)으로 유럽 장기금리 동조 상승, 산업재·자동차 밸류에이션 압박",
+      "price": 26136.56,
+      "change": 0.59,
+      "reason": "유럽 제조업 중심 소재섹터(XLB Leading) 글로벌 강세 동조, 알루미늄 +4.76%·구리 +1.85% 수혜로 +0.59% 상승",
       "drivers": [
-        "미국 10Y 4.74% 급등",
-        "유로존 금리 동조 상승"
+        "소재섹터 글로벌 주도",
+        "알루미늄·구리 가격 급등"
       ]
     },
     "니케이": {
-      "price": 66216.79,
-      "change": 1.36,
-      "reason": "엔화 약세 수출주 지지 — 달러/엔 환율 안정 속 반도체(도쿄일렉트론)·자동차 강세, 미국 VIX 하락으로 글로벌 리스크온 수혜",
+      "price": 66016.36,
+      "change": -0.3,
+      "reason": "필라델피아반도체 -0.51% 약세 및 엔비디아 가격 인상 우려 속 반도체 투자심리 위축, -0.30% 소폭 하락",
       "drivers": [
-        "VIX -5.5%",
-        "반도체·자동차 수출주"
+        "필라반도체 약세 영향",
+        "엔비디아 AI 가격인상 경고"
       ]
     },
     "항셍": {
-      "price": 25698.49,
-      "change": 0.8,
-      "reason": "직접 촉매 약함 — 미국 금리 상승에도 중국 부동산·소비 회복 기대, 알리바바·텐센트 등 기술주 완만 반등",
+      "price": 26009.46,
+      "change": 1.21,
+      "reason": "중국 AI 모델 가격경쟁력·활용도 확대(블룸버그) 및 글로벌 원자재 강세 동조로 +1.21% 강세, 비철금속주 주도",
       "drivers": [
-        "미국 리스크온 분위기 동조",
-        "중국 정책 기대"
+        "중국 AI 모델 경쟁력 부각",
+        "원자재 가격 상승"
       ]
     },
     "달러인덱스": {
-      "price": 98.84,
-      "change": -0.06,
-      "reason": "Bessent 국채시장 개입으로 재정 신뢰 훼손 — FT·SA 보도 \"달러 매도, 금·비트코인 급등\" 연결, 10Y 급등에도 달러 약세는 재정 우려 반영",
+      "price": 98.8,
+      "change": -0.1,
+      "reason": "미 10Y 금리 4.74% 급등에도 -0.10% 소폭 하락, 글로벌 원자재 강세·위험선호 흐름 속 달러 수요 제한적",
       "drivers": [
-        "Bessent 국채개입",
-        "금 +3.22%, 비트코인 급등"
+        "원자재 강세로 상품통화 수요",
+        "위험선호 흐름 지속"
       ]
     },
     "국채2Y": {
       "price": 3.71,
       "change": 0.19,
-      "reason": "Warsh 연설 앞 단기 금리 방향성 불확실 — +0.19%p 소폭 상승, 연준 긴축 기조 유지 가능성에 2년물 지지선 형성",
+      "reason": "한은 8월 27일 기준금리 결정 앞두고 인상·동결 전망 혼조(연합뉴스) 속 단기 금리 +0.19%p 소폭 상승",
       "drivers": [
-        "Warsh Jackson Hole 연설 대기",
-        "연준 긴축 기조"
+        "한은 8월 27일 금통위 앞두고 인상론 존재",
+        "미 금리 급등 동조"
       ]
     },
     "국채10Y": {
       "price": 4.74,
       "change": 0.89,
-      "reason": "재정 불안 본격화 — Bessent 국채개입 뉴스로 장기물 신뢰 급락, +0.89%p 급등은 2026년 들어 최대 일일 상승폭",
+      "reason": "미 국채10Y 4.74% 급등 글로벌 동조, 한은 기준금리 인상 가능성 및 인플레 우려로 +0.89%p 큰 폭 상승",
       "drivers": [
-        "Bessent 국채시장 개입",
-        "재정 적자 우려"
+        "미 10Y 금리 급등 동조",
+        "한은 금리 인상 가능성"
       ]
     },
     "코스피": {
       "price": 6912.95,
       "change": 0.88,
-      "reason": "삼성전자 주주환원 90~110조 발표(전년比 5배) 대형주 지지 — 니케이·러셀 강세 동조, 2차전지·철강·건설 등 Leading 섹터 다수",
+      "reason": "삼성전자·SK하이닉스 주가 반등(연합뉴스) 및 주주환원 기대 지속, 외국인 삼성전자 7,118억원 순매수로 +0.88% 상승",
       "drivers": [
-        "삼성전자 주주환원 확대",
-        "니케이 +1.36%, 러셀 +0.85%"
+        "삼성전자 외국인 7,118억원 순매수",
+        "주주환원 기대 지속"
       ]
     },
     "코스닥": {
       "price": 801.94,
       "change": -4.63,
-      "reason": "반도체·IT부품 Lagging으로 기술주 집중 타격 — 필라델피아반도체 -0.51% 여파, 엔비디아 실적 대기 중 차익실현 가속",
+      "reason": "필라델피아반도체 -0.51% 및 엔비디아 AI 가격인상 경고 속 반도체·IT 투자심리 급랭, 외국인 삼성전기 9,192억원·SK하이닉스 4,810억원 순매도로 -4.63% 급락",
       "drivers": [
-        "필라델피아반도체 -0.51%",
-        "반도체_소자·IT부품 Lagging"
+        "엔비디아 AI 가격인상 우려",
+        "삼성전기 9,192억·SK하이닉스 4,810억 외국인 매도"
       ]
     },
     "금": {
-      "price": 4661.6,
-      "change": 3.22,
-      "reason": "Bessent 국채개입으로 달러 신뢰 급락 — 재정 불안 헤지 수요 폭발, FT·SA \"달러 약세로 금·비트코인 동반 급등\" 보도",
+      "price": 4624.1,
+      "change": 2.39,
+      "reason": "미 10Y 금리 4.74% 급등에도 러시아 우크라이나 쇼핑몰 공격으로 최소 16명 사망(FT) 등 지정학 리스크 고조로 안전자산 수요 폭발, +2.39% 급등",
       "drivers": [
-        "Bessent 국채개입",
-        "달러 -0.06%, 재정 우려"
+        "러시아 우크라이나 공격 격화",
+        "지정학 리스크 안전자산 수요"
       ]
     },
     "WTI유가": {
-      "price": 86.64,
-      "change": -1.35,
-      "reason": "직접 촉매 약함 — 중동(이란) 긴장 지속에도 AI·캘리포니아 전력 수요 기대 대비 실제 수요 부진, 에너지XLE은 Leading 유지",
+      "price": 87.06,
+      "change": -0.88,
+      "reason": "에너지섹터(XLE Leading R108.7) 강세에도 글로벌 경기 둔화 우려 및 수요 약화 전망으로 -0.88% 하락",
       "drivers": [
-        "중동 리스크 프리미엄 제한적",
-        "수요 불확실성"
+        "글로벌 경기 둔화 우려",
+        "원유 수요 약화 전망"
       ]
     },
     "원달러": {
-      "price": 1385.98,
-      "change": -0.25,
-      "reason": "달러인덱스 -0.06% 연동 하락 — 삼성전자 주주환원으로 외국인 환전 기대, 코스피 강세로 원화 수요 증가",
+      "price": 1383.9,
+      "change": -0.5,
+      "reason": "코스피 +0.88% 상승·삼성전자 외국인 7,118억원 순매수 등 외국인 유입 및 달러인덱스 -0.10% 약세로 -0.50% 하락(원화 강세)",
       "drivers": [
-        "달러인덱스 약세",
-        "코스피 +0.88% 외국인 유입 기대"
+        "외국인 코스피 순매수(삼성전자 중심)",
+        "달러인덱스 약세"
       ]
     },
     "알루미늄": {
-      "price": 3413.0,
-      "change": 2.67,
-      "reason": "중국 인프라·AI 데이터센터 수요 — Broadcom $70B 채무조달 등 AI 투자 지속, 재정 확대 기대로 건설·전력 원자재 동반 강세",
+      "price": 3482.5,
+      "change": 4.76,
+      "reason": "소재섹터(XLB Leading R101.9/M101.9) 글로벌 주도 및 중국 인프라 투자 기대·공급 제약 우려로 +4.76% 급등",
       "drivers": [
-        "Broadcom AI 파이낸싱",
-        "재정 확대 기대"
+        "소재섹터 글로벌 Leading 주도",
+        "중국 인프라 투자 기대"
       ]
     },
     "구리": {
       "price": 6.58,
-      "change": 1.86,
-      "reason": "전력·반도체 장비 수요 — AI 데이터센터 전력 인프라, 중국 정책 기대 및 글로벌 제조업 회복 신호",
+      "change": 1.85,
+      "reason": "글로벌 소재섹터 강세 및 전력·신재생 인프라 수요 기대로 +1.85% 상승, 국내 비철금속(R118.2 Leading) 모멘텀 지지",
       "drivers": [
-        "AI 인프라 투자",
-        "중국 정책 기대"
+        "소재섹터 강세",
+        "전력·신재생 인프라 수요"
       ]
     }
   },
@@ -9762,123 +9762,123 @@
   },
   "sources": [
     {
-      "source": "investors",
-      "title": "AI Chip Titan Nvidia Headlines Earnings Calendar; Salesforce, Intuit Also On Deck",
-      "link": "https://www.investors.com/research/earnings-preview/nvidia-nvda-stock-earnings-calendar/",
-      "published": "Fri, 21 Aug 2026 16:10:28 +0000"
+      "source": "maeil",
+      "title": "“티끌 모아 티끌 소중함 아시겠죠?”…‘최고 연13.5%’ 고금리 적금 잇따라 출시 [알쓸금잡]",
+      "link": "https://www.mk.co.kr/news/economy/12133902",
+      "published": "Sun, 23 Aug 2026 06:31:13 +09:00"
+    },
+    {
+      "source": "yonhap",
+      "title": "'AI 반도체 슈퍼위크'…코스피 '주주환원 약발' 계속되나",
+      "link": "https://www.yna.co.kr/view/AKR20260822023400008",
+      "published": "Sun, 23 Aug 2026 06:00:44 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "중금리대출, 2금융권 총량 100% 제외…중저신용자 지원 인센티브",
+      "link": "https://www.yna.co.kr/view/AKR20260822042900002",
+      "published": "Sun, 23 Aug 2026 05:49:02 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "기준금리 전망 '혼조'…\"7·8월 연속 인상\" vs \"숨 고르기\"",
+      "link": "https://www.yna.co.kr/view/AKR20260822017400002",
+      "published": "Sun, 23 Aug 2026 05:30:00 +0900"
     },
     {
       "source": "cnbc_world",
-      "title": "An overlooked AI winner names a new CFO — plus, Nvidia's key earnings loom",
-      "link": "https://www.cnbc.com/2026/08/21/an-overlooked-ai-winner-taps-new-cfo-as-street-awaits-nvidia.html",
-      "published": "Fri, 21 Aug 2026 18:55:05 GMT"
+      "title": "Nvidia customers reportedly warned about AI-related price hikes",
+      "link": "https://www.cnbc.com/2026/08/22/nvidia-customers-reportedly-warned-about-ai-related-price-hikes-.html",
+      "published": "Sat, 22 Aug 2026 20:26:44 GMT"
     },
     {
-      "source": "investors",
-      "title": "Stock Market Bounces Up But Logs Weekly Drop; Warsh Speech, Nvidia Earnings Due",
-      "link": "https://www.investors.com/market-trend/the-big-picture/stock-market-dow-jones-nasdaq-kevin-warsh-speech-nvidia-earnings/",
-      "published": "Fri, 21 Aug 2026 21:30:45 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Nvidia Earnings Preview: What's Needed To Drive Nvidia Stock Higher?",
-      "link": "https://www.investors.com/news/technology/nvidia-stock-nvda-preview-fiscal-q2-2027-earnings/",
-      "published": "Fri, 21 Aug 2026 14:40:44 +0000"
+      "source": "cnbc_world",
+      "title": "Trump reshuffled his portfolio in June, selling names like Meta and buying Berkshire Hathaway",
+      "link": "https://www.cnbc.com/2026/08/22/trump-reshuffled-his-portfolio-in-june-selling-names-like-meta-and-buying-berkshire-hathaway.html",
+      "published": "Sat, 22 Aug 2026 18:57:46 GMT"
     },
     {
       "source": "seeking_alpha",
-      "title": "Anthropic hires former Google chip developer as it pursues in-house solution: report",
-      "link": "https://seekingalpha.com/news/4636024-anthropic-hires-former-google-chip-developer-as-it-pursues-in-house-solution-report?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 21 Aug 2026 17:09:38 -0400"
+      "title": "Insider trades: AMD, Micron and Coca-Cola among notable names",
+      "link": "https://seekingalpha.com/news/4636007-insider-trades-amd-micron-and-coca-cola-among-notable-names?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 22 Aug 2026 11:03:40 -0400"
     },
     {
-      "source": "cnbc_tech",
-      "title": "4 memory stocks are darlings of the AI boom. How they differ and why we own Micron",
-      "link": "https://www.cnbc.com/2026/08/21/4-memory-stocks-are-darlings-of-the-ai-boom-how-they-differ-and-why-we-own-micron.html",
-      "published": "Fri, 21 Aug 2026 14:44:02 GMT"
+      "source": "cnbc_world",
+      "title": "Meta is the latest tech giant to land in her courtroom. Meet Judge Yvonne Gonzalez Rogers",
+      "link": "https://www.cnbc.com/2026/08/22/meet-yvonne-gonzalez-rogers-judge-taking-on-meta.html",
+      "published": "Sat, 22 Aug 2026 12:12:03 GMT"
     },
     {
-      "source": "investors",
-      "title": "Dow Jones Futures: Market Rally Repairs Some Damage; Nvidia, CrowdStrike, Warsh In Focus",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-market-rally-nvidia-crowdstrike-warsh/",
-      "published": "Fri, 21 Aug 2026 20:48:30 +0000"
+      "source": "ft",
+      "title": "Russian ‘double-tap’ attack on Ukrainian shopping mall kills at least 16",
+      "link": "https://www.ft.com/content/a7837e1c-6865-42bd-9902-3d4c4b7f37ef?syn-25a6b1a6=1",
+      "published": "Sat, 22 Aug 2026 19:29:26 GMT"
     },
     {
       "source": "marketwatch",
-      "title": "Tesla’s stock jumps as the company gets cleared for a Las Vegas robotaxi launch",
-      "link": "https://www.marketwatch.com/story/tesla-stocks-jumps-as-the-company-gets-ready-for-a-robotaxi-push-c680f87f?mod=mw_rss_topstories",
-      "published": "Fri, 21 Aug 2026 20:34:00 GMT"
+      "title": "Move over, credit cards: Social-media stars are tapping magic wands to buy things",
+      "link": "https://www.marketwatch.com/story/move-over-credit-cards-social-media-stars-are-tapping-magic-wands-to-buy-things-62e475d4?mod=mw_rss_topstories",
+      "published": "Sat, 22 Aug 2026 12:30:00 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Juicy Yields Draw Junk Bond Buyers to Investment-Grade AI Debt",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-22/juicy-yields-draw-junk-bond-buyers-to-investment-grade-ai-debt",
+      "published": "Sat, 22 Aug 2026 19:00:00 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "Tesla recalls 3 million vehicles in China over doorhandle safety, driver monitoring",
-      "link": "https://www.cnbc.com/2026/08/21/tesla-recalls-cars-in-china-over-doorhandle-safety-driver-monitoring.html",
-      "published": "Fri, 21 Aug 2026 19:29:48 GMT"
+      "title": "Rising yields rattled the market, but we’re sticking with our favorite AI and retail stocks",
+      "link": "https://www.cnbc.com/2026/08/22/rising-yields-rattled-the-market-but-were-sticking-with-our-favorite-ai-and-retail-stocks.html",
+      "published": "Sat, 22 Aug 2026 15:08:54 GMT"
     },
     {
-      "source": "investors",
-      "title": "AI Stock JFrog Jumps 159% From A Low, Eyes Entry As Earnings Accelerate",
-      "link": "https://www.investors.com/stock-lists/stock-spotlight/ai-stock-jfrog-frog-jumps-entry-earnings-accelerate/",
-      "published": "Fri, 21 Aug 2026 17:28:22 +0000"
+      "source": "bloomberg",
+      "title": "Study Shows AI Hitting Paychecks, Not Payrolls",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-22/study-shows-ai-hitting-paychecks-not-payrolls",
+      "published": "Sat, 22 Aug 2026 14:00:11 GMT"
     },
     {
-      "source": "cnbc_world",
-      "title": "Broadcom debt deal expected to reach upwards of $70 billion, sources say",
-      "link": "https://www.cnbc.com/2026/08/21/broadcom-debt-deal-expected-to-reach-upwards-of-70-billion-sources.html",
-      "published": "Fri, 21 Aug 2026 15:59:25 GMT"
+      "source": "bloomberg",
+      "title": "Chinese AI Models Gain Ground on Price and Use",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-22/chinese-ai-models-gain-ground-on-price-and-use-video",
+      "published": "Sat, 22 Aug 2026 12:18:06 GMT"
     },
     {
-      "source": "investors",
-      "title": "Tesla, Waymo, Uber Granted Las Vegas Robotaxi Permits",
-      "link": "https://www.investors.com/news/tesla-waymo-uber-robotaxi-las-vegas-self-driving-cars-tech-stocks/",
-      "published": "Fri, 21 Aug 2026 12:56:01 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "No more doom scrolling or Instagram Stories? A Meta trial loss could end the social media we know",
-      "link": "https://www.cnbc.com/2026/08/21/meta-social-media-lawsuit-trial-instagram-facebook.html",
-      "published": "Fri, 21 Aug 2026 12:11:14 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Stock Market Today: Dow Gains 500 Points; SpaceX Snaps A Losing Streak, Bitcoin Pops",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-stock-market-sell-off-bitcoin-surges/",
-      "published": "Fri, 21 Aug 2026 11:56:36 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Ross Stores Trounces Earnings, Set To Retake Buy Point",
-      "link": "https://www.investors.com/news/ross-dress-for-less-earnings-retail-tariff-refunds/",
-      "published": "Fri, 21 Aug 2026 12:10:22 +0000"
+      "source": "bloomberg",
+      "title": "The AI Spending Spree Comes With a Catch",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-22/the-ai-spending-spree-comes-with-a-catch-video",
+      "published": "Sat, 22 Aug 2026 12:03:21 GMT"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "Dow +0.98%, 러셀2000 +0.85%, VIX -5.5% 하락으로 위험자산 선호 재개. 금 +3.22%, 구리·알루미늄 등 원자재 강세는 재정·인프레 우려 속 실물자산 수요 반영",
+  "sentiment_reason": "美 3대 지수 동반 상승(S&P500 +0.43%, 다우 +0.98%)·VIX -5.5% 하락, 미 10Y 금리 4.74%로 급등했으나 에너지·헬스케어 중심 방어섹터 주도로 위험선호 흐름 지속",
   "key_factors": [
-    "금 +3.22% 사상 최고가 경신 — Bessent 국채시장 개입으로 달러 약세(-0.06%) 및 미국 재정 신뢰 훼손 우려",
-    "국채10Y +0.89%p(4.74%) 급등 — 재정 불안으로 장기물 매도, 커브 스티프닝(장기금리가 단기금리보다 빠르게 오르는 현상) 심화",
-    "엔비디아 수요일 실적 발표 대기 — AI 칩 수요 지속성과 가이던스가 반도체 밸류에이션(주가수익비율 등 적정성 판단 지표) 재평가 촉매"
+    "미 국채10Y 금리 +0.89%p 급등(4.74%)했으나 에너지(XLE Leading R108.7)·헬스케어(XLV Leading R106.1) 중심 방어섹터 주도로 다우 +0.98% 강세",
+    "엔비디아 AI 가격 인상 경고(블룸버그) 속 필라델피아반도체 -0.51% 약세, 코스닥 -4.63% 급락으로 반도체 투자심리 냉각",
+    "금 +2.39% 급등·알루미늄 +4.76%·구리 +1.85% 상승으로 소재섹터(XLB Leading R101.9) 강세, 국내 비철금속(R118.2/M118.8 Leading) 모멘텀 확인"
   ],
-  "news_summary": "Bessent 국채시장 개입으로 달러 급락·금 +3.22% 사상최고가 — FT 보도, 미국 채무 신뢰 훼손으로 10Y 4.74%(+0.89%p) 급등, 비트코인도 3개월 고점\n연준의장 Warsh 주말 첫 Jackson Hole 연설 예정 — 긴축 기조 유지 vs 완화 전환 시그널 여부가 다음주 변동성 핵심 변수\n미국 10Y +0.89%p 급등으로 커브 스티프닝(장기금리가 단기금리보다 빠르게 오르는 현상) 심화 — 은행 예대마진 개선 기대, 금융주 지지 요인\n금 연장선상 비트코인 3개월 고점 — 재정 불안 속 탈중앙 자산 선호, 크립토 관련주(코인베이스·마라톤디지털) 동반 상승\n트럼프 일부 쇠고기 수입 관세 완화 발표 — 캐나다와 무역협상 \"합의 가능\" 언급, 보호무역 완화 기대로 소비재·유통 섹터 수혜 가능성\n중동(이란)·AI·캘리포니아 전력 수요로 에너지 섹터 주목 — CNBC 헤지펀드 에너지 톱픽 보도, 에너지XLE Leading 유지\nAnthropic IPO 신청 예정, AI 반발·데이터센터 반대 리스크팩터 명시 — CNBC 보도, AI 버블 우려 재점화 가능성\n엔비디아 수요일 2Q 실적 발표 — AI 칩 수요 지속성·가이던스가 반도체 밸류에이션 재평가 핵심, Investors \"주가 상승에 필요한 조건\" 프리뷰 게재\nBroadcom AI 칩 파이낸싱 $70~80B 채무조달 추진 — CNBC Faber 확인, Anthropic 등 AI 기업 지원 목적, AI 투자 지속 신호로 반도체 장기 수요 뒷받침\n마이크론 등 메모리 4종 AI 붐 수혜 — CNBC \"Micron·Sandisk·Seagate·WD S&P500 상위 10대 수익률, AI 혁명 투자처 차별화\" 분석, 마이크론 보유 이유 강조\n테슬라 라스베가스 로보택시 허가 획득(Waymo·Uber도 동시) — 네바다 당국 만장일치 승인, 주가 점프. 단 중국서 도어핸들·운전모니터링 결함으로 300만대 리콜\nRoss Stores 2Q EPS +32% 서프라이즈, 매수점 재탈환 — 매출 +13%, 할인 유통 강세 지속\nModerna·Merck 암백신 희망 신호 — Bloomberg 보도, 바이오 섹터 모멘텀 지속",
+  "news_summary": "미 국채10Y 금리 +0.89%p 급등해 4.74% 기록, 한은 8월 27일 기준금리 결정 앞두고 \"7·8월 연속 인상\" vs \"숨 고르기 동결\" 전망 혼조(연합뉴스)\n금 +2.39% 급등(4,624.1달러)해 사상 최고가 근접, 러시아 우크라이나 쇼핑몰 이중공격으로 최소 16명 사망(FT) 등 지정학 리스크로 안전자산 수요 폭발\n알루미늄 +4.76%·구리 +1.85% 급등, 글로벌 소재섹터(XLB Leading R101.9) 주도 및 중국 인프라 투자 기대로 원자재 랠리\nKB국민은행 최고 연 12% 'KB카드쓰담적금' 출시, 7월 증시 급락 후 개인투자자 안전자산 수요 증가로 고금리 적금 인기 재점화(매일경제)\n러시아 우크라이나 쇼핑몰 대상 '이중공격(double-tap)' 감행해 최소 16명 사망(FT), 지정학 리스크 고조로 금 +2.39% 급등·방어자산 선호 강화\n트럼프 대통령 6월 포트폴리오 대규모 재편, 메타 매도하고 버크셔해서웨이 매수 등 1,000건 이상 거래·총 7,810만~달러 규모(CNBC)\n금융당국 제2금융권 중금리대출 총량규제 100% 제외 인센티브 도입, 중저신용자 지원 확대 및 2금융권 대출 취급 여력 증가(연합뉴스)\n메타 Northern District California 법원 Yvonne Gonzalez Rogers 판사 재판 진행 중, Musk-Altman 소송 이후 빅테크 규제 핵심 인물로 부상(CNBC)\n엔비디아 주요 고객사들에 AI 관련 가격 인상 경고(블룸버그), 필라델피아반도체 -0.51% 약세·코스닥 -4.63% 급락 촉매로 작용\n중국 AI 모델 가격경쟁력·활용도에서 글로벌 입지 확대(블룸버그), AI 지출 비용 부담 속 저가 대안 부상·항셍 +1.21% 강세 기여\nAMD·마이크론·코카콜라 등 주요 기업 내부자 거래 주목(Seeking Alpha), 반도체·소비재 섹터 밸류에이션(기업가치 평가) 및 내부 신뢰도 확인 필요\nAI 투자 확대가 급여 억제·일자리 감소 없이 임금 하락만 초래(블룸버그), 미 노동시장 구조 변화 및 소비 여력 약화 우려\n카카오 인적분할(카카오AI·카카오X) 선택, 기존 주주 권익 보호 및 17.4조원 가치 괴리 해소·사업별 독립경영 통한 재평가 목표(연합뉴스)",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "Bessent 국채시장 개입으로 달러 급락·금 +3.22% 사상최고가 — FT 보도, 미국 채무 신뢰 훼손으로 10Y 4.74%(+0.89%p) 급등, 비트코인도 3개월 고점",
+          "text": "미 국채10Y 금리 +0.89%p 급등해 4.74% 기록, 한은 8월 27일 기준금리 결정 앞두고 \"7·8월 연속 인상\" vs \"숨 고르기 동결\" 전망 혼조(연합뉴스)",
           "impact": "high"
         },
         {
-          "text": "연준의장 Warsh 주말 첫 Jackson Hole 연설 예정 — 긴축 기조 유지 vs 완화 전환 시그널 여부가 다음주 변동성 핵심 변수",
+          "text": "금 +2.39% 급등(4,624.1달러)해 사상 최고가 근접, 러시아 우크라이나 쇼핑몰 이중공격으로 최소 16명 사망(FT) 등 지정학 리스크로 안전자산 수요 폭발",
           "impact": "high"
         },
         {
-          "text": "미국 10Y +0.89%p 급등으로 커브 스티프닝(장기금리가 단기금리보다 빠르게 오르는 현상) 심화 — 은행 예대마진 개선 기대, 금융주 지지 요인",
+          "text": "알루미늄 +4.76%·구리 +1.85% 급등, 글로벌 소재섹터(XLB Leading R101.9) 주도 및 중국 인프라 투자 기대로 원자재 랠리",
           "impact": "mid"
         },
         {
-          "text": "금 연장선상 비트코인 3개월 고점 — 재정 불안 속 탈중앙 자산 선호, 크립토 관련주(코인베이스·마라톤디지털) 동반 상승",
+          "text": "KB국민은행 최고 연 12% 'KB카드쓰담적금' 출시, 7월 증시 급락 후 개인투자자 안전자산 수요 증가로 고금리 적금 인기 재점화(매일경제)",
           "impact": "mid"
         }
       ]
@@ -9888,15 +9888,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "트럼프 일부 쇠고기 수입 관세 완화 발표 — 캐나다와 무역협상 \"합의 가능\" 언급, 보호무역 완화 기대로 소비재·유통 섹터 수혜 가능성",
+          "text": "러시아 우크라이나 쇼핑몰 대상 '이중공격(double-tap)' 감행해 최소 16명 사망(FT), 지정학 리스크 고조로 금 +2.39% 급등·방어자산 선호 강화",
           "impact": "high"
         },
         {
-          "text": "중동(이란)·AI·캘리포니아 전력 수요로 에너지 섹터 주목 — CNBC 헤지펀드 에너지 톱픽 보도, 에너지XLE Leading 유지",
+          "text": "트럼프 대통령 6월 포트폴리오 대규모 재편, 메타 매도하고 버크셔해서웨이 매수 등 1,000건 이상 거래·총 7,810만~달러 규모(CNBC)",
           "impact": "mid"
         },
         {
-          "text": "Anthropic IPO 신청 예정, AI 반발·데이터센터 반대 리스크팩터 명시 — CNBC 보도, AI 버블 우려 재점화 가능성",
+          "text": "금융당국 제2금융권 중금리대출 총량규제 100% 제외 인센티브 도입, 중저신용자 지원 확대 및 2금융권 대출 취급 여력 증가(연합뉴스)",
+          "impact": "mid"
+        },
+        {
+          "text": "메타 Northern District California 법원 Yvonne Gonzalez Rogers 판사 재판 진행 중, Musk-Altman 소송 이후 빅테크 규제 핵심 인물로 부상(CNBC)",
           "impact": "mid"
         }
       ]
@@ -9906,27 +9910,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "엔비디아 수요일 2Q 실적 발표 — AI 칩 수요 지속성·가이던스가 반도체 밸류에이션 재평가 핵심, Investors \"주가 상승에 필요한 조건\" 프리뷰 게재",
+          "text": "엔비디아 주요 고객사들에 AI 관련 가격 인상 경고(블룸버그), 필라델피아반도체 -0.51% 약세·코스닥 -4.63% 급락 촉매로 작용",
           "impact": "high"
         },
         {
-          "text": "Broadcom AI 칩 파이낸싱 $70~80B 채무조달 추진 — CNBC Faber 확인, Anthropic 등 AI 기업 지원 목적, AI 투자 지속 신호로 반도체 장기 수요 뒷받침",
+          "text": "중국 AI 모델 가격경쟁력·활용도에서 글로벌 입지 확대(블룸버그), AI 지출 비용 부담 속 저가 대안 부상·항셍 +1.21% 강세 기여",
           "impact": "high"
         },
         {
-          "text": "마이크론 등 메모리 4종 AI 붐 수혜 — CNBC \"Micron·Sandisk·Seagate·WD S&P500 상위 10대 수익률, AI 혁명 투자처 차별화\" 분석, 마이크론 보유 이유 강조",
+          "text": "AMD·마이크론·코카콜라 등 주요 기업 내부자 거래 주목(Seeking Alpha), 반도체·소비재 섹터 밸류에이션(기업가치 평가) 및 내부 신뢰도 확인 필요",
           "impact": "high"
         },
         {
-          "text": "테슬라 라스베가스 로보택시 허가 획득(Waymo·Uber도 동시) — 네바다 당국 만장일치 승인, 주가 점프. 단 중국서 도어핸들·운전모니터링 결함으로 300만대 리콜",
+          "text": "AI 투자 확대가 급여 억제·일자리 감소 없이 임금 하락만 초래(블룸버그), 미 노동시장 구조 변화 및 소비 여력 약화 우려",
           "impact": "mid"
         },
         {
-          "text": "Ross Stores 2Q EPS +32% 서프라이즈, 매수점 재탈환 — 매출 +13%, 할인 유통 강세 지속",
-          "impact": "mid"
-        },
-        {
-          "text": "Moderna·Merck 암백신 희망 신호 — Bloomberg 보도, 바이오 섹터 모멘텀 지속",
+          "text": "카카오 인적분할(카카오AI·카카오X) 선택, 기존 주주 권익 보호 및 17.4조원 가치 괴리 해소·사업별 독립경영 통한 재평가 목표(연합뉴스)",
           "impact": "mid"
         }
       ]
@@ -9934,287 +9934,284 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "Dow·러셀 강세에도 필라델피아반도체 -0.51%로 기술주 무게 상쇄. 엔비디아 실적 대기로 포지션 관망, 금융·에너지 순환매 지지",
+      "reason": "미 10Y 금리 4.74% 급등 속에서도 에너지(XLE R108.7)·헬스케어(XLV R106.1) 방어섹터 주도로 +0.43% 상승, 기술주(XLK Improving) 약세 상쇄",
       "drivers": [
-        "엔비디아 실적 대기(수요일)",
-        "Ross Stores 실적호조(+32% EPS)"
+        "에너지섹터 주도(XLE Leading R108.7/M104.5)",
+        "헬스케어 강세(XLV Leading R106.1/M102.3)"
       ]
     },
     "NASDAQ": {
-      "reason": "기술주 대형 이벤트(엔비디아·Salesforce·Intuit 실적) 전 매수 신중, Broadcom $70B 채무조달 뉴스는 AI 투자 지속 기대 반영",
+      "reason": "기술섹터(XLK Improving) 전환 초입이나 엔비디아 AI 가격 인상 우려로 필라반도체 -0.51% 영향, +0.43% 소폭 상승에 그침",
       "drivers": [
-        "Broadcom AI칩 파이낸싱 $70~80B 추진",
-        "JFrog +159% 랠리 후 실적가속 진입"
+        "엔비디아 AI 가격인상 경고(블룸버그)",
+        "기술섹터 Improving 전환 초기 신중론"
       ]
     },
     "DOW": {
-      "reason": "가치주·경기민감주 순환매 — 금융·에너지·산업재 비중 높아 러셀2000 동반 강세, 기술주 비중 낮아 반도체 약세 영향 제한적",
+      "reason": "에너지·헬스케어 방어섹터 중심 포트폴리오 특성상 금리 급등에도 +0.98% 가장 강한 상승, 러셀2000 +0.85% 동반 강세",
       "drivers": [
-        "러셀2000 +0.85%",
-        "영국FTSE +0.64% 등 글로벌 가치주 동조"
+        "에너지섹터 Leading 강세",
+        "소재섹터(XLB) 동반 상승"
       ]
     },
     "VIX": {
-      "reason": "주말 연준의장 Warsh 첫 Jackson Hole 연설 앞 변동성 헤지 수요 청산, 주요지수 반등으로 리스크오프(위험회피) 완화",
+      "reason": "S&P500 상승·에너지·헬스케어 방어섹터 주도로 변동성 우려 완화, -5.50% 하락하며 안정적 위험선호 흐름 시사",
       "drivers": [
-        "Dow·러셀 강세로 방어 수요 감소",
-        "Warsh 연설 대기 중 관망"
+        "방어섹터 주도 안정적 상승",
+        "금리 급등에도 주가 동반 상승"
       ]
     },
     "필라델피아반도체": {
-      "reason": "엔비디아 실적 직전 차익실현 — AI 버블·순환 파이낸싱 우려 재부각, Anthropic IPO 리스크팩터(AI 반발·데이터센터 반대) 언급도 부담",
+      "reason": "엔비디아의 주요 고객사 대상 AI 가격 인상 경고(블룸버그) 속 수익성 우려로 -0.51% 약세, 한국 코스닥 -4.63% 급락 촉매",
       "drivers": [
-        "엔비디아 실적 대기",
-        "Anthropic IPO 우려(AI 반발 리스크팩터)"
+        "엔비디아 AI 가격인상 경고",
+        "반도체 수익성 우려 확산"
       ]
     },
     "러셀2000": {
-      "reason": "Dow 동반 강세 — 가치주·소형주 순환매, 금리 상승에도 재정 확대 기대(Bessent 국채개입) 경기민감주 수혜",
+      "reason": "에너지·소재 중심 방어섹터 강세 및 금 +2.39%·알루미늄 +4.76% 원자재 랠리에 중소형주 동반 상승, +0.85% 강세",
       "drivers": [
-        "Dow +0.98%",
-        "재정 확대 기대"
+        "원자재 가격 급등(금·알루미늄·구리)",
+        "에너지섹터 Leading 주도"
       ]
     },
     "영국FTSE": {
-      "reason": "유럽 가치주 동조 상승 — 원자재(구리·알루미늄) 강세로 광산·소재주 지지, 달러 약세 수출주 우호적",
+      "reason": "글로벌 에너지·소재섹터 강세 흐름 동조, 금 +2.39%·구리 +1.85% 원자재 랠리 수혜로 +0.64% 상승",
       "drivers": [
-        "구리 +1.86%, 알루미늄 +2.67%",
-        "달러인덱스 -0.06%"
+        "원자재 가격 상승",
+        "에너지섹터 글로벌 강세"
       ]
     },
     "독일DAX": {
-      "reason": "ECB 긴축 장기화 우려 — 미국 10Y 급등(+0.89%p)으로 유럽 장기금리 동조 상승, 산업재·자동차 밸류에이션 압박",
+      "reason": "유럽 제조업 중심 소재섹터(XLB Leading) 글로벌 강세 동조, 알루미늄 +4.76%·구리 +1.85% 수혜로 +0.59% 상승",
       "drivers": [
-        "미국 10Y 4.74% 급등",
-        "유로존 금리 동조 상승"
+        "소재섹터 글로벌 주도",
+        "알루미늄·구리 가격 급등"
       ]
     },
     "니케이": {
-      "reason": "엔화 약세 수출주 지지 — 달러/엔 환율 안정 속 반도체(도쿄일렉트론)·자동차 강세, 미국 VIX 하락으로 글로벌 리스크온 수혜",
+      "reason": "필라델피아반도체 -0.51% 약세 및 엔비디아 가격 인상 우려 속 반도체 투자심리 위축, -0.30% 소폭 하락",
       "drivers": [
-        "VIX -5.5%",
-        "반도체·자동차 수출주"
+        "필라반도체 약세 영향",
+        "엔비디아 AI 가격인상 경고"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 약함 — 미국 금리 상승에도 중국 부동산·소비 회복 기대, 알리바바·텐센트 등 기술주 완만 반등",
+      "reason": "중국 AI 모델 가격경쟁력·활용도 확대(블룸버그) 및 글로벌 원자재 강세 동조로 +1.21% 강세, 비철금속주 주도",
       "drivers": [
-        "미국 리스크온 분위기 동조",
-        "중국 정책 기대"
+        "중국 AI 모델 경쟁력 부각",
+        "원자재 가격 상승"
       ]
     },
     "달러인덱스": {
-      "reason": "Bessent 국채시장 개입으로 재정 신뢰 훼손 — FT·SA 보도 \"달러 매도, 금·비트코인 급등\" 연결, 10Y 급등에도 달러 약세는 재정 우려 반영",
+      "reason": "미 10Y 금리 4.74% 급등에도 -0.10% 소폭 하락, 글로벌 원자재 강세·위험선호 흐름 속 달러 수요 제한적",
       "drivers": [
-        "Bessent 국채개입",
-        "금 +3.22%, 비트코인 급등"
+        "원자재 강세로 상품통화 수요",
+        "위험선호 흐름 지속"
       ]
     },
     "국채2Y": {
-      "reason": "Warsh 연설 앞 단기 금리 방향성 불확실 — +0.19%p 소폭 상승, 연준 긴축 기조 유지 가능성에 2년물 지지선 형성",
+      "reason": "한은 8월 27일 기준금리 결정 앞두고 인상·동결 전망 혼조(연합뉴스) 속 단기 금리 +0.19%p 소폭 상승",
       "drivers": [
-        "Warsh Jackson Hole 연설 대기",
-        "연준 긴축 기조"
+        "한은 8월 27일 금통위 앞두고 인상론 존재",
+        "미 금리 급등 동조"
       ]
     },
     "국채10Y": {
-      "reason": "재정 불안 본격화 — Bessent 국채개입 뉴스로 장기물 신뢰 급락, +0.89%p 급등은 2026년 들어 최대 일일 상승폭",
+      "reason": "미 국채10Y 4.74% 급등 글로벌 동조, 한은 기준금리 인상 가능성 및 인플레 우려로 +0.89%p 큰 폭 상승",
       "drivers": [
-        "Bessent 국채시장 개입",
-        "재정 적자 우려"
+        "미 10Y 금리 급등 동조",
+        "한은 금리 인상 가능성"
       ]
     },
     "코스피": {
-      "reason": "삼성전자 주주환원 90~110조 발표(전년比 5배) 대형주 지지 — 니케이·러셀 강세 동조, 2차전지·철강·건설 등 Leading 섹터 다수",
+      "reason": "삼성전자·SK하이닉스 주가 반등(연합뉴스) 및 주주환원 기대 지속, 외국인 삼성전자 7,118억원 순매수로 +0.88% 상승",
       "drivers": [
-        "삼성전자 주주환원 확대",
-        "니케이 +1.36%, 러셀 +0.85%"
+        "삼성전자 외국인 7,118억원 순매수",
+        "주주환원 기대 지속"
       ]
     },
     "코스닥": {
-      "reason": "반도체·IT부품 Lagging으로 기술주 집중 타격 — 필라델피아반도체 -0.51% 여파, 엔비디아 실적 대기 중 차익실현 가속",
+      "reason": "필라델피아반도체 -0.51% 및 엔비디아 AI 가격인상 경고 속 반도체·IT 투자심리 급랭, 외국인 삼성전기 9,192억원·SK하이닉스 4,810억원 순매도로 -4.63% 급락",
       "drivers": [
-        "필라델피아반도체 -0.51%",
-        "반도체_소자·IT부품 Lagging"
+        "엔비디아 AI 가격인상 우려",
+        "삼성전기 9,192억·SK하이닉스 4,810억 외국인 매도"
       ]
     },
     "금": {
-      "reason": "Bessent 국채개입으로 달러 신뢰 급락 — 재정 불안 헤지 수요 폭발, FT·SA \"달러 약세로 금·비트코인 동반 급등\" 보도",
+      "reason": "미 10Y 금리 4.74% 급등에도 러시아 우크라이나 쇼핑몰 공격으로 최소 16명 사망(FT) 등 지정학 리스크 고조로 안전자산 수요 폭발, +2.39% 급등",
       "drivers": [
-        "Bessent 국채개입",
-        "달러 -0.06%, 재정 우려"
+        "러시아 우크라이나 공격 격화",
+        "지정학 리스크 안전자산 수요"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 약함 — 중동(이란) 긴장 지속에도 AI·캘리포니아 전력 수요 기대 대비 실제 수요 부진, 에너지XLE은 Leading 유지",
+      "reason": "에너지섹터(XLE Leading R108.7) 강세에도 글로벌 경기 둔화 우려 및 수요 약화 전망으로 -0.88% 하락",
       "drivers": [
-        "중동 리스크 프리미엄 제한적",
-        "수요 불확실성"
+        "글로벌 경기 둔화 우려",
+        "원유 수요 약화 전망"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 -0.06% 연동 하락 — 삼성전자 주주환원으로 외국인 환전 기대, 코스피 강세로 원화 수요 증가",
+      "reason": "코스피 +0.88% 상승·삼성전자 외국인 7,118억원 순매수 등 외국인 유입 및 달러인덱스 -0.10% 약세로 -0.50% 하락(원화 강세)",
       "drivers": [
-        "달러인덱스 약세",
-        "코스피 +0.88% 외국인 유입 기대"
+        "외국인 코스피 순매수(삼성전자 중심)",
+        "달러인덱스 약세"
       ]
     },
     "알루미늄": {
-      "reason": "중국 인프라·AI 데이터센터 수요 — Broadcom $70B 채무조달 등 AI 투자 지속, 재정 확대 기대로 건설·전력 원자재 동반 강세",
+      "reason": "소재섹터(XLB Leading R101.9/M101.9) 글로벌 주도 및 중국 인프라 투자 기대·공급 제약 우려로 +4.76% 급등",
       "drivers": [
-        "Broadcom AI 파이낸싱",
-        "재정 확대 기대"
+        "소재섹터 글로벌 Leading 주도",
+        "중국 인프라 투자 기대"
       ]
     },
     "구리": {
-      "reason": "전력·반도체 장비 수요 — AI 데이터센터 전력 인프라, 중국 정책 기대 및 글로벌 제조업 회복 신호",
+      "reason": "글로벌 소재섹터 강세 및 전력·신재생 인프라 수요 기대로 +1.85% 상승, 국내 비철금속(R118.2 Leading) 모멘텀 지지",
       "drivers": [
-        "AI 인프라 투자",
-        "중국 정책 기대"
+        "소재섹터 강세",
+        "전력·신재생 인프라 수요"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "삼성전자 90~110조 주주환원(전년比 5배)으로 코스피 +0.88% 지지, 반면 코스닥 -4.63% 급락은 필라델피아반도체 -0.51% 여파 및 엔비디아 실적 대기 중 기술주 차익실현",
+    "summary": "에너지·소재 글로벌 주도 → 코스피 +0.88% 상승, 엔비디아 AI 가격 인상 우려 → 코스닥 -4.63% 급락으로 양극화",
     "positive_factors": [
-      "삼성전자 사상최대 주주환원(3Q만 30조 배당) 발표 → 외국인 유입 기대, 대형주 밸류에이션 재평가 촉매",
-      "니케이 +1.36%, 러셀2000 +0.85% 글로벌 가치주 강세 → 코스피 2차전지·철강·건설 등 Leading 섹터 다수 동조",
-      "구리 +1.86%, 알루미늄 +2.67% 원자재 강세 → 비철금속(RS-M 118.8 Leading) 및 건설·철강 수혜"
+      "금 +2.39%·알루미늄 +4.76%·구리 +1.85% 원자재 강세 → 국내 비철금속(R118.2/M118.8 Leading)·석유화학(R114.0/M117.6 Leading) 모멘텀 지지",
+      "삼성전자 외국인 7,118억원 순매수·주주환원 기대 지속 → 코스피 +0.88% 상승 견인, 한미반도체 657억원·HD현대중공업 474억원 순매수(연합뉴스)",
+      "미 에너지섹터(XLE R108.7 Leading)·헬스케어(XLV R106.1 Leading) 주도 → 국내 신재생에너지(R114.4 Leading)·제약(R112.8 Leading) 방어섹터 동조 기대"
     ],
     "negative_factors": [
-      "필라델피아반도체 -0.51%, 엔비디아 실적 대기 → 코스닥 반도체·IT부품 Lagging, 기술주 집중 매도(-4.63%)",
-      "미국 10Y 4.74% 급등(+0.89%p) → 한국 장기금리 동조 우려, 성장주 밸류에이션 압박 지속"
+      "엔비디아 AI 가격 인상 경고(블룸버그) → 필라반도체 -0.51%·코스닥 -4.63% 급락, 삼성전기 9,192억원·SK하이닉스 4,810억원 외국인 순매도로 반도체 투자심리 급랭",
+      "미 국채10Y 4.74% 급등 및 한은 8월 27일 금리 인상 가능성 → 국내 금리 상승 압력·성장주 밸류에이션 부담, 코스피 회전율 연중 최저(0.56%)로 관망심리 고조(연합뉴스)"
     ],
-    "key_watch": "엔비디아 수요일 실적 및 Warsh 주말 연설 — AI 수요 가이던스와 연준 긴축 기조 확인 여부가 다음주 코스닥 반등 여부 결정"
+    "key_watch": "8월 27일 한은 금통위 기준금리 결정(인상 vs 동결) 및 AI 반도체 슈퍼위크(엔비디아·AMD·마이크론 실적·가이던스) 글로벌 반도체 투자심리 재점화 여부"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "2차전지_셀",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "2차전지_셀 RS-M 114.6 최상위 모멘텀 — 글로벌 EV·ESS(에너지저장장치) 수요 지속, 니케이·러셀 가치주 강세 동조 및 원자재(구리·알루미늄) 상승으로 소재 원가 안정 기대"
-    },
-    {
-      "sector": "2차전지_소재",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "2차전지_소재 RS-M 119.0 Leading 최고 — Broadcom AI 파이낸싱 $70B로 데이터센터 ESS 수요 재확인, 구리 +1.86% 전해액·양극재 원가 경쟁력"
-    },
-    {
       "sector": "비철금속",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "비철금속 RS-R 118.2·RS-M 118.8 최상위 — 구리·알루미늄 강세로 직접 수혜, 재정 확대(Bessent 국채개입) 인프라 투자 기대"
+      "reason": "금 +2.39%·알루미늄 +4.76%·구리 +1.85% 글로벌 원자재 랠리 + 국내 비철금속 RS-Ratio 118.2·RS-Momentum 118.8 Leading 최강, 소재섹터(XLB) 글로벌 주도 동조"
     },
     {
-      "sector": "로봇",
+      "sector": "방산",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "로봇 RS-M 125.97 전 섹터 1위 — AI·자동화 투자 지속(Broadcom 파이낸싱), 테슬라 로보택시 허가로 자율주행·물류 로봇 수혜"
+      "reason": "러시아 우크라이나 공격 격화(FT) 지정학 리스크 고조 + 국내 방산 RS-Ratio 113.1·RS-Momentum 112.2 Leading, 안전자산·방어섹터 선호 강화"
+    },
+    {
+      "sector": "신재생에너지",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "미 에너지섹터(XLE R108.7 Leading) 글로벌 주도 + 국내 신재생에너지 RS-Ratio 114.4·RS-Momentum 114.2 Leading, 알루미늄·구리 급등으로 전력인프라 수요 기대"
+    },
+    {
+      "sector": "제약",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "글로벌 헬스케어섹터(XLV R106.1 Leading) 방어주 주도 + 국내 제약 RS-Ratio 112.8·RS-Momentum 109.8 Leading, 금리 급등 국면 방어력 검증"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "반도체_소자 RS-R 90.2 Lagging — 엔비디아 수요일 실적 전 관망, 필라델피아반도체 -0.51% 약세. 실적 서프라이즈 확인 후 재진입"
+      "reason": "엔비디아 AI 가격인상 경고(블룸버그)로 필라반도체 -0.51%·코스닥 -4.63% 급락, 삼성전기 9,192억·SK하이닉스 4,810억 외국인 매도 속 반도체_소자(R90.2 Lagging) 추가 조정 가능성 — 8월 27일 AI 슈퍼위크 실적 확인 후 재진입 타이밍 모색"
     },
     {
       "sector": "IT부품",
-      "reason": "IT부품 RS-R 99.6 Lagging — 코스닥 -4.63% 주도, 엔비디아 가이던스 대기 중 부품주 차익실현. 수요일 이후 모멘텀 재평가"
+      "reason": "필라델피아반도체 약세 동조 및 IT부품 RS-Ratio 99.6·RS-Momentum 99.2 Lagging, 반도체 투자심리 냉각 속 추가 약세 경계 — 글로벌 반도체 모멘텀 재확인 대기"
+    },
+    {
+      "sector": "유통",
+      "reason": "코스닥 -4.63% 급락 속 유통 RS-Ratio 88.8·RS-Momentum 87.2 Lagging 최약, 소비심리 위축·금리 인상 압력으로 회복 지연 전망"
     }
   ],
   "avoid": [],
-  "summary": "재정 불안으로 금·원자재 급등, 국내 2차전지·비철 Leading 최상위 — 엔비디아 실적 전 반도체 관망, 실물자산 섹터 우선 배치",
-  "strategy_brief": "Bessent 국채시장 개입으로 미국 재정 신뢰가 급락하며 달러 약세·금 사상최고가(+3.22%) 행진이 이어지고 있습니다. 구리·알루미늄 등 원자재 동반 강세는 재정 확대 기대와 AI 인프라 투자 지속(Broadcom $70B 파이낸싱)을 반영하며, 국내 비철금속·2차전지 소재 등 실물자산 섹터가 RS-M(상대 모멘텀 지표) 118~119로 Leading(주도 구간) 최상위를 유지 중입니다. 반면 엔비디아 실적 대기로 필라델피아반도체 -0.51%, 코스닥 -4.63% 급락하며 반도체·IT부품은 Lagging 전락 — 수요일 가이던스 확인 전까지 진입 신중하고, 2차전지·로봇(RS-M 125.97 1위)·IT서비스 등 대체 성장주로 순환 배치가 유효합니다. 삼성전자 사상최대 주주환원(90~110조) 발표는 코스피 대형주 밸류에이션(적정 가치 평가) 재평가 촉매로, LG에너지솔루션·삼성SDS 등 계열 수혜주와 Leading 섹터 내 우량주 중심 선별 매수 전략을 권고합니다.",
-  "strategy_headline": "재정 불안 속 실물자산 강세 — 2차전지·원자재 Leading 집중",
+  "summary": "미 방어섹터 주도·원자재 랠리 → 비철금속(R118.2 Leading)·신재생(R114.4 Leading) 최우선 진입, 엔비디아 AI 가격인상 우려로 반도체 8월 27일 슈퍼위크 후 재진입 모색",
+  "strategy_brief": "미 국채10Y 금리가 4.74%로 급등했으나 에너지(XLE R108.7 Leading)·헬스케어(XLV R106.1 Leading) 방어섹터 주도로 S&P500 +0.43%·다우 +0.98% 상승하며 안정적인 위험선호 흐름을 이어갔다. 금 +2.39%·알루미늄 +4.76%·구리 +1.85% 원자재 랠리가 소재섹터(XLB Leading R101.9) 글로벌 주도를 견인한 가운데, 국내에서는 비철금속(RS-Ratio 118.2·RS-Momentum 118.8 Leading 최강)·신재생에너지(R114.4 Leading)가 최우선 진입 대상이다. 다만 엔비디아의 AI 가격 인상 경고(블룸버그)로 필라델피아반도체 -0.51%·코스닥 -4.63% 급락하며 반도체_소자(R90.2 Lagging) 투자심리가 급랭한 만큼, 8월 27일 AI 반도체 슈퍼위크 실적을 확인한 후 재진입 타이밍을 모색하고, 당분간은 원자재·방어주 중심 포트폴리오로 금리 상승 국면을 방어하는 전략이 유효하다. 러시아 우크라이나 공격 격화(FT) 지정학 리스크 고조 속 방산(R113.1 Leading)·제약(R112.8 Leading) 방어섹터 안전자산 선호 강화에도 주목하라.",
+  "strategy_headline": "美 방어섹터 주도·원자재 랠리 — 비철·신재생 Leading 집중",
   "strategy_points": [
-    "Bessent 국채개입으로 달러 신뢰 훼손, 금 +3.22%·원자재 급등 → 비철금속·2차전지 소재 등 실물자산 섹터 수혜",
-    "엔비디아 수요일 실적 대기로 반도체·IT부품 Lagging(상대강도·모멘텀 모두 약세) — 가이던스 확인 전 진입 신중, 2차전지·로봇 등 대체 성장주 우선",
-    "삼성전자 90~110조 주주환원으로 코스피 대형주 재평가 — LG에너지솔루션·삼성SDS 등 계열·밸류에이션 수혜주 주목",
-    "미국 10Y 4.74% 급등은 중기 리스크, 단 커브 스티프닝(장기금리 급등)으로 은행·보험 예대마진 개선 — 금융 일부 수혜 가능"
+    "미 에너지(XLE R108.7)·헬스케어(XLV R106.1) Leading 주도 + 금 +2.39%·알루미늄 +4.76% 원자재 랠리 → 국내 비철금속(R118.2 Leading)·신재생(R114.4 Leading) 최우선 진입",
+    "엔비디아 AI 가격인상 경고(블룸버그) → 필라반도체 -0.51%·코스닥 -4.63% 급락, 반도체_소자(R90.2 Lagging) 8월 27일 AI 슈퍼위크 실적 확인 후 재진입 타이밍 모색",
+    "러시아 우크라이나 공격 격화(FT) 지정학 리스크 고조 → 방산(R113.1 Leading)·제약(R112.8 Leading) 방어섹터 안전자산 선호 강화",
+    "한은 8월 27일 금통위 인상 가능성 + 미 10Y 4.74% 급등 → 금리 상승 압력 속 원자재·방어주 중심 포트폴리오, 성장주 밸류에이션(기업가치 평가) 부담 경계"
   ],
   "top_picks": [
     {
-      "sector": "2차전지_셀",
-      "rrg_quadrant": "leading",
-      "reason": "2차전지_셀 RS-M 114.6 최상위 모멘텀 — 글로벌 EV·ESS(에너지저장장치) 수요 지속, 니케이·러셀 가치주 강세 동조 및 원자재(구리·알루미늄) 상승으로 소재 원가 안정 기대",
-      "stocks": [
-        {
-          "name": "LG에너지솔루션",
-          "code": "373220",
-          "signal": "prime",
-          "reason": "2차전지_셀 Leading(RS-M 114.6) + 삼성전자 주주환원으로 대형주 밸류에이션 재평가 분위기 + 구리·알루미늄 강세로 원가 안정 기대 → 스테이지2(상승 국면) 지속",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": false,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "2차전지_소재",
-      "rrg_quadrant": "leading",
-      "reason": "2차전지_소재 RS-M 119.0 Leading 최고 — Broadcom AI 파이낸싱 $70B로 데이터센터 ESS 수요 재확인, 구리 +1.86% 전해액·양극재 원가 경쟁력",
-      "stocks": [
-        {
-          "name": "에코프로비엠",
-          "code": "247540",
-          "signal": "prime",
-          "reason": "2차전지_소재 RS-M 119.0 최고 모멘텀 + Broadcom AI 파이낸싱으로 ESS 수요 재확인 → 양극재 수출 수혜",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": false,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
       "sector": "비철금속",
       "rrg_quadrant": "leading",
-      "reason": "비철금속 RS-R 118.2·RS-M 118.8 최상위 — 구리·알루미늄 강세로 직접 수혜, 재정 확대(Bessent 국채개입) 인프라 투자 기대",
+      "reason": "금 +2.39%·알루미늄 +4.76%·구리 +1.85% 글로벌 원자재 랠리 + 국내 비철금속 RS-Ratio 118.2·RS-Momentum 118.8 Leading 최강, 소재섹터(XLB) 글로벌 주도 동조",
       "stocks": [
         {
           "name": "고려아연",
           "code": "010130",
           "signal": "prime",
-          "reason": "비철금속 Leading(RS-R 118.2) + 구리 +1.86%, 알루미늄 +2.67% 직접 수혜 + 재정 확대 기대 인프라 투자 → 원자재 상승 국면 진입",
+          "reason": "알루미늄 +4.76%·구리 +1.85% 글로벌 원자재 랠리 수혜 + 비철금속 RS-Ratio 118.2·RS-Momentum 118.8 Leading 최강·52주 신고가 근접, 소재섹터(XLB) 글로벌 주도 동조",
           "rrg_tracked": true,
           "rrg_actual_sector": "비철금속",
           "rrg_sector_match": true,
           "rrg_signal": "leading"
+        },
+        {
+          "name": "영풍",
+          "code": "000670",
+          "signal": "prime",
+          "reason": "구리 +1.85% 상승·소재섹터 글로벌 Leading 수혜 + 비철금속 Leading 모멘텀, 중국 인프라 투자 기대 및 전력·신재생 수요 증가 테마",
+          "rrg_tracked": false,
+          "rrg_actual_sector": "",
+          "rrg_sector_match": false,
+          "rrg_signal": ""
         }
       ]
     },
     {
-      "sector": "로봇",
+      "sector": "신재생에너지",
       "rrg_quadrant": "leading",
-      "reason": "로봇 RS-M 125.97 전 섹터 1위 — AI·자동화 투자 지속(Broadcom 파이낸싱), 테슬라 로보택시 허가로 자율주행·물류 로봇 수혜",
+      "reason": "미 에너지섹터(XLE R108.7 Leading) 글로벌 주도 + 국내 신재생에너지 RS-Ratio 114.4·RS-Momentum 114.2 Leading, 알루미늄·구리 급등으로 전력인프라 수요 기대",
       "stocks": [
         {
-          "name": "레인보우로보틱스",
-          "code": "277810",
+          "name": "한화솔루션",
+          "code": "009830",
           "signal": "prime",
-          "reason": "로봇 RS-M 125.97 전 섹터 1위 + 테슬라 로보택시 허가로 자율주행·물류 자동화 모멘텀 + Broadcom AI 투자 지속 → VCP(변동성 축소 패턴) 돌파 관찰",
+          "reason": "미 에너지섹터(XLE R108.7 Leading) 글로벌 주도 + 신재생에너지 RS-Ratio 114.4 Leading, 알루미늄·구리 급등으로 태양광·ESS(에너지저장장치) 인프라 투자 기대",
           "rrg_tracked": true,
-          "rrg_actual_sector": "로봇",
+          "rrg_actual_sector": "신재생에너지",
           "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
       ]
     },
     {
-      "sector": "IT서비스",
-      "rrg_quadrant": "",
-      "reason": "",
+      "sector": "방산",
+      "rrg_quadrant": "leading",
+      "reason": "러시아 우크라이나 공격 격화(FT) 지정학 리스크 고조 + 국내 방산 RS-Ratio 113.1·RS-Momentum 112.2 Leading, 안전자산·방어섹터 선호 강화",
       "stocks": [
         {
-          "name": "삼성SDS",
-          "code": "018260",
+          "name": "한화에어로스페이스",
+          "code": "012450",
           "signal": "prime",
-          "reason": "IT서비스 RS-M 133.5 최상위 + 삼성전자 주주환원 계열 수혜 기대 + AI 물류·클라우드 투자 지속 → Leading 섹터 내 대형주 안정성",
+          "reason": "러시아 우크라이나 공격 격화(FT) 지정학 리스크 고조 + 방산 RS-Ratio 113.1·RS-Momentum 112.2 Leading, 우주항공(R111.0 Leading) 동반 모멘텀",
           "rrg_tracked": true,
-          "rrg_actual_sector": "AI_SW",
+          "rrg_actual_sector": "방산",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
+      "sector": "제약",
+      "rrg_quadrant": "leading",
+      "reason": "글로벌 헬스케어섹터(XLV R106.1 Leading) 방어주 주도 + 국내 제약 RS-Ratio 112.8·RS-Momentum 109.8 Leading, 금리 급등 국면 방어력 검증",
+      "stocks": [
+        {
+          "name": "셀트리온",
+          "code": "068270",
+          "signal": "prime",
+          "reason": "글로벌 헬스케어섹터(XLV R106.1 Leading) 방어주 주도 + 제약 RS-Ratio 112.8 Leading, 미 10Y 금리 4.74% 급등 국면 방어력·바이오_신약(R112.7 Leading) 동조",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "바이오_CDMO",
           "rrg_sector_match": false,
           "rrg_signal": "leading"
         }
