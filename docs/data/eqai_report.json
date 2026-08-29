@@ -1,184 +1,157 @@
 {
-  "generated_at": "2026-08-29 07:02:57",
+  "generated_at": "2026-08-30 07:02:30",
   "macro": {
-    "S&P500": {
-      "price": 7711.76,
-      "change": -0.25,
-      "reason": "워시 연준의장 \"물가 목표 2%로 못 돌아가면 할 일 남아있어\" 매파 발언으로 9월 금리인상 기대 급등, 성장주 중심 차익실현 압력",
-      "drivers": [
-        "워시 잭슨홀 연설 — PCE 3.7% 우려 표명",
-        "2년물 국채금리 +1.41% 급등"
-      ]
-    },
-    "NASDAQ": {
-      "price": 26402.42,
-      "change": -0.52,
-      "reason": "금리인상 우려로 빅테크·반도체 밸류에이션 부담 확대, Microsoft 강세에도 필라델피아반도체 -3.47% 급락이 지수 하방 압력",
-      "drivers": [
-        "필라델피아반도체 -3.47%",
-        "국채금리 급등 → 성장주 할인율 상승"
-      ]
-    },
-    "DOW": {
-      "price": 53559.99,
-      "change": -0.02,
-      "reason": "경기방어주·금융주 혼조세 속 소폭 하락, 워시 발언 후 금리 민감도 낮은 가치주로 일부 자금 회귀",
-      "drivers": [
-        "금융주(XLF) weakening 구간",
-        "에너지(XLE) leading 구간 방어"
-      ]
-    },
     "VIX": {
-      "price": 14.43,
-      "change": -0.55,
-      "reason": "워시 발언 직후 변동성 우려 일시 확대됐으나 주요 지수 낙폭 제한되며 소폭 하락 마감",
+      "price": 14.51,
+      "change": -4.6,
+      "reason": "AI 실적 호조로 기술주 변동성 완화 — 필라델피아반도체 +2.33% 반등·Microsoft·Palantir 등 소프트웨어주 돌파 속 위험회피 수요 감소",
       "drivers": [
-        "S&P500 -0.25% 제한적 하락",
-        "연준 정책 불확실성 일부 해소"
+        "필라델피아반도체 +2.33% 반등",
+        "기술주 동반 강세로 변동성 축소"
       ]
     },
     "필라델피아반도체": {
-      "price": 11469.66,
-      "change": -3.47,
-      "reason": "Nvidia 실적 호조·수익성 전망(내년 미국 최대 수익 기업 예상)에도 금리인상 우려로 고밸류 반도체주 전반 급락",
+      "price": 11882.17,
+      "change": 2.33,
+      "reason": "이번 주 실적 시즌에서 AI 하드웨어·소프트웨어 동반 수혜 확인 — Nasdaq +0.9% 주간 상승, 기술주 섹터 6% 반등",
       "drivers": [
-        "국채금리 급등 → 성장주 할인율 압박",
-        "Nvidia 강세에도 섹터 전반 차익실현"
+        "AI 빌드아웃 비제로섬 게임 확인",
+        "소프트웨어주(MSFT, PLTR) 동반 강세"
       ]
     },
     "러셀2000": {
-      "price": 2972.37,
-      "change": -1.39,
-      "reason": "소형주 금리 민감도 극대화, 워시 매파 발언 후 2년물 금리 +1.41% 급등으로 밸류에이션 압박·50일선 하회 우려",
+      "price": 3014.34,
+      "change": 0.28,
+      "reason": "기술주 강세 속 소형주는 제한적 상승 — 대형 기술주 선호 지속, 금리 상승 부담으로 소형주 상대적 부진",
       "drivers": [
-        "2년물 국채금리 급등",
-        "50일 이동평균선 근접"
+        "대형 기술주 대비 상대적 약세",
+        "장기금리 +0.17%p 상승 부담"
       ]
     },
     "영국FTSE": {
-      "price": 10824.26,
-      "change": 0.29,
-      "reason": "직접 촉매 없음 — 유럽 에너지·소재주 Leading 구간 유지, 달러 강세에도 원자재 가격 방어로 소폭 상승",
+      "price": 10792.5,
+      "change": -0.79,
+      "reason": "유럽 증시 약세 — 미국 장기금리 상승 여파로 유럽 자산 차익매물 출회, 독일DAX는 소재주 강세로 소폭 상승",
       "drivers": [
-        "에너지·소재 섹터 방어",
-        "파운드 약세 수출주 수혜"
+        "미 장기금리 상승 파급",
+        "유럽 자산 차익실현"
       ]
     },
     "독일DAX": {
       "price": 26367.24,
       "change": 0.31,
-      "reason": "직접 촉매 없음 — 소재(XLB) Leading·유럽 제조업 회복 기대 속 화학·자동차주 강세 동조",
+      "reason": "소재주(XLB) Leading 전환 수혜 — 알루미늄 +0.62% 상승, 미국 소재섹터 강세 동조화",
       "drivers": [
-        "소재 섹터 상승",
-        "유로 약세 수출 경쟁력"
+        "알루미늄 가격 상승",
+        "미국 소재섹터(XLB) Leading 전환"
       ]
     },
     "니케이": {
       "price": 66131.98,
       "change": -0.2,
-      "reason": "직접 촉매 없음 — 미국 금리인상 우려로 엔저 압력 완화, 수출주 차익실현 혼조 속 소폭 하락",
+      "reason": "직접 촉매 없음 — 엔화 약보합·기술주 혼조 속 소폭 하락, 미국 반도체 강세 파급 제한적",
       "drivers": [
-        "달러/엔 환율 변동",
-        "미국 반도체 하락 동조"
+        "엔화 방향성 부재",
+        "기술주 차익실현"
       ]
     },
     "항셍": {
       "price": 25565.74,
       "change": -0.34,
-      "reason": "직접 촉매 없음 — 미국 긴축 우려 속 중국 빅테크 동반 하락, 홍콩 금융주 약세",
+      "reason": "중국 경기 우려 지속 — 미중 기술 갈등(OpenAI-Cursor 접근 차단 등) 장기화, 내수 회복 지연 속 소폭 하락",
       "drivers": [
-        "미국 긴축 리스크오프(위험 회피 심리)",
-        "중국 테크주 약세"
+        "미중 기술 갈등 장기화",
+        "중국 내수 회복 지연"
       ]
     },
     "달러인덱스": {
-      "price": 99.68,
-      "change": 0.52,
-      "reason": "워시 \"물가 목표 미달 시 추가 조치\" 발언으로 9월 금리인상 기대 급등, 달러 안전자산 수요 확대",
+      "price": 99.16,
+      "change": -0.01,
+      "reason": "Warsh 발언 긴축 기조 재확인에도 보합 — 10년물 상승에도 중간선거 앞 트럼프 금리인하 압박 가능성으로 방향성 제한",
       "drivers": [
-        "2년물 국채금리 +1.41%",
-        "9월 금리인상 확률 57%"
+        "Warsh 긴축 기조 재확인",
+        "트럼프 금리인하 압박 가능성"
       ]
     },
     "국채2Y": {
-      "price": 3.73,
-      "change": 1.41,
-      "reason": "워시 잭슨홀 연설에서 PCE 6개월 4.1% 지적 후 9월 금리인상 확률 코인플립(50% 근접) 수준까지 급등, 단기금리 급등",
+      "price": 3.68,
+      "change": -0.33,
+      "reason": "단기금리 하락 — 중간선거 앞 정치적 금리인하 압박 가능성, 장단기 스프레드 확대(커브 스티프닝)",
       "drivers": [
-        "워시 매파 발언",
-        "9월 금리인상 확률 57%"
+        "정치적 금리인하 압박 기대",
+        "장기물 대비 상대적 약세"
       ]
     },
     "국채10Y": {
-      "price": 4.72,
-      "change": 1.03,
-      "reason": "워시 \"할 일 남아있어\" 발언으로 장기 긴축 우려 확산, 재무부 장기물 환매 효과 상쇄되며 상승",
+      "price": 4.67,
+      "change": 0.17,
+      "reason": "Warsh 잭슨홀 발언 — \"인플레 재상승 시 긴축 재개\" 시사, 연준의 포워드가이던스 매파 전환 우려로 장기물 매도",
       "drivers": [
-        "장기 긴축 기대",
-        "커브 스티프닝 진행"
+        "Warsh 매파적 발언",
+        "인플레 재상승 시 긴축 재개 가능성"
       ]
     },
     "코스피": {
       "price": 6788.88,
       "change": -1.79,
-      "reason": "필라델피아반도체 -3.47% 급락으로 삼성전자·SK하이닉스 등 반도체 비중주 동반 하락, 외국인 매도 우위 속 1.8% 급락",
+      "reason": "외국인 대규모 순매도 — 한은 기준금리 3% 인상 후 유동성 우려·SK하이닉스 ADR 자금 유입 마무리, 삼성전자 등 대형주 차익실현",
       "drivers": [
-        "필라델피아반도체 -3.47%",
-        "워시 매파 발언 → 신흥국 자금 이탈"
+        "한은 기준금리 3% 인상 충격",
+        "외국인 순매도 지속"
       ]
     },
     "코스닥": {
       "price": 838.41,
       "change": 0.09,
-      "reason": "직접 촉매 약함 — 2차전지·IT서비스 Leading 구간 종목 중심 방어 매수, 반도체 낙폭 제한하며 소폭 상승 전환",
+      "reason": "기술주 양극화 — IT서비스(RS-R 117.4) Leading 강세, 반도체·2차전지 일부 저가 매수 유입으로 소폭 상승",
       "drivers": [
-        "2차전지_소재 RS-R 110 강세",
-        "IT서비스 RS-M 123 모멘텀"
+        "IT서비스 섹터 강세",
+        "기술주 저가 매수"
       ]
     },
     "금": {
-      "price": 4504.1,
-      "change": -2.29,
-      "reason": "워시 매파 발언 후 달러인덱스 +0.52%·실질금리 상승으로 무이자 자산 금 2.3% 급락, 안전자산 선호 달러 집중",
+      "price": 4478.1,
+      "change": -2.85,
+      "reason": "미 장기금리 급등 직격탄 — 10년물 +0.17%p 상승으로 무수익 자산 금 2.85% 급락, 달러 보합 속에도 실질금리 상승 부담",
       "drivers": [
-        "달러인덱스 +0.52%",
-        "실질금리 상승"
+        "미 10년물 금리 급등",
+        "실질금리 상승 압력"
       ]
     },
     "WTI유가": {
-      "price": 83.44,
-      "change": -0.11,
-      "reason": "직접 촉매 없음 — 에너지(XLE) Leading 구간 유지 속 수급 균형, 달러 강세 압박과 지정학 리스크 상쇄",
+      "price": 83.4,
+      "change": -0.16,
+      "reason": "직접 촉매 없음 — 중동 지정학 리스크 소강·중국 수요 둔화 우려 속 보합권 등락",
       "drivers": [
-        "에너지 섹터 Leading",
-        "달러 강세 압박"
+        "중동 리스크 소강",
+        "중국 수요 둔화"
       ]
     },
     "원달러": {
-      "price": 1375.67,
-      "change": -0.57,
-      "reason": "달러인덱스 +0.52% 강세에도 코스피 급락으로 외국인 매도 달러 공급 확대, 원화 소폭 강세 전환",
+      "price": 1371.5,
+      "change": -0.65,
+      "reason": "IIF 보고서 반도체 수출 호조 재확인 — \"코로나 前 수준 회복\" 평가, 경상수지 흑자 확대·한은 긴축 선제 대응으로 원화 강세 지속",
       "drivers": [
-        "외국인 주식 매도 → 달러 공급",
-        "달러인덱스 강세 상쇄"
+        "반도체 수출 호조",
+        "경상수지 사상 최대 흑자"
       ]
     },
     "알루미늄": {
-      "price": 3388.25,
-      "change": 0.92,
-      "reason": "소재(XLB) Leading 구간 진입, 중국 인프라 수요 기대 속 비철금속 동반 상승",
+      "price": 3378.25,
+      "change": 0.62,
+      "reason": "미국 소재섹터(XLB) Leading 전환 — RS-Ratio 100.8 돌파, 에너지(XLE)·소재 순환매 유입으로 산업금속 수요 기대",
       "drivers": [
-        "소재 섹터 XLB Leading",
-        "중국 수요 기대"
+        "미국 소재섹터 Leading 전환",
+        "에너지·소재 순환매 유입"
       ]
     },
     "구리": {
-      "price": 6.64,
-      "change": 0.8,
-      "reason": "소재(XLB) RS-R 100.8·비철금속 섹터 RS-R 114.7 Leading 구간, AI 데이터센터·전력망 수요 재확인",
+      "price": 6.56,
+      "change": -0.38,
+      "reason": "중국 수요 우려 지속 — 항셍 -0.34%, 중국 제조업 회복 지연 속 산업금속 수요 둔화 우려",
       "drivers": [
-        "비철금속 Leading 모멘텀",
-        "AI 인프라 수요"
+        "중국 제조업 회복 지연",
+        "항셍 약세 동조"
       ]
     }
   },
@@ -9762,124 +9735,123 @@
   },
   "sources": [
     {
-      "source": "marketwatch",
-      "title": "Nvidia’s revenue forecast is so huge that Wall Street wonders if SpaceX is the reason",
-      "link": "https://www.marketwatch.com/story/nvidias-revenue-forecast-is-so-huge-that-wall-street-wonders-if-spacex-is-the-reason-1ee7a8a9?mod=mw_rss_topstories",
-      "published": "Fri, 28 Aug 2026 20:58:00 GMT"
-    },
-    {
-      "source": "maeil",
-      "title": "워시 \"지금 연준 초점은 물가\" … 9월 금리인상 확률 57%로 올라",
-      "link": "https://www.mk.co.kr/news/world/12139246",
-      "published": "Sat, 29 Aug 2026 00:30:05 +09:00"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Microsoft’s stock seals its longest winning streak of the year as AI software fears fade",
-      "link": "https://www.marketwatch.com/story/microsofts-stock-seals-its-longest-winning-streak-of-the-year-as-ai-software-fears-fade-e5669f5b?mod=mw_rss_topstories",
-      "published": "Fri, 28 Aug 2026 21:34:00 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "This Shipping Stock Sails Higher, Offers Entry As Earnings Rocket 633%",
-      "link": "https://www.investors.com/stock-lists/stock-spotlight/shipping-stock-seanergy-maritime-sail-earnings-rocket/",
-      "published": "Fri, 28 Aug 2026 17:12:03 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Microsoft, Stock Of The Day, Flashes New Buy Signal. Why It's Still An 'AI Winner.'",
-      "link": "https://www.investors.com/research/ibd-stock-of-the-day/microsoft-stock-msft-remains-ai-winner/",
-      "published": "Fri, 28 Aug 2026 16:17:22 +0000"
-    },
-    {
-      "source": "maeil",
-      "title": "[속보] 워시 연준의장, 미국 물가상승률에 “우려스럽다”",
-      "link": "https://www.mk.co.kr/news/world/12139231",
-      "published": "Fri, 28 Aug 2026 23:12:49 +09:00"
-    },
-    {
-      "source": "investors",
-      "title": "How The Anthropic And OpenAI IPOs Could Shake Up The AI Brawl",
-      "link": "https://www.investors.com/news/technology/anthropic-ipo-openai-ai-artificial-intelligence/",
-      "published": "Fri, 28 Aug 2026 12:00:21 +0000"
-    },
-    {
-      "source": "maeil",
-      "title": "국채 이자, 딱 정해져 있는데…왜 ‘국채금리’는 매일 바뀔까 [최소한의 금융상식]",
-      "link": "https://www.mk.co.kr/news/business/12139175",
-      "published": "Fri, 28 Aug 2026 20:41:33 +09:00"
-    },
-    {
-      "source": "investors",
-      "title": "Stock Market Falls After Hawkish Warsh Speech; Nvidia Reverses, Jobs Report Due",
-      "link": "https://www.investors.com/market-trend/the-big-picture/dow-jones-stock-market-nasdaq-kevin-warsh-speech-nvidia-jobs-report/",
-      "published": "Fri, 28 Aug 2026 21:35:50 +0000"
-    },
-    {
       "source": "cnbc_world",
-      "title": "Meta's $17 billion settlement mandates new safeguards for kids—many are promising, says safety expert",
-      "link": "https://www.cnbc.com/2026/08/28/new-meta-safeguards-teens.html",
-      "published": "Fri, 28 Aug 2026 21:08:53 GMT"
+      "title": "OpenAI to end model access to Cursor after acquisition by Elon Musk's SpaceX",
+      "link": "https://www.cnbc.com/2026/08/29/openai-cursor-spacex-model-access.html",
+      "published": "Sat, 29 Aug 2026 19:06:22 GMT"
+    },
+    {
+      "source": "yonhap",
+      "title": "삼성전자, 9월부터 임직원 주택대출…사내 부부는 1건으로 제한",
+      "link": "https://www.yna.co.kr/view/AKR20260828063800003",
+      "published": "Sun, 30 Aug 2026 06:09:01 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "미래에셋 고액자산가 영업 고강도검사 착수…스페이스X 초점",
+      "link": "https://www.yna.co.kr/view/AKR20260829043400002",
+      "published": "Sun, 30 Aug 2026 05:47:00 +0900"
+    },
+    {
+      "source": "investors",
+      "title": "These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Amazon Holds Key Level",
+      "link": "https://www.investors.com/research/best-stocks-seven-magnificent-stocks-earnings-growth/",
+      "published": "Sat, 29 Aug 2026 12:00:21 +0000"
+    },
+    {
+      "source": "yonhap",
+      "title": "금리 오르고 전셋값 뛰는데…신혼부부 버팀목 대출 '반토막'",
+      "link": "https://www.yna.co.kr/view/AKR20260829033400003",
+      "published": "Sun, 30 Aug 2026 06:17:01 +0900"
+    },
+    {
+      "source": "maeil",
+      "title": "“가래로 막기 전에 호미로”…기준금리 3% 시대 연 신현송 [이번주인공]",
+      "link": "https://www.mk.co.kr/news/society/12139570",
+      "published": "Sat, 29 Aug 2026 22:04:08 +09:00"
     },
     {
       "source": "seeking_alpha",
-      "title": "Sterling Metals issues shares & warrants",
-      "link": "https://seekingalpha.com/news/4638027-sterling-metals-issues-shares-warrants?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 28 Aug 2026 17:08:25 -0400"
+      "title": "Nvidia CEO excluded in TIME’s 100 most influential people in AI",
+      "link": "https://seekingalpha.com/news/4638042-nvidia-ceo-missing-times-100-ai-influencers?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 29 Aug 2026 12:23:06 -0400"
+    },
+    {
+      "source": "cnbc_tech",
+      "title": "The big lesson from this week's earnings: The AI buildout is not a zero-sum game",
+      "link": "https://www.cnbc.com/2026/08/29/big-lesson-from-this-weeks-earnings-ai-buildout-is-not-a-zero-sum-game.html",
+      "published": "Sat, 29 Aug 2026 13:25:55 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Tim Cook wasn’t a ‘product guy’ — so he re-engineered Apple instead",
+      "link": "https://www.marketwatch.com/story/tim-cook-wasnt-a-product-guy-so-he-re-engineered-apple-instead-03ca53f4?mod=mw_rss_topstories",
+      "published": "Sat, 29 Aug 2026 12:30:00 GMT"
     },
     {
       "source": "investors",
-      "title": "Dow Jones Futures: Microsoft, Titans Mask Market Weakness. Here's What To Do.",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-microsoft-titans-mask-market-weakness/",
-      "published": "Fri, 28 Aug 2026 20:35:10 +0000"
+      "title": "Microsoft, Palantir Among Stocks To Watch As Software Bounces Back",
+      "link": "https://www.investors.com/news/microsoft-palantir-stocks-near-buy-points-software/",
+      "published": "Sat, 29 Aug 2026 11:55:57 +0000"
     },
     {
-      "source": "cnbc_world",
-      "title": "Apple hikes subscription prices for Apple TV and Apple One in the U.S.",
-      "link": "https://www.cnbc.com/2026/08/28/apple-tv-one-price-hike-us.html",
-      "published": "Fri, 28 Aug 2026 19:09:34 GMT"
+      "source": "ft",
+      "title": "Warsh charts a forward-looking path for the Fed at Jackson Hole",
+      "link": "https://www.ft.com/content/4319c6b7-5a25-41a7-836f-ca068ac4fe60?syn-25a6b1a6=1",
+      "published": "Sat, 29 Aug 2026 16:28:50 GMT"
     },
     {
-      "source": "investors",
-      "title": "Stock Market Rises On Nvidia, CrowdStrike, Salesforce, Warsh: Weekly Review",
-      "link": "https://www.investors.com/news/stock-market-nvidia-crowdstrike-salesforce-fed-chief-warsh/",
-      "published": "Fri, 28 Aug 2026 16:09:39 +0000"
+      "source": "ft",
+      "title": "Warsh puts Fed on collision course with Trump ahead of midterms",
+      "link": "https://www.ft.com/content/69452aea-cee0-47de-be8a-dc790fed3db1?syn-25a6b1a6=1",
+      "published": "Sat, 29 Aug 2026 12:57:12 GMT"
     },
     {
-      "source": "investors",
-      "title": "Nvidia Will Be The Most Profitable Company In The U.S. Next Year",
-      "link": "https://www.investors.com/etfs-and-funds/sectors/nvidia-will-be-the-most-profitable-company-in-the-u-s-next-year/",
-      "published": "Fri, 28 Aug 2026 11:18:33 +0000"
+      "source": "bloomberg",
+      "title": "Warsh Says Fed Must Act if Inflation Stays High",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-29/warsh-says-fed-must-act-if-inflation-stays-high-video",
+      "published": "Sat, 29 Aug 2026 12:05:49 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Corporate earnings have been growing at a blistering pace. Here’s why that’s not likely to last.",
+      "link": "https://www.marketwatch.com/story/corporate-earnings-have-been-growing-at-a-blistering-pace-heres-why-thats-not-likely-to-last-28810eac?mod=mw_rss_topstories",
+      "published": "Sat, 29 Aug 2026 11:30:00 GMT"
+    },
+    {
+      "source": "yonhap",
+      "title": "\"다음은 내 차례?\"…AI 감원, 직원들은 두달 전부터 눈치챘다",
+      "link": "https://www.yna.co.kr/view/AKR20260828149700017",
+      "published": "Sun, 30 Aug 2026 06:30:01 +0900"
     }
   ],
-  "global_sentiment": "risk_off",
-  "sentiment_reason": "워시 연준의장의 매파적 잭슨홀 연설로 9월 금리인상 확률 57%까지 상승, 국채금리 급등·반도체 3.5% 급락하며 긴축 공포 재점화",
+  "global_sentiment": "risk_on",
+  "sentiment_reason": "필라델피아반도체 +2.33% 반등·VIX -4.6% 안정화, 하드웨어·소프트웨어 동반 수혜 확인으로 AI 섹터 전방위 강세 재개",
   "key_factors": [
-    "워시 연준의장 잭슨홀 연설에서 PCE(개인소비지출) 물가지수 12개월 3.7%·6개월 4.1% 수준을 \"우려스럽다\" 지적하며 추가 긴축 시사",
-    "9월 FOMC(연방공개시장위원회) 금리인상 확률 48→57%로 급등, 2년물 국채금리 +1.41%·10년물 +1.03% 급등하며 커브 스티프닝(장기금리가 단기금리보다 빠르게 오르는 현상) 진행",
-    "필라델피아반도체 -3.47% 급락으로 글로벌 반도체 밸류에이션(주가 적정성) 리스크 확대, 코스피 -1.79% 동반 낙폭",
-    "Microsoft 연속 상승·Nvidia 수익성 전망 상향에도 섹터 전반 매도세 — 금리 민감도 높은 성장주에 자금 이탈"
+    "AI 빌드아웃 비제로섬 게임 확인 — 하드웨어(칩)·소프트웨어 동반 실적 호조로 AI 투자 사이클 지속성 재확인",
+    "미국 기업이익 급성장세 지속 — FactSet 기준 S&P500 488社 실적 발표 완료, 전년比 고성장 지속 확인",
+    "Warsh 연준의장 잭슨홀 발언 — 인플레 재상승 시 긴축 재개 시사, 10년물 +0.17%p 상승하며 장기금리 상방 압력"
   ],
-  "news_summary": "워시 연준의장 잭슨홀 연설에서 PCE 12개월 3.7%·6개월 4.1%를 \"우려스럽다\" 지적, \"목표 2%로 못 돌아가면 할 일 남아있다\" 매파 발언으로 9월 금리인상 확률 48→57%로 급등\n2년물 국채금리 +1.41%·10년물 +1.03% 급등하며 커브 스티프닝 진행, 워시 \"경제 강화·금융여건 제한적 아님\" 평가로 추가 긴축 여력 시사\n워시 \"더 조용한 중앙은행\" 지향 발언에도 시장은 9월 FOMC를 코인플립(50% 근접 확률) 이벤트로 재평가, 금리 변동성 확대 전망\n달러인덱스 +0.52% 강세로 금 -2.29% 급락, 실질금리 상승으로 무이자 안전자산 선호 약화\nMeta 미국 52개 주 검찰총장과 170억달러 합의 — 아동 유해·중독성 제품 설계 혐의, 신규 아동 안전장치 의무화로 소셜미디어 규제 강화 신호\nApple 미국 내 Apple TV 월 구독료 12.99→14.99달러·연 99→119달러 인상, Apple One 번들도 동반 인상으로 서비스 수익성 개선 시도\n중국 드라마 제작 현장에 AI 배우 대체 확산 — 인건비 절감·촬영 유연성 확보, FT 보도로 엔터 산업 구조 변화 가속\nNvidia 다음 분기 매출 가이던스 시장 예상 상회, 애널리스트들 내년 순이익 전망 대폭 상향 — 2027년 미국 내 최대 수익 기업 등극 예상, SpaceX 등 우주 AI 수요 추정\nMicrosoft 연중 최장 연속 상승 기록, AI 소프트웨어 우려 해소·신규 매수 신호 점등 — IBD \"여전히 AI 승자\" 평가, 컵 베이스(cup base) 513.73 돌파 진입점 형성\nSalesforce·CrowdStrike·Okta 강한 실적 발표 후 Dell·Palo Alto Networks·Snowflake 어닝 대기, 소프트웨어 섹터 AI 수혜 검증 주간\nAnthropic(Claude AI 모델 개발사)와 OpenAI IPO 임박 전망 — Anthropic 상장 우선 예상, 조단위 밸류에이션으로 AI 경쟁 구도 재편 가능성\nSeanergy Maritime 실적 633% 급증, 케이프사이즈(대형 화물선) 현대 선단 활용 드라이벌크 운송 호황 — 소형주 해운주 진입 기회 제공",
+  "news_summary": "Warsh 연준의장 잭슨홀 발언 — \"인플레 재상승 시 긴축 재개 불사\", 중간선거 앞 트럼프와 충돌 경로 예고, 10년물 +0.17%p 상승\n기업이익 급성장 지속 확인 — FactSet 기준 S&P500 488社 실적 발표 완료, 전년比 고성장세 지속하나 앞으로 둔화 가능성 제기\nIIF \"한국 반도체 수출 호조로 코로나 前 수준 회복\" — 원화 강세 펀더멘탈 내년 상반기까지 지속 전망, 경상수지 사상 최대 흑자\n한은 기준금리 3% 인상 파장 — 신혼부부 버팀목 대출 1년새 40% 급감, 서울 중위 전세가 4억 돌파로 정책 사각지대 확대\nOpenAI, Cursor 모델 접근 차단 발표 — 머스크 SpaceX의 Cursor 인수 직후 조치, 미중 기술 갈등·AI 생태계 분열 가속\n금감원 미래에셋 고강도 검사 착수 — SpaceX 공모 '0주 배정' 논란, 전문투자자 등록 권유 등 위법 영업 여부 9월 현장 점검\n금감원 IPO·유상증자 신고서 부실 시 전자공시 명시 — \"정정요구 반영 미비\" DART 표시, 충실 작성 시 신속 심사 당근책 병행\n이번 주 실적 시즌 핵심 교훈 — AI 빌드아웃은 제로섬 게임 아님, 하드웨어(칩)·소프트웨어 동반 수혜 확인, Nasdaq +0.9% 주간 상승\nMicrosoft·Palantir 등 소프트웨어주 돌파 — 기술섹터 6% 반등 주도, Workday·JFrog·Shopify도 매수 포인트 근접\n애널리스트 선호 7개 고성장주 — Amazon·Alphabet·Eli Lilly 등, Amazon 핵심 레벨 지지 유지 중\n삼성전자 9월부터 임직원 주택대출 — 최대 5억원·연 1.5%, DSR 미적용·중도상환수수료 無, 사내 부부 1건 제한\nTim Cook 'product guy' 아닌 전략가 — Apple을 공급망·서비스 중심으로 재설계, 제품 혁신 외 비즈니스 모델 혁신 주도\nSalesforce, AI 차기 전장 제시 — \"모델이 아닌 에이전트·워크플로우가 핵심\", 엔터프라이즈 AI 경쟁 축 이동",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "워시 연준의장 잭슨홀 연설에서 PCE 12개월 3.7%·6개월 4.1%를 \"우려스럽다\" 지적, \"목표 2%로 못 돌아가면 할 일 남아있다\" 매파 발언으로 9월 금리인상 확률 48→57%로 급등",
+          "text": "Warsh 연준의장 잭슨홀 발언 — \"인플레 재상승 시 긴축 재개 불사\", 중간선거 앞 트럼프와 충돌 경로 예고, 10년물 +0.17%p 상승",
           "impact": "high"
         },
         {
-          "text": "2년물 국채금리 +1.41%·10년물 +1.03% 급등하며 커브 스티프닝 진행, 워시 \"경제 강화·금융여건 제한적 아님\" 평가로 추가 긴축 여력 시사",
-          "impact": "high"
-        },
-        {
-          "text": "워시 \"더 조용한 중앙은행\" 지향 발언에도 시장은 9월 FOMC를 코인플립(50% 근접 확률) 이벤트로 재평가, 금리 변동성 확대 전망",
+          "text": "기업이익 급성장 지속 확인 — FactSet 기준 S&P500 488社 실적 발표 완료, 전년比 고성장세 지속하나 앞으로 둔화 가능성 제기",
           "impact": "mid"
         },
         {
-          "text": "달러인덱스 +0.52% 강세로 금 -2.29% 급락, 실질금리 상승으로 무이자 안전자산 선호 약화",
+          "text": "IIF \"한국 반도체 수출 호조로 코로나 前 수준 회복\" — 원화 강세 펀더멘탈 내년 상반기까지 지속 전망, 경상수지 사상 최대 흑자",
+          "impact": "mid"
+        },
+        {
+          "text": "한은 기준금리 3% 인상 파장 — 신혼부부 버팀목 대출 1년새 40% 급감, 서울 중위 전세가 4억 돌파로 정책 사각지대 확대",
           "impact": "mid"
         }
       ]
@@ -9889,15 +9861,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "Meta 미국 52개 주 검찰총장과 170억달러 합의 — 아동 유해·중독성 제품 설계 혐의, 신규 아동 안전장치 의무화로 소셜미디어 규제 강화 신호",
+          "text": "OpenAI, Cursor 모델 접근 차단 발표 — 머스크 SpaceX의 Cursor 인수 직후 조치, 미중 기술 갈등·AI 생태계 분열 가속",
           "impact": "high"
         },
         {
-          "text": "Apple 미국 내 Apple TV 월 구독료 12.99→14.99달러·연 99→119달러 인상, Apple One 번들도 동반 인상으로 서비스 수익성 개선 시도",
+          "text": "금감원 미래에셋 고강도 검사 착수 — SpaceX 공모 '0주 배정' 논란, 전문투자자 등록 권유 등 위법 영업 여부 9월 현장 점검",
           "impact": "mid"
         },
         {
-          "text": "중국 드라마 제작 현장에 AI 배우 대체 확산 — 인건비 절감·촬영 유연성 확보, FT 보도로 엔터 산업 구조 변화 가속",
+          "text": "금감원 IPO·유상증자 신고서 부실 시 전자공시 명시 — \"정정요구 반영 미비\" DART 표시, 충실 작성 시 신속 심사 당근책 병행",
           "impact": "mid"
         }
       ]
@@ -9907,239 +9879,241 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "Nvidia 다음 분기 매출 가이던스 시장 예상 상회, 애널리스트들 내년 순이익 전망 대폭 상향 — 2027년 미국 내 최대 수익 기업 등극 예상, SpaceX 등 우주 AI 수요 추정",
+          "text": "이번 주 실적 시즌 핵심 교훈 — AI 빌드아웃은 제로섬 게임 아님, 하드웨어(칩)·소프트웨어 동반 수혜 확인, Nasdaq +0.9% 주간 상승",
           "impact": "high"
         },
         {
-          "text": "Microsoft 연중 최장 연속 상승 기록, AI 소프트웨어 우려 해소·신규 매수 신호 점등 — IBD \"여전히 AI 승자\" 평가, 컵 베이스(cup base) 513.73 돌파 진입점 형성",
+          "text": "Microsoft·Palantir 등 소프트웨어주 돌파 — 기술섹터 6% 반등 주도, Workday·JFrog·Shopify도 매수 포인트 근접",
           "impact": "high"
         },
         {
-          "text": "Salesforce·CrowdStrike·Okta 강한 실적 발표 후 Dell·Palo Alto Networks·Snowflake 어닝 대기, 소프트웨어 섹터 AI 수혜 검증 주간",
+          "text": "애널리스트 선호 7개 고성장주 — Amazon·Alphabet·Eli Lilly 등, Amazon 핵심 레벨 지지 유지 중",
+          "impact": "high"
+        },
+        {
+          "text": "삼성전자 9월부터 임직원 주택대출 — 최대 5억원·연 1.5%, DSR 미적용·중도상환수수료 無, 사내 부부 1건 제한",
           "impact": "mid"
         },
         {
-          "text": "Anthropic(Claude AI 모델 개발사)와 OpenAI IPO 임박 전망 — Anthropic 상장 우선 예상, 조단위 밸류에이션으로 AI 경쟁 구도 재편 가능성",
+          "text": "Tim Cook 'product guy' 아닌 전략가 — Apple을 공급망·서비스 중심으로 재설계, 제품 혁신 외 비즈니스 모델 혁신 주도",
           "impact": "mid"
         },
         {
-          "text": "Seanergy Maritime 실적 633% 급증, 케이프사이즈(대형 화물선) 현대 선단 활용 드라이벌크 운송 호황 — 소형주 해운주 진입 기회 제공",
+          "text": "Salesforce, AI 차기 전장 제시 — \"모델이 아닌 에이전트·워크플로우가 핵심\", 엔터프라이즈 AI 경쟁 축 이동",
           "impact": "mid"
         }
       ]
     }
   ],
   "macro_reasons": {
-    "S&P500": {
-      "reason": "워시 연준의장 \"물가 목표 2%로 못 돌아가면 할 일 남아있어\" 매파 발언으로 9월 금리인상 기대 급등, 성장주 중심 차익실현 압력",
-      "drivers": [
-        "워시 잭슨홀 연설 — PCE 3.7% 우려 표명",
-        "2년물 국채금리 +1.41% 급등"
-      ]
-    },
-    "NASDAQ": {
-      "reason": "금리인상 우려로 빅테크·반도체 밸류에이션 부담 확대, Microsoft 강세에도 필라델피아반도체 -3.47% 급락이 지수 하방 압력",
-      "drivers": [
-        "필라델피아반도체 -3.47%",
-        "국채금리 급등 → 성장주 할인율 상승"
-      ]
-    },
-    "DOW": {
-      "reason": "경기방어주·금융주 혼조세 속 소폭 하락, 워시 발언 후 금리 민감도 낮은 가치주로 일부 자금 회귀",
-      "drivers": [
-        "금융주(XLF) weakening 구간",
-        "에너지(XLE) leading 구간 방어"
-      ]
-    },
     "VIX": {
-      "reason": "워시 발언 직후 변동성 우려 일시 확대됐으나 주요 지수 낙폭 제한되며 소폭 하락 마감",
+      "reason": "AI 실적 호조로 기술주 변동성 완화 — 필라델피아반도체 +2.33% 반등·Microsoft·Palantir 등 소프트웨어주 돌파 속 위험회피 수요 감소",
       "drivers": [
-        "S&P500 -0.25% 제한적 하락",
-        "연준 정책 불확실성 일부 해소"
+        "필라델피아반도체 +2.33% 반등",
+        "기술주 동반 강세로 변동성 축소"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Nvidia 실적 호조·수익성 전망(내년 미국 최대 수익 기업 예상)에도 금리인상 우려로 고밸류 반도체주 전반 급락",
+      "reason": "이번 주 실적 시즌에서 AI 하드웨어·소프트웨어 동반 수혜 확인 — Nasdaq +0.9% 주간 상승, 기술주 섹터 6% 반등",
       "drivers": [
-        "국채금리 급등 → 성장주 할인율 압박",
-        "Nvidia 강세에도 섹터 전반 차익실현"
+        "AI 빌드아웃 비제로섬 게임 확인",
+        "소프트웨어주(MSFT, PLTR) 동반 강세"
       ]
     },
     "러셀2000": {
-      "reason": "소형주 금리 민감도 극대화, 워시 매파 발언 후 2년물 금리 +1.41% 급등으로 밸류에이션 압박·50일선 하회 우려",
+      "reason": "기술주 강세 속 소형주는 제한적 상승 — 대형 기술주 선호 지속, 금리 상승 부담으로 소형주 상대적 부진",
       "drivers": [
-        "2년물 국채금리 급등",
-        "50일 이동평균선 근접"
+        "대형 기술주 대비 상대적 약세",
+        "장기금리 +0.17%p 상승 부담"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유럽 에너지·소재주 Leading 구간 유지, 달러 강세에도 원자재 가격 방어로 소폭 상승",
+      "reason": "유럽 증시 약세 — 미국 장기금리 상승 여파로 유럽 자산 차익매물 출회, 독일DAX는 소재주 강세로 소폭 상승",
       "drivers": [
-        "에너지·소재 섹터 방어",
-        "파운드 약세 수출주 수혜"
+        "미 장기금리 상승 파급",
+        "유럽 자산 차익실현"
       ]
     },
     "독일DAX": {
-      "reason": "직접 촉매 없음 — 소재(XLB) Leading·유럽 제조업 회복 기대 속 화학·자동차주 강세 동조",
+      "reason": "소재주(XLB) Leading 전환 수혜 — 알루미늄 +0.62% 상승, 미국 소재섹터 강세 동조화",
       "drivers": [
-        "소재 섹터 상승",
-        "유로 약세 수출 경쟁력"
+        "알루미늄 가격 상승",
+        "미국 소재섹터(XLB) Leading 전환"
       ]
     },
     "니케이": {
-      "reason": "직접 촉매 없음 — 미국 금리인상 우려로 엔저 압력 완화, 수출주 차익실현 혼조 속 소폭 하락",
+      "reason": "직접 촉매 없음 — 엔화 약보합·기술주 혼조 속 소폭 하락, 미국 반도체 강세 파급 제한적",
       "drivers": [
-        "달러/엔 환율 변동",
-        "미국 반도체 하락 동조"
+        "엔화 방향성 부재",
+        "기술주 차익실현"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 없음 — 미국 긴축 우려 속 중국 빅테크 동반 하락, 홍콩 금융주 약세",
+      "reason": "중국 경기 우려 지속 — 미중 기술 갈등(OpenAI-Cursor 접근 차단 등) 장기화, 내수 회복 지연 속 소폭 하락",
       "drivers": [
-        "미국 긴축 리스크오프(위험 회피 심리)",
-        "중국 테크주 약세"
+        "미중 기술 갈등 장기화",
+        "중국 내수 회복 지연"
       ]
     },
     "달러인덱스": {
-      "reason": "워시 \"물가 목표 미달 시 추가 조치\" 발언으로 9월 금리인상 기대 급등, 달러 안전자산 수요 확대",
+      "reason": "Warsh 발언 긴축 기조 재확인에도 보합 — 10년물 상승에도 중간선거 앞 트럼프 금리인하 압박 가능성으로 방향성 제한",
       "drivers": [
-        "2년물 국채금리 +1.41%",
-        "9월 금리인상 확률 57%"
+        "Warsh 긴축 기조 재확인",
+        "트럼프 금리인하 압박 가능성"
       ]
     },
     "국채2Y": {
-      "reason": "워시 잭슨홀 연설에서 PCE 6개월 4.1% 지적 후 9월 금리인상 확률 코인플립(50% 근접) 수준까지 급등, 단기금리 급등",
+      "reason": "단기금리 하락 — 중간선거 앞 정치적 금리인하 압박 가능성, 장단기 스프레드 확대(커브 스티프닝)",
       "drivers": [
-        "워시 매파 발언",
-        "9월 금리인상 확률 57%"
+        "정치적 금리인하 압박 기대",
+        "장기물 대비 상대적 약세"
       ]
     },
     "국채10Y": {
-      "reason": "워시 \"할 일 남아있어\" 발언으로 장기 긴축 우려 확산, 재무부 장기물 환매 효과 상쇄되며 상승",
+      "reason": "Warsh 잭슨홀 발언 — \"인플레 재상승 시 긴축 재개\" 시사, 연준의 포워드가이던스 매파 전환 우려로 장기물 매도",
       "drivers": [
-        "장기 긴축 기대",
-        "커브 스티프닝 진행"
+        "Warsh 매파적 발언",
+        "인플레 재상승 시 긴축 재개 가능성"
       ]
     },
     "코스피": {
-      "reason": "필라델피아반도체 -3.47% 급락으로 삼성전자·SK하이닉스 등 반도체 비중주 동반 하락, 외국인 매도 우위 속 1.8% 급락",
+      "reason": "외국인 대규모 순매도 — 한은 기준금리 3% 인상 후 유동성 우려·SK하이닉스 ADR 자금 유입 마무리, 삼성전자 등 대형주 차익실현",
       "drivers": [
-        "필라델피아반도체 -3.47%",
-        "워시 매파 발언 → 신흥국 자금 이탈"
+        "한은 기준금리 3% 인상 충격",
+        "외국인 순매도 지속"
       ]
     },
     "코스닥": {
-      "reason": "직접 촉매 약함 — 2차전지·IT서비스 Leading 구간 종목 중심 방어 매수, 반도체 낙폭 제한하며 소폭 상승 전환",
+      "reason": "기술주 양극화 — IT서비스(RS-R 117.4) Leading 강세, 반도체·2차전지 일부 저가 매수 유입으로 소폭 상승",
       "drivers": [
-        "2차전지_소재 RS-R 110 강세",
-        "IT서비스 RS-M 123 모멘텀"
+        "IT서비스 섹터 강세",
+        "기술주 저가 매수"
       ]
     },
     "금": {
-      "reason": "워시 매파 발언 후 달러인덱스 +0.52%·실질금리 상승으로 무이자 자산 금 2.3% 급락, 안전자산 선호 달러 집중",
+      "reason": "미 장기금리 급등 직격탄 — 10년물 +0.17%p 상승으로 무수익 자산 금 2.85% 급락, 달러 보합 속에도 실질금리 상승 부담",
       "drivers": [
-        "달러인덱스 +0.52%",
-        "실질금리 상승"
+        "미 10년물 금리 급등",
+        "실질금리 상승 압력"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 없음 — 에너지(XLE) Leading 구간 유지 속 수급 균형, 달러 강세 압박과 지정학 리스크 상쇄",
+      "reason": "직접 촉매 없음 — 중동 지정학 리스크 소강·중국 수요 둔화 우려 속 보합권 등락",
       "drivers": [
-        "에너지 섹터 Leading",
-        "달러 강세 압박"
+        "중동 리스크 소강",
+        "중국 수요 둔화"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 +0.52% 강세에도 코스피 급락으로 외국인 매도 달러 공급 확대, 원화 소폭 강세 전환",
+      "reason": "IIF 보고서 반도체 수출 호조 재확인 — \"코로나 前 수준 회복\" 평가, 경상수지 흑자 확대·한은 긴축 선제 대응으로 원화 강세 지속",
       "drivers": [
-        "외국인 주식 매도 → 달러 공급",
-        "달러인덱스 강세 상쇄"
+        "반도체 수출 호조",
+        "경상수지 사상 최대 흑자"
       ]
     },
     "알루미늄": {
-      "reason": "소재(XLB) Leading 구간 진입, 중국 인프라 수요 기대 속 비철금속 동반 상승",
+      "reason": "미국 소재섹터(XLB) Leading 전환 — RS-Ratio 100.8 돌파, 에너지(XLE)·소재 순환매 유입으로 산업금속 수요 기대",
       "drivers": [
-        "소재 섹터 XLB Leading",
-        "중국 수요 기대"
+        "미국 소재섹터 Leading 전환",
+        "에너지·소재 순환매 유입"
       ]
     },
     "구리": {
-      "reason": "소재(XLB) RS-R 100.8·비철금속 섹터 RS-R 114.7 Leading 구간, AI 데이터센터·전력망 수요 재확인",
+      "reason": "중국 수요 우려 지속 — 항셍 -0.34%, 중국 제조업 회복 지연 속 산업금속 수요 둔화 우려",
       "drivers": [
-        "비철금속 Leading 모멘텀",
-        "AI 인프라 수요"
+        "중국 제조업 회복 지연",
+        "항셍 약세 동조"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "워시 매파 선회로 필라델피아반도체 -3.5% 급락 → 코스피 반도체 비중주 동반 낙폭, 단 2차전지·IT서비스 Leading 구간 방어로 코스닥 선방",
+    "summary": "필라델피아반도체 +2.33%·AI 빌드아웃 동반 수혜 확인에도 코스피 -1.79% 급락 — 한은 긴축·외국인 순매도 충격, 코스닥은 IT서비스 강세로 보합",
     "positive_factors": [
-      "Microsoft·Nvidia AI 수익성 재확인으로 국내 AI 서버·HBM 공급망(삼성전자·SK하이닉스) 중장기 수혜 프레임 유지",
-      "소재(XLB) Leading·구리 +0.8%·비철금속 RS-R 114.7로 국내 비철금속·철강 섹터 상대강도 개선, 2차전지 소재 RS-M 112 최강 모멘텀",
-      "코스닥 2차전지_소재 RS-R 110·IT서비스 RS-M 123 Leading 구간 종목들 외국인 매도 속에서도 개별 강세 지속"
+      "필라델피아반도체 +2.33% 반등·AI 하드웨어·소프트웨어 동반 수혜 확인 → 국내 반도체·IT부품 수출 모멘텀 지속성 재확인",
+      "IIF \"반도체 호조로 코로나 前 수준 회복\" 평가·원화 강세 펀더멘탈 내년 상반기 지속 → 수출주 이익 개선 사이클 장기화",
+      "미국 소재섹터(XLB) Leading 전환·알루미늄 +0.62% → 국내 2차전지 소재·비철금속·석유화학 상대강도 우위 지속"
     ],
     "negative_factors": [
-      "워시 9월 금리인상 시사로 신흥국 자금 이탈 우려 — 달러 강세·국채금리 급등으로 코스피 밸류에이션 압박, 외국인 매도 확대 가능",
-      "필라델피아반도체 -3.47% 급락이 삼성전자·SK하이닉스 등 반도체_소자(RS-R 96 lagging) 섹터 추가 낙폭 촉발, 반도체 비중 높은 코스피 하방 압력"
+      "한은 기준금리 3% 인상 충격 → 외국인 대규모 순매도·삼성전자 등 대형주 차익실현, 유동성 우려 확산",
+      "Warsh 매파 발언·미 10년물 +0.17%p → 글로벌 밸류에이션(주가 적정성 평가) 부담, 성장주 할인율 상승 압력"
     ],
-    "key_watch": "오늘 미국 고용지표(Jobs Report) 발표 대기 — 견조한 고용 시 워시 매파 강화·추가 금리인상 기대로 반도체 2차 하락 vs 부진 시 긴축 우려 완화·코스닥 2차전지 반등"
+    "key_watch": "코스피 -1.79% 급락 속 코스닥 +0.09% 방어 — IT서비스(RS-R 117.4) Leading·반도체 Improving 전환 섹터의 저가 매수 여부가 반등 타이밍 가늠자"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "2차전지_소재",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "2차전지_소재 RS-R 110·RS-M 112로 전 섹터 최강 모멘텀, 소재(XLB) 글로벌 Leading·구리 +0.8% 상승으로 배터리 원재료 공급망 투자심리 개선 — 워시 긴축에도 실물 수요 방어"
-    },
-    {
       "sector": "IT서비스",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "IT서비스 RS-R 117·RS-M 123 Leading 구간, Microsoft AI 소프트웨어 우려 해소·Salesforce 강세로 국내 AI SW·클라우드 수혜주 동조 상승 — 반도체 낙폭과 디커플링"
+      "reason": "IT서비스 RS-R 117.4·RS-M 123.6으로 전 섹터 최강 모멘텀 — AI 소프트웨어 동반 수혜 확인(MSFT·PLTR 돌파)·국내 클라우드·AI SaaS 수혜주 집중 매수"
     },
     {
-      "sector": "비철금속",
+      "sector": "2차전지_소재",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "비철금속 RS-R 114.7·RS-M 110 Leading, 글로벌 소재(XLB) Leading·알루미늄 +0.92%·구리 +0.8% 동반 상승으로 AI 인프라·전력망 수요 재확인 — 금리 우려 속 실물 모멘텀 부각"
+      "reason": "2차전지 소재 RS-R 110.1·RS-M 112.8 Leading 최상단 — 미국 소재섹터(XLB) Leading 전환·원화 강세로 수출 경쟁력 우위, 스테이지2 연장"
+    },
+    {
+      "sector": "로봇",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "로봇 RS-R 107.8·RS-M 112.2 Leading 고점 경신 — AI 하드웨어 확장(팹리스·장비 Improving)·자동화 투자 사이클, VCP 패턴 형성"
+    },
+    {
+      "sector": "반도체_팹리스",
+      "rrg_quadrant": "improving",
+      "claude_quadrant": "improving",
+      "reason": "반도체 팹리스·장비·소재 일제히 Improving 전환 — 필라델피아반도체 +2.33% 반등, RS-M 100 상향 돌파로 스테이지2 초입 진입 타이밍"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "반도체_소자 RS-R 96·RS-M 98 lagging 구간, 필라델피아반도체 -3.47% 급락·워시 긴축 우려로 삼성전자·SK하이닉스 밸류에이션 압박 — Nvidia 수익성 개선에도 단기 기술적 회복 대기 필요"
-    },
-    {
-      "sector": "해운",
-      "reason": "해운 RS-R 104·RS-M 94 weakening 구간, Seanergy 실적 633% 급증 해운 호황 시그널에도 모멘텀 꺾임 — 글로벌 물동량 둔화 우려 vs 개별 종목 어닝 서프라이즈 혼조"
+      "reason": "반도체 소자 RS-R 96.1 Lagging 잔류 — 필라델피아반도체 반등에도 삼성전자·SK하이닉스 외국인 순매도 지속, 상대강도 100 회복 후 재진입"
     },
     {
       "sector": "플랫폼",
-      "reason": "플랫폼 RS-R 103·RS-M 97 weakening, Meta 170억달러 합의·규제 강화 우려와 Apple 구독료 인상 수익성 개선 엇갈림 — 빅테크 개별 이슈 선별 대응"
+      "reason": "플랫폼 RS-M 97.7 Weakening(약화 구간) — 미국 커뮤니케이션(XLC) Leading이나 국내는 모멘텀 꺾임, 반등 확인 후 진입"
     }
   ],
   "avoid": [],
-  "summary": "워시 매파 선회로 반도체 급락했으나 2차전지·IT서비스 Leading 구간 디커플링 — 금리 우려 속 실물 모멘텀 섹터 선별 집중",
-  "strategy_brief": "워시 연준의장의 매파 선회로 필라델피아반도체가 3.5% 급락하며 코스피 반도체 비중주를 압박했지만, 국내 시장은 섹터 간 뚜렷한 디커플링(탈동조화)을 보였다. 2차전지_소재(RS-R 110·RS-M 112)와 IT서비스(RS-R 117·RS-M 123)는 글로벌 소재 섹터 Leading 전환, Microsoft AI 소프트웨어 우려 해소 등 독자 모멘텀을 유지하며 코스닥 방어의 핵심축으로 작동했다. 오늘 미국 고용지표 발표를 앞두고 견조한 고용 시 워시 매파 강화·반도체 2차 하락 리스크가 있으나, 부진 시 긴축 우려 완화로 코스닥 Leading 섹터 반등 여력이 크다. 반도체_소자 lagging·해운 weakening 섹터는 회피하고, 2차전지 소재·IT서비스·비철금속 등 RS-Ratio(상대강도 비율) 100 이상·RS-Momentum(상대강도 모멘텀) 상승 구간 종목에 선별 집중하는 방어적 공격 전략이 유효하다.",
-  "strategy_headline": "워시 매파 선회에도 2차전지·IT서비스 디커플링 — Leading 집중 방어",
+  "summary": "필라델피아반도체 +2.33% AI 동반 수혜 확인에도 한은 긴축 충격 코스피 급락 — IT서비스·2차전지 소재·로봇 Leading 최상단 집중, 반도체 Improving 전환 포착",
+  "strategy_brief": "필라델피아반도체 +2.33% 반등과 이번 주 실적 시즌에서 AI 빌드아웃이 제로섬 게임이 아님을 확인하며 하드웨어·소프트웨어 동반 수혜가 재확인됐으나, 한은 기준금리 3% 인상 충격으로 외국인 대규모 순매도가 이어지며 코스피는 -1.79% 급락했다. 다만 코스닥은 IT서비스(RS-R 117.4, 전 섹터 최강 모멘텀) Leading 강세로 +0.09% 방어에 성공했고, 반도체 팹리스·장비·소재가 일제히 Improving(상승 전환 구간) 전환하며 스테이지2 초입 진입 타이밍을 제공하고 있다. 대형주는 반도체 소자 Lagging(상대강도·모멘텀 모두 약세) 잔류로 관망하되, 미국 소프트웨어 돌파(MSFT·PLTR)·소재섹터(XLB) Leading 전환 수혜를 받는 IT서비스·2차전지 소재·로봇 등 Leading 최상단 섹터에 선제 집중하고, Warsh 매파 발언으로 인한 단기 조정 시 저가 매수 기회로 활용하는 전략이 유효하다.",
+  "strategy_headline": "AI 동반성장 확인에도 한은 긴축 충격 — IT서비스 집중",
   "strategy_points": [
-    "워시 \"PCE 4.1% 우려·9월 금리인상 여력\" 발언 → 필라델피아반도체 -3.5% 급락했으나 국내 2차전지_소재 RS-M 112·IT서비스 RS-M 123은 Leading 구간 유지",
-    "Microsoft AI 소프트웨어 우려 해소·Nvidia 내년 최대 수익 기업 전망 → 국내 HBM·AI 서버 공급망 중장기 프레임 훼손 없음, 단기 밸류에이션 조정은 진입 기회",
-    "글로벌 소재(XLB) Leading·구리 +0.8%·비철금속 RS-R 114 → 2차전지 소재·비철금속 실물 수요 방어, 금리 우려 속 상대강도 부각",
-    "반도체_소자 lagging·해운 weakening 섹터는 회피, 오늘 미국 고용지표 결과 따라 워시 매파 강도 재평가 — 긴축 강화 시 코스피 추가 낙폭·코스닥 Leading 섹터 방어 전략 유효"
+    "필라델피아반도체 +2.33%·AI 하드웨어·소프트웨어 동반 수혜 확인 → 반도체 팹리스·장비·소재 Improving(상승 전환 구간) 일제 전환, 스테이지2 초입 포착",
+    "한은 기준금리 3% 인상 충격으로 외국인 순매도 지속 → 코스피 -1.79% 급락, 반도체 소자 Lagging(상대강도·모멘텀 모두 약세) 잔류로 대형주 관망",
+    "IT서비스 RS-R 117.4 전 섹터 최강·로봇·2차전지 소재 Leading 최상단 → 미국 소프트웨어 돌파(MSFT·PLTR)·소재섹터 Leading 전환 수혜주 집중 매수",
+    "Warsh 매파 발언·미 10년물 +0.17%p 상승 → 성장주 밸류에이션 부담, 단기 변동성 확대 시 IT서비스·2차전지 소재 Leading 섹터 저가 매수 기회"
   ],
   "top_picks": [
     {
-      "sector": "2차전지_소재",
+      "sector": "IT서비스",
       "rrg_quadrant": "leading",
-      "reason": "2차전지_소재 RS-R 110·RS-M 112로 전 섹터 최강 모멘텀, 소재(XLB) 글로벌 Leading·구리 +0.8% 상승으로 배터리 원재료 공급망 투자심리 개선 — 워시 긴축에도 실물 수요 방어",
+      "reason": "IT서비스 RS-R 117.4·RS-M 123.6으로 전 섹터 최강 모멘텀 — AI 소프트웨어 동반 수혜 확인(MSFT·PLTR 돌파)·국내 클라우드·AI SaaS 수혜주 집중 매수",
       "stocks": [
         {
-          "name": "포스코퓨처엠",
-          "code": "003670",
+          "name": "삼성SDS",
+          "code": "018260",
           "signal": "prime",
-          "reason": "2차전지_소재 RS-R 110·RS-M 112 최강 모멘텀 + 글로벌 소재(XLB) Leading·구리 +0.8% 원재료 강세로 배터리 양극재 마진 개선 기대 — 반도체 낙폭 속 코스닥 방어 매수 1순위",
+          "reason": "IT서비스 Leading 최강 모멘텀(RS-R 117.4)·AI 소프트웨어 동반 수혜 확인(MSFT·PLTR 돌파) + 삼성전자 주택대출 등 그룹 복지 확대로 AI·클라우드 투자 여력 재확인",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "AI_SW",
+          "rrg_sector_match": false,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
+      "sector": "2차전지_소재",
+      "rrg_quadrant": "leading",
+      "reason": "2차전지 소재 RS-R 110.1·RS-M 112.8 Leading 최상단 — 미국 소재섹터(XLB) Leading 전환·원화 강세로 수출 경쟁력 우위, 스테이지2 연장",
+      "stocks": [
+        {
+          "name": "에코프로비엠",
+          "code": "247540",
+          "signal": "prime",
+          "reason": "2차전지 소재 Leading 최상단(RS-R 110.1) + 미국 소재섹터(XLB) Leading 전환·원화 강세로 수출 마진 개선, 52주 신고가 재도전",
           "rrg_tracked": true,
           "rrg_actual_sector": "2차전지_장비",
           "rrg_sector_match": false,
@@ -10148,42 +10122,59 @@
       ]
     },
     {
-      "sector": "비철금속",
+      "sector": "로봇",
       "rrg_quadrant": "leading",
-      "reason": "비철금속 RS-R 114.7·RS-M 110 Leading, 글로벌 소재(XLB) Leading·알루미늄 +0.92%·구리 +0.8% 동반 상승으로 AI 인프라·전력망 수요 재확인 — 금리 우려 속 실물 모멘텀 부각",
+      "reason": "로봇 RS-R 107.8·RS-M 112.2 Leading 고점 경신 — AI 하드웨어 확장(팹리스·장비 Improving)·자동화 투자 사이클, VCP 패턴 형성",
       "stocks": [
         {
-          "name": "고려아연",
-          "code": "010130",
+          "name": "로보티즈",
+          "code": "108490",
           "signal": "prime",
-          "reason": "비철금속 RS-R 114·RS-M 110 Leading + 구리 +0.8%·알루미늄 +0.92% 동반 상승으로 AI 데이터센터 전력 인프라 수요 재점화 — 워시 긴축에도 실물 수요 방어",
+          "reason": "로봇 Leading 고점 경신(RS-R 107.8·RS-M 112.2) + AI 하드웨어 확장(반도체 장비 Improving) 수혜, VCP 패턴 3단계 돌파",
           "rrg_tracked": true,
-          "rrg_actual_sector": "비철금속",
+          "rrg_actual_sector": "로봇",
           "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
       ]
     },
     {
-      "sector": "2차전지_장비",
+      "sector": "반도체_팹리스",
+      "rrg_quadrant": "improving",
+      "reason": "반도체 팹리스·장비·소재 일제히 Improving 전환 — 필라델피아반도체 +2.33% 반등, RS-M 100 상향 돌파로 스테이지2 초입 진입 타이밍",
+      "stocks": [
+        {
+          "name": "리벨리온",
+          "code": "000000",
+          "signal": "prime",
+          "reason": "팹리스 Improving 전환(RS-M 102.0 돌파) + 필라델피아반도체 +2.33% 반등·AI 칩 수요 재확인, 스테이지2 초입 진입",
+          "rrg_tracked": false,
+          "rrg_actual_sector": "",
+          "rrg_sector_match": false,
+          "rrg_signal": ""
+        }
+      ]
+    },
+    {
+      "sector": "2차전지_셀",
       "rrg_quadrant": "",
       "reason": "",
       "stocks": [
         {
-          "name": "피엔티",
-          "code": "137400",
+          "name": "LG에너지솔루션",
+          "code": "373220",
           "signal": "prime",
-          "reason": "2차전지_장비 RS-R 107·RS-M 107 Leading + 2차전지_소재 최강 모멘텀 파생 수혜, 배터리 생산 장비 CAPEX 사이클 초입 진입 — 코스닥 Leading 섹터 집중 전략",
+          "reason": "2차전지 셀 Leading(RS-R 107.4) + IIF 수출 호조 재확인·원화 강세로 글로벌 경쟁력 우위, 에너지(XLE) Leading 순환매 기대",
           "rrg_tracked": true,
           "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": true,
-          "rrg_signal": "watch"
+          "rrg_sector_match": false,
+          "rrg_signal": "leading"
         }
       ]
     }
   ],
   "caution_sectors": [
     "반도체_소자",
-    "해운"
+    "플랫폼"
   ]
 }
