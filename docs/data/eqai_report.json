@@ -1,196 +1,193 @@
 {
-  "generated_at": "2026-09-01 07:02:46",
+  "generated_at": "2026-09-02 07:02:46",
   "macro": {
     "S&P500": {
-      "price": 7686.14,
-      "change": -0.58,
-      "reason": "이란 공격 보복과 인플레 우려로 방어적 투자심리 확산, 에너지 섹터 +2% 상승에도 기술주·반도체 동반 약세로 지수 하락",
+      "price": 7631.47,
+      "change": -0.71,
+      "reason": "미국-이란 공습 교환으로 WTI 90달러 돌파 + 10년물 국채금리 4.8% 급등이 스태그플레이션 우려 촉발, 장 막판 낙폭 확대",
       "drivers": [
-        "미·이란 군사충돌 지정학 리스크",
-        "필라델피아반도체 -2.92%",
-        "국채10Y +1.84% 금리 급등"
+        "WTI 유가 +5.74% → 인플레 재점화 우려",
+        "10년물 금리 +0.80% → 밸류에이션(주가 적정성 평가 지표) 압박",
+        "Amazon -2% (FTC 소송) → 빅테크 규제 리스크"
       ]
     },
     "NASDAQ": {
-      "price": 26370.89,
-      "change": -0.64,
-      "reason": "애플 CEO 교체 이슈(팀 쿡 퇴임·존 테르누스 취임)와 MS Outlook·ChatGPT Work 동시 장애로 빅테크 투심 위축",
+      "price": 26099.77,
+      "change": -1.03,
+      "reason": "Micron·Nvidia 동반 하락으로 반도체 전면 약세, MongoDB 가이던스 하향에 AI 수혜 지속성 의문 제기",
       "drivers": [
-        "애플 CEO 교체 불확실성",
-        "MS·OpenAI 서비스 장애"
+        "Micron·Sandisk 하락 (반도체 수요 우려)",
+        "MongoDB 실적 비트 후 급락 (AI 밸류에이션 부담)",
+        "금리 상승에 따른 성장주 멀티플(주가배수) 압박"
       ]
     },
     "DOW": {
-      "price": 53185.9,
-      "change": -0.72,
-      "reason": "트럼프의 이란 보복 경고 발언 직후 전통 산업주·방산주 혼조 속 지수 -0.72% 하락, 에너지 섹터만 +2% 이상 상승",
+      "price": 52766.88,
+      "change": -0.79,
+      "reason": "에너지 가격 급등과 국채금리 상승이 경기민감주 수익성 전망 악화시키며 -0.79% 하락",
       "drivers": [
-        "중동 지정학 긴장",
-        "에너지 섹터 단독 강세"
+        "유가 +5.74% → 원가 압박 우려",
+        "10년물 금리 상승 → 자본비용 증가"
       ]
     },
     "VIX": {
-      "price": 14.92,
-      "change": 2.83,
-      "reason": "이란 공격 보복 사이클 시작으로 변동성 수요 급증, 국채금리 급등과 Fed 매파 전환 우려 겹침",
+      "price": 16.34,
+      "change": 9.52,
+      "reason": "중동 군사 충돌 격화 + 글로벌 국채금리 동반 급등으로 불확실성 지수 +9.52% 급등",
       "drivers": [
-        "미·이란 군사충돌",
-        "Fed 매파 전환 시그널"
+        "미-이란 공습 교환 (호르무즈 유조선 공격)",
+        "유로존 물가 3.3% 급등 (금리인상 압박)"
       ]
     },
     "필라델피아반도체": {
-      "price": 11535.05,
-      "change": -2.92,
-      "reason": "엔비디아 +2% 상승(캐시 우드 대량 매수)에도 불구 브로드컴 실적 발표 앞두고 차익실현 및 빅테크 AI 투자 평가이익 '뻥튀기' 논란(FT 보도, 알파벳·아마존·엔비디아·MS 2분기 장부상 이익 1600억달러=약 220조원)으로 밸류에이션(주가평가지표) 부담",
+      "price": 11288.61,
+      "change": -2.14,
+      "reason": "Micron·Sandisk·Nvidia 동반 하락, 유가 급등과 금리 상승이 AI 투자 ROI 회의론과 맞물려 -2.14% 급락",
       "drivers": [
-        "빅테크 AI 투자 평가이익 과대평가 논란",
-        "브로드컴 실적 발표 대기"
+        "Micron·Sandisk 하락 (메모리 수요 우려)",
+        "Nvidia 하락 (AI 투자 대비 Tesla 투자 부족 논란)",
+        "금리 상승 → 반도체 Capex(설비투자) 부담"
       ]
     },
     "러셀2000": {
-      "price": 2956.45,
-      "change": -1.92,
-      "reason": "고금리 장기화 우려와 경기둔화 신호(하원 정보위 'AI 블랙스완' 경고)로 소형주 유동성 리스크 부각, -1.92% 급락",
+      "price": 2920.13,
+      "change": -1.23,
+      "reason": "금리 급등과 에너지 비용 상승이 소형주 수익성 직격탄, -1.23% 하락",
       "drivers": [
-        "국채10Y 4.76% 금리 부담",
-        "AI 블랙스완 리스크 경고"
+        "10년물 금리 4.8% → 차입비용 증가",
+        "WTI 90달러 → 원가 압박"
       ]
     },
     "영국FTSE": {
-      "price": 10792.5,
-      "change": -0.79,
-      "reason": "BOE 총재의 \"신형 AI 모델이 글로벌 금융 안정 위협\" 경고와 유가 급등 인플레 압박으로 -0.79% 하락",
+      "price": 10789.28,
+      "change": -0.03,
+      "reason": "직접 촉매 미약, 유럽 국채금리 동반 상승 속 방어적 장세로 -0.03% 소폭 하락",
       "drivers": [
-        "BOE AI 리스크 경고",
-        "유가 급등"
+        "유로존 물가 급등 여파 (ECB 금리인상 압박)"
       ]
     },
     "독일DAX": {
-      "price": 26367.24,
-      "change": 0.31,
-      "reason": "에너지·소재 섹터 강세로 유럽 내 유일하게 +0.31% 상승, 구리 +1.94%·알루미늄 +0.62% 원자재 동조 랠리",
+      "price": 26258.11,
+      "change": -0.41,
+      "reason": "유로존 물가 3.3% 급등(3년 만에 최고)으로 ECB 금리인상 압박 확대, -0.41% 하락",
       "drivers": [
-        "에너지·소재 섹터 주도",
-        "구리·알루미늄 상승"
+        "유로존 CPI(소비자물가지수) 3.3% (목표 2% 크게 상회)",
+        "에너지 가격 상승 → 수출 제조업 원가 압박"
       ]
     },
     "니케이": {
-      "price": 66131.98,
-      "change": -0.2,
-      "reason": "미 재무장관 베센트의 \"일본이 엔화 강세 조치할 것\" 발언으로 9월 BOJ 금리인상 기대 부각, 엔화 강세 압박에 수출주 부담으로 -0.20% 소폭 하락",
+      "price": 66311.93,
+      "change": 0.27,
+      "reason": "직접 촉매 없음 — 일본 국채금리 상승 압력 속 엔화 강세 기대로 수출주 방어, +0.27% 소폭 상승",
       "drivers": [
-        "베센트의 BOJ 금리인상 시사",
-        "엔화 강세 압박"
+        "일본 국채금리 상승 지속 (전일 언급)"
       ]
     },
     "항셍": {
-      "price": 25565.74,
-      "change": -0.34,
-      "reason": "미·중 기술 디커플링(분리) 우려와 중국 AI 규제 강화 흐름 속 직접 촉매 없이 -0.34% 소폭 하락",
+      "price": 25566.99,
+      "change": 0.0,
+      "reason": "직접 촉매 없음 — 중동 리스크와 미중 무역 긴장 속 관망세로 보합 마감",
       "drivers": [
-        "미·중 기술 디커플링",
-        "중국 AI 규제 강화"
+        "중동 지정학 리스크 (BYD 해외 판매 호조는 제한적 영향)"
       ]
     },
     "달러인덱스": {
-      "price": 99.41,
-      "change": 0.25,
-      "reason": "국채10Y 4.76%까지 상승하며 금리 차 확대, Fed 매파 전환 기대로 달러 수요 증가 +0.25%",
+      "price": 99.67,
+      "change": 0.24,
+      "reason": "미국 국채금리 급등(2년물 3.77%·10년물 4.8%)과 중동 리스크로 안전자산 달러 수요 증가, +0.24% 상승",
       "drivers": [
-        "미 국채금리 급등",
-        "Fed 매파 전환 기대"
+        "미 국채금리 급등 → 금리 차 확대",
+        "중동 군사 충돌 → 안전자산 선호"
       ]
     },
     "국채2Y": {
-      "price": 3.73,
-      "change": 1.47,
-      "reason": "워시 연준 이사의 매파 연설로 단기 금리인상 가능성 부각, +1.47% 상승",
+      "price": 3.77,
+      "change": 1.07,
+      "reason": "유가 급등으로 연준 금리인하 기대 후퇴, 단기 금리 +1.07% 급등",
       "drivers": [
-        "워시 매파 연설",
-        "금리인상 기대 상승"
+        "WTI 90달러 돌파 → 인플레 재점화 우려",
+        "연준 금리인하 기대 축소"
       ]
     },
     "국채10Y": {
-      "price": 4.76,
-      "change": 1.84,
-      "reason": "유가 급등으로 인플레 재점화 우려와 스티펠 이코노미스트 \"미국 부채 40조달러 고려 시 10Y 최소 5% 이상 정상\" 지적으로 +1.84% 급등",
+      "price": 4.8,
+      "change": 0.8,
+      "reason": "유로존 물가 급등 + 미-이란 충돌로 글로벌 국채 동반 매도, 금융위기 이후 최고 수준인 4.8%까지 +0.80% 급등",
       "drivers": [
-        "WTI유가 +3.49%",
-        "Fed 매파 전환·부채 부담"
+        "유로존 CPI 3.3% (3년 만에 최고)",
+        "중동 리스크 → 에너지 인플레 우려",
+        "미 재무부 \"심각하지 않다\" 진화 시도에도 매도세 지속"
       ]
     },
     "코스피": {
-      "price": 6820.02,
+      "price": 6835.8,
       "change": 0.0,
-      "reason": "휴장(데이터 기준일 불일치로 변동 없음)",
+      "reason": "데이터 미제공(0.00%), 글로벌 리스크오프(위험자산 회피) 속 외국인·기관 동향 확인 필요",
       "drivers": [
-        "해당 없음"
+        "필라델피아반도체 -2.14% 여파",
+        "WTI 90달러·금리 급등 영향"
       ]
     },
     "코스닥": {
-      "price": 834.29,
+      "price": 821.25,
       "change": 0.0,
-      "reason": "휴장(데이터 기준일 불일치로 변동 없음)",
+      "reason": "데이터 미제공(0.00%), 나스닥 -1.03% 급락과 AI 투자 회의론 확산이 2차전지·바이오 압박 예상",
       "drivers": [
-        "해당 없음"
+        "나스닥 -1.03% 동조화",
+        "금리 상승 → 성장주 밸류에이션 압박"
       ]
     },
     "금": {
-      "price": 4497.3,
-      "change": 0.43,
-      "reason": "유가 급등과 국채금리 상승으로 실질금리 부담 속에서도 중동 리스크 헤지(위험 회피) 수요로 +0.43% 소폭 상승",
+      "price": 4375.7,
+      "change": -1.25,
+      "reason": "달러 강세(+0.24%)와 실질금리 상승(10년물 4.8%)이 무수익 자산인 금의 매력 저하, -1.25% 하락",
       "drivers": [
-        "중동 지정학 리스크",
-        "실질금리 상승 압박"
+        "달러인덱스 +0.24% → 달러표시 금 가격 하락",
+        "실질금리 상승 → 기회비용 증가"
       ]
     },
     "WTI유가": {
-      "price": 86.31,
-      "change": 3.49,
-      "reason": "미국의 이란 호르무즈 해협 기뢰 발사대 공격과 이란의 요르단 주둔 미군 기지 보복 공격으로 공급 차질 우려 급증, +3.49% 급등",
+      "price": 90.68,
+      "change": 5.74,
+      "reason": "이란의 호르무즈 해협 유조선 2척 공격 + 미국 대이란 재공습으로 공급 차질 우려 폭발, +5.74% 급등해 90달러 돌파",
       "drivers": [
-        "미·이란 군사충돌",
-        "호르무즈 해협 공급 차질 우려"
+        "미-이란 군사 충돌 격화 (호르무즈 유조선 공격)",
+        "호르무즈 해협 공급 차질 우려 (전 세계 원유 운송의 20%)"
       ]
     },
     "원달러": {
-      "price": 1366.71,
-      "change": -0.76,
-      "reason": "달러인덱스 +0.25% 상승에도 불구 미 국채금리 급등 국면에서 외국인의 국내 채권 유입 기대와 9월 BOJ 금리인상 기대로 엔화 강세 동조, 원화도 -0.76% 강세",
+      "price": 1374.68,
+      "change": 0.59,
+      "reason": "달러 강세 + 코스피 리스크오프 우려로 1374원까지 +0.59% 상승, 외국인 이탈 압력",
       "drivers": [
-        "엔화 강세 동조",
-        "외국인 채권 유입 기대"
+        "달러인덱스 +0.24%",
+        "필라델피아반도체 -2.14% → 삼성·SK하이닉스 압박"
       ]
     },
     "알루미늄": {
-      "price": 3378.25,
-      "change": 0.62,
-      "reason": "독일DAX 소재 섹터 주도 상승과 AI 데이터센터 건설 수요(SpaceX 가스터빈 부품 자체 생산 발표) 기대로 +0.62% 상승",
+      "price": 3440.0,
+      "change": 1.88,
+      "reason": "중동 리스크 속 산업 금속 수요 불확실성에도 에너지 비용 상승 전가 기대로 +1.88% 상승",
       "drivers": [
-        "AI 데이터센터 건설 수요",
-        "소재 섹터 로테이션"
+        "WTI 90달러 → 제련 비용 상승 전가"
       ]
     },
     "구리": {
-      "price": 6.69,
-      "change": 1.94,
-      "reason": "중동 지정학 리스크 속 원자재 인플레 헤지 수요와 SpaceX 가스터빈·AI 인프라 투자 기대로 +1.94% 급등",
+      "price": 6.53,
+      "change": -0.9,
+      "reason": "금리 급등과 중국 경기 둔화 우려로 건설·전력 수요 전망 악화, -0.90% 하락",
       "drivers": [
-        "원자재 인플레 헤지",
-        "AI 인프라 투자 수요"
+        "10년물 금리 4.8% → 인프라 투자 둔화",
+        "중국 BYD 내수 부진 (해외 의존도 심화)"
       ]
     }
   },
   "sector_rrg": {
     "반도체_소자": {
-      "rs_ratio": 96.817,
-      "rs_momentum": 99.591,
-      "quadrant": "lagging",
+      "rs_ratio": 97.218,
+      "rs_momentum": 100.367,
+      "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 111.9,
-          "rs_momentum": 97.028
-        },
         {
           "rs_ratio": 110.958,
           "rs_momentum": 93.053
@@ -346,22 +343,22 @@
         {
           "rs_ratio": 96.133,
           "rs_momentum": 98.53
+        },
+        {
+          "rs_ratio": 96.817,
+          "rs_momentum": 99.591
         }
       ],
-      "sector_ret_5d": -0.25,
+      "sector_ret_5d": -1.12,
       "improving_count": 1,
       "watch_count": 0,
       "total": 3
     },
     "반도체_팹리스": {
-      "rs_ratio": 98.326,
-      "rs_momentum": 101.02,
+      "rs_ratio": 98.038,
+      "rs_momentum": 100.893,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 103.426,
-          "rs_momentum": 89.163
-        },
         {
           "rs_ratio": 98.097,
           "rs_momentum": 81.977
@@ -517,22 +514,22 @@
         {
           "rs_ratio": 99.519,
           "rs_momentum": 102.042
+        },
+        {
+          "rs_ratio": 98.326,
+          "rs_momentum": 101.02
         }
       ],
-      "sector_ret_5d": 5.0,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -0.84,
+      "improving_count": 1,
+      "watch_count": 2,
       "total": 8
     },
     "반도체_장비": {
-      "rs_ratio": 100.031,
-      "rs_momentum": 100.381,
+      "rs_ratio": 101.821,
+      "rs_momentum": 102.569,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 103.965,
-          "rs_momentum": 103.011
-        },
         {
           "rs_ratio": 106.64,
           "rs_momentum": 100.651
@@ -688,22 +685,22 @@
         {
           "rs_ratio": 99.858,
           "rs_momentum": 100.145
+        },
+        {
+          "rs_ratio": 100.031,
+          "rs_momentum": 100.381
         }
       ],
-      "sector_ret_5d": 5.83,
-      "improving_count": 1,
-      "watch_count": 2,
+      "sector_ret_5d": -2.98,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 27
     },
     "반도체_소재": {
-      "rs_ratio": 99.71,
-      "rs_momentum": 103.23,
+      "rs_ratio": 99.597,
+      "rs_momentum": 103.004,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 90.432,
-          "rs_momentum": 101.315
-        },
         {
           "rs_ratio": 93.912,
           "rs_momentum": 101.306
@@ -859,22 +856,22 @@
         {
           "rs_ratio": 99.601,
           "rs_momentum": 103.497
+        },
+        {
+          "rs_ratio": 99.71,
+          "rs_momentum": 103.23
         }
       ],
-      "sector_ret_5d": 3.03,
-      "improving_count": 3,
-      "watch_count": 5,
+      "sector_ret_5d": -4.14,
+      "improving_count": 5,
+      "watch_count": 3,
       "total": 23
     },
     "반도체_패키징": {
-      "rs_ratio": 104.15,
-      "rs_momentum": 106.25,
+      "rs_ratio": 105.418,
+      "rs_momentum": 107.177,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 94.591,
-          "rs_momentum": 94.471
-        },
         {
           "rs_ratio": 98.536,
           "rs_momentum": 93.371
@@ -1030,22 +1027,22 @@
         {
           "rs_ratio": 104.413,
           "rs_momentum": 107.121
+        },
+        {
+          "rs_ratio": 104.15,
+          "rs_momentum": 106.25
         }
       ],
-      "sector_ret_5d": 9.43,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -1.21,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 21
     },
     "2차전지_셀": {
-      "rs_ratio": 107.027,
-      "rs_momentum": 106.341,
+      "rs_ratio": 107.418,
+      "rs_momentum": 106.112,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 83.15,
-          "rs_momentum": 94.38
-        },
         {
           "rs_ratio": 89.273,
           "rs_momentum": 97.941
@@ -1201,22 +1198,22 @@
         {
           "rs_ratio": 107.351,
           "rs_momentum": 107.591
+        },
+        {
+          "rs_ratio": 107.027,
+          "rs_momentum": 106.341
         }
       ],
-      "sector_ret_5d": 7.27,
+      "sector_ret_5d": 5.5,
       "improving_count": 1,
       "watch_count": 0,
       "total": 13
     },
     "2차전지_소재": {
-      "rs_ratio": 110.711,
-      "rs_momentum": 112.567,
+      "rs_ratio": 111.35,
+      "rs_momentum": 112.404,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 81.93,
-          "rs_momentum": 93.635
-        },
         {
           "rs_ratio": 87.042,
           "rs_momentum": 96.52
@@ -1372,22 +1369,22 @@
         {
           "rs_ratio": 110.053,
           "rs_momentum": 112.815
+        },
+        {
+          "rs_ratio": 110.711,
+          "rs_momentum": 112.567
         }
       ],
-      "sector_ret_5d": 11.28,
+      "sector_ret_5d": 6.81,
       "improving_count": 2,
       "watch_count": 1,
       "total": 21
     },
     "2차전지_장비": {
-      "rs_ratio": 106.856,
-      "rs_momentum": 106.62,
+      "rs_ratio": 107.191,
+      "rs_momentum": 106.331,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 82.838,
-          "rs_momentum": 94.922
-        },
         {
           "rs_ratio": 88.781,
           "rs_momentum": 98.245
@@ -1543,22 +1540,22 @@
         {
           "rs_ratio": 107.204,
           "rs_momentum": 107.875
+        },
+        {
+          "rs_ratio": 106.856,
+          "rs_momentum": 106.62
         }
       ],
-      "sector_ret_5d": 7.08,
+      "sector_ret_5d": 5.25,
       "improving_count": 1,
       "watch_count": 1,
       "total": 20
     },
     "전력기기": {
-      "rs_ratio": 101.271,
-      "rs_momentum": 102.687,
+      "rs_ratio": 101.773,
+      "rs_momentum": 102.801,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 89.575,
-          "rs_momentum": 92.34
-        },
         {
           "rs_ratio": 95.534,
           "rs_momentum": 95.581
@@ -1714,22 +1711,22 @@
         {
           "rs_ratio": 100.865,
           "rs_momentum": 102.381
+        },
+        {
+          "rs_ratio": 101.271,
+          "rs_momentum": 102.687
         }
       ],
-      "sector_ret_5d": 9.51,
+      "sector_ret_5d": 5.02,
       "improving_count": 1,
       "watch_count": 0,
       "total": 14
     },
     "신재생에너지": {
-      "rs_ratio": 107.53,
-      "rs_momentum": 102.727,
+      "rs_ratio": 107.242,
+      "rs_momentum": 101.959,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 86.8,
-          "rs_momentum": 103.224
-        },
         {
           "rs_ratio": 93.687,
           "rs_momentum": 106.205
@@ -1885,22 +1882,22 @@
         {
           "rs_ratio": 107.952,
           "rs_momentum": 103.116
+        },
+        {
+          "rs_ratio": 107.53,
+          "rs_momentum": 102.727
         }
       ],
-      "sector_ret_5d": 5.33,
+      "sector_ret_5d": -0.38,
       "improving_count": 0,
       "watch_count": 1,
       "total": 12
     },
     "원전": {
-      "rs_ratio": 106.451,
-      "rs_momentum": 108.44,
+      "rs_ratio": 106.214,
+      "rs_momentum": 107.549,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 83.6,
-          "rs_momentum": 99.344
-        },
         {
           "rs_ratio": 90.247,
           "rs_momentum": 103.017
@@ -2056,22 +2053,22 @@
         {
           "rs_ratio": 105.962,
           "rs_momentum": 108.632
+        },
+        {
+          "rs_ratio": 106.451,
+          "rs_momentum": 108.44
         }
       ],
-      "sector_ret_5d": 13.37,
+      "sector_ret_5d": -1.1,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
     },
     "조선": {
-      "rs_ratio": 98.983,
-      "rs_momentum": 98.903,
+      "rs_ratio": 98.225,
+      "rs_momentum": 97.505,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 87.033,
-          "rs_momentum": 97.143
-        },
         {
           "rs_ratio": 93.239,
           "rs_momentum": 99.524
@@ -2227,22 +2224,22 @@
         {
           "rs_ratio": 99.098,
           "rs_momentum": 99.652
+        },
+        {
+          "rs_ratio": 98.983,
+          "rs_momentum": 98.903
         }
       ],
-      "sector_ret_5d": 1.6,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -2.3,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 17
     },
     "디스플레이": {
-      "rs_ratio": 100.736,
-      "rs_momentum": 102.855,
+      "rs_ratio": 100.226,
+      "rs_momentum": 101.99,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 83.591,
-          "rs_momentum": 93.968
-        },
         {
           "rs_ratio": 87.62,
           "rs_momentum": 94.112
@@ -2398,22 +2395,22 @@
         {
           "rs_ratio": 101.201,
           "rs_momentum": 103.848
+        },
+        {
+          "rs_ratio": 100.736,
+          "rs_momentum": 102.855
         }
       ],
-      "sector_ret_5d": 1.8,
+      "sector_ret_5d": -0.47,
       "improving_count": 1,
       "watch_count": 0,
       "total": 7
     },
     "AI_SW": {
-      "rs_ratio": 111.538,
-      "rs_momentum": 104.712,
+      "rs_ratio": 110.852,
+      "rs_momentum": 103.704,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 88.543,
-          "rs_momentum": 88.249
-        },
         {
           "rs_ratio": 93.417,
           "rs_momentum": 88.946
@@ -2569,22 +2566,22 @@
         {
           "rs_ratio": 112.575,
           "rs_momentum": 106.263
+        },
+        {
+          "rs_ratio": 111.538,
+          "rs_momentum": 104.712
         }
       ],
-      "sector_ret_5d": 5.48,
+      "sector_ret_5d": 4.79,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
     },
     "방산": {
-      "rs_ratio": 104.758,
-      "rs_momentum": 100.84,
+      "rs_ratio": 105.508,
+      "rs_momentum": 100.664,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 91.678,
-          "rs_momentum": 110.356
-        },
         {
           "rs_ratio": 99.181,
           "rs_momentum": 112.69
@@ -2740,22 +2737,22 @@
         {
           "rs_ratio": 105.696,
           "rs_momentum": 102.154
+        },
+        {
+          "rs_ratio": 104.758,
+          "rs_momentum": 100.84
         }
       ],
-      "sector_ret_5d": 0.69,
+      "sector_ret_5d": -3.68,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
     },
     "로봇": {
-      "rs_ratio": 107.595,
-      "rs_momentum": 110.974,
+      "rs_ratio": 106.226,
+      "rs_momentum": 108.716,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 77.542,
-          "rs_momentum": 84.883
-        },
         {
           "rs_ratio": 81.402,
           "rs_momentum": 85.945
@@ -2911,22 +2908,22 @@
         {
           "rs_ratio": 107.798,
           "rs_momentum": 112.172
+        },
+        {
+          "rs_ratio": 107.595,
+          "rs_momentum": 110.974
         }
       ],
-      "sector_ret_5d": 2.16,
-      "improving_count": 0,
-      "watch_count": 3,
+      "sector_ret_5d": -3.25,
+      "improving_count": 1,
+      "watch_count": 2,
       "total": 21
     },
     "우주항공": {
-      "rs_ratio": 100.879,
-      "rs_momentum": 100.137,
-      "quadrant": "leading",
+      "rs_ratio": 100.408,
+      "rs_momentum": 99.602,
+      "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 82.246,
-          "rs_momentum": 104.048
-        },
         {
           "rs_ratio": 88.981,
           "rs_momentum": 106.554
@@ -3082,22 +3079,22 @@
         {
           "rs_ratio": 102.72,
           "rs_momentum": 102.953
+        },
+        {
+          "rs_ratio": 100.879,
+          "rs_momentum": 100.137
         }
       ],
-      "sector_ret_5d": 2.78,
-      "improving_count": 4,
-      "watch_count": 0,
+      "sector_ret_5d": -4.04,
+      "improving_count": 2,
+      "watch_count": 1,
       "total": 12
     },
     "통신장비": {
-      "rs_ratio": 98.486,
-      "rs_momentum": 106.297,
+      "rs_ratio": 97.327,
+      "rs_momentum": 104.411,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 74.883,
-          "rs_momentum": 86.629
-        },
         {
           "rs_ratio": 78.793,
           "rs_momentum": 88.287
@@ -3253,22 +3250,22 @@
         {
           "rs_ratio": 99.814,
           "rs_momentum": 108.049
+        },
+        {
+          "rs_ratio": 98.486,
+          "rs_momentum": 106.297
         }
       ],
-      "sector_ret_5d": -0.86,
+      "sector_ret_5d": -4.66,
       "improving_count": 1,
-      "watch_count": 0,
+      "watch_count": 2,
       "total": 4
     },
     "자동차_완성차": {
-      "rs_ratio": 99.47,
-      "rs_momentum": 102.834,
+      "rs_ratio": 98.52,
+      "rs_momentum": 101.451,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 82.352,
-          "rs_momentum": 85.174
-        },
         {
           "rs_ratio": 87.528,
           "rs_momentum": 86.975
@@ -3424,22 +3421,22 @@
         {
           "rs_ratio": 100.34,
           "rs_momentum": 103.666
+        },
+        {
+          "rs_ratio": 99.47,
+          "rs_momentum": 102.834
         }
       ],
-      "sector_ret_5d": -3.2,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -6.62,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 11
     },
     "자동차_부품": {
-      "rs_ratio": 98.768,
-      "rs_momentum": 101.917,
+      "rs_ratio": 97.796,
+      "rs_momentum": 100.553,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 82.376,
-          "rs_momentum": 85.699
-        },
         {
           "rs_ratio": 87.865,
           "rs_momentum": 87.97
@@ -3595,22 +3592,22 @@
         {
           "rs_ratio": 99.709,
           "rs_momentum": 102.902
+        },
+        {
+          "rs_ratio": 98.768,
+          "rs_momentum": 101.917
         }
       ],
-      "sector_ret_5d": -3.4,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -6.27,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 16
     },
     "타이어": {
-      "rs_ratio": 98.426,
-      "rs_momentum": 88.598,
+      "rs_ratio": 97.76,
+      "rs_momentum": 87.698,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 94.509,
-          "rs_momentum": 105.216
-        },
         {
           "rs_ratio": 105.048,
           "rs_momentum": 110.394
@@ -3766,22 +3763,22 @@
         {
           "rs_ratio": 99.725,
           "rs_momentum": 89.688
+        },
+        {
+          "rs_ratio": 98.426,
+          "rs_momentum": 88.598
         }
       ],
-      "sector_ret_5d": 1.4,
+      "sector_ret_5d": 2.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
     },
     "IT부품": {
-      "rs_ratio": 101.599,
-      "rs_momentum": 105.026,
+      "rs_ratio": 101.64,
+      "rs_momentum": 105.727,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 118.414,
-          "rs_momentum": 89.705
-        },
         {
           "rs_ratio": 114.761,
           "rs_momentum": 84.08
@@ -3937,22 +3934,22 @@
         {
           "rs_ratio": 101.495,
           "rs_momentum": 104.365
+        },
+        {
+          "rs_ratio": 101.599,
+          "rs_momentum": 105.026
         }
       ],
-      "sector_ret_5d": 9.11,
+      "sector_ret_5d": 1.79,
       "improving_count": 1,
       "watch_count": 2,
       "total": 10
     },
     "플랫폼": {
-      "rs_ratio": 102.771,
-      "rs_momentum": 96.492,
+      "rs_ratio": 102.096,
+      "rs_momentum": 95.531,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 88.483,
-          "rs_momentum": 101.33
-        },
         {
           "rs_ratio": 95.284,
           "rs_momentum": 103.28
@@ -4108,22 +4105,22 @@
         {
           "rs_ratio": 103.663,
           "rs_momentum": 97.693
+        },
+        {
+          "rs_ratio": 102.771,
+          "rs_momentum": 96.492
         }
       ],
-      "sector_ret_5d": -0.91,
+      "sector_ret_5d": -1.84,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
     },
     "IT서비스": {
-      "rs_ratio": 122.639,
-      "rs_momentum": 128.288,
+      "rs_ratio": 119.926,
+      "rs_momentum": 122.875,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 81.607,
-          "rs_momentum": 96.96
-        },
         {
           "rs_ratio": 90.873,
           "rs_momentum": 101.724
@@ -4279,22 +4276,22 @@
         {
           "rs_ratio": 117.439,
           "rs_momentum": 123.619
+        },
+        {
+          "rs_ratio": 122.639,
+          "rs_momentum": 128.288
         }
       ],
-      "sector_ret_5d": 0.08,
+      "sector_ret_5d": -6.17,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
     },
     "바이오_CDMO": {
-      "rs_ratio": 101.938,
-      "rs_momentum": 93.306,
+      "rs_ratio": 102.377,
+      "rs_momentum": 91.973,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 94.92,
-          "rs_momentum": 111.183
-        },
         {
           "rs_ratio": 103.348,
           "rs_momentum": 113.645
@@ -4450,22 +4447,22 @@
         {
           "rs_ratio": 103.833,
           "rs_momentum": 93.816
+        },
+        {
+          "rs_ratio": 101.938,
+          "rs_momentum": 93.306
         }
       ],
-      "sector_ret_5d": -3.65,
+      "sector_ret_5d": -3.81,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
     },
     "바이오_신약": {
-      "rs_ratio": 105.638,
-      "rs_momentum": 104.503,
+      "rs_ratio": 105.143,
+      "rs_momentum": 103.685,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 93.845,
-          "rs_momentum": 112.329
-        },
         {
           "rs_ratio": 99.012,
           "rs_momentum": 111.182
@@ -4621,22 +4618,22 @@
         {
           "rs_ratio": 106.135,
           "rs_momentum": 105.416
+        },
+        {
+          "rs_ratio": 105.638,
+          "rs_momentum": 104.503
         }
       ],
-      "sector_ret_5d": -3.52,
+      "sector_ret_5d": -4.2,
       "improving_count": 0,
       "watch_count": 0,
       "total": 15
     },
     "제약": {
-      "rs_ratio": 107.901,
-      "rs_momentum": 101.253,
+      "rs_ratio": 108.361,
+      "rs_momentum": 101.07,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 87.958,
-          "rs_momentum": 107.914
-        },
         {
           "rs_ratio": 96.356,
           "rs_momentum": 111.24
@@ -4792,22 +4789,22 @@
         {
           "rs_ratio": 107.785,
           "rs_momentum": 101.816
+        },
+        {
+          "rs_ratio": 107.901,
+          "rs_momentum": 101.253
         }
       ],
-      "sector_ret_5d": -4.68,
+      "sector_ret_5d": -0.2,
       "improving_count": 3,
-      "watch_count": 1,
+      "watch_count": 0,
       "total": 16
     },
     "의료기기": {
-      "rs_ratio": 108.42,
-      "rs_momentum": 108.34,
+      "rs_ratio": 108.071,
+      "rs_momentum": 107.253,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 80.431,
-          "rs_momentum": 95.313
-        },
         {
           "rs_ratio": 88.259,
           "rs_momentum": 100.2
@@ -4963,22 +4960,22 @@
         {
           "rs_ratio": 107.417,
           "rs_momentum": 108.433
+        },
+        {
+          "rs_ratio": 108.42,
+          "rs_momentum": 108.34
         }
       ],
-      "sector_ret_5d": 1.09,
+      "sector_ret_5d": -0.77,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
     },
     "미용의료": {
-      "rs_ratio": 96.697,
-      "rs_momentum": 91.763,
+      "rs_ratio": 96.432,
+      "rs_momentum": 91.616,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 97.462,
-          "rs_momentum": 112.873
-        },
         {
           "rs_ratio": 103.719,
           "rs_momentum": 112.987
@@ -5134,22 +5131,22 @@
         {
           "rs_ratio": 96.257,
           "rs_momentum": 91.689
+        },
+        {
+          "rs_ratio": 96.697,
+          "rs_momentum": 91.763
         }
       ],
-      "sector_ret_5d": 1.15,
+      "sector_ret_5d": -2.24,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
     },
     "은행": {
-      "rs_ratio": 99.129,
-      "rs_momentum": 89.631,
+      "rs_ratio": 98.783,
+      "rs_momentum": 89.314,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 95.446,
-          "rs_momentum": 108.08
-        },
         {
           "rs_ratio": 104.748,
           "rs_momentum": 111.801
@@ -5305,22 +5302,22 @@
         {
           "rs_ratio": 99.167,
           "rs_momentum": 89.907
+        },
+        {
+          "rs_ratio": 99.129,
+          "rs_momentum": 89.631
         }
       ],
-      "sector_ret_5d": 4.92,
+      "sector_ret_5d": 3.47,
       "improving_count": 0,
       "watch_count": 0,
       "total": 19
     },
     "증권": {
-      "rs_ratio": 95.647,
-      "rs_momentum": 97.404,
+      "rs_ratio": 95.02,
+      "rs_momentum": 96.222,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 80.217,
-          "rs_momentum": 96.179
-        },
         {
           "rs_ratio": 90.414,
           "rs_momentum": 103.48
@@ -5476,22 +5473,22 @@
         {
           "rs_ratio": 96.034,
           "rs_momentum": 98.277
+        },
+        {
+          "rs_ratio": 95.647,
+          "rs_momentum": 97.404
         }
       ],
-      "sector_ret_5d": 2.7,
+      "sector_ret_5d": -0.97,
       "improving_count": 1,
       "watch_count": 0,
       "total": 18
     },
     "보험": {
-      "rs_ratio": 100.058,
-      "rs_momentum": 98.52,
+      "rs_ratio": 100.383,
+      "rs_momentum": 98.994,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 104.37,
-          "rs_momentum": 100.354
-        },
         {
           "rs_ratio": 106.438,
           "rs_momentum": 96.87
@@ -5647,22 +5644,22 @@
         {
           "rs_ratio": 99.576,
           "rs_momentum": 97.889
+        },
+        {
+          "rs_ratio": 100.058,
+          "rs_momentum": 98.52
         }
       ],
-      "sector_ret_5d": 4.26,
+      "sector_ret_5d": 4.54,
       "improving_count": 0,
       "watch_count": 0,
       "total": 14
     },
     "핀테크": {
-      "rs_ratio": 100.4,
-      "rs_momentum": 93.912,
-      "quadrant": "weakening",
+      "rs_ratio": 99.958,
+      "rs_momentum": 93.215,
+      "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 92.317,
-          "rs_momentum": 109.624
-        },
         {
           "rs_ratio": 100.181,
           "rs_momentum": 112.036
@@ -5818,22 +5815,22 @@
         {
           "rs_ratio": 100.679,
           "rs_momentum": 94.481
+        },
+        {
+          "rs_ratio": 100.4,
+          "rs_momentum": 93.912
         }
       ],
-      "sector_ret_5d": 1.73,
+      "sector_ret_5d": -0.1,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
     },
     "철강": {
-      "rs_ratio": 102.785,
-      "rs_momentum": 101.216,
+      "rs_ratio": 102.69,
+      "rs_momentum": 100.512,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 79.099,
-          "rs_momentum": 89.54
-        },
         {
           "rs_ratio": 86.801,
           "rs_momentum": 95.1
@@ -5989,22 +5986,22 @@
         {
           "rs_ratio": 103.006,
           "rs_momentum": 102.108
+        },
+        {
+          "rs_ratio": 102.785,
+          "rs_momentum": 101.216
         }
       ],
-      "sector_ret_5d": 4.09,
+      "sector_ret_5d": 1.2,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
     },
     "비철금속": {
-      "rs_ratio": 114.571,
-      "rs_momentum": 109.27,
+      "rs_ratio": 115.069,
+      "rs_momentum": 109.11,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 83.297,
-          "rs_momentum": 103.748
-        },
         {
           "rs_ratio": 91.358,
           "rs_momentum": 108.098
@@ -6160,22 +6157,22 @@
         {
           "rs_ratio": 114.736,
           "rs_momentum": 110.531
+        },
+        {
+          "rs_ratio": 114.571,
+          "rs_momentum": 109.27
         }
       ],
-      "sector_ret_5d": -2.32,
+      "sector_ret_5d": -11.19,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
     },
     "정유": {
-      "rs_ratio": 111.458,
-      "rs_momentum": 94.745,
+      "rs_ratio": 110.617,
+      "rs_momentum": 93.688,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 89.736,
-          "rs_momentum": 103.823
-        },
         {
           "rs_ratio": 100.344,
           "rs_momentum": 110.347
@@ -6331,22 +6328,22 @@
         {
           "rs_ratio": 112.212,
           "rs_momentum": 95.826
+        },
+        {
+          "rs_ratio": 111.458,
+          "rs_momentum": 94.745
         }
       ],
-      "sector_ret_5d": 3.9,
+      "sector_ret_5d": 7.64,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
     },
     "석유화학": {
-      "rs_ratio": 107.389,
-      "rs_momentum": 105.812,
+      "rs_ratio": 105.648,
+      "rs_momentum": 103.774,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 80.911,
-          "rs_momentum": 91.785
-        },
         {
           "rs_ratio": 87.256,
           "rs_momentum": 96.138
@@ -6502,22 +6499,22 @@
         {
           "rs_ratio": 107.863,
           "rs_momentum": 107.078
+        },
+        {
+          "rs_ratio": 107.389,
+          "rs_momentum": 105.812
         }
       ],
-      "sector_ret_5d": 4.61,
+      "sector_ret_5d": 4.64,
       "improving_count": 1,
       "watch_count": 1,
       "total": 11
     },
     "유틸리티": {
-      "rs_ratio": 95.89,
-      "rs_momentum": 91.059,
+      "rs_ratio": 95.823,
+      "rs_momentum": 90.918,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 94.101,
-          "rs_momentum": 111.963
-        },
         {
           "rs_ratio": 102.842,
           "rs_momentum": 115.017
@@ -6673,22 +6670,22 @@
         {
           "rs_ratio": 96.053,
           "rs_momentum": 91.368
+        },
+        {
+          "rs_ratio": 95.89,
+          "rs_momentum": 91.059
         }
       ],
-      "sector_ret_5d": 1.81,
+      "sector_ret_5d": -1.24,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
     },
     "건설": {
-      "rs_ratio": 107.791,
-      "rs_momentum": 107.406,
+      "rs_ratio": 107.814,
+      "rs_momentum": 106.604,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 82.539,
-          "rs_momentum": 97.662
-        },
         {
           "rs_ratio": 89.901,
           "rs_momentum": 102.601
@@ -6844,22 +6841,22 @@
         {
           "rs_ratio": 107.67,
           "rs_momentum": 108.076
+        },
+        {
+          "rs_ratio": 107.791,
+          "rs_momentum": 107.406
         }
       ],
-      "sector_ret_5d": 11.23,
+      "sector_ret_5d": -1.86,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
     },
     "시멘트": {
-      "rs_ratio": 102.099,
-      "rs_momentum": 99.673,
+      "rs_ratio": 102.116,
+      "rs_momentum": 99.225,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 81.919,
-          "rs_momentum": 104.15
-        },
         {
           "rs_ratio": 90.009,
           "rs_momentum": 108.377
@@ -7015,22 +7012,22 @@
         {
           "rs_ratio": 101.953,
           "rs_momentum": 100.153
+        },
+        {
+          "rs_ratio": 102.099,
+          "rs_momentum": 99.673
         }
       ],
-      "sector_ret_5d": 5.26,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": 3.81,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 5
     },
     "건자재": {
-      "rs_ratio": 103.629,
-      "rs_momentum": 101.571,
+      "rs_ratio": 103.625,
+      "rs_momentum": 101.086,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 89.991,
-          "rs_momentum": 102.406
-        },
         {
           "rs_ratio": 97.382,
           "rs_momentum": 105.242
@@ -7186,22 +7183,22 @@
         {
           "rs_ratio": 104.016,
           "rs_momentum": 102.354
+        },
+        {
+          "rs_ratio": 103.629,
+          "rs_momentum": 101.571
         }
       ],
-      "sector_ret_5d": 2.9,
+      "sector_ret_5d": 2.85,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
     },
     "해운": {
-      "rs_ratio": 104.428,
-      "rs_momentum": 93.904,
+      "rs_ratio": 104.156,
+      "rs_momentum": 93.425,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 92.151,
-          "rs_momentum": 106.196
-        },
         {
           "rs_ratio": 100.069,
           "rs_momentum": 108.801
@@ -7357,22 +7354,22 @@
         {
           "rs_ratio": 104.899,
           "rs_momentum": 94.632
+        },
+        {
+          "rs_ratio": 104.428,
+          "rs_momentum": 93.904
         }
       ],
-      "sector_ret_5d": -5.88,
+      "sector_ret_5d": -6.99,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
     },
     "항공": {
-      "rs_ratio": 99.149,
-      "rs_momentum": 91.97,
+      "rs_ratio": 99.758,
+      "rs_momentum": 92.548,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 101.428,
-          "rs_momentum": 110.714
-        },
         {
           "rs_ratio": 109.856,
           "rs_momentum": 112.436
@@ -7528,22 +7525,22 @@
         {
           "rs_ratio": 98.715,
           "rs_momentum": 91.583
+        },
+        {
+          "rs_ratio": 99.149,
+          "rs_momentum": 91.97
         }
       ],
-      "sector_ret_5d": 7.19,
+      "sector_ret_5d": 8.12,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
     },
     "물류": {
-      "rs_ratio": 108.178,
-      "rs_momentum": 95.529,
+      "rs_ratio": 107.607,
+      "rs_momentum": 94.686,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 89.341,
-          "rs_momentum": 107.776
-        },
         {
           "rs_ratio": 98.428,
           "rs_momentum": 112.241
@@ -7699,22 +7696,22 @@
         {
           "rs_ratio": 108.211,
           "rs_momentum": 96.167
+        },
+        {
+          "rs_ratio": 108.178,
+          "rs_momentum": 95.529
         }
       ],
-      "sector_ret_5d": 1.03,
+      "sector_ret_5d": 3.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
     },
     "통신서비스": {
-      "rs_ratio": 104.522,
-      "rs_momentum": 98.437,
+      "rs_ratio": 103.924,
+      "rs_momentum": 97.532,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 90.667,
-          "rs_momentum": 101.746
-        },
         {
           "rs_ratio": 97.111,
           "rs_momentum": 103.445
@@ -7870,22 +7867,22 @@
         {
           "rs_ratio": 104.89,
           "rs_momentum": 99.272
+        },
+        {
+          "rs_ratio": 104.522,
+          "rs_momentum": 98.437
         }
       ],
-      "sector_ret_5d": -3.09,
+      "sector_ret_5d": -2.77,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
     },
     "엔터": {
-      "rs_ratio": 92.627,
-      "rs_momentum": 89.917,
+      "rs_ratio": 92.758,
+      "rs_momentum": 89.961,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 88.43,
-          "rs_momentum": 108.194
-        },
         {
           "rs_ratio": 98.482,
           "rs_momentum": 112.979
@@ -8041,22 +8038,22 @@
         {
           "rs_ratio": 92.488,
           "rs_momentum": 89.984
+        },
+        {
+          "rs_ratio": 92.627,
+          "rs_momentum": 89.917
         }
       ],
-      "sector_ret_5d": 2.2,
+      "sector_ret_5d": 2.36,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
     },
     "게임": {
-      "rs_ratio": 95.926,
-      "rs_momentum": 90.818,
+      "rs_ratio": 95.613,
+      "rs_momentum": 90.418,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 90.336,
-          "rs_momentum": 104.21
-        },
         {
           "rs_ratio": 99.167,
           "rs_momentum": 107.272
@@ -8212,22 +8209,22 @@
         {
           "rs_ratio": 96.522,
           "rs_momentum": 91.528
+        },
+        {
+          "rs_ratio": 95.926,
+          "rs_momentum": 90.818
         }
       ],
-      "sector_ret_5d": 0.68,
+      "sector_ret_5d": 1.16,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
     },
     "미디어": {
-      "rs_ratio": 100.42,
-      "rs_momentum": 92.831,
+      "rs_ratio": 100.198,
+      "rs_momentum": 92.461,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 91.49,
-          "rs_momentum": 106.985
-        },
         {
           "rs_ratio": 99.198,
           "rs_momentum": 109.31
@@ -8383,22 +8380,22 @@
         {
           "rs_ratio": 100.866,
           "rs_momentum": 93.521
+        },
+        {
+          "rs_ratio": 100.42,
+          "rs_momentum": 92.831
         }
       ],
-      "sector_ret_5d": 1.87,
+      "sector_ret_5d": 2.09,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
     },
     "화장품_브랜드": {
-      "rs_ratio": 108.02,
-      "rs_momentum": 100.418,
+      "rs_ratio": 109.462,
+      "rs_momentum": 101.192,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 93.822,
-          "rs_momentum": 105.167
-        },
         {
           "rs_ratio": 103.512,
           "rs_momentum": 110.154
@@ -8554,22 +8551,22 @@
         {
           "rs_ratio": 107.285,
           "rs_momentum": 100.095
+        },
+        {
+          "rs_ratio": 108.02,
+          "rs_momentum": 100.418
         }
       ],
-      "sector_ret_5d": 10.74,
+      "sector_ret_5d": -1.04,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
     },
     "화장품_ODM": {
-      "rs_ratio": 124.758,
-      "rs_momentum": 104.459,
+      "rs_ratio": 124.846,
+      "rs_momentum": 104.101,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 97.619,
-          "rs_momentum": 112.246
-        },
         {
           "rs_ratio": 111.181,
           "rs_momentum": 120.577
@@ -8725,22 +8722,22 @@
         {
           "rs_ratio": 124.529,
           "rs_momentum": 105.186
+        },
+        {
+          "rs_ratio": 124.758,
+          "rs_momentum": 104.459
         }
       ],
-      "sector_ret_5d": 7.08,
+      "sector_ret_5d": -1.75,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
     },
     "음식료": {
-      "rs_ratio": 105.857,
-      "rs_momentum": 96.221,
+      "rs_ratio": 105.392,
+      "rs_momentum": 95.597,
       "quadrant": "weakening",
       "tail": [
-        {
-          "rs_ratio": 92.108,
-          "rs_momentum": 106.884
-        },
         {
           "rs_ratio": 101.318,
           "rs_momentum": 111.009
@@ -8896,22 +8893,22 @@
         {
           "rs_ratio": 105.405,
           "rs_momentum": 96.22
+        },
+        {
+          "rs_ratio": 105.857,
+          "rs_momentum": 96.221
         }
       ],
-      "sector_ret_5d": 3.38,
+      "sector_ret_5d": 1.06,
       "improving_count": 0,
       "watch_count": 0,
       "total": 25
     },
     "유통": {
-      "rs_ratio": 86.583,
-      "rs_momentum": 87.618,
+      "rs_ratio": 86.992,
+      "rs_momentum": 88.612,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 109.765,
-          "rs_momentum": 104.776
-        },
         {
           "rs_ratio": 113.886,
           "rs_momentum": 102.633
@@ -9067,22 +9064,22 @@
         {
           "rs_ratio": 85.974,
           "rs_momentum": 86.658
+        },
+        {
+          "rs_ratio": 86.583,
+          "rs_momentum": 87.618
         }
       ],
-      "sector_ret_5d": 3.15,
+      "sector_ret_5d": 4.36,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
     },
     "패션": {
-      "rs_ratio": 90.769,
-      "rs_momentum": 82.705,
+      "rs_ratio": 90.19,
+      "rs_momentum": 82.23,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 92.766,
-          "rs_momentum": 106.111
-        },
         {
           "rs_ratio": 103.373,
           "rs_momentum": 111.201
@@ -9238,22 +9235,22 @@
         {
           "rs_ratio": 91.886,
           "rs_momentum": 83.847
+        },
+        {
+          "rs_ratio": 90.769,
+          "rs_momentum": 82.705
         }
       ],
-      "sector_ret_5d": -0.45,
+      "sector_ret_5d": 0.75,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
     },
     "레저": {
-      "rs_ratio": 98.168,
-      "rs_momentum": 95.866,
+      "rs_ratio": 98.324,
+      "rs_momentum": 95.439,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 87.305,
-          "rs_momentum": 101.348
-        },
         {
           "rs_ratio": 96.006,
           "rs_momentum": 105.976
@@ -9409,22 +9406,22 @@
         {
           "rs_ratio": 98.337,
           "rs_momentum": 96.354
+        },
+        {
+          "rs_ratio": 98.168,
+          "rs_momentum": 95.866
         }
       ],
-      "sector_ret_5d": 4.27,
+      "sector_ret_5d": 3.25,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
     },
     "생활용품": {
-      "rs_ratio": 99.564,
-      "rs_momentum": 90.904,
+      "rs_ratio": 99.402,
+      "rs_momentum": 90.618,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 93.994,
-          "rs_momentum": 102.452
-        },
         {
           "rs_ratio": 102.281,
           "rs_momentum": 105.705
@@ -9580,22 +9577,22 @@
         {
           "rs_ratio": 99.947,
           "rs_momentum": 91.375
+        },
+        {
+          "rs_ratio": 99.564,
+          "rs_momentum": 90.904
         }
       ],
-      "sector_ret_5d": 1.24,
+      "sector_ret_5d": -1.06,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
     },
     "지주": {
-      "rs_ratio": 95.839,
-      "rs_momentum": 97.212,
+      "rs_ratio": 95.63,
+      "rs_momentum": 97.694,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 122.558,
-          "rs_momentum": 102.745
-        },
         {
           "rs_ratio": 118.452,
           "rs_momentum": 94.884
@@ -9751,9 +9748,13 @@
         {
           "rs_ratio": 95.457,
           "rs_momentum": 96.152
+        },
+        {
+          "rs_ratio": 95.839,
+          "rs_momentum": 97.212
         }
       ],
-      "sector_ret_5d": -0.57,
+      "sector_ret_5d": 0.22,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -9762,122 +9763,127 @@
   "sources": [
     {
       "source": "investors",
-      "title": "Meta Vs. Google: Analyst Says AI Boost Puts Facebook Parent On Track For Ad Crown",
-      "link": "https://www.investors.com/news/technology/meta-stock-google-stock-digital-ad-market-lead/",
-      "published": "Mon, 31 Aug 2026 14:42:14 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Microsoft Outlook and OpenAI's ChatGPT Work are experiencing user outages",
-      "link": "https://www.cnbc.com/2026/08/31/microsoft-outlook-and-openais-chatgpt-work-experience-outages-.html",
-      "published": "Mon, 31 Aug 2026 21:36:32 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Dow Jones Futures: Trump's Iran Warning Sparks Stock Market Losses; Elon Musk-Led SpaceX, Tesla Rally",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-sp500-nasdaq-trump-iran-warning-elon-musk-spacex-tesla/",
-      "published": "Mon, 31 Aug 2026 20:52:29 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Broadcom reports earnings this week. Mike Khouw says this trade could be a winner",
-      "link": "https://www.cnbc.com/2026/08/31/broadcom-reports-earnings-this-week-mike-khouw-says-this-trade-could-be-a-winner.html",
-      "published": "Mon, 31 Aug 2026 17:18:15 GMT"
-    },
-    {
-      "source": "maeil",
-      "title": "“가만히 있었는데 220조 벌었습니다”…빅테크 실적 ‘뻥튀기’ 논란",
-      "link": "https://www.mk.co.kr/news/world/12140865",
-      "published": "Tue, 01 Sep 2026 06:00:28 +09:00"
-    },
-    {
-      "source": "yonhap",
-      "title": "美재무 \"일본, 엔화강세 위해 조치할 것\"…9월 日금리인상 시사",
-      "link": "https://www.yna.co.kr/view/AKR20260901005700071",
-      "published": "Tue, 1 Sep 2026 04:40:37 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "월가 여장부의 일갈 … “워시의 연설, 인플레 방치 자인한 셈”",
-      "link": "https://www.mk.co.kr/news/economy/12140470",
-      "published": "Tue, 01 Sep 2026 04:20:00 +09:00"
-    },
-    {
-      "source": "investors",
-      "title": "Stock Market Today: Dow Skids As Trump Gives This AI Warning; Tesla Pops Ahead Of Key Event",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-us-iran-attacks-oil-prices-jump/",
-      "published": "Mon, 31 Aug 2026 12:14:11 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Dow Falls On News Of U.S.-Iran Attacks; Apple Slides",
-      "link": "https://www.investors.com/market-trend/the-big-picture/stock-market-dow-jones-sp500-nasdaq-iran-apple-aapl-stock/",
-      "published": "Mon, 31 Aug 2026 21:52:18 +0000"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Tesla’s stock among S&P 500’s top gainers as investors prepare for a Cybercab launch",
-      "link": "https://www.marketwatch.com/story/teslas-stock-is-leading-s-p-500-gainers-as-investors-prepare-for-a-cybercab-launch-f23a0d52?mod=mw_rss_topstories",
-      "published": "Mon, 31 Aug 2026 21:01:00 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "FTC sues Amazon, accusing the e-commerce giant of misleading advertisers",
-      "link": "https://www.cnbc.com/2026/08/31/amazon-ftc-lawsuit-advertisers.html",
-      "published": "Mon, 31 Aug 2026 20:34:45 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Tesla Tops S&P 500. Was It Cybercab Buzz, Or Elon Musk's New FSD Tease?",
-      "link": "https://www.investors.com/news/tesla-sp-500-cybercab-robotaxi-self-driving-cars-elon-musk/",
-      "published": "Mon, 31 Aug 2026 20:34:22 +0000"
-    },
-    {
-      "source": "bloomberg",
-      "title": "Odd Lots: Richmond Fed CEO on How AI Is Changing Home Building",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-31/richmond-fed-ceo-on-how-ai-is-changing-home-building-video",
-      "published": "Mon, 31 Aug 2026 19:29:41 GMT"
+      "title": "Tesla's AI Investments Pale In Comparison To Microsoft, Amazon And Alphabet",
+      "link": "https://www.investors.com/news/ai-alphabet-amazon-microsoft-openai-anthropic-tesla-spacex/",
+      "published": "Tue, 01 Sep 2026 12:03:30 +0000"
     },
     {
       "source": "cnbc_tech",
-      "title": "Cramer: Why Tim Cook deserves more credit for his accomplishments as Apple CEO",
-      "link": "https://www.cnbc.com/2026/08/31/cramer-why-tim-cook-deserves-more-credit-for-his-accomplishments-as-apple-ceo.html",
-      "published": "Mon, 31 Aug 2026 17:16:16 GMT"
+      "title": "Apple's new CEO, G20 meetings continue, the FTC sues Amazon and more in Morning Squawk",
+      "link": "https://www.cnbc.com/2026/09/01/5-things-to-know-before-the-stock-market-opens.html",
+      "published": "Tue, 01 Sep 2026 12:33:07 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "Stock Market Today: Nasdaq Ends Lower As Oil Prices Top $90; Micron, Nvidia Shares Wrapped in Red",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-treasury-yields-nvidia-stock-micron-stock/",
+      "published": "Tue, 01 Sep 2026 12:05:48 +0000"
+    },
+    {
+      "source": "maeil",
+      "title": "데이터 주는 현대차, AI모델 대는 엔비디아 … 마진은 누구 몫일까",
+      "link": "https://www.mk.co.kr/news/special-edition/12141397",
+      "published": "Wed, 02 Sep 2026 04:30:00 +09:00"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Broadcom earnings need to answer these questions for the stock to rally again",
+      "link": "https://www.marketwatch.com/story/broadcom-earnings-need-to-answer-these-questions-for-the-stock-to-rally-again-f4e8f4f0?mod=mw_rss_topstories",
+      "published": "Tue, 01 Sep 2026 18:54:00 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "“갈아탈 정도로 금리 싼 곳 없다”…대출비교 서비스 실효성 논란",
+      "link": "https://www.mk.co.kr/news/economy/12141893",
+      "published": "Wed, 02 Sep 2026 06:01:10 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "WTI 90불 돌파, 국채금리 금융위기이후 최고[월가월부]",
+      "link": "https://www.mk.co.kr/news/stock/12141889",
+      "published": "Wed, 02 Sep 2026 05:57:08 +09:00"
+    },
+    {
+      "source": "yonhap",
+      "title": "금리 인상에 보금자리론 매력↓…7월 판매 13개월 만에 최소",
+      "link": "https://www.yna.co.kr/view/AKR20260901175400002",
+      "published": "Wed, 2 Sep 2026 05:53:01 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "美재무, 국채금리 급등 진화 안간힘…연일 \"심각한 상황 아냐\"",
+      "link": "https://www.yna.co.kr/view/AKR20260902006900071",
+      "published": "Wed, 2 Sep 2026 05:27:57 +0900"
     },
     {
       "source": "cnbc_world",
-      "title": "OpenAI's ad business shows blistering growth, hits $1 billion annualized revenue run rate",
-      "link": "https://www.cnbc.com/2026/08/31/open-ai-chatgpt-ads-revenue.html",
-      "published": "Mon, 31 Aug 2026 16:33:46 GMT"
+      "title": "OpenAI says Astra AI model is its first that crosses 'Critical' cybersecurity capability",
+      "link": "https://www.cnbc.com/2026/09/01/open-ai-astra-cyber-model.html",
+      "published": "Tue, 01 Sep 2026 20:20:50 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Looking for evidence that Meta's AI investments are paying off? Here are 2 ways",
+      "link": "https://www.cnbc.com/2026/09/01/looking-for-evidence-that-metas-ai-investments-are-paying-off-here-are-2-ways.html",
+      "published": "Tue, 01 Sep 2026 19:48:20 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "Dow Jones Software Giant Microsoft, AI Leader Palantir Eye Latest Entries",
+      "link": "https://www.investors.com/stock-lists/stocks-near-a-buy-zone/dow-jones-software-giant-microsoft-ai-leader-palantir-eye-latest-entries/",
+      "published": "Tue, 01 Sep 2026 18:18:24 +0000"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Apple enters John Ternus era as AI challenges and memory crunch intensify",
+      "link": "https://www.cnbc.com/2026/09/01/apple-enters-ternus-era-as-ai-challenges-and-memory-crunch-intensify.html",
+      "published": "Tue, 01 Sep 2026 16:27:54 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "SpaceX, DOD Relationship Deepens With AI Integration. NASA Delays Space Station Mission.",
+      "link": "https://www.investors.com/news/spacex-dod-starshield-ai-grok-military-openai-chatgpt-nasa-mission-spacex-stock/",
+      "published": "Tue, 01 Sep 2026 15:00:29 +0000"
+    },
+    {
+      "source": "maeil",
+      "title": "유로존 8월 물가 3.3%로 급등…3년來 최고 … 금리인상 압박",
+      "link": "https://www.mk.co.kr/news/world/12141817",
+      "published": "Tue, 01 Sep 2026 22:35:15 +09:00"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "미국의 이란 공격과 보복으로 중동 지정학적 긴장 고조, WTI유가 +3.49% 급등으로 인플레이션 우려 재점화, 국채10Y +1.84%로 Fed 매파 전환 신호에 다우 -0.72%·나스닥 -0.64% 하락",
+  "sentiment_reason": "WTI 유가 90달러 돌파와 미국채 10년물 금리 4.8% 급등으로 스태그플레이션(경기침체 우려 속 물가 상승 동반) 공포 확산, 반도체·빅테크 중심 기술주 전면 약세",
   "key_factors": [
-    "미·이란 군사충돌로 WTI유가 +3.49% 급등, 국채10Y 4.76%까지 상승하며 인플레 재점화 우려",
-    "Jackson Hole에서 워시 연준 이사의 매파 연설로 금리인상 가능성 부각, 월가는 \"인플레 방치 자인\"으로 해석",
-    "필라델피아반도체 -2.92% 급락에도 불구, 에너지XLE(RS-Ratio 108.1) Leading·소재XLB(100.2) 주도로 섹터 로테이션 가속"
+    "미국-이란 군사 충돌 격화로 WTI 유가 5.74% 급등해 90달러 돌파, 중동 지정학 리스크 재점화",
+    "미국채 10년물 금리 4.8%·2년물 3.77% 기록하며 금융위기 이후 최고 수준 도달, 유로존 물가 3년 만에 최고치(3.3%) 기록으로 글로벌 금리인상 압박 심화",
+    "필라델피아반도체 -2.14%·나스닥 -1.03% 급락, Micron·Nvidia 동반 하락으로 AI 투자 회의론 부각",
+    "VIX +9.52%로 변동성 급등, FTC의 Amazon 광고 관행 소송으로 빅테크 규제 리스크 재점화"
   ],
-  "news_summary": "워시 연준 이사의 Jackson Hole 매파 연설로 금리인상 가능성 부각, 스티펠 이코노미스트는 \"인플레 방치 자인한 셈\"이라 비판하며 미국 부채 40조달러·성장률·물가 고려 시 10년물 금리 최소 5% 이상 정상 수준이라 지적\n미 재무장관 베센트 \"일본 정부와 BOJ가 엔화 강세로 이어질 조치 취할 것\"이라 발언, 9월 BOJ 금리인상 시사로 엔화 강세 압력 가중\n유가 +3.49% 급등과 국채10Y +1.84% 상승으로 인플레이션 재점화 우려, 금은 실질금리 부담 속 중동 헤지 수요로 +0.43% 소폭 상승\nBOE 총재 \"신형 AI 모델이 글로벌 금융 안정 위협\" 경고, 하원 정보위도 'AI 블랙스완' 리스크 보고서 발표로 규제 압박 가시화\n미국이 이란 호르무즈 해협 기뢰 발사대 공격, 이란은 요르단 주둔 미군 기지 보복 공격으로 대응, 트럼프 대통령 \"추가 대응\" 경고하며 중동 긴장 사이클 시작\nFTC가 아마존을 광고 가격 조작 혐의로 제소, 22개 주 검찰총장 동참하며 \"비밀리에 체계적으로 광고주 과다 청구\" 주장, 아마존 수십억달러 부당이득 추정\n트럼프 \"AI 데이터센터 반대하는 지역사회는 낙후·빈곤해질 것\" 경고, AI 인프라 투자 정치 쟁점화\n영국 FT \"알파벳·아마존·엔비디아·MS 등 빅테크가 AI 기업 투자로 거둔 2분기 장부상 평가이익 1600억달러(약 220조원) 초과, 일회성 이익으로 실적 과대평가 우려\" 보도\n엔비디아 시가총액 5.2조달러로 세계 1위 탈환, 캐시 우드 ARK가 대량 매수하며 52주 신고가 돌파 후 IBD Leading 종목 편입, 다만 밸류에이션 논란 속 +2% 상승에 그침\nOpenAI 광고사업 연간 매출 환산 10억달러 돌파, \"다각화 비즈니스 모델 증명\"이라 발표하며 IPO(기업공개) 준비 탄력, ChatGPT Work는 서비스 장애 발생\n애플 CEO 팀 쿡 퇴임·존 테르누스 하드웨어 총괄 수석부사장 승계 확정(9월 1일 발효), CNBC \"쿡의 15년간 소비자 충성도 구축이 최대 업적\" 평가, 애플 주가는 CEO 교체 불확실성에 하락\n브로드컴 이번주 실적 발표 예정, 시가총액 1.75조달러로 엔비디아·구글·애플에 이어 4위권, CNBC \"옵션 거래로 수익 기회\" 제시\n테슬라 +5% 급등하며 S&P500 최고 상승률, 일론 머스크의 신형 FSD(완전자율주행) 티저와 Cybercab 발표 임박 기대감, SpaceX는 NASA 로마우주망원경 발사 성공·가스터빈 부품 자체 생산 진출 발표\nMeta가 구글을 제치고 연말까지 최대 디지털광고 플랫폼 등극 예상, 번스타인 \"AI 투자 효과 명확\" 분석",
+  "news_summary": "WTI 유가 미-이란 공습 교환으로 +5.74% 급등해 90달러 돌파, 호르무즈 유조선 2척 공격으로 공급 차질 우려 확산\n미 10년물 국채금리 4.8%·2년물 3.77%로 금융위기 이후 최고 수준 기록, 베센트 재무장관 연일 \"심각하지 않다\" 진화에도 매도세 지속\n유로존 8월 CPI(소비자물가지수) 3.3%로 3년 만에 최고치 급등(7월 2.9%), ECB(유럽중앙은행) 목표 2% 크게 상회하며 금리인상 압박 심화\n달러인덱스 +0.24% 상승, 미 국채금리 급등과 중동 리스크로 안전자산 달러 수요 증가\n금 -1.25% 하락, 달러 강세와 10년물 실질금리 4.8% 상승이 무수익 자산 매력 저하\n미-이란 군사 충돌 격화, 이란의 호르무즈 해협 유조선 공격에 미국 재공습 단행으로 전 세계 원유 운송의 20% 차질 우려\nFTC, Amazon 광고 가격 조작 혐의로 소송 제기 (22개 주 검찰 동참), \"경매 시스템 비밀리 조작해 광고주에 과다 청구\" 주장\nG20 재무장관 회의 노스캐롤라이나 개최, 베센트 장관 국채금리 급등 진화 시도 중\nMicron·Sandisk 동반 하락, 유가·금리 급등 속 메모리 반도체 수요 둔화 우려로 필라델피아반도체 -2.14% 급락 주도\nDell AI 서버 호조로 실적 비트 + 가이던스 상향 발표, 주가 급등하며 반도체 장비 수혜주 재조명\nMongoDB 실적 비트에도 가이던스 실망으로 주가 급락, AI 투자 ROI(투자수익률) 회의론 재점화\nApple 새 CEO John Ternus 시대 개막, AI 과제와 메모리 부족 심화 속 맞춤형 칩·배터리 기술 강조\nTesla AI 투자 Microsoft·Amazon·Alphabet 대비 현저히 부족, Magnificent 7(빅테크 7개 종목) 내 AI 격차 부각\nBroadcom 실적 발표 앞두고 주가 조정, AI 수주 지속성 확인이 랠리 재개 관건\nPalo Alto Networks Q4 실적 비트 + 2027 가이던스 상향으로 주가 상승, 사이버보안 수요 지속 확인\nSB Energy(Softbank 자회사) IPO 신청, \"OpenAI에 실질적으로 의존\" 리스크 명시하며 AI 인프라 투자 확대\nBYD 8월 NEV(신에너지차) 판매 44만대 +18%, 전량 해외 성장 (중국 내수 부진 심화)",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "워시 연준 이사의 Jackson Hole 매파 연설로 금리인상 가능성 부각, 스티펠 이코노미스트는 \"인플레 방치 자인한 셈\"이라 비판하며 미국 부채 40조달러·성장률·물가 고려 시 10년물 금리 최소 5% 이상 정상 수준이라 지적",
+          "text": "WTI 유가 미-이란 공습 교환으로 +5.74% 급등해 90달러 돌파, 호르무즈 유조선 2척 공격으로 공급 차질 우려 확산",
           "impact": "high"
         },
         {
-          "text": "미 재무장관 베센트 \"일본 정부와 BOJ가 엔화 강세로 이어질 조치 취할 것\"이라 발언, 9월 BOJ 금리인상 시사로 엔화 강세 압력 가중",
+          "text": "미 10년물 국채금리 4.8%·2년물 3.77%로 금융위기 이후 최고 수준 기록, 베센트 재무장관 연일 \"심각하지 않다\" 진화에도 매도세 지속",
           "impact": "high"
         },
         {
-          "text": "유가 +3.49% 급등과 국채10Y +1.84% 상승으로 인플레이션 재점화 우려, 금은 실질금리 부담 속 중동 헤지 수요로 +0.43% 소폭 상승",
+          "text": "유로존 8월 CPI(소비자물가지수) 3.3%로 3년 만에 최고치 급등(7월 2.9%), ECB(유럽중앙은행) 목표 2% 크게 상회하며 금리인상 압박 심화",
           "impact": "high"
         },
         {
-          "text": "BOE 총재 \"신형 AI 모델이 글로벌 금융 안정 위협\" 경고, 하원 정보위도 'AI 블랙스완' 리스크 보고서 발표로 규제 압박 가시화",
+          "text": "달러인덱스 +0.24% 상승, 미 국채금리 급등과 중동 리스크로 안전자산 달러 수요 증가",
+          "impact": "mid"
+        },
+        {
+          "text": "금 -1.25% 하락, 달러 강세와 10년물 실질금리 4.8% 상승이 무수익 자산 매력 저하",
           "impact": "mid"
         }
       ]
@@ -9887,15 +9893,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미국이 이란 호르무즈 해협 기뢰 발사대 공격, 이란은 요르단 주둔 미군 기지 보복 공격으로 대응, 트럼프 대통령 \"추가 대응\" 경고하며 중동 긴장 사이클 시작",
+          "text": "미-이란 군사 충돌 격화, 이란의 호르무즈 해협 유조선 공격에 미국 재공습 단행으로 전 세계 원유 운송의 20% 차질 우려",
           "impact": "high"
         },
         {
-          "text": "FTC가 아마존을 광고 가격 조작 혐의로 제소, 22개 주 검찰총장 동참하며 \"비밀리에 체계적으로 광고주 과다 청구\" 주장, 아마존 수십억달러 부당이득 추정",
-          "impact": "mid"
+          "text": "FTC, Amazon 광고 가격 조작 혐의로 소송 제기 (22개 주 검찰 동참), \"경매 시스템 비밀리 조작해 광고주에 과다 청구\" 주장",
+          "impact": "high"
         },
         {
-          "text": "트럼프 \"AI 데이터센터 반대하는 지역사회는 낙후·빈곤해질 것\" 경고, AI 인프라 투자 정치 쟁점화",
+          "text": "G20 재무장관 회의 노스캐롤라이나 개최, 베센트 장관 국채금리 급등 진화 시도 중",
           "impact": "mid"
         }
       ]
@@ -9905,31 +9911,39 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "영국 FT \"알파벳·아마존·엔비디아·MS 등 빅테크가 AI 기업 투자로 거둔 2분기 장부상 평가이익 1600억달러(약 220조원) 초과, 일회성 이익으로 실적 과대평가 우려\" 보도",
+          "text": "Micron·Sandisk 동반 하락, 유가·금리 급등 속 메모리 반도체 수요 둔화 우려로 필라델피아반도체 -2.14% 급락 주도",
           "impact": "high"
         },
         {
-          "text": "엔비디아 시가총액 5.2조달러로 세계 1위 탈환, 캐시 우드 ARK가 대량 매수하며 52주 신고가 돌파 후 IBD Leading 종목 편입, 다만 밸류에이션 논란 속 +2% 상승에 그침",
+          "text": "Dell AI 서버 호조로 실적 비트 + 가이던스 상향 발표, 주가 급등하며 반도체 장비 수혜주 재조명",
           "impact": "high"
         },
         {
-          "text": "OpenAI 광고사업 연간 매출 환산 10억달러 돌파, \"다각화 비즈니스 모델 증명\"이라 발표하며 IPO(기업공개) 준비 탄력, ChatGPT Work는 서비스 장애 발생",
+          "text": "MongoDB 실적 비트에도 가이던스 실망으로 주가 급락, AI 투자 ROI(투자수익률) 회의론 재점화",
           "impact": "high"
         },
         {
-          "text": "애플 CEO 팀 쿡 퇴임·존 테르누스 하드웨어 총괄 수석부사장 승계 확정(9월 1일 발효), CNBC \"쿡의 15년간 소비자 충성도 구축이 최대 업적\" 평가, 애플 주가는 CEO 교체 불확실성에 하락",
+          "text": "Apple 새 CEO John Ternus 시대 개막, AI 과제와 메모리 부족 심화 속 맞춤형 칩·배터리 기술 강조",
           "impact": "high"
         },
         {
-          "text": "브로드컴 이번주 실적 발표 예정, 시가총액 1.75조달러로 엔비디아·구글·애플에 이어 4위권, CNBC \"옵션 거래로 수익 기회\" 제시",
+          "text": "Tesla AI 투자 Microsoft·Amazon·Alphabet 대비 현저히 부족, Magnificent 7(빅테크 7개 종목) 내 AI 격차 부각",
           "impact": "mid"
         },
         {
-          "text": "테슬라 +5% 급등하며 S&P500 최고 상승률, 일론 머스크의 신형 FSD(완전자율주행) 티저와 Cybercab 발표 임박 기대감, SpaceX는 NASA 로마우주망원경 발사 성공·가스터빈 부품 자체 생산 진출 발표",
+          "text": "Broadcom 실적 발표 앞두고 주가 조정, AI 수주 지속성 확인이 랠리 재개 관건",
           "impact": "mid"
         },
         {
-          "text": "Meta가 구글을 제치고 연말까지 최대 디지털광고 플랫폼 등극 예상, 번스타인 \"AI 투자 효과 명확\" 분석",
+          "text": "Palo Alto Networks Q4 실적 비트 + 2027 가이던스 상향으로 주가 상승, 사이버보안 수요 지속 확인",
+          "impact": "mid"
+        },
+        {
+          "text": "SB Energy(Softbank 자회사) IPO 신청, \"OpenAI에 실질적으로 의존\" 리스크 명시하며 AI 인프라 투자 확대",
+          "impact": "mid"
+        },
+        {
+          "text": "BYD 8월 NEV(신에너지차) 판매 44만대 +18%, 전량 해외 성장 (중국 내수 부진 심화)",
           "impact": "mid"
         }
       ]
@@ -9937,217 +9951,212 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "이란 공격 보복과 인플레 우려로 방어적 투자심리 확산, 에너지 섹터 +2% 상승에도 기술주·반도체 동반 약세로 지수 하락",
+      "reason": "미국-이란 공습 교환으로 WTI 90달러 돌파 + 10년물 국채금리 4.8% 급등이 스태그플레이션 우려 촉발, 장 막판 낙폭 확대",
       "drivers": [
-        "미·이란 군사충돌 지정학 리스크",
-        "필라델피아반도체 -2.92%",
-        "국채10Y +1.84% 금리 급등"
+        "WTI 유가 +5.74% → 인플레 재점화 우려",
+        "10년물 금리 +0.80% → 밸류에이션(주가 적정성 평가 지표) 압박",
+        "Amazon -2% (FTC 소송) → 빅테크 규제 리스크"
       ]
     },
     "NASDAQ": {
-      "reason": "애플 CEO 교체 이슈(팀 쿡 퇴임·존 테르누스 취임)와 MS Outlook·ChatGPT Work 동시 장애로 빅테크 투심 위축",
+      "reason": "Micron·Nvidia 동반 하락으로 반도체 전면 약세, MongoDB 가이던스 하향에 AI 수혜 지속성 의문 제기",
       "drivers": [
-        "애플 CEO 교체 불확실성",
-        "MS·OpenAI 서비스 장애"
+        "Micron·Sandisk 하락 (반도체 수요 우려)",
+        "MongoDB 실적 비트 후 급락 (AI 밸류에이션 부담)",
+        "금리 상승에 따른 성장주 멀티플(주가배수) 압박"
       ]
     },
     "DOW": {
-      "reason": "트럼프의 이란 보복 경고 발언 직후 전통 산업주·방산주 혼조 속 지수 -0.72% 하락, 에너지 섹터만 +2% 이상 상승",
+      "reason": "에너지 가격 급등과 국채금리 상승이 경기민감주 수익성 전망 악화시키며 -0.79% 하락",
       "drivers": [
-        "중동 지정학 긴장",
-        "에너지 섹터 단독 강세"
+        "유가 +5.74% → 원가 압박 우려",
+        "10년물 금리 상승 → 자본비용 증가"
       ]
     },
     "VIX": {
-      "reason": "이란 공격 보복 사이클 시작으로 변동성 수요 급증, 국채금리 급등과 Fed 매파 전환 우려 겹침",
+      "reason": "중동 군사 충돌 격화 + 글로벌 국채금리 동반 급등으로 불확실성 지수 +9.52% 급등",
       "drivers": [
-        "미·이란 군사충돌",
-        "Fed 매파 전환 시그널"
+        "미-이란 공습 교환 (호르무즈 유조선 공격)",
+        "유로존 물가 3.3% 급등 (금리인상 압박)"
       ]
     },
     "필라델피아반도체": {
-      "reason": "엔비디아 +2% 상승(캐시 우드 대량 매수)에도 불구 브로드컴 실적 발표 앞두고 차익실현 및 빅테크 AI 투자 평가이익 '뻥튀기' 논란(FT 보도, 알파벳·아마존·엔비디아·MS 2분기 장부상 이익 1600억달러=약 220조원)으로 밸류에이션(주가평가지표) 부담",
+      "reason": "Micron·Sandisk·Nvidia 동반 하락, 유가 급등과 금리 상승이 AI 투자 ROI 회의론과 맞물려 -2.14% 급락",
       "drivers": [
-        "빅테크 AI 투자 평가이익 과대평가 논란",
-        "브로드컴 실적 발표 대기"
+        "Micron·Sandisk 하락 (메모리 수요 우려)",
+        "Nvidia 하락 (AI 투자 대비 Tesla 투자 부족 논란)",
+        "금리 상승 → 반도체 Capex(설비투자) 부담"
       ]
     },
     "러셀2000": {
-      "reason": "고금리 장기화 우려와 경기둔화 신호(하원 정보위 'AI 블랙스완' 경고)로 소형주 유동성 리스크 부각, -1.92% 급락",
+      "reason": "금리 급등과 에너지 비용 상승이 소형주 수익성 직격탄, -1.23% 하락",
       "drivers": [
-        "국채10Y 4.76% 금리 부담",
-        "AI 블랙스완 리스크 경고"
+        "10년물 금리 4.8% → 차입비용 증가",
+        "WTI 90달러 → 원가 압박"
       ]
     },
     "영국FTSE": {
-      "reason": "BOE 총재의 \"신형 AI 모델이 글로벌 금융 안정 위협\" 경고와 유가 급등 인플레 압박으로 -0.79% 하락",
+      "reason": "직접 촉매 미약, 유럽 국채금리 동반 상승 속 방어적 장세로 -0.03% 소폭 하락",
       "drivers": [
-        "BOE AI 리스크 경고",
-        "유가 급등"
+        "유로존 물가 급등 여파 (ECB 금리인상 압박)"
       ]
     },
     "독일DAX": {
-      "reason": "에너지·소재 섹터 강세로 유럽 내 유일하게 +0.31% 상승, 구리 +1.94%·알루미늄 +0.62% 원자재 동조 랠리",
+      "reason": "유로존 물가 3.3% 급등(3년 만에 최고)으로 ECB 금리인상 압박 확대, -0.41% 하락",
       "drivers": [
-        "에너지·소재 섹터 주도",
-        "구리·알루미늄 상승"
+        "유로존 CPI(소비자물가지수) 3.3% (목표 2% 크게 상회)",
+        "에너지 가격 상승 → 수출 제조업 원가 압박"
       ]
     },
     "니케이": {
-      "reason": "미 재무장관 베센트의 \"일본이 엔화 강세 조치할 것\" 발언으로 9월 BOJ 금리인상 기대 부각, 엔화 강세 압박에 수출주 부담으로 -0.20% 소폭 하락",
+      "reason": "직접 촉매 없음 — 일본 국채금리 상승 압력 속 엔화 강세 기대로 수출주 방어, +0.27% 소폭 상승",
       "drivers": [
-        "베센트의 BOJ 금리인상 시사",
-        "엔화 강세 압박"
+        "일본 국채금리 상승 지속 (전일 언급)"
       ]
     },
     "항셍": {
-      "reason": "미·중 기술 디커플링(분리) 우려와 중국 AI 규제 강화 흐름 속 직접 촉매 없이 -0.34% 소폭 하락",
+      "reason": "직접 촉매 없음 — 중동 리스크와 미중 무역 긴장 속 관망세로 보합 마감",
       "drivers": [
-        "미·중 기술 디커플링",
-        "중국 AI 규제 강화"
+        "중동 지정학 리스크 (BYD 해외 판매 호조는 제한적 영향)"
       ]
     },
     "달러인덱스": {
-      "reason": "국채10Y 4.76%까지 상승하며 금리 차 확대, Fed 매파 전환 기대로 달러 수요 증가 +0.25%",
+      "reason": "미국 국채금리 급등(2년물 3.77%·10년물 4.8%)과 중동 리스크로 안전자산 달러 수요 증가, +0.24% 상승",
       "drivers": [
-        "미 국채금리 급등",
-        "Fed 매파 전환 기대"
+        "미 국채금리 급등 → 금리 차 확대",
+        "중동 군사 충돌 → 안전자산 선호"
       ]
     },
     "국채2Y": {
-      "reason": "워시 연준 이사의 매파 연설로 단기 금리인상 가능성 부각, +1.47% 상승",
+      "reason": "유가 급등으로 연준 금리인하 기대 후퇴, 단기 금리 +1.07% 급등",
       "drivers": [
-        "워시 매파 연설",
-        "금리인상 기대 상승"
+        "WTI 90달러 돌파 → 인플레 재점화 우려",
+        "연준 금리인하 기대 축소"
       ]
     },
     "국채10Y": {
-      "reason": "유가 급등으로 인플레 재점화 우려와 스티펠 이코노미스트 \"미국 부채 40조달러 고려 시 10Y 최소 5% 이상 정상\" 지적으로 +1.84% 급등",
+      "reason": "유로존 물가 급등 + 미-이란 충돌로 글로벌 국채 동반 매도, 금융위기 이후 최고 수준인 4.8%까지 +0.80% 급등",
       "drivers": [
-        "WTI유가 +3.49%",
-        "Fed 매파 전환·부채 부담"
+        "유로존 CPI 3.3% (3년 만에 최고)",
+        "중동 리스크 → 에너지 인플레 우려",
+        "미 재무부 \"심각하지 않다\" 진화 시도에도 매도세 지속"
       ]
     },
     "코스피": {
-      "reason": "휴장(데이터 기준일 불일치로 변동 없음)",
+      "reason": "데이터 미제공(0.00%), 글로벌 리스크오프(위험자산 회피) 속 외국인·기관 동향 확인 필요",
       "drivers": [
-        "해당 없음"
+        "필라델피아반도체 -2.14% 여파",
+        "WTI 90달러·금리 급등 영향"
       ]
     },
     "코스닥": {
-      "reason": "휴장(데이터 기준일 불일치로 변동 없음)",
+      "reason": "데이터 미제공(0.00%), 나스닥 -1.03% 급락과 AI 투자 회의론 확산이 2차전지·바이오 압박 예상",
       "drivers": [
-        "해당 없음"
+        "나스닥 -1.03% 동조화",
+        "금리 상승 → 성장주 밸류에이션 압박"
       ]
     },
     "금": {
-      "reason": "유가 급등과 국채금리 상승으로 실질금리 부담 속에서도 중동 리스크 헤지(위험 회피) 수요로 +0.43% 소폭 상승",
+      "reason": "달러 강세(+0.24%)와 실질금리 상승(10년물 4.8%)이 무수익 자산인 금의 매력 저하, -1.25% 하락",
       "drivers": [
-        "중동 지정학 리스크",
-        "실질금리 상승 압박"
+        "달러인덱스 +0.24% → 달러표시 금 가격 하락",
+        "실질금리 상승 → 기회비용 증가"
       ]
     },
     "WTI유가": {
-      "reason": "미국의 이란 호르무즈 해협 기뢰 발사대 공격과 이란의 요르단 주둔 미군 기지 보복 공격으로 공급 차질 우려 급증, +3.49% 급등",
+      "reason": "이란의 호르무즈 해협 유조선 2척 공격 + 미국 대이란 재공습으로 공급 차질 우려 폭발, +5.74% 급등해 90달러 돌파",
       "drivers": [
-        "미·이란 군사충돌",
-        "호르무즈 해협 공급 차질 우려"
+        "미-이란 군사 충돌 격화 (호르무즈 유조선 공격)",
+        "호르무즈 해협 공급 차질 우려 (전 세계 원유 운송의 20%)"
       ]
     },
     "원달러": {
-      "reason": "달러인덱스 +0.25% 상승에도 불구 미 국채금리 급등 국면에서 외국인의 국내 채권 유입 기대와 9월 BOJ 금리인상 기대로 엔화 강세 동조, 원화도 -0.76% 강세",
+      "reason": "달러 강세 + 코스피 리스크오프 우려로 1374원까지 +0.59% 상승, 외국인 이탈 압력",
       "drivers": [
-        "엔화 강세 동조",
-        "외국인 채권 유입 기대"
+        "달러인덱스 +0.24%",
+        "필라델피아반도체 -2.14% → 삼성·SK하이닉스 압박"
       ]
     },
     "알루미늄": {
-      "reason": "독일DAX 소재 섹터 주도 상승과 AI 데이터센터 건설 수요(SpaceX 가스터빈 부품 자체 생산 발표) 기대로 +0.62% 상승",
+      "reason": "중동 리스크 속 산업 금속 수요 불확실성에도 에너지 비용 상승 전가 기대로 +1.88% 상승",
       "drivers": [
-        "AI 데이터센터 건설 수요",
-        "소재 섹터 로테이션"
+        "WTI 90달러 → 제련 비용 상승 전가"
       ]
     },
     "구리": {
-      "reason": "중동 지정학 리스크 속 원자재 인플레 헤지 수요와 SpaceX 가스터빈·AI 인프라 투자 기대로 +1.94% 급등",
+      "reason": "금리 급등과 중국 경기 둔화 우려로 건설·전력 수요 전망 악화, -0.90% 하락",
       "drivers": [
-        "원자재 인플레 헤지",
-        "AI 인프라 투자 수요"
+        "10년물 금리 4.8% → 인프라 투자 둔화",
+        "중국 BYD 내수 부진 (해외 의존도 심화)"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "미·이란 군사충돌과 Fed 매파 전환으로 글로벌 리스크오프(위험 회피) 확산, 에너지·소재 로테이션 가속 → 국내 수출주는 원화 강세 수혜 기대되나 반도체 밸류에이션 논란과 고금리 우려로 투심 위축 예상",
+    "summary": "필라델피아반도체 -2.14%·WTI 90달러 돌파·10년물 금리 4.8% 급등 트리플 악재로 반도체·2차전지 전방위 압박, 외국인 이탈 우려 확대",
     "positive_factors": [
-      "원달러 -0.76% 강세로 수출 대기업 환차손 부담 완화, BOJ 금리인상 시사로 엔화 동조 강세 지속 시 전기전자·자동차 가격경쟁력 개선",
-      "WTI유가 +3.49%·구리 +1.94% 급등으로 2차전지 소재(RS-Ratio 110.7/RS-Momentum 112.6 Leading)·비철금속(114.6/109.3 Leading)·석유화학(107.4/105.8 Leading) 원자재 연계 섹터 수혜 기대",
-      "SpaceX 가스터빈 부품 자체 생산·AI 데이터센터 건설 가속 시그널로 전력기기(101.3/102.7 Leading)·IT부품(101.6/105.0 Leading) 모멘텀 지속"
+      "Dell AI 서버 호조 + 가이던스 상향 → 국내 반도체 장비·IT부품(RRG leading) 수혜 기대, SK하이닉스 HBM 수요 재확인",
+      "WTI 90달러 돌파 → 에너지(XLE leading) 수혜로 국내 정유(RRG weakening이나 단기 반등), 비철금속(알루미늄 +1.88%) 방어"
     ],
     "negative_factors": [
-      "빅테크 AI 투자 평가이익 '뻥튀기' 논란(220조원 장부상 이익)으로 엔비디아 밸류에이션 부담 → 국내 반도체 소자(96.8/99.6 Lagging) 추가 조정 압력, 필라델피아반도체 -2.92% 급락 여파",
-      "국채10Y 4.76%·Fed 매파 전환으로 고금리 장기화 우려 → 은행(99.1/89.6 Lagging)·증권(95.6/97.4 Lagging) 등 금융주와 유통(86.6/87.6 Lagging)·엔터(92.6/89.9 Lagging) 내수 소비재 부진 지속"
+      "Micron·Nvidia 동반 하락 + 필라델피아반도체 -2.14% → 삼성전자·SK하이닉스 ADR(미국예탁증서) 급락 예상, 반도체_소자(RRG improving) 모멘텀 훼손 우려",
+      "미 10년물 4.8%·2년물 3.77% 급등 + 원달러 1374원(+0.59%) → 외국인 차익실현 압력, 2차전지·바이오 등 성장주 밸류에이션(적정 주가 평가) 부담",
+      "유로존 물가 3.3% 급등 → 글로벌 금리인상 압박으로 수출 제조업(자동차·조선) 수주 둔화 우려, 현대차(RRG improving) 상승 제약"
     ],
-    "key_watch": "브로드컴 실적 발표(이번주)와 GitLab Q2 실적(9월 1일), 미·이란 추가 보복 사이클 전개 여부, 9월 BOJ 회의 앞두고 엔화 강세 지속성이 국내 수출주 모멘텀 결정"
+    "key_watch": "삼성전자·SK하이닉스 ADR 낙폭과 외국인 순매도 규모 — Dell 호재 vs Micron 악재 중 어느 쪽이 우세한지가 반도체 섹터 방향성 결정"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "2차전지_소재",
+      "sector": "IT부품",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "WTI유가 +3.49% 급등·중동 지정학 리스크로 원자재 인플레 헤지 수요 급증, RS-Ratio 110.7/RS-Momentum 112.6으로 전 섹터 최강 모멘텀, 구리 +1.94%·알루미늄 +0.62% 동반 상승으로 양극재·음극재 소재주 수혜"
+      "reason": "Dell AI 서버 호조로 HBM·DDR5 수요 재확인 + RS-Momentum 105.7(leading 상단), 금리 급등에도 AI Capex 지속성 입증"
     },
     {
       "sector": "비철금속",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "미 소재XLB(RS-Ratio 100.2) Leading 전환과 구리 +1.94% 급등 동조, RS-Ratio 114.6/RS-Momentum 109.3으로 비철금속 스테이지2 상승 초입, AI 인프라 투자 가속(SpaceX 가스터빈 부품) 수혜"
-    },
-    {
-      "sector": "전력기기",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "SpaceX 가스터빈 부품 자체 생산 진출 발표로 AI 데이터센터 전력 인프라 수요 재확인, RS-Ratio 101.3/RS-Momentum 102.7 Leading, 원전(106.5/108.4)·신재생(107.5/102.7) 동반 강세"
+      "reason": "유가 90달러 돌파로 정유 마진 개선 기대 + 알루미늄 +1.88% 동반 상승, 비철금속 RS-Ratio 115.1(leading 최상위)으로 원자재 인플레 수혜"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "RS-Ratio 96.8/RS-Momentum 99.6 Lagging 구간, 빅테크 AI 투자 평가이익 '뻥튀기' 논란으로 밸류에이션 부담 가중, 필라델피아반도체 -2.92% 급락 여파로 추가 조정 가능성, 브로드컴 실적 발표 대기"
+      "reason": "필라델피아반도체 -2.14% 급락 + Micron 하락으로 메모리 모멘텀 훼손, RS-Momentum 100.4(improving 하단)로 Leading 진입 지연 — Dell 호재 소화 후 재진입 검토"
     },
     {
-      "sector": "정유",
-      "reason": "RS-Ratio 102.8/RS-Momentum 96.5 Weakening 전환, 정유 밸류에이션 부담 속 유가 급등 효과 제한적, 고금리 장기화 시 소비 위축 우려"
+      "sector": "2차전지_셀",
+      "reason": "나스닥 -1.03% + 금리 4.8% 급등이 성장주 밸류에이션 압박, RS-Momentum 106.1(leading)이나 글로벌 AI 투자 회의론(MongoDB 급락·Tesla 투자 부족) 확산 리스크"
     },
     {
-      "sector": "해운",
-      "reason": "RS-Ratio 104.4/RS-Momentum 93.9 Weakening, 중동 리스크에도 불구 해상운임 약세 지속, 글로벌 교역량 둔화 신호"
+      "sector": "자동차_완성차",
+      "reason": "BYD 중국 내수 부진 심화(해외 의존도 100%) + 유가 90달러가 원가 압박, RS-Momentum 101.5(improving)이나 현대차 수출 마진 악화 우려"
     }
   ],
   "avoid": [],
-  "summary": "미·이란 군사충돌과 Fed 매파 전환으로 글로벌 리스크오프 확산, 유가 +3.49%·구리 +1.94% 급등 → 국내는 2차전지 소재·비철금속·전력기기 Leading 섹터 집중, 반도체 소자는 밸류에이션 논란으로 Lagging 조정 지속",
-  "strategy_brief": "미국의 이란 공격 보복과 워시 연준 이사의 매파 연설로 글로벌 시장은 리스크오프(위험 회피) 국면에 진입했으나, 유가 +3.49%·구리 +1.94% 급등으로 에너지·소재 섹터 로테이션(자금 이동)이 가속화되고 있습니다. 국내 시장은 원달러 -0.76% 강세로 수출주 환차손 부담이 완화되는 가운데, 2차전지 소재(RS-Ratio 110.7 Leading)·비철금속(114.6 Leading)·석유화학(107.4 Leading) 등 원자재 연계 섹터가 최강 모멘텀을 시현 중입니다. 반면 빅테크 AI 투자 평가이익 220조원 '뻥튀기' 논란으로 필라델피아반도체가 -2.92% 급락하며 국내 반도체 소자는 Lagging(소외 구간) 조정 압력이 지속되고, 고금리 장기화 우려로 금융·내수 소비재도 약세가 이어질 전망입니다. 오늘은 중동 지정학 리스크와 Fed 매파 전환 국면에서 원자재 인플레 헤지 수요를 받는 2차전지 소재·비철금속·전력기기 Leading 섹터 중심 포지셔닝이 유효하며, 브로드컴 실적 발표(이번주)와 미·이란 추가 보복 사이클 전개 여부를 주시해야 합니다.",
-  "strategy_headline": "중동 리스크·Fed 매파 전환 → 에너지·소재 로테이션 집중",
+  "summary": "유가 90달러·금리 4.8% 쇼크에 반도체 급락 — Dell AI 수혜 IT부품·비철금속 방어 집중, 외국인 동향 확인 후 반도체 재진입 검토",
+  "strategy_brief": "미-이란 충돌로 WTI 유가가 90달러를 돌파하고 미 10년물 금리가 금융위기 이후 최고인 4.8%까지 치솟으면서 글로벌 증시가 스태그플레이션(경기침체 속 물가 상승) 공포에 휩싸였다. 필라델피아반도체 -2.14% 급락과 Micron 하락은 국내 반도체_소자(improving) 섹터의 leading(주도 상승 구간) 진입을 지연시킬 전망이나, Dell AI 서버 가이던스 상향은 IT부품·반도체_장비(leading)의 차별화 모멘텀을 제공한다. 유로존 물가 3.3% 급등으로 글로벌 금리인상 압박이 심화되면서 2차전지·자동차 등 성장주 밸류에이션이 압박받는 가운데, 원자재 인플레 직접 수혜인 비철금속(RS-Ratio 115.1)과 AI Capex(설비투자) 지속성이 입증된 IT부품(RS-Momentum 105.7) 중심으로 방어 포트폴리오를 구축해야 한다. 외국인 순매도 규모 확인 후 반도체_소자 재진입을 검토하되, 단기적으로는 RS-Ratio 100 상회 섹터에 집중하는 전략이 유효하다.",
+  "strategy_headline": "유가·금리 급등에 반도체 휘청 — AI부품·원자재株 방어 집중",
   "strategy_points": [
-    "미·이란 군사충돌로 WTI유가 +3.49%·국채10Y 4.76% 급등 → 국내는 원자재 연계 섹터(2차전지 소재·비철금속·석유화학) Leading(주도 구간) 집중",
-    "빅테크 AI 투자 평가이익 220조원 '뻥튀기' 논란 + 필라델피아반도체 -2.92% → 반도체 소자 Lagging(소외 구간) 구간 추가 조정 대기",
-    "원달러 -0.76% 강세·BOJ 금리인상 시사로 수출주 환차손 완화, 다만 고금리 장기화 우려로 금융·내수는 Lagging 지속",
-    "SpaceX 가스터빈 부품 자체 생산 진출 → 전력기기·IT부품 AI 인프라 테마 모멘텀 유지, 브로드컴 실적(이번주) 앞두고 기술주 변동성 대비"
+    "WTI 90달러·10년물 4.8% 쇼크 → 필라델피아반도체 -2.14% 급락, 삼성·하이닉스 ADR(미국예탁증서) 압박으로 반도체_소자 improving(상승 전환 구간) 진입 지연",
+    "Dell AI 서버 호조 + 가이던스 상향 → IT부품·반도체_장비 leading(주도 상승 구간) 차별화, HBM·MLCC 수요 재확인",
+    "유로존 CPI 3.3% 급등 → 글로벌 금리인상 압박으로 2차전지·자동차 성장주 밸류에이션(적정 주가 평가) 부담, 원자재 인플레 수혜주로 회전",
+    "외국인 순매도 규모가 섹터 방향성 결정 — 비철금속·IT부품 RS-Ratio(상대강도 지표) 100 상회 종목 중심 방어"
   ],
   "top_picks": [
     {
-      "sector": "2차전지_소재",
+      "sector": "IT부품",
       "rrg_quadrant": "leading",
-      "reason": "WTI유가 +3.49% 급등·중동 지정학 리스크로 원자재 인플레 헤지 수요 급증, RS-Ratio 110.7/RS-Momentum 112.6으로 전 섹터 최강 모멘텀, 구리 +1.94%·알루미늄 +0.62% 동반 상승으로 양극재·음극재 소재주 수혜",
+      "reason": "Dell AI 서버 호조로 HBM·DDR5 수요 재확인 + RS-Momentum 105.7(leading 상단), 금리 급등에도 AI Capex 지속성 입증",
       "stocks": [
         {
-          "name": "포스코퓨처엠",
-          "code": "003670",
+          "name": "삼성전기",
+          "code": "009150",
           "signal": "prime",
-          "reason": "WTI유가 +3.49%·구리 +1.94% 원자재 인플레 수혜 + 2차전지 소재 RS-Ratio 110.7/RS-Momentum 112.6 전 섹터 최강 모멘텀 Leading, 양극재 수요 회복 국면",
+          "reason": "Dell AI 서버 MLCC(적층세라믹콘덴서) 수혜 + IT부품 RS-Momentum 105.7(leading) 최상위, 반도체 약세 속 부품株 차별화 국면",
           "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": false,
+          "rrg_actual_sector": "IT부품",
+          "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
       ]
@@ -10155,13 +10164,13 @@
     {
       "sector": "비철금속",
       "rrg_quadrant": "leading",
-      "reason": "미 소재XLB(RS-Ratio 100.2) Leading 전환과 구리 +1.94% 급등 동조, RS-Ratio 114.6/RS-Momentum 109.3으로 비철금속 스테이지2 상승 초입, AI 인프라 투자 가속(SpaceX 가스터빈 부품) 수혜",
+      "reason": "유가 90달러 돌파로 정유 마진 개선 기대 + 알루미늄 +1.88% 동반 상승, 비철금속 RS-Ratio 115.1(leading 최상위)으로 원자재 인플레 수혜",
       "stocks": [
         {
           "name": "고려아연",
           "code": "010130",
           "signal": "prime",
-          "reason": "구리 +1.94%·알루미늄 +0.62% 동반 상승 + 비철금속 RS-Ratio 114.6/RS-Momentum 109.3 Leading 스테이지2 초입, SpaceX AI 인프라 투자 가속 수혜",
+          "reason": "WTI 90달러·알루미늄 +1.88% 동반 상승 + 비철금속 RS-Ratio 115.1(leading 최강), 원자재 인플레 직접 수혜",
           "rrg_tracked": true,
           "rrg_actual_sector": "비철금속",
           "rrg_sector_match": true,
@@ -10170,51 +10179,17 @@
       ]
     },
     {
-      "sector": "전력기기",
-      "rrg_quadrant": "leading",
-      "reason": "SpaceX 가스터빈 부품 자체 생산 진출 발표로 AI 데이터센터 전력 인프라 수요 재확인, RS-Ratio 101.3/RS-Momentum 102.7 Leading, 원전(106.5/108.4)·신재생(107.5/102.7) 동반 강세",
-      "stocks": [
-        {
-          "name": "HD현대일렉트릭",
-          "code": "267260",
-          "signal": "prime",
-          "reason": "SpaceX 가스터빈 부품 자체 생산 발표로 AI 데이터센터 전력 인프라 수요 재확인 + 전력기기 RS-Ratio 101.3/RS-Momentum 102.7 Leading, 원전·신재생 동반 강세",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "전력기기",
-          "rrg_sector_match": true,
-          "rrg_signal": "confirm"
-        }
-      ]
-    },
-    {
-      "sector": "2차전지_셀",
+      "sector": "반도체_장비",
       "rrg_quadrant": "",
       "reason": "",
       "stocks": [
         {
-          "name": "LG에너지솔루션",
-          "code": "373220",
+          "name": "원익IPS",
+          "code": "240810",
           "signal": "prime",
-          "reason": "원달러 -0.76% 강세로 수출 가격경쟁력 개선 + 2차전지 셀 RS-Ratio 107.0/RS-Momentum 106.3 Leading, 테슬라 +5% 급등(Cybercab 기대) 수혜",
+          "reason": "Dell AI 서버 Capex 확대 수혜 + 반도체_장비 RS-Momentum 102.6(leading), Micron 악재에도 장비 투자 지속성 확인",
           "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": false,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "석유화학",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "LG화학",
-          "code": "051910",
-          "signal": "prime",
-          "reason": "WTI유가 +3.49% 급등으로 석유화학 마진 개선 기대 + RS-Ratio 107.4/RS-Momentum 105.8 Leading, 2차전지 소재 부문 동반 수혜",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "석유화학",
+          "rrg_actual_sector": "반도체_장비",
           "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
@@ -10223,6 +10198,6 @@
   ],
   "caution_sectors": [
     "반도체_소자",
-    "정유"
+    "2차전지_셀"
   ]
 }
