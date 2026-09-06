@@ -1,184 +1,175 @@
 {
-  "generated_at": "2026-09-06 07:02:25",
+  "generated_at": "2026-09-07 07:02:20",
   "macro": {
     "S&P500": {
       "price": 7718.6,
       "change": -0.38,
-      "reason": "미 고용지표 강세로 9월 연준 금리인상 확률 상승 → 금리 장기화 우려에 지수 전반 하락했으나 기술주가 하락폭 제한",
+      "reason": "미국 8월 비농업 고용지표 호조로 9월 FOMC 금리 인상 우려 재점화, 국채 2Y·10Y 각각 +0.45%·+0.46% 급등하며 밸류에이션(주가 적정성) 부담 확대",
       "drivers": [
-        "국채 10Y +0.46% 급등 (밸류에이션 압박)",
-        "기술XLK 섹터 R100.8/M101.5 Leading 방어"
+        "국채 10Y +0.46%(4.78%)",
+        "고용지표 호조→금리 인상 우려"
       ]
     },
     "NASDAQ": {
       "price": 26506.99,
       "change": -0.29,
-      "reason": "오픈AI 아스트라 출시에도 금리 급등으로 빅테크 밸류에이션 부담 → S&P500 대비 낙폭 제한(-0.29%)",
+      "reason": "금리 인상 우려로 성장주 밸류에이션 압박 받았으나, AI 반도체·소프트웨어주 강세가 낙폭 제한",
       "drivers": [
-        "반도체 일부 종목 급등 (SK하이닉스 ADR +8.14%)",
-        "국채 2Y +0.45%, 할인율 압박"
+        "필라델피아반도체 +3.37%",
+        "국채 10Y +0.46% 부담"
       ]
     },
     "DOW": {
       "price": 53414.25,
       "change": -0.51,
-      "reason": "금리 민감 경기순환주 중심 구성으로 국채금리 급등 직격탄 → 3대 지수 중 최대 낙폭",
+      "reason": "금리 인상 우려에 경기민감 산업재·금융주 약세, 섹터 RRG에서 산업재XLI·금융XLF 모두 Weakening(약화) 진입",
       "drivers": [
-        "국채 2Y/10Y 각각 +0.45%/+0.46%",
-        "금융XLF·산업재XLI Weakening/Lagging"
+        "국채 2Y +0.45%→금융주 압박",
+        "산업재XLI Weakening"
       ]
     },
     "VIX": {
       "price": 14.53,
       "change": 1.47,
-      "reason": "9월 연준 금리인상 확률 상승 + 고금리 장기화 경계심리 → 변동성 소폭 확대",
+      "reason": "금리 인상 우려와 11일 발표 예정 8월 CPI(소비자물가지수) 앞두고 단기 변동성 확대",
       "drivers": [
-        "미 고용지표 강세 (Jobs Surge)",
-        "국채금리 동반 급등"
+        "FOMC 금리 결정 불확실성"
       ]
     },
     "필라델피아반도체": {
       "price": 11735.26,
       "change": 3.37,
-      "reason": "오픈AI 등급 '위험' AI 아스트라 출시로 HBM·고대역폭 메모리 수요 재점화 기대 → 반도체 전반 강세",
+      "reason": "GPT-6 Astra 공개로 GPU뿐 아니라 HBM·D램·낸드 수요 증가 기대감 확산, AI를 '검색 대체재'에서 '노동력 대체재'로 재평가하며 메모리 병목 인식 강화",
       "drivers": [
-        "SK하이닉스 ADR +8.14%",
-        "오픈AI 아스트라 메모리 수요 촉매"
+        "GPT-6 Astra ARC-AGI-3 99.9% 돌파",
+        "메모리 수요 증가 기대"
       ]
     },
     "러셀2000": {
       "price": 2975.65,
       "change": 0.25,
-      "reason": "금리 급등에도 소형주 일부 숏커버링(공매도 청산 매수) + 기술주 강세 동조 → 소폭 상승",
+      "reason": "금리 인상 우려 속에서도 일부 소형주 모멘텀 유지, 직접 촉매 없음 — 섹터 로테이션 경미한 유입",
       "drivers": [
-        "기술XLK Leading 파급",
-        "일부 소형 기술주 반등"
+        "금리 인상 우려 제한적 반영"
       ]
     },
     "영국FTSE": {
       "price": 10831.1,
       "change": -0.0,
-      "reason": "직접 촉매 없음 — 유럽 지정학 이슈 소강 + 달러 강세 압박 상쇄되며 보합",
+      "reason": "직접 촉매 없음 — 미국 금리 인상 우려와 유럽 경기 둔화 우려 상쇄되며 보합 마감",
       "drivers": [
-        "달러인덱스 +0.16%",
-        "유럽 지역 재료 부재"
+        "유럽 경기 둔화 우려"
       ]
     },
     "독일DAX": {
       "price": 26046.4,
       "change": 0.17,
-      "reason": "직접 촉매 없음 — 미 기술주 강세 일부 동조 + 유로존 제조업 둔화 속 소폭 상승",
+      "reason": "직접 촉매 없음 — 미국 AI 반도체 강세에 유럽 장비·소재주 일부 동조 상승",
       "drivers": [
-        "미 기술주 Leading 파급",
-        "유럽 지역 재료 부재"
+        "미국 반도체 강세 동조"
       ]
     },
     "니케이": {
       "price": 65020.94,
       "change": 1.26,
-      "reason": "오픈AI 아스트라 → 일본 반도체 장비·소재 수혜 기대 + 엔저 유지로 수출주 전반 강세",
+      "reason": "필라델피아반도체 +3.37% 영향으로 도쿄일렉트론·어드밴테스트 등 반도체 장비주 강세, 엔화 약세(달러인덱스 +0.16%) 수출주 수혜",
       "drivers": [
-        "반도체 관련주 동반 상승",
-        "엔저 수출 수혜"
+        "필라델피아반도체 +3.37%",
+        "엔화 약세 수출주 수혜"
       ]
     },
     "항셍": {
       "price": 25650.87,
       "change": 1.74,
-      "reason": "중국 AI 인프라 투자 기대 + 기술주 동조 상승 → 1%대 중반 강세",
+      "reason": "직접 촉매 없음 — 미국 AI 반도체 강세에 중국 IT·반도체 관련주 투자심리 개선",
       "drivers": [
-        "글로벌 AI 모멘텀 파급",
-        "중국 기술주 동반 상승"
+        "미국 반도체 강세 동조"
       ]
     },
     "달러인덱스": {
       "price": 99.16,
       "change": 0.16,
-      "reason": "미 고용지표 강세 → 9월 연준 금리인상 확률 상승하며 달러 수요 증가",
+      "reason": "미국 8월 고용지표 호조로 9월 FOMC 금리 인상 가능성 상승, 국채 2Y +0.45% 급등하며 달러 수요 확대",
       "drivers": [
-        "Jobs Surge 발표",
-        "국채금리 동반 급등"
+        "국채 2Y +0.45%",
+        "고용지표 호조→금리 인상 기대"
       ]
     },
     "국채2Y": {
       "price": 3.76,
       "change": 0.45,
-      "reason": "미 고용 강세로 9월 연준 금리인상 베팅 급증 → 단기금리 민감 2Y물 +0.45% 급등",
+      "reason": "미국 8월 비농업 고용지표 호조로 9월 FOMC 금리 인상 또는 동결 기간 연장 기대 확대",
       "drivers": [
-        "Jobs Surge",
-        "9월 FOMC 금리인상 확률 상승"
+        "8월 고용지표 호조"
       ]
     },
     "국채10Y": {
       "price": 4.78,
       "change": 0.46,
-      "reason": "고용 강세 + 고금리 장기화 우려 → 장기금리 동반 급등하며 +0.46% 상승",
+      "reason": "고용지표 호조에 따른 금리 인상 우려와 함께, 11일 발표 예정 8월 CPI 앞두고 인플레 재점화 우려 반영",
       "drivers": [
-        "인플레 재점화 우려",
-        "서학개미 SGOV(초단기 국채 ETF) 1250억원 순매수"
+        "8월 고용지표 호조",
+        "8월 CPI 발표 대기"
       ]
     },
     "코스피": {
       "price": 6687.21,
-      "change": 1.64,
-      "reason": "오픈AI 아스트라 → SK하이닉스 ADR +8.14% 급등 선반영, 반도체 특수 경상흑자율 20% 육박 펀더멘탈 확인 → 대형주 중심 강세",
+      "change": 0.0,
+      "reason": "직접 촉매 없음 — 미국 금리 인상 우려와 반도체 강세 기대감 상쇄되며 보합 마감",
       "drivers": [
-        "SK하이닉스·삼성전자 등 반도체 급등",
-        "경상수지 흑자율 사상 최고 전망"
+        "미국 금리 인상 우려",
+        "반도체 강세 기대감"
       ]
     },
     "코스닥": {
       "price": 813.5,
-      "change": 2.95,
-      "reason": "오픈AI 촉매로 AI·반도체 중소형주 동반 급등 + IT서비스 RS 124.4 최강 모멘텀 → 코스피 대비 강세",
+      "change": 0.0,
+      "reason": "직접 촉매 없음 — 미국 나스닥 -0.29% 약세와 국내 중소형주 수급 부진 지속",
       "drivers": [
-        "IT서비스·반도체 중소형주",
-        "AI 테마 전반 확산"
+        "나스닥 약세 동조"
       ]
     },
     "금": {
-      "price": 4429.8,
-      "change": -1.38,
-      "reason": "달러 강세(+0.16%) + 국채금리 급등(실질금리 상승)로 무수익 자산 금 매도 압력 → -1.38% 하락",
+      "price": 4476.6,
+      "change": -0.34,
+      "reason": "달러인덱스 +0.16% 강세와 국채 10Y +0.46% 급등으로 실질금리 상승, 금 투자 매력도 하락",
       "drivers": [
         "달러인덱스 +0.16%",
-        "국채 10Y +0.46% (기회비용 상승)"
+        "국채 10Y +0.46%"
       ]
     },
     "WTI유가": {
       "price": 91.48,
       "change": 0.2,
-      "reason": "직접 촉매 없음 — 중동 지정학 리스크 소강 + 미 고용 강세 수요 기대 상쇄되며 소폭 상승",
+      "reason": "직접 촉매 없음 — 미국 호르무즈 해협 한국 자원 투입 요구로 중동 지정학 리스크 경미하게 반영",
       "drivers": [
-        "중동 이슈 소강",
-        "미 고용 강세 수요 기대"
+        "호르무즈 해협 지정학 리스크"
       ]
     },
     "원달러": {
-      "price": 1351.1,
-      "change": -0.32,
-      "reason": "경상수지 흑자율 20% 육박 + 반도체 수출 강세로 달러 공급 증가 → 원화 강세 (-0.32%)",
+      "price": 1345.14,
+      "change": -0.76,
+      "reason": "달러인덱스 +0.16% 강세에도 외국인 반도체주 매수 기대감으로 원화 강세, 필라델피아반도체 +3.37% 영향",
       "drivers": [
-        "경상수지 사상 최대 흑자 전망",
-        "반도체 수출 특수"
+        "필라델피아반도체 +3.37%",
+        "외국인 매수 기대"
       ]
     },
     "알루미늄": {
-      "price": 3439.25,
-      "change": -0.69,
-      "reason": "직접 촉매 없음 — 중국 제조업 둔화 수요 우려 지속되며 소폭 하락",
+      "price": 3473.25,
+      "change": 0.3,
+      "reason": "직접 촉매 없음 — AI 데이터센터 건설 확대로 산업 수요 경미한 증가 기대",
       "drivers": [
-        "중국 제조업 지표 부진",
-        "글로벌 수요 불확실"
+        "데이터센터 건설 수요"
       ]
     },
     "구리": {
-      "price": 6.6,
-      "change": 0.3,
-      "reason": "AI 데이터센터 전력 인프라 수요 기대 + 오픈AI 아스트라 발표 동조 → 소폭 상승",
+      "price": 6.68,
+      "change": 1.6,
+      "reason": "AI 데이터센터 건설 확대와 전력 인프라 수요 증가 기대, CNBC 보도에서 AI 데이터센터가 미국 농촌 토지 시장 변화 주도 언급",
       "drivers": [
-        "AI 인프라 투자 기대",
-        "전력기기 수요 연계"
+        "AI 데이터센터 건설 확대",
+        "전력 인프라 수요"
       ]
     }
   },
@@ -9762,123 +9753,123 @@
   },
   "sources": [
     {
-      "source": "yonhap",
-      "title": "[마켓인사이트] 오픈AI발 인공지능 혁신…韓반도체 다시 뛰나",
-      "link": "https://www.yna.co.kr/view/AKR20260905021700008",
-      "published": "Sun, 6 Sep 2026 06:00:07 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "실적 호조에도 패션 기업 고용 양극화…무신사만 '대규모 증원'",
-      "link": "https://www.yna.co.kr/view/AKR20260905048400030",
-      "published": "Sun, 6 Sep 2026 06:31:01 +0900"
+      "source": "maeil",
+      "title": "강력한 고용지표 뚫고 급등한 반도체 주가... 챗GPT ASTRA 마법의 시작인가",
+      "link": "https://www.mk.co.kr/news/stock/12145410",
+      "published": "Mon, 07 Sep 2026 04:00:00 +09:00"
     },
     {
       "source": "maeil",
-      "title": "“고금리 더 간다” 베팅한 서학개미…일주일 새 ‘이곳’에 1250억 ‘뭉칫돈’",
-      "link": "https://www.mk.co.kr/news/economy/12145164",
-      "published": "Sat, 05 Sep 2026 22:37:41 +09:00"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Key deals this week: Flex, Nvidia, AbbVie and more",
-      "link": "https://seekingalpha.com/news/4640496-key-deals-this-week-flex-nvidia-abbvie-and-more?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 05 Sep 2026 15:15:29 -0400"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Trump turns up the heat on Warsh as Fed rate hike looms",
-      "link": "https://www.cnbc.com/2026/09/05/trump-warsh-fed-september-rate-hike.html",
-      "published": "Sat, 05 Sep 2026 19:12:53 GMT"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Bulls vs. Bears: Whither Credo Technology after post-earnings selloff",
-      "link": "https://seekingalpha.com/news/4640501-credo-technology-stock-draws-rave-reviews-q1?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 05 Sep 2026 12:27:36 -0400"
-    },
-    {
-      "source": "bloomberg",
-      "title": "Jobs Surge Raises Odds of September Fed Hike",
-      "link": "https://www.bloomberg.com/news/videos/2026-09-05/jobs-surge-raises-odds-of-september-fed-hike-video",
-      "published": "Sat, 05 Sep 2026 15:37:28 GMT"
+      "title": "추락하나했더니 ‘주가 재추진’…시총 2조달러 재입성한 스페이스X",
+      "link": "https://www.mk.co.kr/news/stock/12145621",
+      "published": "Sun, 06 Sep 2026 21:42:49 +09:00"
     },
     {
       "source": "maeil",
-      "title": "“주담대·AI 투자 모두 타격”...미국이 ‘바이백’ 나선 이유 [뉴스 쉽게보기]",
-      "link": "https://www.mk.co.kr/news/economy/12143598",
-      "published": "Sun, 06 Sep 2026 06:00:00 +09:00"
+      "title": "AI 등장때 죽는다 했는데 … 美SW주 4대장 실적 살아있네",
+      "link": "https://www.mk.co.kr/news/stock/12145597",
+      "published": "Sun, 06 Sep 2026 19:19:25 +09:00"
     },
     {
       "source": "yonhap",
-      "title": "반도체 특수에 韓 경상 흑자율 20% 근접할 듯…대만 바짝 추격",
-      "link": "https://www.yna.co.kr/view/AKR20260905026200002",
-      "published": "Sun, 6 Sep 2026 05:49:00 +0900"
+      "title": "'한도는 많이 금리는 낮게'…정부지침 어긴 LH 사내 주택대출",
+      "link": "https://www.yna.co.kr/view/AKR20260906049200003",
+      "published": "Mon, 7 Sep 2026 06:03:05 +0900"
     },
     {
       "source": "seeking_alpha",
-      "title": "Lululemon founder Chip Wilson and wife are getting divorced: report",
-      "link": "https://seekingalpha.com/news/4640503-lululemon-founder-chip-wilson-getting-divorced?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 05 Sep 2026 14:34:54 -0400"
+      "title": "OpenAI pledges greater transparency after agents misused public wiki",
+      "link": "https://seekingalpha.com/news/4640526-openai-pledges-greater-transparency-after-agents-misused-public-wiki?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 06 Sep 2026 14:56:41 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Amazon cargo jet overruns runway at Miami airport, halting flights",
+      "link": "https://seekingalpha.com/news/4640531-amazon-cargo-jet-overruns-runway-at-miami-airport-halting-flights?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 06 Sep 2026 16:26:22 -0400"
+    },
+    {
+      "source": "ft",
+      "title": "European SpaceX rival launches rocket into orbit",
+      "link": "https://www.ft.com/content/fb5be0ff-5a5c-4006-98c5-2ddcfa3c1175?syn-25a6b1a6=1",
+      "published": "Sun, 06 Sep 2026 11:03:36 GMT"
+    },
+    {
+      "source": "yonhap",
+      "title": "AI 전문가 뽑는 은행들…신입 공채는 갈수록 '바늘구멍'",
+      "link": "https://www.yna.co.kr/view/AKR20260906012500002",
+      "published": "Mon, 7 Sep 2026 05:53:00 +0900"
     },
     {
       "source": "cnbc_world",
-      "title": "We got more defensive last week as Wall Street raised the bar for AI stocks",
-      "link": "https://www.cnbc.com/2026/09/05/we-got-more-defensive-last-week-as-wall-street-raised-the-bar-for-ai-stocks.html",
-      "published": "Sat, 05 Sep 2026 16:45:14 GMT"
+      "title": "'Everyone has an AI secret': This artist has spent a year collecting and sharing hundreds of anonymous AI confessions",
+      "link": "https://www.cnbc.com/2026/09/06/artists-ai-secrets-project-collects-hundreds-of-anonymous-confessions.html",
+      "published": "Sun, 06 Sep 2026 14:00:01 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "‘Model fatigue’ sets in as AI labs race to roll out new versions at frenetic pace",
+      "link": "https://www.cnbc.com/2026/09/06/meta-google-openai-anthropic-ai-model-fatigue.html",
+      "published": "Sun, 06 Sep 2026 12:13:49 GMT"
     },
     {
       "source": "cnbc_world",
       "title": "Many truckers don't feel like the rest of America about AI data centers as business booms",
       "link": "https://www.cnbc.com/2026/09/05/ai-data-centers-cost-economy.html",
-      "published": "Sat, 05 Sep 2026 13:33:08 GMT"
-    },
-    {
-      "source": "bloomberg",
-      "title": "AI May Transform How Humans Understand Animals",
-      "link": "https://www.bloomberg.com/news/videos/2026-09-05/ai-may-transform-how-humans-understand-animals-video",
-      "published": "Sat, 05 Sep 2026 12:46:10 GMT"
+      "published": "Sun, 06 Sep 2026 12:05:25 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "Meet the CISO: A new front line star in the AI cybersecurity war",
-      "link": "https://www.cnbc.com/2026/09/05/ai-cybersecurity-ciso-executive.html",
-      "published": "Sat, 05 Sep 2026 12:00:01 GMT"
+      "title": "AI data centers are transforming rural land markets — and fueling a backlash",
+      "link": "https://www.cnbc.com/2026/09/06/ai-data-centers-are-transforming-rural-land-markets-fueling-backlash.html",
+      "published": "Sun, 06 Sep 2026 12:00:01 GMT"
     },
     {
       "source": "maeil",
-      "title": "“고등학교 졸업하고 비행기 만들러 갑니다”…직업계고 학생에 열린 KAI 취업문 [톡톡에듀]",
-      "link": "https://www.mk.co.kr/news/society/12145129",
-      "published": "Sat, 05 Sep 2026 19:21:29 +09:00"
+      "title": "“월요일에 삼전닉스의 시간 옵니까”…GPT-6에 불붙은 美반도체",
+      "link": "https://www.mk.co.kr/news/stock/12145603",
+      "published": "Sun, 06 Sep 2026 19:52:56 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "“일본기업 장인정신 인정했는데”…850건 품질비리 드러난 日자존심",
+      "link": "https://www.mk.co.kr/news/world/12145652",
+      "published": "Mon, 07 Sep 2026 06:59:51 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "“기저귀 떼기도 전 월세 꼬박꼬박”...미취학 아동 179명, 부동산 임대소득 올렸다",
+      "link": "https://www.mk.co.kr/news/economy/12145651",
+      "published": "Mon, 07 Sep 2026 06:53:20 +09:00"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "오픈AI 아스트라 출시로 필라델피아반도체 +3.37%, SK하이닉스 ADR +8.14% 급등하며 AI 메모리 슈퍼사이클 재점화. 미 고용지표 강세에 따른 9월 연준 금리인상 우려에도 기술주 중심 상승 우위",
+  "sentiment_reason": "OpenAI GPT-6 Astra 공개로 AI 노동력 대체 시대 진입 기대감 확산, 필라델피아반도체 +3.37% 급등하며 메모리·AI 반도체 투자심리 개선",
   "key_factors": [
-    "오픈AI 등급 '위험' AI 아스트라 출시 → HBM·메모리 수요 기대 급등, 필라델피아반도체 +3.37% 주도",
-    "미 고용 강세로 9월 연준 금리인상 확률 상승 → 국채 2Y +0.45%, 10Y +0.46% 동반 급등하며 금리 장기화 경계",
-    "한국 경상수지 흑자율 20% 육박 전망, 반도체 특수로 대만과 격차 3%p대로 축소되며 수출 펀더멘탈 확인"
+    "OpenAI GPT-6 Astra ARC-AGI-3 점수 7.8%→99.9% 비약적 향상, '디지털 노동자' 시대 가능성 제시로 AI 수요 재평가",
+    "필라델피아반도체 +3.37% 급등 — 강한 미국 8월 고용지표(금리 인상 우려)에도 반도체만 차별화 강세",
+    "MS·세일즈포스·서비스나우·크라우드스트라이크 등 미국 SW 4대장 분기 실적 호조, AI 전환 수혜 확인"
   ],
-  "news_summary": "미 고용지표 강세(Jobs Surge)로 9월 연준 금리인상 확률 급등 → 국채 2Y +0.45%, 10Y +0.46% 동반 급등하며 고금리 장기화 우려 재점화\n서학개미, 고금리 베팅 강화하며 초단기 미국 국채 ETF(SGOV·만기 3개월 이하) 일주일간 1250억원 순매수 — 레버리지 상품 이탈\n트럼프 행정부, 9월 연준 회의 10일 앞두고 Fed 의장 후보 워시 압박 강화 — 금리인상 저지 시도\n한국 경상수지 흑자율 반도체 특수로 20% 육박 전망, 역대 최고 기록하며 대만과 격차 10%p→3%p대로 축소 — JP모건 \"첫 역전 가능성\"\n미 SEC, 의결권 자문사 ISS 제소하며 프록시 어드바이저 규제 강화 — ESG 투표 영향력 견제\n슈퍼 엘니뇨 내년 초까지 전망 — 증권가 \"농산물·비철 관련주 일괄 매수보다 가격전가력 있는 기업 선별 필요\"\n오픈AI, 등급 '위험(Risk Level)' AI 아스트라 출시 → HBM·고대역폭 메모리 수요 급증 기대로 필라델피아반도체 +3.37%, SK하이닉스 ADR +8.14% 급등\nFlex(FLEX), AI 데이터센터 전력 인프라 업체 EPC Power를 44억달러에 인수 발표 — 디지털 전력 전환 역량 확보\nCredo Technology(CRDO), FY2027 Q1 실적 예상 상회했으나 수익성 우려에 주가 -26% 급락 — 2년 만에 최대 주간 낙폭\n월스트리트, AI 주식 밸류에이션 기준 상향 조정 → 일부 투자자들 방어 포지션 확대 중 (CNBC \"We got more defensive\")\nAI 데이터센터 건설 붐으로 미국 트럭 운송업 호황 지속 — 부품·장비 운송 수요 급증",
+  "news_summary": "미국 8월 비농업 고용지표 호조로 9월 FOMC 금리 인상 우려 재점화, 국채 2Y·10Y 각각 +0.45%·+0.46% 급등하며 11일 발표 예정 8월 CPI가 금리 결정 핵심 변수로 부상\n달러인덱스 +0.16% 강세로 신흥국 통화 압박 지속, 다만 원화는 반도체 강세 기대감으로 -0.76% 강세 예외\n구리 +1.60% 급등 — AI 데이터센터 건설 확대와 전력 인프라 수요 증가 기대, 알루미늄도 +0.30% 상승\n금 -0.34% 하락 — 달러 강세·국채 10Y +0.46% 급등으로 실질금리 상승, 안전자산 매력도 하락\n미국 백악관, 호르무즈 해협 항행 안전 위해 한국의 군사 자원 투입 공개 요구 — \"한국은 중동산 원유 주요 수입국, 역내 자원 투입 기다리고 있다\" 압박\n유럽 SpaceX 경쟁사, 로켓 궤도 진입 성공으로 우주 발사 시장 경쟁 격화 — 미국 독점 체제 균열 가능성\nAI 데이터센터 건설이 미국 농촌 토지 시장 변화 주도하며 지역 사회 반발 확대 — 토지 가격 급등·물·전력 자원 갈등\nOpenAI GPT-6 Astra 공개 — ARC-AGI-3 점수 7.8%→99.9% 비약적 향상, '디지털 노동자' 시대 가능성 제시하며 GPU·HBM·D램·낸드 수요 전방위 확대 기대\n스페이스X 시가총액 2조달러 재입성 — AI 컴퓨팅 인프라(위성 기반 데이터 전송) 사업 가치 재평가로 목표가 상향, 국내 우주ETF 편입 여부에 따라 수익률 희비\nMS·세일즈포스·서비스나우·크라우드스트라이크 등 미국 SW 4대장 실적 호조 — MS 코파일럿 분기 매출 900억불, 세일즈포스 구독형 AI 연간 반복 매출 240% 폭증, AI 전환 수혜 확인\n아마존 화물기 보잉 767-300, 마이애미 공항 활주로 이탈·차량 충돌 후 화재 발생으로 공항 일시 폐쇄 — 물류 차질 우려\n니덱(일본전산) 850건 품질 부정 행위 드러나며 일본 제조업 신뢰도 타격 — 창업자 카리스마 경영·단기 실적 압박이 회계·품질 양대 축 무너뜨려",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "미 고용지표 강세(Jobs Surge)로 9월 연준 금리인상 확률 급등 → 국채 2Y +0.45%, 10Y +0.46% 동반 급등하며 고금리 장기화 우려 재점화",
+          "text": "미국 8월 비농업 고용지표 호조로 9월 FOMC 금리 인상 우려 재점화, 국채 2Y·10Y 각각 +0.45%·+0.46% 급등하며 11일 발표 예정 8월 CPI가 금리 결정 핵심 변수로 부상",
           "impact": "high"
         },
         {
-          "text": "서학개미, 고금리 베팅 강화하며 초단기 미국 국채 ETF(SGOV·만기 3개월 이하) 일주일간 1250억원 순매수 — 레버리지 상품 이탈",
-          "impact": "high"
-        },
-        {
-          "text": "트럼프 행정부, 9월 연준 회의 10일 앞두고 Fed 의장 후보 워시 압박 강화 — 금리인상 저지 시도",
+          "text": "달러인덱스 +0.16% 강세로 신흥국 통화 압박 지속, 다만 원화는 반도체 강세 기대감으로 -0.76% 강세 예외",
           "impact": "mid"
         },
         {
-          "text": "한국 경상수지 흑자율 반도체 특수로 20% 육박 전망, 역대 최고 기록하며 대만과 격차 10%p→3%p대로 축소 — JP모건 \"첫 역전 가능성\"",
+          "text": "구리 +1.60% 급등 — AI 데이터센터 건설 확대와 전력 인프라 수요 증가 기대, 알루미늄도 +0.30% 상승",
+          "impact": "mid"
+        },
+        {
+          "text": "금 -0.34% 하락 — 달러 강세·국채 10Y +0.46% 급등으로 실질금리 상승, 안전자산 매력도 하락",
           "impact": "mid"
         }
       ]
@@ -9888,11 +9879,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미 SEC, 의결권 자문사 ISS 제소하며 프록시 어드바이저 규제 강화 — ESG 투표 영향력 견제",
+          "text": "미국 백악관, 호르무즈 해협 항행 안전 위해 한국의 군사 자원 투입 공개 요구 — \"한국은 중동산 원유 주요 수입국, 역내 자원 투입 기다리고 있다\" 압박",
+          "impact": "high"
+        },
+        {
+          "text": "유럽 SpaceX 경쟁사, 로켓 궤도 진입 성공으로 우주 발사 시장 경쟁 격화 — 미국 독점 체제 균열 가능성",
           "impact": "mid"
         },
         {
-          "text": "슈퍼 엘니뇨 내년 초까지 전망 — 증권가 \"농산물·비철 관련주 일괄 매수보다 가격전가력 있는 기업 선별 필요\"",
+          "text": "AI 데이터센터 건설이 미국 농촌 토지 시장 변화 주도하며 지역 사회 반발 확대 — 토지 가격 급등·물·전력 자원 갈등",
           "impact": "mid"
         }
       ]
@@ -9902,23 +9897,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "오픈AI, 등급 '위험(Risk Level)' AI 아스트라 출시 → HBM·고대역폭 메모리 수요 급증 기대로 필라델피아반도체 +3.37%, SK하이닉스 ADR +8.14% 급등",
+          "text": "OpenAI GPT-6 Astra 공개 — ARC-AGI-3 점수 7.8%→99.9% 비약적 향상, '디지털 노동자' 시대 가능성 제시하며 GPU·HBM·D램·낸드 수요 전방위 확대 기대",
           "impact": "high"
         },
         {
-          "text": "Flex(FLEX), AI 데이터센터 전력 인프라 업체 EPC Power를 44억달러에 인수 발표 — 디지털 전력 전환 역량 확보",
+          "text": "스페이스X 시가총액 2조달러 재입성 — AI 컴퓨팅 인프라(위성 기반 데이터 전송) 사업 가치 재평가로 목표가 상향, 국내 우주ETF 편입 여부에 따라 수익률 희비",
           "impact": "high"
         },
         {
-          "text": "Credo Technology(CRDO), FY2027 Q1 실적 예상 상회했으나 수익성 우려에 주가 -26% 급락 — 2년 만에 최대 주간 낙폭",
+          "text": "MS·세일즈포스·서비스나우·크라우드스트라이크 등 미국 SW 4대장 실적 호조 — MS 코파일럿 분기 매출 900억불, 세일즈포스 구독형 AI 연간 반복 매출 240% 폭증, AI 전환 수혜 확인",
+          "impact": "high"
+        },
+        {
+          "text": "아마존 화물기 보잉 767-300, 마이애미 공항 활주로 이탈·차량 충돌 후 화재 발생으로 공항 일시 폐쇄 — 물류 차질 우려",
           "impact": "mid"
         },
         {
-          "text": "월스트리트, AI 주식 밸류에이션 기준 상향 조정 → 일부 투자자들 방어 포지션 확대 중 (CNBC \"We got more defensive\")",
-          "impact": "mid"
-        },
-        {
-          "text": "AI 데이터센터 건설 붐으로 미국 트럭 운송업 호황 지속 — 부품·장비 운송 수요 급증",
+          "text": "니덱(일본전산) 850건 품질 부정 행위 드러나며 일본 제조업 신뢰도 타격 — 창업자 카리스마 경영·단기 실적 압박이 회계·품질 양대 축 무너뜨려",
           "impact": "mid"
         }
       ]
@@ -9926,221 +9921,222 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "미 고용지표 강세로 9월 연준 금리인상 확률 상승 → 금리 장기화 우려에 지수 전반 하락했으나 기술주가 하락폭 제한",
+      "reason": "미국 8월 비농업 고용지표 호조로 9월 FOMC 금리 인상 우려 재점화, 국채 2Y·10Y 각각 +0.45%·+0.46% 급등하며 밸류에이션(주가 적정성) 부담 확대",
       "drivers": [
-        "국채 10Y +0.46% 급등 (밸류에이션 압박)",
-        "기술XLK 섹터 R100.8/M101.5 Leading 방어"
+        "국채 10Y +0.46%(4.78%)",
+        "고용지표 호조→금리 인상 우려"
       ]
     },
     "NASDAQ": {
-      "reason": "오픈AI 아스트라 출시에도 금리 급등으로 빅테크 밸류에이션 부담 → S&P500 대비 낙폭 제한(-0.29%)",
+      "reason": "금리 인상 우려로 성장주 밸류에이션 압박 받았으나, AI 반도체·소프트웨어주 강세가 낙폭 제한",
       "drivers": [
-        "반도체 일부 종목 급등 (SK하이닉스 ADR +8.14%)",
-        "국채 2Y +0.45%, 할인율 압박"
+        "필라델피아반도체 +3.37%",
+        "국채 10Y +0.46% 부담"
       ]
     },
     "DOW": {
-      "reason": "금리 민감 경기순환주 중심 구성으로 국채금리 급등 직격탄 → 3대 지수 중 최대 낙폭",
+      "reason": "금리 인상 우려에 경기민감 산업재·금융주 약세, 섹터 RRG에서 산업재XLI·금융XLF 모두 Weakening(약화) 진입",
       "drivers": [
-        "국채 2Y/10Y 각각 +0.45%/+0.46%",
-        "금융XLF·산업재XLI Weakening/Lagging"
+        "국채 2Y +0.45%→금융주 압박",
+        "산업재XLI Weakening"
       ]
     },
     "VIX": {
-      "reason": "9월 연준 금리인상 확률 상승 + 고금리 장기화 경계심리 → 변동성 소폭 확대",
+      "reason": "금리 인상 우려와 11일 발표 예정 8월 CPI(소비자물가지수) 앞두고 단기 변동성 확대",
       "drivers": [
-        "미 고용지표 강세 (Jobs Surge)",
-        "국채금리 동반 급등"
+        "FOMC 금리 결정 불확실성"
       ]
     },
     "필라델피아반도체": {
-      "reason": "오픈AI 등급 '위험' AI 아스트라 출시로 HBM·고대역폭 메모리 수요 재점화 기대 → 반도체 전반 강세",
+      "reason": "GPT-6 Astra 공개로 GPU뿐 아니라 HBM·D램·낸드 수요 증가 기대감 확산, AI를 '검색 대체재'에서 '노동력 대체재'로 재평가하며 메모리 병목 인식 강화",
       "drivers": [
-        "SK하이닉스 ADR +8.14%",
-        "오픈AI 아스트라 메모리 수요 촉매"
+        "GPT-6 Astra ARC-AGI-3 99.9% 돌파",
+        "메모리 수요 증가 기대"
       ]
     },
     "러셀2000": {
-      "reason": "금리 급등에도 소형주 일부 숏커버링(공매도 청산 매수) + 기술주 강세 동조 → 소폭 상승",
+      "reason": "금리 인상 우려 속에서도 일부 소형주 모멘텀 유지, 직접 촉매 없음 — 섹터 로테이션 경미한 유입",
       "drivers": [
-        "기술XLK Leading 파급",
-        "일부 소형 기술주 반등"
+        "금리 인상 우려 제한적 반영"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유럽 지정학 이슈 소강 + 달러 강세 압박 상쇄되며 보합",
+      "reason": "직접 촉매 없음 — 미국 금리 인상 우려와 유럽 경기 둔화 우려 상쇄되며 보합 마감",
       "drivers": [
-        "달러인덱스 +0.16%",
-        "유럽 지역 재료 부재"
+        "유럽 경기 둔화 우려"
       ]
     },
     "독일DAX": {
-      "reason": "직접 촉매 없음 — 미 기술주 강세 일부 동조 + 유로존 제조업 둔화 속 소폭 상승",
+      "reason": "직접 촉매 없음 — 미국 AI 반도체 강세에 유럽 장비·소재주 일부 동조 상승",
       "drivers": [
-        "미 기술주 Leading 파급",
-        "유럽 지역 재료 부재"
+        "미국 반도체 강세 동조"
       ]
     },
     "니케이": {
-      "reason": "오픈AI 아스트라 → 일본 반도체 장비·소재 수혜 기대 + 엔저 유지로 수출주 전반 강세",
+      "reason": "필라델피아반도체 +3.37% 영향으로 도쿄일렉트론·어드밴테스트 등 반도체 장비주 강세, 엔화 약세(달러인덱스 +0.16%) 수출주 수혜",
       "drivers": [
-        "반도체 관련주 동반 상승",
-        "엔저 수출 수혜"
+        "필라델피아반도체 +3.37%",
+        "엔화 약세 수출주 수혜"
       ]
     },
     "항셍": {
-      "reason": "중국 AI 인프라 투자 기대 + 기술주 동조 상승 → 1%대 중반 강세",
+      "reason": "직접 촉매 없음 — 미국 AI 반도체 강세에 중국 IT·반도체 관련주 투자심리 개선",
       "drivers": [
-        "글로벌 AI 모멘텀 파급",
-        "중국 기술주 동반 상승"
+        "미국 반도체 강세 동조"
       ]
     },
     "달러인덱스": {
-      "reason": "미 고용지표 강세 → 9월 연준 금리인상 확률 상승하며 달러 수요 증가",
+      "reason": "미국 8월 고용지표 호조로 9월 FOMC 금리 인상 가능성 상승, 국채 2Y +0.45% 급등하며 달러 수요 확대",
       "drivers": [
-        "Jobs Surge 발표",
-        "국채금리 동반 급등"
+        "국채 2Y +0.45%",
+        "고용지표 호조→금리 인상 기대"
       ]
     },
     "국채2Y": {
-      "reason": "미 고용 강세로 9월 연준 금리인상 베팅 급증 → 단기금리 민감 2Y물 +0.45% 급등",
+      "reason": "미국 8월 비농업 고용지표 호조로 9월 FOMC 금리 인상 또는 동결 기간 연장 기대 확대",
       "drivers": [
-        "Jobs Surge",
-        "9월 FOMC 금리인상 확률 상승"
+        "8월 고용지표 호조"
       ]
     },
     "국채10Y": {
-      "reason": "고용 강세 + 고금리 장기화 우려 → 장기금리 동반 급등하며 +0.46% 상승",
+      "reason": "고용지표 호조에 따른 금리 인상 우려와 함께, 11일 발표 예정 8월 CPI 앞두고 인플레 재점화 우려 반영",
       "drivers": [
-        "인플레 재점화 우려",
-        "서학개미 SGOV(초단기 국채 ETF) 1250억원 순매수"
+        "8월 고용지표 호조",
+        "8월 CPI 발표 대기"
       ]
     },
     "코스피": {
-      "reason": "오픈AI 아스트라 → SK하이닉스 ADR +8.14% 급등 선반영, 반도체 특수 경상흑자율 20% 육박 펀더멘탈 확인 → 대형주 중심 강세",
+      "reason": "직접 촉매 없음 — 미국 금리 인상 우려와 반도체 강세 기대감 상쇄되며 보합 마감",
       "drivers": [
-        "SK하이닉스·삼성전자 등 반도체 급등",
-        "경상수지 흑자율 사상 최고 전망"
+        "미국 금리 인상 우려",
+        "반도체 강세 기대감"
       ]
     },
     "코스닥": {
-      "reason": "오픈AI 촉매로 AI·반도체 중소형주 동반 급등 + IT서비스 RS 124.4 최강 모멘텀 → 코스피 대비 강세",
+      "reason": "직접 촉매 없음 — 미국 나스닥 -0.29% 약세와 국내 중소형주 수급 부진 지속",
       "drivers": [
-        "IT서비스·반도체 중소형주",
-        "AI 테마 전반 확산"
+        "나스닥 약세 동조"
       ]
     },
     "금": {
-      "reason": "달러 강세(+0.16%) + 국채금리 급등(실질금리 상승)로 무수익 자산 금 매도 압력 → -1.38% 하락",
+      "reason": "달러인덱스 +0.16% 강세와 국채 10Y +0.46% 급등으로 실질금리 상승, 금 투자 매력도 하락",
       "drivers": [
         "달러인덱스 +0.16%",
-        "국채 10Y +0.46% (기회비용 상승)"
+        "국채 10Y +0.46%"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 없음 — 중동 지정학 리스크 소강 + 미 고용 강세 수요 기대 상쇄되며 소폭 상승",
+      "reason": "직접 촉매 없음 — 미국 호르무즈 해협 한국 자원 투입 요구로 중동 지정학 리스크 경미하게 반영",
       "drivers": [
-        "중동 이슈 소강",
-        "미 고용 강세 수요 기대"
+        "호르무즈 해협 지정학 리스크"
       ]
     },
     "원달러": {
-      "reason": "경상수지 흑자율 20% 육박 + 반도체 수출 강세로 달러 공급 증가 → 원화 강세 (-0.32%)",
+      "reason": "달러인덱스 +0.16% 강세에도 외국인 반도체주 매수 기대감으로 원화 강세, 필라델피아반도체 +3.37% 영향",
       "drivers": [
-        "경상수지 사상 최대 흑자 전망",
-        "반도체 수출 특수"
+        "필라델피아반도체 +3.37%",
+        "외국인 매수 기대"
       ]
     },
     "알루미늄": {
-      "reason": "직접 촉매 없음 — 중국 제조업 둔화 수요 우려 지속되며 소폭 하락",
+      "reason": "직접 촉매 없음 — AI 데이터센터 건설 확대로 산업 수요 경미한 증가 기대",
       "drivers": [
-        "중국 제조업 지표 부진",
-        "글로벌 수요 불확실"
+        "데이터센터 건설 수요"
       ]
     },
     "구리": {
-      "reason": "AI 데이터센터 전력 인프라 수요 기대 + 오픈AI 아스트라 발표 동조 → 소폭 상승",
+      "reason": "AI 데이터센터 건설 확대와 전력 인프라 수요 증가 기대, CNBC 보도에서 AI 데이터센터가 미국 농촌 토지 시장 변화 주도 언급",
       "drivers": [
-        "AI 인프라 투자 기대",
-        "전력기기 수요 연계"
+        "AI 데이터센터 건설 확대",
+        "전력 인프라 수요"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "오픈AI 아스트라 촉매로 SK하이닉스 ADR +8.14% 급등, 반도체 슈퍼사이클 재점화 기대에 코스피 +1.64% 강세. 금리인상 우려에도 수출 펀더멘탈 확인으로 상승 우위",
+    "summary": "GPT-6 Astra 공개로 메모리 수요 재평가 기대감 확산, 다만 미국 금리 인상 우려가 단기 변동성 요인",
     "positive_factors": [
-      "오픈AI 등급 '위험' AI 아스트라 출시 → HBM·메모리 수요 기대 급등, SK하이닉스 ADR +8.14%, 필라델피아반도체 +3.37% 급등이 국내 반도체 투자심리 직접 개선",
-      "반도체 특수로 한국 경상수지 흑자율 20% 육박(역대 최고), 대만과 격차 3%p대로 축소되며 수출 펀더멘탈 재확인 — 원화 강세(-0.32%) 동반",
-      "IT서비스 섹터 RS-Ratio 126.44·RS-Momentum 124.36으로 전 섹터 최강 모멘텀, 코스닥 +2.95% 강세 주도"
+      "필라델피아반도체 +3.37% 급등 → 삼성전자·SK하이닉스 등 국내 메모리 반도체 투자심리 개선, HBM·D램·낸드 수요 증가 기대",
+      "GPT-6 Astra의 '디지털 노동자' 시대 가능성 제시 → AI를 '검색 대체재'에서 '노동력 대체재'로 재평가하며 반도체 병목 인식 강화",
+      "원달러 -0.76% 강세 — 달러인덱스 +0.16% 상승에도 외국인 반도체주 매수 기대감으로 원화 강세 예외, 수출주 환차익 우려 완화"
     ],
     "negative_factors": [
-      "미 고용 강세로 9월 연준 금리인상 확률 급등 → 국채 2Y +0.45%, 10Y +0.46% 동반 급등하며 글로벌 금리 장기화 우려 재점화",
-      "서학개미 초단기 국채 ETF(SGOV) 1250억원 집중 매수 — 고금리 베팅 강화로 위험자산 수급 이탈 신호"
+      "미국 8월 고용지표 호조로 9월 FOMC 금리 인상 우려 재점화, 국채 10Y +0.46% 급등하며 11일 발표 예정 8월 CPI가 핵심 변수로 부상 → 단기 변동성 확대 가능",
+      "미국 백악관의 호르무즈 해협 한국 군사 자원 투입 공개 요구 → 중동 지정학 리스크 확대 시 원유 수입 차질·방산주 변동성 우려"
     ],
-    "key_watch": "장 초반 SK하이닉스·삼성전자 등 반도체 대장주 갭상승 후 금리 급등 부담 속 낙폭 축소 여부, 2차전지·IT서비스 등 Leading 섹터 추가 상승 지속성"
+    "key_watch": "11일 발표 예정 미국 8월 CPI — 예상 상회 시 금리 인상 우려 본격화로 반도체 강세 모멘텀 제한 가능성, 예상 하회 시 금리 안정 기대로 추가 상승 여력"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "IT서비스",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "오픈AI 아스트라 HBM 수요 촉매 + IT서비스 RS 126.44 전 섹터 최강, 미너비니 52주 신고가 돌파·VCP 패턴 진행 중"
-    },
-    {
       "sector": "반도체_패키징",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "SK하이닉스 ADR +8.14% 선반영, 반도체_패키징 Leading(RS-R 104.48/M 105.38) + 경상흑자 20% 수출 확인"
-    },
-    {
-      "sector": "2차전지_소재",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "2차전지_소재 RS-R 112.26·M 110.85 최상위 모멘텀, 와인스타인 스테이지2 지속 + 글로벌 EV 수요 회복 기대"
+      "reason": "GPT-6 Astra 공개로 HBM·D램 수요 증가 기대 확산, RRG상 반도체_패키징 RS-Ratio 104.48·RS-Momentum 105.38로 Leading(주도) 구간 유지 — 삼성전자·SK하이닉스 HBM3E 공급 확대 수혜"
     },
     {
       "sector": "반도체_소자",
       "rrg_quadrant": "improving",
       "claude_quadrant": "improving",
-      "reason": "반도체_소자 RS-M 102.57 Improving 전환, 오픈AI 촉매로 메모리 업사이클 재점화 + 삼성·SK 동반 상승 모멘텀"
+      "reason": "필라델피아반도체 +3.37% 급등에 국내 반도체 소자 투자심리 개선, RRG상 반도체_소자 RS-Momentum 102.57로 Improving(상승 전환) 진입 — 스테이지 2 초입 진입 타이밍"
+    },
+    {
+      "sector": "IT서비스",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "미국 SW 4대장 실적 호조로 AI 전환 수혜 확인, RRG상 IT서비스 RS-Ratio 126.44·RS-Momentum 124.36으로 전 섹터 중 최강 모멘텀 — 국내 AI_SW·IT서비스 연동 상승 기대"
+    },
+    {
+      "sector": "비철금속",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "AI 데이터센터 건설 확대로 구리 +1.60% 급등, RRG상 비철금속 RS-Ratio 113.76·RS-Momentum 105.49로 Leading 구간 — 전력 인프라 수요 증가 수혜"
     }
   ],
   "watch": [
     {
+      "sector": "조선",
+      "reason": "RRG상 조선 RS-Ratio 96.61·RS-Momentum 95.23으로 Lagging(소외) 구간 지속 — 미국 금리 인상 우려에 경기민감 섹터 회피, 스테이지 4 하락 국면 진입 가능성"
+    },
+    {
+      "sector": "자동차_완성차",
+      "reason": "RRG상 자동차_완성차 RS-Ratio 96.26·RS-Momentum 98.01로 Lagging 구간 — 재고자산 증가가 수요 부진형 악성재고로 해석되며 투자심리 악화"
+    },
+    {
       "sector": "방산",
-      "reason": "방산 Weakening(RS-M 95.74) 구간 진입, 지정학 이슈 소강으로 모멘텀 약화 — 스테이지3 천장 가능성 경계"
-    },
-    {
-      "sector": "은행",
-      "reason": "은행 Lagging(RS-M 90.08), 금리 급등에도 커브 스티프닝(장기금리가 단기금리보다 빠르게 상승) 제한적 + 대출 수요 둔화 지속"
-    },
-    {
-      "sector": "게임",
-      "reason": "게임·엔터 Lagging(RS-M 각 90.09/90.69), RRG 4사분면 장기 체류로 와인스타인 스테이지4 하락 지속"
+      "reason": "RRG상 방산 RS-Momentum 95.74로 Weakening(약화) 진입 — 호르무즈 해협 지정학 리스크 확대 가능성에도 단기 모멘텀 약화, 추가 촉매 대기"
     }
   ],
   "avoid": [],
-  "summary": "오픈AI 아스트라 출시로 SK하이닉스 ADR +8.14% 급등, 반도체 슈퍼사이클 재점화 기대에 코스피 갭상승 예상. 9월 연준 금리인상 우려에도 경상흑자율 20% 육박 펀더멘탈 확인으로 IT서비스·반도체 패키징 Leading 집중 전략",
-  "strategy_brief": "오픈AI가 등급 '위험' AI 아스트라를 출시하며 HBM·메모리 수요 기대가 재점화됐고, 필라델피아반도체 +3.37%, SK하이닉스 ADR +8.14% 급등으로 오늘 국내 반도체 대장주 갭상승이 예상된다. 미 고용 강세로 9월 연준 금리인상 확률이 급등하며 국채 2Y +0.45%, 10Y +0.46% 동반 급등했지만, 한국 경상수지 흑자율이 반도체 특수로 20% 육박(역대 최고)하며 수출 펀더멘탈이 재확인되어 금리 부담을 상쇄한다. RRG(상대회전그래프) 분석 시 IT서비스(RS-Momentum 124.36)가 전 섹터 최강 모멘텀, 반도체_패키징·2차전지_소재가 Leading(상대강도·모멘텀 모두 강세) 구간에 위치해 미너비니 52주 신고가 돌파·VCP(변동성수축패턴) 종목을 우선 배치하되, 서학개미의 초단기 국채 1250억원 집중 매수(고금리 베팅 강화)로 위험자산 수급 이탈 신호가 나온 만큼 AI 직접 수혜주 중심 선별 진입이 필수다. 장 초반 SK하이닉스·삼성전자 등 대형주 갭상승 후 금리 급등 부담 속 낙폭 축소 여부를 확인하고, IT서비스·반도체 패키징·2차전지 소재 등 와인스타인 스테이지2(상승 국면) 초입 종목에 집중 배치한다.",
-  "strategy_headline": "오픈AI 아스트라 메모리 특수 재점화 — 반도체·IT서비스 Leading 집중",
+  "summary": "GPT-6 Astra '디지털 노동자' 쇼크로 메모리 수요 재평가 시작 — 필라델피아반도체 +3.37% 급등, 반도체_소자 Improving 진입 타이밍 포착",
+  "strategy_brief": "OpenAI GPT-6 Astra가 ARC-AGI-3 점수를 7.8%에서 99.9%로 끌어올리며 'AI=노동력 대체재' 시대를 예고했고, 이는 GPU뿐 아니라 HBM·D램·낸드까지 메모리 병목 인식을 강화하는 전환점이 되었다. 필라델피아반도체 지수가 +3.37% 급등하며 강한 미국 고용지표(금리 인상 우려)를 뚫고 차별화 강세를 보인 것은 시장이 AI 수요를 재평가하기 시작했다는 신호다. 국내에서는 반도체_소자가 RRG상 Improving(상승 전환) 구간 진입, 반도체_패키징·IT서비스가 Leading(주도) 최강 모멘텀을 유지 중이므로 삼성전자·SK하이닉스·삼성SDS 등 HBM·AI 직접 수혜주에 집중 전략이 유효하다. 다만 11일 발표 예정 미국 8월 CPI가 예상을 상회할 경우 금리 인상 우려가 본격화되며 단기 변동성이 확대될 수 있으므로, 핵심 종목 중심 선별 매수와 CPI 이벤트 리스크 관리가 필요하다.",
+  "strategy_headline": "GPT-6 쇼크 — 메모리 병목 재평가, 반도체 Leading 집중",
   "strategy_points": [
-    "오픈AI 아스트라 출시 → 필라델피아반도체 +3.37%, SK하이닉스 ADR +8.14% 급등이 오늘 국내 반도체 갭상승 선반영 완료",
-    "미 고용 강세 → 9월 연준 금리인상 확률 급등(국채 2Y +0.45%)했으나, 경상흑자율 20% 육박으로 수출 펀더멘탈 확인되며 금리 부담 상쇄",
-    "IT서비스 RS-M 124.36(상대 모멘텀) 전 섹터 최강 + 반도체_패키징 Leading(상대강도·모멘텀 모두 강세 구간) 구간 → 미너비니 52주 신고가 돌파 종목 우선 배치",
-    "서학개미 초단기 국채 1250억원 집중(고금리 베팅) 신호 — 위험자산 수급 이탈 경계하되 AI 촉매 수혜주는 독립 상승 가능"
+    "OpenAI GPT-6 Astra ARC-AGI-3 점수 99.9% 돌파 → AI '노동력 대체' 시대 진입 기대로 HBM·D램 수요 전방위 확대 인식",
+    "필라델피아반도체 +3.37% 급등, 미국 금리 인상 우려 뚫고 차별화 강세 → 국내 반도체_소자 Improving(상승 전환) 진입 타이밍",
+    "미국 SW 4대장 실적 호조로 AI 전환 수혜 확인 → IT서비스 RS-Ratio 126.44 전 섹터 최강, 삼성SDS 등 국내 AI 기업 연동 기대",
+    "11일 미국 8월 CPI(소비자물가지수) 발표 대기 — 예상 상회 시 금리 인상 우려 본격화로 단기 변동성 확대 리스크"
   ],
   "top_picks": [
     {
       "sector": "반도체_소자",
       "rrg_quadrant": "improving",
-      "reason": "반도체_소자 RS-M 102.57 Improving 전환, 오픈AI 촉매로 메모리 업사이클 재점화 + 삼성·SK 동반 상승 모멘텀",
+      "reason": "필라델피아반도체 +3.37% 급등에 국내 반도체 소자 투자심리 개선, RRG상 반도체_소자 RS-Momentum 102.57로 Improving(상승 전환) 진입 — 스테이지 2 초입 진입 타이밍",
       "stocks": [
+        {
+          "name": "삼성전자",
+          "code": "005930",
+          "signal": "prime",
+          "reason": "GPT-6 Astra 공개로 HBM·D램 수요 재평가 기대 + 반도체_소자 Improving(상승 전환) 진입·RS-Momentum 102.57 — HBM3E 공급 확대 수혜 직접 타겟",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "반도체_소자",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        },
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "오픈AI 아스트라 HBM 수요 촉매 직격탄(ADR +8.14%) + 반도체_소자 Improving(RS-M 102.57) 전환, 미너비니 VCP 패턴 52주 신고가 돌파 임박",
+          "reason": "필라델피아반도체 +3.37% 급등 투자심리 개선 + 반도체_소자 Improving 진입 — HBM3E 선도 업체로 AI 메모리 병목 인식 강화 수혜",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_소자",
           "rrg_sector_match": true,
@@ -10151,13 +10147,13 @@
     {
       "sector": "IT서비스",
       "rrg_quadrant": "leading",
-      "reason": "오픈AI 아스트라 HBM 수요 촉매 + IT서비스 RS 126.44 전 섹터 최강, 미너비니 52주 신고가 돌파·VCP 패턴 진행 중",
+      "reason": "미국 SW 4대장 실적 호조로 AI 전환 수혜 확인, RRG상 IT서비스 RS-Ratio 126.44·RS-Momentum 124.36으로 전 섹터 중 최강 모멘텀 — 국내 AI_SW·IT서비스 연동 상승 기대",
       "stocks": [
         {
           "name": "삼성SDS",
           "code": "018260",
           "signal": "prime",
-          "reason": "IT서비스 RS 126.44 전 섹터 최강 모멘텀 + AI 클라우드·엔터프라이즈 수혜, 와인스타인 스테이지2 초입 진입 확인",
+          "reason": "미국 SW 4대장 실적 호조로 AI 전환 수혜 확인 + IT서비스 RS-Ratio 126.44 전 섹터 최강 Leading(주도) — 국내 대표 AI·클라우드 기업",
           "rrg_tracked": true,
           "rrg_actual_sector": "AI_SW",
           "rrg_sector_match": false,
@@ -10168,57 +10164,40 @@
     {
       "sector": "반도체_패키징",
       "rrg_quadrant": "leading",
-      "reason": "SK하이닉스 ADR +8.14% 선반영, 반도체_패키징 Leading(RS-R 104.48/M 105.38) + 경상흑자 20% 수출 확인",
+      "reason": "GPT-6 Astra 공개로 HBM·D램 수요 증가 기대 확산, RRG상 반도체_패키징 RS-Ratio 104.48·RS-Momentum 105.38로 Leading(주도) 구간 유지 — 삼성전자·SK하이닉스 HBM3E 공급 확대 수혜",
       "stocks": [
         {
-          "name": "하나마이크론",
-          "code": "067310",
+          "name": "한미반도체",
+          "code": "042700",
           "signal": "prime",
-          "reason": "오픈AI 메모리 수요 → 패키징 수혜 기대 + 반도체_패키징 Leading(RS-R 104.48), 미너비니 추세·펀더멘탈·촉매 3박자 충족",
+          "reason": "GPT-6 Astra 메모리 수요 증가 기대 + 반도체_패키징 RS-Ratio 104.48·RS-Momentum 105.38 Leading 구간 — HBM 패키징 장비 수혜",
           "rrg_tracked": true,
-          "rrg_actual_sector": "반도체_패키징",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "2차전지_소재",
-      "rrg_quadrant": "leading",
-      "reason": "2차전지_소재 RS-R 112.26·M 110.85 최상위 모멘텀, 와인스타인 스테이지2 지속 + 글로벌 EV 수요 회복 기대",
-      "stocks": [
-        {
-          "name": "에코프로비엠",
-          "code": "247540",
-          "signal": "prime",
-          "reason": "2차전지_소재 RS-R 112.26 최상위 + 글로벌 EV 수요 회복 조짐, 닥터 엘더 삼중스크린 주간 추세 상승 지속",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
+          "rrg_actual_sector": "반도체_장비",
           "rrg_sector_match": false,
           "rrg_signal": "leading"
         }
       ]
     },
     {
-      "sector": "전력기기",
-      "rrg_quadrant": "",
-      "reason": "",
+      "sector": "비철금속",
+      "rrg_quadrant": "leading",
+      "reason": "AI 데이터센터 건설 확대로 구리 +1.60% 급등, RRG상 비철금속 RS-Ratio 113.76·RS-Momentum 105.49로 Leading 구간 — 전력 인프라 수요 증가 수혜",
       "stocks": [
         {
-          "name": "효성중공업",
-          "code": "298040",
+          "name": "풍산",
+          "code": "103140",
           "signal": "prime",
-          "reason": "AI 데이터센터 전력 인프라 수요(Flex EPC 인수 44억달러) 동조 + 전력기기 Leading(RS-R 101.53), 구리 가격 동반 상승",
+          "reason": "AI 데이터센터 건설 확대로 구리 +1.60% 급등 + 비철금속 RS-Ratio 113.76 Leading 구간 — 전력 인프라 동 수요 증가 직접 수혜",
           "rrg_tracked": true,
-          "rrg_actual_sector": "전력기기",
+          "rrg_actual_sector": "비철금속",
           "rrg_sector_match": true,
-          "rrg_signal": "leading"
+          "rrg_signal": "weakening"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "방산",
-    "은행"
+    "조선",
+    "자동차_완성차"
   ]
 }
