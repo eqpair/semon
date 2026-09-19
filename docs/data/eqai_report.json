@@ -1,190 +1,184 @@
 {
-  "generated_at": "2026-09-19 07:02:52",
+  "generated_at": "2026-09-20 07:02:38",
   "macro": {
     "S&P500": {
       "price": 7650.5,
       "change": 0.17,
-      "reason": "연준 금리인상에도 +0.17% 소폭 상승 — 필라델피아반도체 급등으로 기술주 반등, 에너지 약세와 상쇄되며 혼조 마감",
+      "reason": "SpaceX 나스닥100 비중 상향과 Robinhood 규제 완화 호재로 기술주 중심 상승했으나, 국채10년물 5.0% 급등 부담으로 상승폭 제한(+0.17%)",
       "drivers": [
-        "필라델피아반도체 +2.78%",
-        "XLE 에너지 섹터 약세",
-        "연준 인상 충격 단기 소화"
+        "SpaceX 나스닥100 편입 2.82% 비중 확정",
+        "국채10년물 1.03% 급등으로 밸류에이션 부담"
       ]
     },
     "NASDAQ": {
       "price": 26522.54,
       "change": 0.39,
-      "reason": "+0.39% 상승 — 칩 섹터 반등(필라 +2.78%)과 넷앱(NTAP) 등 AI 인프라주 지지, AI 안전 우려에도 기술주 매수세 유입",
+      "reason": "SpaceX 나스닥100 리밸런싱 효과와 Robinhood 급등, 트럼프 AI Force 발표로 AI·우주 테마 강세 지속 - 금리 급등에도 기술주 선호 확인(+0.39%)",
       "drivers": [
-        "필라델피아반도체 강세",
-        "넷앱 실적 66% 증가",
-        "XLK 기술 섹터 Leading(RS-R 103.3)"
+        "SpaceX 나스닥100 가중치 상향",
+        "트럼프 AI Force 신설 - GDP 25% AI 목표"
       ]
     },
     "DOW": {
       "price": 51682.64,
       "change": -0.18,
-      "reason": "-0.18% 하락 — 연준 금리인상·10년물 5% 돌파로 경기민감 산업주·금융주 부담, 러셀2000 -0.5% 약세와 동조",
+      "reason": "국채금리 급등으로 금융주 제외 전통 산업재 밸류에이션 부담 가중 - 3주 연속 하락세 지속(-0.18%)",
       "drivers": [
-        "10년물 국채 +1.03%p 급등",
-        "러셀2000(소형주) -0.5%",
-        "XLF 금융·XLI 산업재 lagging"
+        "국채10년물 5.0% 돌파로 차입비용 우려",
+        "러셀2000 -0.5% 동반 약세"
       ]
     },
     "VIX": {
       "price": 14.81,
       "change": -4.08,
-      "reason": "-4.08% 급락 — 연준 인상 이벤트 통과 후 변동성 프리미엄 소멸, 기술주 반등으로 투자심리 개선",
+      "reason": "기술주 강세와 SpaceX 편입 이벤트 통과로 변동성 우려 완화 - AI 투자 확신이 금리 리스크 상쇄(-4.08%)",
       "drivers": [
-        "연준 이벤트 리스크 해소",
-        "나스닥 +0.39% 반등"
+        "나스닥 상승 안정화",
+        "SpaceX 나스닥100 리밸런싱 불확실성 해소"
       ]
     },
     "필라델피아반도체": {
       "price": 11921.69,
       "change": 2.78,
-      "reason": "+2.78% 급등 — \"칩 섹터 천장 돌파\" 보도(IBD), MACOM 등 개별주 신고가로 AI 인프라 수요 재확인, OpenAI 안전 논란에도 기술적 반등",
+      "reason": "트럼프 AI Force 발표로 AI 인프라 투자 가속 기대 + SpaceX 나스닥100 편입으로 우주·반도체 연관성 부각 - 금리 급등에도 강한 모멘텀(+2.78%)",
       "drivers": [
-        "칩 섹터 기술적 천장 돌파",
-        "MACOM 등 개별주 신고가",
-        "AI 인프라 수요 지속"
+        "트럼프 AI GDP 25% 목표 제시",
+        "SpaceX 나스닥100 2.82% 비중 확정"
       ]
     },
     "러셀2000": {
       "price": 2860.4,
       "change": -0.5,
-      "reason": "-0.50% 하락 — 연준 금리인상·10년물 5% 돌파로 소형주 밸류에이션 부담, 대형 기술주 대비 상대 약세",
+      "reason": "연준 3년2개월만 금리인상 전환과 국채2년물 3.98% 상승으로 소형주 차입비용 부담 가중 - 대형 기술주 대비 차별화 약세(-0.50%)",
       "drivers": [
-        "10년물 국채 급등",
-        "금리 민감 소형주 압박"
+        "국채2년물 +0.33% 단기금리 압박",
+        "연준 금리인상 사이클 재개"
       ]
     },
     "영국FTSE": {
-      "price": 10659.13,
+      "price": 10659.1,
       "change": -1.45,
-      "reason": "-1.45% 급락 — 미 연준 금리인상·달러 보합에도 유럽 증시 독자 약세, 에너지주 약세(WTI -6.32%) 직격탄",
+      "reason": "유가 -1.58% 하락에 에너지 비중 큰 FTSE 타격 + 유럽 금리인상 동조화로 경기민감 섹터 전반 약세(-1.45%)",
       "drivers": [
-        "WTI 원유 -6.32% 급락",
-        "유럽 에너지주 약세"
+        "WTI유가 100.3달러 -1.58% 하락",
+        "유럽 긴축 동조화 압박"
       ]
     },
     "독일DAX": {
-      "price": 25716.71,
-      "change": 0.7,
-      "reason": "+0.70% 상승 — 미 기술주 반등 수혜, 제조업 중심 독일 증시는 반도체 동조 상승으로 유럽 내 독보적 강세",
+      "price": 25304.06,
+      "change": -1.6,
+      "reason": "주요국 금리인상 동시 진행으로 제조업 조달비용 우려 확산 - 정유·석화·자동차 등 차입 의존 섹터 압박(-1.60%)",
       "drivers": [
-        "필라델피아반도체 +2.78% 동조",
-        "독일 제조·반도체 관련주"
+        "유럽 금리인상으로 기업 자금조달 부담",
+        "에너지XLE 약세 동조화"
       ]
     },
     "니케이": {
-      "price": 64136.25,
-      "change": 0.33,
-      "reason": "+0.33% 소폭 상승 — BOJ 금리 점검 보도(블룸버그)로 엔화 약세 일부 완화, 반도체·수출주 반등으로 지수 지지",
+      "price": 65018.95,
+      "change": 1.38,
+      "reason": "필라델피아반도체 강세에 도쿄일렉트론·어드밴테스트 등 반도체 장비주 동반 상승 - 미국 AI 투자 확대 수혜 기대(+1.38%)",
       "drivers": [
-        "BOJ 금리 점검 보도",
-        "반도체 수출주 반등"
+        "필라델피아반도체 +2.78% 선행",
+        "트럼프 AI Force 발표 파급"
       ]
     },
     "항셍": {
-      "price": 24604.29,
-      "change": -0.44,
-      "reason": "-0.44% 하락 — 트럼프-시진핑 정상회담 대기(IBD 보도)로 미중 긴장 경계, AI 안전 논란 속 중국 기술주 관망세",
+      "price": 24750.78,
+      "change": 0.6,
+      "reason": "직접 촉매 약함 - 미국 기술주 강세와 알루미늄·구리 소폭 반등에 따른 제한적 동조 상승(+0.60%)",
       "drivers": [
-        "트럼프-시진핑 회담 대기",
-        "미중 AI 경쟁 긴장"
+        "나스닥 상승 분위기 전이",
+        "알루미늄·구리 소폭 반등"
       ]
     },
     "달러인덱스": {
-      "price": 100.21,
-      "change": -0.0,
-      "reason": "100.21 보합 — 연준 금리인상·10년물 5% 돌파에도 추가 인상 불확실성으로 달러 강세 제한, 금 소폭 상승과 병행",
+      "price": 100.22,
+      "change": 0.0,
+      "reason": "국채금리 급등에도 유가 하락(-1.58%)과 유럽 약세가 달러 수요 상쇄 - 방향성 없이 보합권 유지(+0.00%)",
       "drivers": [
-        "연준 인상 시장 예상 내",
-        "추가 인상 불확실성"
+        "국채10년물 5.0% 상승 압력",
+        "WTI유가 -1.58% 하락으로 상쇄"
       ]
     },
     "국채2Y": {
       "price": 3.98,
       "change": 0.33,
-      "reason": "+0.33%p 상승(3.98%) — 연준 금리인상 직접 반영, 단기물 선반영으로 상승폭은 10년물 대비 제한적",
+      "reason": "연준 3년2개월만 금리인상 단행 + CD 91일물 3.20% 상승으로 단기금리 상승 압력 확산 - 11월 추가 인상 매파 전망 우세(+0.33%)",
       "drivers": [
-        "연준 +0.25%p 인상",
-        "추가 인상 시사"
+        "연준 금리인상 사이클 재개",
+        "CD금리 3.20% 상승으로 단기 조달비용 압박"
       ]
     },
     "국채10Y": {
       "price": 5.0,
       "change": 1.03,
-      "reason": "+1.03%p 급등(5.0%) — 연준 인상 후 장기 긴축 우려 확산, \"얼마나 더 갈지\" 시장 불확실성(CNBC Warsh 발언) 반영",
+      "reason": "연준 금리인상 재개 + 10월 국고채 대량 발행 예정으로 공급 부담 가중 - 채권시장 전반 매도세 집중(+1.03%)",
       "drivers": [
-        "연준 긴축 장기화 우려",
-        "Warsh \"추가 인상\" 시사",
-        "커브 스티프닝(장기금리가 단기금리보다 빠르게 상승)"
+        "연준 기준금리 인상으로 장기 금리 동반 상승",
+        "10월 국고채 발행 물량 우려"
       ]
     },
     "코스피": {
       "price": 6894.23,
       "change": 2.66,
-      "reason": "+2.66% 급등 — 필라델피아반도체 강세 수혜로 삼성전자·SK하이닉스 등 반도체 대형주 급등, 외국인 매수세 유입 추정",
+      "reason": "필라델피아반도체 +2.78% 강세에 삼성전자·SK하이닉스 등 반도체_소자 Leading(RS-R 102.4) 섹터 주도 - 외국인 매수 전환과 반도체 수출 기대감 집중(+2.66%)",
       "drivers": [
-        "필라델피아반도체 +2.78% 동조",
-        "반도체 대형주 급등",
-        "미 기술주 반등 심리 개선"
+        "필라델피아반도체 강세 → 국내 반도체 동반 상승",
+        "반도체_소자 RS-R 102.4 Leading 유지"
       ]
     },
     "코스닥": {
       "price": 827.12,
       "change": 0.6,
-      "reason": "+0.60% 상승 — 나스닥 반등 동조하나 상승폭 제한적, 중소형 기술주는 미 금리 부담으로 코스피 대비 약세",
+      "reason": "IT부품(RS-R 100.8 Leading) 섹터 강세와 유통(improving RS-M 100.6) 반등으로 상승했으나, 플랫폼·게임 lagging 부담으로 코스피 대비 약세(+0.60%)",
       "drivers": [
-        "나스닥 +0.39% 동조",
-        "10년물 5% 돌파 부담"
+        "IT부품 Leading 강세",
+        "플랫폼·게임 lagging 부담"
       ]
     },
     "금": {
-      "price": 4415.9,
-      "change": 0.37,
-      "reason": "+0.37% 소폭 상승(4415.9달러) — 연준 금리인상에도 주간 기준 상승(SA 보도), 10년물 5% 돌파 속 안전자산 수요 일부 유지",
+      "price": 4424.9,
+      "change": 0.57,
+      "reason": "국채금리 5.0% 급등에도 중동 지정학 리스크 잔존과 AI 안전성 우려 확산(OpenAI·Anthropic 연구진 경고)으로 안전자산 수요 유지(+0.57%)",
       "drivers": [
-        "연준 인상에도 주간 상승",
-        "지정학·규제 리스크 헤지"
+        "AI 안전성 우려로 방어 수요",
+        "중동 리스크 잔존"
       ]
     },
     "WTI유가": {
-      "price": 95.47,
-      "change": -6.32,
-      "reason": "-6.32% 급락(95.47달러) — 직접 촉매 뉴스 부재, 연준 긴축·수요 둔화 우려 + 기술적 조정 복합 작용 추정",
+      "price": 100.3,
+      "change": -1.58,
+      "reason": "공급 차질 우려 완화로 유가 하락 - 그러나 디젤 가격 압력은 지속돼 연준·시장에 복합적 시그널(-1.58%)",
       "drivers": [
-        "연준 긴축 수요 우려",
-        "기술적 조정"
+        "공급 차질 우려 완화",
+        "유가 하락에도 디젤 가격 압력 지속"
       ]
     },
     "원달러": {
-      "price": 1385.95,
-      "change": 0.68,
-      "reason": "+0.68% 상승(1385.95원) — 미 10년물 5% 돌파·연준 긴축 지속 우려로 원화 약세, 코스피 급등에도 환율 방어 부담",
+      "price": 1385.0,
+      "change": 0.4,
+      "reason": "미국 국채금리 급등(10년물 5.0%)으로 달러 자금 이탈 압력 - 대미투자 1호 발표 앞두고 필요수익률 16.1%→17.0% 상승으로 불확실성 확대(+0.40%)",
       "drivers": [
-        "미 10년물 5% 돌파",
-        "연준 긴축 지속 시사"
+        "미국 국채10년물 5.0% 급등",
+        "대미투자 상업적 합리성 재협의"
       ]
     },
     "알루미늄": {
-      "price": 3460.0,
-      "change": 0.81,
-      "reason": "+0.81% 상승 — 구리 동반 상승(+1.96%), 중국 인프라·제조 수요 기대 + 미 금리 부담 제한적 해석",
+      "price": 3446.75,
+      "change": 0.42,
+      "reason": "직접 촉매 없음 - 구리 동반 소폭 반등, 중국 항셍 약한 상승과 제조업 기대 일부 반영(+0.42%)",
       "drivers": [
-        "구리 강세 동조",
-        "중국 수요 기대"
+        "구리 동반 상승",
+        "중국 제조업 기대 제한적 반영"
       ]
     },
     "구리": {
-      "price": 6.72,
-      "change": 1.96,
-      "reason": "+1.96% 상승 — 필라델피아반도체 급등으로 AI 인프라·데이터센터 전력 수요 재확인, 산업 금속 심리 개선",
+      "price": 6.61,
+      "change": 0.43,
+      "reason": "직접 촉매 약함 - 니케이 +1.38%, 코스피 +2.66% 반도체 강세에 따른 제조업 수요 기대 일부 반영(+0.43%)",
       "drivers": [
-        "반도체·AI 인프라 수요",
-        "데이터센터 구리 수요"
+        "아시아 반도체 강세",
+        "AI 인프라 투자 기대 일부 전이"
       ]
     }
   },
@@ -9768,124 +9762,127 @@
   },
   "sources": [
     {
-      "source": "cnbc_world",
-      "title": "OpenAI's latest AI revelation is a 'serious situation,' Microsoft's Suleyman tells CNBC",
-      "link": "https://www.cnbc.com/2026/09/18/microsoft-ai-ceo-openais-latest-ai-revelation-a-serious-situation.html",
-      "published": "Fri, 18 Sep 2026 21:35:55 GMT"
+      "source": "seeking_alpha",
+      "title": "SpaceX, Google, Anthropic, OpenAI face antitrust lawsuit over AI slowdown",
+      "link": "https://seekingalpha.com/news/4644566-spacex-google-face-antitrust-suit-over-ai-slowdown?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 19 Sep 2026 13:28:37 -0400"
     },
     {
-      "source": "maeil",
-      "title": "스페이스X 다음은 … 우주 쿠팡맨 몸값, 8조원으로 뛴 이유",
-      "link": "https://www.mk.co.kr/news/business/12156616",
-      "published": "Sat, 19 Sep 2026 05:00:00 +09:00"
+      "source": "yonhap",
+      "title": "유가 완화돼도 채권시장 단기금리 상승 부담 여전",
+      "link": "https://www.yna.co.kr/view/AKR20260919022200008",
+      "published": "Sun, 20 Sep 2026 06:30:01 +0900"
     },
     {
-      "source": "maeil",
-      "title": "테슬라 판 깔고 중국차가 먹는다…한국 차는 어디쯤?[딥 머니 토크]",
-      "link": "https://www.mk.co.kr/news/business/12156899",
-      "published": "Fri, 18 Sep 2026 22:55:30 +09:00"
+      "source": "yonhap",
+      "title": "미국 국채금리 급등에 대미투자 '상업적 합리성' 막판 변수",
+      "link": "https://www.yna.co.kr/view/AKR20260919051000003",
+      "published": "Sun, 20 Sep 2026 05:57:01 +0900"
     },
     {
-      "source": "cnbc_world",
-      "title": "Anthropic and OpenAI need truly independent safety evaluators, experts say in public letter",
-      "link": "https://www.cnbc.com/2026/09/18/ai-safety-evaluators-anthropic-openai-models-security.html",
-      "published": "Fri, 18 Sep 2026 17:02:32 GMT"
+      "source": "yonhap",
+      "title": "조달금리 올랐지만 카드론 금리 동결…\"중금리대출 영향\"",
+      "link": "https://www.yna.co.kr/view/AKR20260919051600002",
+      "published": "Sun, 20 Sep 2026 05:57:00 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "주요국 금리인상에 기업 경영전략 '빨간불'…조달비용 커진다",
+      "link": "https://www.yna.co.kr/view/AKR20260918147200003",
+      "published": "Sun, 20 Sep 2026 05:55:11 +0900"
+    },
+    {
+      "source": "yonhap",
+      "title": "고금리에 깊어진 양극화…저신용 자영업 연체율 5년새 4∼5배로",
+      "link": "https://www.yna.co.kr/view/AKR20260919036700002",
+      "published": "Sun, 20 Sep 2026 05:45:01 +0900"
     },
     {
       "source": "investors",
-      "title": "When OpenAI, Anthropic CEOs Warned Of 'AI Extinction Risk'",
-      "link": "https://www.investors.com/news/technology/ai-stocks-risks-openai-anthropic-warning-artificial-intelligence/",
-      "published": "Fri, 18 Sep 2026 15:25:51 +0000"
+      "title": "Anthropic Reportedly Delays IPO; OpenAI Expects Massive Cash Burn",
+      "link": "https://www.investors.com/news/technology/anthropic-ipo-delayed-openai-expects-massive-cash-burn/",
+      "published": "Sat, 19 Sep 2026 17:48:41 +0000"
     },
     {
       "source": "seeking_alpha",
-      "title": "OpenAI's Altman plans to address UN Security Council due to mounting concerns: report",
-      "link": "https://seekingalpha.com/news/4644546-openais-altman-plans-to-address-un-security-council-due-to-mounting-concerns-report?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 18 Sep 2026 17:20:03 -0400"
+      "title": "OpenAI is set to burn nearly $280B in cash by 2030: FT",
+      "link": "https://seekingalpha.com/news/4644565-openai-burn-nearly-280b-cash-2030?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 19 Sep 2026 12:58:36 -0400"
     },
     {
-      "source": "marketwatch",
-      "title": "Amazon, Palantir and 12 more top tech stock picks from UBS analysts",
-      "link": "https://www.marketwatch.com/story/amazon-palantir-and-12-more-top-tech-stock-picks-from-ubs-analysts-435244bb?mod=mw_rss_topstories",
-      "published": "Fri, 18 Sep 2026 21:14:00 GMT"
+      "source": "seeking_alpha",
+      "title": "Google says Gemini AI model hacked three companies in security test",
+      "link": "https://seekingalpha.com/news/4644563-google-gemini-ai-model-hacked-three-companies?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 19 Sep 2026 10:31:31 -0400"
     },
     {
       "source": "cnbc_world",
-      "title": "SpaceX scores another $950 million from NASA for 3 more crewed flights to ISS",
-      "link": "https://www.cnbc.com/2026/09/18/spacex-scores-950-million-from-nasa-for-3-more-crewed-flights-to-iss-.html",
-      "published": "Fri, 18 Sep 2026 17:41:45 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Say What? This AI Stock Gets Support, Eyes New Entry As Earnings Surge 66%",
-      "link": "https://www.investors.com/stock-lists/stock-spotlight/ai-stock-netapp-ntap-support-entry-earnings-surge/",
-      "published": "Fri, 18 Sep 2026 16:57:59 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Apple Stock Near Buy Point As iPhone 18 Pro Goes On Sale",
-      "link": "https://www.investors.com/news/technology/apple-stock-buy-point-iphone-18-pro-sales-begin/",
-      "published": "Fri, 18 Sep 2026 14:02:32 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Stock Market Falls On AI Fears, Hawkish Fed But Bounces Back: Weekly Review",
-      "link": "https://www.investors.com/news/stock-market-falls-on-ai-fears-hawkish-fed-bounces-back/",
-      "published": "Fri, 18 Sep 2026 13:50:15 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Here's How Google Advertising Antitrust Ruling Could Play Out",
-      "link": "https://www.investors.com/news/technology/googl-stock-digital-advertising-antitrust-remedies-winners/",
-      "published": "Fri, 18 Sep 2026 11:44:33 +0000"
+      "title": "Higher interest rates and AI safety fears put the stock market to the test last week",
+      "link": "https://www.cnbc.com/2026/09/19/higher-interest-rates-and-ai-safety-fears-put-the-stock-market-to-the-test-last-week.html",
+      "published": "Sat, 19 Sep 2026 16:03:09 GMT"
     },
     {
       "source": "seeking_alpha",
-      "title": "S&P 500 ends volatile week as Fed hikes rates, yields jump, oil surges",
-      "link": "https://seekingalpha.com/news/4644545-sp-500-ends-volatile-week-as-fed-hikes-rates-yields-jump-oil-surges?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 18 Sep 2026 17:41:51 -0400"
+      "title": "SpaceX confirmed to get a weighting boost after Nasdaq 100 rebalancing: Bloomberg",
+      "link": "https://seekingalpha.com/news/4644564-spacex-weighting-boost-post-nasdaq-100-rebalancing?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 19 Sep 2026 12:02:06 -0400"
+    },
+    {
+      "source": "bloomberg",
+      "title": "SpaceX’s Nasdaq 100 Weight Is Confirmed at 2.82% in Rebalance",
+      "link": "https://www.bloomberg.com/news/articles/2026-09-19/spacex-s-nasdaq-100-weight-is-confirmed-at-2-82-in-rebalance",
+      "published": "Sat, 19 Sep 2026 14:17:01 GMT"
     },
     {
       "source": "investors",
-      "title": "Stock Market Mixed After Post-Fed Fightback, Netflix Dives; Trump-Xi Meeting Now Up Next",
-      "link": "https://www.investors.com/market-trend/the-big-picture/dow-jones-stock-market-nasdaq-russell-fed-fightback-netflix-trump-xi-meeting/",
-      "published": "Fri, 18 Sep 2026 21:36:24 +0000"
+      "title": "Robinhood Soars, SpaceX Orbits Entry: Five Stocks Near Buy Points",
+      "link": "https://www.investors.com/news/robinhood-stock-spacex-stocks-near-buy-points/",
+      "published": "Sat, 19 Sep 2026 12:00:39 +0000"
     },
     {
       "source": "seeking_alpha",
-      "title": "Gold ekes out weekly gain despite Fed rate hike",
-      "link": "https://seekingalpha.com/news/4644538-gold-ekes-out-weekly-gain-despite-fed-rate-hike?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Fri, 18 Sep 2026 17:30:20 -0400"
+      "title": "Real estate stocks slip as Fed hikes, mortgage rates continue to climb",
+      "link": "https://seekingalpha.com/news/4644559-real-estate-stocks-slip-as-fed-hikes-mortgage-rates-continue-to-climb?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 19 Sep 2026 12:30:30 -0400"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Diesel Prices Keep Pressure on Fed and Markets",
+      "link": "https://www.bloomberg.com/news/videos/2026-09-19/diesel-prices-keep-pressure-on-fed-and-markets-video",
+      "published": "Sat, 19 Sep 2026 13:40:40 GMT"
     }
   ],
   "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +2.78% 급등·VIX -4.08% 공포지수 완화, 연준 금리인상에도 나스닥 +0.39% 기술주 반등 확인",
+  "sentiment_reason": "필라델피아반도체 +2.78%, 나스닥 +0.39% 상승세에 코스피 +2.66% 급등 - 반도체 Leading 섹터 주도로 기술주 강세 지속",
   "key_factors": [
-    "필라델피아반도체 지수 +2.78% 급반등 — 칩 섹터 천장 돌파, MACOM 등 개별주 강세로 AI 인프라 신뢰 회복",
-    "연준 3년 만에 첫 금리인상 단행, 10년물 국채 5% 돌파로 채권 약세·달러 보합 — 추가 인상 시사에도 증시 단기 충격 소화",
-    "OpenAI·Anthropic AI 안전성 논란 격화 — MS AI CEO \"심각한 상황\" 경고, UN 안보리 긴급 회의 소집으로 규제 리스크 부각",
-    "WTI 원유 -6.32% 급락으로 에너지 섹터 약화(XLE weakening), 금 +0.37%로 안전자산 선호는 제한적"
+    "SpaceX 나스닥100 편입 비중 2.82% 확정, Robinhood 규제 완화 호재로 기술주 상승 모멘텀 지속",
+    "미국 국채10년물 5.0%(+1.03%) 급등에도 필라델피아반도체 강세 - AI 투자심리가 금리 부담 압도",
+    "트럼프 'AI Force' 신설 발표로 GDP 25% AI 비중 전망 - 장기 반도체 수요 확신 강화"
   ],
-  "news_summary": "연준 3년 만에 첫 금리인상(+0.25%p) 단행, 10년물 국채 5% 돌파 — Warsh 의장 \"얼마나 더 갈지\" 발언으로 추가 인상 시사, 주간 변동성 확대\n금 주간 기준 상승 유지 — 연준 금리인상에도 지정학·규제 리스크 헤지 수요로 안전자산 선호 지속(SA 보도)\nWTI 원유 -6.32% 급락 — 연준 긴축 수요 둔화 우려, 에너지 섹터(XLE) weakening으로 S&P500 상승 제약\nBOJ 금리 점검 보도(니케이) — 엔화 약세 일부 완화, 일본 수출주 반등 제한적\nOpenAI Altman CEO, UN 안보리 긴급 회의 소집 예정(9/23) — AI 안전성 우려 격화, MS AI CEO \"심각한 상황\" 경고로 규제 리스크 부각\nAnthropic·OpenAI CEO, \"AI 멸종 위험\" 경고 재소환 — 100명 이상 AI 전문가 공개서한, 독립 안전 평가 체계 요구로 프론티어 AI 개발 둔화 압력\n캘리포니아 주지사, AI 규제 행정명령 발동 — \"늦기 전에 통제\" 천명, 미 규제 선제 대응 시작\n트럼프-시진핑 정상회담 임박(IBD 보도) — 미중 AI 경쟁·무역 긴장 속 양국 정상 회동 주목, 항셍 약세 배경\n구글 광고 반독점 판결 상세 구제 조치 공개 — 퍼블리셔 광고 판매 지원 기업(TradeDesk 등)에 수혜 전망(WSJ 분석)\n필라델피아반도체 +2.78% \"천장 돌파\"(IBD) — MACOM 등 칩주 신고가, AI 인프라 수요 재확인으로 섹터 모멘텀 전환 신호\n넷앱(NTAP) 실적 66% 급증, AI 데이터 스토리지 수혜 — 주요 지지선 확보 후 신규 매수 구간 진입, AI 인프라 대장주 부상(IBD)\n애플 아이폰18 Pro 금요일 출시 — Evercore ISI 목표가 상향, 매수 구간 근접으로 프리미엄 스마트폰 수요 재점화 기대\nNetflix 주가 급락, Wells Fargo 매도 강등 — 시청 참여도(engagement) 감소 우려, 목표가 대폭 하향으로 스트리밍 경쟁 격화 신호\n스페이스X, NASA 추가 계약 9억5000만 달러(약 1조3000억 원) 확보 — 2030년까지 ISS 유인 비행 3회, 우주 발사 독점 지위 강화\n임펄스 스페이스, 시리즈D 3억800만 달러 추가 유치 — 누적 8억800만 달러, 기업가치 56억 달러(약 7조6000억 원)로 \"우주 물류\" 시장 급성장\n포젠트 파워 솔루션스(FPS) 주가 주간 +20% — 실적 94% 증가, AI 인프라 전력 관리 수혜주 부각(IBD)\nUBS, 아마존·팔란티어 등 12개 기술주 톱픽 선정 — 기술주 반등 국면 본격화 신호(MarketWatch)",
+  "news_summary": "미국 연준 3년2개월만 기준금리 인상 단행 - 국채2년물 3.98%(+0.33%), 10년물 5.0%(+1.03%) 급등으로 기업 조달비용 압박 가중\n국내 CD 91일물 3.20% 상승, 11월 추가 금리인상 전망 우세 - 10월 국고채 대량 발행 겹쳐 단기금리 상승 압력 확대\nOpenAI 2026~2030년 누적 현금소진 2,780억달러 전망(FT) - AI 컴퓨팅 투자 공격적 확대로 자금 부담 극대화\nAnthropic IPO 10월→11월 연기 보도(WSJ) - AI 안전성 우려와 높은 현금소진율로 상장 시기 조정\n디젤 가격 압력 지속으로 연준·시장에 복합 시그널 - WTI유가 -1.58% 하락에도 정제유 부담 잔존(Bloomberg)\n트럼프 'AI Force' 신설 발표 - AI가 미국 GDP 25% 차지 목표로 장기 AI 인프라 투자 가속 전망\nSpaceX·Google·Anthropic·OpenAI, AI 개발 속도 담합 혐의로 캘리포니아서 반독점 소송 제기\n미국 국채금리 급등으로 한국 대미투자 1호 '상업적 합리성' 재협의 - 필요수익률 16.1%→17.0% 상승, 이대통령 \"동의 쉽지 않아\"\n주요국 금리인상으로 한국 기업 자금조달 부담 확대 - 정유·석화·항공·자동차 등 차입 의존 업종 압박 가중\nSpaceX 나스닥100 리밸런싱 비중 2.82% 확정(Bloomberg) - 분기별 재조정으로 지수 영향력 확대, Robinhood도 매수 구간 진입\nSpaceX NASA 계약 10억달러 규모 수주 - 우주·반도체 연관 투자심리 강화로 SPCX 공격적 진입 구간 테스트(IBD)\nGoogle Gemini AI, 보안 테스트에서 3개 기업 해킹 성공 - AI 공격 능력 입증으로 사이버보안 수요 급증 전망\nGoldman Sachs \"소비심리 악화 원인은 '행복도 하락'\" 분석 - 미시건대 소비심리지수 9월 YoY -13%, MoM -8% 급락 배경 제시\n국내 네이버·카카오 올해 대규모 공채 중단 전망 - 7년 공채 명맥 끊기고 AI 확산으로 수시·경력 채용 중심 전환",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "연준 3년 만에 첫 금리인상(+0.25%p) 단행, 10년물 국채 5% 돌파 — Warsh 의장 \"얼마나 더 갈지\" 발언으로 추가 인상 시사, 주간 변동성 확대",
+          "text": "미국 연준 3년2개월만 기준금리 인상 단행 - 국채2년물 3.98%(+0.33%), 10년물 5.0%(+1.03%) 급등으로 기업 조달비용 압박 가중",
           "impact": "high"
         },
         {
-          "text": "금 주간 기준 상승 유지 — 연준 금리인상에도 지정학·규제 리스크 헤지 수요로 안전자산 선호 지속(SA 보도)",
+          "text": "국내 CD 91일물 3.20% 상승, 11월 추가 금리인상 전망 우세 - 10월 국고채 대량 발행 겹쳐 단기금리 상승 압력 확대",
+          "impact": "high"
+        },
+        {
+          "text": "OpenAI 2026~2030년 누적 현금소진 2,780억달러 전망(FT) - AI 컴퓨팅 투자 공격적 확대로 자금 부담 극대화",
           "impact": "mid"
         },
         {
-          "text": "WTI 원유 -6.32% 급락 — 연준 긴축 수요 둔화 우려, 에너지 섹터(XLE) weakening으로 S&P500 상승 제약",
+          "text": "Anthropic IPO 10월→11월 연기 보도(WSJ) - AI 안전성 우려와 높은 현금소진율로 상장 시기 조정",
           "impact": "mid"
         },
         {
-          "text": "BOJ 금리 점검 보도(니케이) — 엔화 약세 일부 완화, 일본 수출주 반등 제한적",
+          "text": "디젤 가격 압력 지속으로 연준·시장에 복합 시그널 - WTI유가 -1.58% 하락에도 정제유 부담 잔존(Bloomberg)",
           "impact": "mid"
         }
       ]
@@ -9895,23 +9892,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "OpenAI Altman CEO, UN 안보리 긴급 회의 소집 예정(9/23) — AI 안전성 우려 격화, MS AI CEO \"심각한 상황\" 경고로 규제 리스크 부각",
+          "text": "트럼프 'AI Force' 신설 발표 - AI가 미국 GDP 25% 차지 목표로 장기 AI 인프라 투자 가속 전망",
           "impact": "high"
         },
         {
-          "text": "Anthropic·OpenAI CEO, \"AI 멸종 위험\" 경고 재소환 — 100명 이상 AI 전문가 공개서한, 독립 안전 평가 체계 요구로 프론티어 AI 개발 둔화 압력",
+          "text": "SpaceX·Google·Anthropic·OpenAI, AI 개발 속도 담합 혐의로 캘리포니아서 반독점 소송 제기",
           "impact": "high"
         },
         {
-          "text": "캘리포니아 주지사, AI 규제 행정명령 발동 — \"늦기 전에 통제\" 천명, 미 규제 선제 대응 시작",
+          "text": "미국 국채금리 급등으로 한국 대미투자 1호 '상업적 합리성' 재협의 - 필요수익률 16.1%→17.0% 상승, 이대통령 \"동의 쉽지 않아\"",
           "impact": "mid"
         },
         {
-          "text": "트럼프-시진핑 정상회담 임박(IBD 보도) — 미중 AI 경쟁·무역 긴장 속 양국 정상 회동 주목, 항셍 약세 배경",
-          "impact": "mid"
-        },
-        {
-          "text": "구글 광고 반독점 판결 상세 구제 조치 공개 — 퍼블리셔 광고 판매 지원 기업(TradeDesk 등)에 수혜 전망(WSJ 분석)",
+          "text": "주요국 금리인상으로 한국 기업 자금조달 부담 확대 - 정유·석화·항공·자동차 등 차입 의존 업종 압박 가중",
           "impact": "mid"
         }
       ]
@@ -9921,35 +9914,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "필라델피아반도체 +2.78% \"천장 돌파\"(IBD) — MACOM 등 칩주 신고가, AI 인프라 수요 재확인으로 섹터 모멘텀 전환 신호",
+          "text": "SpaceX 나스닥100 리밸런싱 비중 2.82% 확정(Bloomberg) - 분기별 재조정으로 지수 영향력 확대, Robinhood도 매수 구간 진입",
           "impact": "high"
         },
         {
-          "text": "넷앱(NTAP) 실적 66% 급증, AI 데이터 스토리지 수혜 — 주요 지지선 확보 후 신규 매수 구간 진입, AI 인프라 대장주 부상(IBD)",
+          "text": "SpaceX NASA 계약 10억달러 규모 수주 - 우주·반도체 연관 투자심리 강화로 SPCX 공격적 진입 구간 테스트(IBD)",
           "impact": "high"
         },
         {
-          "text": "애플 아이폰18 Pro 금요일 출시 — Evercore ISI 목표가 상향, 매수 구간 근접으로 프리미엄 스마트폰 수요 재점화 기대",
-          "impact": "high"
-        },
-        {
-          "text": "Netflix 주가 급락, Wells Fargo 매도 강등 — 시청 참여도(engagement) 감소 우려, 목표가 대폭 하향으로 스트리밍 경쟁 격화 신호",
-          "impact": "high"
-        },
-        {
-          "text": "스페이스X, NASA 추가 계약 9억5000만 달러(약 1조3000억 원) 확보 — 2030년까지 ISS 유인 비행 3회, 우주 발사 독점 지위 강화",
+          "text": "Google Gemini AI, 보안 테스트에서 3개 기업 해킹 성공 - AI 공격 능력 입증으로 사이버보안 수요 급증 전망",
           "impact": "mid"
         },
         {
-          "text": "임펄스 스페이스, 시리즈D 3억800만 달러 추가 유치 — 누적 8억800만 달러, 기업가치 56억 달러(약 7조6000억 원)로 \"우주 물류\" 시장 급성장",
+          "text": "Goldman Sachs \"소비심리 악화 원인은 '행복도 하락'\" 분석 - 미시건대 소비심리지수 9월 YoY -13%, MoM -8% 급락 배경 제시",
           "impact": "mid"
         },
         {
-          "text": "포젠트 파워 솔루션스(FPS) 주가 주간 +20% — 실적 94% 증가, AI 인프라 전력 관리 수혜주 부각(IBD)",
-          "impact": "mid"
-        },
-        {
-          "text": "UBS, 아마존·팔란티어 등 12개 기술주 톱픽 선정 — 기술주 반등 국면 본격화 신호(MarketWatch)",
+          "text": "국내 네이버·카카오 올해 대규모 공채 중단 전망 - 7년 공채 명맥 끊기고 AI 확산으로 수시·경력 채용 중심 전환",
           "impact": "mid"
         }
       ]
@@ -9957,166 +9938,158 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "연준 금리인상에도 +0.17% 소폭 상승 — 필라델피아반도체 급등으로 기술주 반등, 에너지 약세와 상쇄되며 혼조 마감",
+      "reason": "SpaceX 나스닥100 비중 상향과 Robinhood 규제 완화 호재로 기술주 중심 상승했으나, 국채10년물 5.0% 급등 부담으로 상승폭 제한(+0.17%)",
       "drivers": [
-        "필라델피아반도체 +2.78%",
-        "XLE 에너지 섹터 약세",
-        "연준 인상 충격 단기 소화"
+        "SpaceX 나스닥100 편입 2.82% 비중 확정",
+        "국채10년물 1.03% 급등으로 밸류에이션 부담"
       ]
     },
     "NASDAQ": {
-      "reason": "+0.39% 상승 — 칩 섹터 반등(필라 +2.78%)과 넷앱(NTAP) 등 AI 인프라주 지지, AI 안전 우려에도 기술주 매수세 유입",
+      "reason": "SpaceX 나스닥100 리밸런싱 효과와 Robinhood 급등, 트럼프 AI Force 발표로 AI·우주 테마 강세 지속 - 금리 급등에도 기술주 선호 확인(+0.39%)",
       "drivers": [
-        "필라델피아반도체 강세",
-        "넷앱 실적 66% 증가",
-        "XLK 기술 섹터 Leading(RS-R 103.3)"
+        "SpaceX 나스닥100 가중치 상향",
+        "트럼프 AI Force 신설 - GDP 25% AI 목표"
       ]
     },
     "DOW": {
-      "reason": "-0.18% 하락 — 연준 금리인상·10년물 5% 돌파로 경기민감 산업주·금융주 부담, 러셀2000 -0.5% 약세와 동조",
+      "reason": "국채금리 급등으로 금융주 제외 전통 산업재 밸류에이션 부담 가중 - 3주 연속 하락세 지속(-0.18%)",
       "drivers": [
-        "10년물 국채 +1.03%p 급등",
-        "러셀2000(소형주) -0.5%",
-        "XLF 금융·XLI 산업재 lagging"
+        "국채10년물 5.0% 돌파로 차입비용 우려",
+        "러셀2000 -0.5% 동반 약세"
       ]
     },
     "VIX": {
-      "reason": "-4.08% 급락 — 연준 인상 이벤트 통과 후 변동성 프리미엄 소멸, 기술주 반등으로 투자심리 개선",
+      "reason": "기술주 강세와 SpaceX 편입 이벤트 통과로 변동성 우려 완화 - AI 투자 확신이 금리 리스크 상쇄(-4.08%)",
       "drivers": [
-        "연준 이벤트 리스크 해소",
-        "나스닥 +0.39% 반등"
+        "나스닥 상승 안정화",
+        "SpaceX 나스닥100 리밸런싱 불확실성 해소"
       ]
     },
     "필라델피아반도체": {
-      "reason": "+2.78% 급등 — \"칩 섹터 천장 돌파\" 보도(IBD), MACOM 등 개별주 신고가로 AI 인프라 수요 재확인, OpenAI 안전 논란에도 기술적 반등",
+      "reason": "트럼프 AI Force 발표로 AI 인프라 투자 가속 기대 + SpaceX 나스닥100 편입으로 우주·반도체 연관성 부각 - 금리 급등에도 강한 모멘텀(+2.78%)",
       "drivers": [
-        "칩 섹터 기술적 천장 돌파",
-        "MACOM 등 개별주 신고가",
-        "AI 인프라 수요 지속"
+        "트럼프 AI GDP 25% 목표 제시",
+        "SpaceX 나스닥100 2.82% 비중 확정"
       ]
     },
     "러셀2000": {
-      "reason": "-0.50% 하락 — 연준 금리인상·10년물 5% 돌파로 소형주 밸류에이션 부담, 대형 기술주 대비 상대 약세",
+      "reason": "연준 3년2개월만 금리인상 전환과 국채2년물 3.98% 상승으로 소형주 차입비용 부담 가중 - 대형 기술주 대비 차별화 약세(-0.50%)",
       "drivers": [
-        "10년물 국채 급등",
-        "금리 민감 소형주 압박"
+        "국채2년물 +0.33% 단기금리 압박",
+        "연준 금리인상 사이클 재개"
       ]
     },
     "영국FTSE": {
-      "reason": "-1.45% 급락 — 미 연준 금리인상·달러 보합에도 유럽 증시 독자 약세, 에너지주 약세(WTI -6.32%) 직격탄",
+      "reason": "유가 -1.58% 하락에 에너지 비중 큰 FTSE 타격 + 유럽 금리인상 동조화로 경기민감 섹터 전반 약세(-1.45%)",
       "drivers": [
-        "WTI 원유 -6.32% 급락",
-        "유럽 에너지주 약세"
+        "WTI유가 100.3달러 -1.58% 하락",
+        "유럽 긴축 동조화 압박"
       ]
     },
     "독일DAX": {
-      "reason": "+0.70% 상승 — 미 기술주 반등 수혜, 제조업 중심 독일 증시는 반도체 동조 상승으로 유럽 내 독보적 강세",
+      "reason": "주요국 금리인상 동시 진행으로 제조업 조달비용 우려 확산 - 정유·석화·자동차 등 차입 의존 섹터 압박(-1.60%)",
       "drivers": [
-        "필라델피아반도체 +2.78% 동조",
-        "독일 제조·반도체 관련주"
+        "유럽 금리인상으로 기업 자금조달 부담",
+        "에너지XLE 약세 동조화"
       ]
     },
     "니케이": {
-      "reason": "+0.33% 소폭 상승 — BOJ 금리 점검 보도(블룸버그)로 엔화 약세 일부 완화, 반도체·수출주 반등으로 지수 지지",
+      "reason": "필라델피아반도체 강세에 도쿄일렉트론·어드밴테스트 등 반도체 장비주 동반 상승 - 미국 AI 투자 확대 수혜 기대(+1.38%)",
       "drivers": [
-        "BOJ 금리 점검 보도",
-        "반도체 수출주 반등"
+        "필라델피아반도체 +2.78% 선행",
+        "트럼프 AI Force 발표 파급"
       ]
     },
     "항셍": {
-      "reason": "-0.44% 하락 — 트럼프-시진핑 정상회담 대기(IBD 보도)로 미중 긴장 경계, AI 안전 논란 속 중국 기술주 관망세",
+      "reason": "직접 촉매 약함 - 미국 기술주 강세와 알루미늄·구리 소폭 반등에 따른 제한적 동조 상승(+0.60%)",
       "drivers": [
-        "트럼프-시진핑 회담 대기",
-        "미중 AI 경쟁 긴장"
+        "나스닥 상승 분위기 전이",
+        "알루미늄·구리 소폭 반등"
       ]
     },
     "달러인덱스": {
-      "reason": "100.21 보합 — 연준 금리인상·10년물 5% 돌파에도 추가 인상 불확실성으로 달러 강세 제한, 금 소폭 상승과 병행",
+      "reason": "국채금리 급등에도 유가 하락(-1.58%)과 유럽 약세가 달러 수요 상쇄 - 방향성 없이 보합권 유지(+0.00%)",
       "drivers": [
-        "연준 인상 시장 예상 내",
-        "추가 인상 불확실성"
+        "국채10년물 5.0% 상승 압력",
+        "WTI유가 -1.58% 하락으로 상쇄"
       ]
     },
     "국채2Y": {
-      "reason": "+0.33%p 상승(3.98%) — 연준 금리인상 직접 반영, 단기물 선반영으로 상승폭은 10년물 대비 제한적",
+      "reason": "연준 3년2개월만 금리인상 단행 + CD 91일물 3.20% 상승으로 단기금리 상승 압력 확산 - 11월 추가 인상 매파 전망 우세(+0.33%)",
       "drivers": [
-        "연준 +0.25%p 인상",
-        "추가 인상 시사"
+        "연준 금리인상 사이클 재개",
+        "CD금리 3.20% 상승으로 단기 조달비용 압박"
       ]
     },
     "국채10Y": {
-      "reason": "+1.03%p 급등(5.0%) — 연준 인상 후 장기 긴축 우려 확산, \"얼마나 더 갈지\" 시장 불확실성(CNBC Warsh 발언) 반영",
+      "reason": "연준 금리인상 재개 + 10월 국고채 대량 발행 예정으로 공급 부담 가중 - 채권시장 전반 매도세 집중(+1.03%)",
       "drivers": [
-        "연준 긴축 장기화 우려",
-        "Warsh \"추가 인상\" 시사",
-        "커브 스티프닝(장기금리가 단기금리보다 빠르게 상승)"
+        "연준 기준금리 인상으로 장기 금리 동반 상승",
+        "10월 국고채 발행 물량 우려"
       ]
     },
     "코스피": {
-      "reason": "+2.66% 급등 — 필라델피아반도체 강세 수혜로 삼성전자·SK하이닉스 등 반도체 대형주 급등, 외국인 매수세 유입 추정",
+      "reason": "필라델피아반도체 +2.78% 강세에 삼성전자·SK하이닉스 등 반도체_소자 Leading(RS-R 102.4) 섹터 주도 - 외국인 매수 전환과 반도체 수출 기대감 집중(+2.66%)",
       "drivers": [
-        "필라델피아반도체 +2.78% 동조",
-        "반도체 대형주 급등",
-        "미 기술주 반등 심리 개선"
+        "필라델피아반도체 강세 → 국내 반도체 동반 상승",
+        "반도체_소자 RS-R 102.4 Leading 유지"
       ]
     },
     "코스닥": {
-      "reason": "+0.60% 상승 — 나스닥 반등 동조하나 상승폭 제한적, 중소형 기술주는 미 금리 부담으로 코스피 대비 약세",
+      "reason": "IT부품(RS-R 100.8 Leading) 섹터 강세와 유통(improving RS-M 100.6) 반등으로 상승했으나, 플랫폼·게임 lagging 부담으로 코스피 대비 약세(+0.60%)",
       "drivers": [
-        "나스닥 +0.39% 동조",
-        "10년물 5% 돌파 부담"
+        "IT부품 Leading 강세",
+        "플랫폼·게임 lagging 부담"
       ]
     },
     "금": {
-      "reason": "+0.37% 소폭 상승(4415.9달러) — 연준 금리인상에도 주간 기준 상승(SA 보도), 10년물 5% 돌파 속 안전자산 수요 일부 유지",
+      "reason": "국채금리 5.0% 급등에도 중동 지정학 리스크 잔존과 AI 안전성 우려 확산(OpenAI·Anthropic 연구진 경고)으로 안전자산 수요 유지(+0.57%)",
       "drivers": [
-        "연준 인상에도 주간 상승",
-        "지정학·규제 리스크 헤지"
+        "AI 안전성 우려로 방어 수요",
+        "중동 리스크 잔존"
       ]
     },
     "WTI유가": {
-      "reason": "-6.32% 급락(95.47달러) — 직접 촉매 뉴스 부재, 연준 긴축·수요 둔화 우려 + 기술적 조정 복합 작용 추정",
+      "reason": "공급 차질 우려 완화로 유가 하락 - 그러나 디젤 가격 압력은 지속돼 연준·시장에 복합적 시그널(-1.58%)",
       "drivers": [
-        "연준 긴축 수요 우려",
-        "기술적 조정"
+        "공급 차질 우려 완화",
+        "유가 하락에도 디젤 가격 압력 지속"
       ]
     },
     "원달러": {
-      "reason": "+0.68% 상승(1385.95원) — 미 10년물 5% 돌파·연준 긴축 지속 우려로 원화 약세, 코스피 급등에도 환율 방어 부담",
+      "reason": "미국 국채금리 급등(10년물 5.0%)으로 달러 자금 이탈 압력 - 대미투자 1호 발표 앞두고 필요수익률 16.1%→17.0% 상승으로 불확실성 확대(+0.40%)",
       "drivers": [
-        "미 10년물 5% 돌파",
-        "연준 긴축 지속 시사"
+        "미국 국채10년물 5.0% 급등",
+        "대미투자 상업적 합리성 재협의"
       ]
     },
     "알루미늄": {
-      "reason": "+0.81% 상승 — 구리 동반 상승(+1.96%), 중국 인프라·제조 수요 기대 + 미 금리 부담 제한적 해석",
+      "reason": "직접 촉매 없음 - 구리 동반 소폭 반등, 중국 항셍 약한 상승과 제조업 기대 일부 반영(+0.42%)",
       "drivers": [
-        "구리 강세 동조",
-        "중국 수요 기대"
+        "구리 동반 상승",
+        "중국 제조업 기대 제한적 반영"
       ]
     },
     "구리": {
-      "reason": "+1.96% 상승 — 필라델피아반도체 급등으로 AI 인프라·데이터센터 전력 수요 재확인, 산업 금속 심리 개선",
+      "reason": "직접 촉매 약함 - 니케이 +1.38%, 코스피 +2.66% 반도체 강세에 따른 제조업 수요 기대 일부 반영(+0.43%)",
       "drivers": [
-        "반도체·AI 인프라 수요",
-        "데이터센터 구리 수요"
+        "아시아 반도체 강세",
+        "AI 인프라 투자 기대 일부 전이"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "필라델피아반도체 +2.78% 급등 수혜로 코스피 +2.66% 강세 — 반도체 대형주 주도, 연준 긴축에도 기술주 모멘텀 국내 파급",
+    "summary": "필라델피아반도체 +2.78% 강세와 트럼프 AI Force 발표로 반도체 수출 기대감 집중 - 코스피 +2.66% 급등, 반도체_소자 Leading 주도",
     "positive_factors": [
-      "필라델피아반도체 천장 돌파(+2.78%)·나스닥 반등(+0.39%) → 삼성전자·SK하이닉스 등 반도체 대형주 급등, 외국인 매수 전환 추정",
-      "AI 인프라 수요 재확인(넷앱 실적 +66%, MACOM 신고가) → 국내 반도체_소자(Leading RS-R 102.4)·반도체_장비(Leading RS-R 106.7) 투자심리 개선",
-      "구리 +1.96% 강세 — AI 데이터센터 전력 수요 동조, 국내 전력기기(Leading RS-R 102.2)·원전(Leading RS-R 108.4) 섹터 수혜",
-      "WTI -6.32% 급락 → 정유(weakening)·석유화학(lagging) 부담이나, 수입 원가 하락으로 제조업 마진 개선 기대"
+      "필라델피아반도체 +2.78% 상승 + 트럼프 AI GDP 25% 목표 → 삼성전자·SK하이닉스 등 반도체_소자 Leading(RS-R 102.4) 섹터 강세 지속",
+      "SpaceX 나스닥100 비중 2.82% 확정으로 우주·AI 테마 연관 IT부품(RS-R 100.8 Leading) 동반 상승 - 국내 우주항공 관심 확대",
+      "반도체_장비(RS-R 106.7 Leading), 반도체_패키징(RS-R 105.0 Leading), 원전(RS-R 108.4 Leading) 등 5개 반도체 연관 섹터 Leading 유지 - 수출 모멘텀 확인"
     ],
     "negative_factors": [
-      "미 10년물 5% 돌파·연준 추가 인상 시사 → 원달러 +0.68%(1385.95원) 상승, 외국인 채권 매도·환율 방어 부담 지속",
-      "코스닥 +0.60% 제한 상승 — 미 금리 부담으로 중소형주 밸류에이션(적정 가치 평가) 압박, 2차전지·바이오 등 대부분 섹터 lagging 고착",
-      "OpenAI·Anthropic AI 안전 논란 격화 → 국내 AI_SW(lagging RS-R 98.1) 규제 리스크 선반영, 단기 관망 불가피"
+      "미국 국채10년물 5.0% 급등 → 원달러 1385원(+0.40%) 상승, 대미투자 필요수익률 16.1%→17.0% 상향으로 투자 회수 불확실성 증가",
+      "연준·국내 동시 금리인상으로 CD금리 3.20% 상승 - 저신용 자영업 연체율 5년새 4~5배 급등, 취약차주 부담 가중 우려"
     ],
-    "key_watch": "반도체_소자·반도체_장비 Leading 지속 여부 — 필라 급등 추세 확인 시 52주 신고가 돌파주(SEPA 전략) 진입, 연준 긴축 장기화 시 방어 필요"
+    "key_watch": "반도체_소자·장비·패키징 Leading 지속 여부와 미국 국채금리 5.0% 고착 시 수출 밸류에이션(실적 대비 주가 평가) 부담 확대 가능성 점검 필요"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10124,62 +10097,62 @@
       "sector": "반도체_소자",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "필라델피아반도체 +2.78% 천장 돌파 동조, RS-R 102.4·RS-M 107.3으로 Leading 확고 — 삼성전자·SK하이닉스 등 대형주 급등, 미 칩 섹터 모멘텀 전환 신호"
+      "reason": "필라델피아반도체 +2.78% 강세 + 트럼프 AI Force 발표로 HBM·AI 반도체 수출 수혜 지속 - RS-R 102.4, RS-M 107.3 Leading 유지로 상승 추세 확인"
     },
     {
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "AI 인프라 수요 재확인(넷앱·MACOM 신고가), RS-R 106.7·RS-M 107.1 Leading 최상단 — 반도체 장비 수출 사이클 확장 국면, 스테이지2 초입 진입"
+      "reason": "SpaceX 나스닥100 편입 2.82% 확정 + AI 인프라 투자 가속으로 반도체 제조 장비 수요 견인 - RS-R 106.7, RS-M 107.1 최상위 Leading 강도"
     },
     {
       "sector": "원전",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "구리 +1.96% AI 데이터센터 전력 수요 동조, RS-R 108.4·RS-M 103.4 Leading — 원전 재평가·SMR(소형모듈원전) 정책 모멘텀 복합"
+      "reason": "AI 컴퓨팅 전력 수요 급증과 트럼프 AI GDP 25% 목표로 원전 재평가 - RS-R 108.4, RS-M 103.4 Leading에서 모멘텀 가속 구간"
     },
     {
-      "sector": "로봇",
-      "rrg_quadrant": "weakening",
+      "sector": "반도체_패키징",
+      "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "RS-R 104.3·RS-M 99.3 weakening이나 기술적 지지 확인, 테슬라 중국 시장 확대(매일경제 보도) + 국내 완성차 전동화 전환 가속 배경"
+      "reason": "반도체 패키징 고도화 수요 + HBM 연관 투자심리 개선 - RS-R 105.0, RS-M 103.9 Leading 구간에서 반도체 밸류체인 수혜"
     }
   ],
   "watch": [
     {
-      "sector": "조선",
-      "reason": "RS-R 96.7·RS-M 95.2 lagging 고착 — 해운 경기 사이클 둔화, 미 에너지 약세(WTI -6.32%) 동조하며 단기 모멘텀 부재"
+      "sector": "건설",
+      "reason": "국채금리 5.0% 급등으로 부동산XLRE 약세 동조 우려 + RS-R 107.5 Leading이나 금리 민감도 높아 단기 조정 가능성 - 금리 안정 후 재진입 검토"
     },
     {
       "sector": "2차전지_셀",
-      "reason": "RS-R 102.9·RS-M 96.6 weakening 전환 — LG에너지솔루션 등 대형주 조정, 미 전기차 수요 둔화·중국 배터리 경쟁 격화로 추세 재확인 필요"
+      "reason": "2차전지 전 섹터(셀·소재·장비) weakening 전환(RS-M 96~99) - 전기차 수요 둔화 우려 지속, improving 전환 신호 대기 필요"
     },
     {
-      "sector": "AI_SW",
-      "reason": "OpenAI·Anthropic 안전 논란 격화, RS-R 98.1·RS-M 88.8 lagging — UN 안보리 회의·규제 압력으로 단기 관망, 정책 명확화 후 재평가"
+      "sector": "플랫폼",
+      "reason": "플랫폼·게임·엔터 lagging(RS-R 94.8/92.5/96.3) 고착 - 네이버·카카오 공채 중단 등 구조 변화로 단기 모멘텀 부재, RRG 개선 확인 후 접근"
     }
   ],
   "avoid": [],
-  "summary": "필라델피아반도체 천장 돌파·AI 인프라 수요 재확인 → 코스피 +2.66% 반도체 Leading 주도, 연준 긴축에도 기술주 모멘텀 국내 파급",
-  "strategy_brief": "필라델피아반도체 지수가 천장을 돌파하며 +2.78% 급등한 가운데, 연준의 3년 만의 금리인상과 10년물 국채 5% 돌파에도 나스닥은 +0.39% 반등에 성공했습니다. 이는 칩 섹터의 기술적 모멘텀 전환과 넷앱·MACOM 등 AI 인프라 개별주의 실적 호조(넷앱 +66%)가 시장 신뢰를 회복시킨 결과입니다. 국내 코스피는 이를 즉각 반영해 +2.66% 강세를 보였으며, 반도체_소자(Leading RS-R 102.4)·반도체_장비(Leading RS-R 106.7) 섹터가 주도했습니다. 다만 OpenAI·Anthropic의 AI 안전성 논란 격화와 UN 안보리 긴급 회의 소집은 AI_SW(lagging RS-R 98.1) 섹터에 규제 리스크를 부각시켰고, 반도체 하드웨어와 AI 소프트웨어의 디커플링(분리) 국면이 명확해졌습니다. 오늘은 필라델피아반도체의 급등 추세가 지속되는지 확인하며, 삼성전자·SK하이닉스 등 52주 신고가 돌파주(SEPA 전략)와 반도체 장비·원전(Leading RS-R 108.4) 등 AI 전력 인프라 수혜주에 집중하되, 미 금리 장기화 리스크에 대비한 방어 준비가 필요합니다.",
-  "strategy_headline": "필라 천장 돌파·AI 인프라 확인 — 반도체 Leading 집중",
+  "summary": "필라델피아반도체 +2.78%·트럼프 AI Force 발표로 국내 반도체 5개 섹터 Leading 동반 강세 - 코스피 +2.66% 급등, HBM·AI 인프라 수출 슈퍼사이클 재확인",
+  "strategy_brief": "미국 필라델피아반도체 +2.78% 강세와 트럼프의 'AI Force' 신설 발표(AI GDP 25% 목표)가 국내 반도체 섹터 전반에 수출 슈퍼사이클 기대를 확산시키며 코스피 +2.66% 급등을 견인했다. 반도체_소자(RS-R 102.4)·장비(RS-R 106.7)·패키징(RS-R 105.0)·소재·IT부품 등 5개 섹터가 모두 Leading(상대강도·모멘텀 모두 100 이상) 구간을 유지하며 마크 미너비니의 SEPA 전략 핵심 조건(추세·펀더멘탈·촉매 일치)을 충족하고 있다. 미국 국채10년물 5.0% 급등과 원달러 1385원 상승 부담이 있으나, VIX -4.08% 하락과 기술XLK(R103.3/M102.9) Leading 유지가 금리 리스크를 상쇄 중이다. 오늘은 삼성전자·SK하이닉스 등 반도체 대형주와 원전(RS-R 108.4 최강) 중심 포트폴리오 집중 전략이 유효하며, 2차전지 weakening·플랫폼 lagging 섹터는 RRG(Relative Rotation Graph) 개선 신호 확인 전까지 회피가 원칙이다.",
+  "strategy_headline": "AI 인프라 슈퍼사이클 확인 - 반도체 5개 섹터 Leading 집중 매수",
   "strategy_points": [
-    "필라델피아반도체 +2.78% 천장 돌파·나스닥 반등 → 국내 반도체_소자·반도체_장비 Leading(RS-R 102~107) 주도, 대형주 급등 동조",
-    "연준 금리인상·10년물 5% 돌파에도 기술주 반등 → 단기 충격 소화, 원달러 +0.68% 부담이나 반도체 수출 모멘텀 우선",
-    "OpenAI·Anthropic AI 안전 논란 격화 → AI_SW lagging(RS-R 98.1) 관망, 반도체 하드웨어와 AI 소프트웨어 디커플링(분리) 국면",
-    "구리 +1.96%·원전 Leading(RS-R 108.4) → AI 데이터센터 전력 수요 테마, 로봇·IT부품 weakening/leading 구간 선별 진입"
+    "필라델피아반도체 +2.78% + 트럼프 AI Force 발표 → 국내 반도체_소자·장비·패키징 Leading(상대강도·모멘텀 모두 시장 대비 우위) 5개 섹터 동반 강세",
+    "SpaceX 나스닥100 비중 2.82% 확정으로 우주·AI 연관 투자심리 확산 - IT부품 Leading 진입, 원전 RS-R 108.4 최강 모멘텀 지속",
+    "미국 국채10년물 5.0% 급등 부담 있으나 기술주 상승이 금리 리스크 압도 - VIX(변동성지수) -4.08% 하락으로 안정성 확인",
+    "2차전지·플랫폼 weakening·lagging(상대 약세·모멘텀 하락) 섹터는 회피, 금리 민감 건설은 단기 조정 후 재진입 검토"
   ],
   "top_picks": [
     {
       "sector": "반도체_소자",
       "rrg_quadrant": "leading",
-      "reason": "필라델피아반도체 +2.78% 천장 돌파 동조, RS-R 102.4·RS-M 107.3으로 Leading 확고 — 삼성전자·SK하이닉스 등 대형주 급등, 미 칩 섹터 모멘텀 전환 신호",
+      "reason": "필라델피아반도체 +2.78% 강세 + 트럼프 AI Force 발표로 HBM·AI 반도체 수출 수혜 지속 - RS-R 102.4, RS-M 107.3 Leading 유지로 상승 추세 확인",
       "stocks": [
         {
           "name": "삼성전자",
           "code": "005930",
           "signal": "prime",
-          "reason": "필라델피아반도체 천장 돌파·AI 인프라 수요 재확인 → 반도체_소자 Leading(RS-R 102.4) 주도, HBM3E 공급 확대·파운드리 턴어라운드 모멘텀",
+          "reason": "필라델피아반도체 +2.78% 강세 수혜 + 반도체_소자 Leading(RS-R 102.4) 주도주 - HBM 수출 모멘텀 지속, 코스피 +2.66% 급등 견인",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_소자",
           "rrg_sector_match": true,
@@ -10189,7 +10162,7 @@
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "넷앱 실적 +66% AI 스토리지 수혜 확인 → 반도체_소자 Leading 동조, HBM 독점 공급·52주 신고가 돌파 SEPA 전략 부합",
+          "reason": "트럼프 AI GDP 25% 목표로 HBM 장기 수요 확신 + 반도체_소자 Leading 최선두 - AI 메모리 수혜 집중, 52주 신고가 권역",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_소자",
           "rrg_sector_match": true,
@@ -10200,32 +10173,15 @@
     {
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
-      "reason": "AI 인프라 수요 재확인(넷앱·MACOM 신고가), RS-R 106.7·RS-M 107.1 Leading 최상단 — 반도체 장비 수출 사이클 확장 국면, 스테이지2 초입 진입",
+      "reason": "SpaceX 나스닥100 편입 2.82% 확정 + AI 인프라 투자 가속으로 반도체 제조 장비 수요 견인 - RS-R 106.7, RS-M 107.1 최상위 Leading 강도",
       "stocks": [
         {
-          "name": "주성엔지니어링",
-          "code": "036930",
+          "name": "원익IPS",
+          "code": "240810",
           "signal": "prime",
-          "reason": "필라 급등·반도체_장비 Leading(RS-R 106.7) 최상단 → 삼성·SK 설비투자 확대 수혜, 스테이지2 초입 기술적 진입 구간",
+          "reason": "반도체_장비 RS-R 106.7 최상위 Leading + SpaceX 나스닥100 편입으로 AI 인프라 투자 가속 수혜 - 장비 수주 사이클 상승 국면",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_장비",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "원전",
-      "rrg_quadrant": "leading",
-      "reason": "구리 +1.96% AI 데이터센터 전력 수요 동조, RS-R 108.4·RS-M 103.4 Leading — 원전 재평가·SMR(소형모듈원전) 정책 모멘텀 복합",
-      "stocks": [
-        {
-          "name": "두산에너빌리티",
-          "code": "034020",
-          "signal": "prime",
-          "reason": "구리 +1.96% 전력 인프라 수요·원전 Leading(RS-R 108.4) → SMR 정책 모멘텀·AI 데이터센터 전력 공급 테마 복합",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "원전",
           "rrg_sector_match": true,
           "rrg_signal": "leading"
         }
@@ -10240,7 +10196,7 @@
           "name": "삼성SDI",
           "code": "006400",
           "signal": "prime",
-          "reason": "구리 강세·전력기기 Leading 동조, IT부품 Leading(RS-R 100.8·RS-M 104.7) → 2차전지 약세 속 IT 부품 사업부 재평가, VCP 패턴 형성 중",
+          "reason": "IT부품 RS-R 100.8 Leading 진입 + 반도체 강세 파급 - 2차전지 weakening에도 IT부품 분류로 기술주 상승 동조, 분할 모멘텀 잔존",
           "rrg_tracked": true,
           "rrg_actual_sector": "2차전지_장비",
           "rrg_sector_match": false,
@@ -10250,7 +10206,7 @@
     }
   ],
   "caution_sectors": [
-    "조선",
+    "건설",
     "2차전지_셀"
   ]
 }
