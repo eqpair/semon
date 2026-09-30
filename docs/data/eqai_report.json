@@ -1,184 +1,186 @@
 {
-  "generated_at": "2026-09-30 14:09:58",
+  "generated_at": "2026-10-01 07:02:43",
   "macro": {
     "S&P500": {
-      "price": 7670.84,
-      "change": -0.17,
-      "reason": "기술주 강세에도 국채10Y +0.29%p 급등(5.26%)으로 밸류에이션(주가 적정성 평가 지표) 압박, 대형주 혼조 속 소폭 하락",
+      "price": 7651.54,
+      "change": -0.25,
+      "reason": "쿨한 8월 PCE(개인소비지출) 물가지표에 장 초반 상승했으나 30년물 국채금리 5.61%(24년 만 최고) 기록하며 채권 투매 압박으로 -0.25% 하락 마감",
       "drivers": [
-        "국채10Y 5.26% 급등",
-        "기술XLK leading 유지"
+        "30년물 국채금리 5.61% 급등",
+        "10년물 국채금리 5.29% 신고점",
+        "마이크론 호실적에도 금리 부담"
       ]
     },
     "NASDAQ": {
-      "price": 26797.54,
-      "change": -0.09,
-      "reason": "Micron·Palo Alto 매수 구간 진입 및 AI 반도체 수요 지속 기대, 금리 압박에도 기술주 방어",
+      "price": 26861.06,
+      "change": 0.24,
+      "reason": "마이크론 데이터센터 매출 11배 급증, 구글 Gemini 4 Argon(소프트웨어 엔지니어링 최고 기록) 발표로 기술주 선별 매수세 유입, +0.24% 소폭 상승",
       "drivers": [
-        "Micron 매수 구간",
-        "AI 칩 장비주 1조달러 돌파"
+        "마이크론 EPS $33.42(컨센서스 초과)",
+        "구글 Gemini 4 Argon 출시",
+        "메타 9월 +27%(2022년 이후 최대)"
       ]
     },
     "DOW": {
-      "price": 51349.92,
-      "change": -0.26,
-      "reason": "금리 상승 및 경기민감 소형주 부진(러셀2000 -0.35%)으로 전통 산업재·금융주 약세",
+      "price": 50906.05,
+      "change": -0.86,
+      "reason": "장기 국채금리 급등으로 금융주·경기민감주 타격, 산업재·필수소비재 섹터 전반 약세로 -0.86%(443.87포인트) 급락",
       "drivers": [
-        "러셀2000 -0.35%",
-        "국채2Y +0.20%p"
+        "30년물 금리 5.61% 압박",
+        "산업재·금융 섹터 약세"
       ]
     },
     "VIX": {
-      "price": 16.04,
-      "change": -0.19,
-      "reason": "기술주 안정적 흐름 및 AI 인프라 투자 지속 기대로 변동성(VIX) 소폭 하락, 위험 선호 분위기 유지",
+      "price": 16.34,
+      "change": 1.87,
+      "reason": "독일 물가 3.3% 급등(ECB 금리인상 압박), 미국 장기금리 24년 만 최고 기록으로 변동성 우려 확대, +1.87% 상승",
       "drivers": [
-        "필라델피아반도체 +1.32%",
-        "빅테크 안정"
+        "독일 CPI 3.3%(에너지 14.9% 급등)",
+        "미국 30년물 5.61% 충격"
       ]
     },
     "필라델피아반도체": {
-      "price": 12629.16,
-      "change": 1.32,
-      "reason": "Micron·Palo Alto·Microsoft 등 매수 구간 진입, AI 칩 장비 3사(Applied Materials·ASML·Lam Research 추정) 시가총액 1조달러 돌파로 업종 강세",
+      "price": 12628.62,
+      "change": -0.0,
+      "reason": "마이크론 데이터센터 매출 11배 급증 호재에도 시간외 약세, 엔비디아 신고가 근접 신호와 상쇄되며 ±0.00% 보합 마감",
       "drivers": [
-        "AI 칩 장비 3사 1조달러 돌파",
-        "Micron 매수 구간"
+        "마이크론 가이던스 상향",
+        "엔비디아 돌파 레벨 근접",
+        "금리 급등 부담 상쇄"
       ]
     },
     "러셀2000": {
-      "price": 2807.92,
-      "change": -0.35,
-      "reason": "금리 급등(국채10Y 5.26%) 및 경기민감 소형주 자금 이탈, 대형 기술주 쏠림 심화",
+      "price": 2796.86,
+      "change": -0.39,
+      "reason": "장기금리 급등으로 차입비용 민감한 중소형주 타격, 경기민감주 전반 약세로 -0.39% 하락",
       "drivers": [
-        "국채10Y +0.29%p",
-        "대형주 쏠림"
+        "30년물 금리 5.61% 충격",
+        "중소형주 차입비용 부담"
       ]
     },
     "영국FTSE": {
-      "price": 10636.7,
-      "change": -0.45,
-      "reason": "유럽 경기 둔화 우려 및 알루미늄 -1.93% 급락 등 원자재 약세로 소재·에너지주 하락",
+      "price": 10606.0,
+      "change": -0.29,
+      "reason": "독일 물가 급등·유로존 금리인상 압박 확산으로 유럽 증시 전반 약세, 에너지·금융 섹터 하락 주도, -0.29% 하락",
       "drivers": [
-        "알루미늄 -1.93%",
-        "유럽 경기 둔화"
+        "독일 CPI 3.3% 충격파",
+        "ECB 금리인상 압박"
       ]
     },
     "독일DAX": {
       "price": 25399.21,
       "change": 0.1,
-      "reason": "중국 PMI 예상치 상회(제조·서비스업 확장) 및 구리 +1.22% 상승으로 수출주 방어, 소폭 상승",
+      "reason": "독일 소비자물가 3.3%(2년 11개월 만 최고) 발표에도 기술주·화학주 선별 매수로 +0.10% 소�폭 상승",
       "drivers": [
-        "중국 PMI 호조",
-        "구리 +1.22%"
+        "독일 CPI 3.3% 기록",
+        "기술주·화학 선별 매수"
       ]
     },
     "니케이": {
-      "price": 66819.34,
-      "change": 2.04,
-      "reason": "필라델피아반도체 +1.32% 영향 및 엔화 약세 수출주 수혜, 반도체·기술주 강세로 2% 급등",
+      "price": 65481.27,
+      "change": -0.6,
+      "reason": "미국 장기금리 급등·엔화 약세 부담, 수출주 일부 강세에도 전반 약세로 -0.60% 하락",
       "drivers": [
-        "필라델피아반도체 +1.32%",
-        "엔화 약세"
+        "미국 국채금리 급등 전이",
+        "엔화 약세 부담"
       ]
     },
     "항셍": {
-      "price": 24513.14,
-      "change": -0.04,
-      "reason": "중국 PMI 호조에도 부동산·소비 회복 지연 우려, 횡보 지속",
+      "price": 24523.57,
+      "change": -0.48,
+      "reason": "미국 금리 급등·중국 경기 둔화 우려 지속, 기술주·부동산 동반 약세로 -0.48% 하락",
       "drivers": [
-        "중국 PMI 예상 상회",
-        "부동산 부진"
+        "미국 금리 급등 충격",
+        "중국 경기 우려"
       ]
     },
     "달러인덱스": {
-      "price": 101.44,
-      "change": 0.07,
-      "reason": "국채10Y 5.26% 급등 및 연준 긴축 장기화 기대로 달러 수요 소폭 증가",
+      "price": 101.45,
+      "change": 0.08,
+      "reason": "독일 물가 급등으로 유로화 약세, ECB 금리인상 압박에도 미국 장기금리 우위로 달러 강세 유지, +0.08% 상승",
       "drivers": [
-        "국채10Y +0.29%p",
-        "연준 긴축 장기화"
+        "독일 CPI 3.3% 충격",
+        "미국 30년물 5.61% 우위"
       ]
     },
     "국채2Y": {
-      "price": 4.07,
-      "change": 0.2,
-      "reason": "PCE(개인소비지출) 인플레이션 지표 발표 전 긴축 장기화 베팅 및 단기 금리 상승 압력",
+      "price": 4.03,
+      "change": -0.86,
+      "reason": "8월 PCE 물가지표 예상보다 낮게 발표(구체 수치 미공개)되며 단기 금리인상 기대 완화, -0.86% 하락",
       "drivers": [
-        "PCE 지표 대기",
-        "긴축 장기화 우려"
+        "8월 PCE 물가 예상 하회",
+        "10월 금리인상 확률 하락"
       ]
     },
     "국채10Y": {
-      "price": 5.26,
-      "change": 0.29,
-      "reason": "PCE 인플레이션 지표 발표 전 장기 금리 급등, 재정 적자 우려 및 공급 압력 지속",
+      "price": 5.29,
+      "change": 0.72,
+      "reason": "이란전쟁 장기화 인플레 우려, 사우디 홍해 원유수출 재개에도 장기 인플레 프리미엄 반영, 5.29%(2007년 이후 최고) 기록하며 +0.72% 급등",
       "drivers": [
-        "PCE 지표 전 긴장",
-        "재정 적자 우려"
+        "이란전쟁 장기화 우려",
+        "장기 인플레 프리미엄",
+        "국채 투매 지속"
       ]
     },
     "코스피": {
-      "price": 6847.17,
-      "change": -0.34,
-      "reason": "국채10Y 5.26% 급등 압박 및 외국인 매도 지속 우려, 반도체 법인세 급증 확인에도 관망세",
+      "price": 6838.04,
+      "change": 0.0,
+      "reason": "직접 촉매 없음 - 글로벌 혼조 속 거래 미실시(데이터 0.00%), 전일 수준 유지",
       "drivers": [
-        "국채10Y 압박",
-        "외국인 매도 우려"
+        "장 마감 후 집계 대기"
       ]
     },
     "코스닥": {
-      "price": 855.7,
-      "change": 0.69,
-      "reason": "IT부품·통신장비 Leading 유지 및 2차전지 반등 기대, 중소형 기술주 선별 매수",
+      "price": 855.91,
+      "change": 0.0,
+      "reason": "직접 촉매 없음 - 글로벌 혼조 속 거래 미실시(데이터 0.00%), 전일 수준 유지",
       "drivers": [
-        "IT부품 Leading",
-        "2차전지 반등 시도"
+        "장 마감 후 집계 대기"
       ]
     },
     "금": {
-      "price": 4211.0,
-      "change": 0.75,
-      "reason": "국채10Y 급등에도 지정학 리스크(중동·러우 지속) 및 안전자산 수요로 +0.75% 상승",
+      "price": 4189.1,
+      "change": 0.22,
+      "reason": "독일 물가 급등·미국 장기금리 최고치에도 이란전쟁 장기화 안전자산 수요로 +0.22% 상승, $4,189 기록",
       "drivers": [
-        "지정학 리스크",
-        "안전자산 수요"
+        "이란전쟁 안전자산 수요",
+        "인플레 헤지 매수"
       ]
     },
     "WTI유가": {
-      "price": 89.46,
-      "change": 0.09,
-      "reason": "중국 PMI 호조 수요 기대 및 중동 공급 불안 지속, 횡보 후 소폭 상승",
+      "price": 90.34,
+      "change": 1.07,
+      "reason": "사우디 홍해 원유수출 재개 발표에도 이란전쟁 장기화 공급 차질 우려 우세, +1.07% 상승해 $90.34 기록",
       "drivers": [
-        "중국 PMI",
-        "중동 리스크"
+        "이란전쟁 공급 차질 우려",
+        "사우디 수출 재개 제한적"
       ]
     },
     "원달러": {
-      "price": 1355.58,
-      "change": -0.29,
-      "reason": "반도체 수출 호조 및 법인세 급증 경상수지 개선 기대, 원화 강세 -0.29%",
+      "price": 1356.54,
+      "change": -0.22,
+      "reason": "달러 강세에도 외국인 매도 일단락 기대, 수출 결제 수요로 -0.22% 소폭 하락해 1,356.54원 기록",
       "drivers": [
-        "반도체 수출 호조",
-        "법인세 급증"
+        "달러인덱스 +0.08% 제한적",
+        "수출 결제 수요"
       ]
     },
     "알루미늄": {
-      "price": 3320.5,
-      "change": -1.93,
-      "reason": "유럽 경기 둔화 우려 및 중국 부동산 수요 부진으로 -1.93% 급락",
+      "price": 3299.25,
+      "change": -0.64,
+      "reason": "중국 경기 둔화 우려·건설 수요 약세 지속, 유럽 제조업 부진 전망으로 -0.64% 하락",
       "drivers": [
-        "유럽 경기 둔화",
-        "중국 부동산 부진"
+        "중국 건설 수요 약세",
+        "유럽 제조업 부진"
       ]
     },
     "구리": {
-      "price": 6.62,
-      "change": 1.22,
-      "reason": "중국 PMI 제조업 확장 확인 및 AI 인프라 투자 지속 기대로 +1.22% 상승",
+      "price": 6.64,
+      "change": 1.47,
+      "reason": "AI 데이터센터 전력 인프라 수요(마이크론 매출 11배 급증 시그널) 기대, 이란전쟁 장기화 공급 우려로 +1.47% 강세",
       "drivers": [
-        "중국 PMI 호조",
-        "AI 인프라 수요"
+        "AI 인프라 수요 기대",
+        "공급 차질 우려"
       ]
     }
   },
@@ -349,7 +351,7 @@
           "rs_momentum": 110.039
         }
       ],
-      "sector_ret_5d": -2.8,
+      "sector_ret_5d": -2.77,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -520,7 +522,7 @@
           "rs_momentum": 101.612
         }
       ],
-      "sector_ret_5d": 2.31,
+      "sector_ret_5d": 3.09,
       "improving_count": 1,
       "watch_count": 0,
       "total": 8
@@ -691,7 +693,7 @@
           "rs_momentum": 110.577
         }
       ],
-      "sector_ret_5d": 9.11,
+      "sector_ret_5d": 9.69,
       "improving_count": 1,
       "watch_count": 0,
       "total": 27
@@ -862,7 +864,7 @@
           "rs_momentum": 108.842
         }
       ],
-      "sector_ret_5d": 6.99,
+      "sector_ret_5d": 7.56,
       "improving_count": 1,
       "watch_count": 2,
       "total": 23
@@ -1033,7 +1035,7 @@
           "rs_momentum": 110.029
         }
       ],
-      "sector_ret_5d": 5.72,
+      "sector_ret_5d": 6.06,
       "improving_count": 0,
       "watch_count": 0,
       "total": 21
@@ -1204,7 +1206,7 @@
           "rs_momentum": 96.166
         }
       ],
-      "sector_ret_5d": -0.89,
+      "sector_ret_5d": -0.27,
       "improving_count": 0,
       "watch_count": 0,
       "total": 13
@@ -1375,7 +1377,7 @@
           "rs_momentum": 96.645
         }
       ],
-      "sector_ret_5d": -0.15,
+      "sector_ret_5d": 0.18,
       "improving_count": 0,
       "watch_count": 0,
       "total": 21
@@ -1546,7 +1548,7 @@
           "rs_momentum": 96.186
         }
       ],
-      "sector_ret_5d": -0.5,
+      "sector_ret_5d": 0.04,
       "improving_count": 0,
       "watch_count": 0,
       "total": 20
@@ -1717,7 +1719,7 @@
           "rs_momentum": 104.297
         }
       ],
-      "sector_ret_5d": -3.55,
+      "sector_ret_5d": -3.26,
       "improving_count": 0,
       "watch_count": 0,
       "total": 14
@@ -1888,7 +1890,7 @@
           "rs_momentum": 92.658
         }
       ],
-      "sector_ret_5d": 13.35,
+      "sector_ret_5d": 10.98,
       "improving_count": 1,
       "watch_count": 1,
       "total": 12
@@ -2059,7 +2061,7 @@
           "rs_momentum": 98.426
         }
       ],
-      "sector_ret_5d": -6.93,
+      "sector_ret_5d": -5.76,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -2230,7 +2232,7 @@
           "rs_momentum": 96.281
         }
       ],
-      "sector_ret_5d": -3.97,
+      "sector_ret_5d": -3.43,
       "improving_count": 0,
       "watch_count": 0,
       "total": 17
@@ -2401,7 +2403,7 @@
           "rs_momentum": 97.977
         }
       ],
-      "sector_ret_5d": -0.59,
+      "sector_ret_5d": -0.16,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2572,7 +2574,7 @@
           "rs_momentum": 89.317
         }
       ],
-      "sector_ret_5d": -3.57,
+      "sector_ret_5d": -3.39,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -2743,7 +2745,7 @@
           "rs_momentum": 95.223
         }
       ],
-      "sector_ret_5d": -4.78,
+      "sector_ret_5d": -4.05,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2914,7 +2916,7 @@
           "rs_momentum": 95.614
         }
       ],
-      "sector_ret_5d": -3.34,
+      "sector_ret_5d": -3.14,
       "improving_count": 0,
       "watch_count": 1,
       "total": 21
@@ -3085,7 +3087,7 @@
           "rs_momentum": 99.506
         }
       ],
-      "sector_ret_5d": -2.96,
+      "sector_ret_5d": -2.56,
       "improving_count": 0,
       "watch_count": 0,
       "total": 12
@@ -3256,7 +3258,7 @@
           "rs_momentum": 106.413
         }
       ],
-      "sector_ret_5d": -0.6,
+      "sector_ret_5d": -0.7,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -3427,7 +3429,7 @@
           "rs_momentum": 94.384
         }
       ],
-      "sector_ret_5d": -3.45,
+      "sector_ret_5d": -2.39,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -3598,7 +3600,7 @@
           "rs_momentum": 94.19
         }
       ],
-      "sector_ret_5d": -3.25,
+      "sector_ret_5d": -2.12,
       "improving_count": 0,
       "watch_count": 0,
       "total": 16
@@ -3769,7 +3771,7 @@
           "rs_momentum": 92.754
         }
       ],
-      "sector_ret_5d": 1.07,
+      "sector_ret_5d": 1.73,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -3940,7 +3942,7 @@
           "rs_momentum": 106.958
         }
       ],
-      "sector_ret_5d": 1.89,
+      "sector_ret_5d": 1.63,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -4111,7 +4113,7 @@
           "rs_momentum": 90.979
         }
       ],
-      "sector_ret_5d": -2.87,
+      "sector_ret_5d": -2.64,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -4282,7 +4284,7 @@
           "rs_momentum": 87.936
         }
       ],
-      "sector_ret_5d": 3.8,
+      "sector_ret_5d": 4.4,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -4453,9 +4455,9 @@
           "rs_momentum": 91.629
         }
       ],
-      "sector_ret_5d": 0.2,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": -0.01,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 10
     },
     "바이오_신약": {
@@ -4624,7 +4626,7 @@
           "rs_momentum": 88.69
         }
       ],
-      "sector_ret_5d": -0.94,
+      "sector_ret_5d": -0.99,
       "improving_count": 1,
       "watch_count": 0,
       "total": 15
@@ -4795,7 +4797,7 @@
           "rs_momentum": 96.265
         }
       ],
-      "sector_ret_5d": 0.13,
+      "sector_ret_5d": 0.04,
       "improving_count": 0,
       "watch_count": 0,
       "total": 16
@@ -4966,7 +4968,7 @@
           "rs_momentum": 96.834
         }
       ],
-      "sector_ret_5d": 8.24,
+      "sector_ret_5d": 8.61,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -5137,7 +5139,7 @@
           "rs_momentum": 90.66
         }
       ],
-      "sector_ret_5d": -0.65,
+      "sector_ret_5d": -0.63,
       "improving_count": 1,
       "watch_count": 0,
       "total": 9
@@ -5308,7 +5310,7 @@
           "rs_momentum": 98.787
         }
       ],
-      "sector_ret_5d": -3.82,
+      "sector_ret_5d": -3.03,
       "improving_count": 0,
       "watch_count": 0,
       "total": 19
@@ -5479,7 +5481,7 @@
           "rs_momentum": 99.216
         }
       ],
-      "sector_ret_5d": -3.62,
+      "sector_ret_5d": -3.56,
       "improving_count": 1,
       "watch_count": 0,
       "total": 18
@@ -5650,7 +5652,7 @@
           "rs_momentum": 100.011
         }
       ],
-      "sector_ret_5d": -2.8,
+      "sector_ret_5d": -1.89,
       "improving_count": 0,
       "watch_count": 0,
       "total": 14
@@ -5821,7 +5823,7 @@
           "rs_momentum": 93.701
         }
       ],
-      "sector_ret_5d": -1.22,
+      "sector_ret_5d": -0.68,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -5992,7 +5994,7 @@
           "rs_momentum": 95.641
         }
       ],
-      "sector_ret_5d": -4.9,
+      "sector_ret_5d": -4.16,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -6163,7 +6165,7 @@
           "rs_momentum": 87.252
         }
       ],
-      "sector_ret_5d": -3.61,
+      "sector_ret_5d": -2.84,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -6334,7 +6336,7 @@
           "rs_momentum": 93.979
         }
       ],
-      "sector_ret_5d": 3.54,
+      "sector_ret_5d": 3.72,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -6505,7 +6507,7 @@
           "rs_momentum": 91.999
         }
       ],
-      "sector_ret_5d": 0.07,
+      "sector_ret_5d": 0.86,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -6676,7 +6678,7 @@
           "rs_momentum": 96.137
         }
       ],
-      "sector_ret_5d": -2.35,
+      "sector_ret_5d": -2.18,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -6847,7 +6849,7 @@
           "rs_momentum": 97.817
         }
       ],
-      "sector_ret_5d": -7.76,
+      "sector_ret_5d": -7.35,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -7018,7 +7020,7 @@
           "rs_momentum": 94.903
         }
       ],
-      "sector_ret_5d": -0.67,
+      "sector_ret_5d": -0.74,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -7189,7 +7191,7 @@
           "rs_momentum": 97.094
         }
       ],
-      "sector_ret_5d": 0.33,
+      "sector_ret_5d": 0.4,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -7360,7 +7362,7 @@
           "rs_momentum": 93.862
         }
       ],
-      "sector_ret_5d": -1.27,
+      "sector_ret_5d": -0.9,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -7531,7 +7533,7 @@
           "rs_momentum": 102.5
         }
       ],
-      "sector_ret_5d": 1.22,
+      "sector_ret_5d": 1.82,
       "improving_count": 0,
       "watch_count": 0,
       "total": 6
@@ -7702,7 +7704,7 @@
           "rs_momentum": 93.259
         }
       ],
-      "sector_ret_5d": 0.31,
+      "sector_ret_5d": 0.28,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -7873,7 +7875,7 @@
           "rs_momentum": 94.582
         }
       ],
-      "sector_ret_5d": -1.68,
+      "sector_ret_5d": -1.48,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -8044,7 +8046,7 @@
           "rs_momentum": 99.707
         }
       ],
-      "sector_ret_5d": 0.85,
+      "sector_ret_5d": 0.91,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -8215,7 +8217,7 @@
           "rs_momentum": 95.88
         }
       ],
-      "sector_ret_5d": -3.0,
+      "sector_ret_5d": -2.82,
       "improving_count": 0,
       "watch_count": 0,
       "total": 11
@@ -8386,7 +8388,7 @@
           "rs_momentum": 94.749
         }
       ],
-      "sector_ret_5d": 1.82,
+      "sector_ret_5d": 1.8,
       "improving_count": 0,
       "watch_count": 1,
       "total": 8
@@ -8557,7 +8559,7 @@
           "rs_momentum": 91.058
         }
       ],
-      "sector_ret_5d": -0.79,
+      "sector_ret_5d": -0.49,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -8728,7 +8730,7 @@
           "rs_momentum": 90.225
         }
       ],
-      "sector_ret_5d": -1.13,
+      "sector_ret_5d": -1.33,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -8899,7 +8901,7 @@
           "rs_momentum": 91.453
         }
       ],
-      "sector_ret_5d": -1.19,
+      "sector_ret_5d": -0.94,
       "improving_count": 0,
       "watch_count": 0,
       "total": 25
@@ -9070,9 +9072,9 @@
           "rs_momentum": 104.049
         }
       ],
-      "sector_ret_5d": -5.16,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -4.64,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 9
     },
     "패션": {
@@ -9241,7 +9243,7 @@
           "rs_momentum": 98.182
         }
       ],
-      "sector_ret_5d": -1.49,
+      "sector_ret_5d": -1.24,
       "improving_count": 0,
       "watch_count": 0,
       "total": 10
@@ -9412,7 +9414,7 @@
           "rs_momentum": 97.144
         }
       ],
-      "sector_ret_5d": -0.44,
+      "sector_ret_5d": -0.27,
       "improving_count": 0,
       "watch_count": 1,
       "total": 10
@@ -9583,7 +9585,7 @@
           "rs_momentum": 97.79
         }
       ],
-      "sector_ret_5d": -1.86,
+      "sector_ret_5d": -1.53,
       "improving_count": 0,
       "watch_count": 0,
       "total": 8
@@ -9754,7 +9756,7 @@
           "rs_momentum": 109.228
         }
       ],
-      "sector_ret_5d": -1.89,
+      "sector_ret_5d": -1.83,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -9762,123 +9764,124 @@
   },
   "sources": [
     {
-      "source": "investors",
-      "title": "Dow Jones Software Leader Microsoft, Palantir, Micron, Palo Alto In Or Near Buy Zones",
-      "link": "https://www.investors.com/stock-lists/stocks-near-a-buy-zone/dow-jones-microsoft-palantir-micron-palo-alto/",
-      "published": "Tue, 29 Sep 2026 18:07:02 +0000"
+      "source": "maeil",
+      "title": "채권금리 압박에 다우 444P↓...마이크론 호실적에도 시간외 약세 [월가월부]",
+      "link": "https://www.mk.co.kr/news/stock/12165530",
+      "published": "Thu, 01 Oct 2026 06:55:18 +09:00"
     },
     {
-      "source": "fnnews",
-      "title": "'이자 부담 더 커졌다'..가계 대출금리 2년 9개월 만에 최고치",
-      "link": "https://www.fnnews.com/news/202609301049131861",
-      "published": "Wed,30 Sep 2026 12:00:00 +0900"
+      "source": "investors",
+      "title": "OpenAI Launches Muse Competitor. Meta Seen As 'Clear Leader' In Personal AI Agent Battle.",
+      "link": "https://www.investors.com/news/technology/meta-stock-openai-dots-muse-ai/",
+      "published": "Wed, 30 Sep 2026 14:16:44 +0000"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "OpenAI follows Meta into the red-hot market for personal agents. But will users pay?",
+      "link": "https://www.cnbc.com/2026/09/30/openai-follows-meta-into-the-red-hot-market-for-personal-agents.html",
+      "published": "Wed, 30 Sep 2026 12:04:46 GMT"
     },
     {
       "source": "cnbc_tech",
-      "title": "Meta is bringing Muse AI to small businesses — and it already has a huge head start",
-      "link": "https://www.cnbc.com/2026/09/29/meta-is-bringing-muse-ai-to-small-businesses-and-it-already-has-a-huge-head-start.html",
-      "published": "Tue, 29 Sep 2026 17:26:06 GMT"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Tesla enters $30B credit agreements to fund expansion",
-      "link": "https://seekingalpha.com/news/4648330-tesla-enters-30b-credit-agreements-to-fund-expansion?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Wed, 30 Sep 2026 00:44:12 -0400"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Could SpaceX be worth $12 trillion one day? Citi says Starship gets it a step closer.",
-      "link": "https://www.marketwatch.com/story/could-spacex-be-worth-12-trillion-one-day-citi-says-starship-gets-it-a-step-closer-6ce44961?mod=mw_rss_topstories",
-      "published": "Tue, 29 Sep 2026 21:53:00 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Dow Jones Futures Rise With Micron, Inflation Data Due; Yields Pressure Stocks But Bloom Energy Soars",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-treasury-yields-rise-bloom-energy-soars-micron-inflation-data/",
-      "published": "Tue, 29 Sep 2026 20:37:34 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "John Ternus' vision for Apple is coming into view, and we like what we see",
-      "link": "https://www.cnbc.com/2026/09/29/john-ternus-vision-for-apple-is-coming-into-view-and-we-like-what-we-see.html",
-      "published": "Tue, 29 Sep 2026 19:08:43 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "AI Stocks Rise Amid Limp Index Action; These 3 Chip Gear Stocks Surpass $1 Trillion In Value",
-      "link": "https://www.investors.com/market-trend/the-big-picture/ai-stocks-market-trading-action-chip-gearmakers-1-trillion-value/",
-      "published": "Tue, 29 Sep 2026 22:08:52 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Education Department extends deadline for student loan interest rate discount",
-      "link": "https://www.cnbc.com/2026/09/29/trump-officials-extend-student-loan-interest-rate-discount-deadline.html",
-      "published": "Tue, 29 Sep 2026 18:28:03 GMT"
+      "title": "Nvidia is approaching a breakout level. Plus, what we want to see from Micron",
+      "link": "https://www.cnbc.com/2026/09/30/nvidia-approaches-a-breakout-level-plus-what-we-want-to-see-from-micron.html",
+      "published": "Wed, 30 Sep 2026 15:47:42 GMT"
     },
     {
       "source": "yonhap",
-      "title": "\"AI 인프라 투자는 낭비…비트코인, 10년 뒤 100만달러 갈 것\"",
-      "link": "https://www.yna.co.kr/view/AKR20260930101700002",
-      "published": "Wed, 30 Sep 2026 13:08:50 +0900"
+      "title": "독일 9월 소비자물가 3.3％↑…ECB 금리인상 압박",
+      "link": "https://www.yna.co.kr/view/AKR20260930196400082",
+      "published": "Wed, 30 Sep 2026 22:43:10 +0900"
+    },
+    {
+      "source": "investors",
+      "title": "Nvidia, AMD Collaborator Teases Breakout To Record High. These Clues Bode Well.",
+      "link": "https://www.investors.com/research/breakout-stocks-technical-analysis/semtech-stock-teases-record-high-nvidia-amd-enter-buy-range/",
+      "published": "Wed, 30 Sep 2026 11:31:03 +0000"
+    },
+    {
+      "source": "investors",
+      "title": "Dow Jones Futures: Micron Earnings Crush Views, S&P 500 At Critical Level As Treasury Yields Rise",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-micron-rises-earnings-treasury-yields/",
+      "published": "Wed, 30 Sep 2026 20:59:09 +0000"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Micron beats on earnings and issues strong guidance as data center revenue jumps 11-fold",
+      "link": "https://www.cnbc.com/2026/09/30/micron-mu-q4-earnings-report-2026.html",
+      "published": "Wed, 30 Sep 2026 20:59:05 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Amazon In New Base",
+      "link": "https://www.investors.com/research/best-stocks-seven-magnificent-stocks-earnings-growth/",
+      "published": "Wed, 30 Sep 2026 12:15:21 +0000"
+    },
+    {
+      "source": "investors",
+      "title": "Stock Market Today: Dow Knocked Down, Nasdaq Pares Gain; Micron Holds Firm After Earnings Soar",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-micron-earnings-mu-stock/",
+      "published": "Wed, 30 Sep 2026 12:07:30 +0000"
+    },
+    {
+      "source": "cnbc_tech",
+      "title": "Meta stock enjoys best month since 2022 on AI momentum",
+      "link": "https://www.cnbc.com/2026/09/30/meta-stock-best-month-2013-ai.html",
+      "published": "Wed, 30 Sep 2026 21:36:47 GMT"
     },
     {
       "source": "ft",
-      "title": "AI industry moves to thwart data centre backlash ahead of US midterms",
-      "link": "https://www.ft.com/content/9705f5bf-bc06-481d-b2a3-1299463074b8?syn-25a6b1a6=1",
-      "published": "Wed, 30 Sep 2026 04:01:04 GMT"
+      "title": "Google releases most advanced Gemini AI model",
+      "link": "https://www.ft.com/content/46194a0b-a0e4-42cc-ad40-0df753492768?syn-25a6b1a6=1",
+      "published": "Wed, 30 Sep 2026 21:21:48 GMT"
     },
     {
-      "source": "fnnews",
-      "title": "반도체가 끌어올린 세수…법인세 60% 넘게 늘었다",
-      "link": "https://www.fnnews.com/news/202609291755242209",
-      "published": "Wed,30 Sep 2026 09:00:00 +0900"
+      "source": "investors",
+      "title": "Google Stock Rises On Gemini 4 Argon Release After New AI Model Delays",
+      "link": "https://www.investors.com/news/technology/google-stock-rises-on-gemini-4-argon-release-after-new-ai-model-delays/",
+      "published": "Wed, 30 Sep 2026 20:57:42 +0000"
     },
     {
-      "source": "fnnews",
-      "title": "올해 국세 수입 478.6조원 전망…반도체 호황에 역대 최대 규모",
-      "link": "https://www.fnnews.com/news/202609291816262280",
-      "published": "Wed,30 Sep 2026 09:00:00 +0900"
+      "source": "ft",
+      "title": "Trump says Powell should resign after Fed watchdog clears ex-chair of misconduct",
+      "link": "https://www.ft.com/content/78431eef-50ee-4ec9-9ca6-af801da1e617?syn-25a6b1a6=1",
+      "published": "Wed, 30 Sep 2026 20:56:46 GMT"
     },
     {
-      "source": "cnbc_world",
-      "title": "Trump tries to rename AI 'super intelligence' as polls show him sinking on key issue",
-      "link": "https://www.cnbc.com/2026/09/29/trump-ai-super-intelligence.html",
-      "published": "Tue, 29 Sep 2026 22:42:35 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Gina Raimondo thinks AI ultimately will create jobs. It's the initial mass layoffs wave that worries her",
-      "link": "https://www.cnbc.com/2026/09/29/ai-job-losses-layoffs.html",
-      "published": "Tue, 29 Sep 2026 22:40:20 GMT"
+      "source": "cnbc_tech",
+      "title": "Google rolls out Gemini 4 Argon, its most advanced AI model",
+      "link": "https://www.cnbc.com/2026/09/30/google-gemini-4-argon-ai.html",
+      "published": "Wed, 30 Sep 2026 20:52:22 GMT"
     }
   ],
-  "global_sentiment": "risk_on",
-  "sentiment_reason": "필라델피아반도체 +1.32% 상승 및 Micron·Palo Alto 매수 구간 진입, 반도체 호황으로 한국 법인세 61% 급증 확인 등 AI·반도체 수출 슈퍼사이클 지속 확인",
+  "global_sentiment": "risk_off",
+  "sentiment_reason": "독일 소비자물가 3.3% 급등(2년 11개월 만 최고)으로 ECB 금리인상 압박 강화, 미국 30년물 국채금리 5.61%(24년 만 최고) 기록하며 채권 투매 지속, 다우 -0.86% 급락",
   "key_factors": [
-    "필라델피아반도체 +1.32% 상승 — Micron·Palo Alto 등 주요 반도체·소프트웨어주 매수 구간 진입",
-    "한국 반도체 호황 확인 — 법인세 136.4조(전년비 +61.2%), 국세수입 478.6조 역대 최대 기록",
-    "Meta Muse AI 소기업 출시, SpaceX 12조달러 밸류에이션 전망 등 빅테크 AI·우주 확장 가시화"
+    "유로존 인플레 재가속 - 독일 소비자물가 3.3%(전년비) 기록, 에너지값 14.9% 급등 주도로 ECB 추가 금리인상 압박 강화",
+    "미국 장기금리 발작 지속 - 30년물 5.61%(24년 만 최고), 10년물 5.29%(2007년 이후 최고), 이란전쟁 장기화 인플레 우려로 국채 투매",
+    "AI 모델 경쟁 가속 - 구글 Gemini 4 Argon(코딩·보안 최고 성능) 출시, OpenAI Dots(개인 AI 에이전트) 발표로 메타와 정면승부",
+    "마이크론 실적 서프라이즈 - EPS $33.42(컨센서스 $31.61 초과), 데이터센터 매출 11배 급증했으나 시간외 약세는 금리 부담 반영"
   ],
-  "news_summary": "미국 국채10Y 5.26%(+0.29%p), 2Y 4.07%(+0.20%p) 급등 — PCE(개인소비지출) 인플레이션 지표 발표 전 긴축 장기화 우려 및 재정 적자 압박\n중국 9월 PMI 예상치 상회 — 제조업·서비스업 모두 확장 국면 진입, 구리 +1.22% 상승 견인\n달러인덱스 101.44(+0.07%) 소폭 상승 — 국채 금리 급등 및 연준 긴축 장기화 기대 반영\n금 4211달러(+0.75%) 상승 — 국채 금리 급등에도 중동·러우 지정학 리스크로 안전자산 수요 지속\n트럼프, AI를 'super intelligence'로 명명 행정명령 발표 — 기술 리더들과 '도덕적 구속력' AI 협약 체결, AI 여론 악화 대응\nAI 산업, 미국 중간선거 앞두고 데이터센터 반발 차단 움직임 — 여론 악화 방지 위한 선제 대응\nCramer 경고, AI 서사(narrative) 전환 감지 — 대중 인식 악화 시 주가 압박 가능성 지적\nGina Raimondo 전 상무장관, AI 궁극적 일자리 창출 전망 — 단 초기 대량 해고 파동 우려 표명\nMicron·Palo Alto·Microsoft 매수 구간(buy zone) 진입 — Investors.com 보도, Dow Jones 소프트웨어 리더 기술적 돌파 확인\nAI 칩 장비주 3사(Applied Materials·ASML·Lam Research 추정) 시가총액 합산 1조달러 돌파 — AI 인프라 투자 지속 신호\nSpaceX, Citi 밸류에이션 전망 12조달러 — Starship 개발 진전으로 우주 경제 리더십 강화\nMeta, Muse AI 소기업용 출시 — 중소기업 자동화 지원, 이미 대규모 사용자 기반 확보로 선점 우위\nTesla, 300억달러 신용 계약 체결 — 확장 자금 확보, AI·로봇·에너지 사업 투자 가속\n애플 John Ternus CEO 비전 구체화 — CNBC Jim Cramer, 제품·서비스 로드맵 긍정 평가",
+  "news_summary": "독일 9월 소비자물가 전년비 3.3% 급등(2년 11개월 만 최고), 에너지값 14.9% 급등 주도로 ECB(유럽중앙은행) 금리인상 압박 강화 - 프랑스·이탈리아도 동반 급등\n미국 30년물 국채금리 장중 5.612%(2002년 이후 24년 만 최고), 10년물 5.265%(2007년 이후 최고) 기록 - 이란전쟁 장기화 인플레 우려로 국채 투매 현상 지속\n8월 PCE(개인소비지출) 물가지표 예상 하회로 장 초반 상승했으나 장기금리 압박에 상승분 반납, 시카고 페드워치 10월 금리인상 확률 하락·12월 가능성 상승\n한국 주담대(주택담보대출) 금리 4.66%(8월 기준) 기록, 넉 달 연속 상승하며 레고랜드 사태 이후 최고 수준 - 연말 연 8% 도달 가능성 제기\n사우디 홍해 원유수출 재개 발표로 유가 일시 하락했으나, 이란전쟁 장기화로 장기 공급 차질 우려 지속 - WTI $90.34(+1.07%) 기록\nFTC(연방거래위원회), OpenAI·Anthropic 등 AI 기업 제품 위험성 조사 확대 - 규제 압박 강화로 업계 긴장 고조\n트럼프, 연준 내부 비리 무혐의 받은 파월 의장에게 사임 압박 - 정치권 연준 독립성 논란 재점화\n공화당 조시 홀리 상원의원, OpenAI CEO 샘 올트먼이 AI 위험성 청문회 출석 거부 밝혀 - 의회 규제 압박 가시화\n마이크론, 4분기 EPS $33.42(컨센서스 $31.61 초과)·가이던스 상향 발표, 데이터센터 매출 전년 대비 11배 급증 - AI 메모리 수요 폭발 확인했으나 시간외 약세는 금리 부담 반영\n구글, Gemini 4 Argon 출시 - 실제 소프트웨어 엔지니어링 최고 기록·사이버보안 1위 타이, 코딩·보안·복잡한 전문 업무 대폭 개선으로 OpenAI GPT 정면 대응\n메타, 9월 주가 +27%(2022년 이후 최대 월간 상승) 기록 - Muse AI 에이전트 출시 모멘텀, OpenAI Dots 발표에도 '개인 AI 에이전트 경쟁 명확한 선두' 평가 유지\nOpenAI, Dots(상시 작동 개인 AI 에이전트) 출시로 메타 Muse와 정면승부 - 유료 구독 모델 성공 여부 관건, 7월 Hugging Face 사이버공격 관련 소송 제기됨\n엔비디아, 신고가 돌파 레벨 근접 - AMD·엔비디아 협력사 Semtech 종합평가 99점 기록, 고속 연결 제품 수요로 신고가 돌파 티징\n테슬라, AI 지출(Optimus·Cybercab 등) 확대 위해 $300억 신용한도 확보 - SEC 공시로 대규모 투자 가시화\n아마존·구글·델 등 7개 종목, 애널리스트 최고 호감 실적 성장주로 선정 - 아마존은 신규 베이스(매수 대기 구간) 형성 중",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "미국 국채10Y 5.26%(+0.29%p), 2Y 4.07%(+0.20%p) 급등 — PCE(개인소비지출) 인플레이션 지표 발표 전 긴축 장기화 우려 및 재정 적자 압박",
+          "text": "독일 9월 소비자물가 전년비 3.3% 급등(2년 11개월 만 최고), 에너지값 14.9% 급등 주도로 ECB(유럽중앙은행) 금리인상 압박 강화 - 프랑스·이탈리아도 동반 급등",
           "impact": "high"
         },
         {
-          "text": "중국 9월 PMI 예상치 상회 — 제조업·서비스업 모두 확장 국면 진입, 구리 +1.22% 상승 견인",
+          "text": "미국 30년물 국채금리 장중 5.612%(2002년 이후 24년 만 최고), 10년물 5.265%(2007년 이후 최고) 기록 - 이란전쟁 장기화 인플레 우려로 국채 투매 현상 지속",
+          "impact": "high"
+        },
+        {
+          "text": "8월 PCE(개인소비지출) 물가지표 예상 하회로 장 초반 상승했으나 장기금리 압박에 상승분 반납, 시카고 페드워치 10월 금리인상 확률 하락·12월 가능성 상승",
           "impact": "mid"
         },
         {
-          "text": "달러인덱스 101.44(+0.07%) 소폭 상승 — 국채 금리 급등 및 연준 긴축 장기화 기대 반영",
-          "impact": "mid"
-        },
-        {
-          "text": "금 4211달러(+0.75%) 상승 — 국채 금리 급등에도 중동·러우 지정학 리스크로 안전자산 수요 지속",
+          "text": "한국 주담대(주택담보대출) 금리 4.66%(8월 기준) 기록, 넉 달 연속 상승하며 레고랜드 사태 이후 최고 수준 - 연말 연 8% 도달 가능성 제기",
           "impact": "mid"
         }
       ]
@@ -9888,19 +9891,19 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "트럼프, AI를 'super intelligence'로 명명 행정명령 발표 — 기술 리더들과 '도덕적 구속력' AI 협약 체결, AI 여론 악화 대응",
+          "text": "사우디 홍해 원유수출 재개 발표로 유가 일시 하락했으나, 이란전쟁 장기화로 장기 공급 차질 우려 지속 - WTI $90.34(+1.07%) 기록",
           "impact": "high"
         },
         {
-          "text": "AI 산업, 미국 중간선거 앞두고 데이터센터 반발 차단 움직임 — 여론 악화 방지 위한 선제 대응",
+          "text": "FTC(연방거래위원회), OpenAI·Anthropic 등 AI 기업 제품 위험성 조사 확대 - 규제 압박 강화로 업계 긴장 고조",
           "impact": "mid"
         },
         {
-          "text": "Cramer 경고, AI 서사(narrative) 전환 감지 — 대중 인식 악화 시 주가 압박 가능성 지적",
+          "text": "트럼프, 연준 내부 비리 무혐의 받은 파월 의장에게 사임 압박 - 정치권 연준 독립성 논란 재점화",
           "impact": "mid"
         },
         {
-          "text": "Gina Raimondo 전 상무장관, AI 궁극적 일자리 창출 전망 — 단 초기 대량 해고 파동 우려 표명",
+          "text": "공화당 조시 홀리 상원의원, OpenAI CEO 샘 올트먼이 AI 위험성 청문회 출석 거부 밝혀 - 의회 규제 압박 가시화",
           "impact": "mid"
         }
       ]
@@ -9910,27 +9913,31 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "Micron·Palo Alto·Microsoft 매수 구간(buy zone) 진입 — Investors.com 보도, Dow Jones 소프트웨어 리더 기술적 돌파 확인",
+          "text": "마이크론, 4분기 EPS $33.42(컨센서스 $31.61 초과)·가이던스 상향 발표, 데이터센터 매출 전년 대비 11배 급증 - AI 메모리 수요 폭발 확인했으나 시간외 약세는 금리 부담 반영",
           "impact": "high"
         },
         {
-          "text": "AI 칩 장비주 3사(Applied Materials·ASML·Lam Research 추정) 시가총액 합산 1조달러 돌파 — AI 인프라 투자 지속 신호",
+          "text": "구글, Gemini 4 Argon 출시 - 실제 소프트웨어 엔지니어링 최고 기록·사이버보안 1위 타이, 코딩·보안·복잡한 전문 업무 대폭 개선으로 OpenAI GPT 정면 대응",
           "impact": "high"
         },
         {
-          "text": "SpaceX, Citi 밸류에이션 전망 12조달러 — Starship 개발 진전으로 우주 경제 리더십 강화",
+          "text": "메타, 9월 주가 +27%(2022년 이후 최대 월간 상승) 기록 - Muse AI 에이전트 출시 모멘텀, OpenAI Dots 발표에도 '개인 AI 에이전트 경쟁 명확한 선두' 평가 유지",
           "impact": "high"
         },
         {
-          "text": "Meta, Muse AI 소기업용 출시 — 중소기업 자동화 지원, 이미 대규모 사용자 기반 확보로 선점 우위",
+          "text": "OpenAI, Dots(상시 작동 개인 AI 에이전트) 출시로 메타 Muse와 정면승부 - 유료 구독 모델 성공 여부 관건, 7월 Hugging Face 사이버공격 관련 소송 제기됨",
           "impact": "mid"
         },
         {
-          "text": "Tesla, 300억달러 신용 계약 체결 — 확장 자금 확보, AI·로봇·에너지 사업 투자 가속",
+          "text": "엔비디아, 신고가 돌파 레벨 근접 - AMD·엔비디아 협력사 Semtech 종합평가 99점 기록, 고속 연결 제품 수요로 신고가 돌파 티징",
           "impact": "mid"
         },
         {
-          "text": "애플 John Ternus CEO 비전 구체화 — CNBC Jim Cramer, 제품·서비스 로드맵 긍정 평가",
+          "text": "테슬라, AI 지출(Optimus·Cybercab 등) 확대 위해 $300억 신용한도 확보 - SEC 공시로 대규모 투자 가시화",
+          "impact": "mid"
+        },
+        {
+          "text": "아마존·구글·델 등 7개 종목, 애널리스트 최고 호감 실적 성장주로 선정 - 아마존은 신규 베이스(매수 대기 구간) 형성 중",
           "impact": "mid"
         }
       ]
@@ -9938,160 +9945,160 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "기술주 강세에도 국채10Y +0.29%p 급등(5.26%)으로 밸류에이션(주가 적정성 평가 지표) 압박, 대형주 혼조 속 소폭 하락",
+      "reason": "쿨한 8월 PCE(개인소비지출) 물가지표에 장 초반 상승했으나 30년물 국채금리 5.61%(24년 만 최고) 기록하며 채권 투매 압박으로 -0.25% 하락 마감",
       "drivers": [
-        "국채10Y 5.26% 급등",
-        "기술XLK leading 유지"
+        "30년물 국채금리 5.61% 급등",
+        "10년물 국채금리 5.29% 신고점",
+        "마이크론 호실적에도 금리 부담"
       ]
     },
     "NASDAQ": {
-      "reason": "Micron·Palo Alto 매수 구간 진입 및 AI 반도체 수요 지속 기대, 금리 압박에도 기술주 방어",
+      "reason": "마이크론 데이터센터 매출 11배 급증, 구글 Gemini 4 Argon(소프트웨어 엔지니어링 최고 기록) 발표로 기술주 선별 매수세 유입, +0.24% 소폭 상승",
       "drivers": [
-        "Micron 매수 구간",
-        "AI 칩 장비주 1조달러 돌파"
+        "마이크론 EPS $33.42(컨센서스 초과)",
+        "구글 Gemini 4 Argon 출시",
+        "메타 9월 +27%(2022년 이후 최대)"
       ]
     },
     "DOW": {
-      "reason": "금리 상승 및 경기민감 소형주 부진(러셀2000 -0.35%)으로 전통 산업재·금융주 약세",
+      "reason": "장기 국채금리 급등으로 금융주·경기민감주 타격, 산업재·필수소비재 섹터 전반 약세로 -0.86%(443.87포인트) 급락",
       "drivers": [
-        "러셀2000 -0.35%",
-        "국채2Y +0.20%p"
+        "30년물 금리 5.61% 압박",
+        "산업재·금융 섹터 약세"
       ]
     },
     "VIX": {
-      "reason": "기술주 안정적 흐름 및 AI 인프라 투자 지속 기대로 변동성(VIX) 소폭 하락, 위험 선호 분위기 유지",
+      "reason": "독일 물가 3.3% 급등(ECB 금리인상 압박), 미국 장기금리 24년 만 최고 기록으로 변동성 우려 확대, +1.87% 상승",
       "drivers": [
-        "필라델피아반도체 +1.32%",
-        "빅테크 안정"
+        "독일 CPI 3.3%(에너지 14.9% 급등)",
+        "미국 30년물 5.61% 충격"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Micron·Palo Alto·Microsoft 등 매수 구간 진입, AI 칩 장비 3사(Applied Materials·ASML·Lam Research 추정) 시가총액 1조달러 돌파로 업종 강세",
+      "reason": "마이크론 데이터센터 매출 11배 급증 호재에도 시간외 약세, 엔비디아 신고가 근접 신호와 상쇄되며 ±0.00% 보합 마감",
       "drivers": [
-        "AI 칩 장비 3사 1조달러 돌파",
-        "Micron 매수 구간"
+        "마이크론 가이던스 상향",
+        "엔비디아 돌파 레벨 근접",
+        "금리 급등 부담 상쇄"
       ]
     },
     "러셀2000": {
-      "reason": "금리 급등(국채10Y 5.26%) 및 경기민감 소형주 자금 이탈, 대형 기술주 쏠림 심화",
+      "reason": "장기금리 급등으로 차입비용 민감한 중소형주 타격, 경기민감주 전반 약세로 -0.39% 하락",
       "drivers": [
-        "국채10Y +0.29%p",
-        "대형주 쏠림"
+        "30년물 금리 5.61% 충격",
+        "중소형주 차입비용 부담"
       ]
     },
     "영국FTSE": {
-      "reason": "유럽 경기 둔화 우려 및 알루미늄 -1.93% 급락 등 원자재 약세로 소재·에너지주 하락",
+      "reason": "독일 물가 급등·유로존 금리인상 압박 확산으로 유럽 증시 전반 약세, 에너지·금융 섹터 하락 주도, -0.29% 하락",
       "drivers": [
-        "알루미늄 -1.93%",
-        "유럽 경기 둔화"
+        "독일 CPI 3.3% 충격파",
+        "ECB 금리인상 압박"
       ]
     },
     "독일DAX": {
-      "reason": "중국 PMI 예상치 상회(제조·서비스업 확장) 및 구리 +1.22% 상승으로 수출주 방어, 소폭 상승",
+      "reason": "독일 소비자물가 3.3%(2년 11개월 만 최고) 발표에도 기술주·화학주 선별 매수로 +0.10% 소�폭 상승",
       "drivers": [
-        "중국 PMI 호조",
-        "구리 +1.22%"
+        "독일 CPI 3.3% 기록",
+        "기술주·화학 선별 매수"
       ]
     },
     "니케이": {
-      "reason": "필라델피아반도체 +1.32% 영향 및 엔화 약세 수출주 수혜, 반도체·기술주 강세로 2% 급등",
+      "reason": "미국 장기금리 급등·엔화 약세 부담, 수출주 일부 강세에도 전반 약세로 -0.60% 하락",
       "drivers": [
-        "필라델피아반도체 +1.32%",
-        "엔화 약세"
+        "미국 국채금리 급등 전이",
+        "엔화 약세 부담"
       ]
     },
     "항셍": {
-      "reason": "중국 PMI 호조에도 부동산·소비 회복 지연 우려, 횡보 지속",
+      "reason": "미국 금리 급등·중국 경기 둔화 우려 지속, 기술주·부동산 동반 약세로 -0.48% 하락",
       "drivers": [
-        "중국 PMI 예상 상회",
-        "부동산 부진"
+        "미국 금리 급등 충격",
+        "중국 경기 우려"
       ]
     },
     "달러인덱스": {
-      "reason": "국채10Y 5.26% 급등 및 연준 긴축 장기화 기대로 달러 수요 소폭 증가",
+      "reason": "독일 물가 급등으로 유로화 약세, ECB 금리인상 압박에도 미국 장기금리 우위로 달러 강세 유지, +0.08% 상승",
       "drivers": [
-        "국채10Y +0.29%p",
-        "연준 긴축 장기화"
+        "독일 CPI 3.3% 충격",
+        "미국 30년물 5.61% 우위"
       ]
     },
     "국채2Y": {
-      "reason": "PCE(개인소비지출) 인플레이션 지표 발표 전 긴축 장기화 베팅 및 단기 금리 상승 압력",
+      "reason": "8월 PCE 물가지표 예상보다 낮게 발표(구체 수치 미공개)되며 단기 금리인상 기대 완화, -0.86% 하락",
       "drivers": [
-        "PCE 지표 대기",
-        "긴축 장기화 우려"
+        "8월 PCE 물가 예상 하회",
+        "10월 금리인상 확률 하락"
       ]
     },
     "국채10Y": {
-      "reason": "PCE 인플레이션 지표 발표 전 장기 금리 급등, 재정 적자 우려 및 공급 압력 지속",
+      "reason": "이란전쟁 장기화 인플레 우려, 사우디 홍해 원유수출 재개에도 장기 인플레 프리미엄 반영, 5.29%(2007년 이후 최고) 기록하며 +0.72% 급등",
       "drivers": [
-        "PCE 지표 전 긴장",
-        "재정 적자 우려"
+        "이란전쟁 장기화 우려",
+        "장기 인플레 프리미엄",
+        "국채 투매 지속"
       ]
     },
     "코스피": {
-      "reason": "국채10Y 5.26% 급등 압박 및 외국인 매도 지속 우려, 반도체 법인세 급증 확인에도 관망세",
+      "reason": "직접 촉매 없음 - 글로벌 혼조 속 거래 미실시(데이터 0.00%), 전일 수준 유지",
       "drivers": [
-        "국채10Y 압박",
-        "외국인 매도 우려"
+        "장 마감 후 집계 대기"
       ]
     },
     "코스닥": {
-      "reason": "IT부품·통신장비 Leading 유지 및 2차전지 반등 기대, 중소형 기술주 선별 매수",
+      "reason": "직접 촉매 없음 - 글로벌 혼조 속 거래 미실시(데이터 0.00%), 전일 수준 유지",
       "drivers": [
-        "IT부품 Leading",
-        "2차전지 반등 시도"
+        "장 마감 후 집계 대기"
       ]
     },
     "금": {
-      "reason": "국채10Y 급등에도 지정학 리스크(중동·러우 지속) 및 안전자산 수요로 +0.75% 상승",
+      "reason": "독일 물가 급등·미국 장기금리 최고치에도 이란전쟁 장기화 안전자산 수요로 +0.22% 상승, $4,189 기록",
       "drivers": [
-        "지정학 리스크",
-        "안전자산 수요"
+        "이란전쟁 안전자산 수요",
+        "인플레 헤지 매수"
       ]
     },
     "WTI유가": {
-      "reason": "중국 PMI 호조 수요 기대 및 중동 공급 불안 지속, 횡보 후 소폭 상승",
+      "reason": "사우디 홍해 원유수출 재개 발표에도 이란전쟁 장기화 공급 차질 우려 우세, +1.07% 상승해 $90.34 기록",
       "drivers": [
-        "중국 PMI",
-        "중동 리스크"
+        "이란전쟁 공급 차질 우려",
+        "사우디 수출 재개 제한적"
       ]
     },
     "원달러": {
-      "reason": "반도체 수출 호조 및 법인세 급증 경상수지 개선 기대, 원화 강세 -0.29%",
+      "reason": "달러 강세에도 외국인 매도 일단락 기대, 수출 결제 수요로 -0.22% 소폭 하락해 1,356.54원 기록",
       "drivers": [
-        "반도체 수출 호조",
-        "법인세 급증"
+        "달러인덱스 +0.08% 제한적",
+        "수출 결제 수요"
       ]
     },
     "알루미늄": {
-      "reason": "유럽 경기 둔화 우려 및 중국 부동산 수요 부진으로 -1.93% 급락",
+      "reason": "중국 경기 둔화 우려·건설 수요 약세 지속, 유럽 제조업 부진 전망으로 -0.64% 하락",
       "drivers": [
-        "유럽 경기 둔화",
-        "중국 부동산 부진"
+        "중국 건설 수요 약세",
+        "유럽 제조업 부진"
       ]
     },
     "구리": {
-      "reason": "중국 PMI 제조업 확장 확인 및 AI 인프라 투자 지속 기대로 +1.22% 상승",
+      "reason": "AI 데이터센터 전력 인프라 수요(마이크론 매출 11배 급증 시그널) 기대, 이란전쟁 장기화 공급 우려로 +1.47% 강세",
       "drivers": [
-        "중국 PMI 호조",
-        "AI 인프라 수요"
+        "AI 인프라 수요 기대",
+        "공급 차질 우려"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "반도체 법인세 61% 급증(136.4조) 확인 및 필라델피아반도체 +1.32% 상승으로 수출 슈퍼사이클 재확인, 국채10Y 5.26% 급등 압박에도 반도체·IT부품 Leading 유지",
+    "summary": "독일 물가 급등·미국 30년물 5.61%(24년 만 최고) 기록으로 글로벌 금리 발작 심화, 마이크론 데이터센터 매출 11배 급증 호재에도 장기금리 압박이 상쇄하며 코스피 혼조 예상",
     "positive_factors": [
-      "필라델피아반도체 +1.32% 및 Micron·AI 칩 장비 3사 1조달러 돌파 → 삼성전자·SK하이닉스 등 반도체 소자·장비·패키징 수혜 기대",
-      "한국 반도체 호황 가시화 — 법인세 136.4조(전년비 +61.2%), 국세수입 478.6조 역대 최대 기록으로 삼성·SK 실적 재확인",
-      "중국 PMI 호조 및 구리 +1.22% → 반도체 소재·IT부품 수요 개선 기대",
-      "원달러 1355.58(-0.29%) 강세 — 반도체 수출 호조 및 법인세 급증으로 경상수지 개선 기대"
+      "마이크론 데이터센터 매출 전년비 11배 급증·가이던스 상향 → 삼성전자·SK하이닉스 HBM(고대역폭메모리) 수주 가시성 강화, 국내 반도체 밸류에이션(적정 주가 평가) 상향 기대",
+      "구글 Gemini 4 Argon(코딩·보안 최고 성능) 출시·구리 +1.47% 강세 → AI 인프라 투자 지속 신호, 반도체 장비·소재·패키징 수혜 섹터 모멘텀 유지",
+      "원달러 -0.22%(1,356.54원) 소폭 하락 → 외국인 매도 압박 일시 완화, 수출주 환차손 부담 경감"
     ],
     "negative_factors": [
-      "미국 국채10Y 5.26% 급등 → 밸류에이션(주가 적정성 평가) 압박 및 외국인 매도 우려",
-      "AI 여론 악화 우려 — Cramer AI 서사(대중 인식) 전환 경고, 데이터센터 반발 선제 차단 움직임",
-      "2차전지 weakening·lagging 지속 — 셀·소재·장비 모두 RS-Momentum 93 이하, 업황 회복 지연"
+      "독일 CPI(소비자물가지수) 3.3%(에너지 14.9% 급등)·미국 30년물 5.61% 기록 → 글로벌 긴축 재강화 우려로 외국인 매도 재개 리스크, 국내 주담대 금리 4.66%(4개월 연속 상승) 수준과 동조 가능성",
+      "다우 -0.86% 급락·VIX +1.87% 상승 → 리스크오프(위험자산 회피) 심리 확산, 코스피 지수 방어 부담 확대"
     ],
-    "key_watch": "Micron 실적 발표(수요일 장후) 및 PCE 인플레이션 지표 — 반도체 수요 재확인 및 금리 방향 결정 변수"
+    "key_watch": "오전 중 반도체_소자·반도체_장비·IT부품 등 Leading(주도 구간) 섹터 오픈 갭 방향 - 마이크론 호실적과 금리 압박 중 어느 쪽이 우세한지 초반 30분 확인 필수"
   },
   "sector_impact": {},
   "strong_buy": [
@@ -10099,72 +10106,56 @@
       "sector": "반도체_소자",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "필라델피아반도체 +1.32% 및 AI 칩 장비 3사 1조달러 돌파, 한국 법인세 61% 급증으로 삼성·SK 실적 가시화 — RS-R 103.5/RS-M 106.3 Leading 유지, 수출 슈퍼사이클 지속"
+      "reason": "RS-Ratio 103.5·RS-Momentum 106.3 Leading 구간 유지, 마이크론 데이터센터 매출 11배 급증으로 삼성·하이닉스 HBM 수주 가시성 강화 - 금리 압박에도 AI 메모리 수요 우선 반영"
     },
     {
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "AI 칩 장비 3사 1조달러 돌파 및 Micron 매수 구간 진입 — RS-R 107.8/RS-M 106.9 Leading, 국내 장비주(원익IPS·HPSP 등) 동반 수혜"
-    },
-    {
-      "sector": "반도체_소재",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "반도체 소재 수요 동반 상승 및 구리 +1.22% 원자재 개선 — RS-R 105.8/RS-M 105.3 Leading, 솔브레인·SK머티리얼즈 등 수혜"
+      "reason": "RS-Ratio 107.8·RS-Momentum 106.9 Leading 최상단, 구글 Gemini 4·구리 +1.47%(AI 인프라 수요) 신호로 ASML·램리서치향 노출 수혜 지속"
     },
     {
       "sector": "반도체_패키징",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "AI 칩 패키징 수요 지속 및 첨단 패키징 투자 확대 — RS-R 109.1/RS-M 106.4 Leading 최상위, 하나마이크론·심텍 등 모멘텀"
+      "reason": "RS-Ratio 109.1·RS-Momentum 106.4 Leading 최고점, 마이크론 가이던스 상향·HBM 패키징 수요 급증으로 앰코·JCET향 수혜 가시화"
     }
   ],
   "watch": [
     {
-      "sector": "2차전지_셀",
-      "reason": "RS-R 99.5/RS-M 93.0 lagging, 업황 회복 지연 및 중국 PMI 호조에도 전기차 수요 부진 지속 — 단기 진입 부적합"
-    },
-    {
       "sector": "조선",
-      "reason": "RS-R 94.7/RS-M 93.0 lagging, 조선 수주 호조에도 상대 모멘텀 약세 — 중장기 펀더멘탈 대비 단기 기술적 신호 미흡"
+      "reason": "RS-Ratio 94.7·RS-Momentum 93.0 Lagging 구간 - 이란전쟁 장기화로 중동 수주 불확실성 지속, 장기금리 5.61% 급등으로 차입비용 민감 업종 부담"
     },
     {
-      "sector": "신재생에너지",
-      "reason": "RS-R 94.4/RS-M 89.4 lagging, 신재생 정책 불확실성 및 에너지XLE lagging 동조 — 원전(weakening)만 선별 관망"
+      "sector": "자동차_완성차",
+      "reason": "RS-Ratio 89.5·RS-Momentum 91.1 Lagging 최하단 - 테슬라 $300억 크레딧라인 확보 호재에도 글로벌 완성차 판매 둔화·금리 압박으로 현대차·기아 밸류에이션 제약"
+    },
+    {
+      "sector": "2차전지_셀",
+      "reason": "RS-Ratio 99.5·RS-Momentum 93.0 Lagging 구간 - 유럽 전기차 수요 둔화·LG에너지솔루션·삼성SDI 수주 가시성 약화, 중국 CATL 저가 공세 지속"
     }
   ],
   "avoid": [],
-  "summary": "필라델피아반도체 +1.32% 및 법인세 61% 급증 확인 → 반도체 소자·장비·소재·패키징 Leading 집중, 국채10Y 5.26% 압박 속 수출 슈퍼사이클 수혜주 선별 매수",
-  "strategy_brief": "필라델피아반도체 +1.32% 상승 및 Micron·AI 칩 장비 3사 1조달러 돌파로 글로벌 반도체 슈퍼사이클이 재확인되었고, 한국 법인세 136.4조(전년비 +61.2%) 역대 최대 기록은 삼성전자·SK하이닉스 실적 가시화를 뒷받침한다. 국채10Y 5.26% 급등 압박에도 기술XLK·반도체가 Leading(RS-Ratio·RS-Momentum 모두 100 이상) 유지하며 자금 쏠림이 심화되고 있다. 2차전지·조선 등 lagging(상대강도·모멘텀 약세) 섹터는 단기 진입 부적합하며, 반도체 소자·장비·소재·패키징 중심 포트폴리오로 수출 수혜를 극대화하는 전략이 유효하다. Micron 실적(수요일 장후) 및 PCE 인플레이션 지표가 반도체 수요 재확인 및 금리 방향 결정 변수다.",
-  "strategy_headline": "반도체 법인세 61% 급증 확인 — Leading 섹터 집중 전략",
+  "summary": "독일 물가 급등·미국 30년물 24년 만 최고 기록으로 금리 발작 심화, 마이크론 데이터센터 매출 11배 급증에도 장기금리 압박 상쇄 - 반도체 Leading 섹터 선별 집중 전략",
+  "strategy_brief": "독일 물가 3.3%(에너지 14.9% 급등)·미국 30년물 5.61% 기록으로 글로벌 금리 발작이 심화되며 다우 -0.86% 급락했지만, 마이크론이 데이터센터 매출 전년비 11배 급증·가이던스 상향을 발표하며 AI 메모리 슈퍼사이클을 재확인했습니다. 구글 Gemini 4 Argon 출시·구리 +1.47% 강세는 AI 인프라 투자 지속 신호로, 국내 반도체_소자·장비·패키징 등 Leading(RS-Ratio·Momentum 모두 100 이상) 섹터는 금리 압박에도 실적 모멘텀이 우선 반영될 가능성이 높습니다. 오늘은 오전 중 SK하이닉스(HBM 점유율 50% 이상)·한미반도체(TCB 본딩 장비 독점) 등 마이크론 수혜주의 오픈 갭 방향을 확인하고, 조선·2차전지·완성차 등 Lagging 섹터는 RRG 모멘텀 전환 시그널 나올 때까지 관망하는 것이 안전합니다. 원달러 -0.22% 소폭 하락은 외국인 매도 압박 일시 완화 신호이나, VIX +1.87% 상승·다우 급락으로 리스크오프(위험자산 회피) 심리가 여전해 반도체 Leading 섹터 중심 선별 대응이 핵심입니다.",
+  "strategy_headline": "금리 발작 속 AI 메모리 슈퍼사이클 확인 — 반도체 Leading 선별 집중",
   "strategy_points": [
-    "필라델피아반도체 +1.32% 및 Micron 매수 구간 진입 → 국내 반도체 소자·장비·패키징 Leading(상대강도·모멘텀 모두 시장 대비 우위) 유지",
-    "한국 법인세 136.4조(+61.2%) 역대 최대 — 삼성·SK 반도체 실적 가시화, 수출 슈퍼사이클 재확인",
-    "국채10Y 5.26% 급등 밸류에이션 압박 — 2차전지·조선 등 lagging(상대 약세) 섹터 회피, 기술XLK·반도체 쏠림 심화",
-    "Micron 실적(수요일 장후) 및 PCE 지표 주목 — 반도체 수요 재확인 시 추가 상승 동력"
+    "독일 CPI 3.3%·미국 30년물 5.61%(24년 만 최고) 기록 → 글로벌 긴축 재강화 우려로 다우 -0.86% 급락, 코스피 지수 방어 부담 확대",
+    "마이크론 데이터센터 매출 11배 급증·EPS 서프라이즈 → 삼성·하이닉스 HBM 수주 가시성 강화, 반도체_소자·장비·패키징 Leading(주도 구간) 섹터 모멘텀 우선 반영",
+    "구글 Gemini 4 Argon·구리 +1.47% 신호 → AI 인프라 투자 지속 확인, IT부품·통신장비 등 RS-Momentum(상대 모멘텀) 100 이상 섹터 선별 매수",
+    "조선·2차전지·완성차 등 Lagging(소외 구간) 섹터는 금리 압박·밸류에이션 제약으로 단기 관망 - RRG 모멘텀 전환 대기 필수"
   ],
   "top_picks": [
     {
       "sector": "반도체_소자",
       "rrg_quadrant": "leading",
-      "reason": "필라델피아반도체 +1.32% 및 AI 칩 장비 3사 1조달러 돌파, 한국 법인세 61% 급증으로 삼성·SK 실적 가시화 — RS-R 103.5/RS-M 106.3 Leading 유지, 수출 슈퍼사이클 지속",
+      "reason": "RS-Ratio 103.5·RS-Momentum 106.3 Leading 구간 유지, 마이크론 데이터센터 매출 11배 급증으로 삼성·하이닉스 HBM 수주 가시성 강화 - 금리 압박에도 AI 메모리 수요 우선 반영",
       "stocks": [
-        {
-          "name": "삼성전자",
-          "code": "005930",
-          "signal": "prime",
-          "reason": "필라델피아반도체 +1.32% 및 법인세 61% 급증 실적 가시화 + 반도체_소자 Leading(RS-R 103.5) 유지, Micron 실적 전 선제 포지셔닝",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "반도체_소자",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        },
         {
           "name": "SK하이닉스",
           "code": "000660",
           "signal": "prime",
-          "reason": "AI 칩 장비 1조달러 돌파 HBM 수요 재확인 + 반도체_소자 Leading, 법인세 급증으로 실적 모멘텀 강화",
+          "reason": "마이크론 데이터센터 매출 11배 급증 시그널 직접 수혜(HBM 점유율 50% 이상) + 반도체_소자 Leading·RS-Momentum 106.3 최상단 → 금리 압박에도 AI 메모리 모멘텀 우선 반영 예상",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_소자",
           "rrg_sector_match": true,
@@ -10175,16 +10166,33 @@
     {
       "sector": "반도체_장비",
       "rrg_quadrant": "leading",
-      "reason": "AI 칩 장비 3사 1조달러 돌파 및 Micron 매수 구간 진입 — RS-R 107.8/RS-M 106.9 Leading, 국내 장비주(원익IPS·HPSP 등) 동반 수혜",
+      "reason": "RS-Ratio 107.8·RS-Momentum 106.9 Leading 최상단, 구글 Gemini 4·구리 +1.47%(AI 인프라 수요) 신호로 ASML·램리서치향 노출 수혜 지속",
       "stocks": [
         {
           "name": "원익IPS",
           "code": "240810",
           "signal": "prime",
-          "reason": "AI 칩 장비 3사 1조달러 돌파 글로벌 CAPEX 확대 + 반도체_장비 Leading(RS-R 107.8), 국내 장비 대장주 수혜",
+          "reason": "구글 Gemini 4 출시·구리 +1.47%(AI 인프라 투자) 신호로 웨이퍼 세정·증착 장비 수혜 + 반도체_장비 Leading·RS-Ratio 107.8 → SEPA 52주 신고가 돌파 접근 후보",
           "rrg_tracked": true,
           "rrg_actual_sector": "반도체_장비",
           "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
+      "sector": "반도체_패키징",
+      "rrg_quadrant": "leading",
+      "reason": "RS-Ratio 109.1·RS-Momentum 106.4 Leading 최고점, 마이크론 가이던스 상향·HBM 패키징 수요 급증으로 앰코·JCET향 수혜 가시화",
+      "stocks": [
+        {
+          "name": "한미반도체",
+          "code": "042700",
+          "signal": "prime",
+          "reason": "마이크론 HBM 패키징 수요 급증 직접 수혜(TCB 본딩 장비 독점) + 반도체_패키징 RS-Ratio 109.1 Leading 최고점 → VCP(변동성축소패턴) 후 돌파 대기",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "반도체_장비",
+          "rrg_sector_match": false,
           "rrg_signal": "leading"
         }
       ]
@@ -10195,20 +10203,20 @@
       "reason": "",
       "stocks": [
         {
-          "name": "삼성SDI",
-          "code": "006400",
+          "name": "삼성전기",
+          "code": "009150",
           "signal": "prime",
-          "reason": "IT부품 Leading(RS-R 102.1/RS-M 103.3) 및 중국 PMI 호조 전기차 부품 수요 개선 기대 + 2차전지 업황 바닥 확인 시 선회 가능",
+          "reason": "AI 서버 MLCC(적층세라믹콘덴서) 고용량 수요·구리 가격 상승 수혜 + IT부품 Leading·RS-Momentum 103.3 → 스테이지2(상승 구간) 초입 진입 신호",
           "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
-          "rrg_sector_match": false,
-          "rrg_signal": "weakening"
+          "rrg_actual_sector": "IT부품",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
         }
       ]
     }
   ],
   "caution_sectors": [
-    "2차전지_셀",
-    "조선"
+    "조선",
+    "자동차_완성차"
   ]
 }
