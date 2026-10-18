@@ -1,184 +1,180 @@
 {
-  "generated_at": "2026-10-18 07:02:21",
+  "generated_at": "2026-10-19 07:02:17",
   "macro": {
     "S&P500": {
       "price": 7659.44,
       "change": -1.09,
-      "reason": "CoreWeave 부채 디스트레스로 AI 섹터 전반 신뢰 위축, 기술주 XLK Lagging 전환하며 지수 -1.09% 하락",
+      "reason": "PPI(생산자물가지수) 6.3% 급등으로 물가 재가속 우려 확산, 장기금리 5.1% 상승하며 기술주 밸류에이션(주가 적정성) 압박",
       "drivers": [
-        "CoreWeave 주가 -25% 폭락",
-        "AI 부채 우려 확산"
+        "PPI 전년비 6.3% (예상치 2배)",
+        "10년물 국채금리 5.1% 돌파"
       ]
     },
     "NASDAQ": {
       "price": 26140.03,
       "change": -2.15,
-      "reason": "AI주 집중 폭락 — CoreWeave 부채위기가 AI 데이터센터 과잉투자 우려로 확산, 기술주 전반 매도세",
+      "reason": "반도체 중심 기술주 투매 — 필라델피아반도체지수 8일 연속 하락, AI 수요 둔화 우려와 금리 상승 이중 압박",
       "drivers": [
-        "AI 데이터센터 부채 리스크",
-        "반도체·빅테크 동반 약세"
+        "필라델피아반도체 -3.83%",
+        "10년물 금리 +0.18%p"
       ]
     },
     "DOW": {
       "price": 52002.41,
       "change": -0.34,
-      "reason": "은행 실적 호조로 금융 XLF Improving 전환, 에너지·필수소비재 방어 매수로 낙폭 제한 -0.34%",
+      "reason": "필수소비재·헬스케어 등 방어주 선호로 상대적 낙폭 제한, 에너지주 WTI +1.07% 수혜",
       "drivers": [
-        "은행 어닝 호조",
-        "방어섹터 자금 유입"
+        "에너지주 XLE 강세",
+        "방어주 로테이션"
       ]
     },
     "VIX": {
       "price": 19.99,
       "change": 21.45,
-      "reason": "AI 부채위기 + 인플레이션 재가속 우려로 변동성 +21.45% 급등, 19.99 기록",
+      "reason": "나스닥 2%대 급락과 AI 밸류에이션 우려로 옵션 거래자들이 변동성 급등 대비 — 전일 대비 21.45% 급등",
       "drivers": [
-        "CoreWeave 쇼크",
-        "금리 불확실성"
+        "나스닥 -2.15% 낙폭",
+        "AI 섹터 조정 우려"
       ]
     },
     "필라델피아반도체": {
       "price": 11137.29,
       "change": -3.83,
-      "reason": "CoreWeave 부채위기로 AI 인프라 수요 지속성 의문 제기, 반도체주 전반 -3.83% 급락",
+      "reason": "8거래일 연속 하락(-15.7%)으로 1996년 이후 최장 연속 낙폭 경신 임박, 물가 상승에 따른 금리 인상 지속 우려",
       "drivers": [
-        "AI 데이터센터 부채 디스트레스",
-        "반도체 밸류에이션(적정가치 대비 가격 수준) 우려"
+        "누적 낙폭 -15.7%",
+        "10년물 금리 5.1% 압박"
       ]
     },
     "러셀2000": {
       "price": 2721.37,
       "change": -1.66,
-      "reason": "금리 상승(10년물 +0.18%p) 부담에 소형주 자금 이탈, -1.66% 하락",
+      "reason": "소형주 전반 리스크오프(위험 회피) 확산, 금리 상승에 따른 자금조달 부담과 경기 둔화 우려",
       "drivers": [
-        "장기금리 상승 압박",
-        "리스크오프(위험회피) 심리"
+        "10년물 금리 상승 압박",
+        "기술주 동조 약세"
       ]
     },
     "영국FTSE": {
       "price": 10881.9,
       "change": 0.38,
-      "reason": "직접 촉매 없음 — 유럽 방어섹터 자금 유입, 에너지·필수소비재 중심 +0.38% 소폭 상승",
+      "reason": "직접 촉매 없음 — 유럽 증시 전반 미국 물가 충격 제한적, 에너지·소재주 양호",
       "drivers": [
-        "에너지 섹터 강세",
-        "달러 약세 수혜"
+        "유럽 독자 흐름"
       ]
     },
     "독일DAX": {
       "price": 25622.61,
       "change": 0.95,
-      "reason": "직접 촉매 없음 — 유럽 제조업 회복 기대 + 미국 기술주 약세와 디커플링(탈동조화), +0.95% 상승",
+      "reason": "미국 기술주 약세 속 유럽 제조업·화학주 상대 강세, 구리 +0.95% 등 소재 수요 기대감",
       "drivers": [
-        "유럽 제조업 기대",
-        "방어 매수"
+        "소재주 XLB 양호",
+        "미국 약세 디커플링"
       ]
     },
     "니케이": {
       "price": 65324.29,
       "change": 1.39,
-      "reason": "직접 촉매 없음 — 엔화 약세 수출주 수혜 + 반도체 장비주 저가 매수, +1.39% 반등",
+      "reason": "직접 촉매 없음 — 엔화 약세 수출주 수혜, 미국 기술주 낙폭에도 아시아 증시 상대 양호",
       "drivers": [
-        "엔화 약세",
-        "수출주 강세"
+        "엔화 약세"
       ]
     },
     "항셍": {
       "price": 24186.83,
       "change": 0.52,
-      "reason": "직접 촉매 없음 — 중국 본토 유동성 기대 + 미국 기술주 약세와 상대적 안정, +0.52% 소폭 상승",
+      "reason": "직접 촉매 없음 — 중국 부동산·소비 부양 기대감 잔존, 미국 약세에도 제한적 낙폭",
       "drivers": [
-        "중국 유동성 기대",
-        "상대적 안정"
+        "부양책 기대"
       ]
     },
     "달러인덱스": {
       "price": 101.84,
       "change": -0.16,
-      "reason": "한국 금리 동결 전망(22일) + 유럽 통화 강세로 -0.16% 소폭 하락, 101.84 기록",
+      "reason": "PPI 급등에도 단기물(2년) 금리 하락으로 달러 강세 제한 — 연준 긴축 장기화 시그널 혼조",
       "drivers": [
-        "한국 금리 동결 전망",
-        "유로화 강세"
+        "2년물 -0.44%p",
+        "10년물 +0.18%p"
       ]
     },
     "국채2Y": {
       "price": 4.07,
       "change": -0.44,
-      "reason": "한국 금리 동결 전망으로 단기 금리 인상 기대 후퇴, -0.44%p 하락",
+      "reason": "단기 경기 둔화 우려로 연준 긴축 피크아웃(정점 통과) 기대감 반영, PPI 급등에도 하락",
       "drivers": [
-        "22일 금리 동결 컨센서스",
-        "7·8월 인상 효과 점검"
+        "경기 둔화 시그널",
+        "연준 피벗 기대"
       ]
     },
     "국채10Y": {
       "price": 5.1,
       "change": 0.18,
-      "reason": "인플레이션 재가속 우려 + 재정 적자 부담으로 장기물 매도세, +0.18%p 상승하며 5.1% 기록",
+      "reason": "PPI 6.3% 급등으로 장기 물가 불안 재점화, 국채 매도 압력 지속 — 5.1% 돌파",
       "drivers": [
-        "인플레이션 우려",
-        "장기 공급 부담"
+        "PPI 6.3% 충격",
+        "장기 인플레 우려"
       ]
     },
     "코스피": {
       "price": 5668.05,
-      "change": 2.05,
-      "reason": "삼성전자·SK하이닉스 극단적 과매도 후 반등 — 외국인 8조원 투매 이후 숏커버링 + 원달러 하락, +2.05% 급등",
+      "change": 0.0,
+      "reason": "직전일 -7% 폭락 후 기술적 반등 시도 부진, 외국인·기관 매도 지속으로 보합권 마감",
       "drivers": [
-        "반도체 과매도 반등",
-        "원화 강세 수혜"
+        "전일 -7% 낙폭",
+        "외국인 매도 지속"
       ]
     },
     "코스닥": {
       "price": 794.78,
-      "change": 4.46,
-      "reason": "2차전지·IT부품 Leading 섹터 강세 + 중소형주 저가 매수 유입, +4.46% 급등",
+      "change": 0.0,
+      "reason": "직전일 급락 후 반등 실패, 미국 나스닥 -2.15% 영향과 국내 2차전지·바이오 약세",
       "drivers": [
-        "2차전지 강세",
-        "중소형주 반등"
+        "나스닥 -2.15%",
+        "성장주 투매"
       ]
     },
     "금": {
       "price": 4181.1,
       "change": 0.26,
-      "reason": "VIX 급등 속 안전자산 수요 + 달러 약세 수혜로 +0.26% 상승, 4181.1달러 기록",
+      "reason": "물가 불안 재점화에도 달러 약세로 안전자산 수요 제한적 증가",
       "drivers": [
-        "안전자산 수요",
-        "달러 약세"
+        "달러인덱스 -0.16%",
+        "지정학 리스크"
       ]
     },
     "WTI유가": {
-      "price": 101.41,
-      "change": 3.51,
-      "reason": "트럼프 대러 제재 유예로 공급 차질 우려 완화 지연, 중동 긴장 지속 + 수요 기대로 +3.51% 급등",
+      "price": 99.02,
+      "change": 1.07,
+      "reason": "이란 신규 작전 계획 경고로 중동 공급 리스크 재부각, 에너지 섹터 XLE Leading 지속",
       "drivers": [
-        "중동 지정학 리스크",
-        "공급 차질 우려"
+        "이란 군사 긴장",
+        "중동 공급 우려"
       ]
     },
     "원달러": {
-      "price": 1329.6,
-      "change": -0.85,
-      "reason": "한국 금리 동결 전망 + 코스피 반등으로 외국인 수급 개선 기대, -0.85% 하락하며 1329.6원 기록",
+      "price": 1335.94,
+      "change": -0.37,
+      "reason": "달러인덱스 소폭 약세 동조, 코스피 보합권으로 외환 변동성 제한",
       "drivers": [
-        "금리 동결 전망",
-        "외국인 매수 기대"
+        "달러인덱스 -0.16%",
+        "코스피 보합"
       ]
     },
     "알루미늄": {
-      "price": 3113.25,
-      "change": 0.54,
-      "reason": "직접 촉매 없음 — 중국 인프라 수요 기대 + 소재 섹터 전반 강세, +0.54% 상승",
+      "price": 3093.5,
+      "change": -0.1,
+      "reason": "직접 촉매 없음 — 중국 수요 부진 지속, 소재 전반 약보합",
       "drivers": [
-        "중국 수요 기대",
-        "소재 강세"
+        "중국 수요 약세"
       ]
     },
     "구리": {
-      "price": 6.53,
-      "change": 0.3,
-      "reason": "직접 촉매 없음 — 글로벌 제조업 회복 기대 + AI 데이터센터 인프라 수요, +0.30% 소폭 상승",
+      "price": 6.57,
+      "change": 0.95,
+      "reason": "중국 부양책 기대감과 유럽 제조업 개선 기대로 소재 섹터 XLB Improving 전환 반영",
       "drivers": [
-        "제조업 기대",
-        "인프라 수요"
+        "소재 XLB 모멘텀",
+        "중국 부양 기대"
       ]
     }
   },
@@ -9762,119 +9758,123 @@
   },
   "sources": [
     {
-      "source": "marketwatch",
-      "title": "Microsoft, Shopify and 3 more AI stocks that are favorite Wall Street earnings plays",
-      "link": "https://www.marketwatch.com/story/microsoft-shopify-and-3-more-ai-stocks-that-are-favorite-wall-street-earnings-plays-0bb61e81?mod=mw_rss_topstories",
-      "published": "Sat, 17 Oct 2026 12:01:00 GMT"
+      "source": "maeil",
+      "title": "코스피 반등 모멘텀 찾을까 … 금통위·테슬라 실적이 시험대",
+      "link": "https://www.mk.co.kr/news/world/12178845",
+      "published": "Mon, 19 Oct 2026 05:00:00 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "실적 발표에는 널뛰는 주식 … 기준금리 변화 영향은 미미 한 까닭",
+      "link": "https://www.mk.co.kr/news/economy/12178906",
+      "published": "Mon, 19 Oct 2026 05:20:00 +09:00"
     },
     {
       "source": "yonhap",
-      "title": "\"10월 넘기고 11월에\"…전문가들, 금리 인상 '숨고르기' 전망",
-      "link": "https://www.yna.co.kr/view/AKR20261017017500002",
-      "published": "Sun, 18 Oct 2026 05:45:00 +0900"
+      "title": "아이폰 넘어 맥북까지 OLED…삼성D·LGD, '애플효과' 기대",
+      "link": "https://www.yna.co.kr/view/AKR20261016109700003",
+      "published": "Mon, 19 Oct 2026 06:45:01 +0900"
     },
     {
       "source": "seeking_alpha",
-      "title": "SA Asks: How important is the new Roadster to Tesla's future?",
-      "link": "https://seekingalpha.com/news/4654044-sa-asks-how-important-is-the-new-roadster-to-teslas-future?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 17 Oct 2026 14:52:10 -0400"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Is Apple’s foldable iPhone Duo worth $2,000? See how it stacks up against other foldable phones.",
-      "link": "https://www.marketwatch.com/story/is-apples-foldable-iphone-duo-worth-2-000-see-how-it-stacks-up-against-other-foldable-phones-c9066b13?mod=mw_rss_topstories",
-      "published": "Sat, 17 Oct 2026 18:40:00 GMT"
+      "title": "AGNC Investment Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653774-agnc-investment-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
     },
     {
       "source": "seeking_alpha",
-      "title": "SpaceX satellite system not fully operational in Ukraine yet, Zelensky says",
-      "link": "https://seekingalpha.com/news/4654041-spacex-satellite-system-not-fully-restored-ukraine?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 17 Oct 2026 11:54:48 -0400"
+      "title": "BOK Financial Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653775-bok-financial-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
     },
     {
-      "source": "investors",
-      "title": "Apple, Salesforce Lead Five Stocks Near Buy Points As Market Struggles",
-      "link": "https://www.investors.com/news/apple-stock-salesforce-urban-outfitters-tg-therapeutics-tenet-healthcare/",
-      "published": "Sat, 17 Oct 2026 12:00:51 +0000"
+      "source": "seeking_alpha",
+      "title": "Crown Holdings Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653776-crown-holdings-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
     },
     {
-      "source": "marketwatch",
-      "title": "Fake shopping sprees and ‘happiness insurance’: The latest fintech apps reveal our financial anxieties",
-      "link": "https://www.marketwatch.com/story/fake-shopping-sprees-and-happiness-insurance-the-latest-fintech-apps-reveal-our-financial-anxieties-77770a46?mod=mw_rss_topstories",
-      "published": "Sat, 17 Oct 2026 18:52:00 GMT"
+      "source": "seeking_alpha",
+      "title": "F.N.B. Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653777-f-n-b-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "RLI Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653778-rli-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Steel Dynamics Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653779-steel-dynamics-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Western Alliance Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4653781-western-alliance-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 18 Oct 2026 17:35:00 -0400"
     },
     {
       "source": "bloomberg",
-      "title": "Can the Fed Fight Inflation Without Hurting Farmers?",
-      "link": "https://www.bloomberg.com/news/videos/2026-10-17/can-the-fed-fight-inflation-without-hurting-farmers-video",
-      "published": "Sat, 17 Oct 2026 14:03:13 GMT"
+      "title": "CPI Test Set to Make or Break New Zealand Dollar’s Losing Run",
+      "link": "https://www.bloomberg.com/news/articles/2026-10-18/cpi-test-set-to-make-or-break-new-zealand-dollar-s-losing-run",
+      "published": "Sun, 18 Oct 2026 19:00:00 GMT"
     },
     {
-      "source": "investors",
-      "title": "These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Eli Lilly Leads Industry",
-      "link": "https://www.investors.com/research/best-stocks-seven-magnificent-stocks-earnings-growth/",
-      "published": "Sat, 17 Oct 2026 12:02:21 +0000"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Bulls vs. Bears: Is CoreWeave the canary in AI coalmine?",
-      "link": "https://seekingalpha.com/news/4654043-bulls-vs-bears-coreweave-canary-ai-coalmine?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 17 Oct 2026 13:54:27 -0400"
-    },
-    {
-      "source": "seeking_alpha",
-      "title": "Elon Musk says he should have “focused on AI a little sooner:” Axios",
-      "link": "https://seekingalpha.com/news/4654042-musk-says-should-have-focused-ai-little-sooner?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 17 Oct 2026 13:03:16 -0400"
-    },
-    {
-      "source": "bloomberg",
-      "title": "Russia Sanctions Waived, AI Debt Concerns, Making 'GTA VI'",
-      "link": "https://www.bloomberg.com/news/videos/2026-10-17/bloomberg-this-weekend-10-17-2026-video",
-      "published": "Sat, 17 Oct 2026 16:31:01 GMT"
+      "source": "marketwatch",
+      "title": "These surprising stocks could be some of the biggest drivers of S&P 500 earnings growth",
+      "link": "https://www.marketwatch.com/story/these-surprising-stocks-could-be-some-of-the-biggest-drivers-of-s-p-500-earnings-growth-ea073a07?mod=mw_rss_topstories",
+      "published": "Sun, 18 Oct 2026 14:00:00 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "AI stocks plunge. Inflation heats up. Where we're still finding opportunities",
-      "link": "https://www.cnbc.com/investingclub/2026/10/17/ai-stocks-plunge-inflation-heats-up-where-were-still-finding-opportunities.html",
-      "published": "Sat, 17 Oct 2026 15:42:34 GMT"
+      "title": "Iran says it has a 'new operational plan' if the U.S. resumes attacks, as shipping vessels report strikes",
+      "link": "https://www.cnbc.com/2026/10/18/iran-us-war-rezaei-operational-plan-shipping-attacks.html",
+      "published": "Sun, 18 Oct 2026 13:52:24 GMT"
     },
     {
-      "source": "bloomberg",
-      "title": "CoreWeave Woes Risk Shutting Down AI Junk Market: Credit Weekly",
-      "link": "https://www.bloomberg.com/news/articles/2026-10-17/coreweave-woes-risk-shutting-down-ai-junk-market-credit-weekly",
-      "published": "Sat, 17 Oct 2026 14:27:13 GMT"
+      "source": "marketwatch",
+      "title": "Stocks are heading for a high-stakes showdown, as strong earnings collide with rising borrowing costs",
+      "link": "https://www.marketwatch.com/story/stocks-are-heading-for-a-high-stakes-showdown-as-strong-earnings-collide-with-rising-borrowing-costs-6f8ea5b8?mod=mw_rss_topstories",
+      "published": "Sun, 18 Oct 2026 13:00:00 GMT"
     },
     {
-      "source": "yonhap",
-      "title": "젤렌스키, 트럼프 대러제재 유예에 \"푸틴만 돕는 오판\"",
-      "link": "https://www.yna.co.kr/view/AKR20261018004300009",
-      "published": "Sun, 18 Oct 2026 06:49:55 +0900"
+      "source": "maeil",
+      "title": "최태원 “20대 돌아간다면 반도체 안했을것”…그의 창업 아이템은",
+      "link": "https://www.mk.co.kr/news/business/12179150",
+      "published": "Mon, 19 Oct 2026 06:54:58 +09:00"
     }
   ],
-  "global_sentiment": "risk_on",
-  "sentiment_reason": "코스피 +2.05%, 코스닥 +4.46% 강세 — 글로벌 AI주 급락 속 국내 반등 매수세 유입, 원달러 1329원 하락에 외국인 투자심리 개선",
+  "global_sentiment": "risk_off",
+  "sentiment_reason": "미국 PPI 6.3% 급등으로 물가 불안 재점화, 나스닥 -2.15%·필라델피아반도체 8일 연속 하락으로 기술주 투자심리 냉각",
   "key_factors": [
-    "CoreWeave 부채위기 촉발 글로벌 AI주 폭락 — 나스닥 -2.15%, 필라델피아반도체 -3.83%로 AI 부채 우려 확산",
-    "국내 반도체 극단적 과매도 후 반등 — 삼성전자 -17.8%, SK하이닉스 -24.3% 주간 폭락 이후 숏커버링(공매도 청산 매수) 유입",
-    "원달러 1329원 -0.85% 하락, 외국인 매수 복귀 기대 — 지난주 8조원 투매 후 반전 신호"
+    "미국 9월 PPI 전년비 6.3% 급등으로 시장예상치 2배 초과, 물가 재가속 우려 확산",
+    "필라델피아반도체지수 8일 연속 하락(-15.7%), 1996년 이후 최장 연속 낙폭 기록 경신 임박",
+    "채권시장 커브 스티프닝(장기금리 상승·단기금리 하락) 심화로 AI 밸류에이션 압박 — 10년물 5.1% 돌파"
   ],
-  "news_summary": "한국 전문가 6명 전원 22일 금리 동결 전망 — 7·8월 연속 인상 효과 점검 후 11월 재개 예상, 절반은 최종 금리 3.75% 가능성 제시\n미국 국채 10년물 5.1%로 상승 — 인플레이션 재가속 우려 속 장기 금리 압박, 커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 수익률곡선이 가팔라지는 현상) 심화\nVIX 19.99로 +21.45% 급등 — CoreWeave 부채위기 + AI 과잉투자 우려로 변동성 지표 경계 수준 진입\n젤렌스키, 트럼프 대러 제재 유예에 \"푸틴만 돕는 오판\" 강력 비판 — 러시아 특사는 \"역사적 순간\" 환영, WTI 유가 +3.51% 급등\n우크라이나, SpaceX Starlink 속도 제한 여전 — 젤렌스키 \"완전 복구 아직 안돼\" 발언, 군사 통신망 불확실성 지속\n한국 대미 무역흑자 첫 1천억달러 돌파 확실시 — 트럼프 알래스카 LNG 투자 압박에 정부 난감, 통상 보복 명분 우려\nCoreWeave 주가 -25% 폭락, AI 부채 디스트레스 레벨 진입 — AI 데이터센터 과잉투자 우려 확산, 반도체 섹터 전반 타격\n삼성전자 -17.8%, SK하이닉스 -24.3% 주간 폭락 — 금융위기 이후 최악 주간 하락률, 외국인 두 종목 8조원 투매 주도\n머스크 \"중국, 2028년 D램 대량 생산\" 발언 — 삼성·SK 겨냥 메모리 가격 견제 해석 제기, 전문가는 \"기술 격차 커 추격 영향 제한\" 반박\n테슬라, 신형 Roadster 공개 — 2028년 생산 시작 예정, 미래 전략 중요성 평가 엇갈림\n애플, 2000달러 폴더블 아이폰 듀오 출시 — 다른 폴더블폰과 경쟁력 비교 주목, Salesforce와 함께 IBD 매수 포인트 근접 종목\n솔리다임 미국 상장 주관사 선정 — SK하이닉스 손자회사, 중복 상장 논쟁 속 여야 주주보호 요구, BI \"성장효과가 지분율 하락 상쇄 가능\" 분석",
+  "news_summary": "미국 9월 PPI 전년비 6.3% 급등으로 시장예상치(약 3%) 2배 초과, 전월비 1.3% 상승하며 물가 재가속 우려 확산 — 10년물 국채금리 5.1% 돌파\n미국 9월 CPI 전년비 3.7%로 전월 3.4% 상회, 물가 불안 쉽게 가라앉지 않으며 연준 긴축 장기화 우려\n채권시장 AI 밸류에이션 흔들림 — 10년물 금리 5.1% 상승하며 기술주 큰 폭 약세, 옵션 거래자들 VIX 급등 대비\n뉴질랜드 CPI 발표 대기 중 뉴질랜드달러 약세 지속, 글로벌 물가 지표 민감도 증폭\n이란 \"미국·이스라엘이 공격 재개 시 신규 작전 계획 준비 완료\" 경고, 아라비아반도 인근 상선 공격 보고로 중동 긴장 고조 — WTI +1.07%\n한국 금융위, 가상자산 거래소 대주주 지분 20% 제한 방침 재확인 (최대 34%까지 조건부 허용), 업계 구조 재편 불가피\n한국투자공사(KIC, 339조 운용) 사내 AI 모델에 중국산(BAAI 등 美 수출통제 대상) 사용 논란 — 보안 의식 지적\n필라델피아반도체지수 8거래일 연속 하락(-15.7%)으로 1996년 이후 최장 연속 낙폭 기록 경신 하루 앞, 반도체 전반 투자심리 냉각\n애플, 27일 첫 OLED 맥북·아이패드 미니 공개 예정 — 삼성디스플레이 신형 패널 전량 독점 공급, LG디스플레이 차세대 플립 기술로 사업 확대\n국내 투자자, 코스피 급락(10.6~16 -30%) 속 미국 주식 5조원 순매수했으나 SOXL(3배 레버리지 반도체 ETF) -43% 폭락으로 손실 우려\n시중은행 정기예금 1주일 새 16조 급증 — 금융권 해킹 후 이탈 고객, 특판 예금(연 4%대) 출시로 복귀\n핀다, 핀테크 최초 저축은행 인수 임박(대원저축은행, 23일 금융위 의결) — AI 기반 비대면 영업 본격화",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "한국 전문가 6명 전원 22일 금리 동결 전망 — 7·8월 연속 인상 효과 점검 후 11월 재개 예상, 절반은 최종 금리 3.75% 가능성 제시",
+          "text": "미국 9월 PPI 전년비 6.3% 급등으로 시장예상치(약 3%) 2배 초과, 전월비 1.3% 상승하며 물가 재가속 우려 확산 — 10년물 국채금리 5.1% 돌파",
           "impact": "high"
         },
         {
-          "text": "미국 국채 10년물 5.1%로 상승 — 인플레이션 재가속 우려 속 장기 금리 압박, 커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 수익률곡선이 가팔라지는 현상) 심화",
+          "text": "미국 9월 CPI 전년비 3.7%로 전월 3.4% 상회, 물가 불안 쉽게 가라앉지 않으며 연준 긴축 장기화 우려",
+          "impact": "high"
+        },
+        {
+          "text": "채권시장 AI 밸류에이션 흔들림 — 10년물 금리 5.1% 상승하며 기술주 큰 폭 약세, 옵션 거래자들 VIX 급등 대비",
           "impact": "mid"
         },
         {
-          "text": "VIX 19.99로 +21.45% 급등 — CoreWeave 부채위기 + AI 과잉투자 우려로 변동성 지표 경계 수준 진입",
+          "text": "뉴질랜드 CPI 발표 대기 중 뉴질랜드달러 약세 지속, 글로벌 물가 지표 민감도 증폭",
           "impact": "mid"
         }
       ]
@@ -9884,15 +9884,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "젤렌스키, 트럼프 대러 제재 유예에 \"푸틴만 돕는 오판\" 강력 비판 — 러시아 특사는 \"역사적 순간\" 환영, WTI 유가 +3.51% 급등",
+          "text": "이란 \"미국·이스라엘이 공격 재개 시 신규 작전 계획 준비 완료\" 경고, 아라비아반도 인근 상선 공격 보고로 중동 긴장 고조 — WTI +1.07%",
           "impact": "high"
         },
         {
-          "text": "우크라이나, SpaceX Starlink 속도 제한 여전 — 젤렌스키 \"완전 복구 아직 안돼\" 발언, 군사 통신망 불확실성 지속",
+          "text": "한국 금융위, 가상자산 거래소 대주주 지분 20% 제한 방침 재확인 (최대 34%까지 조건부 허용), 업계 구조 재편 불가피",
           "impact": "mid"
         },
         {
-          "text": "한국 대미 무역흑자 첫 1천억달러 돌파 확실시 — 트럼프 알래스카 LNG 투자 압박에 정부 난감, 통상 보복 명분 우려",
+          "text": "한국투자공사(KIC, 339조 운용) 사내 AI 모델에 중국산(BAAI 등 美 수출통제 대상) 사용 논란 — 보안 의식 지적",
           "impact": "mid"
         }
       ]
@@ -9902,27 +9902,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "CoreWeave 주가 -25% 폭락, AI 부채 디스트레스 레벨 진입 — AI 데이터센터 과잉투자 우려 확산, 반도체 섹터 전반 타격",
+          "text": "필라델피아반도체지수 8거래일 연속 하락(-15.7%)으로 1996년 이후 최장 연속 낙폭 기록 경신 하루 앞, 반도체 전반 투자심리 냉각",
           "impact": "high"
         },
         {
-          "text": "삼성전자 -17.8%, SK하이닉스 -24.3% 주간 폭락 — 금융위기 이후 최악 주간 하락률, 외국인 두 종목 8조원 투매 주도",
+          "text": "애플, 27일 첫 OLED 맥북·아이패드 미니 공개 예정 — 삼성디스플레이 신형 패널 전량 독점 공급, LG디스플레이 차세대 플립 기술로 사업 확대",
           "impact": "high"
         },
         {
-          "text": "머스크 \"중국, 2028년 D램 대량 생산\" 발언 — 삼성·SK 겨냥 메모리 가격 견제 해석 제기, 전문가는 \"기술 격차 커 추격 영향 제한\" 반박",
-          "impact": "high"
-        },
-        {
-          "text": "테슬라, 신형 Roadster 공개 — 2028년 생산 시작 예정, 미래 전략 중요성 평가 엇갈림",
+          "text": "국내 투자자, 코스피 급락(10.6~16 -30%) 속 미국 주식 5조원 순매수했으나 SOXL(3배 레버리지 반도체 ETF) -43% 폭락으로 손실 우려",
           "impact": "mid"
         },
         {
-          "text": "애플, 2000달러 폴더블 아이폰 듀오 출시 — 다른 폴더블폰과 경쟁력 비교 주목, Salesforce와 함께 IBD 매수 포인트 근접 종목",
+          "text": "시중은행 정기예금 1주일 새 16조 급증 — 금융권 해킹 후 이탈 고객, 특판 예금(연 4%대) 출시로 복귀",
           "impact": "mid"
         },
         {
-          "text": "솔리다임 미국 상장 주관사 선정 — SK하이닉스 손자회사, 중복 상장 논쟁 속 여야 주주보호 요구, BI \"성장효과가 지분율 하락 상쇄 가능\" 분석",
+          "text": "핀다, 핀테크 최초 저축은행 인수 임박(대원저축은행, 23일 금융위 의결) — AI 기반 비대면 영업 본격화",
           "impact": "mid"
         }
       ]
@@ -9930,282 +9926,271 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "CoreWeave 부채 디스트레스로 AI 섹터 전반 신뢰 위축, 기술주 XLK Lagging 전환하며 지수 -1.09% 하락",
+      "reason": "PPI(생산자물가지수) 6.3% 급등으로 물가 재가속 우려 확산, 장기금리 5.1% 상승하며 기술주 밸류에이션(주가 적정성) 압박",
       "drivers": [
-        "CoreWeave 주가 -25% 폭락",
-        "AI 부채 우려 확산"
+        "PPI 전년비 6.3% (예상치 2배)",
+        "10년물 국채금리 5.1% 돌파"
       ]
     },
     "NASDAQ": {
-      "reason": "AI주 집중 폭락 — CoreWeave 부채위기가 AI 데이터센터 과잉투자 우려로 확산, 기술주 전반 매도세",
+      "reason": "반도체 중심 기술주 투매 — 필라델피아반도체지수 8일 연속 하락, AI 수요 둔화 우려와 금리 상승 이중 압박",
       "drivers": [
-        "AI 데이터센터 부채 리스크",
-        "반도체·빅테크 동반 약세"
+        "필라델피아반도체 -3.83%",
+        "10년물 금리 +0.18%p"
       ]
     },
     "DOW": {
-      "reason": "은행 실적 호조로 금융 XLF Improving 전환, 에너지·필수소비재 방어 매수로 낙폭 제한 -0.34%",
+      "reason": "필수소비재·헬스케어 등 방어주 선호로 상대적 낙폭 제한, 에너지주 WTI +1.07% 수혜",
       "drivers": [
-        "은행 어닝 호조",
-        "방어섹터 자금 유입"
+        "에너지주 XLE 강세",
+        "방어주 로테이션"
       ]
     },
     "VIX": {
-      "reason": "AI 부채위기 + 인플레이션 재가속 우려로 변동성 +21.45% 급등, 19.99 기록",
+      "reason": "나스닥 2%대 급락과 AI 밸류에이션 우려로 옵션 거래자들이 변동성 급등 대비 — 전일 대비 21.45% 급등",
       "drivers": [
-        "CoreWeave 쇼크",
-        "금리 불확실성"
+        "나스닥 -2.15% 낙폭",
+        "AI 섹터 조정 우려"
       ]
     },
     "필라델피아반도체": {
-      "reason": "CoreWeave 부채위기로 AI 인프라 수요 지속성 의문 제기, 반도체주 전반 -3.83% 급락",
+      "reason": "8거래일 연속 하락(-15.7%)으로 1996년 이후 최장 연속 낙폭 경신 임박, 물가 상승에 따른 금리 인상 지속 우려",
       "drivers": [
-        "AI 데이터센터 부채 디스트레스",
-        "반도체 밸류에이션(적정가치 대비 가격 수준) 우려"
+        "누적 낙폭 -15.7%",
+        "10년물 금리 5.1% 압박"
       ]
     },
     "러셀2000": {
-      "reason": "금리 상승(10년물 +0.18%p) 부담에 소형주 자금 이탈, -1.66% 하락",
+      "reason": "소형주 전반 리스크오프(위험 회피) 확산, 금리 상승에 따른 자금조달 부담과 경기 둔화 우려",
       "drivers": [
-        "장기금리 상승 압박",
-        "리스크오프(위험회피) 심리"
+        "10년물 금리 상승 압박",
+        "기술주 동조 약세"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유럽 방어섹터 자금 유입, 에너지·필수소비재 중심 +0.38% 소폭 상승",
+      "reason": "직접 촉매 없음 — 유럽 증시 전반 미국 물가 충격 제한적, 에너지·소재주 양호",
       "drivers": [
-        "에너지 섹터 강세",
-        "달러 약세 수혜"
+        "유럽 독자 흐름"
       ]
     },
     "독일DAX": {
-      "reason": "직접 촉매 없음 — 유럽 제조업 회복 기대 + 미국 기술주 약세와 디커플링(탈동조화), +0.95% 상승",
+      "reason": "미국 기술주 약세 속 유럽 제조업·화학주 상대 강세, 구리 +0.95% 등 소재 수요 기대감",
       "drivers": [
-        "유럽 제조업 기대",
-        "방어 매수"
+        "소재주 XLB 양호",
+        "미국 약세 디커플링"
       ]
     },
     "니케이": {
-      "reason": "직접 촉매 없음 — 엔화 약세 수출주 수혜 + 반도체 장비주 저가 매수, +1.39% 반등",
+      "reason": "직접 촉매 없음 — 엔화 약세 수출주 수혜, 미국 기술주 낙폭에도 아시아 증시 상대 양호",
       "drivers": [
-        "엔화 약세",
-        "수출주 강세"
+        "엔화 약세"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 없음 — 중국 본토 유동성 기대 + 미국 기술주 약세와 상대적 안정, +0.52% 소폭 상승",
+      "reason": "직접 촉매 없음 — 중국 부동산·소비 부양 기대감 잔존, 미국 약세에도 제한적 낙폭",
       "drivers": [
-        "중국 유동성 기대",
-        "상대적 안정"
+        "부양책 기대"
       ]
     },
     "달러인덱스": {
-      "reason": "한국 금리 동결 전망(22일) + 유럽 통화 강세로 -0.16% 소폭 하락, 101.84 기록",
+      "reason": "PPI 급등에도 단기물(2년) 금리 하락으로 달러 강세 제한 — 연준 긴축 장기화 시그널 혼조",
       "drivers": [
-        "한국 금리 동결 전망",
-        "유로화 강세"
+        "2년물 -0.44%p",
+        "10년물 +0.18%p"
       ]
     },
     "국채2Y": {
-      "reason": "한국 금리 동결 전망으로 단기 금리 인상 기대 후퇴, -0.44%p 하락",
+      "reason": "단기 경기 둔화 우려로 연준 긴축 피크아웃(정점 통과) 기대감 반영, PPI 급등에도 하락",
       "drivers": [
-        "22일 금리 동결 컨센서스",
-        "7·8월 인상 효과 점검"
+        "경기 둔화 시그널",
+        "연준 피벗 기대"
       ]
     },
     "국채10Y": {
-      "reason": "인플레이션 재가속 우려 + 재정 적자 부담으로 장기물 매도세, +0.18%p 상승하며 5.1% 기록",
+      "reason": "PPI 6.3% 급등으로 장기 물가 불안 재점화, 국채 매도 압력 지속 — 5.1% 돌파",
       "drivers": [
-        "인플레이션 우려",
-        "장기 공급 부담"
+        "PPI 6.3% 충격",
+        "장기 인플레 우려"
       ]
     },
     "코스피": {
-      "reason": "삼성전자·SK하이닉스 극단적 과매도 후 반등 — 외국인 8조원 투매 이후 숏커버링 + 원달러 하락, +2.05% 급등",
+      "reason": "직전일 -7% 폭락 후 기술적 반등 시도 부진, 외국인·기관 매도 지속으로 보합권 마감",
       "drivers": [
-        "반도체 과매도 반등",
-        "원화 강세 수혜"
+        "전일 -7% 낙폭",
+        "외국인 매도 지속"
       ]
     },
     "코스닥": {
-      "reason": "2차전지·IT부품 Leading 섹터 강세 + 중소형주 저가 매수 유입, +4.46% 급등",
+      "reason": "직전일 급락 후 반등 실패, 미국 나스닥 -2.15% 영향과 국내 2차전지·바이오 약세",
       "drivers": [
-        "2차전지 강세",
-        "중소형주 반등"
+        "나스닥 -2.15%",
+        "성장주 투매"
       ]
     },
     "금": {
-      "reason": "VIX 급등 속 안전자산 수요 + 달러 약세 수혜로 +0.26% 상승, 4181.1달러 기록",
+      "reason": "물가 불안 재점화에도 달러 약세로 안전자산 수요 제한적 증가",
       "drivers": [
-        "안전자산 수요",
-        "달러 약세"
+        "달러인덱스 -0.16%",
+        "지정학 리스크"
       ]
     },
     "WTI유가": {
-      "reason": "트럼프 대러 제재 유예로 공급 차질 우려 완화 지연, 중동 긴장 지속 + 수요 기대로 +3.51% 급등",
+      "reason": "이란 신규 작전 계획 경고로 중동 공급 리스크 재부각, 에너지 섹터 XLE Leading 지속",
       "drivers": [
-        "중동 지정학 리스크",
-        "공급 차질 우려"
+        "이란 군사 긴장",
+        "중동 공급 우려"
       ]
     },
     "원달러": {
-      "reason": "한국 금리 동결 전망 + 코스피 반등으로 외국인 수급 개선 기대, -0.85% 하락하며 1329.6원 기록",
+      "reason": "달러인덱스 소폭 약세 동조, 코스피 보합권으로 외환 변동성 제한",
       "drivers": [
-        "금리 동결 전망",
-        "외국인 매수 기대"
+        "달러인덱스 -0.16%",
+        "코스피 보합"
       ]
     },
     "알루미늄": {
-      "reason": "직접 촉매 없음 — 중국 인프라 수요 기대 + 소재 섹터 전반 강세, +0.54% 상승",
+      "reason": "직접 촉매 없음 — 중국 수요 부진 지속, 소재 전반 약보합",
       "drivers": [
-        "중국 수요 기대",
-        "소재 강세"
+        "중국 수요 약세"
       ]
     },
     "구리": {
-      "reason": "직접 촉매 없음 — 글로벌 제조업 회복 기대 + AI 데이터센터 인프라 수요, +0.30% 소폭 상승",
+      "reason": "중국 부양책 기대감과 유럽 제조업 개선 기대로 소재 섹터 XLB Improving 전환 반영",
       "drivers": [
-        "제조업 기대",
-        "인프라 수요"
+        "소재 XLB 모멘텀",
+        "중국 부양 기대"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "CoreWeave 쇼크로 글로벌 AI주 폭락 속 국내는 극단적 과매도 반등 — 원화 강세 + 외국인 매수 복귀 기대로 코스피 +2.05% 급등",
+    "summary": "미국 PPI 6.3% 급등·필라델피아반도체 8일 연속 하락으로 국내 반도체 투자심리 악화, 코스피 보합권 방어 속 외국인 매도 지속",
     "positive_factors": [
-      "삼성전자·SK하이닉스 극단적 과매도 후 숏커버링 — 주간 -17.8%, -24.3% 폭락 이후 기술적 반등 매수 유입, 반도체_소자 Improving 전환",
-      "원달러 1329원 -0.85% 하락 — 한국 금리 동결 전망(22일) + 외국인 8조원 투매 이후 수급 개선 기대, 코스피 상승 촉매",
-      "2차전지·IT부품 Leading 섹터 강세 — RS-Ratio 106 이상 유지, 코스닥 +4.46% 급등 주도"
+      "애플 OLED 맥북 27일 공개 → 삼성디스플레이 독점 공급·LG디스플레이 사업 확대로 디스플레이 섹터(RRG Leading) 모멘텀 지속",
+      "WTI +1.07% 중동 리스크 재부각 → 정유(RRG Weakening이나 RS-Ratio 107) 단기 방어 수혜 가능"
     ],
     "negative_factors": [
-      "CoreWeave 부채위기로 AI 투자 지속성 의문 — 글로벌 AI주 -3.83% 폭락, 국내 반도체 밸류에이션 재평가 압력",
-      "머스크 \"2028년 중국 D램 대량생산\" 발언 — 메모리 가격 견제 우려 부각, 삼성·SK 중장기 수익성 불확실성"
+      "필라델피아반도체 8일 연속 -15.7% → 국내 반도체_소자(RRG Improving·RS-M 100.1) 추가 약세 압력, 삼성전자·SK하이닉스 기술적 반등 지연",
+      "미국 10년물 5.1% 돌파·나스닥 -2.15% → 국내 2차전지·바이오 등 성장주 밸류에이션 압박, 외국인 매도 지속 우려"
     ],
-    "key_watch": "22일 한국 금리 결정 — 동결 시 원화 강세 지속 가능성, 인상 시 외국인 이탈 재개 리스크 / 반도체_소자 Improving→Leading 전환 여부"
+    "key_watch": "19일 한국은행 금통위 기준금리 결정(현 3.5% 유지 예상)과 테슬라 3분기 실적 발표 — 금리 동결 시 은행주 수혜, 테슬라 어닝 쇼크 시 2차전지 추가 타격"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "2차전지_셀",
+      "sector": "디스플레이",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "2차전지_셀 RS-R 106.4·RS-M 101.4 Leading 유지 — 유럽 제조업 회복 기대 + 테슬라 Roadster 2028 양산으로 중장기 수요 재확인, 스테이지2 상승 지속"
+      "reason": "애플 OLED 맥북 27일 공개로 삼성디스플레이 독점 공급·LG디스플레이 차세대 기술 사업 확대 모멘텀, RRG RS-Ratio 102.4·RS-Momentum 102.5로 Leading 유지"
     },
     {
-      "sector": "반도체_장비",
+      "sector": "반도체_패키징",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "반도체_장비 RS-R 117.4·RS-M 111.3 최고 강도 Leading — CoreWeave 쇼크에도 장비 투자 사이클은 지속, 삼성·SK 설비투자 집행 모멘텀 유효"
+      "reason": "반도체 약세 속 패키징·소재·장비는 RS-Ratio 115~122·RS-Momentum 111~114로 상대 강세 지속, 미국 반도체 공급망 재편 수혜"
     },
     {
-      "sector": "IT부품",
+      "sector": "의료기기",
       "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "IT부품 RS-R 106.7·RS-M 104.4 Leading — 애플 폴더블 출시 + AI 디바이스 확산으로 부품 수요 견조, 52주 신고가 돌파 종목 다수"
-    },
-    {
-      "sector": "미용의료",
-      "rrg_quadrant": "improving",
-      "claude_quadrant": "improving",
-      "reason": "미용의료 RS-M 106.2 급등 Improving 전환 — 외국인 의료관광 피부과 소비 64%·약국 196% 급증, K-뷰티 관광 재편으로 섹터 펀더멘털 개선"
+      "reason": "의료기기 RRG RS-Ratio 111.8·RS-Momentum 105.7로 Leading 최상단, 방어적 성장주 선호 속 실적 가시성 부각"
     }
   ],
   "watch": [
     {
       "sector": "반도체_소자",
-      "reason": "반도체_소자 RS-R 99.4·RS-M 100.1 Improving 초입 — 삼성·SK 극단적 과매도 반등 중이나 머스크 중국 D램 발언 + CoreWeave 쇼크로 밸류에이션 재평가 압력, Leading 재진입 확인 후 진입"
+      "reason": "반도체_소자 RRG Improving이나 RS-Momentum 100.1로 전환 초입 불안정, 필라델피아반도체 8일 연속 하락 여파로 추가 조정 가능성 — 스테이지2 진입 확인 후 재진입"
+    },
+    {
+      "sector": "2차전지_셀",
+      "reason": "2차전지_셀 RRG Leading이나 RS-Momentum 101.4로 약화, 테슬라 실적(19일) 대기 필요 — 어닝 서프라이즈 시 재평가"
     },
     {
       "sector": "조선",
-      "reason": "조선 RS-R 92.9·RS-M 95.1 Lagging — 글로벌 제조업 기대에도 상대강도·모멘텀 모두 약세, 스테이지4 하락 국면 지속 중으로 반등 신호 불충분"
-    },
-    {
-      "sector": "방산",
-      "reason": "방산 RS-R 92.6·RS-M 92.9 Lagging — 트럼프 대러 제재 유예로 지정학 긴장 완화 우려, 젤렌스키 비판에도 섹터 모멘텀 회복 미흡"
+      "reason": "조선 RRG Lagging(RS-Ratio 92.9·RS-M 95.1)으로 상대 약세 지속, 중동 리스크에도 수주 모멘텀 부재"
     }
   ],
   "avoid": [],
-  "summary": "CoreWeave 쇼크 속 국내 과매도 반등 — 2차전지·장비 Leading, 반도체_소자 Improving 초입 관망",
-  "strategy_brief": "CoreWeave 부채 디스트레스(부실 수준 진입)로 글로벌 AI주가 나스닥 -2.15%, 필라델피아반도체 -3.83% 폭락했으나, 국내는 삼성전자·SK하이닉스 주간 -17.8%, -24.3% 극단적 과매도 이후 숏커버링이 유입되며 코스피 +2.05% 반등했다. 원달러 1329원 -0.85% 하락과 22일 금리 동결 전망이 외국인 8조원 투매 이후 수급 개선 기대를 키우고 있다. 반도체_소자는 Improving 초입으로 머스크 중국 D램 발언 등 리스크 잔존, 대신 2차전지_셀(RS-R 106.4), 반도체_장비(RS-R 117.4), IT부품(RS-R 106.7) 등 Leading 섹터가 스테이지2 상승을 지속 중이며 미너비니 SEPA 4박자(추세·펀더멘탈·촉매·타이밍) 충족 종목 중심 진입이 유효하다. 미용의료는 외국인 피부과 소비 64% 급증으로 RS-M 106.2 급등하며 Improving 전환, 스테이지1→2 초입 포착 국면이다.",
-  "strategy_headline": "AI 부채 쇼크 속 국내 과매도 반등 — 2차전지·장비 Leading 집중",
+  "summary": "PPI 6.3% 쇼크·반도체 8일 연속 하락으로 기술주 투자심리 냉각 — 애플 OLED 수혜 디스플레이·방어주 의료기기 중심 대응",
+  "strategy_brief": "미국 PPI 6.3% 급등과 10년물 금리 5.1% 돌파로 기술주 밸류에이션 압박이 심화되며, 필라델피아반도체지수가 8거래일 연속 하락(-15.7%)으로 1996년 이후 최장 연속 낙폭 경신을 목전에 두고 있습니다. 국내 반도체_소자는 RRG Improving(상승 전환 구간) 진입했으나 RS-Momentum(상대 모멘텀) 100.1로 불안정해 추가 조정 가능성이 있으며, 외국인 매도 지속으로 코스피 반등 모멘텀도 제한적입니다. 이런 환경에서는 애플 OLED 맥북 독점 공급 모멘텀을 가진 디스플레이(RRG Leading·RS-Ratio 102.4)와 물가 불안 속 방어적 성장주로 부각되는 의료기기(RS-Ratio 111.8)에 집중하고, 19일 금통위·테슬라 실적 이벤트를 확인한 뒤 반도체·2차전지 재진입 타이밍을 포착하는 전략이 유효합니다.",
+  "strategy_headline": "PPI 쇼크·반도체 8일 연속 하락 — 디스플레이·의료기기 방어 집중",
   "strategy_points": [
-    "CoreWeave 부채위기로 글로벌 AI주 -3.83% 폭락 → 국내 반도체 밸류에이션 압박, 단 과매도 반등은 유효",
-    "원달러 1329원 -0.85% + 금리 동결 전망 → 외국인 8조원 투매 이후 수급 개선 기대, 22일 금통위 주목",
-    "2차전지·IT부품·반도체장비 Leading 섹터 RS-M 104 이상 → 스테이지2 상승 지속, 기술적 진입 타이밍",
-    "머스크 2028 중국 D램 발언 + CoreWeave 쇼크 → 반도체_소자 Improving 초입, Leading 재진입 확인 필요"
+    "미국 PPI(생산자물가지수) 6.3% 급등·10년물 5.1% 돌파 → 국내 성장주 밸류에이션(주가 적정성) 압박, 외국인 매도 지속 우려",
+    "필라델피아반도체 8일 연속 -15.7% → 반도체_소자 RRG Improving(상승 전환 구간) 진입 지연, 추가 조정 대기",
+    "애플 OLED 맥북 27일 공개 → 삼성디스플레이 독점 공급·디스플레이 RRG Leading 유지로 단기 방어처 부각",
+    "19일 금통위·테슬라 실적 주목 — 금리 동결 시 은행주 수혜, 테슬라 어닝 쇼크 시 2차전지 추가 타격"
   ],
   "top_picks": [
     {
-      "sector": "2차전지_셀",
+      "sector": "디스플레이",
       "rrg_quadrant": "leading",
-      "reason": "2차전지_셀 RS-R 106.4·RS-M 101.4 Leading 유지 — 유럽 제조업 회복 기대 + 테슬라 Roadster 2028 양산으로 중장기 수요 재확인, 스테이지2 상승 지속",
+      "reason": "애플 OLED 맥북 27일 공개로 삼성디스플레이 독점 공급·LG디스플레이 차세대 기술 사업 확대 모멘텀, RRG RS-Ratio 102.4·RS-Momentum 102.5로 Leading 유지",
       "stocks": [
         {
-          "name": "LG에너지솔루션",
-          "code": "373220",
+          "name": "삼성디스플레이",
+          "code": "미등록",
           "signal": "prime",
-          "reason": "2차전지_셀 Leading 유지 + 테슬라 Roadster 2028 양산 수혜 기대 → RS-R 106.4 주도주, VCP 패턴(변동성 축소 후 돌파) 형성 중",
+          "reason": "애플 OLED 맥북 독점 공급 모멘텀 + 디스플레이 섹터 RRG Leading·RS-Ratio 102.4 유지로 방어적 성장주 대표",
+          "rrg_tracked": false,
+          "rrg_actual_sector": "",
+          "rrg_sector_match": false,
+          "rrg_signal": ""
+        }
+      ]
+    },
+    {
+      "sector": "반도체_패키징",
+      "rrg_quadrant": "leading",
+      "reason": "반도체 약세 속 패키징·소재·장비는 RS-Ratio 115~122·RS-Momentum 111~114로 상대 강세 지속, 미국 반도체 공급망 재편 수혜",
+      "stocks": [
+        {
+          "name": "하나마이크론",
+          "code": "067310",
+          "signal": "prime",
+          "reason": "반도체 약세 속 패키징 RRG RS-Ratio 122·RS-Momentum 114로 최강 상대 강도 + 미국 공급망 재편 수혜",
           "rrg_tracked": true,
-          "rrg_actual_sector": "2차전지_장비",
+          "rrg_actual_sector": "반도체_패키징",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
+      "sector": "의료기기",
+      "rrg_quadrant": "leading",
+      "reason": "의료기기 RRG RS-Ratio 111.8·RS-Momentum 105.7로 Leading 최상단, 방어적 성장주 선호 속 실적 가시성 부각",
+      "stocks": [
+        {
+          "name": "바디텍메드",
+          "code": "206640",
+          "signal": "prime",
+          "reason": "의료기기 RRG Leading 최상단(RS-Ratio 111.8) + 물가 불안 속 방어적 성장주 선호 집중",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "의료기기",
+          "rrg_sector_match": true,
+          "rrg_signal": "leading"
+        }
+      ]
+    },
+    {
+      "sector": "반도체_소재",
+      "rrg_quadrant": "",
+      "reason": "",
+      "stocks": [
+        {
+          "name": "솔브레인",
+          "code": "357780",
+          "signal": "prime",
+          "reason": "반도체_소재 RRG Leading(RS-Ratio 115.8·RS-M 112.2) + 반도체 조정 국면에서도 소재 공급망 강세 지속",
+          "rrg_tracked": true,
+          "rrg_actual_sector": "미분류",
           "rrg_sector_match": false,
           "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "반도체_장비",
-      "rrg_quadrant": "leading",
-      "reason": "반도체_장비 RS-R 117.4·RS-M 111.3 최고 강도 Leading — CoreWeave 쇼크에도 장비 투자 사이클은 지속, 삼성·SK 설비투자 집행 모멘텀 유효",
-      "stocks": [
-        {
-          "name": "원익IPS",
-          "code": "240810",
-          "signal": "prime",
-          "reason": "반도체_장비 RS-R 117.4 최고 강도 Leading + 삼성·SK 설비투자 집행 수혜 → 52주 신고가 돌파, 스테이지2 초입",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "반도체_장비",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "IT부품",
-      "rrg_quadrant": "leading",
-      "reason": "IT부품 RS-R 106.7·RS-M 104.4 Leading — 애플 폴더블 출시 + AI 디바이스 확산으로 부품 수요 견조, 52주 신고가 돌파 종목 다수",
-      "stocks": [
-        {
-          "name": "삼성전기",
-          "code": "009150",
-          "signal": "prime",
-          "reason": "IT부품 Leading + 애플 폴더블 아이폰 부품 공급 기대 → RS-M 104.4 상승 모멘텀, 미너비니 SEPA 4박자 충족",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "IT부품",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading"
-        }
-      ]
-    },
-    {
-      "sector": "미용의료",
-      "rrg_quadrant": "improving",
-      "reason": "미용의료 RS-M 106.2 급등 Improving 전환 — 외국인 의료관광 피부과 소비 64%·약국 196% 급증, K-뷰티 관광 재편으로 섹터 펀더멘털 개선",
-      "stocks": [
-        {
-          "name": "클래시스",
-          "code": "214150",
-          "signal": "prime",
-          "reason": "미용의료 Improving 전환 + 외국인 피부과 소비 64% 급증 수혜 → RS-M 106.2 급등, 스테이지1→2 전환 초입",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "미용의료",
-          "rrg_sector_match": true,
-          "rrg_signal": "prime"
         }
       ]
     }
   ],
   "caution_sectors": [
     "반도체_소자",
-    "조선"
+    "2차전지_셀"
   ]
 }
