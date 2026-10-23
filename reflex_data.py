@@ -107,14 +107,25 @@ def cmd_macro(start=START_DEFAULT):
     if getattr(df.index, "tz", None) is not None:
         df.index = df.index.tz_localize(None)
 
+    mp = OUT / "macro.parquet"
+    try:
+        prev = pd.read_parquet(mp) if mp.exists() else None
+    except Exception:
+        prev = None
     for name, sid in FRED_SERIES.items():
         try:
-            s = pd.read_csv(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}",
-                            index_col=0, parse_dates=True, na_values=".")
+            import io, requests
+            r = requests.get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}",
+                             timeout=30)
+            r.raise_for_status()
+            s = pd.read_csv(io.StringIO(r.text), index_col=0, parse_dates=True, na_values=".")
             s = s.iloc[:, 0].astype(float).rename(name)
             df = df.join(s, how="outer")
         except Exception as e:
             log(f"macro: FRED {name} 실패 — {e!r}"[:200])
+            if prev is not None and name in prev.columns:
+                df = df.join(prev[name], how="outer")
+                log(f"macro: FRED {name} 이전 값 유지 (마지막 {prev[name].last_valid_index().date()})")
 
     df = df.sort_index()
     df = df[df.index >= pd.Timestamp(start)]
