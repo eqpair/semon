@@ -463,7 +463,7 @@ def push():
         log("push: 변경 없음")
         return
     run("git", "commit", "-m", f"reflex: {datetime.now(KST):%Y-%m-%d %H:%M}", "--", rel)
-    r = run("git", "pull", "--rebase")
+    r = run("git", "pull", "--rebase", "--autostash")
     if r.returncode != 0:
         log("push: pull --rebase 실패", r.stderr[-300:])
         run("git", "rebase", "--abort")
