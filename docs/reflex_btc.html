@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>비트코인 형세와 기세</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#222;--ink2:#555;--ink3:#8a8a8a;--line:#dcdcdc;--line2:#ececec;--paper:#fff;--wash:#f6f6f6;
+  --up:#cf3a2b;--dn:#2d58b8;
+  --s1:#e4e4e4;--s2:#f3c9c4;--s3:#eaa198;--s4:#df7568;--s5:#cf3a2b;
+  --s6:#c7d3ee;--s7:#99afdf;--s8:#6688cc;--s9:#2d58b8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 "IBM Plex Sans KR",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 64px}
+a{color:inherit}
+header.top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:10px}
+header.top h1{font-size:17px;font-weight:600;margin:0;letter-spacing:-.01em}
+header.top .meta{font-size:13px;color:var(--ink2)}
+.note{font-size:13px;color:var(--ink3)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;padding:36px 0 28px;align-items:end}
+.stage-no{font-size:15px;color:var(--ink2);margin-bottom:6px}
+.stage-name{font-size:clamp(44px,8vw,84px);line-height:1.02;font-weight:700;letter-spacing:-.035em;margin:0}
+.stage-name.up{color:var(--up)} .stage-name.down{color:var(--dn)}
+.stage-desc{font-size:18px;margin:14px 0 0;max-width:34em}
+.stage-since{margin-top:10px;font-size:14px;color:var(--ink2)}
+.pending{margin-top:14px;display:inline-block;font-size:14px;border:1px solid var(--ink);padding:4px 10px}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);}
+.readout div{padding:14px 0 4px}
+.readout .k{font-size:13px;color:var(--ink2)}
+.readout .v{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.readout .d{font-size:13px;color:var(--ink2)}
+.summary{grid-column:1/-1;font-size:15px;color:var(--ink2);margin:0}
+
+/* cycle track */
+.track{margin:8px 0 6px}
+.track ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(9,1fr);gap:3px}
+.track li{position:relative;padding:12px 8px 10px;min-height:86px;border-top:6px solid var(--c);background:var(--paper);outline:1px solid var(--line2)}
+.track li .n{font-size:12px;color:var(--ink3)}
+.track li .t{font-size:14px;font-weight:600;line-height:1.3;margin-top:2px}
+.track li.cur{background:var(--c);color:#fff;outline:none}
+.track li.cur.light{color:var(--ink)}
+.track li.cur .n{color:inherit;opacity:.8}
+.track li .p{position:absolute;left:8px;bottom:6px;font-size:12px;color:var(--ink2)}
+.track .phase{display:grid;grid-template-columns:1fr 4fr 4fr;gap:3px;margin-top:6px;font-size:12px;color:var(--ink3)}
+.track .phase span:nth-child(2){border-top:1px solid var(--up);padding-top:3px;color:var(--up)}
+.track .phase span:nth-child(3){border-top:1px solid var(--dn);padding-top:3px;color:var(--dn)}
+.track .phase span:first-child{border-top:1px solid var(--ink3);padding-top:3px}
+.next{font-size:14px;color:var(--ink2);margin:12px 0 0}
+
+h2{font-size:20px;font-weight:600;letter-spacing:-.01em;margin:0 0 4px}
+section{padding-top:44px}
+section > .lede{margin:0 0 18px;color:var(--ink2);font-size:14px;max-width:62em}
+
+/* axes */
+.axes{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.axis-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:6px;margin-bottom:6px}
+.axis-head h3{font-size:17px;margin:0;font-weight:600}
+.axis-head .val{font-size:28px;font-weight:600}
+.axis-head .val small{font-size:13px;font-weight:400;color:var(--ink2);margin-left:6px}
+.comp{border-bottom:1px solid var(--line2)}
+.comp summary{display:grid;grid-template-columns:7.5em 1fr 3em 4.2em;gap:10px;align-items:center;padding:9px 0;cursor:pointer;list-style:none}
+.comp summary::-webkit-details-marker{display:none}
+.comp summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.comp .lab{font-size:14px}
+.comp .lab small{color:var(--ink3);font-size:12px;margin-left:4px}
+.bar{position:relative;height:8px;background:var(--line2)}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink)}
+.bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--ink3)}
+.comp .sc{text-align:right;font-weight:600}
+.comp .ch{text-align:right;font-size:13px}
+.up-t{color:var(--up)} .dn-t{color:var(--dn)}
+.items{margin:0 0 10px;padding:0;list-style:none}
+.items li{display:grid;grid-template-columns:1fr auto 3em;gap:12px;font-size:13px;padding:4px 0 4px 12px;border-left:2px solid var(--line2)}
+.items li .r{color:var(--ink2)}
+.items li .s{text-align:right}
+.fast{margin-top:18px;padding:12px 14px;background:var(--wash);font-size:14px}
+.fast b{font-size:18px}
+
+/* charts */
+.chart-box{position:relative}
+svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font:12px "IBM Plex Sans KR",system-ui,sans-serif;fill:var(--ink2)}
+.tip{position:absolute;pointer-events:none;background:var(--paper);border:1px solid var(--ink);padding:6px 9px;font-size:12px;line-height:1.5;white-space:nowrap;display:none;z-index:2}
+.seg{display:inline-flex;border:1px solid var(--ink);margin-bottom:10px}
+.seg button{font:inherit;font-size:13px;background:none;border:0;padding:4px 12px;cursor:pointer;color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--up);outline-offset:1px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-top:8px}
+.legend span::before{content:"";display:inline-block;width:18px;height:0;border-top:2px solid var(--c);vertical-align:middle;margin-right:6px}
+.legend span.dash::before{border-top-style:dashed}
+.legend span.dot::before{border-top-width:6px;width:10px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:40px;align-items:start}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line2);white-space:nowrap}
+th{font-weight:500;color:var(--ink2);font-size:13px;border-bottom:1px solid var(--ink)}
+th:first-child,td:first-child{text-align:left}
+tr.cur td{background:var(--wash);font-weight:600}
+td .sw{display:inline-block;width:10px;height:10px;margin-right:8px;vertical-align:-1px;background:var(--c)}
+.scroll{overflow-x:auto}
+.eps li{display:grid;grid-template-columns:13.5em 1fr auto;gap:12px;padding:7px 0;border-bottom:1px solid var(--line2);font-size:14px}
+.eps{list-style:none;margin:0;padding:0}
+.eps .who{display:flex;align-items:center;gap:8px}
+.eps .who i{width:10px;height:10px;background:var(--c);display:inline-block}
+.method{font-size:13px;color:var(--ink2);max-width:64em}
+.method p{margin:0 0 8px}
+.err{padding:40px 0;font-size:15px}
+
+@media (max-width:860px){
+  .hero,.axes,.two{grid-template-columns:1fr;gap:28px}
+  .track ol{grid-template-columns:repeat(3,1fr)}
+  .track .phase{display:none}
+  .eps li{grid-template-columns:1fr;gap:2px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .track li.cur{animation:arrive .7s ease-out both}
+  @keyframes arrive{from{background:var(--paper);color:var(--ink)}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>비트코인 형세와 기세 <span class="note">— 재귀성 9단계로 본 BTC</span></h1>
+    <div class="meta" id="meta">불러오는 중</div>
+  </header>
+  <main id="app"></main>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+const COL={1:"var(--s1)",2:"var(--s2)",3:"var(--s3)",4:"var(--s4)",5:"var(--s5)",6:"var(--s6)",7:"var(--s7)",8:"var(--s8)",9:"var(--s9)"};
+const HEX={1:"#e4e4e4",2:"#f3c9c4",3:"#eaa198",4:"#df7568",5:"#cf3a2b",6:"#c7d3ee",7:"#99afdf",8:"#6688cc",9:"#2d58b8"};
+const LIGHT=new Set([1,2,6]);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const n0=v=>v==null?"—":Math.round(v).toString();
+const sgn=(v,d=0)=>v==null?"—":(v>0?"+":"")+v.toFixed(d);
+const tone=v=>v==null?"":v>0?"up-t":v<0?"dn-t":"";
+const md=s=>{const [y,m,d]=s.split("-");return `${+m}월 ${+d}일`};
+const ymd=s=>{const [y,m,d]=s.split("-");return `${y}.${m}.${d}`};
+
+fetch("data/reflex_btc.json?v="+Date.now()).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(render).catch(e=>{
+  $("#app").innerHTML=`<p class="err">reflex_btc.json을 불러오지 못했습니다 (${esc(e.message)}). docs/data/reflex_btc.json이 생성됐는지 확인하세요.</p>`;
+  $("#meta").textContent="";
+});
+
+function render(j){
+  const st=j.stage, defs=j.stage_defs, cur=st.id;
+  for(const k in defs)STAGE_NAMES[k]=defs[k].name;
+  const sa=j.sources_as_of||{};
+  $("#meta").textContent=`기준일 ${ymd(j.as_of)} UTC 일봉 / 온체인 ${sa.onchain?ymd(sa.onchain):"—"} / 미국 ${sa.macro?ymd(sa.macro):"—"} / 생성 ${j.generated_at}`;
+  const phase=st.phase==="up"?"up":st.phase==="down"?"down":"";
+  const pend=st.pending?`<div class="pending">${esc(st.pending.name)}(${st.pending.id}단계)로 넘어가는 중 — ${st.pending.count}/${st.pending.need}일 확인</div>`:"";
+  const trans=j.transitions[String(cur)]||{};
+  const nextTxt=Object.entries(trans).slice(0,3).map(([k,p])=>`${defs[k].name} ${Math.round(p)}%`).join(", ");
+  const stats=j.stage_stats;
+
+  let html=`
+  <div class="hero">
+    <div>
+      <div class="stage-no">${cur?cur+"단계":"판정 대기"} · ${st.phase==="up"?"상승 국면":st.phase==="down"?"하락 국면":"바닥 국면"}</div>
+      <p class="stage-name ${phase}">${esc(st.name||"판정 대기")}</p>
+      <p class="stage-desc">${esc(st.desc||"")}</p>
+      <div class="stage-since">${st.since?`${md(st.since)}부터 ${st.days}일째`:""}</div>
+      ${pend}
+    </div>
+    <div class="readout">
+      ${readout("형세",j.F.value,j.F.dslope,j.F.slope_days+"일 변화")}
+      ${readout("기세",j.M.value,j.M.dslope,j.M.slope_days+"일 변화")}
+      ${readout("단기 기세",j.Mf.value,j.Mf.dslope,j.Mf.slope_days+"일 변화")}
+      <p class="summary">${esc(j.summary)}</p>
+    </div>
+  </div>
+
+  <div class="track" aria-label="9단계 순환">
+    <ol>${[1,2,3,4,5,6,7,8,9].map(i=>{
+      const s=stats[i]||{};const c=i===cur;
+      return `<li class="${c?"cur":""} ${c&&LIGHT.has(i)?"light":""}" style="--c:${COL[i]}" ${c?'aria-current="step"':""}>
+        <div class="n">${i}</div><div class="t">${esc(defs[i].name)}</div>
+        ${s.days?`<div class="p">${s.episodes}회 · 평균 ${Math.round(s.avg_len)}일</div>`:""}</li>`}).join("")}
+    </ol>
+    <div class="phase"><span>바닥</span><span>상승 국면</span><span>하락 국면</span></div>
+    ${nextTxt?`<p class="next">2015년 이후 ${esc(st.name)} 다음에 온 단계: ${esc(nextTxt)}</p>`:""}
+  </div>
+
+  <section>
+    <h2>무엇이 판단을 만들었나</h2>
+    <p class="lede">각 지표는 과거 3년 대비 백분위(0~100)입니다. 50이 평소 수준이고, 높을수록 시장에 유리한 쪽입니다. 항목을 누르면 실제 값이 열립니다.</p>
+    <div class="axes">
+      <div>${axisHead("형세","판이 유리한가 — 유동성·스테이블코인·네트워크",j.F.value,j.F.dslope,j.F.slope_days+"일")}${comps(j.F.components)}</div>
+      <div>${axisHead("기세","시장이 어떻게 반응하나 — 가격·레버리지·알트 참여",j.M.value,j.M.dslope,j.M.slope_days+"일")}${comps(j.M.components)}
+        <div class="fast">단기 기세 <b>${n0(j.Mf.value)}</b> — ${esc(j.Mf.accel_text)}. 단기 기세가 15 아래로 무너지고 열흘 새 35 넘게 빠지면 하락 가속으로 바로 판정합니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>형세와 기세의 위치</h2>
+    <p class="lede">대각선 위쪽은 기세가 형세보다 앞서 있는 상태(시장의 기대가 현실을 앞섬), 아래쪽은 그 반대입니다. 최근 120일의 궤적이며 진할수록 최근입니다.</p>
+    <div class="two">
+      <div class="chart-box" id="planeBox"></div>
+      <div>
+        <div class="seg" role="group" aria-label="기간">
+          <button type="button" data-r="2y" aria-pressed="true">최근 2년</button>
+          <button type="button" data-r="all" aria-pressed="false">2015년부터</button>
+        </div>
+        <div class="chart-box" id="lineBox"></div>
+        <div class="legend">
+          <span style="--c:var(--ink)">기세</span><span class="dash" style="--c:var(--ink3)">형세</span>
+          <span class="dot" style="--c:var(--s4)">상승 국면 단계</span><span class="dot" style="--c:var(--s8)">하락 국면 단계</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>최근 단계 흐름</h2>
+    <ul class="eps">${(j.episodes_recent||[]).slice().reverse().map(e=>{
+      const ch=e.k0&&e.k1?(e.k1/e.k0-1)*100:null;
+      return `<li><span>${ymd(e.start)} ~ ${ymd(e.end)}</span>
+        <span class="who"><i style="--c:${COL[e.s]}"></i>${e.s} ${esc(defs[e.s].name)} <span class="note">${e.days}일</span></span>
+        <span>BTC $${Math.round(e.k0).toLocaleString()} → $${Math.round(e.k1).toLocaleString()} <span class="${tone(ch)}">(${sgn(ch,1)}%)</span></span></li>`}).join("")}
+    </ul>
+  </section>
+
+  <section>
+    <h2>단계별로 그 뒤에 일어난 일</h2>
+    <p class="lede">2015년 이후 각 단계였던 날로부터 ${j.horizon}일 뒤까지의 BTC 기록입니다. 평균 대비는 같은 기간 전체 평균 ${sgn(j.baseline.fwd,1)}%와의 차이입니다. 비트코인은 완전한 사이클이 3~4번뿐이라 표본이 작습니다.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>단계</th><th>일수</th><th>평균 지속</th><th>${j.horizon}일 수익</th><th>평균 대비</th><th>오른 비율</th><th>변동성</th><th>최대 낙폭</th></tr></thead>
+      <tbody>${[1,2,3,4,5,6,7,8,9].map(i=>{const s=stats[i]||{};return `<tr class="${i===cur?"cur":""}">
+        <td><span class="sw" style="--c:${COL[i]}"></span>${i} ${esc(defs[i].name)}</td><td>${s.days??"—"}</td><td>${s.avg_len!=null?Math.round(s.avg_len)+"일":"—"}</td>
+        <td class="${tone(s.fwd)}">${sgn(s.fwd,1)}%</td><td class="${tone(s.fwd_excess)}">${sgn(s.fwd_excess,1)}%p</td>
+        <td>${s.hit!=null?Math.round(s.hit)+"%":"—"}</td><td>${s.vol!=null?s.vol.toFixed(0)+"%":"—"}</td><td>${s.mdd!=null?s.mdd.toFixed(1)+"%":"—"}</td></tr>`}).join("")}</tbody>
+    </table></div>
+    <h2 style="margin-top:32px;font-size:17px">기간을 나눠도 방향은 같았습니다</h2>
+    <p class="lede">상승 국면(2~5단계)과 하락 국면(6~9단계) 이후 ${j.horizon}일 수익의 평균 대비 차이. 두 기간 모두 상승 국면이 앞섰지만 사이클 수가 적어 우연일 가능성을 배제할 수 없습니다. 이 단계는 국면을 설명하는 지표이고 매매 신호가 아닙니다.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>기간</th><th>상승 국면</th><th>오른 비율</th><th>하락 국면</th><th>오른 비율</th></tr></thead>
+      <tbody>${(j.phase_by_period||[]).map(h=>`<tr><td>${esc(h.period)}</td>
+        <td class="${tone(h.up.fwd_excess)}">${sgn(h.up.fwd_excess,1)}%p</td><td>${Math.round(h.up.hit)}%</td>
+        <td class="${tone(h.down.fwd_excess)}">${sgn(h.down.fwd_excess,1)}%p</td><td>${Math.round(h.down.hit)}%</td></tr>`).join("")}</tbody>
+    </table></div>
+  </section>
+
+  <section class="method">
+    <h2>판정 방법</h2>
+    <p>형세는 연준 순유동성(대차대조표 − 재무부 계좌 − 역레포), 미국 실질금리, 달러인덱스, 나스닥과 VIX, 달러 스테이블코인 유통량 증가, 해시레이트와 활성 주소로 만든 환경 점수입니다.</p>
+    <p>기세는 BTC의 60·120·200일선 이격과 120일 수익률, 무기한 선물 펀딩비, MVRV(시가총액/실현시가총액), 주요 알트코인 20종의 이평선 위 비율, 방향성 거래량으로 만든 시장 반응 점수입니다. 각 지표는 과거 3년 대비 백분위입니다.</p>
+    <p>단계는 기세의 수준과 21일 변화, 형세의 90일 변화, 둘의 차이로 정하고, 같은 판정이 5일 이어지고 직전 단계가 21일 이상 지났을 때만 바꿉니다. 형세가 40 미만일 때의 반등은 상승 기세로 보지 않습니다(약세장 반등 오판 방지). 판정 규칙은 2015~2026년 데이터로 정했습니다.</p>
+  </section>`;
+  $("#app").innerHTML=html;
+
+  drawPlane(j);
+  let range="2y";
+  const redraw=()=>drawLines(range==="2y"?j.history:j.history_long, range);
+  redraw();
+  document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+    range=b.dataset.r;
+    document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    redraw();
+  }));
+  let t;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(()=>{drawPlane(j);redraw()},150)});
+}
+
+function readout(k,v,d,lab){
+  return `<div><div class="k">${k}</div><div class="v">${n0(v)}</div><div class="d">${lab} <span class="${tone(d)}">${sgn(d)}</span></div></div>`;
+}
+function axisHead(t,sub,v,d,lab){
+  return `<div class="axis-head"><h3>${t} <span class="note">${sub}</span></h3><div class="val">${n0(v)}<small>${lab} <span class="${tone(d)}">${sgn(d)}</span></small></div></div>`;
+}
+function comps(cs){
+  return Object.values(cs).map(c=>`<details class="comp"><summary>
+      <span class="lab">${esc(c.label)}<small>${Math.round(c.weight*100)}%</small></span>
+      <span class="bar"><i style="width:${c.score??0}%"></i></span>
+      <span class="sc">${n0(c.score)}</span><span class="ch ${tone(c.d20)}">${sgn(c.d20)}</span></summary>
+      <ul class="items">${c.items.map(i=>`<li><span>${esc(i.label)}</span><span class="r">${esc(i.disp)}</span><span class="s">${n0(i.score)}</span></li>`).join("")}</ul>
+    </details>`).join("");
+}
+
+/* ── 위상 평면 ── */
+function drawPlane(j){
+  const box=$("#planeBox"), W=box.clientWidth||360, H=W, m={l:34,r:12,t:12,b:34};
+  const x=v=>m.l+(W-m.l-m.r)*v/100, y=v=>H-m.b-(H-m.t-m.b)*v/100;
+  const pts=j.history.slice(-120).filter(p=>p.F!=null&&p.M!=null);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="형세와 기세 위상 평면, 최근 120일 궤적">`;
+  s+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="none" stroke="#dcdcdc"/>`;
+  s+=`<line x1="${x(50)}" y1="${y(0)}" x2="${x(50)}" y2="${y(100)}" stroke="#ececec"/><line x1="${x(0)}" y1="${y(50)}" x2="${x(100)}" y2="${y(50)}" stroke="#ececec"/>`;
+  s+=`<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(100)}" stroke="#8a8a8a" stroke-dasharray="3 4"/>`;
+  s+=`<text x="${x(3)}" y="${y(94)}">기세 &gt; 형세</text><text x="${x(97)}" y="${y(4)}" text-anchor="end">형세 &gt; 기세</text>`;
+  [0,50,100].forEach(v=>{s+=`<text x="${x(v)}" y="${H-m.b+16}" text-anchor="middle">${v}</text><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
+  s+=`<text x="${x(25)}" y="${H-4}" text-anchor="middle">형세 →</text>`;
+  s+=`<text transform="translate(10 ${y(25)}) rotate(-90)" text-anchor="middle">기세 →</text>`;
+  for(let i=1;i<pts.length;i++){
+    const a=pts[i-1],b=pts[i],o=(0.12+0.88*i/pts.length).toFixed(2);
+    s+=`<line x1="${x(a.F)}" y1="${y(a.M)}" x2="${x(b.F)}" y2="${y(b.M)}" stroke="#222" stroke-opacity="${o}" stroke-width="1.4"/>`;
+  }
+  pts.forEach((p,i)=>{if(i%10===0||i===pts.length-1){s+=`<circle cx="${x(p.F)}" cy="${y(p.M)}" r="${i===pts.length-1?0:3}" fill="${HEX[p.s]||"#ccc"}" stroke="#fff" stroke-width="1"/>`}});
+  const L=pts[pts.length-1], F0=pts[0];
+  if(F0) s+=`<text x="${x(F0.F)+6}" y="${y(F0.M)-6}">${md(F0.d)}</text>`;
+  if(L){s+=`<circle cx="${x(L.F)}" cy="${y(L.M)}" r="7" fill="${HEX[L.s]||"#222"}" stroke="#222" stroke-width="2"/><text x="${x(L.F)+11}" y="${y(L.M)+4}" style="fill:#222;font-weight:600">오늘</text>`}
+  s+=`</svg>`;
+  box.innerHTML=s;
+}
+
+/* ── 시계열: BTC(단계 띠) + 형세·기세 ── */
+function drawLines(rows,range){
+  const box=$("#lineBox"), W=box.clientWidth||600, H1=170, H2=150, gap=18, H=H1+gap+H2+24, m={l:44,r:8,t:6};
+  const R=rows.filter(r=>r.k!=null);
+  const n=R.length, x=i=>m.l+(W-m.l-m.r)*i/(n-1);
+  const ks=R.map(r=>Math.log(r.k)), kmin=Math.min(...ks), kmax=Math.max(...ks);
+  const yk=v=>m.t+H1-(H1-8)*(Math.log(v)-kmin)/(kmax-kmin)-4;
+  const y2=v=>m.t+H1+gap+H2-H2*v/100;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="BTC와 단계, 형세·기세 추이">`;
+  // 단계 띠
+  let st=0;
+  for(let i=1;i<=n;i++){
+    if(i===n||R[i].s!==R[st].s){
+      if(R[st].s){const x0=x(Math.max(st-.5,0)),x1=x(Math.min(i-.5,n-1));
+        s+=`<rect x="${x0}" y="${m.t}" width="${Math.max(x1-x0,.5)}" height="${H1}" fill="${HEX[R[st].s]}" fill-opacity="${LIGHT.has(R[st].s)?.55:.3}"/>`;}
+      st=i;
+    }
+  }
+  // 가격 축
+  const ticks=niceLogTicks(Math.exp(kmin),Math.exp(kmax));
+  ticks.forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yk(v)}" y2="${yk(v)}" stroke="#fff" stroke-opacity=".7"/><text x="${m.l-6}" y="${yk(v)+4}" text-anchor="end">${v.toLocaleString()}</text>`});
+  s+=`<path d="${R.map((r,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+yk(r.k).toFixed(1)).join("")}" fill="none" stroke="#222" stroke-width="1.5"/>`;
+  s+=`<text x="${m.l+4}" y="${m.t+14}" style="fill:#222">BTC (달러, 로그)</text>`;
+  // 형세·기세
+  [0,50,100].forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y2(v)}" y2="${y2(v)}" stroke="${v===50?"#dcdcdc":"#ececec"}"/><text x="${m.l-6}" y="${y2(v)+4}" text-anchor="end">${v}</text>`});
+  const path=k=>R.map((r,i)=>r[k]==null?"":((i&&R[i-1][k]!=null?"L":"M")+x(i).toFixed(1)+" "+y2(r[k]).toFixed(1))).join("");
+  s+=`<path d="${path("F")}" fill="none" stroke="#8a8a8a" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+  s+=`<path d="${path("M")}" fill="none" stroke="#222" stroke-width="1.6"/>`;
+  // 연/월 눈금
+  let last="";
+  R.forEach((r,i)=>{const key=range==="2y"?r.d.slice(0,7):r.d.slice(0,4);
+    const narrow=W<520;
+    const show=range==="2y"?(key!==last&&(narrow?["01","07"]:["01","04","07","10"]).includes(r.d.slice(5,7))):(key!==last&&(+key)%(narrow?4:2)===1);
+    if(key!==last&&show){s+=`<text x="${x(i)}" y="${H-4}" text-anchor="middle">${range==="2y"?r.d.slice(2,4)+"."+r.d.slice(5,7):key}</text>`}
+    last=key});
+  s+=`<line id="hov" x1="0" x2="0" y1="${m.t}" y2="${H-20}" stroke="#222" stroke-width="1" visibility="hidden"/>`;
+  s+=`<rect id="hit" x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-20-m.t}" fill="transparent"/></svg>`;
+  box.innerHTML=s;
+  const svg=box.querySelector("svg"), hov=svg.querySelector("#hov"), tip=$("#tip");
+  const move=ev=>{
+    const rc=svg.getBoundingClientRect(), px=(ev.clientX-rc.left)*W/rc.width;
+    const i=Math.max(0,Math.min(n-1,Math.round((px-m.l)/(W-m.l-m.r)*(n-1)))), r=R[i];
+    hov.setAttribute("x1",x(i));hov.setAttribute("x2",x(i));hov.setAttribute("visibility","visible");
+    tip.innerHTML=`<b>${ymd(r.d)}</b><br>BTC $${Math.round(r.k).toLocaleString()}<br>형세 ${n0(r.F)} / 기세 ${n0(r.M)}<br>${r.s?r.s+" "+STAGE_NAMES[r.s]:"판정 대기"}`;
+    tip.style.display="block";
+    const bx=box.getBoundingClientRect();
+    let lx=ev.clientX+14+window.scrollX; if(ev.clientX+180>window.innerWidth) lx=ev.clientX-170+window.scrollX;
+    tip.style.left=lx+"px"; tip.style.top=(bx.top+window.scrollY+10)+"px";
+  };
+  svg.addEventListener("pointermove",move);
+  svg.addEventListener("pointerleave",()=>{tip.style.display="none";hov.setAttribute("visibility","hidden")});
+}
+let STAGE_NAMES={};
+function niceLogTicks(a,b){
+  const out=[],steps=[1,2,5];
+  let e=Math.floor(Math.log10(a));
+  for(;Math.pow(10,e)<=b*10;e++)for(const s of steps){const v=s*Math.pow(10,e);if(v>=a&&v<=b)out.push(v)}
+  if(out.length<3){const k=(b-a)/4,p=Math.pow(10,Math.floor(Math.log10(k)));const st=Math.ceil(k/p)*p;for(let v=Math.ceil(a/st)*st;v<=b;v+=st)out.push(v)}
+  return out;
+}
+</script>
+</body>
+</html>
