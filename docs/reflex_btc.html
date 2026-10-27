@@ -146,7 +146,7 @@ const CONFIG = {
   subtitle:"Bitcoin", priceKo:"BTC", market247:true,
   json:"data/reflex_btc.json",
   nav:[{href:"reflex.html",label:"Reflex KR"},{href:"reflex_btc.html",label:"Reflex BTC",cur:true},{href:"index.html",label:"RRG"},{href:"momentum.html",label:"Momentum"},{href:"heatmap.html",label:"Heatmap"},{href:"stats.html",label:"Stats"},{href:"cal.html",label:"Calendar"},{href:"https://eqmon.duckdns.org",home:true}],
-  dayUnit:"일", window:"3년(1,095일)", since:"2015", priceName:"BTC",
+  verdictMin:10, dayUnit:"일", window:"3년(1,095일)", since:"2015", priceName:"BTC",
   perfBasis:"BTC",
   asof:d=>`${d.asof} UTC 일봉 (온체인 ${d.src.onchain||"—"}, 미국 ${d.src.macro||"—"})`,
   price:v=>"$"+Math.round(v).toLocaleString("en-US"),
@@ -327,13 +327,27 @@ function comps(cs){
 }
 function robust(d){
   if(!d.periods.length)return "";
-  const same=d.periods.every(p=>p.up.ex>0&&p.dn.ex<0);
+  const th=CONFIG.verdictMin, P=d.periods;
+  const spread=p=>p.up.ex-p.dn.ex;                 // Boom 초과수익 − Bust 초과수익
+  const ok=p=>p.up.ex>0&&p.dn.ex<0&&spread(p)>=th;  // 의미 있게 갈림
+  const weak=p=>spread(p)>0;                        // 방향은 맞지만 차이가 작음
+  const first=P[0],last=P[P.length-1];
+  let v;
+  if(P.every(ok))
+    v=`두 기간 모두 Boom 구간이 평균보다 좋았고 Bust 구간이 나빴습니다(차이 ${P.map(p=>sg(spread(p),1)+"%p").join(", ")}). 일관성은 있지만 사이클 수가 적어 우연일 가능성은 남아 있습니다.`;
+  else if(P.every(weak))
+    v=`두 기간 모두 방향은 맞았지만 차이가 작습니다(${P.map(p=>sg(spread(p),1)+"%p").join(", ")}). 국면 설명용으로는 쓸 수 있어도 성과를 가르는 힘은 약합니다.`;
+  else if(ok(last)&&!weak(first))
+    v=`최근 기간(${esc(last.name)})에만 Boom과 Bust가 뚜렷하게 갈렸고, 그 이전(${esc(first.name)})엔 차이가 없었습니다. 시장 성격이 바뀐 결과일 수도, 우연일 수도 있어 매매 신호로 쓰기엔 근거가 부족합니다.`;
+  else if(ok(first)&&!weak(last))
+    v=`이전 기간(${esc(first.name)})엔 통했지만 최근 기간(${esc(last.name)})엔 차이가 사라졌습니다. 최근 판정은 특히 조심해서 볼 필요가 있습니다.`;
+  else
+    v=`기간에 따라 결과가 엇갈리거나 반대로 나왔습니다. 이 단계는 국면을 설명하는 지표로만 보고, 이후 성과에 대한 근거로 쓰지 마세요.`;
   return `<div class="scroll" style="margin-top:18px"><table><thead><tr><th>${en("Period Check","기간별 검증")}</th><th>${en("Boom vs. Avg","상승 국면 평균 대비")}</th><th>${en("Hit","상승 확률")}</th>
-    <th>${en("Bust vs. Avg","하락 국면 평균 대비")}</th><th>${en("Hit","상승 확률")}</th></tr></thead>
-    <tbody>${d.periods.map(p=>`<tr><td>${esc(p.name)}</td><td class="${tone(p.up.ex)}">${sg(p.up.ex,1)}%p</td><td>${Math.round(p.up.hit)}%</td>
-      <td class="${tone(p.dn.ex)}">${sg(p.dn.ex,1)}%p</td><td>${Math.round(p.dn.hit)}%</td></tr>`).join("")}</tbody></table></div>
-    <p class="verdict">${same?"두 기간 모두 Boom 구간이 평균보다 좋았고 Bust 구간이 나빴습니다. 다만 표본이 작아 우연일 가능성은 남아 있습니다."
-      :"기간에 따라 결과가 달랐습니다. 이 단계는 국면을 설명하는 지표이고 매매 신호로 쓰기엔 근거가 부족합니다."}</p>`;
+    <th>${en("Bust vs. Avg","하락 국면 평균 대비")}</th><th>${en("Hit","상승 확률")}</th><th>${en("Spread","차이")}</th></tr></thead>
+    <tbody>${P.map(p=>`<tr><td>${esc(p.name)}</td><td class="${tone(p.up.ex)}">${sg(p.up.ex,1)}%p</td><td>${Math.round(p.up.hit)}%</td>
+      <td class="${tone(p.dn.ex)}">${sg(p.dn.ex,1)}%p</td><td>${Math.round(p.dn.hit)}%</td><td class="${tone(spread(p))}">${sg(spread(p),1)}%p</td></tr>`).join("")}</tbody></table></div>
+    <p class="verdict">${v}</p>`;
 }
 
 /* ── 사이클 다이얼: 5단계가 꼭대기, 왼쪽 반원 Boom, 오른쪽 반원 Bust ── */
