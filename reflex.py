@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 """
-reflex.py v2 — 소로스 재귀성 9단계: 형세(F)·기세(M) 판정 → docs/data/reflex.json
+reflex.py v3 — 소로스 재귀성 9단계: 형세(F)·기세(M) 판정 → docs/data/reflex.json
 
 입력: data/reflex/{macro,breadth,flows}.parquet  (reflex_data.py 산출물)
+      data/reflex/{kr_daily,kr_monthly}.parquet (macro_kr.py 산출물 — 한국은행 ECOS)
+
+v3 변경 (2026-10): 형세를 '다른 시장의 가격'이 아니라 한국 경제의 실물·금리·환율로 재구성.
+  수출 가속(35%) · 국내 경기선행 변화(20%) · 금리(20%) · 환율(15%) · 유가(10%)
+  - 이후 60일 시장 수익률과의 상관: v2 형세 0.02 → v3 형세 0.30
+  - 형세 45 미만에서는 상승 국면(1~5단계) 판정 금지 — '형세 약'은 두 기간 모두 이후 성과가 나빴음
+  - 2011~18 / 2019~26 Boom−Bust 차이: v2 −0.5%p / +7.9%p → v3 +1.8%p / +11.0%p
 출력: docs/data/reflex.json
 
 원칙
@@ -34,11 +41,11 @@ KST = ZoneInfo("Asia/Seoul")
 BASE = Path(__file__).resolve().parent
 DATA = BASE / "data" / "reflex"
 OUT_JSON = BASE / "docs" / "data" / "reflex.json"
-VERSION = "reflex_v2"
+VERSION = "reflex_v3"
 
 PCT_WIN, PCT_MIN = 756, 252
 P = dict(smooth=20, fast_smooth=5, m_slope=20, f_slope=40, th=10,
-         confirm=5, dwell=10, crash_level=15, crash_drop=35, crash_confirm=3)
+         confirm=5, dwell=15, crash_level=15, crash_drop=35, crash_confirm=3, fund_gate=45)
 HISTORY_DAYS = 520
 SPLIT = "2019-01-01"
 
@@ -58,8 +65,8 @@ UP_PHASE, DOWN_PHASE = (2, 3, 4, 5), (6, 7, 8, 9)
 COMP = {
     "M": {"trend": ("추세", 0.30), "part": ("참여", 0.35), "energy": ("에너지", 0.15), "flow": ("수급", 0.20)},
     "Mf": {"trend": ("추세", 0.30), "part": ("참여", 0.35), "energy": ("에너지", 0.15), "flow": ("수급", 0.20)},
-    "F": {"risk": ("글로벌 위험선호", 0.30), "semi": ("반도체 사이클", 0.25), "fx": ("원화·달러", 0.20),
-          "rate": ("금리", 0.15), "cycle": ("경기", 0.10)},
+    "F": {"export": ("수출", 0.35), "econ": ("국내 경기", 0.20), "rate": ("금리", 0.20),
+          "fx": ("환율", 0.15), "cost": ("유가", 0.10)},
 }
 
 
@@ -171,6 +178,40 @@ def build(idx, kr, us, br, fl):
     X["i_10y_lvl"] = g("미국10Y")
     X["i_curve"] = g("미국10Y") - g("미국2Y")
     X["c_cugd"] = (g("구리") / g("금")).pct_change(60, fill_method=None)
+    X["o_wti"] = g("WTI유가").pct_change(60, fill_method=None)
+    X["o_wti_lvl"] = g("WTI유가")
+
+    # 국내 실물·환율 (ECOS) — 일별은 다음 날부터, 월별은 사용 가능일(avail)부터
+    kd_p, km_p = DATA / "kr_daily.parquet", DATA / "kr_monthly.parquet"
+    nan = pd.Series(np.nan, index=idx)
+    if kd_p.exists():
+        kd = pd.read_parquet(kd_p).sort_index()
+        kd = kd.reindex(kd.index.union(idx)).ffill().reindex(idx).shift(1)
+        cny = kd["위안달러"] if "위안달러" in kd.columns else nan
+    else:
+        cny = nan
+    X["x_cny"] = cny.pct_change(60, fill_method=None)
+    X["x_cny_lvl"] = cny
+
+    def monthly(name, fn):
+        if not km_p.exists():
+            return nan
+        km = pd.read_parquet(km_p)
+        m = km[km["series"] == name].sort_values("month").set_index("month")
+        if m.empty:
+            return nan
+        v = fn(m["value"])
+        v.index = pd.DatetimeIndex(m["avail"].values)
+        v = v[~v.index.duplicated(keep="last")]
+        return v.reindex(v.index.union(idx)).ffill().reindex(idx)
+
+    yoy3 = lambda v: (v / v.shift(12) - 1).rolling(3).mean()
+    X["e_exp_yoy"] = monthly("수출지수", yoy3)
+    X["e_exp_acc"] = monthly("수출지수", lambda v: yoy3(v).diff(3))
+    X["e_semi_yoy"] = monthly("반도체수출지수", yoy3)
+    X["e_semi_acc"] = monthly("반도체수출지수", lambda v: yoy3(v).diff(3))
+    X["k_cli"] = monthly("선행순환", lambda v: v)
+    X["k_cli3"] = monthly("선행순환", lambda v: v.diff(3))
 
     return pd.DataFrame(X, index=idx), comp
 
@@ -205,18 +246,22 @@ ITEMS = [
     ("Mf", "flow", "f_net20", "외국인+기관 20일 순매수", 1,
      lambda X, t: f"{X.at[t, 'f_net20_eok']:+,.0f}억 (거래대금 대비 {X.at[t, 'f_net20'] * 100:+.1f}%)"),
     # 형세
-    ("F", "risk", "r_spx", "S&P500 60일선 이격", 1, lambda X, t: pp(X.at[t, "r_spx"])),
-    ("F", "risk", "r_ndx", "나스닥 60일선 이격", 1, lambda X, t: pp(X.at[t, "r_ndx"])),
-    ("F", "risk", "r_vix", "VIX", -1, lambda X, t: f"{X.at[t, 'r_vix']:.1f}"),
-    ("F", "semi", "s_sox", "SOX 60일선 이격", 1, lambda X, t: pp(X.at[t, "s_sox"])),
-    ("F", "semi", "s_rel", "SOX/S&P 60일 상대강도", 1, lambda X, t: pp(X.at[t, "s_rel"])),
-    ("F", "fx", "x_krw", "원달러 60일 변화", -1,
-     lambda X, t: f"{X.at[t, 'x_krw_lvl']:,.0f}원 ({X.at[t, 'x_krw'] * 100:+.1f}%)"),
-    ("F", "fx", "x_dxy", "달러인덱스 60일 변화", -1, lambda X, t: pp(X.at[t, "x_dxy"])),
+    ("F", "export", "e_exp_acc", "수출 증가율의 가속", 1,
+     lambda X, t: f"전년 대비 {X.at[t, 'e_exp_yoy'] * 100:+.1f}% (3개월 전보다 {X.at[t, 'e_exp_acc'] * 100:+.1f}%p)"),
+    ("F", "export", "e_semi_acc", "반도체 수출 증가율의 가속", 1,
+     lambda X, t: f"전년 대비 {X.at[t, 'e_semi_yoy'] * 100:+.1f}% (3개월 전보다 {X.at[t, 'e_semi_acc'] * 100:+.1f}%p)"),
+    ("F", "econ", "k_cli3", "경기선행지수 순환변동치 3개월 변화", 1,
+     lambda X, t: f"{X.at[t, 'k_cli']:.1f} (3개월 {X.at[t, 'k_cli3']:+.1f})"),
     ("F", "rate", "i_10y", "미국 10Y 60일 변화", -1,
      lambda X, t: f"{X.at[t, 'i_10y_lvl']:.2f}% ({X.at[t, 'i_10y'] * 100:+.0f}bp)"),
     ("F", "rate", "i_curve", "미국 10Y−2Y", 1, lambda X, t: f"{X.at[t, 'i_curve'] * 100:+.0f}bp"),
-    ("F", "cycle", "c_cugd", "구리/금 60일 변화", 1, lambda X, t: pp(X.at[t, "c_cugd"])),
+    ("F", "fx", "x_krw", "원달러 60일 변화", -1,
+     lambda X, t: f"{X.at[t, 'x_krw_lvl']:,.0f}원 ({X.at[t, 'x_krw'] * 100:+.1f}%)"),
+    ("F", "fx", "x_dxy", "달러인덱스 60일 변화", -1, lambda X, t: pp(X.at[t, "x_dxy"])),
+    ("F", "fx", "x_cny", "위안달러 60일 변화 (위안 강세 +)", -1,
+     lambda X, t: f"{X.at[t, 'x_cny_lvl']:.3f} ({X.at[t, 'x_cny'] * 100:+.1f}%)"),
+    ("F", "cost", "o_wti", "WTI 유가 60일 변화 (하락 +)", -1,
+     lambda X, t: f"${X.at[t, 'o_wti_lvl']:.1f} ({X.at[t, 'o_wti'] * 100:+.1f}%)"),
 ]
 
 
@@ -251,6 +296,13 @@ def classify(M, F, dM, dF, gap, Mf, dMf):
         return 9
     if M < 35 and dM < -2 * th:
         return 9
+    gate = P["fund_gate"]
+    if F < gate:            # 형세 약: 상승 국면 판정 금지 (v3)
+        if M >= 55 and dM < -th:
+            return 6
+        if M >= 45:
+            return 7
+        return 8
     if M >= 55 and dM < -th:
         return 6
     if M >= 70 and gap >= 15 and dM >= 0:
@@ -259,7 +311,7 @@ def classify(M, F, dM, dF, gap, Mf, dMf):
         return 4
     if 35 <= M < 55 and dM < -th:
         return 7
-    if M < 45 and dF < -th and abs(dM) <= th:
+    if M < 45 and (dF < -th or F < gate + 5) and abs(dM) <= th:
         return 8
     if 40 <= M < 70 and dM >= 0 and dF > 0:
         return 3

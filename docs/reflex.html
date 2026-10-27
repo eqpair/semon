@@ -151,10 +151,10 @@ const CONFIG = {
   asof:d=>`${d.asof} 장 마감 (미국 ${d.src.us||"—"})`,
   price:v=>Math.round(v).toLocaleString("en-US"),
   tick:v=>v.toLocaleString("en-US"),
-  method:`<p><b>Fundamentals</b> <span class=\"text-gray-400\">형세</span> — 시장 밖의 환경입니다. S&amp;P500·나스닥 추세와 VIX, 필라델피아 반도체지수, 원달러와 달러인덱스, 미국 금리와 장단기 금리차, 구리/금 비율로 구성합니다. 미국 지표는 한국 장 마감 시점에 알 수 있는 전날 종가까지만 씁니다.</p>
+  method:`<p><b>Fundamentals</b> <span class=\"text-gray-400\">형세</span> — 한국 경제의 실물·금리·환율입니다. 수출 증가율의 가속(전체·반도체, 35%), 경기선행지수 순환변동치의 3개월 변화(20%), 미국 금리(20%), 원달러·달러인덱스·위안화(15%), 유가(10%)로 구성합니다. 월간 통계는 실제 발표 시점 이후부터만 쓰고, 미국 지표는 전날 종가까지만 씁니다. 2011~2026년 데이터에서 형세가 45 미만이면 기세와 상관없이 이후 성과가 나빴습니다.</p>
 <p><b>Momentum</b> <span class=\"text-gray-400\">기세</span> — 시장의 반응입니다. KOSPI·KOSDAQ 전 종목(우선주 제외)의 이평선 위 비율, 52주 신고가와 신저가, 상승·하락 종목 수, 방향성 거래대금, 외국인과 기관의 순매수로 구성합니다. 단계 판정에는 60일 이상 지표로 만든 느린 Momentum을 쓰고, 20일 지표로 만든 Short-term momentum은 급락 감지에만 씁니다.</p>
 <p><b>Bias</b> <span class=\"text-gray-400\">편향</span> — Momentum에서 Fundamentals를 뺀 값으로, 소로스가 말한 시장의 지배적 편향(prevailing bias)에 해당합니다. 플러스면 기대가 현실을 앞서 있다는 뜻입니다.</p>
-<p><b>Stage</b> <span class=\"text-gray-400\">단계</span> — Momentum의 수준과 20일 변화, Fundamentals의 40일 변화, Bias로 정합니다. 같은 판정이 5일 이어지고 직전 단계가 10일 이상 지났을 때만 바꾸며, Short-term momentum이 급락하면 3일 확인으로 Capitulation을 판정합니다. 규칙은 2011~2026년 데이터로 정했습니다. 국면을 설명하는 지표이며 매매 신호가 아닙니다.</p>`
+<p><b>Stage</b> <span class=\"text-gray-400\">단계</span> — Momentum의 수준과 20일 변화, Fundamentals의 수준과 40일 변화, Bias로 정합니다. Fundamentals가 45 미만이면 Boom 단계로 판정하지 않습니다. 같은 판정이 5일 이어지고 직전 단계가 15일 이상 지났을 때만 바꾸며, Short-term momentum이 급락하면 3일 확인으로 Capitulation을 판정합니다. 규칙은 2011~2026년 데이터로 정했습니다. 국면을 설명하는 지표이며 매매 신호가 아닙니다.</p>`
 };
 
 const STAGE = {
@@ -167,7 +167,7 @@ const DARKTXT=new Set([1,2,3,6,7]);
 const PHASE=s=>s>=2&&s<=5?"Boom":s>=6?"Bust":"Base";
 const PHASE_KO={Boom:"상승 국면",Bust:"하락 국면",Base:"바닥 국면"};
 const COMP_EN={trend:"Trend",part:"Breadth",energy:"Volume",flow:"Flows",risk:"Risk Appetite",semi:"Semiconductor Cycle",
-  fx:"KRW & Dollar",rate:"Rates",cycle:"Growth",liq:"Dollar Liquidity",stable:"Stablecoins",net:"Network",lev:"Leverage",
+  fx:"Currencies",rate:"Rates",cycle:"Growth",export:"Exports",econ:"Domestic Cycle",cost:"Oil",liq:"Dollar Liquidity",stable:"Stablecoins",net:"Network",lev:"Leverage",
   val:"Valuation",breadth:"Alt Breadth"};
 
 const $=s=>document.querySelector(s);
