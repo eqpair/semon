@@ -9,7 +9,7 @@ EQAI(eqai.py)가 국내 판단에 쓰던 입력은 섹터 RRG 표 하나뿐이�
   2. 시장 폭    — data/reflex/breadth.parquet (이평선 위 비율, 상승/하락, 신고/신저, 거래대금)
   3. 시장 수급  — data/reflex/flows.parquet (외국인·기관 순매수)
   4. 섹터 현황  — docs/data/signals.json (5일 수익률, 상승 종목 비율, RRG 사분면)
-  5. 종목 후보  — signals.json 종목 + (있으면) data/stocks/flow 종목별 수급
+  5. 종목 후보  — stock_quality.py '추세의 질' 점수 상위 + (있으면) data/stocks/flow 종목별 수급
 
 모든 항목은 fail-open: 파일이 없거나 깨져도 그 블록만 빠지고 나머지는 동작한다.
 
@@ -33,8 +33,8 @@ BREADTH = BASE / "data/reflex/breadth.parquet"
 FLOWS = BASE / "data/reflex/flows.parquet"
 STOCK_FLOW_DIR = BASE / "data/stocks/flow"
 
-N_SECTORS = 15          # 후보를 뽑을 섹터 수 (섹터 5일 수익률·상승 비율 기준 상위)
-PER_SECTOR = 4          # 섹터당 후보 종목 수 (거래대금 상위)
+N_CANDIDATES = 40       # 종목 후보 수 (추세의 질 점수 상위)
+PER_SECTOR = 5          # 섹터당 최대 후보 수 (한 섹터 쏠림 방지)
 STAGE_EN = {1: "Inception", 2: "Acceleration", 3: "Confirmation", 4: "Conviction", 5: "Overshoot",
             6: "Reversal", 7: "Twilight", 8: "Deterioration", 9: "Capitulation"}
 
@@ -44,6 +44,13 @@ def _won(eok):
     if eok is None or (isinstance(eok, float) and np.isnan(eok)):
         return "—"
     return f"{eok / 1e4:+.1f}조" if abs(eok) >= 1e4 else f"{eok:+,.0f}억"
+
+
+def _amt(eok):
+    """부호 없는 금액(거래대금 등)."""
+    if eok is None or (isinstance(eok, float) and np.isnan(eok)):
+        return "—"
+    return f"{eok / 1e4:.1f}조" if abs(eok) >= 1e4 else f"{eok:,.0f}억"
 
 
 def _f(v, nd=1, sign=False):
@@ -126,25 +133,41 @@ def _stock_flows():
 
 
 def sectors_and_candidates():
+    """섹터 현황 + 종목 후보.
+    후보는 '추세의 질' 점수(stock_quality.py: 낮은 변동성·52주 고점 근접, 국면별 비중) 상위.
+    2011~2026 검증에서 단기 급등·RRG 상대강도 상위는 이후 덜 올랐으므로 후보 선정에 쓰지 않는다."""
+    from stock_quality import quality_scores
     sig = json.loads(SIGNALS_JSON.read_text(encoding="utf-8"))
     sectors = {k: v for k, v in sig.get("sectors", {}).items() if k != "미분류"}
     srrg = sig.get("sector_rrg", {})
+    # 여러 섹터에 속한 종목은 목록 내 상대 위치가 가장 앞인(핵심 구성원에 가까운) 섹터로 표시
+    info, pos = {}, {}
+    for sname, s in sectors.items():
+        cands = s.get("candidates", [])
+        for i, x in enumerate(cands):
+            rel = i / max(len(cands), 1)
+            if x["code"] not in pos or rel < pos[x["code"]]:
+                pos[x["code"]] = rel
+                info[x["code"]] = {**x, "sector": sname}
 
+    q = quality_scores()
+    meta = q.attrs
+    q = q[q.index.isin(info.keys())].copy()
+    q["sector"] = [info[c]["sector"] for c in q.index]
+    q["name"] = [info[c]["name"] for c in q.index]
+
+    # 섹터 현황: 섹터 내 유니버스 종목의 점수 중앙값 순 (5일 수익률·RRG는 참고)
     rows = []
-    for name, s in sectors.items():
-        c = s.get("candidates", [])
-        r20 = [x["ret_20d"] for x in c if x.get("ret_20d") is not None]
-        rows.append({"sector": name, "r1": s.get("sector_ret_1d"), "r5": s.get("sector_ret_5d"),
-                     "r20": float(np.median(r20)) if r20 else None, "rise": s.get("rising_ratio"),
-                     "q": srrg.get(name, {}).get("quadrant", ""), "n": len(c)})
-    sec = pd.DataFrame(rows)
-    # 섹터 순위: 5일 수익률과 상승 종목 비율의 평균 순위 (RRG는 참고 정보로만 표시)
-    sec["rank"] = sec["r5"].rank(ascending=False) + sec["rise"].rank(ascending=False)
-    sec = sec.sort_values("rank")
-
-    sec_lines = ["섹터 | 1일 | 5일 | 20일(종목 중앙값) | 상승 종목 비율 | RRG 사분면"]
+    for sname, s in sectors.items():
+        qs = q[q["sector"] == sname]
+        rows.append({"sector": sname, "score": qs["score"].median() if len(qs) else np.nan, "n": len(qs),
+                     "r5": s.get("sector_ret_5d"), "rise": s.get("rising_ratio"),
+                     "r60": qs["r60"].median() if len(qs) else np.nan,
+                     "q": srrg.get(sname, {}).get("quadrant", "")})
+    sec = pd.DataFrame(rows).sort_values("score", ascending=False, na_position="last")
+    sec_lines = ["섹터 | 추세의 질 점수(중앙값) | 유니버스 종목 수 | 5일 | 60일(중앙값) | 상승 종목 비율 | RRG 사분면(참고)"]
     for r in sec.itertuples():
-        sec_lines.append(f"{r.sector} | {_f(r.r1, 1, True)}% | {_f(r.r5, 1, True)}% | {_f(r.r20, 1, True)}% | "
+        sec_lines.append(f"{r.sector} | {_f(r.score, 0)} | {r.n} | {_f(r.r5, 1, True)}% | {_f(r.r60, 1, True)}% | "
                          f"{(r.rise or 0) * 100:.0f}% | {r.q}")
 
     sflow = {}
@@ -153,28 +176,31 @@ def sectors_and_candidates():
     except Exception as e:
         logger.warning(f"종목별 수급 로드 실패(무시): {e}")
 
-    all_vals = [x.get("value") or 0 for s in sectors.values() for x in s.get("candidates", [])]
-    v_med = float(np.median(all_vals)) if all_vals else 0
-    cand_lines, codes = [], set()
-    head = "종목(코드) | 1일 | 5일 | 20일 | 60일 | 거래대금(억) | 거래량 배율 | RRG"
-    if sflow:
-        head += " | 외국인+기관 5일/20일"
-    for r in sec.head(N_SECTORS).itertuples():
-        c = [x for x in sectors[r.sector].get("candidates", []) if (x.get("value") or 0) >= v_med]
-        c = sorted(c, key=lambda x: -(x.get("value") or 0))[:PER_SECTOR]
-        if not c:
+    picked, per = [], {}
+    for code, r in q.iterrows():
+        if per.get(r["sector"], 0) >= PER_SECTOR:
             continue
-        cand_lines.append(f"[{r.sector}]")
-        for x in c:
-            codes.add(x["code"])
-            line = (f"  {x['name']}({x['code']}) | {_f(x.get('ret_1d'), 1, True)}% | {_f(x.get('ret_5d'), 1, True)}% | "
-                    f"{_f(x.get('ret_20d'), 1, True)}% | {_f(x.get('ret_60d'), 1, True)}% | {x.get('value') or 0:,.0f} | "
-                    f"{_f(x.get('vol_ratio'), 2)} | {x.get('quadrant', '')}")
-            if sflow:
-                a, b = sflow.get(x["code"], (0.0, 0.0))
-                line += f" | {_won(a)} / {_won(b)}"
-            cand_lines.append(line)
-    return "\n".join(sec_lines), head + "\n" + "\n".join(cand_lines), codes, sig.get("updated_at", "")
+        picked.append(code)
+        per[r["sector"]] = per.get(r["sector"], 0) + 1
+        if len(picked) >= N_CANDIDATES:
+            break
+
+    head = ("종목(코드) | 섹터 | 점수 | 변동성(60일, 연율) | 52주 고점 대비 | 20일 | 60일 | 거래대금(20일 평균) | RRG(참고)"
+            + (" | 외국인+기관 5일/20일" if sflow else ""))
+    lines = [head]
+    for code in picked:
+        r = q.loc[code]
+        line = (f"{r['name']}({code}) | {r['sector']} | {r['score']:.0f} | {r['vol60']:.0f}% | {(r['hi52'] - 1) * 100:+.1f}% | "
+                f"{r['r20']:+.1f}% | {r['r60']:+.1f}% | {_amt(r['avgval'])} | {info[code].get('quadrant', '')}")
+        if sflow:
+            a, b = sflow.get(code, (0.0, 0.0))
+            line += f" | {_won(a)} / {_won(b)}"
+        lines.append(line)
+    note = (f"점수 = 낮은 변동성 백분위 × {meta['w_lowvol']:.2f} + 52주 고점 근접 백분위 × {1 - meta['w_lowvol']:.2f} "
+            f"(현재 국면 {meta['phase']}, 기준일 {meta['as_of']}, 거래대금 상위 {meta['universe']}종목 안에서 계산). "
+            "2011~2026 검증: 점수 상위 30종목의 60일 후 초과수익 평균 +2.2%, 승률 63%. "
+            "같은 검증에서 최근 20~60일 급등 종목과 RRG 상대강도 상위 종목은 이후 덜 올랐음.")
+    return "\n".join(sec_lines), note + "\n" + "\n".join(lines), set(picked), sig.get("updated_at", "")
 
 
 def domestic_context():
@@ -189,8 +215,8 @@ def domestic_context():
             logger.warning(f"{title} 생성 실패(생략): {e}")
     try:
         sec_text, cand_text, codes, upd = sectors_and_candidates()
-        blocks.append(f"=== 섹터 현황 (signals.json {upd}, 5일 수익률·상승 비율 순) ===\n{sec_text}")
-        blocks.append(f"=== 종목 후보 (상위 {N_SECTORS}개 섹터 × 거래대금 상위 {PER_SECTOR}종목, 거래대금 중앙값 이상) ===\n{cand_text}")
+        blocks.append(f"=== 섹터 현황 (추세의 질 점수 순, signals.json {upd}) ===\n{sec_text}")
+        blocks.append(f"=== 종목 후보 (추세의 질 점수 상위 {N_CANDIDATES}, 섹터당 최대 {PER_SECTOR}) ===\n{cand_text}")
     except Exception as e:
         logger.warning(f"섹터·후보 생성 실패(생략): {e}")
     logger.info(f"국내 컨텍스트: 블록 {len(blocks)}개, 후보 {len(codes)}종목")

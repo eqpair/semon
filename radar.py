@@ -29,7 +29,10 @@ RADAR_SENT_PATH  = "/home/ubuntu/semon/data/radar_sent.json"
 # 감지 임계값
 VOL_BREAKOUT_THRESHOLD = 1.5   # Breakout 인정 최소 거래량 배수
 
-LEGACY_RADAR_ALERTS = False  # 구세대 PRIME/Breakout 텔레그램 발송 (MID radar는 항상 발송)
+LEGACY_RADAR_ALERTS = False  # 구세대 PRIME/Breakout 텔레그램 발송
+# MID radar 텔레그램 발송. 2011~2026 전 종목 검증에서 Lag→Imp 전환(prime)의 초과수익이 유의하지 않아(승률 49%)
+# 알림은 끄고 mid_log 기록만 유지 — 새 '추세의 질' 점수와 비교용. 다시 켜려면 True.
+MID_RADAR_ALERTS = False
 
 
 # ── radar_sent 관리 ───────────────────────────────────────────
@@ -343,6 +346,10 @@ async def _run_mid_radar(sectors: dict, sector_rrg: dict,
         lines.append("  " + " | ".join(parts))
         lines.append("")
 
+    if not MID_RADAR_ALERTS:
+        logger.info(f"MID radar 기록만 (알림 꺼짐): {len(hits)}개 종목")
+        _mid_log_append(hits, today)
+        return
     ok = await _send_telegram("\n".join(lines).strip())
     if ok:
         logger.info(f"MID radar 알림: {len(hits)}개 종목")
