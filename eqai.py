@@ -44,6 +44,9 @@ S3_KEY        = "rrg_latest.json"
 REPORT_PATH   = Path("/home/ubuntu/semon/docs/data/eqai_report.json")
 STOCK_MAP_PATH = Path("/home/ubuntu/semon/stock_map.json")
 
+# 국내 컨텍스트가 만든 종목 후보 코드 (top_picks는 이 안에서만 허용; 비어 있으면 RRG lagging 필터로 폴백)
+_CANDIDATE_CODES: set = set()
+
 # 종목명→코드 정답표 (Claude가 생성한 코드의 hallucination 교정용)
 try:
     _STOCK_MAP = json.loads(STOCK_MAP_PATH.read_text(encoding="utf-8"))
@@ -162,7 +165,18 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         bodies_text     = "\n\n".join([f"[{a.get('source')}] {a.get('title')}\n{a.get('body','')[:300]}" for a in bodies_pool])
         logger.info(f"전달: 헤드라인 {min(30,len(articles))}개 + 본문 {len(bodies_pool)}개")
         rrg_text        = _format_rrg(rrg_data)
-        candidates_text = _format_candidates(rrg_data, [])
+        # 국내 컨텍스트 (국면·시장 폭·수급·섹터·종목 후보) — fail-open
+        global _CANDIDATE_CODES
+        try:
+            from eqai_domestic import domestic_context
+            domestic_text, _CANDIDATE_CODES = domestic_context()
+        except Exception as _e:
+            logger.warning(f"국내 컨텍스트 실패 — RRG 후보로 폴백: {_e}")
+            domestic_text, _CANDIDATE_CODES = "", set()
+        if not domestic_text:
+            # 폴백: 전 섹터 RRG 후보 (기존엔 빈 리스트를 넘겨 후보가 항상 비어 있었음)
+            _all = [{"sector": s} for s in rrg_data.get("top_candidates", {})]
+            domestic_text = "=== 종목 후보 (RRG) ===\n" + _format_candidates(rrg_data, _all)
 
         prompt = f"""당신은 월스트리트와 여의도를 평정한 전설의 애널리스트입니다. 워런 버핏도 당신의 리포트를 읽고, 소로스도 당신의 판단을 구합니다. 30년 경력의 글로벌 매크로 전략가이자 한국 주식시장의 살아있는 전설입니다.
 
@@ -170,8 +184,9 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - 마크 미너비니의 SEPA 전략: 52주 신고가 돌파, VCP 패턴, 추세·펀더멘탈·촉매·타이밍의 4박자
 - 스탠 와인스타인의 스테이지 분석: 1(바닥)→2(상승)→3(천장)→4(하락), 스테이지 2 초입 진입 원칙
 - 닥터 엘더의 삼중 스크린: 주간(추세)+일간(모멘텀)+단기(타이밍) 다중 시간대 분석
-- RRG 모멘텀: RS-Ratio>100 + RS-Momentum>100 = Improving/Leading 구간이 최적 진입 타이밍
-섹터 분석과 종목 선정 시 위 기술적 관점을 반드시 반영하세요.
+- RRG: 시장 대비 상대강도를 보는 참고 지표. 느리게 반응하므로 단독 근거로 쓰지 말고 최근 수익률·상승 종목 비율·거래대금·수급과 함께 판단
+- 소로스 재귀성: 형세(펀더멘털 환경)와 기세(시장 반응)의 상호작용으로 붐-버스트 국면을 판단. 아래 '국내 시장 국면'이 그 결과
+섹터 분석과 종목 선정 시 위 관점을 반영하되, 한 지표에만 기대지 마세요.
 
 아래 데이터를 분석하여 반드시 아래 XML 구조로만 응답하세요.
 절대로 다른 XML 태그를 추가하지 마세요. 코드블록(```)도 사용하지 마세요.
@@ -219,21 +234,22 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 === 뉴스 상세 ===
 {bodies_text}
 
-=== RRG 섹터 현황 ===
-{rrg_text}
+{domestic_text}
 
-=== Prime/Confirm 신호 종목 ===
-{candidates_text}
+=== RRG 섹터 지표 (참고) ===
+{rrg_text}
 
 [종합 판단 원칙 — 글로벌에서 국내로, 국내에서 종목으로 / 매우 중요]
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
-- top_picks의 각 pick reason은 반드시 두 근거를 한 문장에 엮으세요: (1) 위 korea_impact 판단 중 어느 요인/시장 흐름에서 파생됐는지, (2) 해당 종목의 RRG·기술적 신호(스테이지2 초입, VCP, prime/confirm 등). (예: "달러 강세 수출주 수혜 판단 + 반도체_소자 Leading·신고가 돌파 → 삼성전자")
-- top_picks는 RRG 신호가 양호한(prime/confirm/improving/leading/weakening) 종목만 선정하세요. RRG상 lagging(상대강도·모멘텀 모두 약세) 종목은 뉴스 호재가 있어도 핵심종목으로 추천하지 마세요. 제공된 종목 후보 리스트 내에서 우선 선정하고, 후보 밖 종목 추가 시 그 종목이 RRG lagging이 아닌지 반드시 확인하세요.
+- top_picks는 반드시 위 '종목 후보' 목록 안에서만 3~6종목 선정하세요. 목록 밖 종목은 시스템이 자동 제외합니다.
+- top_picks의 각 pick reason은 세 층을 한 문장에 엮으세요: (1) 글로벌→국내 판단(korea_impact의 어느 요인에서 파생됐는지), (2) 국내 국면·섹터 흐름(국내 시장 국면 단계, 섹터 5일 수익률·상승 종목 비율), (3) 종목 근거 두 가지 이상(최근 수익률 추세, 거래대금·거래량 배율, 수급, RRG 중). RRG만으로 근거를 대지 마세요. (예: "반도체 업황 회복 기대 + 하락 국면 속 반도체_소자 5일 +8.6%·상승 종목 67%로 가장 먼저 반등 + 5일 +11.6%·거래대금 1.7조 → SK하이닉스")
+- 국내 시장 국면을 종목 선정 강도에 반영하세요. 하락 국면(Reversal·Twilight·Deterioration·Capitulation)에서는 추천 종목 수를 줄이고 각 reason에 핵심 리스크를 함께 적으며, 이미 반등이 확인된 섹터·종목 위주로 고르세요. 상승 국면(Acceleration~Overshoot)에서는 기세가 확인된 주도 섹터 위주로 고르세요.
+- RRG 사분면과 최근 수익률·상승 종목 비율이 엇갈리면(예: RRG leading인데 5일 수익률이 크게 마이너스) 최근 데이터를 우선하고, 그 엇갈림을 판단에 반영하세요.
 - summary는 "글로벌 환경 → 국내 시장 한 줄 판단 → 핵심 진입 아이디어" 순서의 한 흐름으로 쓰세요.
 - strategy_headline은 "해외/미국 동인 → 국내 전개"의 인과가 드러나는 오늘 국내 시장의 핵심 논지를 한 줄(공백 포함 40자 이내)로 압축하세요. 예: "AI 수출 슈퍼사이클 확인 — 반도체·IT부품 Leading 집중"
-- strategy_points는 투자자가 한눈에 봐야 할 요점 3~4개로 쓰세요. 각 요점은 한 줄(1문장, 짧게)이며 가능하면 각 요점을 "[해외/미국 원인] → [국내 영향·대응]" 인과 형태로 쓰고, 서로 다른 측면(글로벌 동인 / 국내 수급·지표 / 섹터 모멘텀 / 리스크)을 담으세요. 국내 지표는 판단의 출발점이 아니라 해외 동인의 결과·확인 수단으로만 언급하세요.
+- strategy_points는 투자자가 한눈에 봐야 할 요점 3~4개로 쓰세요. 각 요점은 한 줄(1문장, 짧게)이며 가능하면 각 요점을 "[해외/미국 원인] → [국내 영향·대응]" 인과 형태로 쓰고, 서로 다른 측면(글로벌 동인 / 국내 국면·시장 폭·수급 / 섹터 모멘텀 / 리스크)을 담으세요. 이 중 하나는 반드시 국내 시장 국면 단계와 시장 폭·수급 데이터를 근거로 쓰세요. 국내 지표는 판단의 출발점이 아니라 해외 동인의 결과·확인 수단으로만 언급하세요.
 - strategy_headline·strategy_points·strategy_brief는 반드시 이 순서로 전개하세요: ① 미국·해외 시장의 현 상황 → ② 그로 인해 오늘 국내 시장이 어떻게 전개될지 → ③ 국내 전략·섹터 결론. 코스피/코스닥 등락·수급 등 국내 지표를 문두나 논리의 출발점으로 두지 마세요.
-- [용어 주석 — 필수, 누락 금지] strategy_headline·strategy_points·strategy_brief·summary에서 일반 투자자가 어려워할 용어는 반드시 첫 등장 시 괄호로 쉬운 설명을 병기하세요. 대상: 경제지표 약어(PPI, CPI, ESS 등), 시장 용어(리스크오프, 밸류에이션, 커브 스티프닝, 숏커버링, 수급 등), RRG 용어(leading, improving, weakening, lagging, RS-Momentum 등). 예: "PPI(생산자물가지수)", "커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 예대마진이 개선되는 현상)", "improving(상승 전환 구간)". 같은 용어의 주석은 문서 전체에서 1회만 다세요. 주석 없이 전문 용어만 쓰는 것은 작성 규칙 위반입니다.
+- [용어 주석 — 필수, 누락 금지] strategy_headline·strategy_points·strategy_brief·summary에서 일반 투자자가 어려워할 용어는 반드시 첫 등장 시 괄호로 쉬운 설명을 병기하세요. 대상: 경제지표 약어(PPI, CPI, ESS 등), 시장 용어(리스크오프, 밸류에이션, 커브 스티프닝, 숏커버링, 수급 등), RRG 용어(leading, improving, weakening, lagging, RS-Momentum 등), 국면 용어(Deterioration, Capitulation, 형세, 기세, 시장 폭 등). 예: "PPI(생산자물가지수)", "커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 예대마진이 개선되는 현상)", "improving(상승 전환 구간)". 같은 용어의 주석은 문서 전체에서 1회만 다세요. 주석 없이 전문 용어만 쓰는 것은 작성 규칙 위반입니다.
 - strategy_brief는 위 모든 분석을 종합한 "오늘의 국내 시장 전략"을 서술형 한 문단(3~5문장)으로 쓰세요. 긍정/부정 요인을 나열하지 말고, 글로벌 환경이 국내에 주는 함의와 그래서 어디에 주목하는지를 자연스러운 문장으로 압축하세요. key_factors나 korea_impact 항목을 그대로 복사하지 말고 새로 종합 서술하세요.
 
 아래 XML 구조로만 응답하세요:
@@ -446,8 +462,13 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         _rrg = _code2rrg.get(_cd)  # RRG 정보 {sector, signal, quadrant, rs_ratio}
         _actual_sec = _rrg.get("sector") if _rrg else None
         _rrg_signal = _rrg.get("signal", "") if _rrg else ""
-        # RRG lagging 종목은 핵심종목 제외 (뉴스 호재만으로 약세주 추천 방지)
-        if _rrg_signal == "lagging":
+        # 데이터 근거 없는 추천 방지: 국내 컨텍스트의 종목 후보 목록 밖이면 제외.
+        # 후보 목록을 못 만든 경우에만 기존 RRG lagging 필터로 폴백.
+        if _CANDIDATE_CODES:
+            if _cd not in _CANDIDATE_CODES:
+                logger.info(f"top_pick 제외: {_nm}({_cd}) — 종목 후보 목록 밖")
+                continue
+        elif _rrg_signal == "lagging":
             logger.info(f"top_pick 제외: {_nm}({_cd}) — RRG lagging (실제섹터={_actual_sec}, rs_ratio={_rrg.get('rs_ratio')})")
             continue
         top_picks_raw[sector]["stocks"].append({
