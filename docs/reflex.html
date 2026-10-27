@@ -1,887 +1,440 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>형세와 기세</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --ink: #222;
-            --ink2: #555;
-            --ink3: #8a8a8a;
-            --line: #dcdcdc;
-            --line2: #ececec;
-            --paper: #fff;
-            --wash: #f6f6f6;
-            --up: #cf3a2b;
-            --dn: #2d58b8;
-            --s1: #e4e4e4;
-            --s2: #f3c9c4;
-            --s3: #eaa198;
-            --s4: #df7568;
-            --s5: #cf3a2b;
-            --s6: #c7d3ee;
-            --s7: #99afdf;
-            --s8: #6688cc;
-            --s9: #2d58b8;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html {
-            -webkit-text-size-adjust: 100%
-        }
-
-        body {
-            margin: 0;
-            background: var(--paper);
-            color: var(--ink);
-            font: 15px/1.6 "IBM Plex Sans KR", system-ui, sans-serif;
-            font-variant-numeric: tabular-nums
-        }
-
-        .wrap {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 28px 20px 64px
-        }
-
-        a {
-            color: inherit
-        }
-
-        header.top {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 16px;
-            flex-wrap: wrap;
-            border-bottom: 1px solid var(--ink);
-            padding-bottom: 10px
-        }
-
-        header.top h1 {
-            font-size: 17px;
-            font-weight: 600;
-            margin: 0;
-            letter-spacing: -.01em
-        }
-
-        header.top .meta {
-            font-size: 13px;
-            color: var(--ink2)
-        }
-
-        .note {
-            font-size: 13px;
-            color: var(--ink3)
-        }
-
-        /* hero */
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-            gap: 40px;
-            padding: 36px 0 28px;
-            align-items: end
-        }
-
-        .stage-no {
-            font-size: 15px;
-            color: var(--ink2);
-            margin-bottom: 6px
-        }
-
-        .stage-name {
-            font-size: clamp(44px, 8vw, 84px);
-            line-height: 1.02;
-            font-weight: 700;
-            letter-spacing: -.035em;
-            margin: 0
-        }
-
-        .stage-name.up {
-            color: var(--up)
-        }
-
-        .stage-name.down {
-            color: var(--dn)
-        }
-
-        .stage-desc {
-            font-size: 18px;
-            margin: 14px 0 0;
-            max-width: 34em
-        }
-
-        .stage-since {
-            margin-top: 10px;
-            font-size: 14px;
-            color: var(--ink2)
-        }
-
-        .pending {
-            margin-top: 14px;
-            display: inline-block;
-            font-size: 14px;
-            border: 1px solid var(--ink);
-            padding: 4px 10px
-        }
-
-        .readout {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-top: 1px solid var(--line);
-        }
-
-        .readout div {
-            padding: 14px 0 4px
-        }
-
-        .readout .k {
-            font-size: 13px;
-            color: var(--ink2)
-        }
-
-        .readout .v {
-            font-size: 40px;
-            font-weight: 600;
-            letter-spacing: -.02em;
-            line-height: 1.1
-        }
-
-        .readout .d {
-            font-size: 13px;
-            color: var(--ink2)
-        }
-
-        .summary {
-            grid-column: 1/-1;
-            font-size: 15px;
-            color: var(--ink2);
-            margin: 0
-        }
-
-        /* cycle track */
-        .track {
-            margin: 8px 0 6px
-        }
-
-        .track ol {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(9, 1fr);
-            gap: 3px
-        }
-
-        .track li {
-            position: relative;
-            padding: 12px 8px 10px;
-            min-height: 86px;
-            border-top: 6px solid var(--c);
-            background: var(--paper);
-            outline: 1px solid var(--line2)
-        }
-
-        .track li .n {
-            font-size: 12px;
-            color: var(--ink3)
-        }
-
-        .track li .t {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.3;
-            margin-top: 2px
-        }
-
-        .track li.cur {
-            background: var(--c);
-            color: #fff;
-            outline: none
-        }
-
-        .track li.cur.light {
-            color: var(--ink)
-        }
-
-        .track li.cur .n {
-            color: inherit;
-            opacity: .8
-        }
-
-        .track li .p {
-            position: absolute;
-            left: 8px;
-            bottom: 6px;
-            font-size: 12px;
-            color: var(--ink2)
-        }
-
-        .track .phase {
-            display: grid;
-            grid-template-columns: 1fr 4fr 4fr;
-            gap: 3px;
-            margin-top: 6px;
-            font-size: 12px;
-            color: var(--ink3)
-        }
-
-        .track .phase span:nth-child(2) {
-            border-top: 1px solid var(--up);
-            padding-top: 3px;
-            color: var(--up)
-        }
-
-        .track .phase span:nth-child(3) {
-            border-top: 1px solid var(--dn);
-            padding-top: 3px;
-            color: var(--dn)
-        }
-
-        .track .phase span:first-child {
-            border-top: 1px solid var(--ink3);
-            padding-top: 3px
-        }
-
-        .next {
-            font-size: 14px;
-            color: var(--ink2);
-            margin: 12px 0 0
-        }
-
-        h2 {
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: -.01em;
-            margin: 0 0 4px
-        }
-
-        section {
-            padding-top: 44px
-        }
-
-        section>.lede {
-            margin: 0 0 18px;
-            color: var(--ink2);
-            font-size: 14px;
-            max-width: 62em
-        }
-
-        /* axes */
-        .axes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px
-        }
-
-        .axis-head {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--ink);
-            padding-bottom: 6px;
-            margin-bottom: 6px
-        }
-
-        .axis-head h3 {
-            font-size: 17px;
-            margin: 0;
-            font-weight: 600
-        }
-
-        .axis-head .val {
-            font-size: 28px;
-            font-weight: 600
-        }
-
-        .axis-head .val small {
-            font-size: 13px;
-            font-weight: 400;
-            color: var(--ink2);
-            margin-left: 6px
-        }
-
-        .comp {
-            border-bottom: 1px solid var(--line2)
-        }
-
-        .comp summary {
-            display: grid;
-            grid-template-columns: 7.5em 1fr 3em 4.2em;
-            gap: 10px;
-            align-items: center;
-            padding: 9px 0;
-            cursor: pointer;
-            list-style: none
-        }
-
-        .comp summary::-webkit-details-marker {
-            display: none
-        }
-
-        .comp summary:focus-visible {
-            outline: 2px solid var(--ink);
-            outline-offset: 2px
-        }
-
-        .comp .lab {
-            font-size: 14px
-        }
-
-        .comp .lab small {
-            color: var(--ink3);
-            font-size: 12px;
-            margin-left: 4px
-        }
-
-        .bar {
-            position: relative;
-            height: 8px;
-            background: var(--line2)
-        }
-
-        .bar i {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            background: var(--ink)
-        }
-
-        .bar::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: -3px;
-            bottom: -3px;
-            width: 1px;
-            background: var(--ink3)
-        }
-
-        .comp .sc {
-            text-align: right;
-            font-weight: 600
-        }
-
-        .comp .ch {
-            text-align: right;
-            font-size: 13px
-        }
-
-        .up-t {
-            color: var(--up)
-        }
-
-        .dn-t {
-            color: var(--dn)
-        }
-
-        .items {
-            margin: 0 0 10px;
-            padding: 0;
-            list-style: none
-        }
-
-        .items li {
-            display: grid;
-            grid-template-columns: 1fr auto 3em;
-            gap: 12px;
-            font-size: 13px;
-            padding: 4px 0 4px 12px;
-            border-left: 2px solid var(--line2)
-        }
-
-        .items li .r {
-            color: var(--ink2)
-        }
-
-        .items li .s {
-            text-align: right
-        }
-
-        .fast {
-            margin-top: 18px;
-            padding: 12px 14px;
-            background: var(--wash);
-            font-size: 14px
-        }
-
-        .fast b {
-            font-size: 18px
-        }
-
-        /* charts */
-        .chart-box {
-            position: relative
-        }
-
-        svg {
-            display: block;
-            width: 100%;
-            height: auto;
-            overflow: visible
-        }
-
-        svg text {
-            font: 12px "IBM Plex Sans KR", system-ui, sans-serif;
-            fill: var(--ink2)
-        }
-
-        .tip {
-            position: absolute;
-            pointer-events: none;
-            background: var(--paper);
-            border: 1px solid var(--ink);
-            padding: 6px 9px;
-            font-size: 12px;
-            line-height: 1.5;
-            white-space: nowrap;
-            display: none;
-            z-index: 2
-        }
-
-        .seg {
-            display: inline-flex;
-            border: 1px solid var(--ink);
-            margin-bottom: 10px
-        }
-
-        .seg button {
-            font: inherit;
-            font-size: 13px;
-            background: none;
-            border: 0;
-            padding: 4px 12px;
-            cursor: pointer;
-            color: var(--ink)
-        }
-
-        .seg button[aria-pressed=true] {
-            background: var(--ink);
-            color: #fff
-        }
-
-        .seg button:focus-visible {
-            outline: 2px solid var(--up);
-            outline-offset: 1px
-        }
-
-        .legend {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            font-size: 12px;
-            color: var(--ink2);
-            margin-top: 8px
-        }
-
-        .legend span::before {
-            content: "";
-            display: inline-block;
-            width: 18px;
-            height: 0;
-            border-top: 2px solid var(--c);
-            vertical-align: middle;
-            margin-right: 6px
-        }
-
-        .legend span.dash::before {
-            border-top-style: dashed
-        }
-
-        .legend span.dot::before {
-            border-top-width: 6px;
-            width: 10px
-        }
-
-        .two {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
-            gap: 40px;
-            align-items: start
-        }
-
-        /* tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px
-        }
-
-        th,
-        td {
-            padding: 8px 6px;
-            text-align: right;
-            border-bottom: 1px solid var(--line2);
-            white-space: nowrap
-        }
-
-        th {
-            font-weight: 500;
-            color: var(--ink2);
-            font-size: 13px;
-            border-bottom: 1px solid var(--ink)
-        }
-
-        th:first-child,
-        td:first-child {
-            text-align: left
-        }
-
-        tr.cur td {
-            background: var(--wash);
-            font-weight: 600
-        }
-
-        td .sw {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin-right: 8px;
-            vertical-align: -1px;
-            background: var(--c)
-        }
-
-        .scroll {
-            overflow-x: auto
-        }
-
-        .eps li {
-            display: grid;
-            grid-template-columns: 13.5em 1fr auto;
-            gap: 12px;
-            padding: 7px 0;
-            border-bottom: 1px solid var(--line2);
-            font-size: 14px
-        }
-
-        .eps {
-            list-style: none;
-            margin: 0;
-            padding: 0
-        }
-
-        .eps .who {
-            display: flex;
-            align-items: center;
-            gap: 8px
-        }
-
-        .eps .who i {
-            width: 10px;
-            height: 10px;
-            background: var(--c);
-            display: inline-block
-        }
-
-        .method {
-            font-size: 13px;
-            color: var(--ink2);
-            max-width: 64em
-        }
-
-        .method p {
-            margin: 0 0 8px
-        }
-
-        .err {
-            padding: 40px 0;
-            font-size: 15px
-        }
-
-        @media (max-width:860px) {
-
-            .hero,
-            .axes,
-            .two {
-                grid-template-columns: 1fr;
-                gap: 28px
-            }
-
-            .track ol {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .track .phase {
-                display: none
-            }
-
-            .eps li {
-                grid-template-columns: 1fr;
-                gap: 2px
-            }
-        }
-
-        @media (prefers-reduced-motion:no-preference) {
-            .track li.cur {
-                animation: arrive .7s ease-out both
-            }
-
-            @keyframes arrive {
-                from {
-                    background: var(--paper);
-                    color: var(--ink)
-                }
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflexivity Monitor Korea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16181b;--ink2:#555b63;--ink3:#8f959d;--rule:#d5d9de;--rule2:#eaedf0;--panel:#f4f5f7;--bg:#fff;
+  --boom:#c42f27;--bust:#24509f;
+  --s1:#c3c8cf;--s2:#f0c5c1;--s3:#e2958c;--s4:#d25f54;--s5:#c42f27;
+  --s6:#c4d1ea;--s7:#8fa8d8;--s8:#587dc4;--s9:#24509f;
+  --f:"Archivo","IBM Plex Sans KR",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 14.5px/1.55 var(--f);font-variant-numeric:tabular-nums lining-nums}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 72px}
+.num{font-stretch:78%;font-weight:600;letter-spacing:-.01em}
+.muted{color:var(--ink2)} .faint{color:var(--ink3)}
+.up{color:var(--boom)} .dn{color:var(--bust)}
+
+/* masthead */
+.mast{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:18px 0 14px;border-bottom:2px solid var(--ink)}
+.brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand b{font-size:19px;font-weight:700;font-stretch:88%;letter-spacing:-.01em}
+.brand span{font-size:14px;color:var(--ink2)}
+.switch{display:inline-flex;border:1px solid var(--ink)}
+.switch a{padding:5px 14px;font-size:13px;text-decoration:none}
+.switch a[aria-current]{background:var(--ink);color:#fff}
+.switch a:focus-visible{outline:2px solid var(--boom);outline-offset:2px}
+.asof{display:flex;gap:28px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--rule);font-size:12.5px;color:var(--ink2)}
+.asof dt{display:inline;color:var(--ink3);margin-right:6px}
+.asof dd{display:inline;margin:0;color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:440px minmax(0,1fr);gap:40px;padding:34px 0 30px;border-bottom:1px solid var(--rule);align-items:center}
+.dial svg{width:100%;height:auto;display:block}
+.dial text{font-family:var(--f)}
+.kicker{font-size:13px;color:var(--ink2);margin:0 0 4px}
+.kicker .tag{display:inline-block;padding:1px 8px;margin-left:8px;font-size:12px;color:#fff;background:var(--c)}
+.sname{margin:0;font-size:clamp(46px,6.4vw,76px);line-height:1;font-weight:650;font-stretch:84%;letter-spacing:-.03em}
+.sname small{display:block;font-size:17px;font-weight:500;font-stretch:100%;letter-spacing:0;color:var(--ink2);margin-top:10px}
+.sdesc{font-size:16px;margin:14px 0 0;max-width:36em}
+.since{font-size:13px;color:var(--ink2);margin-top:8px}
+.watch{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:13.5px;padding:9px 12px;border-left:3px solid var(--c);background:var(--panel);max-width:34em}
+.watch > *{white-space:nowrap}
+.pips{display:inline-flex;gap:3px}
+.pips i{width:16px;height:5px;background:var(--rule)}
+.pips i.on{background:var(--c)}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:26px;border-top:1px solid var(--ink)}
+.metrics div{padding:12px 14px 0 0}
+.metrics .k{font-size:12.5px;color:var(--ink2)}
+.metrics .k small{color:var(--ink3);margin-left:4px}
+.metrics .v{font-size:40px;line-height:1.1}
+.metrics .d{font-size:12.5px;color:var(--ink2)}
+
+/* sections */
+section{padding:40px 0 0}
+.sh{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:8px;margin-bottom:6px}
+.sh h2{margin:0;font-size:19px;font-weight:650;font-stretch:90%;letter-spacing:-.01em}
+.sh p{margin:0;font-size:13px;color:var(--ink2);max-width:44em}
+
+/* drivers */
+.drivers{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.dh{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 8px}
+.dh h3{margin:0;font-size:16px;font-weight:600}
+.dh h3 small{font-weight:400;color:var(--ink3);margin-left:6px;font-size:13px}
+.dh .v{font-size:30px}
+.dh .v small{font-size:12.5px;font-weight:400;font-stretch:100%;color:var(--ink2);margin-left:6px}
+.scale{display:grid;grid-template-columns:136px 1fr 40px 48px;gap:12px;font-size:11.5px;color:var(--ink3);padding:0 0 4px;border-bottom:1px solid var(--rule)}
+.scale span:nth-child(2){display:flex;justify-content:space-between}
+.comp{border-bottom:1px solid var(--rule2)}
+.comp summary{display:grid;grid-template-columns:136px 1fr 40px 48px;gap:12px;align-items:center;padding:9px 0;cursor:pointer;list-style:none}
+.comp summary::-webkit-details-marker{display:none}
+.comp summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.comp summary:hover .lab{text-decoration:underline;text-underline-offset:3px}
+.comp .lab{font-size:14px;line-height:1.25}
+.comp .lab small{display:block;font-size:11.5px;color:var(--ink3)}
+.dv{position:relative;height:10px;background:var(--rule2)}
+.dv::after{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--ink)}
+.dv i{position:absolute;top:0;bottom:0}
+.comp .sc{text-align:right;font-size:16px}
+.comp .ch{text-align:right;font-size:12.5px}
+.items{list-style:none;margin:0 0 12px;padding:6px 0 0}
+.items li{display:grid;grid-template-columns:1fr auto 2.6em;gap:14px;font-size:12.5px;padding:3px 0 3px 12px;border-left:2px solid var(--rule)}
+.items .r{color:var(--ink2);text-align:right}
+.items .s{text-align:right}
+.short{margin-top:16px;font-size:13px;color:var(--ink2);display:flex;gap:14px;align-items:baseline}
+.short b{font-size:22px;color:var(--ink)}
+
+/* charts */
+.charts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr);gap:44px;padding-top:16px}
+.box{position:relative}
+.box svg{display:block;width:100%;height:auto;overflow:visible}
+.box svg text{font:11.5px var(--f);fill:var(--ink2)}
+.ctl{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.seg{display:inline-flex;border:1px solid var(--ink)}
+.seg button{font:inherit;font-size:12.5px;background:none;border:0;padding:4px 12px;cursor:pointer;color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--boom);outline-offset:1px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink2)}
+.legend span::before{content:"";display:inline-block;width:16px;border-top:2px solid var(--c);vertical-align:middle;margin-right:6px}
+.legend span.dash::before{border-top-style:dashed}
+.legend span.blk::before{border-top-width:8px;width:10px}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--ink);padding:7px 10px;font-size:12px;line-height:1.5;white-space:nowrap;display:none;z-index:3;font-variant-numeric:tabular-nums}
+
+/* tables */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:44px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:8px 8px;text-align:right;border-bottom:1px solid var(--rule2);white-space:nowrap}
+th{font-weight:500;font-size:12px;color:var(--ink2);border-bottom:1px solid var(--rule);vertical-align:bottom}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td.st{display:flex;align-items:center;gap:8px}
+td.st i{width:10px;height:10px;background:var(--c);flex:none}
+td.st small{color:var(--ink3)}
+tr.cur td{background:var(--panel);font-weight:600}
+.note{font-size:12.5px;color:var(--ink2);margin:12px 0 0;max-width:62em}
+.verdict{margin:14px 0 0;font-size:13.5px;padding:10px 12px;background:var(--panel)}
+.method{font-size:12.5px;color:var(--ink2);columns:2;column-gap:44px;padding-top:12px}
+.method p{margin:0 0 10px;break-inside:avoid}
+.method b{color:var(--ink);font-weight:600}
+.err{padding:48px 0;font-size:15px}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:minmax(0,1fr);gap:20px}
+  .dial{max-width:420px;margin:0 auto;width:100%}
+  .drivers,.charts,.two{grid-template-columns:minmax(0,1fr);gap:32px}
+  .method{columns:1}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px 56px}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:6px}
+  .scale,.comp summary{grid-template-columns:108px 1fr 34px 40px;gap:8px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .dial .cur{animation:arrive .9s ease-out both}
+  @keyframes arrive{from{opacity:.15}}
+}
+</style>
 </head>
-
 <body>
-    <div class="wrap">
-        <header class="top">
-            <h1>형세와 기세 <span class="note">— 재귀성 9단계로 본 한국 시장</span></h1>
-            <div class="meta" id="meta">불러오는 중</div>
-        </header>
-        <main id="app"></main>
-    </div>
-    <div class="tip" id="tip"></div>
-    <script>
-const COL={1:"var(--s1)",2:"var(--s2)",3:"var(--s3)",4:"var(--s4)",5:"var(--s5)",6:"var(--s6)",7:"var(--s7)",8:"var(--s8)",9:"var(--s9)"};
-const HEX={1:"#e4e4e4",2:"#f3c9c4",3:"#eaa198",4:"#df7568",5:"#cf3a2b",6:"#c7d3ee",7:"#99afdf",8:"#6688cc",9:"#2d58b8"};
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><b>Reflexivity Monitor</b><span id="mkt"></span></div>
+    <nav class="switch" id="switch" aria-label="시장 선택"></nav>
+  </header>
+  <dl class="asof" id="asof"><div><dt>Loading</dt></div></dl>
+  <main id="app"></main>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+const CONFIG = {
+  title:"Reflexivity Monitor — Korea",
+  market:"Korea equities, KOSPI·KOSDAQ",
+  json:"data/reflex.json",
+  nav:[{href:"reflex.html",label:"Korea equities",cur:true},{href:"reflex_btc.html",label:"Bitcoin"}],
+  dayUnit:"거래일", window:"3년(756거래일)", since:"2011", priceName:"KOSPI",
+  perfBasis:"합성지수(KOSPI 85 : KOSDAQ 15)",
+  asof:d=>[["As of",d.asof+" close"],["US data",d.src.us||"—"],["Updated",d.gen]],
+  price:v=>Math.round(v).toLocaleString("en-US"),
+  tick:v=>v.toLocaleString("en-US"),
+  method:`<p><b>Fundamentals</b>(형세)는 시장 밖의 환경입니다. S&amp;P500·나스닥 추세와 VIX, 필라델피아 반도체지수, 원달러와 달러인덱스, 미국 금리와 장단기 금리차, 구리/금 비율로 구성합니다. 미국 지표는 한국 장 마감 시점에 알 수 있는 전날 종가까지만 씁니다.</p>
+<p><b>Momentum</b>(기세)은 시장의 반응입니다. KOSPI·KOSDAQ 전 종목(우선주 제외)의 이평선 위 비율, 52주 신고가와 신저가, 상승·하락 종목 수, 방향성 거래대금, 외국인과 기관의 순매수로 구성합니다. 단계 판정에는 60일 이상 지표로 만든 느린 Momentum을 쓰고, 20일 지표로 만든 Short-term momentum은 급락 감지에만 씁니다.</p>
+<p><b>Bias</b>는 Momentum에서 Fundamentals를 뺀 값으로, 소로스가 말한 시장의 지배적 편향(prevailing bias)에 해당합니다. 플러스면 기대가 현실을 앞서 있다는 뜻입니다.</p>
+<p><b>Stage</b>는 Momentum의 수준과 20일 변화, Fundamentals의 40일 변화, Bias로 정합니다. 같은 판정이 5일 이어지고 직전 단계가 10일 이상 지났을 때만 바꾸며, Short-term momentum이 급락하면 3일 확인으로 Capitulation을 판정합니다. 규칙은 2011~2026년 데이터로 정했습니다. 국면을 설명하는 지표이며 매매 신호가 아닙니다.</p>`
+};
+
+const STAGE = {
+  1:{en:"Inception",ko:"유리한 형세"},2:{en:"Acceleration",ko:"상승 기세"},3:{en:"Confirmation",ko:"현실 개선"},
+  4:{en:"Conviction",ko:"확신 강화"},5:{en:"Overshoot",ko:"기세 가속"},6:{en:"Reversal",ko:"반전 시작"},
+  7:{en:"Twilight",ko:"기세 약화"},8:{en:"Deterioration",ko:"현실 악화"},9:{en:"Capitulation",ko:"하락 가속"}
+};
+const HEX={1:"#c3c8cf",2:"#f0c5c1",3:"#e2958c",4:"#d25f54",5:"#c42f27",6:"#c4d1ea",7:"#8fa8d8",8:"#587dc4",9:"#24509f"};
 const LIGHT=new Set([1,2,6]);
+const PHASE=s=>s>=2&&s<=5?"Boom":s>=6?"Bust":"Base";
+const COMP_EN={trend:"Trend",part:"Breadth",energy:"Volume",flow:"Flows",risk:"Risk appetite",semi:"Semiconductor cycle",
+  fx:"KRW & dollar",rate:"Rates",cycle:"Growth",liq:"Dollar liquidity",stable:"Stablecoins",net:"Network",lev:"Leverage",
+  val:"Valuation",breadth:"Alt breadth"};
+
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const n0=v=>v==null?"—":Math.round(v).toString();
-const sgn=(v,d=0)=>v==null?"—":(v>0?"+":"")+v.toFixed(d);
-const tone=v=>v==null?"":v>0?"up-t":v<0?"dn-t":"";
-const md=s=>{const [y,m,d]=s.split("-");return `${+m}월 ${+d}일`};
-const ymd=s=>{const [y,m,d]=s.split("-");return `${y}.${m}.${d}`};
+const n0=v=>v==null||isNaN(v)?"—":Math.round(v).toString();
+const sg=(v,d=0)=>v==null||isNaN(v)?"—":(v>0?"+":v<0?"−":"")+Math.abs(v).toFixed(d);
+const tone=v=>v==null?"":v>0?"up":v<0?"dn":"";
+const fmtD=s=>s||"—";
 
-fetch("data/reflex.json?v="+Date.now()).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(render).catch(e=>{
-  $("#app").innerHTML=`<p class="err">reflex.json을 불러오지 못했습니다 (${esc(e.message)}). docs/data/reflex.json이 생성됐는지 확인하세요.</p>`;
-  $("#meta").textContent="";
+/* JSON 스키마 차이(한국판 v2 / 비트코인판) 흡수 */
+function norm(j){
+  const st=j.stage_stats||{}, S={};
+  for(const k in st){const s=st[k];S[k]={days:s.days,eps:s.episodes,len:s.avg_len,fwd:s.fwd??s.fwd60,ex:s.fwd_excess??s.fwd60_excess,
+    hit:s.hit??s.hit60,vol:s.vol??s.vol60,mdd:s.mdd??s.mdd60}}
+  const ax=(a,d,sd)=>({value:a.value,d:a.dslope??a[d],sd:a.slope_days??sd,components:a.components||{}});
+  return {
+    raw:j, stage:j.stage, summary:j.summary, gap:j.gap,
+    F:ax(j.F,"d40",40), M:ax(j.M,"d20",20), Mf:{...ax(j.Mf,"d10",10),accel:j.Mf.accel},
+    horizon:j.horizon??60, stats:S, base:j.baseline?.fwd??j.baseline?.f60,
+    periods:(j.phase_by_period||[]).map(p=>({name:p.period,up:{ex:p.up.fwd_excess??p.up.fwd60_excess,hit:p.up.hit??p.up.hit60},
+      dn:{ex:p.down.fwd_excess??p.down.fwd60_excess,hit:p.down.hit??p.down.hit60}})),
+    trans:j.transitions||{}, eps:j.episodes_recent||[], hist:j.history||[], histLong:j.history_long||[],
+    asof:j.as_of, src:j.sources_as_of||{us:j.us_as_of}, gen:j.generated_at
+  };
+}
+
+document.title=CONFIG.title;
+$("#mkt").textContent=CONFIG.market;
+$("#switch").innerHTML=CONFIG.nav.map(n=>`<a href="${n.href}"${n.cur?' aria-current="page"':""}>${esc(n.label)}</a>`).join("");
+
+fetch(CONFIG.json+"?v="+Date.now()).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>render(norm(j))).catch(e=>{
+  $("#app").innerHTML=`<p class="err">데이터를 불러오지 못했습니다 (${esc(e.message)}). ${esc(CONFIG.json)} 경로를 확인하세요.</p>`;
+  $("#asof").innerHTML="";
 });
 
-function render(j){
-  const st=j.stage, defs=j.stage_defs, cur=st.id;
-  for(const k in defs)STAGE_NAMES[k]=defs[k].name;
-  $("#meta").textContent=`기준일 ${ymd(j.as_of)} 장 마감 / 미국 ${j.us_as_of?ymd(j.us_as_of):"—"} 종가 / 생성 ${j.generated_at}`;
-  const phase=st.phase==="up"?"up":st.phase==="down"?"down":"";
-  const pend=st.pending?`<div class="pending">${esc(st.pending.name)}(${st.pending.id}단계)로 넘어가는 중 — ${st.pending.count}/${st.pending.need}일 확인</div>`:"";
-  const trans=j.transitions[String(cur)]||{};
-  const nextTxt=Object.entries(trans).slice(0,3).map(([k,p])=>`${defs[k].name} ${Math.round(p)}%`).join(", ");
-  const stats=j.stage_stats;
+function render(d){
+  const st=d.stage, cur=st.id, ph=PHASE(cur), c=cur?HEX[cur]:"#999";
+  $("#asof").innerHTML=CONFIG.asof(d).map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
 
-  let html=`
+  const pend=st.pending;
+  const watch=pend?`<div class="watch" style="--c:${HEX[pend.id]}">
+      <span>Transition watch</span><b>${STAGE[pend.id].en}</b>
+      <span class="pips" aria-label="${pend.count}/${pend.need}일 확인">${Array.from({length:pend.need},(_,i)=>`<i class="${i<pend.count?"on":""}"></i>`).join("")}</span>
+      <span class="muted">${pend.count}/${pend.need}일 확인</span></div>`:"";
+  const tr=d.trans[String(cur)]||{};
+  const nxt=Object.entries(tr).slice(0,3);
+
+  let h=`
   <div class="hero">
+    <div class="dial" id="dial"></div>
     <div>
-      <div class="stage-no">${cur?cur+"단계":"판정 대기"} · ${st.phase==="up"?"상승 국면":st.phase==="down"?"하락 국면":"바닥 국면"}</div>
-      <p class="stage-name ${phase}">${esc(st.name||"판정 대기")}</p>
-      <p class="stage-desc">${esc(st.desc||"")}</p>
-      <div class="stage-since">${st.since?`${md(st.since)}부터 ${st.days}거래일째`:""}</div>
-      ${pend}
+      <p class="kicker">Stage ${cur??"—"} of 9 <span class="tag" style="--c:${ph==="Boom"?"var(--boom)":ph==="Bust"?"var(--bust)":"var(--ink3)"}">${ph} phase</span></p>
+      <h1 class="sname">${cur?STAGE[cur].en:"Pending"}<small>${cur?STAGE[cur].ko:""}</small></h1>
+      <p class="sdesc">${esc(st.desc||"")}</p>
+      <div class="since">${st.since?`${st.since}부터 ${st.days}${CONFIG.dayUnit}째`:""}${nxt.length?` <span class="faint">/</span> 과거에 이 다음 온 단계: ${nxt.map(([k,p])=>`${STAGE[k].en} ${Math.round(p)}%`).join(", ")}`:""}</div>
+      ${watch}
+      <div class="metrics">
+        ${metric("Fundamentals","형세",d.F.value,d.F.d,`${d.F.sd}일 변화`)}
+        ${metric("Momentum","기세",d.M.value,d.M.d,`${d.M.sd}일 변화`)}
+        ${metric("Short-term","단기",d.Mf.value,d.Mf.d,`${d.Mf.sd}일 변화`)}
+        ${metric("Bias","M − F",d.gap,null,d.gap>0?"기대가 현실을 앞섬":d.gap<0?"현실이 기대를 앞섬":"균형",true)}
+      </div>
     </div>
-    <div class="readout">
-      ${readout("형세",j.F.value,j.F.d40,"40일 변화")}
-      ${readout("기세",j.M.value,j.M.d20,"20일 변화")}
-      ${readout("단기 기세",j.Mf.value,j.Mf.d10,"10일 변화")}
-      <p class="summary">${esc(j.summary)}</p>
-    </div>
-  </div>
-
-  <div class="track" aria-label="9단계 순환">
-    <ol>${[1,2,3,4,5,6,7,8,9].map(i=>{
-      const s=stats[i]||{};const c=i===cur;
-      return `<li class="${c?"cur":""} ${c&&LIGHT.has(i)?"light":""}" style="--c:${COL[i]}" ${c?'aria-current="step"':""}>
-        <div class="n">${i}</div><div class="t">${esc(defs[i].name)}</div>
-        ${s.days?`<div class="p">${s.episodes}회 · 평균 ${Math.round(s.avg_len)}일</div>`:""}</li>`}).join("")}
-    </ol>
-    <div class="phase"><span>바닥</span><span>상승 국면</span><span>하락 국면</span></div>
-    ${nextTxt?`<p class="next">2011년 이후 ${esc(st.name)} 다음에 온 단계: ${esc(nextTxt)}</p>`:""}
   </div>
 
   <section>
-    <h2>무엇이 판단을 만들었나</h2>
-    <p class="lede">각 지표는 과거 3년 대비 백분위(0~100)입니다. 50이 평소 수준이고, 높을수록 시장에 유리한 쪽입니다. 항목을 누르면 실제 값이 열립니다.</p>
-    <div class="axes">
-      <div>${axisHead("형세","판이 유리한가 — 대외 환경",j.F.value,j.F.d40,"40일")}${comps(j.F.components)}</div>
-      <div>${axisHead("기세","시장이 어떻게 반응하나 — 가격·참여·수급",j.M.value,j.M.d20,"20일")}${comps(j.M.components)}
-        <div class="fast">단기 기세 <b>${n0(j.Mf.value)}</b> — ${esc(j.Mf.accel_text)}. 단기 기세가 15 아래로 무너지고 열흘 새 35 넘게 빠지면 하락 가속으로 바로 판정합니다.</div>
+    <div class="sh"><h2>Drivers</h2><p>모든 지표는 과거 ${CONFIG.window} 대비 백분위. 50이 평소 수준이고 오른쪽(빨강)이 시장에 우호적입니다. 항목을 누르면 실제 값이 열립니다.</p></div>
+    <div class="drivers">
+      <div>${driverHead("Fundamentals","형세",d.F)}${scale()}${comps(d.F.components)}</div>
+      <div>${driverHead("Momentum","기세",d.M)}${scale()}${comps(d.M.components)}
+        <div class="short"><span>Short-term momentum</span><b class="num">${n0(d.Mf.value)}</b><span>${esc(d.raw.Mf.accel_text||"")}</span></div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>형세와 기세의 위치</h2>
-    <p class="lede">대각선 위쪽은 기세가 형세보다 앞서 있는 상태(시장의 기대가 현실을 앞섬), 아래쪽은 그 반대입니다. 최근 120거래일의 궤적이며 진할수록 최근입니다.</p>
-    <div class="two">
-      <div class="chart-box" id="planeBox"></div>
+    <div class="sh"><h2>Phase map and history</h2><p>왼쪽은 최근 120${CONFIG.dayUnit}의 Fundamentals–Momentum 궤적, 오른쪽은 ${CONFIG.priceName}와 단계 이력입니다.</p></div>
+    <div class="charts">
+      <div class="box" id="plane"></div>
       <div>
-        <div class="seg" role="group" aria-label="기간">
-          <button type="button" data-r="2y" aria-pressed="true">최근 2년</button>
-          <button type="button" data-r="all" aria-pressed="false">2011년부터</button>
+        <div class="ctl">
+          <div class="seg" role="group" aria-label="기간">
+            <button type="button" data-r="2y" aria-pressed="true">2Y</button>
+            <button type="button" data-r="all" aria-pressed="false">Since ${CONFIG.since}</button>
+          </div>
+          <div class="legend"><span style="--c:var(--ink)">Momentum</span><span class="dash" style="--c:var(--ink3)">Fundamentals</span>
+            <span class="blk" style="--c:var(--s4)">Boom</span><span class="blk" style="--c:var(--s8)">Bust</span></div>
         </div>
-        <div class="chart-box" id="lineBox"></div>
-        <div class="legend">
-          <span style="--c:var(--ink)">기세</span><span class="dash" style="--c:var(--ink3)">형세</span>
-          <span class="dot" style="--c:var(--s4)">상승 국면 단계</span><span class="dot" style="--c:var(--s8)">하락 국면 단계</span>
-        </div>
+        <div class="box" id="line"></div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>최근 단계 흐름</h2>
-    <ul class="eps">${(j.episodes_recent||[]).slice().reverse().map(e=>{
-      const ch=e.k0&&e.k1?(e.k1/e.k0-1)*100:null;
-      return `<li><span>${ymd(e.start)} ~ ${ymd(e.end)}</span>
-        <span class="who"><i style="--c:${COL[e.s]}"></i>${e.s} ${esc(defs[e.s].name)} <span class="note">${e.days}일</span></span>
-        <span>코스피 ${Math.round(e.k0).toLocaleString()} → ${Math.round(e.k1).toLocaleString()} <span class="${tone(ch)}">(${sgn(ch,1)}%)</span></span></li>`}).join("")}
-    </ul>
+    <div class="two">
+      <div>
+        <div class="sh"><h2>Regime log</h2></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Period</th><th>Stage</th><th>Days</th><th>${CONFIG.priceName}</th></tr></thead>
+          <tbody>${d.eps.slice().reverse().map(e=>{const ch=e.k0&&e.k1?(e.k1/e.k0-1)*100:null;
+            return `<tr><td>${e.start.slice(2)} – ${e.end.slice(2)}</td><td class="st" style="--c:${HEX[e.s]}"><i></i>${STAGE[e.s].en}</td>
+              <td>${e.days}</td><td class="${tone(ch)}">${sg(ch,1)}%</td></tr>`}).join("")}</tbody>
+        </table></div>
+      </div>
+      <div>
+        <div class="sh"><h2>Forward performance by stage</h2></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Stage</th><th>Days</th><th>Avg run</th><th>${d.horizon}D return</th><th>vs. avg</th><th>Hit rate</th><th>Max DD</th></tr></thead>
+          <tbody>${[1,2,3,4,5,6,7,8,9].map(i=>{const s=d.stats[i]||{};return `<tr class="${i===cur?"cur":""}">
+            <td class="st" style="--c:${HEX[i]}"><i></i>${i} ${STAGE[i].en}</td><td>${s.days??"—"}</td><td>${s.len!=null?Math.round(s.len):"—"}</td>
+            <td class="${tone(s.fwd)}">${sg(s.fwd,1)}%</td><td class="${tone(s.ex)}">${sg(s.ex,1)}</td>
+            <td>${s.hit!=null?Math.round(s.hit)+"%":"—"}</td><td>${s.mdd!=null?s.mdd.toFixed(1)+"%":"—"}</td></tr>`}).join("")}</tbody>
+        </table></div>
+        <p class="note">${CONFIG.since}년 이후 각 단계였던 날로부터 ${d.horizon}${CONFIG.dayUnit} 뒤까지의 ${esc(CONFIG.perfBasis)} 기록. vs. avg는 전체 평균 ${sg(d.base,1)}% 대비 차이(%p), Max DD는 그 기간 중 최대 낙폭 평균입니다.</p>
+        ${robust(d)}
+      </div>
+    </div>
   </section>
 
   <section>
-    <h2>단계별로 그 뒤에 일어난 일</h2>
-    <p class="lede">2011년 이후 각 단계였던 날로부터 60거래일 뒤까지의 합성지수(코스피 85 · 코스닥 15) 기록입니다. 초과는 같은 기간 전체 평균 ${sgn(j.baseline.f60,1)}% 대비 차이입니다.</p>
-    <div class="scroll"><table>
-      <thead><tr><th>단계</th><th>일수</th><th>평균 지속</th><th>60일 수익</th><th>평균 대비</th><th>오른 비율</th><th>변동성</th><th>최대 낙폭</th></tr></thead>
-      <tbody>${[1,2,3,4,5,6,7,8,9].map(i=>{const s=stats[i]||{};return `<tr class="${i===cur?"cur":""}">
-        <td><span class="sw" style="--c:${COL[i]}"></span>${i} ${esc(defs[i].name)}</td><td>${s.days??"—"}</td><td>${s.avg_len!=null?Math.round(s.avg_len)+"일":"—"}</td>
-        <td class="${tone(s.fwd60)}">${sgn(s.fwd60,1)}%</td><td class="${tone(s.fwd60_excess)}">${sgn(s.fwd60_excess,1)}%p</td>
-        <td>${s.hit60!=null?Math.round(s.hit60)+"%":"—"}</td><td>${s.vol60!=null?s.vol60.toFixed(0)+"%":"—"}</td><td>${s.mdd60!=null?s.mdd60.toFixed(1)+"%":"—"}</td></tr>`}).join("")}</tbody>
-    </table></div>
-    <h2 style="margin-top:32px;font-size:17px">기간을 나누면 결론이 달라집니다</h2>
-    <p class="lede">상승 국면(2~5단계)과 하락 국면(6~9단계) 이후 60일 수익의 평균 대비 차이. 박스권이던 2011~2018년엔 차이가 없었고, 추세장이 이어진 2019년 이후엔 뚜렷했습니다. 이 단계는 국면을 설명하는 지표이고 매매 신호가 아닙니다.</p>
-    <div class="scroll"><table>
-      <thead><tr><th>기간</th><th>상승 국면</th><th>오른 비율</th><th>하락 국면</th><th>오른 비율</th></tr></thead>
-      <tbody>${(j.phase_by_period||[]).map(h=>`<tr><td>${esc(h.period)}</td>
-        <td class="${tone(h.up.fwd60_excess)}">${sgn(h.up.fwd60_excess,1)}%p</td><td>${Math.round(h.up.hit60)}%</td>
-        <td class="${tone(h.down.fwd60_excess)}">${sgn(h.down.fwd60_excess,1)}%p</td><td>${Math.round(h.down.hit60)}%</td></tr>`).join("")}</tbody>
-    </table></div>
-  </section>
-
-  <section class="method">
-    <h2>판정 방법</h2>
-    <p>형세는 S&amp;P500·나스닥 추세와 VIX, 필라델피아 반도체지수, 원달러·달러인덱스, 미국 금리, 구리/금 비율로 만든 대외 환경 점수입니다. 미국 지표는 한국 장 마감 시점에 알 수 있는 전날 종가까지만 씁니다.</p>
-    <p>기세는 코스피·코스닥 전 종목(우선주 제외)의 이평선 위 비율, 52주 신고가·신저가, 상승·하락 종목 수, 방향성 거래대금, 외국인과 기관의 순매수로 만든 시장 반응 점수입니다. 단계 판정에는 60일 이상 지표로 만든 느린 기세를 씁니다.</p>
-    <p>단계는 기세의 수준과 20일 변화, 형세의 40일 변화, 둘의 차이로 정하고, 같은 판정이 5일 이어지고 직전 단계가 10일 이상 지났을 때만 바꿉니다. 판정 규칙은 2011~2026년 데이터로 정했습니다.</p>
+    <div class="sh"><h2>Methodology</h2></div>
+    <div class="method">${CONFIG.method}</div>
   </section>`;
-  $("#app").innerHTML=html;
+  $("#app").innerHTML=h;
 
-  drawPlane(j);
+  drawDial(d);
+  drawPlane(d);
   let range="2y";
-  const redraw=()=>drawLines(range==="2y"?j.history:j.history_long, range);
+  const redraw=()=>drawLine(range==="2y"?d.hist:d.histLong,range);
   redraw();
   document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
-    range=b.dataset.r;
-    document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));
-    redraw();
-  }));
-  let t;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(()=>{drawPlane(j);redraw()},150)});
+    range=b.dataset.r;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));redraw();}));
+  let t;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(()=>{drawPlane(d);redraw()},150)});
 }
 
-function readout(k,v,d,lab){
-  return `<div><div class="k">${k}</div><div class="v">${n0(v)}</div><div class="d">${lab} <span class="${tone(d)}">${sgn(d)}</span></div></div>`;
+function metric(en,ko,v,dv,lab,signed){
+  return `<div><div class="k">${en}<small>${ko}</small></div><div class="v num ${signed?tone(v):""}">${signed?sg(v):n0(v)}</div>
+    <div class="d">${dv!=null?`${lab} <span class="${tone(dv)}">${sg(dv)}</span>`:esc(lab)}</div></div>`;
 }
-function axisHead(t,sub,v,d,lab){
-  return `<div class="axis-head"><h3>${t} <span class="note">${sub}</span></h3><div class="val">${n0(v)}<small>${lab} <span class="${tone(d)}">${sgn(d)}</span></small></div></div>`;
+function driverHead(en,ko,a){
+  return `<div class="dh"><h3>${en}<small>${ko}</small></h3><div class="v num">${n0(a.value)}<small>${a.sd}일 <span class="${tone(a.d)}">${sg(a.d)}</span></small></div></div>`;
 }
+function scale(){return `<div class="scale"><span></span><span><span>0</span><span>50</span><span>100</span></span><span style="text-align:right">Score</span><span style="text-align:right">20D Δ</span></div>`}
 function comps(cs){
-  return Object.values(cs).map(c=>`<details class="comp"><summary>
-      <span class="lab">${esc(c.label)}<small>${Math.round(c.weight*100)}%</small></span>
-      <span class="bar"><i style="width:${c.score??0}%"></i></span>
-      <span class="sc">${n0(c.score)}</span><span class="ch ${tone(c.d20)}">${sgn(c.d20)}</span></summary>
-      <ul class="items">${c.items.map(i=>`<li><span>${esc(i.label)}</span><span class="r">${esc(i.disp)}</span><span class="s">${n0(i.score)}</span></li>`).join("")}</ul>
-    </details>`).join("");
+  return Object.entries(cs).map(([k,c])=>{
+    const v=c.score??50, left=Math.min(v,50), w=Math.abs(v-50);
+    return `<details class="comp"><summary>
+      <span class="lab">${COMP_EN[k]||esc(c.label)}<small>${esc(c.label)} ${Math.round(c.weight*100)}%</small></span>
+      <span class="dv"><i style="left:${left}%;width:${w}%;background:${v>=50?"var(--boom)":"var(--bust)"}"></i></span>
+      <span class="sc num">${n0(c.score)}</span><span class="ch ${tone(c.d20)}">${sg(c.d20)}</span></summary>
+      <ul class="items">${c.items.map(i=>`<li><span>${esc(i.label)}</span><span class="r">${esc(i.disp)}</span><span class="s num">${n0(i.score)}</span></li>`).join("")}</ul>
+    </details>`}).join("");
+}
+function robust(d){
+  if(!d.periods.length)return "";
+  const same=d.periods.every(p=>p.up.ex>0&&p.dn.ex<0);
+  return `<div class="scroll" style="margin-top:22px"><table><thead><tr><th>Period check</th><th>Boom vs. avg</th><th>Hit</th><th>Bust vs. avg</th><th>Hit</th></tr></thead>
+    <tbody>${d.periods.map(p=>`<tr><td>${esc(p.name)}</td><td class="${tone(p.up.ex)}">${sg(p.up.ex,1)}</td><td>${Math.round(p.up.hit)}%</td>
+      <td class="${tone(p.dn.ex)}">${sg(p.dn.ex,1)}</td><td>${Math.round(p.dn.hit)}%</td></tr>`).join("")}</tbody></table></div>
+    <p class="verdict">${same?"두 기간 모두 Boom 구간이 평균보다 좋았고 Bust 구간이 나빴습니다. 다만 표본이 작아 우연일 가능성은 남아 있습니다."
+      :"기간에 따라 결과가 달랐습니다. 이 단계는 국면을 설명하는 지표이고 매매 신호로 쓰기엔 근거가 부족합니다."}</p>`;
 }
 
-/* ── 위상 평면 ── */
-function drawPlane(j){
-  const box=$("#planeBox"), W=box.clientWidth||360, H=W, m={l:34,r:12,t:12,b:34};
+/* ── 사이클 다이얼: 5단계가 꼭대기, 왼쪽 반원 Boom, 오른쪽 반원 Bust ── */
+function drawDial(d){
+  const W=480,H=440,cx=W/2,cy=H/2+4,R=134,w=30,cur=d.stage.id,pend=d.stage.pending?.id;
+  const ang=k=>(k-5)*40, rad=a=>(a-90)*Math.PI/180;
+  const pt=(a,r)=>[cx+r*Math.cos(rad(a)),cy+r*Math.sin(rad(a))];
+  const arc=(a0,a1,r0,r1)=>{const [x0,y0]=pt(a0,r1),[x1,y1]=pt(a1,r1),[x2,y2]=pt(a1,r0),[x3,y3]=pt(a0,r0);
+    return `M${x0} ${y0}A${r1} ${r1} 0 0 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 0 0 ${x3} ${y3}Z`};
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="9단계 사이클 중 현재 ${cur}단계 ${cur?STAGE[cur].en:""}">`;
+  s+=`<defs><marker id="ah" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L6 3L0 6z" fill="#8f959d"/></marker></defs>`;
+  for(let k=1;k<=9;k++){
+    const a=ang(k),on=k===cur;
+    s+=`<path class="${on?"cur":""}" d="${arc(a-19,a+19,R-w/2-(on?7:0),R+w/2+(on?7:0))}" fill="${HEX[k]}" fill-opacity="${on?1:.4}" ${on?'stroke="#16181b" stroke-width="1.5"':""}/>`;
+    if(k===pend)s+=`<path d="${arc(a-19,a+19,R-w/2-3,R+w/2+3)}" fill="none" stroke="#16181b" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+    const [nx,ny]=pt(a,R);
+    s+=`<text x="${nx}" y="${ny+4}" text-anchor="middle" style="font-size:12px;font-weight:600;fill:${on&&!LIGHT.has(k)?"#fff":"#16181b"}">${k}</text>`;
+    const [lx,ly]=pt(a,R+w/2+(on?18:12)),anc=Math.abs(a)<12?"middle":a<0?"end":"start",dy=Math.abs(a)<12?-2:Math.abs(a)>120?10:4;
+    s+=`<text x="${lx}" y="${ly+dy}" text-anchor="${anc}" style="font-size:${on?13:12}px;fill:${on?"#16181b":"#8f959d"};font-weight:${on?650:400}">${STAGE[k].en}</text>`;
+  }
+  const [ax0,ay0]=pt(168,R),[ax1,ay1]=pt(192,R);
+  s+=`<path d="M${ax0} ${ay0}A${R} ${R} 0 0 1 ${ax1} ${ay1}" fill="none" stroke="#8f959d" stroke-dasharray="2 3" marker-end="url(#ah)"/>`;
+  const [bx,by]=pt(-128,R-w/2-14),[ux,uy]=pt(128,R-w/2-14);
+  s+=`<text x="${bx}" y="${by+4}" text-anchor="start" style="font-size:12px;fill:#c42f27;font-weight:600">Boom</text>`;
+  s+=`<text x="${ux}" y="${uy+4}" text-anchor="end" style="font-size:12px;fill:#24509f;font-weight:600">Bust</text>`;
+  s+=`<text x="${cx}" y="${cy-30}" text-anchor="middle" style="font-size:12px;fill:#555b63">Bias</text>`;
+  s+=`<text x="${cx}" y="${cy+14}" text-anchor="middle" style="font-size:46px;font-weight:600;font-stretch:78%;fill:${d.gap>0?"#c42f27":d.gap<0?"#24509f":"#16181b"}">${sg(d.gap)}</text>`;
+  s+=`<text x="${cx}" y="${cy+36}" text-anchor="middle" style="font-size:11px;fill:#8f959d">Momentum − Fundamentals</text>`;
+  $("#dial").innerHTML=s+"</svg>";
+}
+
+/* ── Phase map ── */
+function drawPlane(d){
+  const box=$("#plane"), W=box.clientWidth||380, H=W, m={l:36,r:10,t:10,b:38};
   const x=v=>m.l+(W-m.l-m.r)*v/100, y=v=>H-m.b-(H-m.t-m.b)*v/100;
-  const pts=j.history.slice(-120).filter(p=>p.F!=null&&p.M!=null);
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="형세와 기세 위상 평면, 최근 120거래일 궤적">`;
-  s+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="none" stroke="#dcdcdc"/>`;
-  s+=`<line x1="${x(50)}" y1="${y(0)}" x2="${x(50)}" y2="${y(100)}" stroke="#ececec"/><line x1="${x(0)}" y1="${y(50)}" x2="${x(100)}" y2="${y(50)}" stroke="#ececec"/>`;
-  s+=`<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(100)}" stroke="#8a8a8a" stroke-dasharray="3 4"/>`;
-  s+=`<text x="${x(3)}" y="${y(94)}">기세 &gt; 형세</text><text x="${x(97)}" y="${y(4)}" text-anchor="end">형세 &gt; 기세</text>`;
-  [0,50,100].forEach(v=>{s+=`<text x="${x(v)}" y="${H-m.b+16}" text-anchor="middle">${v}</text><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
-  s+=`<text x="${x(25)}" y="${H-4}" text-anchor="middle">형세 →</text>`;
-  s+=`<text transform="translate(10 ${y(25)}) rotate(-90)" text-anchor="middle">기세 →</text>`;
-  for(let i=1;i<pts.length;i++){
-    const a=pts[i-1],b=pts[i],o=(0.12+0.88*i/pts.length).toFixed(2);
-    s+=`<line x1="${x(a.F)}" y1="${y(a.M)}" x2="${x(b.F)}" y2="${y(b.M)}" stroke="#222" stroke-opacity="${o}" stroke-width="1.4"/>`;
-  }
-  pts.forEach((p,i)=>{if(i%10===0||i===pts.length-1){s+=`<circle cx="${x(p.F)}" cy="${y(p.M)}" r="${i===pts.length-1?0:3}" fill="${HEX[p.s]||"#ccc"}" stroke="#fff" stroke-width="1"/>`}});
-  const L=pts[pts.length-1], F0=pts[0];
-  if(F0) s+=`<text x="${x(F0.F)+6}" y="${y(F0.M)-6}">${md(F0.d)}</text>`;
-  if(L){s+=`<circle cx="${x(L.F)}" cy="${y(L.M)}" r="7" fill="${HEX[L.s]||"#222"}" stroke="#222" stroke-width="2"/><text x="${x(L.F)+11}" y="${y(L.M)+4}" style="fill:#222;font-weight:600">오늘</text>`}
-  s+=`</svg>`;
-  box.innerHTML=s;
+  const P=d.hist.slice(-120).filter(p=>p.F!=null&&p.M!=null);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Fundamentals와 Momentum 위상 평면, 최근 120일 궤적">`;
+  s+=`<path d="M${x(0)} ${y(0)}L${x(100)} ${y(100)}L${x(0)} ${y(100)}Z" fill="#c42f27" fill-opacity=".035"/>`;
+  s+=`<path d="M${x(0)} ${y(0)}L${x(100)} ${y(100)}L${x(100)} ${y(0)}Z" fill="#24509f" fill-opacity=".035"/>`;
+  s+=`<rect x="${x(0)}" y="${y(100)}" width="${x(100)-x(0)}" height="${y(0)-y(100)}" fill="none" stroke="#d5d9de"/>`;
+  s+=`<line x1="${x(50)}" x2="${x(50)}" y1="${y(0)}" y2="${y(100)}" stroke="#eaedf0"/><line x1="${x(0)}" x2="${x(100)}" y1="${y(50)}" y2="${y(50)}" stroke="#eaedf0"/>`;
+  s+=`<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(100)}" stroke="#8f959d" stroke-dasharray="3 4"/>`;
+  s+=`<text x="${x(4)}" y="${y(93)}">Momentum leads</text><text x="${x(96)}" y="${y(5)}" text-anchor="end">Fundamentals lead</text>`;
+  [0,50,100].forEach(v=>{s+=`<text x="${x(v)}" y="${H-m.b+16}" text-anchor="middle">${v}</text><text x="${m.l-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
+  s+=`<text x="${x(50)}" y="${H-4}" text-anchor="middle" style="fill:#16181b">Fundamentals</text>`;
+  s+=`<text transform="translate(10 ${y(50)}) rotate(-90)" text-anchor="middle" style="fill:#16181b">Momentum</text>`;
+  for(let i=1;i<P.length;i++){const a=P[i-1],b=P[i];
+    s+=`<line x1="${x(a.F)}" y1="${y(a.M)}" x2="${x(b.F)}" y2="${y(b.M)}" stroke="#16181b" stroke-opacity="${(.1+.9*i/P.length).toFixed(2)}" stroke-width="1.5"/>`}
+  P.forEach((p,i)=>{if(i%20===0&&i<P.length-1)s+=`<circle cx="${x(p.F)}" cy="${y(p.M)}" r="3" fill="${HEX[p.s]||"#ccc"}" stroke="#fff"/>`});
+  const F0=P[0],L=P[P.length-1];
+  if(F0)s+=`<text x="${x(F0.F)+7}" y="${y(F0.M)+4}" style="fill:#8f959d">${F0.d.slice(2)}</text>`;
+  if(L)s+=`<circle cx="${x(L.F)}" cy="${y(L.M)}" r="7" fill="${HEX[L.s]||"#16181b"}" stroke="#16181b" stroke-width="2"/><text x="${x(L.F)+12}" y="${y(L.M)+4}" style="fill:#16181b;font-weight:600">Now</text>`;
+  box.innerHTML=s+"</svg>";
 }
 
-/* ── 시계열: 코스피(단계 띠) + 형세·기세 ── */
-function drawLines(rows,range){
-  const box=$("#lineBox"), W=box.clientWidth||600, H1=170, H2=150, gap=18, H=H1+gap+H2+24, m={l:44,r:8,t:6};
-  const R=rows.filter(r=>r.k!=null);
-  const n=R.length, x=i=>m.l+(W-m.l-m.r)*i/(n-1);
-  const ks=R.map(r=>Math.log(r.k)), kmin=Math.min(...ks), kmax=Math.max(...ks);
-  const yk=v=>m.t+H1-(H1-8)*(Math.log(v)-kmin)/(kmax-kmin)-4;
-  const y2=v=>m.t+H1+gap+H2-H2*v/100;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="코스피와 단계, 형세·기세 추이">`;
-  // 단계 띠
+/* ── Price with stage bands + F/M ── */
+function drawLine(rows,range){
+  const box=$("#line"),W=box.clientWidth||620,H1=180,G=16,H2=140,H=H1+G+H2+22,m={l:52,r:6,t:4};
+  const R=rows.filter(r=>r.k!=null),n=R.length,x=i=>m.l+(W-m.l-m.r)*i/(n-1);
+  const ks=R.map(r=>Math.log(r.k)),lo=Math.min(...ks),hi=Math.max(...ks);
+  const yk=v=>m.t+H1-6-(H1-12)*(Math.log(v)-lo)/(hi-lo), y2=v=>m.t+H1+G+H2-H2*v/100;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${CONFIG.priceName}와 단계, Fundamentals·Momentum 추이">`;
   let st=0;
-  for(let i=1;i<=n;i++){
-    if(i===n||R[i].s!==R[st].s){
-      if(R[st].s){const x0=x(Math.max(st-.5,0)),x1=x(Math.min(i-.5,n-1));
-        s+=`<rect x="${x0}" y="${m.t}" width="${Math.max(x1-x0,.5)}" height="${H1}" fill="${HEX[R[st].s]}" fill-opacity="${LIGHT.has(R[st].s)?.55:.3}"/>`;}
-      st=i;
-    }
-  }
-  // 코스피 축
-  const ticks=niceLogTicks(Math.exp(kmin),Math.exp(kmax));
-  ticks.forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yk(v)}" y2="${yk(v)}" stroke="#fff" stroke-opacity=".7"/><text x="${m.l-6}" y="${yk(v)+4}" text-anchor="end">${v.toLocaleString()}</text>`});
-  s+=`<path d="${R.map((r,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+yk(r.k).toFixed(1)).join("")}" fill="none" stroke="#222" stroke-width="1.5"/>`;
-  s+=`<text x="${m.l+4}" y="${m.t+14}" style="fill:#222">코스피</text>`;
-  // 형세·기세
-  [0,50,100].forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y2(v)}" y2="${y2(v)}" stroke="${v===50?"#dcdcdc":"#ececec"}"/><text x="${m.l-6}" y="${y2(v)+4}" text-anchor="end">${v}</text>`});
+  for(let i=1;i<=n;i++){if(i===n||R[i].s!==R[st].s){if(R[st].s){const x0=x(Math.max(st-.5,0)),x1=x(Math.min(i-.5,n-1));
+    s+=`<rect x="${x0}" y="${m.t}" width="${Math.max(x1-x0,.5)}" height="${H1}" fill="${HEX[R[st].s]}" fill-opacity="${LIGHT.has(R[st].s)?.5:.28}"/>`}st=i}}
+  ticks(Math.exp(lo),Math.exp(hi)).forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yk(v)}" y2="${yk(v)}" stroke="#fff" stroke-opacity=".8"/><text x="${m.l-6}" y="${yk(v)+4}" text-anchor="end">${CONFIG.tick(v)}</text>`});
+  s+=`<path d="${R.map((r,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+yk(r.k).toFixed(1)).join("")}" fill="none" stroke="#16181b" stroke-width="1.5"/>`;
+  s+=`<text x="${m.l+6}" y="${m.t+15}" style="fill:#16181b">${CONFIG.priceName} (log)</text>`;
+  [0,50,100].forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y2(v)}" y2="${y2(v)}" stroke="${v===50?"#d5d9de":"#eaedf0"}"/><text x="${m.l-6}" y="${y2(v)+4}" text-anchor="end">${v}</text>`});
   const path=k=>R.map((r,i)=>r[k]==null?"":((i&&R[i-1][k]!=null?"L":"M")+x(i).toFixed(1)+" "+y2(r[k]).toFixed(1))).join("");
-  s+=`<path d="${path("F")}" fill="none" stroke="#8a8a8a" stroke-width="1.4" stroke-dasharray="4 3"/>`;
-  s+=`<path d="${path("M")}" fill="none" stroke="#222" stroke-width="1.6"/>`;
-  // 연/월 눈금
-  let last="";
+  s+=`<path d="${path("F")}" fill="none" stroke="#8f959d" stroke-width="1.4" stroke-dasharray="4 3"/><path d="${path("M")}" fill="none" stroke="#16181b" stroke-width="1.6"/>`;
+  let last="";const nar=W<520;
   R.forEach((r,i)=>{const key=range==="2y"?r.d.slice(0,7):r.d.slice(0,4);
-    const narrow=W<520;
-    const show=range==="2y"?(key!==last&&(narrow?["01","07"]:["01","04","07","10"]).includes(r.d.slice(5,7))):(key!==last&&(+key)%(narrow?4:2)===1);
-    if(key!==last&&show){s+=`<text x="${x(i)}" y="${H-4}" text-anchor="middle">${range==="2y"?r.d.slice(2,4)+"."+r.d.slice(5,7):key}</text>`}
-    last=key});
-  s+=`<line id="hov" x1="0" x2="0" y1="${m.t}" y2="${H-20}" stroke="#222" stroke-width="1" visibility="hidden"/>`;
-  s+=`<rect id="hit" x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-20-m.t}" fill="transparent"/></svg>`;
+    const show=range==="2y"?(key!==last&&(nar?["01","07"]:["01","04","07","10"]).includes(r.d.slice(5,7))):(key!==last&&(+key)%(nar?4:2)===0);
+    if(show)s+=`<text x="${x(i)}" y="${H-4}" text-anchor="middle">${range==="2y"?r.d.slice(2,4)+"."+r.d.slice(5,7):key}</text>`;last=key});
+  s+=`<line id="hov" y1="${m.t}" y2="${H-18}" stroke="#16181b" visibility="hidden"/></svg>`;
   box.innerHTML=s;
-  const svg=box.querySelector("svg"), hov=svg.querySelector("#hov"), tip=$("#tip");
-  const move=ev=>{
-    const rc=svg.getBoundingClientRect(), px=(ev.clientX-rc.left)*W/rc.width;
-    const i=Math.max(0,Math.min(n-1,Math.round((px-m.l)/(W-m.l-m.r)*(n-1)))), r=R[i];
+  const svg=box.querySelector("svg"),hov=svg.querySelector("#hov"),tip=$("#tip");
+  svg.addEventListener("pointermove",ev=>{
+    const rc=svg.getBoundingClientRect(),px=(ev.clientX-rc.left)*W/rc.width;
+    const i=Math.max(0,Math.min(n-1,Math.round((px-m.l)/(W-m.l-m.r)*(n-1)))),r=R[i];
     hov.setAttribute("x1",x(i));hov.setAttribute("x2",x(i));hov.setAttribute("visibility","visible");
-    tip.innerHTML=`<b>${ymd(r.d)}</b><br>코스피 ${Math.round(r.k).toLocaleString()}<br>형세 ${n0(r.F)} / 기세 ${n0(r.M)}<br>${r.s?r.s+" "+STAGE_NAMES[r.s]:"판정 대기"}`;
+    tip.innerHTML=`<b>${r.d}</b><br>${CONFIG.priceName} ${CONFIG.price(r.k)}<br>Fundamentals ${n0(r.F)} / Momentum ${n0(r.M)}<br>${r.s?r.s+" "+STAGE[r.s].en:"Pending"}`;
     tip.style.display="block";
-    const bx=box.getBoundingClientRect();
-    let lx=ev.clientX+14+window.scrollX; if(ev.clientX+180>window.innerWidth) lx=ev.clientX-170+window.scrollX;
-    tip.style.left=lx+"px"; tip.style.top=(bx.top+window.scrollY+10)+"px";
-  };
-  svg.addEventListener("pointermove",move);
+    let lx=ev.clientX+14+scrollX;if(ev.clientX+200>innerWidth)lx=ev.clientX-190+scrollX;
+    tip.style.left=lx+"px";tip.style.top=(rc.top+scrollY+8)+"px";});
   svg.addEventListener("pointerleave",()=>{tip.style.display="none";hov.setAttribute("visibility","hidden")});
 }
-let STAGE_NAMES={};
-function niceLogTicks(a,b){
-  const out=[],steps=[1,2,5];
-  let e=Math.floor(Math.log10(a));
-  for(;Math.pow(10,e)<=b*10;e++)for(const s of steps){const v=s*Math.pow(10,e);if(v>=a&&v<=b)out.push(v)}
-  if(out.length<3){const k=(b-a)/4,p=Math.pow(10,Math.floor(Math.log10(k)));const st=Math.ceil(k/p)*p;for(let v=Math.ceil(a/st)*st;v<=b;v+=st)out.push(v)}
+function ticks(a,b){
+  const out=[];for(let e=Math.floor(Math.log10(a));Math.pow(10,e)<=b;e++)for(const k of [1,2,5]){const v=k*Math.pow(10,e);if(v>=a&&v<=b)out.push(v)}
+  if(out.length<3){out.length=0;const st=Math.pow(10,Math.floor(Math.log10((b-a)/3)));const step=Math.ceil((b-a)/4/st)*st;for(let v=Math.ceil(a/step)*step;v<=b;v+=step)out.push(v)}
   return out;
 }
-    </script>
+</script>
 </body>
-
 </html>
