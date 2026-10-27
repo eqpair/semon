@@ -39,6 +39,13 @@ STAGE_EN = {1: "Inception", 2: "Acceleration", 3: "Confirmation", 4: "Conviction
             6: "Reversal", 7: "Twilight", 8: "Deterioration", 9: "Capitulation"}
 
 
+def _won(eok):
+    """억원 값을 사람이 읽기 쉬운 문자열로: 1조 이상은 '−27.9조', 미만은 '−5,970억'."""
+    if eok is None or (isinstance(eok, float) and np.isnan(eok)):
+        return "—"
+    return f"{eok / 1e4:+.1f}조" if abs(eok) >= 1e4 else f"{eok:+,.0f}억"
+
+
 def _f(v, nd=1, sign=False):
     if v is None or (isinstance(v, float) and np.isnan(v)):
         return "—"
@@ -82,14 +89,14 @@ def breadth_block():
                      f"— KOSPI {t[f'KOSPI_above{w}']:.1f}% / KOSDAQ {t[f'KOSDAQ_above{w}']:.1f}%")
     lines.append(f"당일 상승 {t['ALL_adv']:.0f} / 하락 {t['ALL_dec']:.0f}, 최근 5일 누적 상승 {adv5:.0f} / 하락 {dec5:.0f}")
     lines.append(f"52주 신고가 {t['ALL_nh252']:.0f}종목 / 신저가 {t['ALL_nl252']:.0f}종목")
-    lines.append(f"거래대금 {t['ALL_value']:,.0f}억 (직전 20일 평균 대비 {t['ALL_value'] / v20:.2f}배)")
+    lines.append(f"거래대금 {t['ALL_value'] / 1e4:.1f}조 (직전 20일 평균 대비 {t['ALL_value'] / v20:.2f}배)")
     return "\n".join(lines)
 
 
 # ── 3. 시장 수급 ─────────────────────────────────────────────────────
 def flows_block():
     f = pd.read_parquet(FLOWS).sort_index().dropna(how="all")
-    lines = [f"기준일 {f.index[-1].date()} (억원, + 순매수 / − 순매도)"]
+    lines = [f"기준일 {f.index[-1].date()} (+ 순매수 / − 순매도)"]
     for mkt in ("KOSPI", "KOSDAQ"):
         row = []
         for inv, name in (("foreign", "외국인"), ("inst", "기관"), ("retail", "개인")):
@@ -97,7 +104,7 @@ def flows_block():
             if c not in f.columns:
                 continue
             s = f[c] / 1e8
-            row.append(f"{name} 1일 {s.iloc[-1]:+,.0f} · 5일 {s.iloc[-5:].sum():+,.0f} · 20일 {s.iloc[-20:].sum():+,.0f}")
+            row.append(f"{name} 1일 {_won(s.iloc[-1])} · 5일 {_won(s.iloc[-5:].sum())} · 20일 {_won(s.iloc[-20:].sum())}")
         lines.append(f"{mkt}: " + " | ".join(row))
     return "\n".join(lines)
 
@@ -151,7 +158,7 @@ def sectors_and_candidates():
     cand_lines, codes = [], set()
     head = "종목(코드) | 1일 | 5일 | 20일 | 60일 | 거래대금(억) | 거래량 배율 | RRG"
     if sflow:
-        head += " | 외국인+기관 5일/20일(억)"
+        head += " | 외국인+기관 5일/20일"
     for r in sec.head(N_SECTORS).itertuples():
         c = [x for x in sectors[r.sector].get("candidates", []) if (x.get("value") or 0) >= v_med]
         c = sorted(c, key=lambda x: -(x.get("value") or 0))[:PER_SECTOR]
@@ -165,7 +172,7 @@ def sectors_and_candidates():
                     f"{_f(x.get('vol_ratio'), 2)} | {x.get('quadrant', '')}")
             if sflow:
                 a, b = sflow.get(x["code"], (0.0, 0.0))
-                line += f" | {a:+,.0f} / {b:+,.0f}"
+                line += f" | {_won(a)} / {_won(b)}"
             cand_lines.append(line)
     return "\n".join(sec_lines), head + "\n" + "\n".join(cand_lines), codes, sig.get("updated_at", "")
 
