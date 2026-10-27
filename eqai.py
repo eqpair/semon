@@ -191,6 +191,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 아래 데이터를 분석하여 반드시 아래 XML 구조로만 응답하세요.
 절대로 다른 XML 태그를 추가하지 마세요. 코드블록(```)도 사용하지 마세요.
 반드시 <analysis>로 시작하고 </analysis>로 끝나야 합니다.
+속성값(reason="..." 등) 안에는 큰따옴표(")를 절대 쓰지 마세요. 인용이 필요하면 ‘ ’를 쓰세요.
 
 [뉴스 요약 원칙]
 - 뉴스 상세 본문을 반드시 참고하여 정확한 맥락과 수치를 포함하세요
@@ -244,7 +245,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - top_picks는 반드시 위 '종목 후보' 목록 안에서만 3~6종목 선정하세요. 목록 밖 종목은 시스템이 자동 제외합니다.
 - top_picks의 각 pick reason은 세 층을 한 문장에 엮으세요: (1) 글로벌→국내 판단(korea_impact의 어느 요인에서 파생됐는지), (2) 국내 국면·섹터 흐름(국내 시장 국면 단계, 섹터 5일 수익률·상승 종목 비율), (3) 종목 근거 두 가지 이상(추세의 질 점수·변동성·52주 고점 대비, 최근 수익률, 거래대금, 수급, RRG 중). RRG만으로 근거를 대지 마세요. (예: "금리 상승기 방어 수요 판단 + 하락 국면에서 점수 상위인 은행 섹터 + 변동성이 낮고 52주 고점 근처를 지킴 → ○○금융지주")
 - 종목 후보는 '추세의 질' 점수(낮은 변동성·52주 고점 근접) 순입니다. 2011~2026 검증에서 이 점수 상위 종목은 이후 60일간 평균보다 +2.2% 앞섰고(승률 63%), 반대로 최근 20~60일 급등 종목과 RRG 상대강도 상위 종목은 이후 덜 올랐습니다. 뉴스 테마로 최근 급등한 종목을 고를 때는 그 근거와 되돌림 위험을 함께 적고, 특별한 이유가 없으면 점수 상위 종목을 우선하세요.
-- 국내 시장 국면을 종목 선정 강도에 반영하세요. 하락 국면(Reversal·Twilight·Deterioration·Capitulation)에서는 top_picks를 2~4종목으로 제한하고, 모든 pick reason 끝에 "리스크: …"로 그 종목의 핵심 하방 위험을 반드시 붙이며, 이미 반등이 확인된 섹터·종목 위주로 고르세요. 이때 strategy_brief도 비중 확대가 아니라 선별·분할 접근의 톤으로 쓰세요. 상승 국면(Acceleration~Overshoot)에서는 기세가 확인된 주도 섹터 위주로 고르세요.
+- 국내 시장 국면을 종목 선정 강도에 반영하세요. 하락 국면(Reversal·Twilight·Deterioration·Capitulation)에서는 top_picks를 2~4종목으로 제한하고, 모든 pick reason 끝에 리스크: … 형식(따옴표 없이)으로 그 종목의 핵심 하방 위험을 반드시 붙이며, 이미 반등이 확인된 섹터·종목 위주로 고르세요. 이때 strategy_brief도 비중 확대가 아니라 선별·분할 접근의 톤으로 쓰세요. 상승 국면(Acceleration~Overshoot)에서는 기세가 확인된 주도 섹터 위주로 고르세요.
 - 수치는 위에 제공된 데이터와 뉴스 본문에 있는 것만 인용하세요. 금액 단위(억·조)를 그대로 옮기고 임의로 환산하지 마세요. 종목별 외국인·기관 매매 금액은 종목 후보 표에 수급 열이 있을 때만 언급하세요.
 - RRG 사분면과 최근 수익률·상승 종목 비율이 엇갈리면(예: RRG leading인데 5일 수익률이 크게 마이너스) 최근 데이터를 우선하고, 그 엇갈림을 판단에 반영하세요.
 - summary는 "글로벌 환경 → 국내 시장 한 줄 판단 → 핵심 진입 아이디어" 순서의 한 흐름으로 쓰세요.
@@ -354,6 +355,11 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         )
 
     xml_text = m.group()
+    # reason 속성값 안의 큰따옴표·꺾쇠 교정 (속성이 중간에 끊겨 이후 내용이 유실되는 것 방지)
+    def _fix_attr(mm):
+        inner = mm.group(2).replace('"', '”').replace("<", "‹").replace(">", "›")
+        return mm.group(1) + inner + mm.group(3)
+    xml_text = re.sub(r'(reason=")(.*?)("\s*/?>)', _fix_attr, xml_text, flags=re.DOTALL)
     xml_text = re.sub(r"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;", xml_text)
     # 태그가 아닌 위치의 < 를 이스케이프 (본문 내 "<예상", "<3%" 등으로 파싱 깨짐 방지)
     xml_text = re.sub(r"<(?![a-zA-Z/!?])", "&lt;", xml_text)
@@ -651,6 +657,9 @@ def run():
 
     logger.info("분석 중...")
     analysis = claude_analyze(news_data, rrg_data)
+    if not analysis.get("strategy_headline") or not analysis.get("strategy_brief"):
+        logger.warning("핵심 필드(headline/brief) 누락 — 1회 재시도")
+        analysis = claude_analyze(news_data, rrg_data)
 
     # ── 매크로 데이터에 원인 병합 ─────────────────────────────
     macro_with_reasons = {}
@@ -691,7 +700,7 @@ def run():
         **analysis,
     }
 
-    if not report.get("strategy_headline") and not report.get("top_picks"):
+    if not report.get("strategy_headline") or not report.get("strategy_brief"):
         logger.error("빈 리포트 감지(headline·top_picks 모두 없음) — 저장·푸시 스킵, 기존 리포트 보존")
         raise SystemExit(1)
     save_report(report)
