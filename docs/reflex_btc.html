@@ -332,22 +332,22 @@ function robust(d){
   const ok=p=>p.up.ex>0&&p.dn.ex<0&&spread(p)>=th;  // 의미 있게 갈림
   const weak=p=>spread(p)>0;                        // 방향은 맞지만 차이가 작음
   const first=P[0],last=P[P.length-1];
-  let v;
-  if(P.every(ok))
-    v=`두 기간 모두 Boom 구간이 평균보다 좋았고 Bust 구간이 나빴습니다(차이 ${P.map(p=>sg(spread(p),1)+"%p").join(", ")}). 일관성은 있지만 사이클 수가 적어 우연일 가능성은 남아 있습니다.`;
-  else if(P.every(weak))
-    v=`두 기간 모두 방향은 맞았지만 차이가 작습니다(${P.map(p=>sg(spread(p),1)+"%p").join(", ")}). 국면 설명용으로는 쓸 수 있어도 성과를 가르는 힘은 약합니다.`;
-  else if(ok(last)&&!weak(first))
-    v=`최근 기간(${esc(last.name)})에만 Boom과 Bust가 뚜렷하게 갈렸고, 그 이전(${esc(first.name)})엔 차이가 없었습니다. 시장 성격이 바뀐 결과일 수도, 우연일 수도 있어 매매 신호로 쓰기엔 근거가 부족합니다.`;
-  else if(ok(first)&&!weak(last))
-    v=`이전 기간(${esc(first.name)})엔 통했지만 최근 기간(${esc(last.name)})엔 차이가 사라졌습니다. 최근 판정은 특히 조심해서 볼 필요가 있습니다.`;
-  else
-    v=`기간에 따라 결과가 엇갈리거나 반대로 나왔습니다. 이 단계는 국면을 설명하는 지표로만 보고, 이후 성과에 대한 근거로 쓰지 마세요.`;
+  let g,v;
+  if(P.every(ok)){g=["Strong","강함","#16a34a"];
+    v=`두 기간 모두 Boom 구간의 이후 성과가 Bust 구간보다 뚜렷하게 좋았습니다(차이 ${P.map(p=>sg(spread(p),1)+"%p").join(", ")}). 현재 단계를 비중 조절의 근거로 삼을 만합니다. 사이클 수가 많지 않으니 다른 판단과 함께 쓰는 것이 좋습니다.`;}
+  else if(ok(last)&&!ok(first)){g=["Recent","최근 유효","#2563eb"];
+    v=`최근 기간(${esc(last.name)})에는 Boom과 Bust의 이후 성과가 뚜렷하게 갈렸습니다(차이 ${sg(spread(last),1)}%p). 그 이전(${esc(first.name)})엔 차이가 거의 없었으니, 지금의 시장 구조에서 유효한 지표로 보되 시장 성격이 바뀌면 효력이 약해질 수 있습니다.`;}
+  else if(P.every(weak)){g=["Moderate","보통","#d97706"];
+    v=`두 기간 모두 방향은 맞았지만 차이가 크지 않습니다(${P.map(p=>sg(spread(p),1)+"%p").join(", ")}). 국면 파악에는 유용하고, 이후 성과를 가르는 힘은 제한적입니다.`;}
+  else if(ok(first)&&!weak(last)){g=["Fading","약해짐","#d97706"];
+    v=`이전 기간(${esc(first.name)})엔 뚜렷했지만 최근(${esc(last.name)})엔 차이가 줄었습니다. 국면 파악용으로 쓰되, 이후 성과의 근거로는 최근 들어 약해졌다는 점을 감안하세요.`;}
+  else{g=["Weak","약함","#9ca3af"];
+    v=`기간별 결과가 일관되지 않습니다. 현재 국면을 파악하는 용도로 쓰고, 이후 성과의 근거로는 쓰기 어렵습니다.`;}
   return `<div class="scroll" style="margin-top:18px"><table><thead><tr><th>${en("Period Check","기간별 검증")}</th><th>${en("Boom vs. Avg","상승 국면 평균 대비")}</th><th>${en("Hit","상승 확률")}</th>
     <th>${en("Bust vs. Avg","하락 국면 평균 대비")}</th><th>${en("Hit","상승 확률")}</th><th>${en("Spread","차이")}</th></tr></thead>
     <tbody>${P.map(p=>`<tr><td>${esc(p.name)}</td><td class="${tone(p.up.ex)}">${sg(p.up.ex,1)}%p</td><td>${Math.round(p.up.hit)}%</td>
       <td class="${tone(p.dn.ex)}">${sg(p.dn.ex,1)}%p</td><td>${Math.round(p.dn.hit)}%</td><td class="${tone(spread(p))}">${sg(spread(p),1)}%p</td></tr>`).join("")}</tbody></table></div>
-    <p class="verdict">${v}</p>`;
+    <p class="verdict"><span class="tag" style="--c:${g[2]};margin:0 8px 0 0">Evidence: ${g[0]}</span><span class="ko-i" style="margin:0 8px 0 0">근거 ${g[1]}</span>${v}</p>`;
 }
 
 /* ── 사이클 다이얼: 5단계가 꼭대기, 왼쪽 반원 Boom, 오른쪽 반원 Bust ── */
