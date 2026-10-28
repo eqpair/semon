@@ -151,16 +151,22 @@ const CONFIG = {
   asof:d=>`${d.asof} 장 마감 (미국 ${d.src.us||"—"})`,
   price:v=>Math.round(v).toLocaleString("en-US"),
   tick:v=>v.toLocaleString("en-US"),
-  method:`<p><b>Fundamentals</b> <span class=\"text-gray-400\">형세</span> — 한국 경제의 실물·금리·환율입니다. 수출 증가율의 가속(전체·반도체, 35%), 경기선행지수 순환변동치의 3개월 변화(20%), 미국 금리(20%), 원달러·달러인덱스·위안화(15%), 유가(10%)로 구성합니다. 월간 통계는 실제 발표 시점 이후부터만 쓰고, 미국 지표는 전날 종가까지만 씁니다. 2011~2026년 데이터에서 형세가 45 미만이면 기세와 상관없이 이후 성과가 나빴습니다.</p>
-<p><b>Momentum</b> <span class=\"text-gray-400\">기세</span> — 시장의 반응입니다. KOSPI·KOSDAQ 전 종목(우선주 제외)의 이평선 위 비율, 52주 신고가와 신저가, 상승·하락 종목 수, 방향성 거래대금, 외국인과 기관의 순매수로 구성합니다. 단계 판정에는 60일 이상 지표로 만든 느린 Momentum을 쓰고, 20일 지표로 만든 Short-term momentum은 급락 감지에만 씁니다.</p>
-<p><b>Bias</b> <span class=\"text-gray-400\">편향</span> — Momentum에서 Fundamentals를 뺀 값으로, 소로스가 말한 시장의 지배적 편향(prevailing bias)에 해당합니다. 플러스면 기대가 현실을 앞서 있다는 뜻입니다.</p>
+  method:`<p><b>Fundamentals</b> <span class=\"text-gray-400\">매크로·실물 여건</span> — 한국 경제의 실물·금리·환율입니다. 수출 증가율의 가속(전체·반도체, 35%), 경기선행지수 순환변동치의 3개월 변화(20%), 미국 금리(20%), 원달러·달러인덱스·위안화(15%), 유가(10%)로 구성합니다. 월간 통계는 실제 발표 시점 이후부터만 쓰고, 미국 지표는 전날 종가까지만 씁니다. 2011~2026년 데이터에서 Fundamentals 45 미만에서는 Momentum과 무관하게 이후 성과가 나빴습니다.</p>
+<p><b>Momentum</b> <span class=\"text-gray-400\">가격·수급 반응</span> — 시장의 반응입니다. KOSPI·KOSDAQ 전 종목(우선주 제외)의 이평선 위 비율, 52주 신고가와 신저가, 상승·하락 종목 수, 방향성 거래대금, 외국인과 기관의 순매수로 구성합니다. 단계 판정에는 60일 이상 지표로 만든 느린 Momentum을 쓰고, 20일 지표로 만든 Short-term momentum은 급락 감지에만 씁니다.</p>
+<p><b>Bias</b> <span class=\"text-gray-400\">Momentum − Fundamentals</span> — Momentum에서 Fundamentals를 뺀 값으로, 소로스가 말한 시장의 지배적 편향(prevailing bias)에 해당합니다. 플러스면 기대가 현실을 앞서 있다는 뜻입니다.</p>
 <p><b>Stage</b> <span class=\"text-gray-400\">단계</span> — Momentum의 수준과 20일 변화, Fundamentals의 수준과 40일 변화, Bias로 정합니다. Fundamentals가 45 미만이면 Boom 단계로 판정하지 않습니다. 같은 판정이 5일 이어지고 직전 단계가 15일 이상 지났을 때만 바꾸며, Short-term momentum이 급락하면 3일 확인으로 Capitulation을 판정합니다. 규칙은 2011~2026년 데이터로 정했습니다. 국면을 설명하는 지표이며 매매 신호가 아닙니다.</p>`
 };
 
 const STAGE = {
-  1:{en:"Inception",ko:"유리한 형세"},2:{en:"Acceleration",ko:"상승 기세"},3:{en:"Confirmation",ko:"현실 개선"},
-  4:{en:"Conviction",ko:"확신 강화"},5:{en:"Overshoot",ko:"기세 가속"},6:{en:"Reversal",ko:"반전 시작"},
-  7:{en:"Twilight",ko:"기세 약화"},8:{en:"Deterioration",ko:"현실 악화"},9:{en:"Capitulation",ko:"하락 가속"}
+  1:{en:"Inception",ko:"초기 회복",desc:"Fundamentals 개선이 먼저 시작 — 가격은 아직 미반영"},
+  2:{en:"Acceleration",ko:"상승 가속",desc:"Momentum 반응 시작"},
+  3:{en:"Confirmation",ko:"확인",desc:"Fundamentals 개선에 Momentum 동반"},
+  4:{en:"Conviction",ko:"확산",desc:"높은 Momentum 유지, 상승 종목 확산"},
+  5:{en:"Overshoot",ko:"과열",desc:"Momentum ≫ Fundamentals — 기대가 가격을 끌어올리는 구간"},
+  6:{en:"Reversal",ko:"반전",desc:"고점에서 Momentum 꺾임 시작"},
+  7:{en:"Twilight",ko:"둔화",desc:"Momentum이 중립 수준으로 둔화"},
+  8:{en:"Deterioration",ko:"악화",desc:"Fundamentals 약화, Momentum 부진"},
+  9:{en:"Capitulation",ko:"투매",desc:"Momentum 급락 — 매도가 매도를 부르는 구간"}
 };
 const HEX={1:"#d1d5db",2:"#fecaca",3:"#fca5a5",4:"#f87171",5:"#dc2626",6:"#bfdbfe",7:"#93c5fd",8:"#60a5fa",9:"#2563eb"};
 const DARKTXT=new Set([1,2,3,6,7]);
@@ -228,23 +234,23 @@ function render(d){
         <div class="kicker">Stage ${cur??"—"} of 9 <span class="tag" style="--c:${phc}">${ph} Phase</span><span class="ko-i">${PHASE_KO[ph]}</span></div>
         <h2 class="sname">${cur?STAGE[cur].en:"Pending"}</h2>
         <div class="sname-ko">${cur?STAGE[cur].ko:""}</div>
-        <p class="sdesc">${esc(st.desc||"")}</p>
+        <p class="sdesc">${esc((STAGE[cur]||{}).desc||"")}</p>
         <div class="since">${st.since?`${st.since}부터 ${st.days}${CONFIG.dayUnit}째`:""}${nxt.length?`<br>Next stage history <span class="ko-i" style="margin-left:2px">과거 다음 단계</span>: ${nxt.map(([k,p])=>`${STAGE[k].en} ${Math.round(p)}%`).join(", ")}`:""}</div>
         ${watch}
         <div class="metrics">
-          ${metric("Fundamentals","형세 — 판이 유리한가",d.F.value,d.F.d,`${d.F.sd}일 변화`)}
-          ${metric("Momentum","기세 — 시장의 반응",d.M.value,d.M.d,`${d.M.sd}일 변화`)}
-          ${metric("Short-term","단기 기세",d.Mf.value,d.Mf.d,`${d.Mf.sd}일 변화`)}
-          ${metric("Bias","편향 — 기세 − 형세",d.gap,null,d.gap>0?"기대가 현실을 앞섬":d.gap<0?"현실이 기대를 앞섬":"균형",true)}
+          ${metric("Fundamentals","매크로·실물 여건",d.F.value,d.F.d,`${d.F.sd}일 변화`)}
+          ${metric("Momentum","가격·수급 반응",d.M.value,d.M.d,`${d.M.sd}일 변화`)}
+          ${metric("Short-term","20일 Momentum",d.Mf.value,d.Mf.d,`${d.Mf.sd}일 변화`)}
+          ${metric("Bias","Momentum − Fundamentals",d.gap,null,d.gap>0?"가격 > Fundamentals":d.gap<0?"Fundamentals > 가격":"균형",true)}
         </div>
       </div>
     </div>
   </section>
 
   <div class="drivers mb-4">
-    <section class="panel p-5">${driverHead("Fundamentals","형세 구성 요소",d.F)}${scale()}${comps(d.F.components)}</section>
-    <section class="panel p-5">${driverHead("Momentum","기세 구성 요소",d.M)}${scale()}${comps(d.M.components)}
-      <div class="short"><span>Short-term Momentum<span class="ko">단기 기세</span></span><b>${n0(d.Mf.value)}</b><span>${esc(d.raw.Mf.accel_text||"")}</span></div>
+    <section class="panel p-5">${driverHead("Fundamentals","구성 요소",d.F)}${scale()}${comps(d.F.components)}</section>
+    <section class="panel p-5">${driverHead("Momentum","구성 요소",d.M)}${scale()}${comps(d.M.components)}
+      <div class="short"><span>Short-term Momentum<span class="ko">20일 지표</span></span><b>${n0(d.Mf.value)}</b><span>${d.Mf.accel==null?"":d.Mf.accel>10?"Accelerating 가속":d.Mf.accel<-10?"Decelerating 둔화":"Steady 속도 비슷"}</span></div>
     </section>
   </div>
   <p class="text-xs text-gray-400 mb-4" style="margin-top:-6px">* 모든 지표는 과거 ${CONFIG.window} 대비 백분위. 50이 평소 수준, 오른쪽(빨강)이 시장에 우호적 &nbsp;|&nbsp; 항목 클릭 시 실제 값 표시</p>
@@ -252,7 +258,7 @@ function render(d){
   <section class="panel p-5 mb-4">
     <div class="charts">
       <div>
-        <div class="ptitle"><h2>Phase Map<span class="ko-i">형세·기세 궤적</span></h2><p>최근 120${CONFIG.dayUnit}</p></div>
+        <div class="ptitle"><h2>Phase Map<span class="ko-i">Fundamentals × Momentum 궤적</span></h2><p>최근 120${CONFIG.dayUnit}</p></div>
         <div class="box" id="plane"></div>
       </div>
       <div>
@@ -262,7 +268,7 @@ function render(d){
             <button type="button" data-r="2y" aria-pressed="true">2Y</button>
             <button type="button" data-r="all" aria-pressed="false">Since ${CONFIG.since}</button>
           </div>
-          <div class="legend"><span style="--c:var(--ink)">Momentum 기세</span><span class="dash" style="--c:var(--ink3)">Fundamentals 형세</span>
+          <div class="legend"><span style="--c:var(--ink)">Momentum</span><span class="dash" style="--c:var(--ink3)">Fundamentals</span>
             <span class="blk" style="--c:#f87171">Boom 상승 국면</span><span class="blk" style="--c:#60a5fa">Bust 하락 국면</span></div>
         </div>
         <div class="box" id="line"></div>
@@ -374,9 +380,9 @@ function drawDial(d){
   s+=`<text x="${bx}" y="${by}" text-anchor="start" style="font-size:12px;fill:#dc2626;font-weight:700">Boom</text><text x="${bx}" y="${by+13}" text-anchor="start" style="font-size:10.5px;fill:#9ca3af">상승 국면</text>`;
   s+=`<text x="${ux}" y="${uy}" text-anchor="end" style="font-size:12px;fill:#2563eb;font-weight:700">Bust</text><text x="${ux}" y="${uy+13}" text-anchor="end" style="font-size:10.5px;fill:#9ca3af">하락 국면</text>`;
   s+=`<text x="${cx}" y="${cy-34}" text-anchor="middle" style="font-size:12px;font-weight:600;fill:#4b5563">Bias</text>`;
-  s+=`<text x="${cx}" y="${cy-20}" text-anchor="middle" style="font-size:10.5px;fill:#9ca3af">편향</text>`;
+  s+=`<text x="${cx}" y="${cy-20}" text-anchor="middle" style="font-size:10.5px;fill:#9ca3af">Bias</text>`;
   s+=`<text x="${cx}" y="${cy+22}" text-anchor="middle" style="font-size:44px;font-weight:800;fill:${d.gap>0?"#dc2626":d.gap<0?"#2563eb":"#1f2937"}">${sg(d.gap)}</text>`;
-  s+=`<text x="${cx}" y="${cy+42}" text-anchor="middle" style="font-size:10.5px;fill:#9ca3af">기세 − 형세</text>`;
+  s+=`<text x="${cx}" y="${cy+42}" text-anchor="middle" style="font-size:10.5px;fill:#9ca3af">Momentum − Fundamentals</text>`;
   $("#dial").innerHTML=s+"</svg>";
 }
 
@@ -385,17 +391,17 @@ function drawPlane(d){
   const box=$("#plane"),W=box.clientWidth||380,H=W,m={l:40,r:10,t:10,b:44};
   const x=v=>m.l+(W-m.l-m.r)*v/100,y=v=>H-m.b-(H-m.t-m.b)*v/100;
   const P=d.hist.slice(-120).filter(p=>p.F!=null&&p.M!=null);
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="형세와 기세 위상 평면, 최근 120일 궤적">`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Fundamentals × Momentum 위상 평면, 최근 120일 궤적">`;
   s+=`<path d="M${x(0)} ${y(0)}L${x(100)} ${y(100)}L${x(0)} ${y(100)}Z" fill="#dc2626" fill-opacity=".04"/>`;
   s+=`<path d="M${x(0)} ${y(0)}L${x(100)} ${y(100)}L${x(100)} ${y(0)}Z" fill="#2563eb" fill-opacity=".04"/>`;
   s+=`<rect x="${x(0)}" y="${y(100)}" width="${x(100)-x(0)}" height="${y(0)-y(100)}" fill="none" stroke="#e5e7eb"/>`;
   s+=`<line x1="${x(50)}" x2="${x(50)}" y1="${y(0)}" y2="${y(100)}" stroke="#f3f4f6"/><line x1="${x(0)}" x2="${x(100)}" y1="${y(50)}" y2="${y(50)}" stroke="#f3f4f6"/>`;
   s+=`<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(100)}" stroke="#9ca3af" stroke-dasharray="3 4"/>`;
-  s+=`<text x="${x(4)}" y="${y(94)}" style="font-weight:600">Momentum leads</text><text x="${x(4)}" y="${y(94)+13}" style="fill:#9ca3af">기세가 앞섬</text>`;
-  s+=`<text x="${x(96)}" y="${y(6)-13}" text-anchor="end" style="font-weight:600">Fundamentals lead</text><text x="${x(96)}" y="${y(6)}" text-anchor="end" style="fill:#9ca3af">형세가 앞섬</text>`;
+  s+=`<text x="${x(4)}" y="${y(94)}" style="font-weight:600">Momentum leads</text><text x="${x(4)}" y="${y(94)+13}" style="fill:#9ca3af">Momentum 우위</text>`;
+  s+=`<text x="${x(96)}" y="${y(6)-13}" text-anchor="end" style="font-weight:600">Fundamentals lead</text><text x="${x(96)}" y="${y(6)}" text-anchor="end" style="fill:#9ca3af">Fundamentals 우위</text>`;
   [0,50,100].forEach(v=>{s+=`<text x="${x(v)}" y="${H-m.b+15}" text-anchor="middle">${v}</text><text x="${m.l-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
-  s+=`<text x="${x(50)}" y="${H-6}" text-anchor="middle" style="fill:#1f2937;font-weight:600">Fundamentals 형세 →</text>`;
-  s+=`<text transform="translate(11 ${y(50)}) rotate(-90)" text-anchor="middle" style="fill:#1f2937;font-weight:600">Momentum 기세 →</text>`;
+  s+=`<text x="${x(50)}" y="${H-6}" text-anchor="middle" style="fill:#1f2937;font-weight:600">Fundamentals →</text>`;
+  s+=`<text transform="translate(11 ${y(50)}) rotate(-90)" text-anchor="middle" style="fill:#1f2937;font-weight:600">Momentum →</text>`;
   for(let i=1;i<P.length;i++){const a=P[i-1],b=P[i];
     s+=`<line x1="${x(a.F)}" y1="${y(a.M)}" x2="${x(b.F)}" y2="${y(b.M)}" stroke="#1f2937" stroke-opacity="${(.1+.9*i/P.length).toFixed(2)}" stroke-width="1.5"/>`}
   P.forEach((p,i)=>{if(i%20===0&&i<P.length-1)s+=`<circle cx="${x(p.F)}" cy="${y(p.M)}" r="3" fill="${HEX[p.s]||"#ccc"}" stroke="#fff"/>`});
@@ -405,13 +411,13 @@ function drawPlane(d){
   box.innerHTML=s+"</svg>";
 }
 
-/* ── 가격 + 단계 띠 + 형세·기세 ── */
+/* ── 가격 + 단계 띠 + Fundamentals·Momentum ── */
 function drawLine(rows,range){
   const box=$("#line"),W=box.clientWidth||620,H1=180,G=16,H2=140,H=H1+G+H2+22,m={l:52,r:6,t:4};
   const R=rows.filter(r=>r.k!=null),n=R.length,x=i=>m.l+(W-m.l-m.r)*i/(n-1);
   const ks=R.map(r=>Math.log(r.k)),lo=Math.min(...ks),hi=Math.max(...ks);
   const yk=v=>m.t+H1-6-(H1-12)*(Math.log(v)-lo)/(hi-lo),y2=v=>m.t+H1+G+H2-H2*v/100;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${CONFIG.priceName}와 단계, 형세·기세 추이">`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${CONFIG.priceName}와 단계, Fundamentals·Momentum 추이">`;
   let st=0;
   for(let i=1;i<=n;i++){if(i===n||R[i].s!==R[st].s){if(R[st].s){const x0=x(Math.max(st-.5,0)),x1=x(Math.min(i-.5,n-1));
     s+=`<rect x="${x0}" y="${m.t}" width="${Math.max(x1-x0,.5)}" height="${H1}" fill="${HEX[R[st].s]}" fill-opacity="${DARKTXT.has(R[st].s)?.45:.3}"/>`}st=i}}
@@ -432,7 +438,7 @@ function drawLine(rows,range){
     const rc=svg.getBoundingClientRect(),px=(ev.clientX-rc.left)*W/rc.width;
     const i=Math.max(0,Math.min(n-1,Math.round((px-m.l)/(W-m.l-m.r)*(n-1)))),r=R[i];
     hov.setAttribute("x1",x(i));hov.setAttribute("x2",x(i));hov.setAttribute("visibility","visible");
-    tip.innerHTML=`<b>${r.d}</b><br>${CONFIG.priceName} ${CONFIG.price(r.k)}<br>Fundamentals 형세 ${n0(r.F)} / Momentum 기세 ${n0(r.M)}<br>${r.s?r.s+" "+STAGE[r.s].en+" "+STAGE[r.s].ko:"Pending"}`;
+    tip.innerHTML=`<b>${r.d}</b><br>${CONFIG.priceName} ${CONFIG.price(r.k)}<br>Fundamentals ${n0(r.F)} / Momentum ${n0(r.M)}<br>${r.s?r.s+" "+STAGE[r.s].en+" "+STAGE[r.s].ko:"Pending"}`;
     tip.style.display="block";
     let lx=ev.clientX+14+scrollX;if(ev.clientX+240>innerWidth)lx=ev.clientX-230+scrollX;
     tip.style.left=lx+"px";tip.style.top=(rc.top+scrollY+8)+"px";});

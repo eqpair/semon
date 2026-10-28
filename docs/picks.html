@@ -84,7 +84,7 @@ details.more[open] summary::before{content:"▾ "}
   <header class="mb-6">
     <div class="header-inner">
       <div>
-        <h1 class="text-3xl font-bold text-gray-800">Picks <span class="text-lg font-normal text-gray-400">Position &amp; Momentum Engine — Korea</span></h1>
+        <h1 class="text-3xl font-bold text-gray-800">Picks <span class="text-lg font-normal text-gray-400">Multi-Factor Stock Selection — Korea</span></h1>
         <div class="text-sm text-gray-500 mt-1" id="status">Loading...</div>
       </div>
       <div class="nav-links" id="nav"></div>
@@ -96,7 +96,7 @@ details.more[open] summary::before{content:"▾ "}
 <div class="tip" id="tip"></div>
 <script>
 const NAV=[{href:"reflex.html",label:"Reflex"},{href:"picks.html",label:"Picks",cur:true},{href:"index.html",label:"RRG"},{href:"momentum.html",label:"Momentum"},{href:"heatmap.html",label:"Heatmap"},{href:"stats.html",label:"Stats"},{href:"cal.html",label:"Calendar"},{href:"https://eqmon.duckdns.org",home:true}];
-const STAGE={1:["Inception","유리한 형세"],2:["Acceleration","상승 기세"],3:["Confirmation","현실 개선"],4:["Conviction","확신 강화"],5:["Overshoot","기세 가속"],6:["Reversal","반전 시작"],7:["Twilight","기세 약화"],8:["Deterioration","현실 악화"],9:["Capitulation","하락 가속"]};
+const STAGE={1:["Inception","초기 회복"],2:["Acceleration","상승 가속"],3:["Confirmation","확인"],4:["Conviction","확산"],5:["Overshoot","과열"],6:["Reversal","반전"],7:["Twilight","둔화"],8:["Deterioration","악화"],9:["Capitulation","투매"]};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct=(v,d=1)=>v==null||isNaN(v)?"—":(v>0?"+":v<0?"−":"")+Math.abs(v*100).toFixed(d)+"%";
@@ -112,11 +112,11 @@ fetch("data/picks.json?t="+Date.now()).then(r=>{if(!r.ok)throw new Error("HTTP "
 function render(d){
   $("#loading").style.display="none";
   const a=d.data_asof||{}, g=d.regime||{}, P=d.portfolio||{}, L=d.ledger||{}, perf=L.perf;
-  $("#status").innerHTML=`Last Update: <span class="font-medium text-gray-700">${esc(d.generated)}</span> &nbsp;|&nbsp; As of: <span class="font-medium text-gray-700">${esc(d.as_of)} 장 마감</span> &nbsp;|&nbsp; <span class="text-gray-400">수급 ${esc(a.flow)} · 펀더멘털 ${esc(a.fund)} · 업종 ${esc(a.sector)}</span>`;
+  $("#status").innerHTML=`Last Update: <span class="font-medium text-gray-700">${esc(d.generated)}</span> &nbsp;|&nbsp; As of: <span class="font-medium text-gray-700">${esc(d.as_of)} 장 마감</span> &nbsp;|&nbsp; <span class="text-gray-400">Flows ${esc(a.flow)} · EPS ${esc(a.fund)} · Sectors ${esc(a.sector)}</span>`;
   const on=!!g.up, st=STAGE[g.stage]||["—",""];
   const al=g.alloc||{index:0,stocks:0,cash:1};
   const seg=(v,c,lab)=>v>0?`<div style="width:${v*100}%;background:${c}">${lab} ${Math.round(v*100)}%</div>`:"";
-  const stale=(d.stale||[]).length?`<div class="warn">데이터 지연: ${d.stale.map(k=>({flow:"수급",fund:"펀더멘털"}[k]||k)+" "+esc(a[k])).join(", ")} 기준입니다. KRX 수집이 막혔을 수 있어 점수는 마지막으로 받은 값으로 계산했습니다.</div>`:"";
+  const stale=(d.stale||[]).length?`<div class="warn">데이터 지연: ${d.stale.map(k=>({flow:"수급(Flows)",fund:"실적(EPS)"}[k]||k)+" "+esc(a[k])).join(", ")} 기준입니다. KRX 수집이 막혔을 수 있어 점수는 마지막으로 받은 값으로 계산했습니다.</div>`:"";
   const H=P.holdings||[], addSet=new Set((P.added||[]).map(x=>x.t));
   const hRows=H.map((h,i)=>`<tr><td>${i+1}</td>
     <td class="nm"><b>${esc(h.n)}</b><small>${esc(h.t)}</small>${addSet.has(h.t)?'<span class="tag new">NEW</span>':""}${h.rank==null||h.rank>(d.params?.buffer||100)?'<span class="tag out">순위 밖</span>':""}</td>
@@ -141,7 +141,7 @@ function render(d){
   $("#app").innerHTML=`${stale}
   <section class="panel p-5 md:p-6 mb-6"><div class="hero">
     <div>
-      <div class="kicker">Market Gate <span class="ko-i">지금이 싸울 때인가</span> · Reflex <a href="reflex.html" class="chip" style="text-decoration:none">${g.stage??"—"} ${esc(st[0])} · ${esc(st[1])}</a></div>
+      <div class="kicker">Market Regime Filter <span class="ko-i">시장 국면 필터</span> · Reflex <a href="reflex.html" class="chip" style="text-decoration:none">${g.stage??"—"} ${esc(st[0])} · ${esc(st[1])}</a></div>
       <div class="big" style="color:${on?"var(--on)":"var(--off)"}">${on?"Risk-On":"Risk-Off"}</div>
       <div class="big-ko">${on?"지수 ETF 50% + 엔진 50종목 50%":"현금(단기채) 100% — 종목은 대기 명단"}</div>
       <div class="desc">${on
@@ -166,7 +166,7 @@ function render(d){
     ${on?"":`<div class="offnote">현재 Risk-Off라 실제로는 보유하지 않는 대기 명단입니다. 상승 국면으로 바뀌면 이 종목들로 들어갑니다.</div>`}
     <div class="scroll"><table>
       <thead><tr><th>#</th><th class="l">Stock<span class="ko">종목</span></th><th class="l">Sector<span class="ko">업종</span></th><th>Rank<span class="ko">오늘 순위</span></th>
-      <th>Position<span class="ko">형세</span></th><th>Momentum<span class="ko">기세</span></th><th class="hide-sm">Stability<span class="ko">안정성</span></th><th>Total<span class="ko">종합</span></th><th>Since<span class="ko">교체 후 수익</span></th></tr></thead>
+      <th>Quality<span class="ko">실적·수급</span></th><th>Trend<span class="ko">추세</span></th><th class="hide-sm">Low Vol<span class="ko">저변동성</span></th><th>Composite<span class="ko">종합</span></th><th>Since<span class="ko">교체 후 수익</span></th></tr></thead>
       <tbody>${hRows}</tbody></table></div>
     <div class="two mt-4"><div><div class="text-sm font-semibold text-gray-700">이번 교체에서 편입 (${(P.added||[]).length})</div>${chips(P.added)}</div>
       <div><div class="text-sm font-semibold text-gray-700">이번 교체에서 편출 (${(P.removed||[]).length})</div>${chips(P.removed)}</div></div>
@@ -177,11 +177,11 @@ function render(d){
       <details class="more"><summary>Today's Ranking <span class="ko-i">오늘 종합 순위 상위 100</span></summary>
       <p class="note">매일 바뀌는 순위입니다. 실제 교체는 월 1회만 합니다.</p>
       <div class="scroll"><table>
-        <thead><tr><th>#</th><th class="l">Stock<span class="ko">종목</span></th><th class="l">Sector<span class="ko">업종</span></th><th>Position<span class="ko">형세</span></th><th>Momentum<span class="ko">기세</span></th><th class="hide-sm">Stability<span class="ko">안정성</span></th><th>Total<span class="ko">종합</span></th><th class="hide-sm">52W<span class="ko">고점 대비</span></th><th class="hide-sm">1M<span class="ko">1개월</span></th></tr></thead>
+        <thead><tr><th>#</th><th class="l">Stock<span class="ko">종목</span></th><th class="l">Sector<span class="ko">업종</span></th><th>Quality<span class="ko">실적·수급</span></th><th>Trend<span class="ko">추세</span></th><th class="hide-sm">Low Vol<span class="ko">저변동성</span></th><th>Composite<span class="ko">종합</span></th><th class="hide-sm">52W<span class="ko">고점 대비</span></th><th class="hide-sm">1M<span class="ko">1개월</span></th></tr></thead>
         <tbody>${rRows}</tbody></table></div></details>
     </section>
     <section class="panel p-5 md:p-6">
-      <div class="ptitle"><h2>Sector Leadership <span class="ko-i">업종 주도권</span></h2><p>12개월 상대 수익(최근 1개월 제외)과 52주 신고가 근처 종목 비율로 매깁니다. Risk-On일 때 하위 ${d.params?.excl||5}개 업종 종목은 담지 않습니다.</p></div>
+      <div class="ptitle"><h2>Sector Momentum <span class="ko-i">업종 상대강도</span></h2><p>12개월 상대 수익(최근 1개월 제외)과 52주 신고가 근처 종목 비율로 매깁니다. Risk-On일 때 하위 ${d.params?.excl||5}개 업종 종목은 편입하지 않습니다.</p></div>
       <div class="scroll"><table>
         <thead><tr><th>#</th><th class="l">Sector<span class="ko">업종</span></th><th>12M<span class="ko">12개월</span></th><th>Near High<span class="ko">신고가 근처</span></th><th>N<span class="ko">종목 수</span></th></tr></thead>
         <tbody>${sRows}</tbody></table></div>
@@ -192,10 +192,10 @@ function render(d){
     <div class="ptitle"><h2>Method <span class="ko-i">방법과 근거</span></h2></div>
     <div class="method">
       <div>
-      <p><b>순서</b> — 성호 이익의 "천하의 일은 만난 세가 으뜸이요, 운이 그다음이며, 옳고 그름은 맨 아래다"를 그대로 따릅니다. ① 시장 국면(Reflex)으로 지금 싸울지 정하고, ② 업종 주도권으로 소외 업종을 거르고, ③ 종목의 형세와 기세로 고릅니다.</p>
-      <p><b>Position</b> <span class="text-gray-400">형세</span> — 흑자 여부, 이익수익률(E/P), 1년 EPS 증가율, 60일 외국인+기관 순매수(시가총액 대비), 소속 업종 주도권의 평균입니다.</p>
-      <p><b>Momentum</b> <span class="text-gray-400">기세</span> — 52주 고점 근접도와 최근 1개월 급등 회피입니다. 검증에서 1~3개월 급등과 거래량 급증은 이후 수익이 오히려 나빴고, 신고가 근처에서 차분히 오르는 종목이 좋았습니다.</p>
-      <p><b>Stability</b> <span class="text-gray-400">안정성</span> — 60일 변동성이 낮을수록 높은 점수입니다. 한국 시장에서 가장 꾸준했던 요소입니다.</p>
+      <p><b>Process</b> <span class="text-gray-400">운용 절차</span> — ① 시장 국면 필터: Reflex 단계가 1~5면 주식 보유(Risk-On), 6~9면 현금(Risk-Off). ② 업종 필터: Risk-On일 때 Sector Momentum 하위 5개 업종 제외. ③ 종목 순위: 아래 세 팩터의 평균으로 상위 50종목, 월 1회 리밸런싱.</p>
+      <p><b>Quality</b> <span class="text-gray-400">실적·수급</span> — 흑자 여부, 이익수익률(E/P), 1년 EPS 증가율, 60일 외국인+기관 순매수(시가총액 대비), 소속 업종의 Sector Momentum(12개월 상대수익).</p>
+      <p><b>Trend</b> <span class="text-gray-400">추세</span> — 52주 고점 근접도와 최근 1개월 단기 반전(−1개월 수익률). 검증에서 1~3개월 급등과 거래량 급증 종목은 이후 수익이 낮았고, 52주 고점 근처에서 완만하게 오르는 종목이 좋았습니다.</p>
+      <p><b>Low Vol</b> <span class="text-gray-400">저변동성</span> — 60일 변동성이 낮을수록 높은 점수. 한국 시장에서 가장 꾸준했던 팩터입니다.</p>
       </div>
       <div>
       <p><b>검증 (2011.1~2026.10, 거래비용 왕복 0.5%, 배당 제외)</b></p>
@@ -203,8 +203,8 @@ function render(d){
         <tr><td>시장(시총가중) 보유</td><td>5.8%</td><td>−46%</td></tr>
         <tr><td>지수 50 + 엔진 50 + Reflex</td><td>9.2%</td><td>−18%</td></tr>
         <tr><td>지수 + Reflex</td><td>10.3%</td><td>−19%</td></tr>
-        <tr><td>엔진 50종목, 국면 판단 없음</td><td>5.5%</td><td>−56%</td></tr></tbody></table>
-      <p class="mt-2">국면 판단이 성과 차이의 대부분을 만들었습니다. 종목 엔진은 넓은 장세(2011~18)에서 지수보다 나았고, 대형주 쏠림 장세(2019~)에서는 뒤졌습니다. Reflex 규칙은 같은 기간 데이터로 정했고, 2026년 하락 회피의 비중이 커서 실제 성과는 이보다 낮을 수 있습니다. 매매 신호가 아니라 참고용입니다.</p>
+        <tr><td>엔진 50종목, 국면 필터 없음</td><td>5.5%</td><td>−56%</td></tr></tbody></table>
+      <p class="mt-2">시장 국면 필터가 성과 차이의 대부분을 만들었습니다. 종목 엔진은 넓은 장세(2011~18)에서 지수보다 나았고, 대형주 쏠림 장세(2019~)에서는 뒤졌습니다. Reflex 규칙은 같은 기간 데이터로 정했고, 2026년 하락 회피의 비중이 커서 실제 성과는 이보다 낮을 수 있습니다. 매매 신호가 아니라 참고용입니다.</p>
       </div>
     </div>
   </section>`;
