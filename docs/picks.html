@@ -113,7 +113,8 @@ function render(d){
   $("#loading").style.display="none";
   const a=d.data_asof||{}, g=d.regime||{}, P=d.portfolio||{}, L=d.ledger||{}, perf=L.perf;
   $("#status").innerHTML=`Last Update: <span class="font-medium text-gray-700">${esc(d.generated)}</span> &nbsp;|&nbsp; As of: <span class="font-medium text-gray-700">${esc(d.as_of)} 장 마감</span> &nbsp;|&nbsp; <span class="text-gray-400">Flows ${esc(a.flow)} · EPS ${esc(a.fund)} · Sectors ${esc(a.sector)}</span>`;
-  const on=!!g.up, st=STAGE[g.stage]||["—",""];
+  const on=!!g.up, st=STAGE[g.stage]||["—",""], X=g.exposure??(on?1:0), LB=g.label||(on?"Risk-On":"Risk-Off");
+  const LBC=LB==="Risk-On"?"var(--on)":LB==="Risk-Off"?"var(--off)":"#b45309", ETF=(g.index_etf||[]).map(e=>`${esc(e.n)}(${esc(e.t)})`).join(" 또는 ")||"코스피 200 ETF";
   const al=g.alloc||{index:0,stocks:0,cash:1};
   const seg=(v,c,lab)=>v>0?`<div style="width:${v*100}%;background:${c}">${lab} ${Math.round(v*100)}%</div>`:"";
   const stale=(d.stale||[]).length?`<div class="warn">데이터 지연: ${d.stale.map(k=>({flow:"수급(Flows)",fund:"실적(EPS)"}[k]||k)+" "+esc(a[k])).join(", ")} 기준입니다. KRX 수집이 막혔을 수 있어 점수는 마지막으로 받은 값으로 계산했습니다.</div>`:"";
@@ -133,37 +134,38 @@ function render(d){
   const chips=(xs)=>xs&&xs.length?`<div class="chips">${xs.map(x=>`<span>${esc(x.n)}</span>`).join("")}</div>`:`<div class="note">없음</div>`;
   const metr=perf?`<div class="metrics">
       <div class="metric"><div class="k">Engine <span class="ko-i">가상 운용</span></div><div class="v ${tone(perf.strat)}">${pct(perf.strat)}</div><div class="d">${esc(L.start)} 이후 ${perf.days}거래일</div></div>
-      <div class="metric"><div class="k">Market <span class="ko-i">시장(시총가중)</span></div><div class="v ${tone(perf.mkt)}">${pct(perf.mkt)}</div><div class="d">같은 기간</div></div>
+      <div class="metric"><div class="k">KOSPI <span class="ko-i">코스피</span></div><div class="v ${tone(perf.mkt)}">${pct(perf.mkt)}</div><div class="d">같은 기간</div></div>
       <div class="metric"><div class="k">Max Drawdown <span class="ko-i">엔진 최대 낙폭</span></div><div class="v">${pct(perf.mdd)}</div><div class="d">시장 ${pct(perf.mdd_mkt)}</div></div>
-      <div class="metric"><div class="k">Excess <span class="ko-i">초과 수익</span></div><div class="v ${tone(perf.strat-perf.mkt)}">${pct(perf.strat-perf.mkt)}</div><div class="d">엔진 − 시장</div></div></div>`
+      <div class="metric"><div class="k">Excess <span class="ko-i">초과 수익</span></div><div class="v ${tone(perf.strat-perf.mkt)}">${pct(perf.strat-perf.mkt)}</div><div class="d">엔진 − KOSPI</div></div></div>`
     :`<div class="note">가상 운용은 ${esc(L.start||d.as_of)}에 시작했습니다. 거래일이 쌓이면 성과가 여기에 표시됩니다.</div>`;
 
   $("#app").innerHTML=`${stale}
   <section class="panel p-5 md:p-6 mb-6"><div class="hero">
     <div>
       <div class="kicker">Market Regime Filter <span class="ko-i">시장 국면 필터</span> · Reflex <a href="reflex.html" class="chip" style="text-decoration:none">${g.stage??"—"} ${esc(st[0])} · ${esc(st[1])}</a></div>
-      <div class="big" style="color:${on?"var(--on)":"var(--off)"}">${on?"Risk-On":"Risk-Off"}</div>
-      <div class="big-ko">${on?"지수 ETF 50% + 엔진 50종목 50%":"현금(단기채) 100% — 종목은 대기 명단"}</div>
-      <div class="desc">${on
-        ?"Reflex가 상승 쪽 단계(1~5)라 주식을 보유합니다. 절반은 시장 지수 ETF(예: KODEX 200), 절반은 아래 50종목을 1%씩 담는 구성입니다."
-        :"Reflex가 하락 쪽 단계(6~9)라 주식을 보유하지 않습니다. 2011~2026년 검증에서 하락 국면에는 종목을 잘 골라도 시장 하락을 피하지 못했습니다. 상승 단계로 돌아오면 다음 거래일에 지수 ETF와 아래 종목으로 다시 들어갑니다."}</div>
+      <div class="big" style="color:${LBC}">${LB} <span style="font-size:.55em;font-weight:700">${Math.round(X*100)}%</span></div>
+      <div class="big-ko">Equity Exposure 주식 비중 ${Math.round(X*100)}% · 현금(단기채) ${Math.round((1-X)*100)}%</div>
+      <div class="desc">${g.source==="ensemble"
+        ?`Reflex 단계 판정의 기준값 조합 ${(g.ens?.n||2430).toLocaleString()}개 중 ${(g.ens?.n_up??0).toLocaleString()}개(${Math.round((g.target??X)*100)}%)가 Risk-On입니다. 이 비율만큼 주식을 보유하고, 10%p 이상 바뀔 때만 비중을 조정합니다. 기준값 하나를 고르지 않아 과최적화 위험을 줄인 방식입니다.`
+        :"Reflex 단계(1~5 Risk-On, 6~9 Risk-Off)로 판정했습니다. 조합 평균 데이터가 없어 대체 판정을 썼습니다."}
+        주식 부분은 절반을 지수 ETF(${ETF}), 절반을 아래 50종목에 1%씩 균등하게 담습니다.</div>
     </div>
     <div>
       <div class="kicker">Recommended Allocation <span class="ko-i">권장 배분</span></div>
       <div class="alloc">${seg(al.index,"var(--idx)","Index")}${seg(al.stocks,"var(--stk)","Stocks")}${seg(al.cash,"var(--cash)","Cash")}</div>
-      <div class="alegend"><span style="--c:var(--idx)"><i></i>시장 지수 ETF</span><span style="--c:var(--stk)"><i></i>엔진 50종목 (각 1%)</span><span style="--c:var(--cash)"><i></i>현금·단기채</span></div>
+      <div class="alegend"><span style="--c:var(--idx)"><i></i>코스피 200 ETF</span><span style="--c:var(--stk)"><i></i>Picks 50종목 (균등)</span><span style="--c:var(--cash)"><i></i>현금·단기채</span></div>
       ${metr}
     </div></div></section>
 
   <section class="panel p-5 md:p-6 mb-6">
     <div class="ptitle"><h2>Paper Track <span class="ko-i">가상 운용 장부</span></h2><p>위 규칙을 그대로 따랐을 때의 매일 성과입니다. 거래비용(종목 편도 0.25%, ETF 0.05%)과 현금 CD 금리를 반영합니다. 실제 돈을 넣기 전 2~3개월 실시간 검증용입니다.</p></div>
-    <div class="legend mb-2"><span style="--c:#dc2626">Engine 엔진</span><span style="--c:#6b7280">Market 시장(시총가중)</span><span class="blk" style="--c:#dbeafe">Risk-Off 구간</span></div>
+    <div class="legend mb-2"><span style="--c:#dc2626">Engine 엔진</span><span style="--c:#6b7280">KOSPI 코스피</span><span class="blk" style="--c:#dbeafe">주식 비중 (음영이 짙을수록 낮음)</span></div>
     <div class="box" id="chart"></div>
   </section>
 
   <section class="panel p-5 md:p-6 mb-6">
     <div class="ptitle"><h2>Portfolio <span class="ko-i">이번 달 50종목 · ${esc(P.rebal_date)} 교체</span></h2><p>매월 첫 거래일에 종합 점수 상위 50종목으로 바꿉니다. 기존 종목은 오늘 순위가 ${d.params?.buffer||100}위 안이면 유지해 매매를 줄입니다. 한 업종은 최대 ${d.params?.max_group||10}종목(금융·보험·은행·증권은 하나로 계산)까지 담습니다. 점수는 600종목 안의 백분위(0~100)입니다.</p></div>
-    ${on?"":`<div class="offnote">현재 Risk-Off라 실제로는 보유하지 않는 대기 명단입니다. 상승 국면으로 바뀌면 이 종목들로 들어갑니다.</div>`}
+    ${X>=0.7?"":`<div class="offnote">현재 주식 비중 ${Math.round(X*100)}%라 이 50종목에는 자금의 ${Math.round(X*50)}%만 배분됩니다${X===0?" (실제 보유 없음, 대기 명단)":""}. 비중이 올라가면 같은 종목으로 늘립니다.</div>`}
     <div class="scroll"><table>
       <thead><tr><th>#</th><th class="l">Stock<span class="ko">종목</span></th><th class="l">Sector<span class="ko">업종</span></th><th>Rank<span class="ko">오늘 순위</span></th>
       <th>Quality<span class="ko">실적·수급</span></th><th>Trend<span class="ko">추세</span></th><th class="hide-sm">Low Vol<span class="ko">저변동성</span></th><th>Composite<span class="ko">종합</span></th><th>Since<span class="ko">교체 후 수익</span></th></tr></thead>
@@ -192,7 +194,7 @@ function render(d){
     <div class="ptitle"><h2>Method <span class="ko-i">방법과 근거</span></h2></div>
     <div class="method">
       <div>
-      <p><b>Process</b> <span class="text-gray-400">운용 절차</span> — ① 시장 국면 필터: Reflex 단계가 1~5면 주식 보유(Risk-On), 6~9면 현금(Risk-Off). ② 업종 필터: Risk-On일 때 Sector Momentum 하위 5개 업종 제외. ③ 종목 순위: 아래 세 팩터의 평균으로 상위 50종목, 월 1회 리밸런싱.</p>
+      <p><b>Process</b> <span class="text-gray-400">운용 절차</span> — ① 시장 국면 필터: Reflex 기준값 2,430개 조합 중 Risk-On(1~5단계) 비율만큼 주식 보유(70% 이상 Risk-On, 30% 이하 Risk-Off, 사이 Neutral). 주식 부분은 코스피 200 ETF 50% + 종목 50%. ② 업종 필터: 주식 비중 50% 이상일 때 Sector Momentum 하위 5개 업종 제외. ③ 종목 순위: 아래 세 팩터의 평균으로 상위 50종목, 월 1회 리밸런싱.</p>
       <p><b>Quality</b> <span class="text-gray-400">실적·수급</span> — 흑자 여부, 이익수익률(E/P), 1년 EPS 증가율, 60일 외국인+기관 순매수(시가총액 대비), 소속 업종의 Sector Momentum(12개월 상대수익).</p>
       <p><b>Trend</b> <span class="text-gray-400">추세</span> — 52주 고점 근접도와 최근 1개월 단기 반전(−1개월 수익률). 검증에서 1~3개월 급등과 거래량 급증 종목은 이후 수익이 낮았고, 52주 고점 근처에서 완만하게 오르는 종목이 좋았습니다.</p>
       <p><b>Low Vol</b> <span class="text-gray-400">저변동성</span> — 60일 변동성이 낮을수록 높은 점수. 한국 시장에서 가장 꾸준했던 팩터입니다.</p>
@@ -202,9 +204,13 @@ function render(d){
       <table class="mt"><thead><tr><th class="l">전략</th><th>연수익</th><th>최대 낙폭</th></tr></thead><tbody>
         <tr><td>시장(시총가중) 보유</td><td>5.8%</td><td>−46%</td></tr>
         <tr><td>지수 50 + 엔진 50 + Reflex</td><td>9.2%</td><td>−18%</td></tr>
-        <tr><td>지수 + Reflex</td><td>10.3%</td><td>−19%</td></tr>
         <tr><td>엔진 50종목, 국면 필터 없음</td><td>5.5%</td><td>−56%</td></tr></tbody></table>
-      <p class="mt-2">시장 국면 필터가 성과 차이의 대부분을 만들었습니다. 종목 엔진은 넓은 장세(2011~18)에서 지수보다 나았고, 대형주 쏠림 장세(2019~)에서는 뒤졌습니다. Reflex 규칙은 같은 기간 데이터로 정했고, 2026년 하락 회피의 비중이 커서 실제 성과는 이보다 낮을 수 있습니다. 매매 신호가 아니라 참고용입니다.</p>
+      <p class="mt-2"><b>Walk-forward</b> <span class="text-gray-400">사후 선택 없는 검증, 2015~2026</span></p>
+      <table class="mt"><thead><tr><th class="l">국면 필터</th><th>연수익</th><th>Sharpe</th><th>최대 낙폭</th></tr></thead><tbody>
+        <tr><td>시장 보유</td><td>8.6%</td><td>0.48</td><td>−46%</td></tr>
+        <tr><td>매년 과거 최고 조합 1개</td><td>7.7%</td><td>0.62</td><td>−20%</td></tr>
+        <tr><td>2,430개 조합 평균 (현재 방식)</td><td>12.6%</td><td>0.99</td><td>−19%</td></tr></tbody></table>
+      <p class="mt-2">2,430개 조합 모두 시장보다 최대 낙폭이 작았고 97%가 Sharpe가 높았습니다. 수익 우위는 2026년을 빼면 연 2~3%p 수준이며, 주된 효과는 하락장 방어입니다. 종목 엔진은 넓은 장세(2011~18)에서 지수보다 나았고, 대형주 쏠림 장세(2019~)에서는 뒤졌습니다. 매매 신호가 아니라 참고용입니다.</p>
       </div>
     </div>
   </section>`;
@@ -219,7 +225,7 @@ function drawChart(S){
   const vals=S.flatMap(r=>[r[1],r[2]]).filter(v=>v!=null);
   let lo=Math.min(...vals),hi=Math.max(...vals); const pad=(hi-lo)*0.08||0.02; lo-=pad; hi+=pad;
   const ys=v=>m.t+(hi-v)/(hi-lo)*ih;
-  let off="";for(let i=0;i<S.length;i++){if(S[i][3]===0){let j=i;while(j+1<S.length&&S[j+1][3]===0)j++;off+=`<rect x="${xs(i)}" y="${m.t}" width="${Math.max(1,xs(j)-xs(i))}" height="${ih}" fill="#dbeafe" opacity=".6"/>`;i=j;}}
+  let off="";for(let i=0;i<S.length;i++){const e=S[i][3]??1;if(e<1){let j=i;while(j+1<S.length&&(S[j+1][3]??1)===e)j++;off+=`<rect x="${xs(i)}" y="${m.t}" width="${Math.max(1,xs(Math.min(j+1,S.length-1))-xs(i))}" height="${ih}" fill="#bfdbfe" opacity="${(0.7*(1-e)).toFixed(2)}"/>`;i=j;}}
   const line=(k,c,w)=>`<path d="${S.map((r,i)=>(i?"L":"M")+xs(i).toFixed(1)+" "+ys(r[k]).toFixed(1)).join("")}" fill="none" stroke="${c}" stroke-width="${w}"/>`;
   const ticks=5,yt=[...Array(ticks)].map((_,i)=>lo+(hi-lo)*i/(ticks-1));
   const xt=[0,Math.floor((S.length-1)/2),S.length-1];
@@ -234,7 +240,7 @@ function drawChart(S){
   svg.querySelector("#hit").addEventListener("mousemove",e=>{
     const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*W,i=Math.max(0,Math.min(S.length-1,Math.round((x-m.l)/iw*(S.length-1))));
     hx.setAttribute("x1",xs(i));hx.setAttribute("x2",xs(i));hx.style.display="";
-    const s=S[i];tip.innerHTML=`${s[0]}<br>엔진 ${pct(s[1]-1)} · 시장 ${pct(s[2]-1)}<br>${s[3]?"Risk-On":"Risk-Off"}`;
+    const s=S[i];tip.innerHTML=`${s[0]}<br>엔진 ${pct(s[1]-1)} · KOSPI ${pct(s[2]-1)}<br>주식 비중 ${Math.round((s[3]??1)*100)}%`;
     tip.style.display="block";tip.style.left=(e.pageX+12)+"px";tip.style.top=(e.pageY-10)+"px";});
   svg.querySelector("#hit").addEventListener("mouseleave",()=>{tip.style.display="none";hx.style.display="none";});
 }
