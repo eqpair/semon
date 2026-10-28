@@ -68,10 +68,10 @@ def regime_block():
     if st.get("pending"):
         p = st["pending"]
         lines.append(f"전환 후보: {p['id']} {STAGE_EN.get(p['id'], '')}({p['name']}) {p['count']}/{p['need']}일 확인 중")
-    lines.append(f"형세(Fundamentals) {j['F']['value']} (40일 변화 {_f(j['F'].get('d40'), 0, True)}) · "
-                 f"기세(Momentum) {j['M']['value']} (20일 변화 {_f(j['M'].get('d20'), 0, True)}) · "
-                 f"단기 기세 {j['Mf']['value']} · 편향(Bias, 기세−형세) {_f(j.get('gap'), 0, True)}")
-    for ax, name in (("F", "형세"), ("M", "기세")):
+    lines.append(f"Fundamentals {j['F']['value']} (40일 변화 {_f(j['F'].get('d40'), 0, True)}) · "
+                 f"Momentum {j['M']['value']} (20일 변화 {_f(j['M'].get('d20'), 0, True)}) · "
+                 f"Short-term Momentum {j['Mf']['value']} · Bias(Momentum−Fundamentals) {_f(j.get('gap'), 0, True)}")
+    for ax, name in (("F", "Fundamentals"), ("M", "Momentum")):
         comps = j[ax].get("components", {})
         parts = [f"{c['label']} {_f(c.get('score'), 0)}" for c in comps.values()]
         lines.append(f"{name} 구성(백분위, 50=평소): " + ", ".join(parts))
@@ -203,6 +203,57 @@ def sectors_and_candidates():
     return "\n".join(sec_lines), note + "\n" + "\n".join(lines), set(picked), sig.get("updated_at", "")
 
 
+# ── 4·5'. Picks 엔진(형세·기세) 기반 업종·종목 후보 ─────────────────
+PICKS_JSON = BASE / "docs/data/picks.json"
+
+
+def picks_blocks():
+    """docs/data/picks.json(stock_score.py)에서 시장 관문·업종 주도권·종목 후보를 만든다.
+    picks.json이 없거나 5일 넘게 오래되면 예외 → 기존 sectors_and_candidates()로 대체."""
+    j = json.loads(PICKS_JSON.read_text(encoding="utf-8"))
+    asof = pd.Timestamp(j["as_of"])
+    if (pd.Timestamp.now() - asof).days > 5:
+        raise RuntimeError(f"picks.json 기준일 {j['as_of']} — 오래됨")
+    g, P, prm = j["regime"], j["portfolio"], j.get("params", {})
+    on = bool(g.get("up"))
+    al = g.get("alloc", {})
+    X = g.get("exposure")
+    X = float(X) if X is not None else (1.0 if on else 0.0)
+    lab = g.get("label") or ("Risk-On" if X >= 0.7 else "Risk-Off" if X <= 0.3 else "Neutral")
+    ens = g.get("ens") or {}
+    etf = " 또는 ".join(f"{e['n']}({e['t']})" for e in g.get("index_etf", [])) or "코스피 200 ETF"
+    gate = [f"기준일 {j['as_of']} 장 마감 / Reflex {g.get('stage')}단계({g.get('name')})",
+            f"판정: {lab} — Equity Exposure(주식 비중) {X:.0%}"
+            + (f" (Reflex 기준값 조합 {ens.get('n_up')}/{ens.get('n')}개가 Risk-On)" if ens else ""),
+            f"권장 배분: {etf} {al.get('index', 0):.0%} + Picks 종목 {al.get('stocks', 0):.0%} + 현금(단기채) {al.get('cash', 0):.0%}. "
+            "주식 비중은 10%p 이상 바뀔 때만 조정",
+            "근거(워크포워드 검증 2015~2026, 거래비용 포함): 기준값 2,430개 조합의 Risk-On 비율만큼 주식을 보유한 방식이 "
+            "연 12.6%, Sharpe 0.99, 최대 낙폭 −19%로 시장 보유(연 8.6%, Sharpe 0.48, −46%)보다 나았음. 모든 조합이 시장보다 낙폭이 작았음. "
+            "수익 우위는 2026년을 빼면 연 2~3%p이고 주된 효과는 하락장 방어."]
+    sec = ["순위 | 업종 | 12개월 상대수익(최근 1개월 제외) | 52주 신고가 근처 종목 비율 | 종목 수 | 비고"]
+    for x in j.get("sectors", []):
+        sec.append(f"{x['rank']} | {x['s']} | {_f((x.get('r12') or 0) * 100, 0, True)}% | {_f((x.get('nh') or 0) * 100, 0)}% | {x['n']} | "
+                   + ("하위 — Risk-On 때 제외" if x.get("excl") else ""))
+    sec.append("근거: Sector Momentum은 시장이 상승 국면일 때만 이후 60일 업종 초과수익을 설명했고(상위·하위 5개 차이 약 3%p), "
+               "하락 국면에서는 효과가 없었음. 단기 회전(RRG)은 효과가 없거나 반대였음.")
+    pct = lambda v: "—" if v is None else f"{(v + 0.5) * 100:.0f}"
+    lines = ["종목(코드) | 업종 | 오늘 순위(600종목 중) | Quality(실적·수급) | Trend(추세) | Low Vol(저변동성) | Composite(종합) | 52주 고점 대비 | 1개월 | 교체 후 수익"]
+    codes = []
+    for h in P.get("holdings", []):
+        codes.append(h["t"])
+        lines.append(f"{h['n']}({h['t']}) | {h.get('s') or '—'} | {h.get('rank') or '순위 밖'} | {pct(h.get('hs'))} | {pct(h.get('gs'))} | "
+                     f"{pct(h.get('rk'))} | {pct(h.get('all'))} | {_f(((h.get('hi52') or 1) - 1) * 100, 1, True)}% | "
+                     f"{_f((h.get('r21') or 0) * 100, 1, True)}% | {_f((h.get('ret') or 0) * 100, 1, True)}%")
+    note = (f"이번 달 엔진 포트폴리오 {len(codes)}종목 ({P.get('rebal_date')} 교체, 매월 첫 거래일 교체). "
+            f"거래대금 상위 {prm.get('universe', 600)}종목에서 Quality(흑자 여부·이익수익률·1년 EPS 증가율·60일 외국인+기관 순매수·Sector Momentum), "
+            "Trend(52주 고점 근접·최근 1개월 급등 회피), Low Vol(60일 변동성 낮음)의 백분위 평균 상위. 점수는 0~100 백분위. "
+            f"한 업종 최대 {prm.get('max_group', 10)}종목. "
+            "검증: Risk-On 구간에서 Quality와 Trend 점수가 모두 높은 종목이 이후 60일 가장 많이 올랐고, 최근 1~3개월 급등·거래량 급증 종목은 오히려 덜 올랐음. "
+            + (f"현재 주식 비중 {X:.0%}이므로 이 목록에는 자금의 {X * 0.5:.0%}만 배분됨"
+               + (" — 사실상 대기 명단이며 매수 권고가 아님." if X <= 0.3 else " — 비중 범위 안에서 분할로 다룰 것." if X < 0.7 else ".")))
+    return "\n".join(gate), "\n".join(sec), note + "\n" + "\n".join(lines), set(codes)
+
+
 def domestic_context():
     """(프롬프트용 국내 컨텍스트 텍스트, 후보 종목 코드 집합)."""
     blocks, codes = [], set()
@@ -214,11 +265,18 @@ def domestic_context():
         except Exception as e:
             logger.warning(f"{title} 생성 실패(생략): {e}")
     try:
-        sec_text, cand_text, codes, upd = sectors_and_candidates()
-        blocks.append(f"=== 섹터 현황 (추세의 질 점수 순, signals.json {upd}) ===\n{sec_text}")
-        blocks.append(f"=== 종목 후보 (추세의 질 점수 상위 {N_CANDIDATES}, 섹터당 최대 {PER_SECTOR}) ===\n{cand_text}")
+        gate_text, sec_text, cand_text, codes = picks_blocks()
+        blocks.append(f"=== Market Regime Filter (Picks) ===\n{gate_text}")
+        blocks.append(f"=== Sector Momentum (Picks, KRX 업종) ===\n{sec_text}")
+        blocks.append(f"=== 종목 후보 (Picks 엔진 이번 달 포트폴리오) ===\n{cand_text}")
     except Exception as e:
-        logger.warning(f"섹터·후보 생성 실패(생략): {e}")
+        logger.warning(f"Picks 블록 실패 → 기존 후보 방식 사용: {e}")
+        try:
+            sec_text, cand_text, codes, upd = sectors_and_candidates()
+            blocks.append(f"=== 섹터 현황 (추세의 질 점수 순, signals.json {upd}) ===\n{sec_text}")
+            blocks.append(f"=== 종목 후보 (추세의 질 점수 상위 {N_CANDIDATES}, 섹터당 최대 {PER_SECTOR}) ===\n{cand_text}")
+        except Exception as e2:
+            logger.warning(f"섹터·후보 생성 실패(생략): {e2}")
     logger.info(f"국내 컨텍스트: 블록 {len(blocks)}개, 후보 {len(codes)}종목")
     return "\n\n".join(blocks), codes
 

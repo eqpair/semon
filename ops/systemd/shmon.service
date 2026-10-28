@@ -1,0 +1,17 @@
+[Unit]
+Description=Shmon Position Updater
+After=network.target
+PartOf=semon.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/shmon
+ExecStart=/home/ubuntu/shmon/venv/bin/python update_loop.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=semon.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=EQAI Macro Live (light price-only update)
+After=network.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/semon
+Environment=PATH=/home/ubuntu/semon/venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/ubuntu/semon/venv/bin/python3 /home/ubuntu/semon/update_macro_live.py
+TimeoutStartSec=120
+StandardOutput=append:/home/ubuntu/semon/macro_live.log
+StandardError=append:/home/ubuntu/semon/macro_live.log

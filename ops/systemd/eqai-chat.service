@@ -1,0 +1,17 @@
+[Unit]
+Description=EQAI Chat API Server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/semon
+Environment=PATH=/home/ubuntu/semon/venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/ubuntu/semon/venv/bin/python3 /home/ubuntu/semon/eqai_chat.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/ubuntu/semon/eqai.log
+StandardError=append:/home/ubuntu/semon/eqai.log
+
+[Install]
+WantedBy=multi-user.target

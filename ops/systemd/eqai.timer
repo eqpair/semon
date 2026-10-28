@@ -1,0 +1,10 @@
+[Unit]
+Description=EQAI Timer
+Requires=eqai.service
+
+[Timer]
+OnCalendar=*-*-* 07:00:00 Asia/Seoul
+Persistent=true
+
+[Install]
+WantedBy=timers.target

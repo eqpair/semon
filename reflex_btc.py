@@ -42,21 +42,21 @@ HISTORY_DAYS = 730
 SPLIT = "2020-01-01"
 
 STAGES = {
-    1: ("유리한 형세", "환경이 먼저 좋아지기 시작했지만 가격은 아직 반응하지 않음"),
-    2: ("상승 기세", "가격이 반응하기 시작함"),
-    3: ("현실 개선", "형세가 좋아지고 기세가 따라붙음"),
-    4: ("확신 강화", "기세가 높은 수준에서 유지 — 추세가 이어짐"),
-    5: ("기세 가속", "기세가 형세를 크게 앞섬 — 편향이 스스로를 강화하는 구간"),
-    6: ("반전 시작", "높은 곳에서 기세가 꺾이기 시작함"),
-    7: ("기세 약화", "기세가 중간 수준으로 식어가는 중"),
-    8: ("현실 악화", "형세가 나빠지고 기세도 약함"),
-    9: ("하락 가속", "기세가 무너지며 하락이 하락을 부르는 구간"),
+    1: ("초기 회복", "유동성·거시 여건 개선이 먼저 시작 — 가격은 아직 미반영"),
+    2: ("상승 가속", "Momentum 반응 시작"),
+    3: ("확인", "Fundamentals 개선에 Momentum 동반"),
+    4: ("확산", "높은 Momentum 유지, 상승 종목 확산"),
+    5: ("과열", "Momentum ≫ Fundamentals — 기대가 가격을 끌어올리는 구간"),
+    6: ("반전", "고점에서 Momentum 꺾임 시작"),
+    7: ("둔화", "Momentum이 중립 수준으로 둔화"),
+    8: ("악화", "Fundamentals 약화, Momentum 부진"),
+    9: ("투매", "Momentum 급락 — 매도가 매도를 부르는 구간"),
 }
 UP_PHASE, DOWN_PHASE = (2, 3, 4, 5), (6, 7, 8, 9)
 
 COMP = {
     "M": {"trend": ("추세", 0.35), "lev": ("레버리지", 0.15), "val": ("과열도", 0.15),
-          "breadth": ("알트 참여", 0.20), "energy": ("거래량", 0.15)},
+          "breadth": ("알트 시장 폭", 0.20), "energy": ("거래량", 0.15)},
     "Mf": {"trend": ("추세", 0.35), "breadth": ("알트 참여", 0.25), "lev": ("레버리지", 0.15),
            "energy": ("거래량", 0.25)},
     "F": {"liq": ("달러 유동성", 0.30), "risk": ("위험선호", 0.20), "stable": ("스테이블코인", 0.30),
@@ -383,9 +383,9 @@ def build_json(idx, X, S, comps, raw, conf, feat, pending, px, asof):
     stats, halves, trans, base, eps = stage_stats(conf, px)
     f = feat.iloc[-1]
     accel = f.Mf - f.M
-    acc_txt = "단기 기세가 더 강함(가속)" if accel > 10 else "단기 기세가 더 약함(감속)" if accel < -10 else "속도 비슷"
-    summary = (f"형세 {f.F:.0f}({trend_word(f.dF, P['th'])}) · 기세 {f.M:.0f}({trend_word(f.dM, P['th'])}) · "
-               f"단기 기세 {f.Mf:.0f} — " + (STAGES[cur][1] if cur else "판정 대기"))
+    acc_txt = "Short-term 가속" if accel > 10 else "Short-term 둔화" if accel < -10 else "속도 비슷"
+    summary = (f"Fundamentals {f.F:.0f}({trend_word(f.dF, P['th'])}) · Momentum {f.M:.0f}({trend_word(f.dM, P['th'])}) · "
+               f"Short-term {f.Mf:.0f} — " + (STAGES[cur][1] if cur else "판정 대기"))
     hist = pd.DataFrame({"F": feat.F, "M": feat.M, "Mf": feat.Mf, "g": feat.gap, "s": conf,
                          "k": px}).dropna(subset=["F", "M"])
 

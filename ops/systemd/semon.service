@@ -1,0 +1,17 @@
+[Unit]
+Description=Semon RRG Momentum Analyzer
+After=network.target
+PartOf=semon.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/semon
+ExecStart=/home/ubuntu/semon/venv/bin/python main.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=semon.target

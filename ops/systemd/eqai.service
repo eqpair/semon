@@ -1,0 +1,15 @@
+[Unit]
+Description=EQAI Equity AI Intelligence
+After=network.target semon.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/semon
+Environment=PATH=/home/ubuntu/semon/venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/ubuntu/semon/venv/bin/python3 /home/ubuntu/semon/eqai.py
+StandardOutput=append:/home/ubuntu/semon/eqai.log
+StandardError=append:/home/ubuntu/semon/eqai.log
+
+[Install]
+WantedBy=multi-user.target

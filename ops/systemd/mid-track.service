@@ -1,0 +1,7 @@
+[Unit]
+Description=MID signal daily scoring
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/semon
+ExecStart=/home/ubuntu/semon/venv/bin/python3 mid_track.py

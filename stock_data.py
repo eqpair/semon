@@ -235,13 +235,28 @@ def main():
         run_sector(list(quarter_last(trading_days(a.start, end))))
     elif a.cmd == "daily":
         recent = list(trading_days(None, end)[-10:])
+        # 펀더멘털은 주 1회(그 주 마지막 거래일)만: 이번 주는 금요일에만, 지난주 것은 빠졌으면 채움
+        fund_days = [d for d in week_last(trading_days(None, end)[-15:]) if d.weekday() == 4 or d < recent[-1]]
         failed = []
-        for kind in ("fund", "flow"):
+        for kind, days in (("flow", recent), ("fund", fund_days)):
             try:
-                run(kind, recent)
+                run(kind, days)
+            except SystemExit as e:
+                failed.append(kind)
+                log(f"daily: {kind} 중단 (code {e.code}) — KRX 차단 의심, 내일 다시 시도")
+                break
             except Exception as e:
                 failed.append(kind)
                 log(f"daily: {kind} 실패 — {e!r}"[:300])
+        # 업종 분류는 최근 7일 안에 받은 것이 없을 때만 (주 1회)
+        sp = OUT / "sector" / "sector_pit.parquet"
+        last_sec = pd.read_parquet(sp, columns=["date"])["date"].max() if sp.exists() else None
+        if not failed and (last_sec is None or (end - pd.Timestamp(last_sec)).days >= 7):
+            try:
+                run_sector([end])
+            except Exception as e:
+                failed.append("sector")
+                log(f"daily: sector 실패 — {e!r}"[:300])
         log("daily: 완료" + (f" (실패: {failed})" if failed else ""))
         sys.exit(1 if failed else 0)
 

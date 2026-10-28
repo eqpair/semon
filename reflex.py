@@ -50,21 +50,21 @@ HISTORY_DAYS = 520
 SPLIT = "2019-01-01"
 
 STAGES = {
-    1: ("유리한 형세", "현실이 먼저 좋아지기 시작했지만 시장은 아직 믿지 않음"),
-    2: ("상승 기세", "가격이 반응하기 시작함"),
-    3: ("현실 개선", "형세가 좋아지고 기세가 따라붙음"),
-    4: ("확신 강화", "기세가 높은 수준에서 유지 — 참여가 넓고 추세가 이어짐"),
-    5: ("기세 가속", "기세가 형세를 크게 앞섬 — 편향이 스스로를 강화하는 구간"),
-    6: ("반전 시작", "높은 곳에서 기세가 꺾이기 시작함"),
-    7: ("기세 약화", "기세가 중간 수준으로 식어가는 중"),
-    8: ("현실 악화", "형세가 나빠지고 기세도 약함"),
-    9: ("하락 가속", "기세가 무너지며 하락이 하락을 부르는 구간"),
+    1: ("초기 회복", "Fundamentals 개선이 먼저 시작 — 가격은 아직 미반영"),
+    2: ("상승 가속", "Momentum 반응 시작"),
+    3: ("확인", "Fundamentals 개선에 Momentum 동반"),
+    4: ("확산", "높은 Momentum 유지, 상승 종목 확산"),
+    5: ("과열", "Momentum ≫ Fundamentals — 기대가 가격을 끌어올리는 구간"),
+    6: ("반전", "고점에서 Momentum 꺾임 시작"),
+    7: ("둔화", "Momentum이 중립 수준으로 둔화"),
+    8: ("악화", "Fundamentals 약화, Momentum 부진"),
+    9: ("투매", "Momentum 급락 — 매도가 매도를 부르는 구간"),
 }
 UP_PHASE, DOWN_PHASE = (2, 3, 4, 5), (6, 7, 8, 9)
 
 COMP = {
-    "M": {"trend": ("추세", 0.30), "part": ("참여", 0.35), "energy": ("에너지", 0.15), "flow": ("수급", 0.20)},
-    "Mf": {"trend": ("추세", 0.30), "part": ("참여", 0.35), "energy": ("에너지", 0.15), "flow": ("수급", 0.20)},
+    "M": {"trend": ("추세", 0.30), "part": ("시장 폭", 0.35), "energy": ("거래대금", 0.15), "flow": ("수급", 0.20)},
+    "Mf": {"trend": ("추세", 0.30), "part": ("시장 폭", 0.35), "energy": ("거래대금", 0.15), "flow": ("수급", 0.20)},
     "F": {"export": ("수출", 0.35), "econ": ("국내 경기", 0.20), "rate": ("금리", 0.20),
           "fx": ("환율", 0.15), "cost": ("유가", 0.10)},
 }
@@ -456,9 +456,9 @@ def build_json(idx, X, S, comps, A, raw, conf, feat, pending, comp, kr, us_asof)
     stats, halves, trans, base, eps = stage_stats(conf, comp)
     f = feat.iloc[-1]
     accel = f.Mf - f.M
-    acc_txt = "단기 기세가 더 강함(가속)" if accel > 10 else "단기 기세가 더 약함(감속)" if accel < -10 else "속도 비슷"
-    summary = (f"형세 {f.F:.0f}({trend_word(f.dF, P['th'])}) · 기세 {f.M:.0f}({trend_word(f.dM, P['th'])}) · "
-               f"단기 기세 {f.Mf:.0f} — " + (STAGES[cur][1] if cur else "판정 대기"))
+    acc_txt = "Short-term 가속" if accel > 10 else "Short-term 둔화" if accel < -10 else "속도 비슷"
+    summary = (f"Fundamentals {f.F:.0f}({trend_word(f.dF, P['th'])}) · Momentum {f.M:.0f}({trend_word(f.dM, P['th'])}) · "
+               f"Short-term {f.Mf:.0f} — " + (STAGES[cur][1] if cur else "판정 대기"))
 
     hist = pd.DataFrame({"F": feat.F, "M": feat.M, "Mf": feat.Mf, "g": feat.gap, "s": conf,
                          "k": kr["코스피"]}).dropna(subset=["F", "M"])

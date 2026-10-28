@@ -1,0 +1,9 @@
+0 7 * * 1-5 /home/ubuntu/semon/update_earnings.sh
+0 8 * * 1-5 systemctl restart semon
+*/5 7-20 * * 1-5 /usr/bin/python3 /home/ubuntu/stmon/stmon_summary.py >> /home/ubuntu/stmon/logs/summary.log 2>&1
+30 6 * * 2-6 cd /home/ubuntu/semon && /home/ubuntu/semon/venv/bin/python3 rrg_us.py >> logs/rrg_us.log 2>&1
+0 4 1-7 * * [ "$(date +\%u)" = 7 ] && /home/ubuntu/git_shrink.sh >> /home/ubuntu/git_shrink.log 2>&1
+20 9 * * * cd /home/ubuntu/semon && /home/ubuntu/semon/venv/bin/python3 reflex_btc_data.py >> logs/reflex_btc_data.log 2>&1; /home/ubuntu/semon/venv/bin/python3 reflex_btc.py --push >> logs/reflex_btc.log 2>&1
+7 * * * * /home/ubuntu/semon/krx_watch.sh >> /home/ubuntu/semon/logs/krx_watch.log 2>&1
+40 16 * * 1-5 cd /home/ubuntu/semon && /home/ubuntu/semon/venv/bin/python3 macro_kr.py >> logs/macro_kr.log 2>&1; /home/ubuntu/semon/venv/bin/python3 reflex_data.py daily >> logs/reflex_data.log 2>&1; /home/ubuntu/semon/venv/bin/python3 reflex.py --push >> logs/reflex.log 2>&1
+30 18 * * 1-5 cd /home/ubuntu/semon && venv/bin/python3 stock_data.py daily >> logs/stock_daily.log 2>&1; venv/bin/python3 reflex_ensemble.py --push >> logs/ensemble.log 2>&1; venv/bin/python3 stock_score.py --push >> logs/picks.log 2>&1

@@ -1,0 +1,7 @@
+[Unit]
+Description=MID scoring daily at 15:50 KST weekdays
+[Timer]
+OnCalendar=Mon..Fri 15:50
+Persistent=true
+[Install]
+WantedBy=timers.target
