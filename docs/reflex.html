@@ -121,6 +121,15 @@ tr.cur td{background:var(--wash);font-weight:600}
   .dial .cur{animation:arrive .9s ease-out both}
   @keyframes arrive{from{opacity:.15}}
 }
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sigc{background:var(--wash);border-radius:6px;padding:12px 14px;display:block;text-decoration:none;color:inherit}
+.sigc:hover{background:var(--rule2)}
+.sigc .k{font-size:12.5px;font-weight:600;color:var(--ink)}
+.sigc .v{font-size:26px;font-weight:700;line-height:1.15;margin-top:4px;color:var(--ink)}
+.sigc .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.sigc .cond{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2);margin-top:6px}
+.sigc .cond b{color:var(--ink)} .sigc .cond .no{color:var(--ink3);font-weight:600}
+@media (max-width:640px){.sig{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -206,6 +215,29 @@ fetch(CONFIG.json+"?t="+Date.now()).then(r=>{if(!r.ok)throw new Error("HTTP "+r.
   $("#loading").innerHTML=`<span class="text-red-500">데이터 로드 실패 (${esc(e.message)})</span>`;
 });
 
+
+function loadSignals(){
+  const box=$("#sig"); if(!box) return;
+  const get=u=>fetch(u+"?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  Promise.all([get("data/picks.json"),get("data/focus.json")]).then(([p,f])=>{
+    if(!p&&!f) return;
+    const g=(p&&p.regime)||{}, X=g.exposure, LB=g.label||"—";
+    const pc=p?`<a class="sigc" href="picks.html"><div class="k">Picks Equity Exposure <span class="ko-i">주식 비중 (분산 50종목 + 지수 ETF)</span></div>
+      <div class="v">${LB} ${X==null?"":Math.round(X*100)+"%"}</div>
+      <div class="d">${g.ens?`단계 판정 기준값 ${(g.ens.n||0).toLocaleString()}개 조합 중 ${(g.ens.n_up||0).toLocaleString()}개가 Risk-On(1~5단계)`:"Reflex 단계 기준"} · 10%p 이상 바뀔 때만 조정</div></a>`:"";
+    const G=(f&&f.gate)||{}, hold=f&&f.status==="hold", ok=(v,t)=>v!=null&&v>=t;
+    const head=hold?"Holding":G.active?"Buy":"Wait";
+    const names=f?(hold?f.holdings:f.picks||[]).map(x=>esc(x.n)).join(", "):"";
+    const fc=f?`<a class="sigc" href="picks.html#focus"><div class="k">Focus 2 <span class="ko-i">실전 2종목 매매 조건</span></div>
+      <div class="v">${head} <span style="font-size:14px;font-weight:600;color:var(--ink2)">${hold?"보유 중":G.active?"조건 충족":"대기"}</span></div>
+      <div class="cond"><span>Fundamentals <b class="${ok(G.F,G.F_min)?"":"no"}">${G.F==null?"—":Math.round(G.F)}</b> / ${G.F_min} 이상 ${ok(G.F,G.F_min)?"✓":"✗"}</span>
+        <span>Momentum <b class="${ok(G.M,G.M_min)?"":"no"}">${G.M==null?"—":Math.round(G.M)}</b> / ${G.M_min} 이상 ${ok(G.M,G.M_min)?"✓":"✗"}</span></div>
+      <div class="d">${hold?"보유":"조건 충족 시 매수"}: ${names||"—"}</div></a>`:"";
+    box.innerHTML=`<section class="panel p-5 mb-4"><div class="ptitle"><h2>Strategy Signals<span class="ko-i">이 국면 판정을 쓰는 전략</span></h2>
+      <p>Picks는 단계 판정으로 주식 비중을 정하고, Focus 2는 Fundamentals와 Momentum이 모두 기준 이상일 때만 2종목을 보유합니다.</p></div>
+      <div class="sig">${pc}${fc}</div></section>`;
+  });
+}
 function marketBadge(){
   if(CONFIG.market247)return `<span class="font-bold text-gray-700">24/7</span>`;
   const now=new Date(),k=new Date(now.getTime()+(now.getTimezoneOffset()+540)*60000),t=k.getHours()*60+k.getMinutes(),wd=k.getDay()>=1&&k.getDay()<=5;
@@ -246,6 +278,8 @@ function render(d){
       </div>
     </div>
   </section>
+
+  <div id="sig"></div>
 
   <div class="drivers mb-4">
     <section class="panel p-5">${driverHead("Fundamentals","구성 요소",d.F)}${scale()}${comps(d.F.components)}</section>
@@ -306,7 +340,7 @@ function render(d){
     <div class="method">${CONFIG.method}</div>
   </section>`;
 
-  drawDial(d);drawPlane(d);
+  drawDial(d);drawPlane(d);loadSignals();
   let range="2y";const redraw=()=>drawLine(range==="2y"?d.hist:d.histLong,range);redraw();
   document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
     range=b.dataset.r;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));redraw();}));
