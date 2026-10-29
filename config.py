@@ -778,3 +778,14 @@ SECTORS = {
 WAIT_TIME = 5
 MARKET_OPEN = (9, 0)
 MARKET_CLOSE = (15, 30)
+
+# ── KRX 업종 통일 (sectors_krx.py 산출물) ─────────────────────────────
+# data/sectors_krx.json이 있으면 위의 테마 업종 대신 KRX 업종·거래대금 상위 600종목을 사용.
+# 되돌리기: 그 파일을 지우고 sudo systemctl restart semon
+import json as _json, pathlib as _pl
+_KRX = _pl.Path(__file__).resolve().parent / "data" / "sectors_krx.json"
+if _KRX.exists():
+    try:
+        SECTORS = {k: [tuple(x) for x in v] for k, v in _json.loads(_KRX.read_text(encoding="utf-8")).items()}
+    except Exception as _e:
+        print("sectors_krx.json 읽기 실패 — 테마 업종 사용:", _e)
