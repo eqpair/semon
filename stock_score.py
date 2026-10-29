@@ -64,12 +64,12 @@ UNI = {'반도체': '전기전자', 'IT부품': '전기전자', '통신장비': 
 
 
 import re as _re
-_FIN = _re.compile("금융|카드|페이|캐피탈|인프라|증권")
+_FIN = _re.compile("금융|카드|페이|캐피탈|인프라|증권|스팩|기업인수목적|인베스트|투자|벤처|창투|파이낸셜|저축은행|IB|KCP|파트너스|한패스|텍스프리|린드먼|컴퍼니케이")  # _FIN2: 코스닥 금융 포함
 
 
 def unify_sector(industry, name="", ticker=""):
     """KRX 업종 → 묶은 업종. 기타금융은 금융지주·카드 등은 '금융', 나머지(일반 지주회사)는 '지주'."""
-    if industry == "기타금융":
+    if industry in ("기타금융", "금융"):   # 코스피 기타금융·코스닥 금융에 지주회사가 섞여 있음
         return "금융" if (_FIN.search(str(name)) or ticker == "055550") else "지주"
     return UNI.get(industry, industry)
 
