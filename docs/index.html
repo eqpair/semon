@@ -311,9 +311,6 @@
                     class="text-gray-400">거래량 미확인</span></span>
         </div>
 
-        <!-- Sector Map (Focus 2 업종 기준) -->
-        <div id="sector-map"></div>
-
         <!-- 탭 -->
         <div class="flex gap-2 mb-5">
             <button id="tab-sector" onclick="switchTab('sector')"
@@ -1314,7 +1311,7 @@
 
             if (currentTab === "sector") {
                 title.textContent = "주목 섹터"
-                desc.textContent = "Improving 사분면 진입 기준 · 단기 흐름 참고용"
+                desc.textContent = "Improving 사분면 진입 기준"
                 renderSpotlightSectors()
                 generateSpotlight()
             } else {
@@ -1666,46 +1663,6 @@
         loadData()
         setInterval(loadData, REFRESH_MS)
     </script>
-<script>
-// Sector Map — Focus 2 업종 기준 (6개월 상대강도 순위 × 업종 이익 증가율 순위). data/focus.json 사용
-(function () {
-  const box = document.getElementById("sector-map"); if (!box) return;
-  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const pc = (v, d = 0) => v == null || isNaN(v) ? "—" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v * 100).toFixed(d) + "%";
-  fetch("data/focus.json?t=" + Date.now()).then(r => { if (!r.ok) throw 0; return r.json() }).then(f => {
-    const S = (f.sectors_all || f.sectors || []).filter(s => s.rs6 != null);
-    if (!S.length) { box.style.display = "none"; return }
-    const n = S.length;
-    const rk = (arr, key) => { const v = arr.map(s => s[key]); return arr.map(s => s[key] == null ? 0 : (v.filter(x => x != null && x < s[key]).length + (v.filter(x => x === s[key]).length + 1) / 2) / v.filter(x => x != null).length) };
-    const rx = rk(S, "rs6"), ry = rk(S, "segE");
-    const W = 760, H = 440, m = { l: 56, r: 24, t: 40, b: 52 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
-    const X = v => m.l + (0.04 + 0.92 * v) * iw, Y = v => m.t + (1 - (0.04 + 0.92 * v)) * ih, X0 = m.l, X1 = m.l + iw, Y0 = m.t, Y1 = m.t + ih;
-    const g = f.gate || {};
-    const pts = S.map((s, i) => ({ s, x: rx[i], y: ry[i] })).sort((a, b) => (a.s.pick ? 1 : 0) - (b.s.pick ? 1 : 0));
-    const dot = p => { const r = 5 + Math.sqrt(p.s.n) * 0.9, on = p.s.pick, left = p.x > 0.8;
-      return `<g><circle cx="${X(p.x)}" cy="${Y(p.y)}" r="${r}" fill="${on ? "#1f2937" : "#d1d5db"}" fill-opacity="${on ? 1 : 0.7}" stroke="${on ? "#1f2937" : "#9ca3af"}" stroke-width="1"><title>${esc(p.s.s)} — 6개월 상대 ${pc(p.s.rs6, 1)}, 업종 이익 1년 ${pc(p.s.segE)}, ${p.s.n}종목${on ? " · Focus 선정" : ""}</title></circle>
-        <text x="${X(p.x) + (left ? -r - 4 : r + 4)}" y="${Y(p.y) + 4}" text-anchor="${left ? "end" : "start"}" font-size="${on ? 13 : 11.5}" font-weight="${on ? 700 : 400}" fill="${on ? "#1f2937" : "#6b7280"}">${esc(p.s.s)}</text></g>` };
-    const iso = [1.0, 1.5].map(c => `<line x1="${X(Math.max(0, c - 1))}" y1="${Y(Math.min(1, c))}" x2="${X(Math.min(1, c))}" y2="${Y(Math.max(0, c - 1))}" stroke="#e5e7eb" stroke-dasharray="4 4"/>`).join("");
-    const top = S.filter(s => s.pick).map(s => s.s);
-    box.innerHTML = `<div class="bg-white rounded-lg shadow-sm border border-gray-100 p-5 mb-5">
-      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-        <div class="text-base font-bold text-gray-800">Sector Map <span class="text-xs font-normal text-gray-400 ml-1">Focus 2 업종 기준 · ${esc(f.as_of)} 장 마감</span></div>
-        <a href="picks.html" class="text-xs text-gray-500 hover:underline">Picks · Focus 2 →</a></div>
-      <p class="text-xs text-gray-500 mb-3">오른쪽 위로 갈수록 강한 업종입니다. 가로 = 6개월 상대강도 순위, 세로 = 업종 이익 1년 증가율 순위, 원 크기 = 종목 수. 두 순위의 합이 가장 큰 2곳(<b class="text-gray-800">${top.map(esc).join(", ") || "—"}</b>)을 Focus 2가 고릅니다${g.active ? "." : " — 지금은 시장 조건 미충족으로 대기 중입니다."}</p>
-      <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="업종 지도: 6개월 상대강도 순위와 업종 이익 증가율 순위">
-        <rect x="${X(0.5)}" y="${Y0}" width="${X1 - X(0.5)}" height="${Y(0.5) - Y0}" fill="#f9fafb"/>
-        <line x1="${X(0.5)}" x2="${X(0.5)}" y1="${Y0}" y2="${Y1}" stroke="#e5e7eb"/><line x1="${X0}" x2="${X1}" y1="${Y(0.5)}" y2="${Y(0.5)}" stroke="#e5e7eb"/>
-        <rect x="${X0}" y="${Y0}" width="${iw}" height="${ih}" fill="none" stroke="#e5e7eb"/>${iso}
-        <text x="${X1}" y="${Y0 - 10}" text-anchor="end" font-size="11.5" fill="#6b7280">강세 + 이익 증가 ↗</text>
-        <text x="${X0}" y="${Y0 - 10}" font-size="11.5" fill="#9ca3af">↙ 약세 + 이익 감소 (왼쪽 아래)</text>
-        <text x="${X(0.5)}" y="${H - 14}" text-anchor="middle" font-size="12" fill="#374151">6개월 상대강도 순위 → (약 ~ 강)</text>
-        <text transform="translate(16 ${Y(0.5)}) rotate(-90)" text-anchor="middle" font-size="12" fill="#374151">업종 이익 증가율 순위 → (감소 ~ 증가)</text>
-        ${pts.map(dot).join("")}</svg>
-      <p class="text-xs text-gray-400 mt-2">아래 RRG는 단기 흐름을 보는 참고 화면입니다. 2011~2026 검증에서 RRG 사분면(Improving·Leading 등)은 이후 업종·종목 성과를 설명하지 못해 매매 근거로 쓰지 않습니다.</p>
-    </div>`;
-  }).catch(() => { box.style.display = "none" });
-})();
-</script>
 </body>
 
 </html>
