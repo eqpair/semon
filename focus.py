@@ -38,7 +38,8 @@ W_CONS = 0.5           # 목표가 신호 비중
 MIN_SEC = 5            # 업종 최소 종목 수
 COST = 0.0025          # 편도
 BACKTEST = dict(period="2012.1~2026.10", rows=[
-    ["Focus 2 (이 규칙)", "10.3%", "0.3% / 21.5%", "−31%"],
+    ["Focus 2 (이 규칙)", "10.7%", "0.6% / 22.0%", "−31%"],
+    ["Focus 2, 하향 시 교체 없이", "10.3%", "0.3% / 21.5%", "−31%"],
     ["Focus 2, 목표가 신호 없이", "8.6%", "−2.0% / 20.8%", "−50%"],
     ["코스피, 같은 시점 조건", "10.2%", "2.1% / 18.9%", "−19%"],
     ["코스피 보유", "5.9%", "0.0% / 12.3%", "−46%"]])
@@ -185,6 +186,23 @@ def main():
             hold = picks
         elif not active:
             hold = []
+        cons_exit = []
+        if active and prev and hold is prev:
+            # 보유 중 목표가 하향 우위(최근 3개월 하향 > 상향)로 바뀐 종목 → 매도, 다음 업종 1위로 교체 (cons_exit)
+            cons_exit = [t for t in prev if t in cons.index and pd.notna(cons.at[t, "net_up"]) and cons.at[t, "net_up"] < 0]
+            if cons_exit:
+                keep = [t for t in prev if t not in cons_exit]
+                held_secs = {d.at[t, "sec"] for t in keep if t in d.index}
+                cand = d.drop(index=[t for t in prev if t in d.index])
+                repl = []
+                for s_ in st.index:
+                    if len(repl) >= len(cons_exit):
+                        break
+                    g = cand[cand.sec == s_]
+                    if s_ in held_secs or g.empty:
+                        continue
+                    repl.append(g.score.idxmax()); held_secs.add(s_)
+                hold = keep + repl
         buys = [t for t in hold if t not in prev]
         sells = [t for t in prev if t not in hold]
         n_prev, n_new = max(len(prev), 1), max(len(hold), 1)
@@ -200,6 +218,9 @@ def main():
                             + f" — Fundamentals {F:.0f} · Momentum {M:.0f}")
             elif not hold:
                 msgs.append(f"⏸ Focus 전량 매도 ({today.date()}): 시장 조건 해제 (Fundamentals {F:.0f} · Momentum {M:.0f})")
+            elif cons_exit:
+                msgs.append(f"📉 Focus 교체 ({today.date()}): 목표가 하향 우위 — 매도 " + ", ".join(nm.get(t, t) for t in sells)
+                            + " / 매수 " + ", ".join(nm.get(t, t) for t in buys))
             else:
                 msgs.append(f"🔄 Focus 교체 ({today.date()}): 매수 " + ", ".join(nm.get(t, t) for t in buys)
                             + " / 매도 " + ", ".join(nm.get(t, t) for t in sells))

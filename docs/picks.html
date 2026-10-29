@@ -312,7 +312,7 @@ function renderFocus(f){
         <p><b>① Market</b> <span class="text-gray-400">시점</span> — Reflex 시장 Fundamentals ${g.F_min} 이상, Momentum ${g.M_min} 이상일 때만 보유. 아니면 현금.</p>
         <p><b>② Sector</b> <span class="text-gray-400">업종</span> — 거래대금 상위 600종목 중 5종목 이상인 업종을 6개월 상대강도(업종 시총가중 수익 − 시장) 순위와 업종 이익 증가율(1년) 순위의 합으로 매겨 상위 2곳.</p>
         <p><b>③ Stock</b> <span class="text-gray-400">종목</span> — 업종 안에서 Score 1위. Score = ½ Composite(Quality·Trend·Low Vol의 업종 내 백분위 평균) + ½ Target Revisions(최근 3개월 같은 증권사 직전 대비 목표가 상향 − 하향 건수 ÷ 커버 증권사 수의 업종 내 백분위, 리포트 없으면 중간값).</p>
-        <p><b>④ Rebalance</b> <span class="text-gray-400">교체</span> — 월 1회, 또는 조건이 새로 충족될 때.</p></div>
+        <p><b>④ Rebalance</b> <span class="text-gray-400">교체</span> — 월 1회, 또는 조건이 새로 충족될 때. 보유 중 목표가가 하향 우위(최근 3개월 하향 건수 &gt; 상향 건수)로 바뀐 종목은 다음 거래일에 팔고, 같은 규칙으로 다음 업종의 1위 종목으로 바꿉니다(검증에서 연 +0.4%p, 최악 낙폭 −38% → −35%).</p></div>
       <div><p><b>Backtest</b> <span class="text-gray-400">${esc(bt.period)}, 거래비용 포함, 교체 시작일 4가지 평균</span></p>
         <table class="mt"><thead><tr><th class="l">전략</th><th>연수익</th><th>2011~18 / 2019~26</th><th>최대 낙폭</th></tr></thead><tbody>
         ${bt.rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join("")}</tbody></table>
