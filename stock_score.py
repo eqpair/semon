@@ -164,7 +164,8 @@ def scores(D, i):
     d["ep"] = (e0 / close.iloc[i][tk]).clip(-1, 1)
     d["eg1y"] = ((e0 - e1) / e1.abs().clip(lower=1)).clip(-3, 3)
     g = d.dropna(subset=["sec"]).groupby("sec")
-    sl = pd.DataFrame({"r": g.apply(lambda x: (x.r252x * x.cap).sum() / x.cap.sum()), "nh": g.nh.mean(), "n": g.size()})
+    dd = d.dropna(subset=["sec"])  # 업종 시총가중 12개월 수익 (groupby.apply 경고 없이 같은 값)
+    sl = pd.DataFrame({"r": (dd.r252x * dd.cap).groupby(dd.sec).sum() / dd.cap.groupby(dd.sec).sum(), "nh": g.nh.mean(), "n": g.size()})
     sl = sl[sl.n >= 5]
     sl["lead"] = (z(sl.r) + z(sl.nh)) / 2
     d["lead"] = d.sec.map(sl.lead)

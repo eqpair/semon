@@ -101,6 +101,9 @@ def fetch(kis, code, since="20000101", until=None):
 def save(parts):
     if not parts:
         return
+    parts = [p for p in parts if len(p)]  # 빈 종목 제외 (concat 경고 방지)
+    if not parts:
+        return
     new = pd.concat(parts, ignore_index=True)
     if PQ.exists():
         new = pd.concat([pd.read_parquet(PQ), new], ignore_index=True)
