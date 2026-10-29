@@ -77,6 +77,28 @@ details.more summary::before{content:"▸ ";color:var(--ink3)}
 details.more[open] summary::before{content:"▾ "}
 @media (max-width:1100px){.hero,.two{grid-template-columns:minmax(0,1fr);gap:16px}.method{grid-template-columns:1fr}}
 @media (max-width:640px){h1{font-size:1.4rem !important}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.hide-sm{display:none}}
+.fhero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:start}
+.fsub{font-size:15px;font-weight:600;color:var(--ink2);letter-spacing:0}
+.fmeters{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.fmeter .k{font-size:12.5px;font-weight:600;color:var(--ink);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.fmeter .k b{font-size:22px;margin-left:auto}.fmeter .k b.ok{color:#16a34a}.fmeter .k b.no{color:var(--ink2)}
+.fmeter .th{font-size:11px;color:var(--ink3);font-weight:400}
+.fbar{position:relative;height:8px;background:var(--rule2);border-radius:4px;margin-top:4px}
+.fbar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.fbar s{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);text-decoration:none}
+.fcards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.fcard{border:1px solid var(--rule);border-radius:8px;padding:12px 14px;background:#fff}
+.fc-top{display:flex;gap:10px;align-items:flex-start}
+.fno{flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fname{font-size:16px;font-weight:700;color:var(--ink);line-height:1.25}.fname small{font-size:11px;color:var(--ink3);font-weight:400;margin-left:4px}
+.fsec{font-size:12px;color:var(--ink2)}
+.fscore{margin-left:auto;text-align:right;line-height:1}.fscore b{font-size:24px;display:block}.fscore span{font-size:10.5px;color:var(--ink3)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:10px;font-size:12px}
+.fgrid span{display:block;color:var(--ink2);font-weight:600}.fgrid em{display:block;font-style:normal;font-weight:400;font-size:10.5px;color:var(--ink3)}
+.fgrid b{font-size:13.5px;color:var(--ink)}
+tr.fpick td{background:#fef2f2}
+@media (max-width:1100px){.fhero{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.fcards,.fmeters{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -157,6 +179,8 @@ function render(d){
       ${metr}
     </div></div></section>
 
+  <div id="focus"></div>
+
   <section class="panel p-5 md:p-6 mb-6">
     <div class="ptitle"><h2>Paper Track <span class="ko-i">가상 운용 장부</span></h2><p>위 규칙을 그대로 따랐을 때의 매일 성과입니다. 거래비용(종목 편도 0.25%, ETF 0.05%)과 현금 CD 금리를 반영합니다. 실제 돈을 넣기 전 2~3개월 실시간 검증용입니다.</p></div>
     <div class="legend mb-2"><span style="--c:#dc2626">Engine 엔진</span><span style="--c:#6b7280">KOSPI 코스피</span><span class="blk" style="--c:#dbeafe">주식 비중 (음영이 짙을수록 낮음)</span></div>
@@ -215,6 +239,97 @@ function render(d){
     </div>
   </section>`;
   drawChart(L.series||[]);
+  loadFocus();
+}
+
+function loadFocus(){
+  const box=$("#focus"); if(!box) return;
+  fetch("data/focus.json?t="+Date.now()).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(renderFocus)
+    .catch(e=>{box.innerHTML=`<section class="panel p-5 md:p-6 mb-6"><div class="note">Focus 데이터를 아직 만들지 않았습니다 (${esc(e.message)}).</div></section>`;});
+}
+function renderFocus(f){
+  const g=f.gate||{}, on=!!g.active, hold=f.status==="hold", H=f.holdings||[], PK=f.picks||[], L=f.ledger||{}, pf=L.perf;
+  const meter=(lab,ko,v,th)=>{const w=v==null?0:Math.max(0,Math.min(100,v)),ok=v!=null&&v>=th;
+    return `<div class="fmeter"><div class="k">${lab} <span class="ko-i">${ko}</span><b class="${ok?"ok":"no"}">${v==null?"—":Math.round(v)}</b><span class="th">기준 ${th}</span></div>
+    <div class="fbar"><i style="width:${w}%;background:${ok?"#16a34a":"#9ca3af"}"></i><s style="left:${th}%"></s></div></div>`;};
+  const head=hold?`<span style="color:var(--on)">Holding</span> <span class="fsub">보유 중 · ${esc(f.rebal_date)} 편입</span>`
+    :on?`<span style="color:var(--on)">Buy</span> <span class="fsub">조건 충족 — 다음 거래일 매수</span>`
+    :`<span style="color:var(--off)">Wait</span> <span class="fsub">대기 — 시장 조건 미충족, 현금 보유</span>`;
+  const why=on?"시장 Fundamentals와 Momentum이 모두 기준 이상입니다."
+    :`${g.F!=null&&g.F<g.F_min?"Fundamentals":""}${g.F!=null&&g.F<g.F_min&&g.M!=null&&g.M<g.M_min?"와 ":""}${g.M!=null&&g.M<g.M_min?"Momentum":""}이 기준보다 낮습니다. 두 값이 모두 기준을 넘는 날 아래 종목을 삽니다.`;
+  const lst=hold?H:PK, isHold=new Set(H.map(x=>x.t));
+  const card=(p,i)=>`<div class="fcard">
+    <div class="fc-top"><span class="fno">${i+1}</span><div><div class="fname">${esc(p.n)} <small>${esc(p.t)}</small>${hold&&!PK.some(x=>x.t===p.t)?'<span class="tag out">교체 예정 후보 아님</span>':""}</div>
+      <div class="fsec">${esc(p.s||"—")}${p.cap!=null?` · 시총 ${p.cap>=1?p.cap.toFixed(1)+"조":Math.round(p.cap*10000).toLocaleString()+"억"}`:""}</div></div>
+      <div class="fscore"><b>${p.score==null?"—":Math.round(p.score*100)}</b><span>Score</span></div></div>
+    <div class="fgrid">
+      <div><span>Target Revisions<em>목표가 상향−하향 (3개월)</em></span><b>${p.cov?`${p.n_up??0}↑ ${p.n_dn??0}↓ / ${p.cov}곳`:"리포트 없음"}</b></div>
+      <div><span>Composite<em>업종 내 종합</em></span><b>${p.comp==null?"—":Math.round(p.comp*100)}</b></div>
+      <div><span>Quality · Trend · Low Vol<em>업종 내 백분위</em></span><b>${[p.q,p.tr,p.lv].map(v=>v==null?"—":Math.round(v*100)).join(" · ")}</b></div>
+      <div><span>52W High · 1M<em>고점 대비 · 1개월</em></span><b>${p.hi52==null?"—":Math.round(p.hi52*100)+"%"} · <span class="${tone(p.r21)}">${pct(p.r21)}</span></b></div>
+      <div><span>EPS Growth<em>1년 EPS 증가</em></span><b class="${tone(p.eg)}">${p.eg==null?"—":pct(p.eg,0)}</b></div>
+      <div><span>${hold&&isHold.has(p.t)?"Since Entry":"Target Upside"}<em>${hold&&isHold.has(p.t)?esc(p.entry)+" 편입 후":"목표가 중간값 대비"}</em></span><b class="${tone(hold&&isHold.has(p.t)?p.since:p.upside)}">${pct(hold&&isHold.has(p.t)?p.since:p.upside)}</b></div>
+    </div></div>`;
+  const S=f.sectors||[];
+  const sRows=S.map(s=>`<tr${s.pick?' class="fpick"':""}><td>${s.rank}</td><td class="nm"><b>${esc(s.s)}</b>${s.pick?'<span class="tag new">선정</span>':""}</td>
+    <td class="${tone(s.rs6)}">${pct(s.rs6)}</td><td class="${tone(s.segE)}">${s.segE==null?"—":pct(s.segE,0)}</td><td>${s.n}</td></tr>`).join("");
+  const C=f.candidates||{};
+  const cTabs=Object.entries(C).map(([s,xs])=>`<div><div class="text-sm font-semibold text-gray-700 mt-2">${esc(s)}</div><div class="scroll"><table>
+    <thead><tr><th>#</th><th class="l">Stock<span class="ko">종목</span></th><th>Score<span class="ko">점수</span></th><th>Composite<span class="ko">종합</span></th><th>Revisions<span class="ko">목표가 신호</span></th><th class="hide-sm">Coverage<span class="ko">↑ ↓ / 증권사</span></th></tr></thead>
+    <tbody>${xs.map((p,i)=>`<tr><td>${i+1}</td><td class="nm"><b>${esc(p.n)}</b><small>${esc(p.t)}</small></td><td><b>${Math.round(p.score*100)}</b></td><td>${Math.round(p.comp*100)}</td><td>${Math.round(p.cons*100)}</td>
+      <td class="hide-sm">${p.cov?`${p.n_up??0}↑ ${p.n_dn??0}↓ / ${p.cov}`:"—"}</td></tr>`).join("")}</tbody></table></div></div>`).join("");
+  const bt=f.backtest||{rows:[]};
+  const metr=pf?`<div class="metrics">
+      <div class="metric"><div class="k">Focus 2 <span class="ko-i">가상 운용</span></div><div class="v ${tone(pf.focus)}">${pct(pf.focus)}</div><div class="d">${esc(L.start)} 이후 ${pf.days}거래일</div></div>
+      <div class="metric"><div class="k">KOSPI <span class="ko-i">같은 시점 조건</span></div><div class="v ${tone(pf.gated)}">${pct(pf.gated)}</div><div class="d">Focus 보유 기간만 코스피</div></div>
+      <div class="metric"><div class="k">KOSPI <span class="ko-i">계속 보유</span></div><div class="v ${tone(pf.kospi)}">${pct(pf.kospi)}</div><div class="d">같은 기간</div></div>
+      <div class="metric"><div class="k">Max Drawdown <span class="ko-i">최대 낙폭</span></div><div class="v">${pct(pf.mdd)}</div><div class="d">Focus 2</div></div></div>`
+    :`<div class="note">가상 운용은 ${esc(L.start||f.as_of)}에 시작했습니다. 거래일이 쌓이면 성과가 표시됩니다.</div>`;
+  $("#focus").innerHTML=`<section class="panel p-5 md:p-6 mb-6">
+    <div class="ptitle"><h2>Focus 2 <span class="ko-i">실전 2종목 · Sector → Stock</span></h2><p>강한 업종 2곳을 먼저 고르고, 각 업종에서 점수 1위 종목을 하나씩 고릅니다. 시장 조건이 맞을 때만 보유하고, 월 1회 교체합니다. 기준일 ${esc(f.as_of)} 장 마감 · 투자의견 ${esc(f.consensus_asof||"—")}</p></div>
+    <div class="fhero">
+      <div><div class="kicker">Signal <span class="ko-i">매매 상태</span></div><div class="big" style="font-size:clamp(34px,4vw,48px)">${head}</div>
+        <div class="desc">${why}</div>
+        <div class="fmeters">${meter("Fundamentals","시장 펀더멘털",g.F,g.F_min)}${meter("Momentum","시장 모멘텀",g.M,g.M_min)}</div>
+        <div class="note">Reflex 기준일 ${esc(g.reflex_asof)}. 조건이 깨지면 다음 거래일에 전량 매도합니다. 종목당 자금의 15~20% 이하를 권장합니다.</div></div>
+      <div><div class="kicker">${hold?"Current Holdings":"Next Picks"} <span class="ko-i">${hold?"보유 종목":on?"매수할 종목":"조건 충족 시 매수할 종목 (대기)"}</span></div>
+        <div class="fcards">${lst.length?lst.map(card).join(""):'<div class="note">후보 없음</div>'}</div>
+        ${hold&&PK.some(p=>!isHold.has(p.t))?`<div class="note">오늘 기준 후보: ${PK.map(p=>esc(p.n)).join(", ")} — 다음 월간 교체 때 반영합니다.</div>`:""}</div>
+    </div>
+    <div class="two mt-6">
+      <div><div class="text-sm font-semibold text-gray-700">Paper Track <span class="ko-i">가상 운용 (편도 0.25%, 대기 중 CD 금리)</span></div>${metr}
+        <div class="legend mt-3 mb-1"><span style="--c:#dc2626">Focus 2</span><span style="--c:#6b7280">KOSPI</span><span style="--c:#f59e0b">KOSPI (같은 시점 조건)</span></div><div class="box" id="fchart"></div></div>
+      <div><div class="text-sm font-semibold text-gray-700">Sector Ranking <span class="ko-i">6개월 상대강도 + 업종 이익 증가 · 상위 2곳 선정</span></div>
+        <div class="scroll"><table><thead><tr><th>#</th><th class="l">Sector<span class="ko">업종</span></th><th>6M RS<span class="ko">6개월 상대</span></th><th>EPS Growth<span class="ko">업종 이익 1년</span></th><th>N<span class="ko">종목</span></th></tr></thead><tbody>${sRows}</tbody></table></div></div>
+    </div>
+    <details class="more mt-4"><summary>Candidates <span class="ko-i">선정 업종별 상위 5종목</span></summary>${cTabs}</details>
+    <details class="more mt-2"><summary>Rules & Backtest <span class="ko-i">규칙과 검증</span></summary>
+      <div class="method mt-2"><div>
+        <p><b>① Market</b> <span class="text-gray-400">시점</span> — Reflex 시장 Fundamentals ${g.F_min} 이상, Momentum ${g.M_min} 이상일 때만 보유. 아니면 현금.</p>
+        <p><b>② Sector</b> <span class="text-gray-400">업종</span> — 거래대금 상위 600종목 중 5종목 이상인 업종을 6개월 상대강도(업종 시총가중 수익 − 시장) 순위와 업종 이익 증가율(1년) 순위의 합으로 매겨 상위 2곳.</p>
+        <p><b>③ Stock</b> <span class="text-gray-400">종목</span> — 업종 안에서 Score 1위. Score = ½ Composite(Quality·Trend·Low Vol의 업종 내 백분위 평균) + ½ Target Revisions(최근 3개월 같은 증권사 직전 대비 목표가 상향 − 하향 건수 ÷ 커버 증권사 수의 업종 내 백분위, 리포트 없으면 중간값).</p>
+        <p><b>④ Rebalance</b> <span class="text-gray-400">교체</span> — 월 1회, 또는 조건이 새로 충족될 때.</p></div>
+      <div><p><b>Backtest</b> <span class="text-gray-400">${esc(bt.period)}, 거래비용 포함, 교체 시작일 4가지 평균</span></p>
+        <table class="mt"><thead><tr><th class="l">전략</th><th>연수익</th><th>2011~18 / 2019~26</th><th>최대 낙폭</th></tr></thead><tbody>
+        ${bt.rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join("")}</tbody></table>
+        <p class="mt-2">목표가 상향 상위 20%는 하위 20%보다 60일 수익이 2011~18 +2.7%p, 2019~26 +3.5%p 높았습니다(상승장). 개별 거래 승률은 약 50%로, 이기는 종목이 크게 이겨서 수익이 나는 구조입니다. 2011~18 구간은 지수와 비슷했습니다. 매매 신호가 아니라 참고용입니다.</p></div></div>
+    </details>
+  </section>`;
+  drawFocus(L.series||[]);
+}
+function drawFocus(S){
+  const box=$("#fchart"); if(!box) return;
+  if(S.length<2){box.innerHTML=`<div class="note">거래일이 2일 이상 쌓이면 그래프가 표시됩니다.</div>`;return;}
+  const W=600,H=200,m={l:40,r:10,t:8,b:22},iw=W-m.l-m.r,ih=H-m.t-m.b,xs=i=>m.l+i/(S.length-1)*iw;
+  const vals=S.flatMap(r=>[r[1],r[2],r[3]]).filter(v=>v!=null);let lo=Math.min(...vals),hi=Math.max(...vals);const pad=(hi-lo)*0.08||0.02;lo-=pad;hi+=pad;
+  const ys=v=>m.t+(hi-v)/(hi-lo)*ih;
+  let sh="";for(let i=0;i<S.length;i++){if(!S[i][4]){let j=i;while(j+1<S.length&&!S[j+1][4])j++;sh+=`<rect x="${xs(i)}" y="${m.t}" width="${Math.max(1,xs(Math.min(j+1,S.length-1))-xs(i))}" height="${ih}" fill="#dbeafe" opacity=".6"/>`;i=j;}}
+  const line=(k,c,w)=>`<path d="${S.map((r,i)=>(i?"L":"M")+xs(i).toFixed(1)+" "+ys(r[k]).toFixed(1)).join("")}" fill="none" stroke="${c}" stroke-width="${w}"/>`;
+  const yt=[0,1,2,3].map(i=>lo+(hi-lo)*i/3);
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Focus 2 가상 운용">${sh}
+    ${yt.map(v=>`<line x1="${m.l}" x2="${W-m.r}" y1="${ys(v)}" y2="${ys(v)}" stroke="#f3f4f6"/><text x="${m.l-5}" y="${ys(v)+4}" text-anchor="end">${((v-1)*100).toFixed(0)}%</text>`).join("")}
+    ${line(2,"#6b7280",1.3)}${line(3,"#f59e0b",1.3)}${line(1,"#dc2626",2)}
+    <text x="${m.l}" y="${H-5}">${S[0][0]}</text><text x="${W-m.r}" y="${H-5}" text-anchor="end">${S[S.length-1][0]}</text></svg>`;
 }
 
 function drawChart(S){
