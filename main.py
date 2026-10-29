@@ -143,7 +143,7 @@ async def run():
                     if _off_market_pushed != today and _closing_saved == today:
                         logger.info("야간 — tail 포함 signals.json 갱신")
                         signals = calc_all_signals()
-                        save_and_push(signals)
+                        save_and_push(signals, force=True)
                         save_to_s3(signals)
                         _off_market_pushed = today
                         logger.info("야간 tail push 완료")

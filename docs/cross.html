@@ -203,7 +203,7 @@
             try {
                 const t = Date.now()
                 const [kr, us, map] = await Promise.all([
-                    fetch("./data/signals.json?t=" + t).then(r => { if (!r.ok) throw 0; return r.json() }),
+                    fetch("https://eqmon.duckdns.org/signals.json?t=" + Date.now()).then(r => { if (!r.ok) throw 0; return r }).catch(() => fetch("./data/signals.json?t=" + Date.now())).then(r => { if (!r.ok) throw 0; return r.json() }),
                     fetch("./data/signals_us.json?t=" + t).then(r => { if (!r.ok) throw 0; return r.json() }),
                     fetch("./data/kr_us_sector_map.json?t=" + t).then(r => { if (!r.ok) throw 0; return r.json() }),
                 ])

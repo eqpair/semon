@@ -136,7 +136,7 @@
 
         async function loadData() {
             try {
-                let res = await fetch("./data/signals.json?t=" + Date.now())
+                let res = await fetch("https://eqmon.duckdns.org/signals.json?t=" + Date.now()).then(r => { if (!r.ok) throw 0; return r }).catch(() => fetch("./data/signals.json?t=" + Date.now()))
                 if (!res.ok) throw new Error()
                 allData = await res.json()
                 render()

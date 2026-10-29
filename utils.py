@@ -130,12 +130,24 @@ def git_push(commit_msg: str = None) -> bool:
         return False
 
 
-def save_and_push(data: dict) -> bool:
-    """JSON 저장 + git push 한번에"""
+PUSH_EVERY = 30 * 60      # git push 간격(초). 실시간 값은 nginx(/signals.json)가 로컬 파일을 바로 제공
+_last_push = 0.0
+
+
+def save_and_push(data: dict, force: bool = False) -> bool:
+    """JSON 저장은 매번, git push는 PUSH_EVERY마다 (force=True면 즉시)"""
+    global _last_push
+    import time as _t
     saved = save_json(data)
     if not saved:
         return False
-    return git_push()
+    if not force and _t.time() - _last_push < PUSH_EVERY:
+        logger.info("git push 생략 — 실시간 값은 nginx로 제공 (30분마다 push)")
+        return True
+    ok = git_push()
+    if ok:
+        _last_push = _t.time()
+    return ok
 
 
 CLOSING_FILE = DATA_PATH / "signals_closing.json"
