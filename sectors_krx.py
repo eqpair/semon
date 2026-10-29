@@ -34,8 +34,8 @@ def main():
     sp = pd.read_parquet(ss.ST / "sector" / "sector_pit.parquet")
     sp["date"] = pd.to_datetime(sp["date"])
     last = sp[sp.date == sp.date.max()].set_index("ticker")
-    sec = last.industry[last.industry != "기타"].map(lambda v: ss.UNI.get(v, v))
-    names = last.name
+    names = last["name"]
+    sec = pd.Series({t: ss.unify_sector(v, names.get(t, ""), t) for t, v in last.industry[last.industry != "기타"].items()}, dtype=object)
 
     tk = [t for t in liq.index if t in sec.index][:N]
     out = {}

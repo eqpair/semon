@@ -63,6 +63,17 @@ UNI = {'반도체': '전기전자', 'IT부품': '전기전자', '통신장비': 
        '전기·가스': '유틸리티', '전기·가스·수도': '유틸리티', '광업': '기타제조', '농업 임업 및 어업': '음식료·담배', '부동산': '건설'}
 
 
+import re as _re
+_FIN = _re.compile("금융|카드|페이|캐피탈|인프라|증권")
+
+
+def unify_sector(industry, name="", ticker=""):
+    """KRX 업종 → 묶은 업종. 기타금융은 금융지주·카드 등은 '금융', 나머지(일반 지주회사)는 '지주'."""
+    if industry == "기타금융":
+        return "금융" if (_FIN.search(str(name)) or ticker == "055550") else "지주"
+    return UNI.get(industry, industry)
+
+
 def log(*a):
     print(datetime.now(KST).strftime("%m-%d %H:%M:%S"), *a, flush=True)
 
@@ -126,7 +137,7 @@ def load():
     last = sp[sp.date == sector_asof]
     names = dict(zip(sp.sort_values("date").ticker, sp.sort_values("date").name))
     sec_raw = last.set_index("ticker").industry
-    sec = sec_raw[sec_raw != "기타"].map(lambda v: UNI.get(v, v))
+    sec = pd.Series({t: unify_sector(v, names.get(t, ""), t) for t, v in sec_raw[sec_raw != "기타"].items()}, dtype=object)
 
     cd = None
     if KR_DAILY.exists():
