@@ -71,16 +71,17 @@ th.l{text-align:left}
 .method b{color:var(--ink)}
 .mt{width:100%;font-size:12px;margin-top:4px}
 .mt td,.mt th{padding:4px 6px}
+details.p50>summary{font-size:1.05rem;font-weight:700}
 details.more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink);padding:4px 0;list-style:none}
 details.more summary::-webkit-details-marker{display:none}
 details.more summary::before{content:"▸ ";color:var(--ink3)}
 details.more[open] summary::before{content:"▾ "}
 @media (max-width:1100px){.hero,.two{grid-template-columns:minmax(0,1fr);gap:16px}.method{grid-template-columns:1fr}}
 @media (max-width:640px){h1{font-size:1.4rem !important}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.hide-sm{display:none}}
-.fhero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:start}
+.fhero{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}.fmeters{max-width:720px}
 .fsub{font-size:15px;font-weight:600;color:var(--ink2);letter-spacing:0}
 .fmeters{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.fmeter .k{font-size:12.5px;font-weight:600;color:var(--ink);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.fmeter .k{font-size:12.5px;font-weight:600;color:var(--ink);display:flex;align-items:flex-end;gap:6px}
 .fmeter .k b{font-size:22px;margin-left:auto}.fmeter .k b.ok{color:var(--ink)}.fmeter .k b.no{color:var(--ink3)}
 .fmeter .th{font-size:11px;color:var(--ink3);font-weight:400}
 .fbar{position:relative;height:8px;background:var(--rule2);border-radius:4px;margin-top:4px}
@@ -106,7 +107,7 @@ tr.fpick td{background:var(--wash)} tr.fpick td.nm b{font-weight:700}
   <header class="mb-6">
     <div class="header-inner">
       <div>
-        <h1 class="text-3xl font-bold text-gray-800">Picks <span class="text-lg font-normal text-gray-400">Multi-Factor Stock Selection — Korea</span></h1>
+        <h1 class="text-3xl font-bold text-gray-800">Picks <span class="text-lg font-normal text-gray-400">Sector → Stock Selection — Korea</span></h1>
         <div class="text-sm text-gray-500 mt-1" id="status">Loading...</div>
       </div>
       <div class="nav-links" id="nav"></div>
@@ -155,13 +156,15 @@ function render(d){
     <td class="${tone(s.r12)}">${pct(s.r12,0)}</td><td>${s.nh==null?"—":Math.round(s.nh*100)+"%"}</td><td>${s.n}</td></tr>`).join("");
   const chips=(xs)=>xs&&xs.length?`<div class="chips">${xs.map(x=>`<span>${esc(x.n)}</span>`).join("")}</div>`:`<div class="note">없음</div>`;
   const metr=perf?`<div class="metrics">
-      <div class="metric"><div class="k">Engine <span class="ko-i">가상 운용</span></div><div class="v ${tone(perf.strat)}">${pct(perf.strat)}</div><div class="d">${esc(L.start)} 이후 ${perf.days}거래일</div></div>
-      <div class="metric"><div class="k">KOSPI <span class="ko-i">코스피</span></div><div class="v ${tone(perf.mkt)}">${pct(perf.mkt)}</div><div class="d">같은 기간</div></div>
-      <div class="metric"><div class="k">Max Drawdown <span class="ko-i">엔진 최대 낙폭</span></div><div class="v">${pct(perf.mdd)}</div><div class="d">시장 ${pct(perf.mdd_mkt)}</div></div>
-      <div class="metric"><div class="k">Excess <span class="ko-i">초과 수익</span></div><div class="v ${tone(perf.strat-perf.mkt)}">${pct(perf.strat-perf.mkt)}</div><div class="d">엔진 − KOSPI</div></div></div>`
+      <div class="metric"><div class="k">Engine<span class="ko">가상 운용</span></div><div class="v ${tone(perf.strat)}">${pct(perf.strat)}</div><div class="d">${esc(L.start)} 이후 ${perf.days}거래일</div></div>
+      <div class="metric"><div class="k">KOSPI<span class="ko">코스피</span></div><div class="v ${tone(perf.mkt)}">${pct(perf.mkt)}</div><div class="d">같은 기간</div></div>
+      <div class="metric"><div class="k">Max Drawdown<span class="ko">엔진 최대 낙폭</span></div><div class="v">${pct(perf.mdd)}</div><div class="d">시장 ${pct(perf.mdd_mkt)}</div></div>
+      <div class="metric"><div class="k">Excess<span class="ko">초과 수익</span></div><div class="v ${tone(perf.strat-perf.mkt)}">${pct(perf.strat-perf.mkt)}</div><div class="d">엔진 − KOSPI</div></div></div>`
     :`<div class="note">가상 운용은 ${esc(L.start||d.as_of)}에 시작했습니다. 거래일이 쌓이면 성과가 여기에 표시됩니다.</div>`;
 
   $("#app").innerHTML=`${stale}
+  <div id="focus" class="focus-mono"></div>
+
   <section class="panel p-5 md:p-6 mb-6"><div class="hero">
     <div>
       <div class="kicker">Market Regime Filter <span class="ko-i">시장 국면 필터</span> · Reflex <a href="reflex.html" class="chip" style="text-decoration:none">${g.stage??"—"} ${esc(st[0])} · ${esc(st[1])}</a></div>
@@ -170,7 +173,7 @@ function render(d){
       <div class="desc">${g.source==="ensemble"
         ?`Reflex 단계 판정의 기준값 조합 ${(g.ens?.n||2430).toLocaleString()}개 중 ${(g.ens?.n_up??0).toLocaleString()}개(${Math.round((g.target??X)*100)}%)가 Risk-On입니다. 이 비율만큼 주식을 보유하고, 10%p 이상 바뀔 때만 비중을 조정합니다. 기준값 하나를 고르지 않아 과최적화 위험을 줄인 방식입니다.`
         :"Reflex 단계(1~5 Risk-On, 6~9 Risk-Off)로 판정했습니다. 조합 평균 데이터가 없어 대체 판정을 썼습니다."}
-        주식 부분은 절반을 지수 ETF(${ETF}), 절반을 아래 50종목에 1%씩 균등하게 담습니다.</div>
+        주식 부분은 절반을 지수 ETF(${ETF}), 절반을 Picks 50종목(아래 접힌 섹션)에 1%씩 균등하게 담습니다. 실제 매매 종목은 위 Focus 2입니다.</div>
     </div>
     <div>
       <div class="kicker">Recommended Allocation <span class="ko-i">권장 배분</span></div>
@@ -179,8 +182,8 @@ function render(d){
       ${metr}
     </div></div></section>
 
-  <div id="focus" class="focus-mono"></div>
-
+  <details class="more p50 mb-6"><summary class="panel p-5 md:p-6">Picks 50 <span class="ko-i">분산 50종목 포트폴리오 · 참고 — 가상 운용, 이번 달 종목, 오늘 순위, 업종 모멘텀</span></summary>
+  <div class="mt-4">
   <section class="panel p-5 md:p-6 mb-6">
     <div class="ptitle"><h2>Paper Track <span class="ko-i">가상 운용 장부</span></h2><p>위 규칙을 그대로 따랐을 때의 매일 성과입니다. 거래비용(종목 편도 0.25%, ETF 0.05%)과 현금 CD 금리를 반영합니다. 실제 돈을 넣기 전 2~3개월 실시간 검증용입니다.</p></div>
     <div class="legend mb-2"><span style="--c:#dc2626">Engine 엔진</span><span style="--c:#6b7280">KOSPI 코스피</span><span class="blk" style="--c:#dbeafe">주식 비중 (음영이 짙을수록 낮음)</span></div>
@@ -213,6 +216,7 @@ function render(d){
         <tbody>${sRows}</tbody></table></div>
     </section>
   </div>
+  </div></details>
 
   <section class="panel p-5 md:p-6 mb-6">
     <div class="ptitle"><h2>Method <span class="ko-i">방법과 근거</span></h2></div>
@@ -250,7 +254,7 @@ function loadFocus(){
 function renderFocus(f){
   const g=f.gate||{}, on=!!g.active, hold=f.status==="hold", H=f.holdings||[], PK=f.picks||[], L=f.ledger||{}, pf=L.perf;
   const meter=(lab,ko,v,th)=>{const w=v==null?0:Math.max(0,Math.min(100,v)),ok=v!=null&&v>=th;
-    return `<div class="fmeter"><div class="k">${lab} <span class="ko-i">${ko}</span><b class="${ok?"ok":"no"}">${v==null?"—":Math.round(v)}</b><span class="th">기준 ${th}</span></div>
+    return `<div class="fmeter"><div class="k"><span>${lab}<span class="ko">${ko}</span></span><b class="${ok?"ok":"no"}">${v==null?"—":Math.round(v)}</b><span class="th">기준 ${th}</span></div>
     <div class="fbar"><i style="width:${w}%;background:${ok?"#374151":"#d1d5db"}"></i><s style="left:${th}%"></s></div></div>`;};
   const head=hold?`<span style="color:var(--ink)">Holding</span> <span class="fsub">보유 중 · ${esc(f.rebal_date)} 편입</span>`
     :on?`<span style="color:var(--ink)">Buy</span> <span class="fsub">조건 충족 — 다음 거래일 매수</span>`
@@ -280,13 +284,13 @@ function renderFocus(f){
       <td class="hide-sm">${p.cov?`${p.n_up??0}↑ ${p.n_dn??0}↓ / ${p.cov}`:"—"}</td></tr>`).join("")}</tbody></table></div></div>`).join("");
   const bt=f.backtest||{rows:[]};
   const metr=pf?`<div class="metrics">
-      <div class="metric"><div class="k">Focus 2 <span class="ko-i">가상 운용</span></div><div class="v ${tone(pf.focus)}">${pct(pf.focus)}</div><div class="d">${esc(L.start)} 이후 ${pf.days}거래일</div></div>
-      <div class="metric"><div class="k">KOSPI <span class="ko-i">같은 시점 조건</span></div><div class="v ${tone(pf.gated)}">${pct(pf.gated)}</div><div class="d">Focus 보유 기간만 코스피</div></div>
-      <div class="metric"><div class="k">KOSPI <span class="ko-i">계속 보유</span></div><div class="v ${tone(pf.kospi)}">${pct(pf.kospi)}</div><div class="d">같은 기간</div></div>
-      <div class="metric"><div class="k">Max Drawdown <span class="ko-i">최대 낙폭</span></div><div class="v">${pct(pf.mdd)}</div><div class="d">Focus 2</div></div></div>`
+      <div class="metric"><div class="k">Focus 2<span class="ko">가상 운용</span></div><div class="v ${tone(pf.focus)}">${pct(pf.focus)}</div><div class="d">${esc(L.start)} 이후 ${pf.days}거래일</div></div>
+      <div class="metric"><div class="k">KOSPI<span class="ko">같은 시점 조건</span></div><div class="v ${tone(pf.gated)}">${pct(pf.gated)}</div><div class="d">Focus 보유 기간만 코스피</div></div>
+      <div class="metric"><div class="k">KOSPI<span class="ko">계속 보유</span></div><div class="v ${tone(pf.kospi)}">${pct(pf.kospi)}</div><div class="d">같은 기간</div></div>
+      <div class="metric"><div class="k">Max Drawdown<span class="ko">최대 낙폭</span></div><div class="v">${pct(pf.mdd)}</div><div class="d">Focus 2</div></div></div>`
     :`<div class="note">가상 운용은 ${esc(L.start||f.as_of)}에 시작했습니다. 거래일이 쌓이면 성과가 표시됩니다.</div>`;
   $("#focus").innerHTML=`<section class="panel p-5 md:p-6 mb-6">
-    <div class="ptitle"><h2>Focus 2 <span class="ko-i">실전 2종목 · Sector → Stock</span></h2><p>실제 매매용 집중 버전입니다. 강한 업종 2곳을 먼저 고르고, 각 업종에서 점수 1위 종목을 하나씩 고릅니다. 시장 조건이 맞을 때만 보유하고, 월 1회 교체합니다. 아래 Picks 50종목은 같은 점수의 분산 포트폴리오입니다. 기준일 ${esc(f.as_of)} 장 마감 · 투자의견 ${esc(f.consensus_asof||"—")}</p></div>
+    <div class="ptitle"><h2>Focus 2 <span class="ko-i">실전 2종목 · Sector → Stock</span></h2><p>실제 매매용 집중 버전입니다. 강한 업종 2곳을 먼저 고르고, 각 업종에서 점수 1위 종목을 하나씩 고릅니다. 시장 조건이 맞을 때만 보유하고, 월 1회 교체합니다. 맨 아래 Picks 50은 같은 점수의 분산 포트폴리오(참고)입니다. 기준일 ${esc(f.as_of)} 장 마감 · 투자의견 ${esc(f.consensus_asof||"—")}</p></div>
     <div class="fhero">
       <div><div class="kicker">Signal <span class="ko-i">매매 상태</span></div><div class="big" style="font-size:clamp(34px,4vw,48px)">${head}</div>
         <div class="desc">${why}</div>
