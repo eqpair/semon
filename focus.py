@@ -255,6 +255,8 @@ def main():
 
     sectors = [dict(s=s, rank=int(r["rank"]), n=int(r.n), rs6=ss.fnum(r.rs6, 4), segE=ss.fnum(r.segE, 3), pick=s in top_secs)
                for s, r in st.head(10).iterrows()]
+    sectors_all = [dict(s=s, rank=int(r["rank"]), n=int(r.n), rs6=ss.fnum(r.rs6, 4), segE=ss.fnum(r.segE, 3), pick=s in top_secs)
+                   for s, r in st.iterrows()]
     cands = {s: [stock(t) for t in d[d.sec == s].sort_values("score", ascending=False).index[:5]] for s in top_secs}
     lg = led.copy()
     lg["date"] = pd.to_datetime(lg["date"]).dt.strftime("%Y-%m-%d")
@@ -268,7 +270,7 @@ def main():
         status="hold" if state.get("holdings") else "wait",
         holdings=[stock(t) if t in d.index else dict(t=t, n=names.get(t, t), since=since(t), entry=entry.get(t))
                   for t in state.get("holdings", [])],
-        picks=[stock(t) for t in picks], candidates=cands, sectors=sectors,
+        picks=[stock(t) for t in picks], candidates=cands, sectors=sectors, sectors_all=sectors_all,
         rebal_date=state.get("rebal_date"), consensus_asof=str(cons_asof.date()) if cons_asof is not None else None,
         ledger=dict(start=lg.date.iloc[0] if len(lg) else None, perf=perf,
                     series=[[a_, ss.fnum(b_, 4), ss.fnum(c_, 4), ss.fnum(g_, 4), int(bool(h_))] for a_, b_, c_, g_, h_ in
