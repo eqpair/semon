@@ -493,13 +493,28 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         })
     # lagging 제외로 종목이 0개가 된 섹터는 top_picks에서 제거
     top_picks = [tp for tp in top_picks_raw.values() if tp.get("stocks")]
-    # Focus 2(focus.py) 종목은 표시하고 맨 앞으로 — 실제 매매 후보
-    _focus = _focus_codes()
+    # Focus 2(focus.py) 종목은 Focus가 고른 업종으로 묶어 Focus 업종 순위대로 맨 앞에 — 실제 매매 후보 (_focus_v2)
+    _focus = _focus_codes()            # {code: (업종, 순서)}
+    fgroups, rest = {}, []
     for tp in top_picks:
+        keep = []
         for st in tp["stocks"]:
             st["focus"] = st.get("code") in _focus
-        tp["stocks"].sort(key=lambda st: not st["focus"])
-    top_picks.sort(key=lambda tp: not any(st["focus"] for st in tp["stocks"]))
+            if st["focus"]:
+                sec, order = _focus[st["code"]]
+                g = fgroups.setdefault(sec, {"sector": sec, "rrg_quadrant": "", "reason": "", "stocks": [], "_o": order})
+                if tp.get("sector") == sec:
+                    g["rrg_quadrant"], g["reason"] = tp.get("rrg_quadrant", ""), tp.get("reason", "")
+                g["stocks"].append(st)
+            else:
+                keep.append(st)
+        if keep:
+            rest.append(dict(tp, stocks=keep))
+    for tp in list(rest):              # 일반 종목이 Focus 업종과 같으면 그 묶음 뒤에
+        if tp.get("sector") in fgroups:
+            fgroups[tp["sector"]]["stocks"] += tp["stocks"]
+            rest.remove(tp)
+    top_picks = [{k: v for k, v in g.items() if k != "_o"} for g in sorted(fgroups.values(), key=lambda g: g["_o"])] + rest
 
     return {
         "global_sentiment":    sentiment,
@@ -523,15 +538,16 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
 
 
 
-def _focus_codes() -> set:
-    """docs/data/focus.json의 Focus 2 종목 코드 (보유 중이면 보유 종목, 아니면 후보)."""
+def _focus_codes() -> dict:
+    """docs/data/focus.json의 Focus 2 종목 {코드: (업종, 순서)} (보유 중이면 보유 종목, 아니면 후보)."""
     try:
         j = json.loads((Path(__file__).resolve().parent / "docs" / "data" / "focus.json").read_text(encoding="utf-8"))
         lst = j.get("holdings") if j.get("status") == "hold" else j.get("picks")
-        return {x["t"] for x in (lst or []) if x.get("t")}
+        return {x["t"]: (x.get("s") or "Focus", i) for i, x in enumerate(lst or []) if x.get("t")}
     except Exception as e:
         logger.warning(f"focus.json 읽기 실패(Focus 표시 생략): {e}")
-        return set()
+        return {}
+
 
 def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
     sector_rrg = rrg_data.get("sector_rrg", {})

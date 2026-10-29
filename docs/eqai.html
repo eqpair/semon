@@ -734,7 +734,7 @@
                             return `
                         <div class="text-xs leading-relaxed">
                             <div><a href="https://finance.naver.com/item/main.naver?code=${s.code}" target="_blank"
-                               class="font-semibold text-gray-800 hover:underline" style="font-size:13px;">${s.name}</a>${rrgTag}${s.focus ? ' <span class="fx-tag" style="font-size:10px;font-weight:700;color:#fff;background:#b91c1c;padding:1px 6px;border-radius:4px;margin-left:4px;">Focus</span>' : (anyFocus ? ' <span class="fx-tag" style="font-size:10px;font-weight:600;color:#6b7280;background:#f3f4f6;padding:1px 6px;border-radius:4px;margin-left:4px;">Picks 참고</span>' : "")}</div>
+                               class="font-semibold text-gray-800 hover:underline" style="font-size:13px;">${s.name}</a>${rrgTag}${s.focus ? ' <span class="fx-tag" style="font-size:9px;color:#374151;border:1px solid #37415155;padding:1px 6px;border-radius:8px;font-weight:600;margin-left:4px;">FOCUS</span>' : (anyFocus ? ' <span class="fx-tag" style="font-size:9px;color:#9ca3af;border:1px solid #9ca3af55;padding:1px 6px;border-radius:8px;font-weight:600;margin-left:4px;">PICKS 참고</span>' : "")}</div>
                             <div class="text-gray-500 mt-0.5">${s.reason || ""}</div>
                         </div>`
                         }).join("")}
