@@ -254,6 +254,43 @@ def picks_blocks():
     return "\n".join(gate), "\n".join(sec), note + "\n" + "\n".join(lines), set(codes)
 
 
+# ── Focus 2 (focus.py) ───────────────────────────────────────────────
+FOCUS_JSON = BASE / "docs/data/focus.json"
+
+
+def focus_block():
+    """docs/data/focus.json → (텍스트, 종목코드 집합). 없거나 5일 넘게 오래되면 None."""
+    try:
+        j = json.loads(FOCUS_JSON.read_text(encoding="utf-8"))
+        if (pd.Timestamp.now() - pd.Timestamp(j["as_of"])).days > 5:
+            return None
+    except Exception as e:
+        logger.warning(f"focus.json 읽기 실패(생략): {e}")
+        return None
+    g = j.get("gate") or {}
+    hold = j.get("status") == "hold"
+    state = "보유 중" if hold else ("조건 충족 — 다음 거래일 매수" if g.get("active") else "대기 — 시장 조건 미충족, 현금 보유")
+    pc = lambda v, nd=1: "—" if v is None else f"{v * 100:+.{nd}f}%"
+    out = [f"기준일 {j['as_of']} 장 마감 / 상태: {state}",
+           f"시장 조건: Fundamentals {g.get('F')} (기준 {g.get('F_min')} 이상), Momentum {g.get('M')} (기준 {g.get('M_min')} 이상)"]
+    secs = [s for s in j.get("sectors", []) if s.get("pick")]
+    out.append("선정 업종: " + ", ".join(f"{s['rank']}. {s['s']} (6개월 상대 {pc(s.get('rs6'))}, 업종 이익 1년 {pc(s.get('segE'), 0)})" for s in secs))
+    lst = j.get("holdings") if hold else j.get("picks")
+    out.append("종목(코드) | 업종 | Score | 업종 내 종합 | 목표가 상향↑·하향↓/증권사(3개월) | 52주 고점 대비 | 1개월 | 1년 EPS 증가"
+               + (" | 편입 후 수익" if hold else ""))
+    codes = set()
+    for p in lst or []:
+        codes.add(p["t"])
+        rv = f"{p.get('n_up') or 0}↑ {p.get('n_dn') or 0}↓ / {p.get('cov')}곳" if p.get("cov") else "리포트 없음"
+        out.append(f"{p['n']}({p['t']}) | {p.get('s') or '—'} | {round((p.get('score') or 0) * 100)} | {round((p.get('comp') or 0) * 100)} | {rv} | "
+                   f"{pc((p.get('hi52') or 1) - 1)} | {pc(p.get('r21'))} | {pc(p.get('eg'), 0)}" + (f" | {pc(p.get('since'))}" if hold else ""))
+    out.append("규칙: 시장 Fundamentals와 Momentum이 모두 기준 이상일 때만 보유. 6개월 상대강도와 업종 이익 증가율로 상위 2개 업종을 고르고, "
+               "업종마다 Score(업종 내 종합 ½ + 목표가 상향 우위 ½) 1위 종목. 월 1회 교체, 조건이 깨지면 전량 매도. "
+               "검증(2012~2026, 거래비용 포함): 연 10.3%, 최대 낙폭 −31% (같은 조건의 코스피 연 10.2%, −19%). 개별 거래 승률 약 50%, "
+               "목표가 상향 상위 20%가 하위 20%보다 60일 수익 +2.7~3.5%p 높았음. 2011~18 구간은 지수와 비슷했음.")
+    return "\n".join(out), codes
+
+
 def domestic_context():
     """(프롬프트용 국내 컨텍스트 텍스트, 후보 종목 코드 집합)."""
     blocks, codes = [], set()
@@ -269,6 +306,10 @@ def domestic_context():
         blocks.append(f"=== Market Regime Filter (Picks) ===\n{gate_text}")
         blocks.append(f"=== Sector Momentum (Picks, KRX 업종) ===\n{sec_text}")
         blocks.append(f"=== 종목 후보 (Picks 엔진 이번 달 포트폴리오) ===\n{cand_text}")
+        fb = focus_block()
+        if fb:
+            blocks.append(f"=== Focus 2 (실전 2종목, Sector → Stock) ===\n{fb[0]}")
+            codes = set(codes) | fb[1]
     except Exception as e:
         logger.warning(f"Picks 블록 실패 → 기존 후보 방식 사용: {e}")
         try:

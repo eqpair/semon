@@ -243,6 +243,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 [종합 판단 원칙 — 글로벌에서 국내로, 국내에서 종목으로 / 매우 중요]
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
 - top_picks는 반드시 위 '종목 후보'(Picks 이번 달 포트폴리오) 목록 안에서만 고르세요. 주식 비중 70% 이상이면 3~6종목, 30~70%면 3~4종목, 30% 이하면 2~3종목입니다. 목록 밖 종목은 시스템이 자동 제외합니다.
+- 'Focus 2' 블록이 있으면 그 두 종목을 top_picks의 맨 앞에 두세요(목록 밖 제한의 예외). 실제 매매 후보는 이 두 종목입니다. 상태가 보유 중이거나 조건 충족이면 각 reason에 선정 업종 순위, Score와 업종 내 종합, 목표가 상향·하향 건수를 숫자로 쓰고 끝에 리스크: …를 붙이세요. 상태가 대기이면 reason은 대기 — 로 시작하고 끝에 전환 조건: Fundamentals 기준 이상과 Momentum 기준 이상(현재 값과 기준을 숫자로)을 쓰세요. strategy_brief에 Focus 2의 상태와 시장 조건 숫자를 한 문장으로 밝히세요.
 - top_picks의 각 pick reason은 세 층을 한 문장에 엮으세요: (1) 글로벌→국내 판단(korea_impact의 어느 요인에서 파생됐는지), (2) 국내 Market Regime(Risk-On/Off)과 Sector Momentum 순위, (3) 종목 근거 두 가지 이상(Quality·Trend·Low Vol 점수, 오늘 순위, 52주 고점 대비, 수급 중). 많이 떨어져 반등 여력이 있다, 되돌림이 충분하다, 낙폭 과대처럼 하락폭 자체를 근거로 쓰지 마세요 — 검증에서 오르지 않은 종목은 이후에도 덜 올랐습니다. RRG 사분면은 근거로 쓰지 마세요.
 - 종목 후보는 Picks Composite 점수 순입니다(Quality: 흑자 여부·이익수익률·EPS 증가·외국인+기관 순매수·Sector Momentum / Trend: 52주 고점 근접·최근 1개월 급등 회피 / Low Vol: 낮은 변동성). 2011~2026 검증에서 Risk-On 구간의 Quality·Trend 상위 종목이 이후 60일 가장 많이 올랐고, 최근 1~3개월 급등·거래량 급증 종목은 오히려 덜 올랐습니다. 특별한 이유가 없으면 순위 상위 종목을 우선하세요.
 - Market Regime Filter(Equity Exposure, 주식 비중 0~100%) 판정을 모든 결론의 전제로 삼으세요. Risk-Off(주식 비중 30% 이하)일 때: 결론은 현금(단기채) 비중 유지와 신규 매수 보류입니다. 매수, 비중 확대, 선별 접근, 방어주로 대응 같은 표현을 쓰지 말고, top_picks는 주식 비중이 올라갈 때 먼저 늘릴 대기 명단(watchlist)으로 쓰세요. 각 pick reason은 대기 — 로 시작하고 끝에 전환 조건: …과 리스크: …를 따옴표 없이 붙이세요. Neutral(30~70%)일 때: 권장 배분 비율 안에서만 보유하고 분할로 접근한다고 쓰고, 비중을 더 늘릴 조건을 함께 쓰세요. Risk-On(70% 이상)일 때: 권장 배분(코스피 200 ETF와 Picks 종목 반반)을 전제로 Sector Momentum 상위이면서 Quality와 Trend 점수가 함께 높은 종목 위주로 쓰세요. 모든 경우 strategy_brief에 현재 주식 비중(%)과 권장 배분을 숫자로 밝히고, 하루 급반등만으로 국면 전환을 단정하지 마세요. 각 pick reason 끝에는 리스크: …를 붙이세요.
@@ -492,6 +493,13 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         })
     # lagging 제외로 종목이 0개가 된 섹터는 top_picks에서 제거
     top_picks = [tp for tp in top_picks_raw.values() if tp.get("stocks")]
+    # Focus 2(focus.py) 종목은 표시하고 맨 앞으로 — 실제 매매 후보
+    _focus = _focus_codes()
+    for tp in top_picks:
+        for st in tp["stocks"]:
+            st["focus"] = st.get("code") in _focus
+        tp["stocks"].sort(key=lambda st: not st["focus"])
+    top_picks.sort(key=lambda tp: not any(st["focus"] for st in tp["stocks"]))
 
     return {
         "global_sentiment":    sentiment,
@@ -513,6 +521,17 @@ def _parse_xml_response(text: str, rrg_data: dict) -> dict:
         "caution_sectors":     [w["sector"] for w in watch[:2]],
     }
 
+
+
+def _focus_codes() -> set:
+    """docs/data/focus.json의 Focus 2 종목 코드 (보유 중이면 보유 종목, 아니면 후보)."""
+    try:
+        j = json.loads((Path(__file__).resolve().parent / "docs" / "data" / "focus.json").read_text(encoding="utf-8"))
+        lst = j.get("holdings") if j.get("status") == "hold" else j.get("picks")
+        return {x["t"] for x in (lst or []) if x.get("t")}
+    except Exception as e:
+        logger.warning(f"focus.json 읽기 실패(Focus 표시 생략): {e}")
+        return set()
 
 def _placeholder_analysis(news_data: dict, rrg_data: dict) -> dict:
     sector_rrg = rrg_data.get("sector_rrg", {})
