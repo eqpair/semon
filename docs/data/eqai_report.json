@@ -1,191 +1,196 @@
 {
-  "generated_at": "2026-10-30 07:02:57",
+  "generated_at": "2026-10-31 07:03:00",
   "macro": {
     "S&P500": {
-      "price": 7720.39,
-      "change": -0.3,
-      "reason": "Alphabet -13% 역대 최대 낙폭이 지수를 끌어내렸으나 방어·금융주 버팀목으로 낙폭 제한 -0.30%",
+      "price": 7580.07,
+      "change": -1.82,
+      "reason": "Google·Amazon·Intel·ServiceNow 실적 부정 반응으로 기술·커뮤니케이션 섹터 급락, 방어 섹터(에너지·헬스케어·필수소비재) 상승에도 지수는 -1.82%",
       "drivers": [
-        "GOOGL 시총 5000억 달러 증발",
-        "XLV·XLE·XLP 방어섹터 Leading 유지"
+        "GOOGL·AMZN 실적 후 매도",
+        "INTC -28.6% Q4 경고",
+        "NOW·FTNT 소프트웨어 급락"
       ]
     },
     "NASDAQ": {
-      "price": 26184.72,
-      "change": -1.38,
-      "reason": "Alphabet·Amazon·ServiceNow 3대 어닝 쇼크가 기술주 전반을 압박, XLK·XLC Lagging 전환으로 -1.38% 급락",
+      "price": 25437.0,
+      "change": -2.86,
+      "reason": "Intel Q4 PC 판매 부진 경고와 Meta Capex 우려로 기술 집중 매도 — XLK·XLC Lagging으로 -2.86% 급락",
       "drivers": [
-        "GOOGL -13%·AMZN -7%·NOW -27%",
-        "AI 수익화 우려 재점화"
+        "INTC -28.6% 칩 패닉",
+        "Meta 전망 부정적 전환",
+        "소프트웨어 NOW·FTNT 급락"
       ]
     },
     "DOW": {
-      "price": 52342.56,
-      "change": -0.25,
-      "reason": "산업재·금융 비중 높아 빅테크 충격 제한적, 러셀2000 +1.01% 소형주 강세와 동조하며 -0.25% 소폭 하락",
+      "price": 51770.31,
+      "change": -1.09,
+      "reason": "기술 비중 낮고 방어 섹터(헬스케어 XLV·필수소비재 XLP) 상승으로 상대적 선방 -1.09%",
       "drivers": [
-        "XLI·XLF 상대 견조",
-        "소형주 순환매 유입"
+        "방어 섹터 Leading 지지",
+        "경기소비재 XLY 상승"
       ]
     },
     "VIX": {
-      "price": 17.2,
-      "change": 1.71,
-      "reason": "빅테크 어닝 쇼크로 변동성 수요 증가 +1.71%, 다만 17.2 수준은 역사적 중위권으로 공황 국면 아님",
+      "price": 19.42,
+      "change": 12.91,
+      "reason": "AI Capex 회의론·Intel 충격으로 기술주 공포 확산 — 3주 연속 조정 끝 +12.91%로 19.42 급등",
       "drivers": [
-        "GOOGL·AMZN 실적 미스",
-        "AI 투자 회수 불확실성"
+        "칩·소프트웨어 패닉",
+        "빅테크 실적 부정 반응"
       ]
     },
     "필라델피아반도체": {
-      "price": 11518.2,
-      "change": -1.42,
-      "reason": "Alphabet AI 인프라 투자 상향 보류 + Microsoft capex 동결로 반도체 수요 둔화 우려 -1.42%",
+      "price": 10688.8,
+      "change": -7.2,
+      "reason": "Intel Q4 경고(PC 판매 부진)로 -28.6% 폭락이 SOX 전체 -7.20% 급락 촉발, AMD도 Intel 실적 영향 하락",
       "drivers": [
-        "하이퍼스케일러 capex 증액 중단",
-        "Silicon Motion 등 일부 소재 업체 실적 호조는 제한적 지지"
+        "INTC -28.6% Q4 경고",
+        "PC 수요 둔화 공포",
+        "AMD 동반 하락"
       ]
     },
     "러셀2000": {
-      "price": 2859.22,
-      "change": 1.01,
-      "reason": "빅테크 유출 자금이 소형주로 회전, 금리 하락(10Y -1.11%)이 밸류에이션 부담 완화하며 +1.01% 상승",
+      "price": 2811.84,
+      "change": -1.66,
+      "reason": "기술주 급락 여파로 소형주도 -1.66% 하락, 단 방어 섹터 비중 높아 낙폭 나스닥 대비 작음",
       "drivers": [
-        "대형기술주 회피 자금",
-        "10년물 금리 하락"
+        "시장 전반 Risk-Off",
+        "기술 동조 매도"
       ]
     },
     "영국FTSE": {
-      "price": 10722.07,
-      "change": 0.26,
-      "reason": "직접 촉매 없음 — 유럽 금리 동결 안도감과 에너지·방어주 비중 높은 구조로 +0.26% 소폭 상승",
+      "price": 10729.78,
+      "change": 0.07,
+      "reason": "미국 기술주 충격에서 거리 두고 방어·에너지 비중 높아 +0.07% 보합 유지",
       "drivers": [
-        "ECB 금리 동결",
-        "에너지 섹터 XLE +1.0% 선방"
+        "에너지 XLE 강세",
+        "미국 기술주 디커플링"
       ]
     },
     "독일DAX": {
-      "price": 26039.68,
-      "change": 1.31,
-      "reason": "ECB 금리 동결 확인 + 라가르드 사임 발표로 정책 예측 가능성 개선 기대, 산업재·화학 비중 높아 +1.31% 강세",
+      "price": 25818.21,
+      "change": -0.85,
+      "reason": "유럽 기술주 일부 동조 매도 및 알루미늄 -4.99%로 소재 부담 -0.85%",
       "drivers": [
-        "ECB 정책 불확실성 해소",
-        "소재 XLB Leading 동조"
+        "소재 약세",
+        "미국 기술 전염"
       ]
     },
     "니케이": {
-      "price": 63954.19,
-      "change": 1.08,
-      "reason": "직접 촉매 없음 — 엔화 약세(달러인덱스 -0.27% 반대 방향) 수출주 수혜 기대와 반도체 낙폭 제한으로 +1.08%",
+      "price": 64659.47,
+      "change": 1.1,
+      "reason": "직전 거래일 마감 후 미국 기술주 급락 전 상승 흐름 유지 +1.10% — 다음 거래일 반영 예상",
       "drivers": [
-        "엔화 약세 수출 우호",
-        "동경전자·어드밴테스트 선방"
+        "미국 급락 전 마감",
+        "시차로 영향 미반영"
       ]
     },
     "항셍": {
-      "price": 23094.83,
-      "change": 0.23,
-      "reason": "직접 촉매 없음 — 미 빅테크 충격 제한적, 중국 내수·금융주 혼조 속 +0.23% 보합 마감",
+      "price": 22958.65,
+      "change": -0.59,
+      "reason": "중국 AI 인프라 경쟁 지속 보도에도 글로벌 기술주 약세 일부 반영 -0.59%",
       "drivers": [
-        "텐센트·알리바바 제한적 동조 하락",
-        "본토 부양책 기대 잔존"
+        "미국 기술주 여파",
+        "AI 인프라 경쟁 지속"
       ]
     },
     "달러인덱스": {
-      "price": 101.91,
-      "change": -0.27,
-      "reason": "10년물 금리 -1.11% 급락이 달러 매력 약화, ECB 금리 동결에도 유로 상대 강세로 -0.27%",
+      "price": 101.96,
+      "change": -0.07,
+      "reason": "연준 추가 인상 발언에도 Risk-Off로 채권 수요 증가(2Y -0.63%, 10Y -1.20%)하며 달러 약세 -0.07%",
       "drivers": [
-        "미 국채 10Y 금리 하락",
-        "유로 반등"
+        "채권 수요 증가",
+        "Risk-Off 달러 중립"
       ]
     },
     "국채2Y": {
-      "price": 4.0,
-      "change": 0.08,
-      "reason": "직접 촉매 없음 — 연준 금리 경로 변화 없고 단기 자금 수요 견조하며 +0.08% 소폭 상승",
+      "price": 3.97,
+      "change": -0.63,
+      "reason": "연준 Musalem·Logan 추가 인상 발언에도 기술주 패닉으로 안전자산 수요 증가 -0.63%로 3.97%",
       "drivers": [
-        "단기 유동성 수요",
-        "연준 정책 대기"
+        "Risk-Off 채권 선호",
+        "기술주 급락 피난"
       ]
     },
     "국채10Y": {
-      "price": 4.99,
-      "change": -1.11,
-      "reason": "빅테크 실적 충격으로 성장 둔화 우려 부각, 안전자산 선호 강화되며 -1.11% 급락",
+      "price": 4.93,
+      "change": -1.2,
+      "reason": "AI Capex 우려로 장기 성장 기대 후퇴 및 안전자산 집중 매수 -1.20%로 4.93%",
       "drivers": [
-        "GOOGL·AMZN 실적 미스",
-        "리스크오프(위험회피 심리) 채권 매수"
+        "장기 성장 우려",
+        "기술 밸류에이션 부담 완화"
       ]
     },
     "코스피": {
-      "price": 5937.66,
-      "change": 0.0,
-      "reason": "장 마감 후 미 증시 급락으로 익일 영향 불가피, 당일은 +0.00% 보합 마감",
+      "price": 5730.74,
+      "change": -3.48,
+      "reason": "필라반도체 -7.20%·NASDAQ -2.86% 글로벌 기술주 급락 직격탄 — 전기전자 업종(Sector Momentum 1위) 타격으로 -3.48%, 외국인 1일 -1.6조·20일 -18.6조 매도 가속",
       "drivers": [
-        "미 증시 시차",
-        "외국인 당일 +703억 순매수"
+        "필라반도체 -7.20% 충격",
+        "외국인 -1.6조 집중 매도",
+        "전기전자 동반 급락"
       ]
     },
     "코스닥": {
-      "price": 753.23,
-      "change": 0.0,
-      "reason": "장 마감 후 나스닥 -1.38% 급락, 당일은 +0.00% 보합",
+      "price": 724.38,
+      "change": -3.83,
+      "reason": "미국 소프트웨어(NOW·FTNT) 급락 여파로 IT서비스 압박, 코스닥 -3.83%로 코스피 낙폭 초과",
       "drivers": [
-        "미 기술주 시차",
-        "개인 +2,151억 순매수"
+        "미국 소프트웨어 급락",
+        "IT서비스 동조",
+        "외국인 -255억 순매도"
       ]
     },
     "금": {
-      "price": 4033.3,
-      "change": -0.45,
-      "reason": "달러 약세에도 10년물 금리 급락으로 실질금리 하락 수혜 제한적, -0.45% 소폭 하락",
+      "price": 3884.9,
+      "change": -3.63,
+      "reason": "VIX +12.91%에도 달러 약보합·채권 강세로 안전자산 수요가 채권 집중, 금 -3.63%로 3884.9",
       "drivers": [
-        "실질금리 변동성",
-        "리스크오프 수혜 제한"
+        "채권이 안전자산 선호",
+        "달러 약세로 금 지지 약화"
       ]
     },
     "WTI유가": {
-      "price": 102.86,
-      "change": 0.08,
-      "reason": "직접 촉매 없음 — 중동 지정학 리스크 잔존과 재고 감소 기대로 +0.08% 보합",
+      "price": 102.95,
+      "change": 0.93,
+      "reason": "지정학(중동) 리스크 및 에너지 섹터 XLE Leading(R109.7) 유지로 +0.93%로 102.95",
       "drivers": [
-        "중동 긴장 지속",
-        "수급 균형"
+        "지정학 프리미엄",
+        "에너지 섹터 Leading"
       ]
     },
     "원달러": {
-      "price": 1339.48,
-      "change": 0.95,
-      "reason": "미 빅테크 급락 여파로 외국인 자금 이탈 우려 + 국내 외환 수급 악화 반영 +0.95% 급등",
+      "price": 1333.44,
+      "change": -0.51,
+      "reason": "코스피 -3.48% 급락에도 달러인덱스 -0.07% 약세 동조로 원화 소폭 강세 -0.51%로 1333.44",
       "drivers": [
-        "외국인 20일 누적 -20.7조",
-        "리스크오프 신흥국 통화 약세"
+        "달러 약세 동조",
+        "외국인 매도에도 달러 수요 제한"
       ]
     },
     "알루미늄": {
-      "price": 3182.0,
-      "change": -2.93,
-      "reason": "중국 제조 경기 둔화 우려 + 글로벌 경기 민감 소재 수요 약화로 -2.93% 급락",
+      "price": 3166.0,
+      "change": -4.99,
+      "reason": "글로벌 산업 수요 둔화 우려(Intel PC 수요 경고) 반영 -4.99%로 3166.0",
       "drivers": [
-        "중국 PMI 부진 기대",
-        "XLB 상승에도 산업금속 약세"
+        "Intel PC 수요 충격",
+        "산업 금속 약세"
       ]
     },
     "구리": {
-      "price": 6.59,
-      "change": -0.78,
-      "reason": "AI 인프라 투자 증액 보류(GOOGL·MSFT capex 동결)로 전력·데이터센터 수요 둔화 우려 -0.78%",
+      "price": 6.51,
+      "change": -1.09,
+      "reason": "알루미늄 대비 선방하나 산업 수요 우려로 -1.09%로 6.51",
       "drivers": [
-        "하이퍼스케일러 설비투자 중단",
-        "중국 부동산 회복 지연"
+        "산업 수요 둔화",
+        "AI 인프라 수요는 일부 지지"
       ]
     }
   },
   "sector_rrg": {
     "전기전자": {
-      "rs_ratio": 91.991,
-      "rs_momentum": 91.928,
+      "rs_ratio": 96.599,
+      "rs_momentum": 96.136,
       "quadrant": "lagging",
       "tail": [
         {
@@ -255,17 +260,21 @@
         {
           "rs_ratio": 95.133,
           "rs_momentum": 94.38
+        },
+        {
+          "rs_ratio": 91.991,
+          "rs_momentum": 91.928
         }
       ],
-      "sector_ret_5d": 10.57,
+      "sector_ret_5d": 3.94,
       "improving_count": 1,
       "watch_count": 3,
       "total": 127
     },
     "기계·장비": {
-      "rs_ratio": 95.72,
-      "rs_momentum": 91.894,
-      "quadrant": "lagging",
+      "rs_ratio": 100.493,
+      "rs_momentum": 96.067,
+      "quadrant": "weakening",
       "tail": [
         {
           "rs_ratio": 103.963,
@@ -334,17 +343,21 @@
         {
           "rs_ratio": 100.396,
           "rs_momentum": 95.587
+        },
+        {
+          "rs_ratio": 95.72,
+          "rs_momentum": 91.894
         }
       ],
-      "sector_ret_5d": 0.31,
-      "improving_count": 7,
-      "watch_count": 5,
+      "sector_ret_5d": -5.89,
+      "improving_count": 5,
+      "watch_count": 3,
       "total": 71
     },
     "화학": {
-      "rs_ratio": 100.095,
-      "rs_momentum": 96.992,
-      "quadrant": "weakening",
+      "rs_ratio": 104.987,
+      "rs_momentum": 101.267,
+      "quadrant": "leading",
       "tail": [
         {
           "rs_ratio": 99.388,
@@ -413,22 +426,22 @@
         {
           "rs_ratio": 105.825,
           "rs_momentum": 101.713
+        },
+        {
+          "rs_ratio": 100.095,
+          "rs_momentum": 96.992
         }
       ],
-      "sector_ret_5d": -2.79,
+      "sector_ret_5d": -5.06,
       "improving_count": 0,
-      "watch_count": 7,
+      "watch_count": 1,
       "total": 53
     },
     "IT서비스": {
-      "rs_ratio": 102.152,
-      "rs_momentum": 104.426,
+      "rs_ratio": 107.069,
+      "rs_momentum": 108.944,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 124.023,
-          "rs_momentum": 123.581
-        },
         {
           "rs_ratio": 123.936,
           "rs_momentum": 123.624
@@ -584,22 +597,22 @@
         {
           "rs_ratio": 95.637,
           "rs_momentum": 93.681
+        },
+        {
+          "rs_ratio": 102.152,
+          "rs_momentum": 104.426
         }
       ],
-      "sector_ret_5d": 0.51,
-      "improving_count": 1,
-      "watch_count": 0,
+      "sector_ret_5d": -2.46,
+      "improving_count": 0,
+      "watch_count": 2,
       "total": 39
     },
     "제약": {
-      "rs_ratio": 107.768,
-      "rs_momentum": 109.518,
+      "rs_ratio": 112.858,
+      "rs_momentum": 114.12,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 109.472,
-          "rs_momentum": 100.931
-        },
         {
           "rs_ratio": 108.989,
           "rs_momentum": 100.612
@@ -755,16 +768,20 @@
         {
           "rs_ratio": 105.046,
           "rs_momentum": 101.141
+        },
+        {
+          "rs_ratio": 107.768,
+          "rs_momentum": 109.518
         }
       ],
-      "sector_ret_5d": -4.64,
+      "sector_ret_5d": -3.4,
       "improving_count": 0,
-      "watch_count": 3,
+      "watch_count": 2,
       "total": 41
     },
     "일반서비스": {
-      "rs_ratio": 105.548,
-      "rs_momentum": 103.947,
+      "rs_ratio": 110.532,
+      "rs_momentum": 108.363,
       "quadrant": "leading",
       "tail": [
         {
@@ -834,16 +851,20 @@
         {
           "rs_ratio": 109.712,
           "rs_momentum": 107.355
+        },
+        {
+          "rs_ratio": 105.548,
+          "rs_momentum": 103.947
         }
       ],
-      "sector_ret_5d": -2.03,
-      "improving_count": 4,
-      "watch_count": 3,
+      "sector_ret_5d": -5.34,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 38
     },
     "금속": {
-      "rs_ratio": 94.075,
-      "rs_momentum": 95.119,
+      "rs_ratio": 98.087,
+      "rs_momentum": 99.22,
       "quadrant": "lagging",
       "tail": [
         {
@@ -913,16 +934,20 @@
         {
           "rs_ratio": 99.002,
           "rs_momentum": 99.164
+        },
+        {
+          "rs_ratio": 94.075,
+          "rs_momentum": 95.119
         }
       ],
-      "sector_ret_5d": -1.28,
+      "sector_ret_5d": -4.51,
       "improving_count": 2,
-      "watch_count": 0,
+      "watch_count": 2,
       "total": 34
     },
     "운송장비·부품": {
-      "rs_ratio": 93.612,
-      "rs_momentum": 100.017,
+      "rs_ratio": 98.334,
+      "rs_momentum": 104.582,
       "quadrant": "improving",
       "tail": [
         {
@@ -992,22 +1017,22 @@
         {
           "rs_ratio": 97.993,
           "rs_momentum": 103.857
+        },
+        {
+          "rs_ratio": 93.612,
+          "rs_momentum": 100.017
         }
       ],
-      "sector_ret_5d": -2.23,
+      "sector_ret_5d": -8.13,
       "improving_count": 0,
-      "watch_count": 0,
+      "watch_count": 6,
       "total": 30
     },
     "유통": {
-      "rs_ratio": 95.523,
-      "rs_momentum": 97.301,
-      "quadrant": "lagging",
+      "rs_ratio": 100.244,
+      "rs_momentum": 101.661,
+      "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 88.996,
-          "rs_momentum": 91.78
-        },
         {
           "rs_ratio": 88.687,
           "rs_momentum": 90.919
@@ -1163,22 +1188,22 @@
         {
           "rs_ratio": 100.357,
           "rs_momentum": 107.56
+        },
+        {
+          "rs_ratio": 95.523,
+          "rs_momentum": 97.301
         }
       ],
-      "sector_ret_5d": 6.72,
-      "improving_count": 2,
-      "watch_count": 0,
+      "sector_ret_5d": 2.52,
+      "improving_count": 3,
+      "watch_count": 1,
       "total": 28
     },
     "지주": {
-      "rs_ratio": 89.65,
-      "rs_momentum": 91.967,
+      "rs_ratio": 93.97,
+      "rs_momentum": 96.071,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 97.264,
-          "rs_momentum": 100.53
-        },
         {
           "rs_ratio": 96.279,
           "rs_momentum": 99.568
@@ -1334,16 +1359,20 @@
         {
           "rs_ratio": 90.605,
           "rs_momentum": 92.833
+        },
+        {
+          "rs_ratio": 89.65,
+          "rs_momentum": 91.967
         }
       ],
-      "sector_ret_5d": 12.49,
+      "sector_ret_5d": 5.29,
       "improving_count": 1,
       "watch_count": 0,
       "total": 19
     },
     "의료·정밀기기": {
-      "rs_ratio": 108.385,
-      "rs_momentum": 102.921,
+      "rs_ratio": 113.436,
+      "rs_momentum": 107.162,
       "quadrant": "leading",
       "tail": [
         {
@@ -1413,17 +1442,21 @@
         {
           "rs_ratio": 113.592,
           "rs_momentum": 107.297
+        },
+        {
+          "rs_ratio": 108.385,
+          "rs_momentum": 102.921
         }
       ],
-      "sector_ret_5d": 1.24,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -7.75,
+      "improving_count": 0,
+      "watch_count": 0,
       "total": 15
     },
     "금융": {
-      "rs_ratio": 97.707,
-      "rs_momentum": 98.083,
-      "quadrant": "lagging",
+      "rs_ratio": 102.502,
+      "rs_momentum": 102.447,
+      "quadrant": "leading",
       "tail": [
         {
           "rs_ratio": 99.857,
@@ -1492,22 +1525,22 @@
         {
           "rs_ratio": 95.521,
           "rs_momentum": 96.594
+        },
+        {
+          "rs_ratio": 97.707,
+          "rs_momentum": 98.083
         }
       ],
-      "sector_ret_5d": 2.6,
+      "sector_ret_5d": 1.62,
       "improving_count": 1,
-      "watch_count": 0,
+      "watch_count": 1,
       "total": 17
     },
     "건설": {
-      "rs_ratio": 90.585,
-      "rs_momentum": 89.67,
+      "rs_ratio": 95.248,
+      "rs_momentum": 93.947,
       "quadrant": "lagging",
       "tail": [
-        {
-          "rs_ratio": 107.579,
-          "rs_momentum": 105.03
-        },
         {
           "rs_ratio": 106.808,
           "rs_momentum": 104.453
@@ -1663,16 +1696,20 @@
         {
           "rs_ratio": 102.42,
           "rs_momentum": 99.811
+        },
+        {
+          "rs_ratio": 90.585,
+          "rs_momentum": 89.67
         }
       ],
-      "sector_ret_5d": -5.17,
-      "improving_count": 0,
-      "watch_count": 0,
+      "sector_ret_5d": -12.58,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 11
     },
     "운송·창고": {
-      "rs_ratio": 105.383,
-      "rs_momentum": 103.694,
+      "rs_ratio": 110.426,
+      "rs_momentum": 108.138,
       "quadrant": "leading",
       "tail": [
         {
@@ -1742,22 +1779,22 @@
         {
           "rs_ratio": 111.156,
           "rs_momentum": 108.728
+        },
+        {
+          "rs_ratio": 105.383,
+          "rs_momentum": 103.694
         }
       ],
-      "sector_ret_5d": 1.94,
+      "sector_ret_5d": 2.02,
       "improving_count": 0,
-      "watch_count": 1,
+      "watch_count": 0,
       "total": 10
     },
     "보험": {
-      "rs_ratio": 98.358,
-      "rs_momentum": 100.0,
-      "quadrant": "lagging",
+      "rs_ratio": 103.128,
+      "rs_momentum": 104.395,
+      "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 101.743,
-          "rs_momentum": 100.38
-        },
         {
           "rs_ratio": 100.9,
           "rs_momentum": 99.499
@@ -1913,16 +1950,20 @@
         {
           "rs_ratio": 102.518,
           "rs_momentum": 103.59
+        },
+        {
+          "rs_ratio": 98.358,
+          "rs_momentum": 100.0
         }
       ],
-      "sector_ret_5d": 9.7,
-      "improving_count": 1,
+      "sector_ret_5d": 7.5,
+      "improving_count": 0,
       "watch_count": 0,
       "total": 8
     },
     "오락·문화": {
-      "rs_ratio": 108.869,
-      "rs_momentum": 109.709,
+      "rs_ratio": 114.083,
+      "rs_momentum": 114.172,
       "quadrant": "leading",
       "tail": [
         {
@@ -1992,16 +2033,20 @@
         {
           "rs_ratio": 114.117,
           "rs_momentum": 114.64
+        },
+        {
+          "rs_ratio": 108.869,
+          "rs_momentum": 109.709
         }
       ],
-      "sector_ret_5d": -5.51,
+      "sector_ret_5d": -6.39,
       "improving_count": 0,
-      "watch_count": 1,
+      "watch_count": 0,
       "total": 8
     },
     "섬유·의류": {
-      "rs_ratio": 103.512,
-      "rs_momentum": 101.147,
+      "rs_ratio": 108.071,
+      "rs_momentum": 105.502,
       "quadrant": "leading",
       "tail": [
         {
@@ -2071,16 +2116,20 @@
         {
           "rs_ratio": 109.805,
           "rs_momentum": 106.898
+        },
+        {
+          "rs_ratio": 103.512,
+          "rs_momentum": 101.147
         }
       ],
-      "sector_ret_5d": -1.73,
+      "sector_ret_5d": -0.73,
       "improving_count": 0,
-      "watch_count": 1,
+      "watch_count": 0,
       "total": 7
     },
     "음식료·담배": {
-      "rs_ratio": 109.839,
-      "rs_momentum": 109.587,
+      "rs_ratio": 113.491,
+      "rs_momentum": 112.805,
       "quadrant": "leading",
       "tail": [
         {
@@ -2150,22 +2199,22 @@
         {
           "rs_ratio": 114.548,
           "rs_momentum": 113.74
+        },
+        {
+          "rs_ratio": 109.839,
+          "rs_momentum": 109.587
         }
       ],
-      "sector_ret_5d": -0.47,
-      "improving_count": 1,
+      "sector_ret_5d": 0.25,
+      "improving_count": 0,
       "watch_count": 0,
       "total": 6
     },
     "증권": {
-      "rs_ratio": 94.088,
-      "rs_momentum": 99.967,
-      "quadrant": "lagging",
+      "rs_ratio": 98.685,
+      "rs_momentum": 104.415,
+      "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 95.704,
-          "rs_momentum": 96.282
-        },
         {
           "rs_ratio": 95.064,
           "rs_momentum": 95.647
@@ -2321,16 +2370,20 @@
         {
           "rs_ratio": 98.684,
           "rs_momentum": 103.514
+        },
+        {
+          "rs_ratio": 94.088,
+          "rs_momentum": 99.967
         }
       ],
-      "sector_ret_5d": 7.54,
+      "sector_ret_5d": 2.11,
       "improving_count": 0,
-      "watch_count": 0,
+      "watch_count": 1,
       "total": 6
     },
     "비금속": {
-      "rs_ratio": 94.712,
-      "rs_momentum": 87.789,
+      "rs_ratio": 99.867,
+      "rs_momentum": 92.583,
       "quadrant": "lagging",
       "tail": [
         {
@@ -2400,22 +2453,22 @@
         {
           "rs_ratio": 99.875,
           "rs_momentum": 92.17
+        },
+        {
+          "rs_ratio": 94.712,
+          "rs_momentum": 87.789
         }
       ],
-      "sector_ret_5d": 0.76,
+      "sector_ret_5d": -8.2,
       "improving_count": 0,
       "watch_count": 1,
       "total": 5
     },
     "통신": {
-      "rs_ratio": 98.804,
-      "rs_momentum": 100.604,
-      "quadrant": "improving",
+      "rs_ratio": 103.621,
+      "rs_momentum": 105.0,
+      "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 95.31,
-          "rs_momentum": 94.814
-        },
         {
           "rs_ratio": 93.838,
           "rs_momentum": 93.495
@@ -2571,22 +2624,22 @@
         {
           "rs_ratio": 103.677,
           "rs_momentum": 104.725
+        },
+        {
+          "rs_ratio": 98.804,
+          "rs_momentum": 100.604
         }
       ],
-      "sector_ret_5d": 0.52,
+      "sector_ret_5d": -0.55,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
     },
     "유틸리티": {
-      "rs_ratio": 100.653,
-      "rs_momentum": 104.863,
+      "rs_ratio": 105.672,
+      "rs_momentum": 109.392,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 96.448,
-          "rs_momentum": 91.455
-        },
         {
           "rs_ratio": 95.76,
           "rs_momentum": 90.806
@@ -2742,22 +2795,22 @@
         {
           "rs_ratio": 108.643,
           "rs_momentum": 111.54
+        },
+        {
+          "rs_ratio": 100.653,
+          "rs_momentum": 104.863
         }
       ],
-      "sector_ret_5d": -0.98,
-      "improving_count": 1,
+      "sector_ret_5d": -1.32,
+      "improving_count": 0,
       "watch_count": 0,
       "total": 3
     },
     "은행": {
-      "rs_ratio": 103.78,
-      "rs_momentum": 104.765,
+      "rs_ratio": 108.744,
+      "rs_momentum": 109.232,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 99.479,
-          "rs_momentum": 89.734
-        },
         {
           "rs_ratio": 98.842,
           "rs_momentum": 89.152
@@ -2913,9 +2966,13 @@
         {
           "rs_ratio": 104.746,
           "rs_momentum": 104.422
+        },
+        {
+          "rs_ratio": 103.78,
+          "rs_momentum": 104.765
         }
       ],
-      "sector_ret_5d": -1.48,
+      "sector_ret_5d": -1.36,
       "improving_count": 0,
       "watch_count": 0,
       "total": 2
@@ -2923,123 +2980,119 @@
   },
   "sources": [
     {
-      "source": "yonhap",
-      "title": "미 연준 이어 ECB도 금리 동결…\"인플레·경기둔화 위험 여전\"(종합)",
-      "link": "https://www.yna.co.kr/view/AKR20261029208552082",
-      "published": "Fri, 30 Oct 2026 00:15:46 +0900"
-    },
-    {
-      "source": "investors",
-      "title": "Dow Jones Futures: Amazon, Intel Lead Earnings Losers After Google, ServiceNow, Fortinet Hit Nasdaq",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-amazon-intel-earnings-losers-google-servicenow-fortinet-nasdaq/",
-      "published": "Thu, 29 Oct 2026 20:41:45 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Stock Market Today: Nasdaq Breaks Streak On Alphabet's $500B Drop; Amazon Earnings Next",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-alphabet-earnings-microsoft/",
-      "published": "Thu, 29 Oct 2026 12:14:04 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "AI buildout hits snag as Google and Microsoft put off raising capex forecasts",
-      "link": "https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",
-      "published": "Thu, 29 Oct 2026 16:20:51 GMT"
-    },
-    {
-      "source": "cnbc_tech",
-      "title": "Alphabet earnings miss reflects first real sign that AI is taking a bite out of search",
-      "link": "https://www.cnbc.com/2026/10/29/alphabet-google-search-ai-earnings.html",
-      "published": "Thu, 29 Oct 2026 20:16:03 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Jim Cramer: Why investors are punishing Alphabet and giving Microsoft a pass",
-      "link": "https://www.cnbc.com/investingclub/2026/10/29/jim-cramer-why-investors-are-punishing-alphabet-and-giving-microsoft-a-pass.html",
-      "published": "Thu, 29 Oct 2026 19:30:33 GMT"
-    },
-    {
-      "source": "yonhap",
-      "title": "[2보] ECB 금리 동결…예금금리 연 2.50％",
-      "link": "https://www.yna.co.kr/view/AKR20261029208551082",
-      "published": "Thu, 29 Oct 2026 22:38:28 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "[속보] ECB 금리 동결…예금금리 연 2.50％",
-      "link": "https://www.mk.co.kr/news/world/12190687",
-      "published": "Thu, 29 Oct 2026 22:20:20 +09:00"
-    },
-    {
-      "source": "investors",
-      "title": "Amazon Stock Slides After Q3 Earnings Miss Despite Strong Cloud Growth",
-      "link": "https://www.investors.com/news/technology/amazon-stock-amzn-earnings-q3-2026/",
-      "published": "Thu, 29 Oct 2026 20:13:25 +0000"
-    },
-    {
-      "source": "cnbc_tech",
-      "title": "Alphabet drags on Nasdaq futures as the stock faces a record post-earnings loss",
-      "link": "https://www.cnbc.com/2026/10/29/alphabet-nasdaq-futures-record-post-earnings-loss.html",
-      "published": "Thu, 29 Oct 2026 11:41:06 GMT"
-    },
-    {
-      "source": "maeil",
-      "title": "AI 시대 ‘용량 확대’보다 ‘가성비’를 따져라 … HBM에 날개 달아줄 연결반도체",
-      "link": "https://www.mk.co.kr/news/business/12190036",
-      "published": "Fri, 30 Oct 2026 05:00:00 +09:00"
-    },
-    {
-      "source": "maeil",
-      "title": "나란히 실적 발표한 ‘삼전닉스’…닉스는 연일 상승했지만 삼전은 하락",
-      "link": "https://www.mk.co.kr/news/stock/12190628",
-      "published": "Thu, 29 Oct 2026 21:32:12 +09:00"
-    },
-    {
       "source": "bloomberg",
-      "title": "Tech Stocks Slide as Alphabet’s Record Plunge Revives AI Fears",
-      "link": "https://www.bloomberg.com/news/articles/2026-10-29/us-stock-futures-fall-as-alphabet-sales-miss-revives-ai-fears",
-      "published": "Thu, 29 Oct 2026 11:09:59 GMT"
+      "title": "Apple Overtakes Nvidia to Become World’s Most Valuable Company",
+      "link": "https://www.bloomberg.com/news/articles/2026-10-30/apple-overtakes-nvidia-to-become-world-s-most-valuable-company",
+      "published": "Fri, 30 Oct 2026 20:28:39 GMT"
     },
     {
-      "source": "maeil",
-      "title": "[속보] 라가르드 ECB 총재, 임기 남기고 내년 2월 중도 사임",
-      "link": "https://www.mk.co.kr/news/world/12190356",
-      "published": "Thu, 29 Oct 2026 19:18:50 +09:00"
+      "source": "investors",
+      "title": "Stock Market: Google, Amazon, Intel, ServiceNow Trigger Tech Wreck, But Other Sectors Solid: Weekly Review",
+      "link": "https://www.investors.com/news/stock-market-google-amazon-intel-servicenow-trigger-tech-wreck/",
+      "published": "Fri, 30 Oct 2026 17:33:48 +0000"
+    },
+    {
+      "source": "investors",
+      "title": "Apple, Super Micro, AMD, Palantir Step Up To Earnings Plate After Tech Sell-Off",
+      "link": "https://www.investors.com/research/earnings-preview/apple-stock-super-micro-earnings-amd-palantir-earnings/",
+      "published": "Fri, 30 Oct 2026 17:44:47 +0000"
     },
     {
       "source": "cnbc_tech",
-      "title": "Amazon AWS posts 39% revenue growth as cloud rivals also accelerate",
-      "link": "https://www.cnbc.com/2026/10/29/aws-q3-earnings-report-2026.html",
-      "published": "Thu, 29 Oct 2026 21:59:31 GMT"
+      "title": "Meta outlook revised to negative by S&P on cash flow and capex concerns",
+      "link": "https://www.cnbc.com/2026/10/30/meta-outlook-to-revised-to-negative-by-sp-after-cash-flow-negative.html",
+      "published": "Fri, 30 Oct 2026 21:47:37 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "Dow Jones Futures: Stock Market Sells Off As Apple, Palantir, Midterm Elections Loom; What To Do",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-stock-market-sells-off-apple-palantir-midterm-elections/",
+      "published": "Fri, 30 Oct 2026 20:48:35 +0000"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Microsoft is winning the cloud wars and becoming Wall Street’s new golden child",
+      "link": "https://www.marketwatch.com/story/microsoft-is-winning-the-cloud-wars-and-becoming-wall-streets-new-golden-child-62eecbbd?mod=mw_rss_topstories",
+      "published": "Fri, 30 Oct 2026 20:29:00 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "Apple Sentiment Cautious On December-Ending Quarter Outlook",
+      "link": "https://www.investors.com/news/technology/apple-stock-fiscal-q4-2026-earnings-preview/",
+      "published": "Fri, 30 Oct 2026 15:19:18 +0000"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Musk and Zuckerberg echo Trump's push to rebrand AI as 'super intelligence' on earnings calls. Others do not",
+      "link": "https://www.cnbc.com/2026/10/30/trump-tech-allies-swap-ai-for-super-intelligence-in-earnings-calls.html",
+      "published": "Fri, 30 Oct 2026 15:14:27 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "S&P 500 Plays Defense; Investors Snack On Walmart, Mondelez As Amazon Slams Techs",
+      "link": "https://www.investors.com/news/sp-500-defensive-stocks-mondelez-colgate-q3-walmart-amazon/",
+      "published": "Fri, 30 Oct 2026 14:26:18 +0000"
+    },
+    {
+      "source": "investors",
+      "title": "Telecom Stocks: Can AI, Robotics Break The SpaceX Standoff?",
+      "link": "https://www.investors.com/news/technology/telecom-stocks-can-econ-musk-physical-ai-spacex-wireless-network/",
+      "published": "Fri, 30 Oct 2026 12:20:57 +0000"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Fed officials are already saying they’ll need to get back to hiking rates",
+      "link": "https://www.cnbc.com/2026/10/30/musalem-fed-monetary-policy-tightening.html",
+      "published": "Fri, 30 Oct 2026 21:53:10 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Viper Energy Q3 2026 Earnings Preview",
+      "link": "https://seekingalpha.com/news/4661429-viper-energy-q3-2026-earnings-preview?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Fri, 30 Oct 2026 17:35:58 -0400"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Warsh wants the Fed to say less. Two officials are pushing for more transparency.",
+      "link": "https://www.marketwatch.com/story/the-fed-held-interest-rates-steady-but-these-officials-see-more-hikes-coming-soon-2098bbd8?mod=mw_rss_topstories",
+      "published": "Fri, 30 Oct 2026 21:23:00 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "AMD’s stock slides after Intel earnings reveal two big issues",
+      "link": "https://www.marketwatch.com/story/amds-stock-slides-after-intel-earnings-reveal-two-big-issues-d3afed91?mod=mw_rss_topstories",
+      "published": "Fri, 30 Oct 2026 20:28:00 GMT"
+    },
+    {
+      "source": "cnbc_tech",
+      "title": "Reddit stock plunges 29% after weak outlook, wrapping its worst day ever",
+      "link": "https://www.cnbc.com/2026/10/30/reddit-stock-q3-earnings.html",
+      "published": "Fri, 30 Oct 2026 20:11:12 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "Alphabet 역대 최대 낙폭(-13%, 시총 5000억 달러 증발)으로 AI 수익화 우려 재점화 + Amazon·ServiceNow 실적 쇼크로 빅테크 전방위 급락 → 국내 Reflex 9단계(투매) 5일째, Momentum 23.2로 주식 비중 0% 권고",
+  "sentiment_reason": "필라델피아반도체 -7.20% 급락·VIX +12.91%·NASDAQ -2.86%로 AI 지출 우려 확산, Reflexivity 9단계(Capitulation·투매) 6거래일째·시장 폭 20일선 위 21.3%·외국인 20일 -18.6조로 매도 국면 심화",
   "key_factors": [
-    "Alphabet 검색 매출 둔화·FCF -91억 달러로 AI가 검색을 잠식하는 첫 실증적 신호, ServiceNow -27% 역대 최악일로 AI 디스럽션(기존 사업 대체) 공포 확산",
-    "Amazon Q3 EPS 1.89 vs 예상 1.96 미스 + 크리스마스 매출 가이던스 하향 + FCF -424억 달러 적자로 클라우드 성장(AWS +39%)에도 주가 -7% 급락",
-    "ECB 금리 동결(예금금리 2.50%) + 라가르드 총재 내년 2월 조기 사임으로 유럽 정책 불확실성 부각, 국내는 외국인 20일 누적 -20.7조·20일선 위 종목 23.6%로 매도 압력 지속"
+    "Intel Q4 경고로 PC 수요 둔화 우려 확산 — 필라델피아반도체 -7.20%, Intel -28.6%로 글로벌 칩 섹터 패닉",
+    "Google·Amazon·ServiceNow 실적 후 부정 반응으로 AI Capex 회의론 부상 — Meta S&P 전망 하향(현금흐름·자본 지출 우려), 미국 기술 XLK·커뮤니케이션 XLC Lagging",
+    "연준 St. Louis Musalem·Dallas Logan 추가 인상 발언 — 국채 2Y -0.63%·10Y -1.20%로 채권 랠리 속 기술주 valuation 부담 가중"
   ],
-  "news_summary": "ECB 3대 정책금리 동결(예금금리 2.50% 유지), 에너지 충격에 인플레 상승과 성장 둔화 가능성 경고하며 12월 추가 인상 가능성 시사\n크리스틴 라가르드 ECB 총재 임기 남기고 내년 2월 7일 조기 사임 발표, 마크롱 임기 중 후임 인선권 행사로 극우 영향 차단 포석 분석\n미 국채 10년물 금리 -1.11% 급락(4.99%)해 2년물(4.0%)과 스프레드 확대, 빅테크 실적 충격으로 성장 둔화 우려 반영\n달러인덱스 -0.27%(101.91) 하락, 10년물 금리 급락과 ECB 금리 동결에도 유로 상대 강세\nNvidia, Jensen Huang이 중국 정보자산 표적이었다는 뉴욕타임스 보도에 대해 '조사 완료·사실무근'이라고 반박, 주가 방어\nWTI 유가 +0.08%(102.86달러) 보합, 중동 지정학 긴장 지속과 재고 감소 기대가 수급 균형 유지\nAlphabet Q3 검색·기타 매출 630억 달러로 2분기 연속 예상 하회, AI 채팅·에이전트가 검색 잠식하는 첫 실증 신호로 주가 -13% 역대 최대 낙폭·시총 5000억 달러 증발\nAmazon Q3 EPS 1.89(예상 1.96) 미스 + 크리스마스 매출 가이던스 하향 + FCF -424억 달러 적자, AWS 매출 460억 달러 +39% 성장에도 주가 -7% 급락\nServiceNow Q3 실적 예상치 하회로 주가 -27% 역대 최악일 기록, AI가 기존 엔터프라이즈 소프트웨어 사업을 대체하는 디스럽션(와해) 우려 재점화\nGoogle·Microsoft가 분기 실적 발표에서 AI 인프라 capex 증액 전망 보류, '무한 수요' 서사 꺾이며 반도체·클라우드 밸류에이션(가치평가) 압박\nReddit Q3 실적 예상 상회했으나 Q4 매출 가이던스 하향 + Google 검색 트래픽 감소로 로그인 필수화 테스트 발표, 주가 하락\nSilicon Motion 등 일부 반도체 소재·장비 업체 실적 호조로 주가 상승, Entegris·Impinj도 긍정 반응\nSK하이닉스 실적 발표 이틀째 +2.02%(151만원) 강세 지속, 삼성전자는 실적 발표 직후 -4.96%(23만원) 하락해 주주환원책·컨퍼런스콜 차이 부각\nSteve Eisman, AI 투자 전환점(tipping point) 근접 판단으로 포트폴리오 보수적 조정 중이라고 밝혀 시장 경계감 증폭",
+  "news_summary": "연준 St. Louis Musalem·Dallas Logan, 인플레이션 억제 위해 추가 금리 인상 필요 발언 — 국채 2Y -0.63%·10Y -1.20% 하락에도 기술주 밸류에이션(실적 대비 주가 수준) 부담 가중\n연준 Warsh, 연준의 '말 줄이기' 주장 vs. 두 관계자 투명성 확대 요구 — 통화정책 커뮤니케이션 방향 논쟁 지속\n달러인덱스 -0.07%로 101.96 — Risk-Off(위험 회피) 국면 속 채권 선호로 달러 수요 제한, 금 -3.63%로 안전자산 수요 채권 집중\n트럼프, AI를 'super intelligence'로 재명명 행정명령 1개월 후 — Musk·Zuckerberg 실적 발표에서 즉각 따랐으나 다른 기술 CEO는 불참, 정책 동조 압력 표면화\n미·중 AI 인프라 경쟁 서로 다른 방향 — 미국 Nvidia·Google 주도 vs. 중국 독자 경로, 단기 미국 우위이나 마라톤 결승선 불명확\n중간선거·Apple 실적 임박 — 투자자 관심 중간선거로 이동, 기술주 변동성 지속 예상\nIntel Q4 경고로 주가 -28.6% 폭락 — PC 판매 부진 가이던스로 필라델피아반도체 -7.20% 급락 촉발, AMD도 Intel 실적에서 두 가지 큰 문제 확인 후 동반 하락\nGoogle·Amazon·ServiceNow 실적 후 부정 반응으로 기술주 Tech Wreck(기술주 폭락) 주도 — AI Capex(자본 지출) 대비 가시 성과 부족 우려 확산, Meta S&P 전망 부정적 전환(현금 흐름·자본 지출 불확실성)\nApple, Nvidia 제치고 시가총액 1위 복귀 — 신형 폴더블 iPhone Duo 호평 속 11월 2일 실적 주목, 단 12월 분기 전망 신중(Wall Street 기대 최소 성장)\nReddit -29.22% 사상 최대 낙폭 — Q4 매출 전망 부진으로 2024년 상장 이래 최악의 하루, 소셜 미디어 기대 후퇴\nPalantir, 2024년 S&P 500 최고 수익 종목이었으나 2026년 신고가 돌파 후 실적 앞두고 핵심 수준 테스트 — 소프트웨어 더블 타격(AI Capex 우려·실적 압박) 속 주목\nRivian +5% 실적 호조 — Q3 예상 상회·연간 가이던스 상향·R2 SUV 생산 증대, 단 미국 EV(전기차) 판매 전체는 여전히 정점 대비 저조\nAbbVie 순이익 두 배 증가 — 면역 치료제 Skyrizi Q3 기대 상회로 주가 사상 최고가, eBay·Morningstar·Altria도 실적 호조로 매수 포인트 돌파",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "ECB 3대 정책금리 동결(예금금리 2.50% 유지), 에너지 충격에 인플레 상승과 성장 둔화 가능성 경고하며 12월 추가 인상 가능성 시사",
+          "text": "연준 St. Louis Musalem·Dallas Logan, 인플레이션 억제 위해 추가 금리 인상 필요 발언 — 국채 2Y -0.63%·10Y -1.20% 하락에도 기술주 밸류에이션(실적 대비 주가 수준) 부담 가중",
           "impact": "high"
         },
         {
-          "text": "크리스틴 라가르드 ECB 총재 임기 남기고 내년 2월 7일 조기 사임 발표, 마크롱 임기 중 후임 인선권 행사로 극우 영향 차단 포석 분석",
-          "impact": "high"
-        },
-        {
-          "text": "미 국채 10년물 금리 -1.11% 급락(4.99%)해 2년물(4.0%)과 스프레드 확대, 빅테크 실적 충격으로 성장 둔화 우려 반영",
+          "text": "연준 Warsh, 연준의 '말 줄이기' 주장 vs. 두 관계자 투명성 확대 요구 — 통화정책 커뮤니케이션 방향 논쟁 지속",
           "impact": "mid"
         },
         {
-          "text": "달러인덱스 -0.27%(101.91) 하락, 10년물 금리 급락과 ECB 금리 동결에도 유로 상대 강세",
+          "text": "달러인덱스 -0.07%로 101.96 — Risk-Off(위험 회피) 국면 속 채권 선호로 달러 수요 제한, 금 -3.63%로 안전자산 수요 채권 집중",
           "impact": "mid"
         }
       ]
@@ -3049,11 +3102,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "Nvidia, Jensen Huang이 중국 정보자산 표적이었다는 뉴욕타임스 보도에 대해 '조사 완료·사실무근'이라고 반박, 주가 방어",
+          "text": "트럼프, AI를 'super intelligence'로 재명명 행정명령 1개월 후 — Musk·Zuckerberg 실적 발표에서 즉각 따랐으나 다른 기술 CEO는 불참, 정책 동조 압력 표면화",
+          "impact": "high"
+        },
+        {
+          "text": "미·중 AI 인프라 경쟁 서로 다른 방향 — 미국 Nvidia·Google 주도 vs. 중국 독자 경로, 단기 미국 우위이나 마라톤 결승선 불명확",
           "impact": "mid"
         },
         {
-          "text": "WTI 유가 +0.08%(102.86달러) 보합, 중동 지정학 긴장 지속과 재고 감소 기대가 수급 균형 유지",
+          "text": "중간선거·Apple 실적 임박 — 투자자 관심 중간선거로 이동, 기술주 변동성 지속 예상",
           "impact": "mid"
         }
       ]
@@ -3063,35 +3120,31 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "Alphabet Q3 검색·기타 매출 630억 달러로 2분기 연속 예상 하회, AI 채팅·에이전트가 검색 잠식하는 첫 실증 신호로 주가 -13% 역대 최대 낙폭·시총 5000억 달러 증발",
+          "text": "Intel Q4 경고로 주가 -28.6% 폭락 — PC 판매 부진 가이던스로 필라델피아반도체 -7.20% 급락 촉발, AMD도 Intel 실적에서 두 가지 큰 문제 확인 후 동반 하락",
           "impact": "high"
         },
         {
-          "text": "Amazon Q3 EPS 1.89(예상 1.96) 미스 + 크리스마스 매출 가이던스 하향 + FCF -424억 달러 적자, AWS 매출 460억 달러 +39% 성장에도 주가 -7% 급락",
+          "text": "Google·Amazon·ServiceNow 실적 후 부정 반응으로 기술주 Tech Wreck(기술주 폭락) 주도 — AI Capex(자본 지출) 대비 가시 성과 부족 우려 확산, Meta S&P 전망 부정적 전환(현금 흐름·자본 지출 불확실성)",
           "impact": "high"
         },
         {
-          "text": "ServiceNow Q3 실적 예상치 하회로 주가 -27% 역대 최악일 기록, AI가 기존 엔터프라이즈 소프트웨어 사업을 대체하는 디스럽션(와해) 우려 재점화",
+          "text": "Apple, Nvidia 제치고 시가총액 1위 복귀 — 신형 폴더블 iPhone Duo 호평 속 11월 2일 실적 주목, 단 12월 분기 전망 신중(Wall Street 기대 최소 성장)",
           "impact": "high"
         },
         {
-          "text": "Google·Microsoft가 분기 실적 발표에서 AI 인프라 capex 증액 전망 보류, '무한 수요' 서사 꺾이며 반도체·클라우드 밸류에이션(가치평가) 압박",
-          "impact": "high"
-        },
-        {
-          "text": "Reddit Q3 실적 예상 상회했으나 Q4 매출 가이던스 하향 + Google 검색 트래픽 감소로 로그인 필수화 테스트 발표, 주가 하락",
+          "text": "Reddit -29.22% 사상 최대 낙폭 — Q4 매출 전망 부진으로 2024년 상장 이래 최악의 하루, 소셜 미디어 기대 후퇴",
           "impact": "mid"
         },
         {
-          "text": "Silicon Motion 등 일부 반도체 소재·장비 업체 실적 호조로 주가 상승, Entegris·Impinj도 긍정 반응",
+          "text": "Palantir, 2024년 S&P 500 최고 수익 종목이었으나 2026년 신고가 돌파 후 실적 앞두고 핵심 수준 테스트 — 소프트웨어 더블 타격(AI Capex 우려·실적 압박) 속 주목",
           "impact": "mid"
         },
         {
-          "text": "SK하이닉스 실적 발표 이틀째 +2.02%(151만원) 강세 지속, 삼성전자는 실적 발표 직후 -4.96%(23만원) 하락해 주주환원책·컨퍼런스콜 차이 부각",
+          "text": "Rivian +5% 실적 호조 — Q3 예상 상회·연간 가이던스 상향·R2 SUV 생산 증대, 단 미국 EV(전기차) 판매 전체는 여전히 정점 대비 저조",
           "impact": "mid"
         },
         {
-          "text": "Steve Eisman, AI 투자 전환점(tipping point) 근접 판단으로 포트폴리오 보수적 조정 중이라고 밝혀 시장 경계감 증폭",
+          "text": "AbbVie 순이익 두 배 증가 — 면역 치료제 Skyrizi Q3 기대 상회로 주가 사상 최고가, eBay·Morningstar·Altria도 실적 호조로 매수 포인트 돌파",
           "impact": "mid"
         }
       ]
@@ -3099,192 +3152,189 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "Alphabet -13% 역대 최대 낙폭이 지수를 끌어내렸으나 방어·금융주 버팀목으로 낙폭 제한 -0.30%",
+      "reason": "Google·Amazon·Intel·ServiceNow 실적 부정 반응으로 기술·커뮤니케이션 섹터 급락, 방어 섹터(에너지·헬스케어·필수소비재) 상승에도 지수는 -1.82%",
       "drivers": [
-        "GOOGL 시총 5000억 달러 증발",
-        "XLV·XLE·XLP 방어섹터 Leading 유지"
+        "GOOGL·AMZN 실적 후 매도",
+        "INTC -28.6% Q4 경고",
+        "NOW·FTNT 소프트웨어 급락"
       ]
     },
     "NASDAQ": {
-      "reason": "Alphabet·Amazon·ServiceNow 3대 어닝 쇼크가 기술주 전반을 압박, XLK·XLC Lagging 전환으로 -1.38% 급락",
+      "reason": "Intel Q4 PC 판매 부진 경고와 Meta Capex 우려로 기술 집중 매도 — XLK·XLC Lagging으로 -2.86% 급락",
       "drivers": [
-        "GOOGL -13%·AMZN -7%·NOW -27%",
-        "AI 수익화 우려 재점화"
+        "INTC -28.6% 칩 패닉",
+        "Meta 전망 부정적 전환",
+        "소프트웨어 NOW·FTNT 급락"
       ]
     },
     "DOW": {
-      "reason": "산업재·금융 비중 높아 빅테크 충격 제한적, 러셀2000 +1.01% 소형주 강세와 동조하며 -0.25% 소폭 하락",
+      "reason": "기술 비중 낮고 방어 섹터(헬스케어 XLV·필수소비재 XLP) 상승으로 상대적 선방 -1.09%",
       "drivers": [
-        "XLI·XLF 상대 견조",
-        "소형주 순환매 유입"
+        "방어 섹터 Leading 지지",
+        "경기소비재 XLY 상승"
       ]
     },
     "VIX": {
-      "reason": "빅테크 어닝 쇼크로 변동성 수요 증가 +1.71%, 다만 17.2 수준은 역사적 중위권으로 공황 국면 아님",
+      "reason": "AI Capex 회의론·Intel 충격으로 기술주 공포 확산 — 3주 연속 조정 끝 +12.91%로 19.42 급등",
       "drivers": [
-        "GOOGL·AMZN 실적 미스",
-        "AI 투자 회수 불확실성"
+        "칩·소프트웨어 패닉",
+        "빅테크 실적 부정 반응"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Alphabet AI 인프라 투자 상향 보류 + Microsoft capex 동결로 반도체 수요 둔화 우려 -1.42%",
+      "reason": "Intel Q4 경고(PC 판매 부진)로 -28.6% 폭락이 SOX 전체 -7.20% 급락 촉발, AMD도 Intel 실적 영향 하락",
       "drivers": [
-        "하이퍼스케일러 capex 증액 중단",
-        "Silicon Motion 등 일부 소재 업체 실적 호조는 제한적 지지"
+        "INTC -28.6% Q4 경고",
+        "PC 수요 둔화 공포",
+        "AMD 동반 하락"
       ]
     },
     "러셀2000": {
-      "reason": "빅테크 유출 자금이 소형주로 회전, 금리 하락(10Y -1.11%)이 밸류에이션 부담 완화하며 +1.01% 상승",
+      "reason": "기술주 급락 여파로 소형주도 -1.66% 하락, 단 방어 섹터 비중 높아 낙폭 나스닥 대비 작음",
       "drivers": [
-        "대형기술주 회피 자금",
-        "10년물 금리 하락"
+        "시장 전반 Risk-Off",
+        "기술 동조 매도"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 유럽 금리 동결 안도감과 에너지·방어주 비중 높은 구조로 +0.26% 소폭 상승",
+      "reason": "미국 기술주 충격에서 거리 두고 방어·에너지 비중 높아 +0.07% 보합 유지",
       "drivers": [
-        "ECB 금리 동결",
-        "에너지 섹터 XLE +1.0% 선방"
+        "에너지 XLE 강세",
+        "미국 기술주 디커플링"
       ]
     },
     "독일DAX": {
-      "reason": "ECB 금리 동결 확인 + 라가르드 사임 발표로 정책 예측 가능성 개선 기대, 산업재·화학 비중 높아 +1.31% 강세",
+      "reason": "유럽 기술주 일부 동조 매도 및 알루미늄 -4.99%로 소재 부담 -0.85%",
       "drivers": [
-        "ECB 정책 불확실성 해소",
-        "소재 XLB Leading 동조"
+        "소재 약세",
+        "미국 기술 전염"
       ]
     },
     "니케이": {
-      "reason": "직접 촉매 없음 — 엔화 약세(달러인덱스 -0.27% 반대 방향) 수출주 수혜 기대와 반도체 낙폭 제한으로 +1.08%",
+      "reason": "직전 거래일 마감 후 미국 기술주 급락 전 상승 흐름 유지 +1.10% — 다음 거래일 반영 예상",
       "drivers": [
-        "엔화 약세 수출 우호",
-        "동경전자·어드밴테스트 선방"
+        "미국 급락 전 마감",
+        "시차로 영향 미반영"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 없음 — 미 빅테크 충격 제한적, 중국 내수·금융주 혼조 속 +0.23% 보합 마감",
+      "reason": "중국 AI 인프라 경쟁 지속 보도에도 글로벌 기술주 약세 일부 반영 -0.59%",
       "drivers": [
-        "텐센트·알리바바 제한적 동조 하락",
-        "본토 부양책 기대 잔존"
+        "미국 기술주 여파",
+        "AI 인프라 경쟁 지속"
       ]
     },
     "달러인덱스": {
-      "reason": "10년물 금리 -1.11% 급락이 달러 매력 약화, ECB 금리 동결에도 유로 상대 강세로 -0.27%",
+      "reason": "연준 추가 인상 발언에도 Risk-Off로 채권 수요 증가(2Y -0.63%, 10Y -1.20%)하며 달러 약세 -0.07%",
       "drivers": [
-        "미 국채 10Y 금리 하락",
-        "유로 반등"
+        "채권 수요 증가",
+        "Risk-Off 달러 중립"
       ]
     },
     "국채2Y": {
-      "reason": "직접 촉매 없음 — 연준 금리 경로 변화 없고 단기 자금 수요 견조하며 +0.08% 소폭 상승",
+      "reason": "연준 Musalem·Logan 추가 인상 발언에도 기술주 패닉으로 안전자산 수요 증가 -0.63%로 3.97%",
       "drivers": [
-        "단기 유동성 수요",
-        "연준 정책 대기"
+        "Risk-Off 채권 선호",
+        "기술주 급락 피난"
       ]
     },
     "국채10Y": {
-      "reason": "빅테크 실적 충격으로 성장 둔화 우려 부각, 안전자산 선호 강화되며 -1.11% 급락",
+      "reason": "AI Capex 우려로 장기 성장 기대 후퇴 및 안전자산 집중 매수 -1.20%로 4.93%",
       "drivers": [
-        "GOOGL·AMZN 실적 미스",
-        "리스크오프(위험회피 심리) 채권 매수"
+        "장기 성장 우려",
+        "기술 밸류에이션 부담 완화"
       ]
     },
     "코스피": {
-      "reason": "장 마감 후 미 증시 급락으로 익일 영향 불가피, 당일은 +0.00% 보합 마감",
+      "reason": "필라반도체 -7.20%·NASDAQ -2.86% 글로벌 기술주 급락 직격탄 — 전기전자 업종(Sector Momentum 1위) 타격으로 -3.48%, 외국인 1일 -1.6조·20일 -18.6조 매도 가속",
       "drivers": [
-        "미 증시 시차",
-        "외국인 당일 +703억 순매수"
+        "필라반도체 -7.20% 충격",
+        "외국인 -1.6조 집중 매도",
+        "전기전자 동반 급락"
       ]
     },
     "코스닥": {
-      "reason": "장 마감 후 나스닥 -1.38% 급락, 당일은 +0.00% 보합",
+      "reason": "미국 소프트웨어(NOW·FTNT) 급락 여파로 IT서비스 압박, 코스닥 -3.83%로 코스피 낙폭 초과",
       "drivers": [
-        "미 기술주 시차",
-        "개인 +2,151억 순매수"
+        "미국 소프트웨어 급락",
+        "IT서비스 동조",
+        "외국인 -255억 순매도"
       ]
     },
     "금": {
-      "reason": "달러 약세에도 10년물 금리 급락으로 실질금리 하락 수혜 제한적, -0.45% 소폭 하락",
+      "reason": "VIX +12.91%에도 달러 약보합·채권 강세로 안전자산 수요가 채권 집중, 금 -3.63%로 3884.9",
       "drivers": [
-        "실질금리 변동성",
-        "리스크오프 수혜 제한"
+        "채권이 안전자산 선호",
+        "달러 약세로 금 지지 약화"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 없음 — 중동 지정학 리스크 잔존과 재고 감소 기대로 +0.08% 보합",
+      "reason": "지정학(중동) 리스크 및 에너지 섹터 XLE Leading(R109.7) 유지로 +0.93%로 102.95",
       "drivers": [
-        "중동 긴장 지속",
-        "수급 균형"
+        "지정학 프리미엄",
+        "에너지 섹터 Leading"
       ]
     },
     "원달러": {
-      "reason": "미 빅테크 급락 여파로 외국인 자금 이탈 우려 + 국내 외환 수급 악화 반영 +0.95% 급등",
+      "reason": "코스피 -3.48% 급락에도 달러인덱스 -0.07% 약세 동조로 원화 소폭 강세 -0.51%로 1333.44",
       "drivers": [
-        "외국인 20일 누적 -20.7조",
-        "리스크오프 신흥국 통화 약세"
+        "달러 약세 동조",
+        "외국인 매도에도 달러 수요 제한"
       ]
     },
     "알루미늄": {
-      "reason": "중국 제조 경기 둔화 우려 + 글로벌 경기 민감 소재 수요 약화로 -2.93% 급락",
+      "reason": "글로벌 산업 수요 둔화 우려(Intel PC 수요 경고) 반영 -4.99%로 3166.0",
       "drivers": [
-        "중국 PMI 부진 기대",
-        "XLB 상승에도 산업금속 약세"
+        "Intel PC 수요 충격",
+        "산업 금속 약세"
       ]
     },
     "구리": {
-      "reason": "AI 인프라 투자 증액 보류(GOOGL·MSFT capex 동결)로 전력·데이터센터 수요 둔화 우려 -0.78%",
+      "reason": "알루미늄 대비 선방하나 산업 수요 우려로 -1.09%로 6.51",
       "drivers": [
-        "하이퍼스케일러 설비투자 중단",
-        "중국 부동산 회복 지연"
+        "산업 수요 둔화",
+        "AI 인프라 수요는 일부 지지"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "Alphabet·Amazon 동반 쇼크로 나스닥 -1.38% 급락 + 하이퍼스케일러 capex 증액 중단 → 국내 반도체·IT 수출 수혜 시나리오 재점검 불가피, 외국인 20일 -20.7조 매도·20일선 위 종목 23.6%로 Reflex 9단계 투매 국면 지속",
+    "summary": "필라델피아반도체 -7.20%·Intel -28.6% PC 수요 충격 직격탄 — 코스피 -3.48%, 외국인 1일 -1.6조·20일 -18.6조로 Capitulation(투매) 6거래일째, 전기전자·기계·장비 업종 급락",
     "positive_factors": [
-      "독일 DAX +1.31%·러셀2000 +1.01% 소형주 순환매 → 국내 중소형 방어주(유틸리티·음식료) 상대 버팀목 가능",
-      "SK하이닉스 실적 후 연일 강세(+2.02%) → HBM·AI 메모리 테마 국지적 수급 지지, CXL(연결반도체) 등 차세대 인프라 관심"
+      "WTI +0.93%로 에너지 XLE Leading 유지 — 국내 정유·화학 일부 방어",
+      "미국 방어 섹터(헬스케어 XLV·필수소비재 XLP) Leading — 국내 음식료·담배(Sector Momentum 3위) 상대 선방 가능성"
     ],
     "negative_factors": [
-      "Alphabet -13%·Amazon -7%·ServiceNow -27% 트리플 쇼크 → 나스닥 -1.38%, 필라델피아반도체 -1.42%로 국내 반도체·전기전자(Sector Momentum 3위·RRG Lagging) 추가 압박",
-      "Google·Microsoft capex 증액 보류 → AI 인프라 수요 둔화 우려로 국내 반도체 수출(Fundamentals 수출 77 백분위) 모멘텀 꺾임 리스크"
+      "Intel Q4 PC 수요 경고·필라반도체 -7.20% — 전기전자(Sector Momentum 1위) 직격탄, 삼성전자·SK하이닉스 등 수출 핵심 타격",
+      "Google·Amazon·Meta AI Capex 회의론 확산 — IT서비스(Sector Momentum 9위) 압박, 코스닥 -3.83%로 코스피 초과 낙폭",
+      "외국인 1일 -1.6조·20일 -18.6조 매도 가속 — Reflexivity Momentum 22.3(백분위 2 수준), 시장 폭 20일선 위 21.3%·52주 신저가 277종목으로 투매 국면 심화"
     ],
-    "key_watch": "오늘(10/30) 코스피 갭하락 개장 예상, 삼성전자·SK하이닉스 동반 하락 시 외국인 추가 이탈 여부와 20일선 위 종목 비율(현 23.6%) 20% 이탈 시 Reflex 9단계 장기화 신호"
+    "key_watch": "Market Regime Filter 판정 Risk-Off(주식 비중 0%) — 2,430개 기준값 조합 중 0개만 Risk-On, 현금(단기채) 100% 권장. 전환 조건: Fundamentals 62.7(기준 55 이상 충족) 유지 속 Momentum 22.3이 50 이상 회복(20일선 위 비율 40% 이상·외국인 매도 진정) 확인 필요"
   },
   "sector_impact": {},
-  "strong_buy": [
-    {
-      "sector": "음식료·담배",
-      "rrg_quadrant": "leading",
-      "claude_quadrant": "leading",
-      "reason": "현재 Market Regime Filter 주식 비중 0%(Risk-Off) 권고로 신규 매수 대상 없음, 아래는 Risk-On 전환 시(Fundamentals 55 이상·Momentum 50 이상) 우선 검토 섹터"
-    },
-    {
-      "sector": "건설",
-      "rrg_quadrant": "lagging",
-      "claude_quadrant": "leading",
-      "reason": "Sector Momentum 1위 건설(12개월 상대 +146%), 다만 52주 신고가 비율 9%로 개별 종목 분산, RRG Lagging이나 최근 수익률 우위로 선방"
-    }
-  ],
+  "strong_buy": [],
   "watch": [
     {
       "sector": "전기전자",
-      "reason": "Sector Momentum 3위(12개월 상대 +220%)이나 RRG Lagging + 필라델피아반도체 -1.42% + 하이퍼스케일러 capex 동결로 수요 둔화 우려, SK하이닉스 개별 강세는 예외적 HBM 수급"
+      "reason": "전기전자 — Sector Momentum 1위(12개월 상대 +212%)이나 Intel 충격으로 단기 급락, 52주 신고가 근처 1%로 Trend 약화. RRG lagging·필라반도체 -7.20% 여파로 추가 조정 가능성, Risk-On 전환 후 재평가 대기"
     },
     {
-      "sector": "제약",
-      "reason": "RRG Leading이나 Sector Momentum 19위(12개월 상대 -7%)로 하위, Alphabet AI 디스럽션이 국내 바이오 밸류에이션에 간접 압박 가능"
+      "sector": "기계·장비",
+      "reason": "기계·장비 — Sector Momentum 2위(12개월 상대 +82%)이나 RRG weakening·52주 신고가 근처 1%로 모멘텀 상실, 글로벌 산업 수요 둔화(알루미늄 -4.99%) 압박"
+    },
+    {
+      "sector": "IT서비스",
+      "reason": "IT서비스 — 미국 소프트웨어(ServiceNow·Fortinet) 급락 여파, RRG leading이나 최근 5일 코스닥 동반 급락으로 단기 신뢰도 낮음"
     }
   ],
   "avoid": [],
-  "summary": "Alphabet·Amazon·ServiceNow 트리플 쇼크로 AI 수익화 의문 부상 → 나스닥 -1.38%, 필라델피아반도체 -1.42% 급락 + 국내 Reflex 9단계 투매 5일째·Momentum 23.2·외국인 20일 -20.7조 → 주식 비중 0% 현금 방어, Momentum 50 회복 시 건설·금융 우선 검토",
-  "strategy_brief": "Alphabet이 AI 채팅·에이전트로 검색 매출이 2분기 연속 둔화하며 -13% 역대 최대 낙폭을 기록하고 Amazon·ServiceNow까지 동반 급락하면서, AI 투자가 실제 수익으로 전환되지 못하는 첫 실증적 충격이 글로벌 기술주를 강타했습니다. 특히 Google·Microsoft가 분기 실적 발표에서 capex 증액 전망을 보류하면서 그간 '무한 수요' 서사에 기댄 반도체·클라우드 밸류에이션(가치평가)이 근본부터 흔들리고 있습니다. 국내는 Reflex 9단계(투매·매도가 매도를 부르는 구간) 5일째로 Momentum 23.2(기준 50 미달), 20일선 위 종목 비율 23.6%, 외국인 20일 누적 -20.7조가 모두 Market Regime Filter의 Risk-Off(위험회피) 신호를 가리키며 주식 비중 0%·현금(단기채) 100% 방어를 권고합니다. SK하이닉스가 HBM 수급으로 개별 강세를 보이고 있으나 필라델피아반도체 -1.42%와 하이퍼스케일러 투자 중단 여파가 전기전자 업종 전반(Sector Momentum 3위·RRG Lagging)을 압박할 것으로 예상되며, Momentum이 50 이상으로 회복하고 20일선 위 종목 비율이 35%를 넘어설 때 Focus 2(GS·DN오토모티브)와 Sector Momentum 상위 건설·금융 중심으로 단계적 진입을 검토할 수 있습니다. 현재는 신규 매수를 보류하고 top_picks 목록을 Risk-On 전환 시 우선 투입할 대기 명단(watchlist)으로만 활용하시기 바랍니다.",
-  "strategy_headline": "AI 수익화 충격파 — Reflex 투매 5일째, 현금 100% 방어",
+  "summary": "Intel Q4 PC 경고·필라반도체 -7.20%와 AI Capex 회의론 확산으로 코스피 -3.48% 투매 6거래일째 — Market Regime Risk-Off(주식 비중 0%) 판정, 현금 100% 권장. Momentum 22.3→50 회복 시까지 신규 매수 보류",
+  "strategy_brief": "Intel의 Q4 PC 수요 경고가 필라델피아반도체 -7.20% 급락을 촉발하고, Google·Amazon·ServiceNow 실적 후 부정 반응이 AI Capex(자본 지출) 회의론을 확산시키며 미국 기술 섹터 XLK·XLC가 Lagging으로 전락했다. 코스피는 전기전자(Sector Momentum 1위) 직격탄으로 -3.48% 급락, 외국인 1일 -1.6조·20일 -18.6조 매도 가속 속에 Reflexivity 9단계(Capitulation·투매) 6거래일째로 진입했다. Momentum 22.3(백분위 2 수준)·시장 폭 20일선 위 21.3%·52주 신저가 277종목으로 Market Regime Filter는 Risk-Off(주식 비중 0%)를 판정했고, 2,430개 기준값 조합 중 0개만 Risk-On을 가리키며 현금(단기채) 100% 권장이 확정됐다. Focus 2는 대기 상태(Fundamentals 62.7은 기준 55 충족하나 Momentum 22.3이 기준 50에 28%p 부족)로 GS·DN오토모티브를 watchlist에 두고, 신규 매수는 Momentum 50 이상 회복(외국인 매도 진정·시장 폭 20일선 위 40% 이상) 확인 후로 연기한다. 단기 촉매는 연준 추가 인상 발언·중간선거·Apple 실적(11/2)이며, 전환 시점까지는 iM금융지주·신한지주·KT 등 저변동성(Low Vol) 상위 종목을 대기 명단으로 관리하되 현금 비중 유지가 최우선 전략이다.",
+  "strategy_headline": "Intel 충격·AI Capex 회의론 — 투매 6일째, 전량 현금 대기",
   "strategy_points": [
-    "Alphabet -13%(5000억 달러 증발)·Amazon·ServiceNow 트리플 쇼크 → 나스닥 -1.38%, 필라델피아반도체 -1.42%로 국내 반도체·전기전자 익일 추가 압박 불가피",
-    "Google·Microsoft capex 증액 보류 → AI 인프라 수요 둔화 우려로 국내 수출 모멘텀(Fundamentals 수출 77 백분위) 재점검 필요, 하이퍼스케일러 투자 서사 꺾임",
-    "국내 Reflex 9단계(투매) 5일째 + Momentum 23.2(기준 50 미달) + 20일선 위 종목 23.6% + 외국인 20일 -20.7조 → Market Regime Filter 주식 비중 0% 권고, 현금(단기채) 100% 방어",
-    "Risk-On 전환 조건(Fundamentals 55 이상 유지·Momentum 50 이상 회복) 충족 시 Sector Momentum 상위 건설·금융·음식료 + Focus 2(GS·DN오토모티브) 우선 검토, 현재는 대기"
+    "Intel -28.6% PC 경고·필라반도체 -7.20% — 전기전자(Sector Momentum 1위) 직격탄, 코스피 -3.48%",
+    "Google·Amazon·Meta AI Capex 우려 확산 — 미국 XLK·XLC Lagging, 국내 IT서비스 동반 급락",
+    "Reflexivity 9단계(Capitulation·투매) 6거래일째, Momentum 22.3(백분위 2 수준)·외국인 20일 -18.6조·시장 폭 20일선 위 21.3% — Market Regime Risk-Off(주식 비중 0%) 판정, 현금(단기채) 100% 권장",
+    "리스크: 연준 추가 인상 발언·중간선거·Apple 실적(11/2) 변동성 촉매, 전환 조건은 Momentum 22.3→50 이상 회복(외국인 매도 진정·시장 폭 40% 이상)"
   ],
   "top_picks": [
     {
@@ -3296,7 +3346,7 @@
           "name": "GS",
           "code": "078930",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정 업종 1위(지주 6개월 상대 +9.5%, 업종 이익 1년 +99%), Score 91(업종 내 종합 82, 목표가 3개월 3곳 상향·0곳 하향), 52주 고점 대비 -36.4%로 밸류에이션 매력. 전환 조건: Fundamentals 62.8→55 이상 유지(충족)·Momentum 23.2→50 이상(미충족, 현재 Reflex 9단계 투매 5일째). 리스크: 외국인 20일 -19.7조 매도 지속 시 금융주 추가 하락, 목표가 하향 전환 시 즉시 교체",
+          "reason": "대기 — Focus 2 선정 1순위(업종: 지주, 6개월 상대 +6.7%·업종 이익 1년 +99%). Score 90(업종 내 종합 81 백분위, 목표가 3개월 3곳 상향 3건·하향 0건). 전환 조건: Fundamentals 62.7(기준 55 이상 현재 충족)·Momentum 22.3(기준 50 이상 필요, 현재 28%p 부족) 모두 충족 시. 리스크: 외국인 20일 -18.6조 매도 지속 시 금융주 수급 악화 가능성, 52주 고점 대비 -38.0%로 낙폭 큼",
           "rrg_tracked": true,
           "rrg_actual_sector": "지주",
           "rrg_sector_match": true,
@@ -3314,7 +3364,7 @@
           "name": "DN오토모티브",
           "code": "007340",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정 업종 2위(전기전자 6개월 상대 +10.2%, 업종 이익 1년 +59%), Score 88(업종 내 종합 81, 목표가 3개월 2곳 상향·0곳 하향), 52주 고점 대비 -35.4%로 저가 매력. 전환 조건: Fundamentals 62.8→55 이상 유지(충족)·Momentum 23.2→50 이상(미충족). 리스크: 필라델피아반도체 -1.42% + capex 증액 중단으로 전기전자 Sector RRG Lagging 심화, 업종 EPS 증가율 둔화 시 목표가 하향 가능",
+          "reason": "대기 — Focus 2 선정 2순위(업종: 전기전자, 6개월 상대 +8.4%·업종 이익 1년 +59%). Score 85(업종 내 종합 76 백분위, 목표가 3개월 2곳 상향 2건·하향 0건). 전환 조건: Fundamentals 62.7(기준 55 이상 현재 충족)·Momentum 22.3(기준 50 이상 필요) 모두 충족 시. 리스크: Intel 충격으로 전기전자 업종 Sector Momentum 1위에도 단기 급락 가능성, 필라반도체 -7.20% 여파 지속 우려",
           "rrg_tracked": true,
           "rrg_actual_sector": "전기전자",
           "rrg_sector_match": true,
@@ -3332,18 +3382,18 @@
           "name": "iM금융지주",
           "code": "139130",
           "signal": "prime",
-          "reason": "대기 — Picks 엔진 Composite 1위(80), Quality 71(흑자·EPS 증가 41% 상위)·Trend 75(52주 고점 -28.2%)·Low Vol 94 균형, 외국인+기관 수급 양호. Sector Momentum 11위 금융(12개월 상대 +42%) + 러셀2000 +1.01% 소형주 순환매 수혜 가능. 전환 조건: Momentum 23.2→50 이상 + 20일선 위 종목 비율 23.6%→35% 이상. 리스크: ECB 라가르드 사임 불확실성이 글로벌 금융주 변동성 확대 시 동조 하락",
+          "reason": "대기 — 미국 방어 섹터(헬스케어·필수소비재) Leading 속 국내 금융 RRG leading(RS-R 102.5·RS-M 102.4) 상대 선방. Picks 종합 1순위(Quality 70·Trend 72·Low Vol 95로 Composite 79), 52주 고점 대비 -27.7%에서 저변동성(Low Vol 95 백분위)으로 하방 제한. 전환 조건: Market Regime Risk-Off(주식 비중 0%) 해제, Momentum 22.3→50 이상 회복(시장 폭 20일선 위 40% 이상) 확인 필요. 리스크: 외국인 1일 -1.6조 매도 지속 시 금융주 수급 약화, 연준 추가 인상 발언으로 금리 변동성 확대 가능성",
           "rrg_tracked": true,
           "rrg_actual_sector": "금융",
           "rrg_sector_match": true,
-          "rrg_signal": "lagging",
+          "rrg_signal": "leading",
           "focus": false
         },
         {
           "name": "신한지주",
           "code": "055550",
           "signal": "prime",
-          "reason": "대기 — Composite 2위(80), Quality 65·Trend 81(52주 고점 -22.8% 상대 양호)·Low Vol 95, 금융 섹터 대표주. 10년물 금리 -1.11% 급락이 커브 스티프닝(장기금리가 단기금리보다 빠르게 움직여 예대마진 개선) 기대 제한하나 장기 방어 포지션. 전환 조건: Momentum 50 이상 + 외국인 20일 누적 매도 -19.7조 반전. 리스크: 국내 부동산 PF 우려 재부각 시 대형 금융지주 선제 이탈",
+          "reason": "대기 — 금융 섹터 RRG leading 속 Picks 2순위(Quality 64·Trend 77·Low Vol 95로 Composite 78). 52주 고점 대비 -21.8%, 교체 후 수익 +4.8%로 안정적. 전환 조건: Risk-Off 해제(Momentum 22.3→50 이상), 외국인 매도 진정(20일 -18.6조→ 순매수 전환) 확인 시. 리스크: 코스피 Capitulation 6거래일째로 추가 하락 시 금융 동반 조정, 1개월 -18.9% 낙폭으로 단기 변동성 큼",
           "rrg_tracked": true,
           "rrg_actual_sector": "금융",
           "rrg_sector_match": true,
@@ -3353,19 +3403,19 @@
       ]
     },
     {
-      "sector": "건설",
-      "rrg_quadrant": "lagging",
-      "reason": "Sector Momentum 1위 건설(12개월 상대 +146%), 다만 52주 신고가 비율 9%로 개별 종목 분산, RRG Lagging이나 최근 수익률 우위로 선방",
+      "sector": "통신",
+      "rrg_quadrant": "",
+      "reason": "",
       "stocks": [
         {
-          "name": "DL이앤씨",
-          "code": "375500",
+          "name": "KT",
+          "code": "030200",
           "signal": "prime",
-          "reason": "대기 — Composite 3위(79), Sector Momentum 1위 건설(12개월 상대 +146%) + Quality 84(업종 최상위 실적), 52주 고점 -44.7%로 낙폭 과대하나 이는 선정 근거 아님(Trend 73으로 고점 근접도 반영). 독일 DAX +1.31% 건설·소재 강세 동조 가능. 전환 조건: Momentum 50 이상 + 거래대금 30.5조(20일 평균 1.17배) 지속 확대. 리스크: 국내 건설 수주 둔화·PF 부실 재점화 시 업종 전반 압박",
+          "reason": "대기 — 미국 유틸리티 XLU Leading(R105.8)·통신 RRG leading(RS-R 103.6) 속 방어 수혜. Picks 3순위(Quality 71·Trend 63·Low Vol 99로 Composite 78), 저변동성 99 백분위로 투매 국면 방어력. 전환 조건: Momentum 22.3→50 회복, 시장 폭 개선(20일선 위 21.3%→40% 이상) 시. 리스크: 52주 고점 대비 -32.9%로 낙폭 큼, SpaceX 통신 협상 불확실성(AT&T·Verizon·T-Mobile 거부 지속)",
           "rrg_tracked": true,
-          "rrg_actual_sector": "건설",
+          "rrg_actual_sector": "통신",
           "rrg_sector_match": true,
-          "rrg_signal": "lagging",
+          "rrg_signal": "leading",
           "focus": false
         }
       ]
@@ -3373,6 +3423,6 @@
   ],
   "caution_sectors": [
     "전기전자",
-    "제약"
+    "기계·장비"
   ]
 }
