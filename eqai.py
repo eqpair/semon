@@ -254,6 +254,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - strategy_points는 투자자가 한눈에 봐야 할 요점 3~4개로 쓰세요. 각 요점은 한 줄(1문장, 짧게)이며 가능하면 각 요점을 "[해외/미국 원인] → [국내 영향·대응]" 인과 형태로 쓰고, 서로 다른 측면(글로벌 동인 / 국내 국면·시장 폭·수급 / 섹터 Momentum / 리스크)을 담으세요. 이 중 하나는 반드시 국내 시장 국면 단계와 시장 폭·수급 데이터를 근거로 쓰세요. 국내 지표는 판단의 출발점이 아니라 해외 동인의 결과·확인 수단으로만 언급하세요.
 - strategy_headline·strategy_points·strategy_brief는 반드시 이 순서로 전개하세요: ① 미국·해외 시장의 현 상황 → ② 그로 인해 오늘 국내 시장이 어떻게 전개될지 → ③ 국내 전략·섹터 결론. 코스피/코스닥 등락·수급 등 국내 지표를 문두나 논리의 출발점으로 두지 마세요.
 - [용어 주석 — 필수, 누락 금지] strategy_headline·strategy_points·strategy_brief·summary에서 일반 투자자가 어려워할 용어는 반드시 첫 등장 시 괄호로 쉬운 설명을 병기하세요. 대상: 경제지표 약어(PPI, CPI, ESS 등), 시장 용어(리스크오프, 밸류에이션, 커브 스티프닝, 숏커버링, 수급 등), RRG 용어(leading, improving, weakening, lagging, RS-Momentum 등), 국면 용어(Deterioration, Capitulation, 시장 폭 등). 예: "PPI(생산자물가지수)", "커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 예대마진이 개선되는 현상)", "improving(상승 전환 구간)". 같은 용어의 주석은 문서 전체에서 1회만 다세요. 주석 없이 전문 용어만 쓰는 것은 작성 규칙 위반입니다.
+- [표기 — 한자 금지] 모든 출력 필드에 한자(漢字)를 쓰지 마세요. 신문 헤드라인식 한자 약어(美·中·日·韓·歐·外人·機關·投·現金·株·債 등) 대신 한글(미국, 중국, 일본, 유럽, 외국인, 기관, 투매, 현금, 주식, 채권)로 풀어 쓰고, 금융 용어는 영어 또는 한글로만 쓰세요. 예: "美 반도체 急落" → "미국 반도체 급락", "現金 대기" → "현금 대기".
 - [표현] 형세·기세 같은 비유적 표현이나 고전 인용은 쓰지 마세요. 영어로 통용되는 금융 용어는 영어로 쓰고(Fundamentals, Momentum, Bias, Risk-On/Off, Quality, Trend, Low Vol, Sector Momentum 등), 첫 등장 시 필요하면 괄호로 한국어 설명을 다세요.
 - strategy_brief는 위 모든 분석을 종합한 "오늘의 국내 시장 전략"을 서술형 한 문단(3~5문장)으로 쓰세요. 긍정/부정 요인을 나열하지 말고, 글로벌 환경이 국내에 주는 함의와 그래서 어디에 주목하는지를 자연스러운 문장으로 압축하세요. key_factors나 korea_impact 항목을 그대로 복사하지 말고 새로 종합 서술하세요.
 
@@ -331,11 +332,46 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         )
         text = resp.content[0].text
         logger.info(f"분석 완료 ({len(text)}자)")
-        return _parse_xml_response(text, rrg_data)
+        return _dehanja(_parse_xml_response(text, rrg_data))
 
     except Exception as e:
         logger.error(f"분석 실패: {e}")
         return _placeholder_analysis(news_data, rrg_data)
+
+
+# ── 한자 → 한글 후처리 (프롬프트 규칙의 안전망) ───────────────
+import re as _re
+_HANJA_WORDS = [  # 긴 단어 먼저
+    ("現金", "현금"), ("外國人", "외국인"), ("外人", "외국인"), ("機關", "기관"), ("個人", "개인"),
+    ("投賣", "투매"), ("投資", "투자"), ("金利", "금리"), ("株式", "주식"), ("債券", "채권"),
+    ("急騰", "급등"), ("急落", "급락"), ("反騰", "반등"), ("上昇", "상승"), ("下落", "하락"),
+    ("輸出", "수출"), ("輸入", "수입"), ("業種", "업종"), ("北韓", "북한"),
+]
+_HANJA_CHARS = {
+    "美": "미국", "中": "중국", "日": "일본", "韓": "한국", "英": "영국", "獨": "독일", "佛": "프랑스",
+    "歐": "유럽", "臺": "대만", "台": "대만", "印": "인도", "露": "러시아", "北": "북한",
+    "外": "외국인", "機": "기관", "個": "개인", "投": "투", "株": "주식", "債": "채권", "油": "유가",
+    "金": "금", "銀": "은", "銅": "구리", "現": "현", "急": "급",
+}
+_HANJA_RE = _re.compile(r"[\u4e00-\u9fff\uf900-\ufaff]")
+
+
+def _dehanja(obj):
+    """분석 결과의 모든 문자열에서 한자를 한글로 치환. 매핑에 없는 한자는 경고 로그."""
+    if isinstance(obj, dict):
+        return {k: _dehanja(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_dehanja(v) for v in obj]
+    if not isinstance(obj, str) or not _HANJA_RE.search(obj):
+        return obj
+    s = obj
+    for h, k in _HANJA_WORDS:
+        s = s.replace(h, k)
+    s = "".join(_HANJA_CHARS.get(c, c) for c in s)
+    left = set(_HANJA_RE.findall(s))
+    if left:
+        logger.warning(f"한자 잔존(매핑 없음): {''.join(sorted(left))} — {s[:60]}")
+    return s
 
 
 def _parse_xml_response(text: str, rrg_data: dict) -> dict:
