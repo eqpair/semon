@@ -407,7 +407,11 @@
         }
 
         loadAll()
-        setInterval(loadAll, REFRESH_MS)
+        var _semonLastLoad = Date.now();
+        setInterval(function () { if (document.hidden) return; _semonLastLoad = Date.now(); loadAll(); }, REFRESH_MS);
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && Date.now() - _semonLastLoad > REFRESH_MS) { _semonLastLoad = Date.now(); loadAll(); }
+        });
     </script>
 </body>
 

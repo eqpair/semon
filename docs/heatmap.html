@@ -579,7 +579,11 @@
 
         window.addEventListener('resize', function () { render(); });
         loadData();
-        setInterval(loadData, 60 * 1000);
+        var _semonLastLoad = Date.now();
+        setInterval(function () { if (document.hidden) return; _semonLastLoad = Date.now(); loadData(); }, 5 * 60 * 1000);
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && Date.now() - _semonLastLoad > 5 * 60 * 1000) { _semonLastLoad = Date.now(); loadData(); }
+        });
     </script>
 </body>
 
