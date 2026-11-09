@@ -580,9 +580,9 @@
         window.addEventListener('resize', function () { render(); });
         loadData();
         var _semonLastLoad = Date.now();
-        setInterval(function () { if (document.hidden) return; _semonLastLoad = Date.now(); loadData(); }, 5 * 60 * 1000);
+        setInterval(function () { if (document.hidden) return; _semonLastLoad = Date.now(); loadData(); }, 60 * 1000);
         document.addEventListener('visibilitychange', function () {
-            if (!document.hidden && Date.now() - _semonLastLoad > 5 * 60 * 1000) { _semonLastLoad = Date.now(); loadData(); }
+            if (!document.hidden && Date.now() - _semonLastLoad > 60 * 1000) { _semonLastLoad = Date.now(); loadData(); }
         });
     </script>
     <script>
