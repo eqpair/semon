@@ -1,177 +1,181 @@
 {
-  "generated_at": "2026-11-14 07:03:17",
+  "generated_at": "2026-11-15 07:03:08",
   "macro": {
     "S&P500": {
       "price": 7561.67,
       "change": -0.4,
-      "reason": "엔비디아 스캔들 여파로 기술주 -0.91% 끌어내렸으나 헬스케어·필수소비재 방어로 지수는 -0.40% 제한적 하락 — 섹터 로테이션(헬스케어 R109.3, 기술 Lagging) 뚜렷",
+      "reason": "다우는 금융·방어주 유입으로 +0.10% 소폭 상승했으나, 엔비디아 리더십 위기와 10년물 국채 금리 급등(+1.00%)으로 성장주 중심 S&P500은 -0.40% 하락 — 섹터 로테이션(기술주 이탈·방어주 유입) 혼조 마감",
       "drivers": [
-        "NVDA 스캔들로 기술 XLK Lagging",
-        "헬스케어 XLV R109.3 Leading 방어"
+        "엔비디아 리더십 스캔들로 기술주 투자심리 위축",
+        "국채 10년물 금리 5.15%로 급등하며 성장주 밸류에이션 압박",
+        "금융XLF·헬스케어XLV·필수소비재XLP 등 방어주는 상대강도 109 이상 유지"
       ]
     },
     "NASDAQ": {
       "price": 25136.27,
       "change": -0.91,
-      "reason": "엔비디아 -2.01%, AMD -10.5% 등 반도체 집단 패닉에 나스닥 -0.91% — 젠슨 황 후임 불확실성과 중국 칩 수출 의혹으로 AI 랠리 신뢰 타격",
+      "reason": "엔비디아 리더십 위기와 젠슨 황 사임 스캔들이 AI 투자 전반의 신뢰를 훼손하며 -0.91% 하락 — 기술XLK는 섹터 로테이션에서 Lagging 전락",
       "drivers": [
-        "NVDA 시가총액 4조 달러 아래 추락",
-        "AMD 칩 랠리 되감김"
+        "엔비디아 스캔들 연장으로 AI 섹터 투자심리 위축",
+        "국채 금리 상승으로 고밸류에이션 기술주 압박"
       ]
     },
     "DOW": {
       "price": 52347.55,
       "change": 0.1,
-      "reason": "기술주 배제된 구성으로 엔비디아 충격 회피, 금융·산업재 중심 +0.10% 소폭 상승 — 방어 섹터 선호 반영",
+      "reason": "헬스케어·필수소비재·금융주 유입으로 +0.10% 소폭 상승 — 리스크오프(위험자산 회피) 국면에서 방어주 선호 지속",
       "drivers": [
-        "금융 XLF R106.2 Leading",
-        "산업재 XLI R101.2 방어"
+        "헬스케어XLV·필수소비재XLP R109.3 선두 유지",
+        "금융XLF R106.2로 10년물 금리 상승 수혜"
       ]
     },
     "VIX": {
       "price": 19.3,
       "change": 3.21,
-      "reason": "엔비디아 리더십 공백과 AI 금융 리스크(Fed 서베이에서 AI 위험 1순위) 우려로 변동성 +3.21% 상승",
+      "reason": "엔비디아 리더십 불확실성과 기술주 변동성 확대로 +3.21% 상승(19.3) — 단기 불안 심리 잔존",
       "drivers": [
-        "NVDA CEO 사임 불확실성",
-        "Fed AI 금융 위험 경고"
+        "엔비디아 스캔들의 법적 리스크 불확실성",
+        "나스닥 -0.91% 하락하며 기술주 변동성 확대"
       ]
     },
     "필라델피아반도체": {
       "price": 10146.32,
       "change": -3.43,
-      "reason": "엔비디아 6주 연속 하락(2012년 이래 최장), AMD -10.5%, 젠슨 황 없는 첫 실적 발표 우려로 -3.43% 급락 — AI 칩 주도주 전체 신뢰 붕괴",
+      "reason": "엔비디아 리더십 위기가 섹터 전체 신뢰를 훼손하며 -3.43% 급락 — 17일 엔비디아 실적 발표와 19일 앤트로픽 상장 대기 중 불확실성 확대",
       "drivers": [
-        "NVDA 시총 1.7조 달러 증발",
-        "AMD 칩 랠리 해제",
-        "TSMC 직원 정보 4.6만건 유출"
+        "젠슨 황 사임 스캔달로 엔비디아 공급망·리더십 리스크 부각",
+        "2대 주주의 황 복귀 촉구 서한 제출로 경영 혼선 우려",
+        "17일 실적 발표 앞두고 포지션 축소"
       ]
     },
     "러셀2000": {
       "price": 2790.49,
       "change": -0.31,
-      "reason": "대형주 혼조 속 소형주도 -0.31% 동반 약세 — 엔비디아 쇼크의 광범위한 리스크오프(안전자산 선호) 분위기 반영",
+      "reason": "직접 촉매 없음 — S&P500 -0.40% 하락과 VIX 상승 속 소형주도 -0.31% 동반 조정, 리스크오프 흐름 동조",
       "drivers": [
-        "대형 기술주 급락 여파"
+        "S&P500 혼조 흐름 동조"
       ]
     },
     "영국FTSE": {
-      "price": 10902.56,
+      "price": 10902.6,
       "change": 0.36,
-      "reason": "미국 기술주 급락과 무관한 유럽 내수·금융 중심 구성으로 +0.36% 소폭 상승 — 지역 분리 흐름",
+      "reason": "직접 촉매 미약 — 유럽 방어주 선호와 파운드 안정 속 +0.36% 소폭 상승",
       "drivers": [
-        "미국 기술 충격 분리"
+        "유럽 리스크오프 국면에서 방어주 유입"
       ]
     },
     "독일DAX": {
       "price": 26749.95,
       "change": -0.08,
-      "reason": "유럽 제조·금융주 중심으로 엔비디아 여파 제한적, -0.08% 보합 — 미국 기술 의존도 낮음",
+      "reason": "직접 촉매 약함 — 유럽 기업 실적 부진 우려 속 -0.08% 보합권 마감",
       "drivers": [
-        "미국 반도체 충격 최소"
+        "유럽 제조업 부진 지속"
       ]
     },
     "니케이": {
-      "price": 60819.36,
-      "change": -0.7,
-      "reason": "미국 나스닥 급락 선반영, 일본 반도체·전자 동조 하락 -0.70% — 아시아 기술주 전반 압력",
+      "price": 61142.35,
+      "change": 0.53,
+      "reason": "직접 촉매 약함 — 엔화 약세 지속과 수출주 선호 속 +0.53% 상승, 미국 혼조와 무관하게 기술적 반등 유지",
       "drivers": [
-        "미국 반도체 하락 파급"
+        "엔화 약세로 수출주 수혜"
       ]
     },
     "항셍": {
-      "price": 24008.55,
-      "change": -1.26,
-      "reason": "엔비디아 중국 칩 수출 스캔들로 중국 AI 인프라 기대 타격, 테크 중심 -1.26% 하락 — 미중 기술 긴장 재부각",
+      "price": 23637.6,
+      "change": -1.55,
+      "reason": "직접 촉매 약함 — 미중 기술 분쟁 우려와 중국 소비 부진 속 -1.55% 하락, 필라델피아반도체 급락과 동조",
       "drivers": [
-        "NVDA 중국 칩 밀수출 의혹",
-        "Lutnick 상무장관 청문회 소환"
+        "엔비디아 스캔들의 중국 연루 우려",
+        "중국 소비 지표 부진 지속"
       ]
     },
     "달러인덱스": {
-      "price": 103.43,
-      "change": 0.25,
-      "reason": "기술주 불안으로 안전자산 달러 수요 +0.25% 증가 — 리스크오프 국면 신호",
+      "price": 103.41,
+      "change": 0.23,
+      "reason": "미국 국채 10년물 금리 +1.00% 급등과 유럽·아시아 대비 미국 경제 우위 지속으로 +0.23% 상승(103.41)",
       "drivers": [
-        "NVDA 쇼크 안전자산 선호"
+        "미국 국채 10년물 5.15% 급등",
+        "유럽 경기 둔화 대비 미국 상대 강세"
       ]
     },
     "국채2Y": {
       "price": 4.12,
       "change": -0.15,
-      "reason": "단기 금리 -0.15% 하락 — 기술주 충격 속 단기 안전 수요, 연준 정책 기대 변화 제한적",
+      "reason": "단기 연준 정책 기대 변화 없이 -0.15% 소폭 하락(4.12%) — 10년물 급등과 대비되며 커브 스티프닝 진행",
       "drivers": [
-        "리스크오프 채권 수요"
+        "단기 연준 정책 기대 안정"
       ]
     },
     "국채10Y": {
       "price": 5.15,
       "change": 1.0,
-      "reason": "장기 금리 +1.00% 급등 — AI 인프라 금융 리스크 우려(Fed 서베이)와 재정 부담 우려로 커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 예대마진이 개선되는 현상) 지속",
+      "reason": "저축은행 예금금리 4% 근접(3.90%) 등 국내 시장금리 상승 흐름과 동조하며 +1.00% 급등(5.15%) — 장기 인플레 기대 상승과 재정 부담(석유 최고가격제·전기요금 동결 청구서 확대) 우려 반영",
       "drivers": [
-        "Fed AI 금융 위험 1순위 지적",
-        "장기 재정 불안"
+        "시장금리 상승 속 저축은행 예금금리 4%대 상품 154개로 급증",
+        "석유 최고가격제 손실보전 정산 임박, 재정 부담 가시화",
+        "장기 인플레 기대 상승"
       ]
     },
     "코스피": {
       "price": 5290.53,
       "change": -0.98,
-      "reason": "엔비디아 급락에 전기전자(삼성전자·SK하이닉스) 동조 하락, Reflexivity 9단계 투매 16일째로 -0.98% — 외국인 1일 -5,550억 매도 지속",
+      "reason": "필라델피아반도체 -3.43% 급락과 엔비디아 스캔들 충격으로 삼성전자·SK하이닉스 등 반도체 대형주 동반 하락, 외국인 1일 -5,550억 순매도하며 -0.98% 하락 — Reflexivity 9단계(Capitulation) 16거래일째, Momentum 16.5 극저점 지속",
       "drivers": [
-        "NVDA 쇼크 반도체 동조",
-        "외국인 코스피 20일 -11조"
+        "필라델피아반도체 -3.43% 급락으로 반도체 투자심리 위축",
+        "외국인 1일 -5,550억 순매도",
+        "신용융자의 27.2%가 삼성전자·SK하이닉스에 집중돼 변동성 확대"
       ]
     },
     "코스닥": {
       "price": 699.66,
       "change": 0.45,
-      "reason": "IT·바이오 일부 저가 매수세로 +0.45% 반등 — 기관 5일 +8,110억 순매수, 시장 폭 20일선 위 49.9%로 개선 조짐",
+      "reason": "바이오·IT서비스 등 중소형주 기술적 반등과 기관 1일 +1,279억 순매수 유입으로 +0.45% 상승 — 코스피 대형주 낙폭과 대비되는 단기 숏커버링(공매도 청산 매수)",
       "drivers": [
-        "기관 코스닥 5일 +8,110억",
-        "저가 매수 유입"
+        "기관 1일 +1,279억 순매수",
+        "IT서비스·제약 RRG leading 유지, 단기 반등"
       ]
     },
     "금": {
-      "price": 3883.8,
-      "change": -0.04,
-      "reason": "달러 강세와 기술주 쇼크 속 안전자산 수요 상쇄, -0.04% 보합 — 방향성 불명확",
+      "price": 3886.3,
+      "change": 0.03,
+      "reason": "달러인덱스 +0.23% 상승 압박에도 지정학 리스크 잔존과 안전자산 수요로 +0.03% 보합(3886.3)",
       "drivers": [
-        "달러 강세 압력",
-        "리스크오프 수요 상쇄"
+        "달러 강세 압박",
+        "지정학 리스크 잔존"
       ]
     },
     "WTI유가": {
-      "price": 89.1,
-      "change": 0.41,
-      "reason": "중동 지정학 리스크 잔존, 재고 감소 기대로 +0.41% 소폭 상승 — 엔비디아 쇼크와 무관",
+      "price": 88.56,
+      "change": -0.2,
+      "reason": "직접 촉매 약함 — 글로벌 수요 둔화 우려 속 -0.20% 소폭 하락(88.56), 석유 최고가격제 손실보전 우려는 국내 재정 이슈",
       "drivers": [
-        "중동 긴장 지속"
+        "글로벌 수요 둔화 우려"
       ]
     },
     "원달러": {
-      "price": 1335.11,
-      "change": -0.09,
-      "reason": "달러 강세에도 외국인 코스피 1일 -5,550억 매도 압력 상쇄, -0.09% 소폭 하락 — 환율 방향성 약화",
+      "price": 1336.2,
+      "change": 0.18,
+      "reason": "달러인덱스 +0.23% 상승과 코스피 외국인 -5,550억 순매도 압력으로 +0.18% 상승(1336.2)",
       "drivers": [
-        "외국인 매도 압력",
-        "달러 강세 제한적"
+        "달러인덱스 103.41 상승",
+        "코스피 외국인 순매도"
       ]
     },
     "알루미늄": {
-      "price": 3110.25,
-      "change": -1.58,
-      "reason": "글로벌 제조 경기 둔화 우려, 엔비디아 쇼크로 AI 인프라 수요 기대 약화 -1.58% — 산업 금속 전반 약세",
+      "price": 3133.25,
+      "change": -0.85,
+      "reason": "직접 촉매 약함 — 중국 제조업 부진과 글로벌 수요 둔화 우려로 -0.85% 하락",
       "drivers": [
-        "AI 인프라 수요 의문"
+        "중국 제조업 부진"
       ]
     },
     "구리": {
-      "price": 6.06,
-      "change": -2.01,
-      "reason": "중국 AI·데이터센터 투자 기대 타격(엔비디아 중국 칩 스캔들), 글로벌 제조 둔화로 -2.01% 급락 — 경기 민감 금속 압력",
+      "price": 6.08,
+      "change": -1.67,
+      "reason": "중국 소비 미지근(한은 분석: 반도체 호황 낙수효과 제약) 흐름과 글로벌 제조업 둔화 우려로 -1.67% 하락",
       "drivers": [
-        "NVDA 중국 칩 의혹",
-        "제조 경기 둔화"
+        "한은 반도체 낙수효과 제약 지적, 소비 회복 지연",
+        "중국 수요 부진"
       ]
     }
   },
@@ -3488,123 +3492,123 @@
   },
   "sources": [
     {
-      "source": "benzinga",
-      "title": "QUICK SPARK: Broadcom Scores Historic Win Over Nvidia as AVGO-NVDA Gap Explodes",
-      "link": "https://www.benzinga.com/markets/equities/26/11/63264147/broadcom-stock-beating-nvidia-record-week-jensen-huang",
-      "published": "Fri, 13 Nov 2026 19:58:07 +0000"
+      "source": "yonhap",
+      "title": "'젠슨황 스캔들'에 짓눌린 증시…엔비디아 실적·앤트로픽 상장 주시",
+      "link": "https://www.yna.co.kr/view/AKR20261113177200008",
+      "published": "Sun, 15 Nov 2026 06:00:05 +0900"
     },
     {
-      "source": "benzinga",
-      "title": "Nvidia Loses Its Founder, AMD and Broadcom Take the Crown: This Week on Wall Street",
-      "link": "https://www.benzinga.com/markets/market-summary/26/11/63269563/this-week-on-wall-street-nvidia-huang-amd-broadcom-fed-hike",
-      "published": "Fri, 13 Nov 2026 21:17:32 +0000"
+      "source": "bloomberg",
+      "title": "SpaceX’s S&P 500 Bid Gets New Life as Musk Pitches Tesla Merger",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-14/spacex-s-s-p-500-bid-gets-new-life-as-musk-pitches-tesla-merger",
+      "published": "Sat, 14 Nov 2026 14:00:00 GMT"
+    },
+    {
+      "source": "investors",
+      "title": "Apple Leads Five Stocks Standing Tall Near Buy Points Despite Nvidia, Other Headwinds",
+      "link": "https://www.investors.com/news/apple-five-stocks-buy-points-nvidia-market-headwinds/",
+      "published": "Sat, 14 Nov 2026 13:00:58 +0000"
+    },
+    {
+      "source": "yonhap",
+      "title": "저축은행 예금금리 4% 다시 눈 앞…상호금융은 주춤",
+      "link": "https://www.yna.co.kr/view/AKR20261114042800002",
+      "published": "Sun, 15 Nov 2026 05:51:01 +0900"
     },
     {
       "source": "cnbc_world",
-      "title": "Apple, Alphabet and Uber survived major founder transitions. Nvidia will be a harder test",
-      "link": "https://www.cnbc.com/2026/11/13/nvidia-jensen-huang-founder-ceo-transition.html",
-      "published": "Fri, 13 Nov 2026 15:03:10 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "Dow Jones Futures: Market Rally Shaky As Nvidia Earnings, Anthropic IPO Loom; SpaceX Starship Flight 15 Soon.",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-market-rally-nvidia-earnings-anthropic-ipo-spacex-starship-flight-15/",
-      "published": "Fri, 13 Nov 2026 21:39:48 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "SpaceX, Tesla Merger Puts Musk At Forefront Of 'Revolutionary' Tech, Analyst Says",
-      "link": "https://www.investors.com/news/spacex-tesla-merger-grok-optimus-robotics-engineering-starship-spcx-stock-tsla/",
-      "published": "Fri, 13 Nov 2026 21:43:23 +0000"
-    },
-    {
-      "source": "maeil",
-      "title": "“다시 엔비디아로?”…젠슨 황 후임 후보 떠오른 ‘옛 식구’ CEO",
-      "link": "https://www.mk.co.kr/news/world/12208729",
-      "published": "Sat, 14 Nov 2026 06:51:44 +09:00"
-    },
-    {
-      "source": "marketwatch",
-      "title": "AMD and other chip stocks slide as Wall Street rethinks the AI trade without Jensen Huang",
-      "link": "https://www.marketwatch.com/story/amd-and-other-chip-stocks-slide-as-wall-street-rethinks-the-ai-trade-without-jensen-huang-2fb74547?mod=mw_rss_topstories",
-      "published": "Fri, 13 Nov 2026 21:10:00 GMT"
-    },
-    {
-      "source": "investors",
-      "title": "America's Greatest Opportunities: The Earnings Gap That Put Tesla Stock At Ludicrous Speed",
-      "link": "https://www.investors.com/how-to-invest/tesla-stock-tsla-americas-greatest-opportunities/",
-      "published": "Fri, 13 Nov 2026 20:36:16 +0000"
-    },
-    {
-      "source": "maeil",
-      "title": "깜짝 실적에도 석 달 새 40% ‘뚝’ … AI 인프라 ETF 저가 매수 기회 왔나",
-      "link": "https://www.mk.co.kr/news/stock/12208142",
-      "published": "Sat, 14 Nov 2026 05:00:00 +09:00"
-    },
-    {
-      "source": "investors",
-      "title": "Nvidia Stock Braces For AI Chipmaker's First Report Without Jensen Huang",
-      "link": "https://www.investors.com/news/technology/nvidia-stock-ai-chipmaker-fiscal-q3-2027-preview-nvda/",
-      "published": "Fri, 13 Nov 2026 18:54:49 +0000"
-    },
-    {
-      "source": "investors",
-      "title": "Nvidia Stock In Peril After Jensen Huang Resignation; Earnings Now In Focus",
-      "link": "https://www.investors.com/research/earnings-preview/nvidia-nvda-stock-jensen-huang-resignation-fiscal-q4-earnings-preview/",
-      "published": "Fri, 13 Nov 2026 13:00:55 +0000"
-    },
-    {
-      "source": "maeil",
-      "title": "엔비디아 임시 CEO 누군가 했더니…젠슨 황 “겁먹은 사슴”",
-      "link": "https://www.mk.co.kr/news/world/12208413",
-      "published": "Fri, 13 Nov 2026 21:41:19 +09:00"
-    },
-    {
-      "source": "maeil",
-      "title": "주가 하락에 ‘줍줍’ 美 개미들…“엔비디아서 당장 나와라” 투자거물 경고, 왜?",
-      "link": "https://www.mk.co.kr/news/world/12208382",
-      "published": "Fri, 13 Nov 2026 20:38:03 +09:00"
-    },
-    {
-      "source": "maeil",
-      "title": "“4만6000건, 2억8000만원”…TSMC 직원 개인정보 온라인 판매가격",
-      "link": "https://www.mk.co.kr/news/business/12208379",
-      "published": "Fri, 13 Nov 2026 20:35:42 +09:00"
+      "title": "Nvidia's leadership crisis rattles the AI trade. Here's how we're adjusting our portfolio",
+      "link": "https://www.cnbc.com/investingclub/2026/11/14/nvidias-leadership-crisis-rattles-wall-street-how-were-adjusting.html",
+      "published": "Sat, 14 Nov 2026 18:48:39 GMT"
     },
     {
       "source": "cnbc_world",
-      "title": "What's ahead for AI financing after Nvidia CEO Jensen Huang departs",
-      "link": "https://www.cnbc.com/2026/11/13/nvidia-jensen-huang-resignation-ai-financing.html",
-      "published": "Fri, 13 Nov 2026 21:19:04 GMT"
+      "title": "How Nvidia turmoil and a Democratic Congress could reshape the AI trade, according to ETF experts",
+      "link": "https://www.cnbc.com/2026/11/14/nvidia-ai-trade-data-centers-congress.html",
+      "published": "Sat, 14 Nov 2026 15:50:43 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "SpaceX catches upper stage of Starship rocket in historic first",
+      "link": "https://www.cnbc.com/2026/11/14/spacex-plans-to-try-first-ever-catch-of-starship-rocket-from-orbit.html",
+      "published": "Sat, 14 Nov 2026 21:52:01 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Prominent NVIDIA investors call for board to contemplate Huang's return",
+      "link": "https://seekingalpha.com/news/4672775-prominent-nvidia-investors-call-for-board-contemplate-huang-return?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 14 Nov 2026 15:19:16 -0500"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Juicy 6% Yields Gain Appeal After Nvidia Drama: Credit Weekly",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-14/juicy-6-yields-gain-appeal-after-nvidia-drama-credit-weekly",
+      "published": "Sat, 14 Nov 2026 20:00:00 GMT"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Nvidia board urged to consider 'potential return of Jensen Huang' by two major investors",
+      "link": "https://www.cnbc.com/2026/11/14/nvidia-investors-jensen-huang-return-board-letter.html",
+      "published": "Sat, 14 Nov 2026 17:46:06 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Nationwide Ground Stop Lifted, Nvidia Spy Scandal, Starship’s Longest Test Flight",
+      "link": "https://www.bloomberg.com/news/videos/2026-11-14/bloomberg-this-weekend-11-14-2026-video",
+      "published": "Sat, 14 Nov 2026 16:45:01 GMT"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Insider trades: Microsoft, Netflix, Boeing among notable names",
+      "link": "https://seekingalpha.com/news/4672721-insider-trades-microsoft-netflix-boeing-among-notable-names?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 14 Nov 2026 11:03:08 -0500"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "Musk defends Huang, says NVIDIA will have supply chain issues without him",
+      "link": "https://seekingalpha.com/news/4672770-musk-defends-huang-says-nvidia-will-have-supply-chain-issues-without-him?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sat, 14 Nov 2026 10:52:42 -0500"
+    },
+    {
+      "source": "cnbc_world",
+      "title": "Trump doesn’t plan to raise Nvidia, spy issue during China trip: U.S. officials",
+      "link": "https://www.cnbc.com/2026/11/13/trump-nvidia-huang-china.html",
+      "published": "Sat, 14 Nov 2026 15:36:47 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "SpaceX Pushes Starship Reusability to New Test",
+      "link": "https://www.bloomberg.com/news/videos/2026-11-14/spacex-pushes-starship-reusability-to-new-test-video",
+      "published": "Sat, 14 Nov 2026 14:36:01 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "엔비디아 젠슨 황 스캔들 퇴진으로 나스닥 -0.91%, 필라델피아반도체 -3.43% 급락 — 국내 Reflexivity 9단계(투매) 16거래일째, Momentum 16.5로 기준(50) 크게 미달하며 주식 비중 0% 권고",
+  "sentiment_reason": "엔비디아 젠슨 황 사임 스캔들로 AI 투자 신뢰 타격 — 필라델피아반도체 -3.43%, 나스닥 -0.91%, VIX +3.21%, 국내 Reflexivity 9단계(투매) 진입 16거래일째, 주식 비중 권장 0%",
   "key_factors": [
-    "엔비디아 젠슨 황 CEO 중국 스파이 스캔들로 사임, 임시 CEO 크레스의 리더십 불확실성으로 AI 반도체 섹터 전체 급락 (AMD -10.5%, 나스닥 -0.91%)",
-    "SpaceX·Tesla 합병 전망과 Anthropic IPO 대기, OpenAI ChatGPT Wallet 출시 등 AI 생태계 재편 신호 — 시장은 엔비디아 의존도 재평가 중",
-    "국내 시장 Fundamentals 58.0은 기준(55) 충족하나 Momentum 16.5(기준 50), 시장 폭(20일선 위 47.9%, 200일선 위 20.2%)·수급(외국인 코스피 20일 -11조) 극단 악화로 Market Regime Filter 주식 비중 0% 판정"
+    "엔비디아 리더십 위기: 젠슨 황 사임 스캔들에 2대 주주 황 복귀 촉구 서한 제출, AI 투자 핵심 모멘텀 훼손",
+    "미국 국채 10년물 금리 +1.00%(5.15%) 급등: 장단기 스프레드(커브 스티프닝) 확대로 금융주는 Leading 유지, 성장주는 밸류에이션(기업가치 대비 가격 수준) 압박 심화",
+    "국내 Capitulation(투매) 국면 지속: Momentum 16.5로 극저점(기준 50 대비 -33.5), 20일선 위 종목 47.9%로 반등했으나 60일선 위는 34.6%에 그쳐 추세 회복 불충분, 코스피 외국인 1일 -5,550억 순매도"
   ],
-  "news_summary": "Fed 금융안정 서베이 — AI 리스크가 금융시스템 최대 위협 1순위로 급부상, 다른 위험 요인 압도적 초과 (AI 인프라 금융 지원과 밸류에이션 거품 우려 반영)\n미국 국채 10년물 +1.00% 급등 — AI 금융 리스크 경고와 장기 재정 부담 우려로 커브 스티프닝 지속, 2년물은 -0.15% 하락\n달러인덱스 +0.25% — 엔비디아 스캔들로 기술주 불안 확산, 안전자산 달러 수요 증가하며 리스크오프 신호\n구리 -2.01%, 알루미늄 -1.58% — 엔비디아 중국 칩 스캔들로 AI·데이터센터 투자 기대 타격, 글로벌 제조 경기 둔화 우려 반영\nLutnick 상무장관 상원 은행위 청문회 소환 — 엔비디아의 중국 제한 칩 공급 의혹, 그의 아들 회사 Cantor Fitzgerald가 엔비디아와 긴밀한 관계 (9월 투자자 미팅 주최) 조사 대상\n엔비디아 중국 스파이 스캔들 워싱턴 확산 — 젠슨 황은 퇴진했으나 의회는 중국 AI 칩 밀수출 경로, Dell 서버의 중국 유입 경위 등 본격 조사 착수\n미중 기술 긴장 재부각 — 엔비디아 스캔들로 미국 반도체 수출 통제 실효성 의문, 중국 AI 인프라 투자 기대 타격 (항셍 -1.26%)\n엔비디아 젠슨 황 CEO 사임 — 중국 스파이 의혹 여성과 불륜 스캔들로 목요일 퇴진, CFO 콜레트 크레스 임시 CEO 취임. 시총 4조 달러 아래 추락(7월 이후 처음), 6주 연속 하락(2012년 이래 최장), 시총 1.7조 달러 증발\n엔비디아 후임 CEO 물색 — 영국 FT 보도, 암(Arm) CEO 러네이 하스(엔비디아 前 부사장) 등 내외부 후보 접촉 중. 크레스 임시 CEO는 과거 황에게 '헤드라이트 앞 사슴'(의사결정 무능) 비판받은 바 있어 리더십 불확실성 고조\nAMD -10.5% 급락 — 엔비디아 스캔들 여파로 반도체 랠리 되감김, 월가는 젠슨 황 없는 AI 거래 재평가 (MarketWatch). 필라델피아반도체 -3.43%로 섹터 전체 패닉\n마이클 버리(영화 '빅쇼트' 실제 인물) 엔비디아 매도 경고 — 젠슨 황 퇴진으로 고객사 금융 지원·거래 관계 흔들려 성장·수익성 약화 우려, '빠져나와라(Get out)' 강력 경고. 미국 개인투자자들은 주가 하락에 오히려 저가 매수 쏠림\nSpaceX·Tesla 합병 전망 — William Blair 분석, 일론 머스크의 두 회사 합병 가능성 '거의 불가피', 이르면 다음 달 가능. 시너지 기대로 '혁명적' 기술 선두 전망 (Investors)\nAnthropic IPO 대기 — 월가 주목, SpaceX보다 IPO 매수자들의 가격 영향력 클 전망 (Bloomberg). 엔비디아 실적 발표(화요일)와 함께 이번 주 핵심 이벤트\nOpenAI ChatGPT Wallet 출시 — Amex·Mastercard·Visa 파트너십, 'dots' AI 에이전트가 사용자 대신 결제 가능. AI 생태계 금융 통합 신호\nTSMC 직원 개인정보 4.6만건 유출 — 해커가 다크포럼에 2억8000만원에 판매 글 게시, 일주일 내 미판매 시 전체 공개 위협. TSMC는 자체 시스템 해킹 증거 없다고 반박",
+  "news_summary": "미국 국채 10년물 금리 +1.00%로 5.15% 급등 — 장단기 스프레드 확대(커브 스티프닝)로 금융주는 예대마진 개선 기대에 R106.2 Leading 유지, 성장주는 밸류에이션 압박 심화\n저축은행 1년 예금 평균금리 3.90%로 상승, 연 4%대 상품 154개로 두 달 새 13개서 급증 — 시장금리 상승 반영, 상호금융은 고금리 수신 지양으로 주춤\n한은 분석: 반도체 호황 낙수효과 제약 가능성 — IT 제조업 고용 비중 대만의 5분의 1 수준, AI 수혜 고소득층 집중, 증시 조정으로 소비 회복 지연 우려\n석유 최고가격제 1차 손실보전 정산 임박, 예비비 초과 전망에 재정 부담 눈덩이 — 전기·가스 동결로 한전 부채 210조 육박\n트럼프 대통령, 중국 방문 시 엔비디아·스파이 이슈 제기 않기로 — 미 관리 확인, 일론 머스크는 젠슨 황 옹호하며 엔비디아 없으면 공급망 문제 발생 경고\n베센트·루트닉, 엔비디아 중국 수출 규제 놓고 충돌 — 정책 불확실성 지속\n미 전국 항공편 일시 중단(Ground Stop) 해제 — L3Harris 통신시스템 업그레이드 후속 조치, 교통부 더피 장관 해킹 증거 제로 확인\n엔비디아 리더십 위기 심화: 젠슨 황 사임 스캔들 연장, 2대 주주 알티미터캐피털과 또 다른 대형 투자자가 금요일 이사회에 황 복귀 고려 촉구 서한 제출 — 17일 실적 발표·19일 앤트로픽 상장 앞두고 불확실성 최고조\n엔비디아, 젠슨 황 퇴진 후 법적 소송 리스크 노출 가능성 — FT 보도, 투자자 신뢰 회복 과제\n애플, 엔비디아 역풍 속에서도 매수 포인트(Buy Point) 근처 5개 종목 중 선두 유지 — Investors 분석, 방어적 포트폴리오 재편 수혜\nSpaceX, 역사적 이정표 달성 — 스타십 로켓 상단부(우주선 부분)를 궤도에서 최초로 '젓가락(chopsticks)' 기계팔로 포착, 재사용성 테스트 성공(금요일 부스터 폭발 후 토요일 성공)\nSpaceX의 S&P500 편입 가능성 재점화 — 일론 머스크, 테슬라와 합병 제안 추진\nMicrosoft·Netflix·Boeing 등 주요 기업 내부자 거래 발생 — MSFT CMO 타케시 누모토, 주당 531달러에 5,000주 매도로 약 266만 달러 회수",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "Fed 금융안정 서베이 — AI 리스크가 금융시스템 최대 위협 1순위로 급부상, 다른 위험 요인 압도적 초과 (AI 인프라 금융 지원과 밸류에이션 거품 우려 반영)",
+          "text": "미국 국채 10년물 금리 +1.00%로 5.15% 급등 — 장단기 스프레드 확대(커브 스티프닝)로 금융주는 예대마진 개선 기대에 R106.2 Leading 유지, 성장주는 밸류에이션 압박 심화",
           "impact": "high"
         },
         {
-          "text": "미국 국채 10년물 +1.00% 급등 — AI 금융 리스크 경고와 장기 재정 부담 우려로 커브 스티프닝 지속, 2년물은 -0.15% 하락",
-          "impact": "high"
-        },
-        {
-          "text": "달러인덱스 +0.25% — 엔비디아 스캔들로 기술주 불안 확산, 안전자산 달러 수요 증가하며 리스크오프 신호",
+          "text": "저축은행 1년 예금 평균금리 3.90%로 상승, 연 4%대 상품 154개로 두 달 새 13개서 급증 — 시장금리 상승 반영, 상호금융은 고금리 수신 지양으로 주춤",
           "impact": "mid"
         },
         {
-          "text": "구리 -2.01%, 알루미늄 -1.58% — 엔비디아 중국 칩 스캔들로 AI·데이터센터 투자 기대 타격, 글로벌 제조 경기 둔화 우려 반영",
+          "text": "한은 분석: 반도체 호황 낙수효과 제약 가능성 — IT 제조업 고용 비중 대만의 5분의 1 수준, AI 수혜 고소득층 집중, 증시 조정으로 소비 회복 지연 우려",
+          "impact": "mid"
+        },
+        {
+          "text": "석유 최고가격제 1차 손실보전 정산 임박, 예비비 초과 전망에 재정 부담 눈덩이 — 전기·가스 동결로 한전 부채 210조 육박",
           "impact": "mid"
         }
       ]
@@ -3614,15 +3618,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "Lutnick 상무장관 상원 은행위 청문회 소환 — 엔비디아의 중국 제한 칩 공급 의혹, 그의 아들 회사 Cantor Fitzgerald가 엔비디아와 긴밀한 관계 (9월 투자자 미팅 주최) 조사 대상",
+          "text": "트럼프 대통령, 중국 방문 시 엔비디아·스파이 이슈 제기 않기로 — 미 관리 확인, 일론 머스크는 젠슨 황 옹호하며 엔비디아 없으면 공급망 문제 발생 경고",
           "impact": "high"
         },
         {
-          "text": "엔비디아 중국 스파이 스캔들 워싱턴 확산 — 젠슨 황은 퇴진했으나 의회는 중국 AI 칩 밀수출 경로, Dell 서버의 중국 유입 경위 등 본격 조사 착수",
-          "impact": "high"
+          "text": "베센트·루트닉, 엔비디아 중국 수출 규제 놓고 충돌 — 정책 불확실성 지속",
+          "impact": "mid"
         },
         {
-          "text": "미중 기술 긴장 재부각 — 엔비디아 스캔들로 미국 반도체 수출 통제 실효성 의문, 중국 AI 인프라 투자 기대 타격 (항셍 -1.26%)",
+          "text": "미 전국 항공편 일시 중단(Ground Stop) 해제 — L3Harris 통신시스템 업그레이드 후속 조치, 교통부 더피 장관 해킹 증거 제로 확인",
           "impact": "mid"
         }
       ]
@@ -3632,35 +3636,27 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "엔비디아 젠슨 황 CEO 사임 — 중국 스파이 의혹 여성과 불륜 스캔들로 목요일 퇴진, CFO 콜레트 크레스 임시 CEO 취임. 시총 4조 달러 아래 추락(7월 이후 처음), 6주 연속 하락(2012년 이래 최장), 시총 1.7조 달러 증발",
+          "text": "엔비디아 리더십 위기 심화: 젠슨 황 사임 스캔들 연장, 2대 주주 알티미터캐피털과 또 다른 대형 투자자가 금요일 이사회에 황 복귀 고려 촉구 서한 제출 — 17일 실적 발표·19일 앤트로픽 상장 앞두고 불확실성 최고조",
           "impact": "high"
         },
         {
-          "text": "엔비디아 후임 CEO 물색 — 영국 FT 보도, 암(Arm) CEO 러네이 하스(엔비디아 前 부사장) 등 내외부 후보 접촉 중. 크레스 임시 CEO는 과거 황에게 '헤드라이트 앞 사슴'(의사결정 무능) 비판받은 바 있어 리더십 불확실성 고조",
+          "text": "엔비디아, 젠슨 황 퇴진 후 법적 소송 리스크 노출 가능성 — FT 보도, 투자자 신뢰 회복 과제",
           "impact": "high"
         },
         {
-          "text": "AMD -10.5% 급락 — 엔비디아 스캔들 여파로 반도체 랠리 되감김, 월가는 젠슨 황 없는 AI 거래 재평가 (MarketWatch). 필라델피아반도체 -3.43%로 섹터 전체 패닉",
+          "text": "애플, 엔비디아 역풍 속에서도 매수 포인트(Buy Point) 근처 5개 종목 중 선두 유지 — Investors 분석, 방어적 포트폴리오 재편 수혜",
           "impact": "high"
         },
         {
-          "text": "마이클 버리(영화 '빅쇼트' 실제 인물) 엔비디아 매도 경고 — 젠슨 황 퇴진으로 고객사 금융 지원·거래 관계 흔들려 성장·수익성 약화 우려, '빠져나와라(Get out)' 강력 경고. 미국 개인투자자들은 주가 하락에 오히려 저가 매수 쏠림",
-          "impact": "high"
-        },
-        {
-          "text": "SpaceX·Tesla 합병 전망 — William Blair 분석, 일론 머스크의 두 회사 합병 가능성 '거의 불가피', 이르면 다음 달 가능. 시너지 기대로 '혁명적' 기술 선두 전망 (Investors)",
+          "text": "SpaceX, 역사적 이정표 달성 — 스타십 로켓 상단부(우주선 부분)를 궤도에서 최초로 '젓가락(chopsticks)' 기계팔로 포착, 재사용성 테스트 성공(금요일 부스터 폭발 후 토요일 성공)",
           "impact": "mid"
         },
         {
-          "text": "Anthropic IPO 대기 — 월가 주목, SpaceX보다 IPO 매수자들의 가격 영향력 클 전망 (Bloomberg). 엔비디아 실적 발표(화요일)와 함께 이번 주 핵심 이벤트",
+          "text": "SpaceX의 S&P500 편입 가능성 재점화 — 일론 머스크, 테슬라와 합병 제안 추진",
           "impact": "mid"
         },
         {
-          "text": "OpenAI ChatGPT Wallet 출시 — Amex·Mastercard·Visa 파트너십, 'dots' AI 에이전트가 사용자 대신 결제 가능. AI 생태계 금융 통합 신호",
-          "impact": "mid"
-        },
-        {
-          "text": "TSMC 직원 개인정보 4.6만건 유출 — 해커가 다크포럼에 2억8000만원에 판매 글 게시, 일주일 내 미판매 시 전체 공개 위협. TSMC는 자체 시스템 해킹 증거 없다고 반박",
+          "text": "Microsoft·Netflix·Boeing 등 주요 기업 내부자 거래 발생 — MSFT CMO 타케시 누모토, 주당 531달러에 5,000주 매도로 약 266만 달러 회수",
           "impact": "mid"
         }
       ]
@@ -3668,176 +3664,180 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "엔비디아 스캔들 여파로 기술주 -0.91% 끌어내렸으나 헬스케어·필수소비재 방어로 지수는 -0.40% 제한적 하락 — 섹터 로테이션(헬스케어 R109.3, 기술 Lagging) 뚜렷",
+      "reason": "다우는 금융·방어주 유입으로 +0.10% 소폭 상승했으나, 엔비디아 리더십 위기와 10년물 국채 금리 급등(+1.00%)으로 성장주 중심 S&P500은 -0.40% 하락 — 섹터 로테이션(기술주 이탈·방어주 유입) 혼조 마감",
       "drivers": [
-        "NVDA 스캔들로 기술 XLK Lagging",
-        "헬스케어 XLV R109.3 Leading 방어"
+        "엔비디아 리더십 스캔들로 기술주 투자심리 위축",
+        "국채 10년물 금리 5.15%로 급등하며 성장주 밸류에이션 압박",
+        "금융XLF·헬스케어XLV·필수소비재XLP 등 방어주는 상대강도 109 이상 유지"
       ]
     },
     "NASDAQ": {
-      "reason": "엔비디아 -2.01%, AMD -10.5% 등 반도체 집단 패닉에 나스닥 -0.91% — 젠슨 황 후임 불확실성과 중국 칩 수출 의혹으로 AI 랠리 신뢰 타격",
+      "reason": "엔비디아 리더십 위기와 젠슨 황 사임 스캔들이 AI 투자 전반의 신뢰를 훼손하며 -0.91% 하락 — 기술XLK는 섹터 로테이션에서 Lagging 전락",
       "drivers": [
-        "NVDA 시가총액 4조 달러 아래 추락",
-        "AMD 칩 랠리 되감김"
+        "엔비디아 스캔들 연장으로 AI 섹터 투자심리 위축",
+        "국채 금리 상승으로 고밸류에이션 기술주 압박"
       ]
     },
     "DOW": {
-      "reason": "기술주 배제된 구성으로 엔비디아 충격 회피, 금융·산업재 중심 +0.10% 소폭 상승 — 방어 섹터 선호 반영",
+      "reason": "헬스케어·필수소비재·금융주 유입으로 +0.10% 소폭 상승 — 리스크오프(위험자산 회피) 국면에서 방어주 선호 지속",
       "drivers": [
-        "금융 XLF R106.2 Leading",
-        "산업재 XLI R101.2 방어"
+        "헬스케어XLV·필수소비재XLP R109.3 선두 유지",
+        "금융XLF R106.2로 10년물 금리 상승 수혜"
       ]
     },
     "VIX": {
-      "reason": "엔비디아 리더십 공백과 AI 금융 리스크(Fed 서베이에서 AI 위험 1순위) 우려로 변동성 +3.21% 상승",
+      "reason": "엔비디아 리더십 불확실성과 기술주 변동성 확대로 +3.21% 상승(19.3) — 단기 불안 심리 잔존",
       "drivers": [
-        "NVDA CEO 사임 불확실성",
-        "Fed AI 금융 위험 경고"
+        "엔비디아 스캔들의 법적 리스크 불확실성",
+        "나스닥 -0.91% 하락하며 기술주 변동성 확대"
       ]
     },
     "필라델피아반도체": {
-      "reason": "엔비디아 6주 연속 하락(2012년 이래 최장), AMD -10.5%, 젠슨 황 없는 첫 실적 발표 우려로 -3.43% 급락 — AI 칩 주도주 전체 신뢰 붕괴",
+      "reason": "엔비디아 리더십 위기가 섹터 전체 신뢰를 훼손하며 -3.43% 급락 — 17일 엔비디아 실적 발표와 19일 앤트로픽 상장 대기 중 불확실성 확대",
       "drivers": [
-        "NVDA 시총 1.7조 달러 증발",
-        "AMD 칩 랠리 해제",
-        "TSMC 직원 정보 4.6만건 유출"
+        "젠슨 황 사임 스캔달로 엔비디아 공급망·리더십 리스크 부각",
+        "2대 주주의 황 복귀 촉구 서한 제출로 경영 혼선 우려",
+        "17일 실적 발표 앞두고 포지션 축소"
       ]
     },
     "러셀2000": {
-      "reason": "대형주 혼조 속 소형주도 -0.31% 동반 약세 — 엔비디아 쇼크의 광범위한 리스크오프(안전자산 선호) 분위기 반영",
+      "reason": "직접 촉매 없음 — S&P500 -0.40% 하락과 VIX 상승 속 소형주도 -0.31% 동반 조정, 리스크오프 흐름 동조",
       "drivers": [
-        "대형 기술주 급락 여파"
+        "S&P500 혼조 흐름 동조"
       ]
     },
     "영국FTSE": {
-      "reason": "미국 기술주 급락과 무관한 유럽 내수·금융 중심 구성으로 +0.36% 소폭 상승 — 지역 분리 흐름",
+      "reason": "직접 촉매 미약 — 유럽 방어주 선호와 파운드 안정 속 +0.36% 소폭 상승",
       "drivers": [
-        "미국 기술 충격 분리"
+        "유럽 리스크오프 국면에서 방어주 유입"
       ]
     },
     "독일DAX": {
-      "reason": "유럽 제조·금융주 중심으로 엔비디아 여파 제한적, -0.08% 보합 — 미국 기술 의존도 낮음",
+      "reason": "직접 촉매 약함 — 유럽 기업 실적 부진 우려 속 -0.08% 보합권 마감",
       "drivers": [
-        "미국 반도체 충격 최소"
+        "유럽 제조업 부진 지속"
       ]
     },
     "니케이": {
-      "reason": "미국 나스닥 급락 선반영, 일본 반도체·전자 동조 하락 -0.70% — 아시아 기술주 전반 압력",
+      "reason": "직접 촉매 약함 — 엔화 약세 지속과 수출주 선호 속 +0.53% 상승, 미국 혼조와 무관하게 기술적 반등 유지",
       "drivers": [
-        "미국 반도체 하락 파급"
+        "엔화 약세로 수출주 수혜"
       ]
     },
     "항셍": {
-      "reason": "엔비디아 중국 칩 수출 스캔들로 중국 AI 인프라 기대 타격, 테크 중심 -1.26% 하락 — 미중 기술 긴장 재부각",
+      "reason": "직접 촉매 약함 — 미중 기술 분쟁 우려와 중국 소비 부진 속 -1.55% 하락, 필라델피아반도체 급락과 동조",
       "drivers": [
-        "NVDA 중국 칩 밀수출 의혹",
-        "Lutnick 상무장관 청문회 소환"
+        "엔비디아 스캔들의 중국 연루 우려",
+        "중국 소비 지표 부진 지속"
       ]
     },
     "달러인덱스": {
-      "reason": "기술주 불안으로 안전자산 달러 수요 +0.25% 증가 — 리스크오프 국면 신호",
+      "reason": "미국 국채 10년물 금리 +1.00% 급등과 유럽·아시아 대비 미국 경제 우위 지속으로 +0.23% 상승(103.41)",
       "drivers": [
-        "NVDA 쇼크 안전자산 선호"
+        "미국 국채 10년물 5.15% 급등",
+        "유럽 경기 둔화 대비 미국 상대 강세"
       ]
     },
     "국채2Y": {
-      "reason": "단기 금리 -0.15% 하락 — 기술주 충격 속 단기 안전 수요, 연준 정책 기대 변화 제한적",
+      "reason": "단기 연준 정책 기대 변화 없이 -0.15% 소폭 하락(4.12%) — 10년물 급등과 대비되며 커브 스티프닝 진행",
       "drivers": [
-        "리스크오프 채권 수요"
+        "단기 연준 정책 기대 안정"
       ]
     },
     "국채10Y": {
-      "reason": "장기 금리 +1.00% 급등 — AI 인프라 금융 리스크 우려(Fed 서베이)와 재정 부담 우려로 커브 스티프닝(장기금리가 단기금리보다 빠르게 올라 예대마진이 개선되는 현상) 지속",
+      "reason": "저축은행 예금금리 4% 근접(3.90%) 등 국내 시장금리 상승 흐름과 동조하며 +1.00% 급등(5.15%) — 장기 인플레 기대 상승과 재정 부담(석유 최고가격제·전기요금 동결 청구서 확대) 우려 반영",
       "drivers": [
-        "Fed AI 금융 위험 1순위 지적",
-        "장기 재정 불안"
+        "시장금리 상승 속 저축은행 예금금리 4%대 상품 154개로 급증",
+        "석유 최고가격제 손실보전 정산 임박, 재정 부담 가시화",
+        "장기 인플레 기대 상승"
       ]
     },
     "코스피": {
-      "reason": "엔비디아 급락에 전기전자(삼성전자·SK하이닉스) 동조 하락, Reflexivity 9단계 투매 16일째로 -0.98% — 외국인 1일 -5,550억 매도 지속",
+      "reason": "필라델피아반도체 -3.43% 급락과 엔비디아 스캔들 충격으로 삼성전자·SK하이닉스 등 반도체 대형주 동반 하락, 외국인 1일 -5,550억 순매도하며 -0.98% 하락 — Reflexivity 9단계(Capitulation) 16거래일째, Momentum 16.5 극저점 지속",
       "drivers": [
-        "NVDA 쇼크 반도체 동조",
-        "외국인 코스피 20일 -11조"
+        "필라델피아반도체 -3.43% 급락으로 반도체 투자심리 위축",
+        "외국인 1일 -5,550억 순매도",
+        "신용융자의 27.2%가 삼성전자·SK하이닉스에 집중돼 변동성 확대"
       ]
     },
     "코스닥": {
-      "reason": "IT·바이오 일부 저가 매수세로 +0.45% 반등 — 기관 5일 +8,110억 순매수, 시장 폭 20일선 위 49.9%로 개선 조짐",
+      "reason": "바이오·IT서비스 등 중소형주 기술적 반등과 기관 1일 +1,279억 순매수 유입으로 +0.45% 상승 — 코스피 대형주 낙폭과 대비되는 단기 숏커버링(공매도 청산 매수)",
       "drivers": [
-        "기관 코스닥 5일 +8,110억",
-        "저가 매수 유입"
+        "기관 1일 +1,279억 순매수",
+        "IT서비스·제약 RRG leading 유지, 단기 반등"
       ]
     },
     "금": {
-      "reason": "달러 강세와 기술주 쇼크 속 안전자산 수요 상쇄, -0.04% 보합 — 방향성 불명확",
+      "reason": "달러인덱스 +0.23% 상승 압박에도 지정학 리스크 잔존과 안전자산 수요로 +0.03% 보합(3886.3)",
       "drivers": [
-        "달러 강세 압력",
-        "리스크오프 수요 상쇄"
+        "달러 강세 압박",
+        "지정학 리스크 잔존"
       ]
     },
     "WTI유가": {
-      "reason": "중동 지정학 리스크 잔존, 재고 감소 기대로 +0.41% 소폭 상승 — 엔비디아 쇼크와 무관",
+      "reason": "직접 촉매 약함 — 글로벌 수요 둔화 우려 속 -0.20% 소폭 하락(88.56), 석유 최고가격제 손실보전 우려는 국내 재정 이슈",
       "drivers": [
-        "중동 긴장 지속"
+        "글로벌 수요 둔화 우려"
       ]
     },
     "원달러": {
-      "reason": "달러 강세에도 외국인 코스피 1일 -5,550억 매도 압력 상쇄, -0.09% 소폭 하락 — 환율 방향성 약화",
+      "reason": "달러인덱스 +0.23% 상승과 코스피 외국인 -5,550억 순매도 압력으로 +0.18% 상승(1336.2)",
       "drivers": [
-        "외국인 매도 압력",
-        "달러 강세 제한적"
+        "달러인덱스 103.41 상승",
+        "코스피 외국인 순매도"
       ]
     },
     "알루미늄": {
-      "reason": "글로벌 제조 경기 둔화 우려, 엔비디아 쇼크로 AI 인프라 수요 기대 약화 -1.58% — 산업 금속 전반 약세",
+      "reason": "직접 촉매 약함 — 중국 제조업 부진과 글로벌 수요 둔화 우려로 -0.85% 하락",
       "drivers": [
-        "AI 인프라 수요 의문"
+        "중국 제조업 부진"
       ]
     },
     "구리": {
-      "reason": "중국 AI·데이터센터 투자 기대 타격(엔비디아 중국 칩 스캔들), 글로벌 제조 둔화로 -2.01% 급락 — 경기 민감 금속 압력",
+      "reason": "중국 소비 미지근(한은 분석: 반도체 호황 낙수효과 제약) 흐름과 글로벌 제조업 둔화 우려로 -1.67% 하락",
       "drivers": [
-        "NVDA 중국 칩 의혹",
-        "제조 경기 둔화"
+        "한은 반도체 낙수효과 제약 지적, 소비 회복 지연",
+        "중국 수요 부진"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "엔비디아 젠슨 황 스캔들 퇴진으로 나스닥 -0.91%, 필라델피아반도체 -3.43% 급락 — 코스피 -0.98%(외국인 1일 -5,550억, 20일 -11조), 전기전자 동조 하락. Reflexivity 9단계 투매 16일째, Momentum 16.5로 주식 비중 0% 권고 지속",
+    "summary": "필라델피아반도체 -3.43%·엔비디아 리더십 위기 충격으로 코스피 -0.98%, 외국인 -5,550억 순매도 — Reflexivity 9단계(Capitulation) 16거래일째, Momentum 16.5 극저점 지속, 주식 비중 권장 0% 유지",
     "positive_factors": [
-      "코스닥 +0.45% 반등 — 기관 5일 +8,110억 순매수, IT·바이오 저가 매수세 유입. 시장 폭 20일선 위 비율 47.9%(5일 전 27.0%), 당일 상승 1414 vs 하락 1023으로 개선 조짐",
-      "Fundamentals 58.0(기준 55 이상 충족) — 수출 78 백분위, 환율 53으로 실물 경제 기반 양호. 장기 반등 잠재력은 유지"
+      "코스닥 기관 1일 +1,279억·5일 +8,110억 순매수로 IT서비스·제약 등 중소형주 +0.45% 반등 — RRG leading 섹터의 단기 숏커버링 흐름",
+      "20일선 위 종목 비율 47.9%로 5일 전 27.0% 대비 +20.9%p 급반등 — 단기 기술적 과매도 해소, 다만 60일선 위는 34.6%에 그쳐 추세 회복 불충분"
     ],
     "negative_factors": [
-      "Momentum 16.5(기준 50 크게 미달) — 추세 1 백분위, 수급 0 백분위로 극단 악화. 외국인 코스피 20일 -11조, 1일 -5,550억 매도 지속. 거래대금 20.5조(평균 대비 0.87배) 위축",
-      "시장 폭 극단 악화 — 200일선 위 비율 20.2%(5일 전 13.8%), 52주 신저가 99종목 vs 신고가 41종목. Reflexivity 9단계 투매 국면 16거래일째로 단기 반등만으로 국면 전환 불가"
+      "필라델피아반도체 -3.43% 급락과 엔비디아 스캔들로 삼성전자·SK하이닉스 등 반도체 대형주 압박 — 신용융자의 27.2%가 두 종목에 집중돼 변동성 증폭(작년 평균 6.7%→올 8월 33.6% 급증)",
+      "국채 10년물 +1.00% 급등(5.15%)으로 성장주 밸류에이션 압박 심화 — 저축은행 예금금리 4% 근접, 석유·전기요금 동결 청구서 확대로 재정·금리 리스크 가중"
     ],
-    "key_watch": "엔비디아 화요일 실적 발표(젠슨 황 없는 첫 보고서) — 가이던스와 AI 수요 지속성 확인 여부가 글로벌 반도체·국내 전기전자 방향 결정. Anthropic IPO와 SpaceX 합병 뉴스도 AI 생태계 재편 신호로 주목"
+    "key_watch": "17일 엔비디아 실적 발표와 19일 앤트로픽 상장 — AI 투자 신뢰 회복 여부가 국내 반도체 섹터 Momentum 전환의 핵심 촉매, Fundamentals 58.0(기준 55 이상 충족) 대비 Momentum 16.5(기준 50 대비 -33.5)로 극심한 괴리 지속"
   },
   "sector_impact": {},
   "strong_buy": [],
   "watch": [
     {
       "sector": "전기전자",
-      "reason": "RRG lagging, Sector Momentum 1위(12개월 상대 +95%)이나 52주 신고가 근처 비율 2%로 개별 추세 붕괴 — 엔비디아 스캔들로 글로벌 반도체 신뢰 타격, Risk-Off 국면에서 신규 진입 부적합. 화요일 엔비디아 실적 이후 재평가 대기"
+      "reason": "전기전자(Sector Momentum 1위·12개월 상대수익 +95%)는 필라델피아반도체 -3.43% 급락과 엔비디아 리더십 위기로 단기 투자심리 훼손 — 17일 엔비디아 실적·19일 앤트로픽 상장 결과 확인 후 재진입 판단 필요, RRG lagging 전락과 52주 신고가 근처 비율 2%로 Trend 약화"
     },
     {
-      "sector": "기계·장비",
-      "reason": "Sector Momentum 4위(+54%), RRG lagging — AI 인프라 ETF 3개월 -40% 급락 보도(매일경제), 미국 중간선거 반데이터센터 표심 확인. 깜짝 실적에도 주가 급등락, Risk-Off에서 접근 금지"
+      "sector": "금융",
+      "reason": "금융(Sector Momentum 10위·12개월 상대수익 +24%, RRG leading)은 국채 10년물 +1.00% 급등으로 예대마진 개선 기대 유지하나, Market Regime Filter 주식 비중 0% 권고로 신규 진입 보류 — Risk-On 전환(Momentum 50 이상) 후 우선 편입 대상"
     },
     {
-      "sector": "의료·정밀기기",
-      "reason": "Sector Momentum 5위(+111%), RRG lagging — 의료정밀 신고가 비율 0%, 개별 모멘텀 부재. Risk-On 전환 이후 재검토"
+      "sector": "유통",
+      "reason": "유통(Sector Momentum 3위·12개월 상대수익 +20%, RRG leading)은 방어주 선호 흐름 수혜 중이나 52주 신고가 근처 비율 9%로 개별 종목 Trend 제한적 — 현 국면에서 대기 명단 유지"
     }
   ],
   "avoid": [],
-  "summary": "엔비디아 젠슨 황 스캔들 퇴진으로 나스닥 -0.91%, 필라델피아반도체 -3.43% 급락 — 코스피 -0.98%, Reflexivity 9단계 투매 16일째. Momentum 16.5(기준 50 미달), 외국인 20일 -11조로 주식 비중 0% 유지, 화요일 엔비디아 실적 이후 재평가 대기",
-  "strategy_brief": "엔비디아 젠슨 황 스캔들 퇴진이 나스닥 -0.91%, 필라델피아반도체 -3.43% 급락을 촉발하며 국내 코스피 -0.98%(외국인 1일 -5,550억, 20일 -11조) 동반 투매를 이끌었다. 국내 시장은 Reflexivity 9단계 투매 국면 16거래일째로 Momentum 16.5(기준 50), 시장 폭 200일선 위 20.2%, 수급 0 백분위 등 모든 지표가 극단 악화 — Market Regime Filter는 주식 비중 0%, 현금(단기채) 100% 보유를 권고한다. Fundamentals 58.0은 기준(55) 이상이나 Momentum 미달로 Focus 2(셀트리온·메리츠금융)도 대기 상태이며, Sector Momentum 상위(전기전자·유통·금융)는 RRG 사분면과 실제 추세가 엇갈려 개별 진입 근거가 부족하다. 화요일 엔비디아 실적 발표(젠슨 황 없는 첫 보고서)와 Anthropic IPO가 AI 생태계 재편 방향을 결정할 핵심 변곡점이므로, Momentum 50 회복과 외국인 매도 전환 동시 확인 이전에는 신규 매수를 보류하고 watchlist(LX인터내셔널·미스토홀딩스 등 Picks 상위) 관찰에 집중해야 한다.",
-  "strategy_headline": "엔비디아 스캔들 투매 — 주식 비중 0% 유지, 현금 대기",
+  "summary": "엔비디아 스캔들·필라델피아반도체 -3.43% 충격으로 코스피 Capitulation 16일째 연장 — Momentum 16.5 극저점, 주식 비중 0% 현금 대기, 17일 엔비디아 실적 확인 후 재진입 판단",
+  "strategy_brief": "엔비디아 젠슨 황 사임 스캔들이 필라델피아반도체 -3.43% 급락을 촉발하며 AI 투자 전반의 신뢰를 훼손했고, 국내 시장은 외국인 -5,550억 순매도 압력 속 코스피 -0.98% 하락으로 Reflexivity 9단계(Capitulation) 16거래일째를 맞았습니다. Fundamentals 58.0은 기준(55) 이상을 유지하나 Momentum 16.5는 기준 50 대비 -33.5 하회하며, Market Regime Filter는 주식 비중 0%(현금 100%)를 권고합니다. 20일선 위 종목 비율이 47.9%로 5일 새 +20.9%p 반등했으나 60일선 위는 34.6%에 그쳐 추세 회복이 불충분하고, 17일 엔비디아 실적 발표와 19일 앤트로픽 상장 결과 확인 전까지 신규 진입은 부적절합니다. Focus 2는 셀트리온(제약·Score 88·목표가 상향 12건)과 메리츠금융(금융·Score 88·커브 스티프닝 수혜)을 Momentum 50 이상 회복 시 우선 편입할 대기 명단으로 유지하며, 국채 10년물 5.15% 급등은 금융주에 중기 긍정 요인이나 현 국면에서는 현금 보유가 최우선 전략입니다.",
+  "strategy_headline": "엔비디아 스캔들 충격파 — Capitulation 16일째, 현금 대기 지속",
   "strategy_points": [
-    "엔비디아 젠슨 황 스캔들 퇴진 → 나스닥 -0.91%, 필라델피아반도체 -3.43%, 코스피 -0.98%(외국인 20일 -11조). AI 반도체 신뢰 붕괴가 국내 전기전자 직격",
-    "국내 Reflexivity 9단계(투매) 16거래일째 — Momentum 16.5(기준 50), 시장 폭 200일선 위 20.2%, 수급 0 백분위로 극단 악화. Market Regime Filter 주식 비중 0% 판정",
-    "Sector Momentum 상위(전기전자·유통·금융) 모두 RRG lagging/leading 엇갈림, 52주 신고가 비율 0~9%로 개별 추세 부재 — Risk-On 전환 이전 신규 진입 금지",
-    "Focus 2(셀트리온·메리츠금융) 대기 — Fundamentals 58.0 충족하나 Momentum 미달. 화요일 엔비디아 실적과 Momentum 50 회복 동시 확인 후 재평가"
+    "필라델피아반도체 -3.43%·엔비디아 리더십 위기로 AI 투자 신뢰 훼손 — 국내 반도체 대형주 동반 낙폭, 외국인 -5,550억 순매도",
+    "Reflexivity 9단계(Capitulation) 16거래일째, Momentum 16.5(기준 50 대비 -33.5) 극저점 — Market Regime Filter 주식 비중 0% 권고, 현금(단기채) 100% 유지",
+    "20일선 위 47.9%(5일 전 +20.9%p) 단기 반등에도 60일선 위 34.6%로 추세 회복 불충분 — 17일 엔비디아 실적·19일 앤트로픽 상장 결과 확인 전 신규 진입 부적절",
+    "Focus 2 대기 상태: 셀트리온(제약·Score 88)·메리츠금융(금융·Score 88) Momentum 50 이상 회복 시 우선 편입 — 국채 10년물 5.15% 급등은 금융주 중기 수혜 요인"
   ],
   "top_picks": [
     {
@@ -3849,7 +3849,7 @@
           "name": "셀트리온",
           "code": "068270",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정 업종 1위(제약, 6개월 상대 +21.1%, 업종 이익 1년 +51%), Score 88(업종 내 종합 82, 목표가 상향 12건 vs 하향 1건/16개 증권사). 현재 시장 Fundamentals 58.0(기준 55 이상 충족)이나 Momentum 16.5(기준 50 미달)로 조건 불충족. 전환 조건: Momentum 50 이상 + Fundamentals 55 이상 동시 충족 시 1순위 진입. 리스크: Reflexivity 9단계 투매 16일째, 엔비디아 쇼크로 글로벌 리스크오프 지속 시 제약 방어 섹터도 동반 조정 가능",
+          "reason": "대기 — Focus 2 선정 업종 1위(제약, 6개월 상대 +21.1%·업종 이익 1년 +51%), Score 88(업종 내 종합 82·목표가 상향 12건·하향 1건/16곳), 1개월 +13.3%로 단기 모멘텀 양호하나 Market Regime Filter 주식 비중 0%(Fundamentals 58.0 ≥ 55 충족, Momentum 16.5 < 50 미달)로 현금 대기 — 전환 조건: Momentum 50 이상 회복(현 16.5) 시 즉시 편입, 17일 엔비디아 실적 이후 AI 투자 신뢰 회복 여부 확인 필요 / 리스크: 글로벌 바이오 밸류에이션 압박, 국채 금리 상승",
           "rrg_tracked": true,
           "rrg_actual_sector": "제약",
           "rrg_sector_match": true,
@@ -3867,7 +3867,7 @@
           "name": "메리츠금융지주",
           "code": "138040",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정 업종 2위(금융, 6개월 상대 +23.0%, 업종 이익 1년 +17%), Score 88(업종 내 종합 77, 목표가 상향 1건 vs 하향 0건/4개 증권사). 현재 Momentum 16.5(기준 50 미달)로 조건 불충족. 전환 조건: Momentum 50 이상 + Fundamentals 55 이상 동시 충족 시 금융 대표주 진입. 리스크: 1개월 -14.2%, 52주 고점 대비 -23.3%로 추세 약화. 미국 장기금리 +1.00% 급등은 커브 스티프닝 긍정이나 Risk-Off 국면에서 효과 제한적",
+          "reason": "대기 — Focus 2 선정 업종 2위(금융, 6개월 상대 +23.0%·업종 이익 1년 +17%), Score 88(업종 내 종합 77·목표가 상향 1건·하향 0건/4곳), 국채 10년물 +1.00% 급등(5.15%)으로 커브 스티프닝 수혜 예상하나 1개월 -14.2%로 단기 조정 중, Market Regime Filter 주식 비중 0%로 현금 대기 — 전환 조건: Momentum 50 이상 회복(현 16.5) 및 금융 섹터 RRG leading 지속 확인 시 편입 / 리스크: 코스피 Capitulation 국면 연장, 외국인 순매도 지속",
           "rrg_tracked": true,
           "rrg_actual_sector": "금융",
           "rrg_sector_match": true,
@@ -3885,7 +3885,7 @@
           "name": "LX인터내셔널",
           "code": "001120",
           "signal": "prime",
-          "reason": "대기 — Picks 이번 달 포트폴리오 4위(600종목 중국), Composite 77(Quality 66·Trend 76·Low Vol 89). Sector Momentum 3위(유통 +20%), RRG leading. 현재 Market Regime Filter 주식 비중 0% 판정으로 신규 매수 보류, Risk-On 전환 시 1순위 후보. 전환 조건: Equity Exposure 30% 이상(Reflexivity 2~5단계) + Momentum 50 이상. 리스크: 1개월 -21.2%, 52주 고점 대비 -38.6%로 낙폭 과대하나 하락폭 자체는 검증상 반등 근거 아님. 외국인 코스피 20일 -11조 매도 지속",
+          "reason": "대기 — Picks 엔진 종합 순위 4위(600종목 중), Quality 66·Trend 76·Low Vol 89로 Composite 77, Sector Momentum 3위 업종(유통·12개월 상대 +20%), 미국 방어주 선호(필수소비재XLP R109.3·유통 Leading) 흐름과 동조 가능하나 52주 고점 대비 -38.6%·1개월 -21.2%로 단기 낙폭 과대, Market Regime 주식 비중 0%로 현금 대기 — 전환 조건: Momentum 50 이상·20일선 위 종목 비율 60% 이상 회복 시 편입 / 리스크: 원자재 가격 하락(구리 -1.67%), 글로벌 경기 둔화",
           "rrg_tracked": true,
           "rrg_actual_sector": "유통",
           "rrg_sector_match": true,
@@ -3893,30 +3893,12 @@
           "focus": false
         },
         {
-          "name": "미스토홀딩스",
-          "code": "081660",
+          "name": "영원무역",
+          "code": "111770",
           "signal": "prime",
-          "reason": "대기 — Picks 5위, Composite 77(Quality 72·Trend 62·Low Vol 97 최상위). Sector Momentum 3위(유통 +20%), RRG leading. 주식 비중 0% 국면으로 watchlist 위치. 전환 조건: Risk-On 전환(Momentum 50 이상) + 외국인 매도 전환 확인. 리스크: 1개월 -6.8%, 거래대금 평균 대비 0.87배 위축. 엔비디아 쇼크로 글로벌 리스크오프 지속 시 내수 유통도 수급 압력",
+          "reason": "대기 — Picks 엔진 순위 7위, Quality 70·Trend 65·Low Vol 94로 Composite 77, 교체 후 +0.7% 유일 플러스 유지, 52주 고점 대비 -28.5%·1개월 -6.8%로 낙폭 상대적 양호, 미국 방어주 로테이션(경기소비재XLY R106.8) 수혜 가능하나 Market Regime 주식 비중 0%로 신규 매수 보류 — 전환 조건: Risk-On 전환(Momentum 50 이상) 및 유통 섹터 52주 신고가 비율 15% 이상 회복 시 우선 편입 / 리스크: 환율 변동성(원달러 1336.2), 글로벌 소비 둔화",
           "rrg_tracked": true,
           "rrg_actual_sector": "유통",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading",
-          "focus": false
-        }
-      ]
-    },
-    {
-      "sector": "음식료·담배",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "농심",
-          "code": "004370",
-          "signal": "prime",
-          "reason": "대기 — Picks 6위, Composite 77(Quality 62·Trend 73·Low Vol 95). Sector Momentum 14위(음식료 +14%), RRG leading. 방어 소비재이나 현재 주식 비중 0% 권고로 진입 보류. 전환 조건: Reflexivity 2~5단계 상승 국면 진입 + 시장 폭(200일선 위 비율) 30% 이상 회복. 리스크: 1개월 -12.1%, 52주 고점 대비 -25.0%. Risk-Off 국면에서 방어주도 절대 수익 기대 어려움",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "음식료·담배",
           "rrg_sector_match": true,
           "rrg_signal": "leading",
           "focus": false
@@ -3926,6 +3908,6 @@
   ],
   "caution_sectors": [
     "전기전자",
-    "기계·장비"
+    "금융"
   ]
 }
