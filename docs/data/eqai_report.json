@@ -1,190 +1,183 @@
 {
-  "generated_at": "2026-11-22 07:03:00",
+  "generated_at": "2026-11-23 07:02:20",
   "macro": {
     "S&P500": {
       "price": 6910.39,
       "change": -3.7,
-      "reason": "Anthropic IPO 실패와 AI 버블 논란이 월스트리트 전반에 AI 투자심리 급랭 촉발. Bloomberg 기사 'Wall Street Asks What Can Save AI Trade After Anthropic Wipeout'이 상징. VIX +26.20%로 공포 심리 확산.",
+      "reason": "엔비디아 회계 문제와 AI 붐 거품 논란으로 기술주 중심 광범위 매도세 — 블룸버그 Strong Earnings Prove No Match for the Crumbling AI Trade 보도",
       "drivers": [
-        "Anthropic 실적 부진·IPO 실패로 AI 투자심리 붕괴",
-        "AI 버블 논란 확산('Is AI a Bubble?' Bloomberg 기사)",
-        "VIX 35.89 (+26.20%) 급등"
+        "나스닥 -5.28% 급락",
+        "엔비디아 회계 이슈",
+        "AI 기업 실적 호조에도 투자 심리 악화"
       ]
     },
     "NASDAQ": {
       "price": 22617.73,
       "change": -5.28,
-      "reason": "AI 주도주 집단 투매. Anthropic 충격에 엔비디아 캘리포니아 형사 조사 확대(Bloomberg 보도)와 AI 칩 수출통제·데이터센터 비용분담 압박이 겹치며 기술주 전면 급락.",
+      "reason": "엔비디아 회계 문제 불거지고 앤트로픽 상장 후 -8.5% 하락하며 AI 섹터 전반 공포 매도 — 필라델피아반도체 -10.73% 동반 급락",
       "drivers": [
-        "Anthropic 실패로 AI 성장 스토리 의문",
-        "엔비디아 형사 조사 확대 리스크",
-        "AI 칩 수출통제와 데이터센터 비용 압박"
+        "필라델피아반도체 -10.73%",
+        "엔비디아 회계 이슈",
+        "앤트로픽 상장 후 급락"
       ]
     },
     "DOW": {
       "price": 48147.33,
       "change": -1.93,
-      "reason": "나스닥·S&P500 급락에 동조 하락. 기술주 비중이 낮아 상대적으로 낙폭은 제한(-1.93%)되었으나 VIX 급등으로 전반적 위험회피 심리 반영.",
+      "reason": "기술주 대비 완만한 낙폭이나 AI 붐 붕괴 우려가 광범위 리스크오프(위험자산 회피) 심리로 확산",
       "drivers": [
-        "나스닥·S&P500 급락 동조",
-        "VIX +26.20%로 위험회피 심리"
+        "나스닥 -5.28% 충격",
+        "VIX 35.89 급등"
       ]
     },
     "VIX": {
       "price": 35.89,
       "change": 26.2,
-      "reason": "Anthropic 실패와 AI 투자심리 붕괴, 엔비디아 형사 조사 확대 리스크가 겹치며 공포 지수 급등. 필라델피아반도체 -10.73% 폭락이 변동성 확대 촉발.",
+      "reason": "엔비디아 회계 이슈와 AI 기술주 폭락으로 공포지수 35.89까지 +26.20% 급등 — 블룸버그 Investors Brave Stock Market Fragility as AI Trade Falters 보도",
       "drivers": [
-        "AI 투자심리 급랭(Anthropic 실패)",
-        "엔비디아 형사 조사 확대 불확실성",
-        "필라델피아반도체 -10.73% 폭락"
+        "나스닥 -5.28%",
+        "AI 붐 지속 가능성 의문"
       ]
     },
     "필라델피아반도체": {
       "price": 8408.59,
       "change": -10.73,
-      "reason": "Anthropic 실패로 AI 수요 성장 스토리에 의문 + 엔비디아 캘리포니아 형사 조사 확대(칩 불법 판매·투자자 오도 혐의) + AI 칩 수출통제·데이터센터 비용분담 압박이 삼중 충격. 연합뉴스 보도 '미국 AI칩 수출통제·데이터센터 비용분담에 투매'가 직접 촉매.",
+      "reason": "엔비디아 호실적 발표 직후 회계 문제 불거지고, 앤트로픽 멀티칩 전략이 엔비디아 독점 체제 위협으로 부각되며 -10.73% 폭락 — Seeking Alpha How much of a threat is Anthropic's multi-chip strategy to Nvidia 보도",
       "drivers": [
-        "Anthropic 실패로 AI 성장 의문",
-        "엔비디아 형사 조사 확대 리스크",
-        "AI 칩 수출통제·데이터센터 비용분담 압박"
+        "엔비디아 회계 이슈",
+        "앤트로픽 멀티칩 전략",
+        "AI 서버 실적 대기(HPE, Dell) 불안"
       ]
     },
     "러셀2000": {
       "price": 2581.79,
       "change": -2.76,
-      "reason": "대형주 급락에 동조 하락. 직접 촉매 없으나 VIX 급등과 위험회피 심리 확산으로 중소형주도 매도 압력. 나스닥 -5.28% 폭락에 동조.",
+      "reason": "기술주 급락이 중소형주로 확산되며 -2.76% 하락 — 광범위 리스크오프 국면",
       "drivers": [
-        "나스닥 -5.28% 급락 동조",
-        "VIX +26.20%로 위험회피"
+        "나스닥 급락 여파",
+        "VIX 35.89 급등"
       ]
     },
     "영국FTSE": {
       "price": 10346.3,
       "change": -1.02,
-      "reason": "직접 촉매 없음 — 미국 AI 투자심리 급랭과 글로벌 위험회피 흐름 동조. 유럽 시간대 미국 선물 급락 선반영.",
+      "reason": "미국 기술주 충격이 유럽으로 파급되며 -1.02% 하락",
       "drivers": [
-        "미국 AI 투자심리 붕괴 동조",
-        "글로벌 위험회피 확산"
+        "나스닥 -5.28% 여파"
       ]
     },
     "독일DAX": {
       "price": 24802.78,
       "change": -2.6,
-      "reason": "미국 AI 투매 충격이 유럽 시장에 전이. 독일 기술주와 산업재가 미국 경기 민감도 높아 나스닥 -5.28% 급락에 동조 하락. 직접 뉴스는 없으나 글로벌 위험회피.",
+      "reason": "미국 AI 붐 붕괴 우려가 유럽 기술주·산업재로 전이되며 -2.60% 급락",
       "drivers": [
-        "나스닥 -5.28% 급락 동조",
-        "글로벌 위험회피 심리"
+        "나스닥 급락",
+        "글로벌 리스크오프"
       ]
     },
     "니케이": {
       "price": 56436.65,
       "change": -5.06,
-      "reason": "미국 필라델피아반도체 -10.73% 급락이 일본 반도체·전자 업종 직격탄. AI 투자심리 붕괴와 엔비디아 형사 조사 확대 리스크가 소니·도쿄일렉트론 등 일본 기술주 동반 급락 촉발.",
+      "reason": "엔비디아 회계 이슈와 필라델피아반도체 -10.73%가 아시아 반도체·전자주 직격탄으로 작용, -5.06% 폭락",
       "drivers": [
-        "필라델피아반도체 -10.73% 폭락 동조",
-        "AI 투자심리 급랭 전이"
+        "필라델피아반도체 -10.73%",
+        "엔비디아 회계 문제"
       ]
     },
     "항셍": {
       "price": 22410.8,
       "change": -1.89,
-      "reason": "직접 촉매 없음 — 미국 AI 투매와 글로벌 위험회피 흐름 동조. 중국 본토 경기 불확실성 속 외국인 매도 압력. 나스닥 -5.28% 급락 여파.",
+      "reason": "중국 기술주 6개월간 2289조원 증발 지속, 미국 AI 붐 붕괴 우려 추가되며 -1.89% 하락",
       "drivers": [
-        "나스닥 급락 동조",
-        "글로벌 위험회피 심리"
+        "중국 기술주 2289조원 증발",
+        "나스닥 급락 여파"
       ]
     },
     "달러인덱스": {
       "price": 103.81,
       "change": -0.09,
-      "reason": "등락폭 미미(-0.09%). 미국 2년물 국채 금리 -0.60% 하락으로 단기적 달러 약세 압력 있었으나, VIX 급등과 위험회피 수요가 상쇄. 연준 12월 인상 전망(한은 보도)은 지지 요인.",
+      "reason": "미 국채 수요 증가(2Y -0.60%, 10Y -2.77%)로 달러 약세 — 리스크오프 시 채권 선호",
       "drivers": [
-        "미국 2년물 금리 -0.60% 하락",
-        "VIX 급등으로 위험회피 수요 상쇄"
+        "국채 2Y -0.60%",
+        "국채 10Y -2.77%"
       ]
     },
     "국채2Y": {
       "price": 4.12,
       "change": -0.6,
-      "reason": "AI 투매와 경기 둔화 우려로 단기 안전자산 선호. VIX +26.20% 급등과 주식 급락이 단기 국채 매수 촉발. 다만 연준 12월 인상 전망은 하락 폭 제한 요인.",
+      "reason": "기술주 폭락으로 안전자산 선호 급증, 단기 국채 수요 확대로 금리 -0.60% 하락",
       "drivers": [
-        "VIX +26.20% 급등으로 안전자산 선호",
-        "AI 투매와 경기 우려"
+        "나스닥 -5.28% 급락",
+        "VIX 35.89 급등"
       ]
     },
     "국채10Y": {
       "price": 4.91,
       "change": -2.77,
-      "reason": "나스닥 -5.28% 급락과 AI 버블 논란으로 장기 성장 기대 하락 — 장기 국채 강세. VIX 급등과 위험회피 심리가 10년물 금리 -2.77% 급락 촉발. 연준 인상 전망에도 성장 우려가 우세.",
+      "reason": "AI 붐 붕괴 우려로 장기 성장 기대 약화, 안전자산 쏠림으로 10년물 금리 -2.77% 급락",
       "drivers": [
-        "나스닥 -5.28%·AI 버블 논란",
-        "VIX 급등으로 안전자산 선호"
+        "기술주 폭락",
+        "리스크오프 채권 수요"
       ]
     },
     "코스피": {
       "price": 4869.96,
-      "change": -5.21,
-      "reason": "필라델피아반도체 -10.73% 폭락이 국내 반도체·전자 업종 직격탄(전기전자 Sector Momentum 1위였으나 급락). 연합뉴스 보도 '미국 AI칩 수출통제·데이터센터 비용분담에 투매'와 '5천피 무너지고 미국증시 급락'이 직접 촉매. 외국인 1일 -1.1조·20일 -14.8조 순매도로 수급 붕괴. Momentum 14.1(백분위 1 수준), 20일선 위 비율 30.6%, 52주 신저가 389종목으로 Capitulation 국면 심화.",
+      "change": 0.0,
+      "reason": "휴장(2026-11-20 기준 등락 0.00%) — 전일 Reflexivity 9단계 Capitulation 국면 21거래일째 지속 중",
       "drivers": [
-        "필라델피아반도체 -10.73% 폭락 동조",
-        "AI 칩 수출통제·데이터센터 비용분담 우려",
-        "외국인 1일 -1.1조·20일 -14.8조 순매도"
+        "휴장"
       ]
     },
     "코스닥": {
       "price": 645.68,
-      "change": -5.71,
-      "reason": "코스피보다 낙폭 큰 -5.71%. 나스닥 -5.28% 급락과 AI 투자심리 붕괴가 국내 IT·바이오 중소형주 직격탄. 외국인 1일 -1,710억·20일 -2.0조 순매도. 20일선 위 비율 37.2%, 시장 폭 붕괴.",
+      "change": 0.0,
+      "reason": "휴장(등락 0.00%) — Momentum 14.1로 기준 50 크게 하회, Market Regime Filter Risk-Off 판정",
       "drivers": [
-        "나스닥 -5.28% 급락 동조",
-        "AI 투자심리 붕괴 전이",
-        "외국인 1일 -1,710억·20일 -2.0조 순매도"
+        "휴장"
       ]
     },
     "금": {
       "price": 3515.4,
       "change": -4.62,
-      "reason": "VIX +26.20% 급등에도 불구하고 금 -4.62% 급락. 직접 촉매는 뉴스에 없으나, 달러인덱스 소폭 하락(-0.09%)에도 불구 금 급락은 유동성 확보 목적 매도(forced selling) 가능성 시사. 주식 급락 시 안전자산보다 현금 확보 우선.",
+      "reason": "달러 약세에도 기술주 폭락과 VIX 급등으로 현금 선호 심리 강화, 금 -4.62% 급락 — 유동성 확보 매도 가능성",
       "drivers": [
-        "주식 급락 시 유동성 확보 목적 매도 추정",
-        "VIX 급등에도 안전자산 역할 미작동"
+        "VIX 35.89 급등",
+        "현금 확보 매도"
       ]
     },
     "WTI유가": {
-      "price": 83.98,
-      "change": 0.93,
-      "reason": "직접 촉매 없음 — 멕시코 마약 조직 폭력 사태(FT 보도 'Violence erupts in Sinaloa')로 중남미 공급 우려 소폭 반영. 주식 급락에도 유가는 +0.93% 소폭 상승.",
+      "price": 83.41,
+      "change": 0.24,
+      "reason": "직접 촉매 없음 — 글로벌 리스크오프 국면 속 소폭 +0.24% 등락, 중동·공급 요인 보합",
       "drivers": [
-        "멕시코 폭력 사태로 공급 우려",
-        "주식 급락과 무관한 독립 흐름"
+        "중동 지정학 보합"
       ]
     },
     "원달러": {
-      "price": 1334.79,
-      "change": 0.33,
-      "reason": "한국은행 12월 금리 인상 재개 전망(연합뉴스 보도 '석 달 만에 금리 인상 재개 전망, 내년까지 긴축')과 코스피 -5.21% 급락이 상쇄. 외국인 20일 -16.8조 순매도에도 원화 약세 제한(+0.33%)은 긴축 기대 반영.",
+      "price": 1346.04,
+      "change": 0.84,
+      "reason": "미국 기술주 폭락과 국내 Reflexivity 9단계(투매) 지속으로 외국인 매도 압력 우려, 원화 약세 +0.84%",
       "drivers": [
-        "한은 12월 금리 인상 재개 전망",
-        "외국인 20일 -16.8조 순매도 압력"
+        "나스닥 -5.28%",
+        "국내 Momentum 14.1 급락"
       ]
     },
     "알루미늄": {
-      "price": 2860.0,
-      "change": 0.72,
-      "reason": "직접 촉매 없음 — 중국 제조업 수요와 무관한 소폭 상승. 주식 급락 국면에서 산업 금속은 중립.",
+      "price": 2789.5,
+      "change": -1.76,
+      "reason": "중국 기술주 2289조원 증발과 글로벌 경기 둔화 우려로 산업 금속 수요 약화 -1.76%",
       "drivers": [
-        "중국 제조업 수요 중립",
-        "주식 급락과 독립 흐름"
+        "중국 기술주 급락",
+        "글로벌 리스크오프"
       ]
     },
     "구리": {
-      "price": 5.48,
-      "change": -2.63,
-      "reason": "AI 투자심리 붕괴와 글로벌 경기 우려로 산업 금속 수요 하락 반영. 나스닥 -5.28%·필라델피아반도체 -10.73% 급락이 AI 인프라 투자 둔화 기대로 구리 수요 타격.",
+      "price": 5.49,
+      "change": -2.49,
+      "reason": "AI 붐 붕괴 우려와 중국 경기 불안으로 구리 수요 전망 악화 -2.49%",
       "drivers": [
-        "나스닥·필라델피아반도체 급락",
-        "AI 인프라 투자 둔화 우려"
+        "AI 붐 거품 논란",
+        "중국 기술주 2289조원 증발"
       ]
     }
   },
@@ -3761,120 +3754,123 @@
   },
   "sources": [
     {
-      "source": "yonhap",
-      "title": "테슬라 돌풍에 對중국 자동차 무역적자 6조원 역대 최대",
-      "link": "https://www.yna.co.kr/view/AKR20261121043900003",
-      "published": "Sun, 22 Nov 2026 06:13:00 +0900"
-    },
-    {
-      "source": "bloomberg",
-      "title": "Goldman Sachs, Apollo Price $32 Billion SpaceX Bonds to Fund AI Chip Purchases",
-      "link": "https://www.bloomberg.com/news/articles/2026-11-21/goldman-s-spacex-pitch-helps-solve-ai-debt-puzzle-credit-weekly",
-      "published": "Sat, 21 Nov 2026 15:31:22 GMT"
-    },
-    {
       "source": "maeil",
-      "title": "“주담대 금리 치솟아도 돈 빌릴 곳 없으니”…집단대출 늘며 잔액 증가폭 ‘쑥’",
-      "link": "https://www.mk.co.kr/news/economy/12215366",
-      "published": "Sun, 22 Nov 2026 06:13:10 +09:00"
-    },
-    {
-      "source": "yonhap",
-      "title": "우대금리 축소 이달까지 자체점검…10년 고정금리 논의 곧 착수",
-      "link": "https://www.yna.co.kr/view/AKR20261121044800002",
-      "published": "Sun, 22 Nov 2026 05:51:01 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "한은, 석 달 만에 금리 인상 재개 전망…\"내년까지 긴축\"",
-      "link": "https://www.yna.co.kr/view/AKR20261121021600002",
-      "published": "Sun, 22 Nov 2026 05:45:01 +0900"
+      "title": "‘젠슨 황 불똥’ 엔비디아 고비 넘자마자 … 서버 ‘원투 펀치’ 실적 나온다",
+      "link": "https://www.mk.co.kr/news/world/12215515",
+      "published": "Mon, 23 Nov 2026 05:10:00 +09:00"
     },
     {
       "source": "seeking_alpha",
-      "title": "Amazon nearing $7.5B deal to buy AI start-up Decart: FT",
-      "link": "https://seekingalpha.com/news/4675396-amazon-nears-75b-deal-buy-ai-start-up-decart?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 21 Nov 2026 13:04:35 -0500"
+      "title": "OpenAI calls for industry-wide AI brake tied to perplexity",
+      "link": "https://seekingalpha.com/news/4675411-openai-calls-for-industry-wide-ai-brake-tied-to-perplexity?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 22 Nov 2026 14:00:17 -0500"
+    },
+    {
+      "source": "seeking_alpha",
+      "title": "SA Asks: How much of a threat is Anthropic's multi-chip strategy to Nvidia?",
+      "link": "https://seekingalpha.com/news/4675384-sa-asks-how-much-of-a-threat-is-anthropics-multi-chip-strategy-to-nvidia?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+      "published": "Sun, 22 Nov 2026 14:00:09 -0500"
     },
     {
       "source": "ft",
-      "title": "Amazon closes in on $7.5bn deal to buy AI start-up Decart",
-      "link": "https://www.ft.com/content/dc7749dc-0f40-44a6-80bc-7f747d383616?syn-25a6b1a6=1",
-      "published": "Sat, 21 Nov 2026 17:21:36 GMT"
+      "title": "Bessent refuses to rule out Huang’s return to Nvidia",
+      "link": "https://www.ft.com/content/91b7a3a6-8ac5-4327-ad03-6d951f287346?syn-25a6b1a6=1",
+      "published": "Sun, 22 Nov 2026 19:08:31 GMT"
     },
     {
-      "source": "seeking_alpha",
-      "title": "Nvidia probe in California extends to potential criminal violations: Bloomberg",
-      "link": "https://seekingalpha.com/news/4675398-nvidia-probed-over-criminal-violations-california?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 21 Nov 2026 14:46:27 -0500"
+      "source": "marketwatch",
+      "title": "‘Nvidia’s turmoil has me spooked’: Is it time to sell my stocks and buy real estate?",
+      "link": "https://www.marketwatch.com/story/nvidia-spooked-me-should-i-sell-my-stocks-or-ride-out-the-market-turmoil-560583c6?mod=mw_rss_topstories",
+      "published": "Sun, 22 Nov 2026 17:00:00 GMT"
     },
     {
-      "source": "investors",
-      "title": "Tesla FSD V15 Rolling Out, Goes 'Wide' Next Month. Elon Musk Says It's 'Something Special.'",
-      "link": "https://www.investors.com/news/tesla-fsd-v15-coming-next-month-elon-musk-says-something-special/",
-      "published": "Sat, 21 Nov 2026 18:59:06 +0000"
+      "source": "cnbc_world",
+      "title": "26-year-old Google worker earns $323,000 a year—but lives on less than minimum wage",
+      "link": "https://www.cnbc.com/make-it/2026/11/22/google-worker-earns-323000-a-yearbut-he-lives-on-minimum-wage.html",
+      "published": "Sun, 22 Nov 2026 14:00:01 GMT"
     },
     {
-      "source": "seeking_alpha",
-      "title": "Tesla to launch FSD 15 next month, Elon Musk says",
-      "link": "https://seekingalpha.com/news/4675395-tesla-launch-fsd-15-next-month-elon-musk?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 21 Nov 2026 12:23:56 -0500"
+      "source": "bloomberg",
+      "title": "Strong Earnings Prove No Match for the Crumbling AI Trade",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-22/strong-earnings-prove-no-match-for-the-crumbling-ai-trade",
+      "published": "Sun, 22 Nov 2026 13:30:00 GMT"
     },
     {
-      "source": "seeking_alpha",
-      "title": "Trump to work with Dems to cap credit card interest rates",
-      "link": "https://seekingalpha.com/news/4675397-trump-work-with-dems-cap-credit-card-interest-rate?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Sat, 21 Nov 2026 13:34:27 -0500"
+      "source": "bloomberg",
+      "title": "Bond Market’s Go-To Trade for Fed Hikes Roiled by Stocks Retreat",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-22/bond-market-s-go-to-trade-for-fed-hikes-roiled-by-stocks-retreat",
+      "published": "Sun, 22 Nov 2026 20:00:00 GMT"
+    },
+    {
+      "source": "benzinga",
+      "title": "Dell Could Swing $25.2 Billion After Earnings",
+      "link": "https://www.benzinga.com/markets/options/26/11/63517383/dell-could-swing-25-2-billion-after-earnings",
+      "published": "Sun, 22 Nov 2026 19:00:08 +0000"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Market Anxiety Over Tech Trade, Governors Release AI Framework, Game On for the Holidays",
+      "link": "https://www.bloomberg.com/news/videos/2026-11-22/bloomberg-this-weekend-11-22-2026-video",
+      "published": "Sun, 22 Nov 2026 17:27:24 GMT"
+    },
+    {
+      "source": "bloomberg",
+      "title": "Investors Brave Stock Market ‘Fragility’ as AI Trade Falters",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-22/investors-brave-stock-market-fragility-as-ai-trade-falters",
+      "published": "Sun, 22 Nov 2026 15:00:00 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "‘AI 열풍’ 식자 中 기술주서 2289조원 증발…中당국이 꺼낸 유동성 카드 규모가?",
+      "link": "https://www.mk.co.kr/news/world/12215746",
+      "published": "Sun, 22 Nov 2026 20:52:49 +09:00"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Corporate America hunts for ‘generational’ growth in AI, trading cards and the L.A. airport",
+      "link": "https://www.marketwatch.com/story/corporate-america-hunts-for-generational-growth-in-ai-trading-cards-and-the-l-a-airport-3072eb1a?mod=mw_rss_topstories",
+      "published": "Sun, 22 Nov 2026 21:51:00 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "영변에 건물 하나 더 세운 북한…핵물질 연 35㎏ 추가 생산 가능성",
+      "link": "https://www.mk.co.kr/news/politics/12215766",
+      "published": "Mon, 23 Nov 2026 06:41:33 +09:00"
     },
     {
       "source": "yonhap",
-      "title": "급락장에서도 로봇주는 약진…반도체 장비주 시총 제치기도",
-      "link": "https://www.yna.co.kr/view/AKR20261121027600008",
-      "published": "Sun, 22 Nov 2026 06:20:00 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "'수출 1조달러' 한국, 세계 4위 전망…반도체 빼면 세계 8위",
-      "link": "https://www.yna.co.kr/view/AKR20261120179700003",
-      "published": "Sun, 22 Nov 2026 06:15:02 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "'5천피' 무너지고 美증시 급락…'AI 투매' 추가 충격오나",
-      "link": "https://www.yna.co.kr/view/AKR20261121000200008",
-      "published": "Sun, 22 Nov 2026 06:00:06 +0900"
-    },
-    {
-      "source": "yonhap",
-      "title": "내년 회계사시험 'AI 부정' 대책 골몰…인원축소 전망",
-      "link": "https://www.yna.co.kr/view/AKR20261121044700002",
-      "published": "Sun, 22 Nov 2026 05:57:01 +0900"
+      "title": "미래기금 이관 '청년 주거급여 분리지급' 내년 예산 38%↓",
+      "link": "https://www.yna.co.kr/view/AKR20261123006300003",
+      "published": "Mon, 23 Nov 2026 06:34:46 +0900"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "Anthropic 부실 충격과 AI 칩 수출통제·데이터센터 비용분담 우려로 필라델피아반도체 -10.73%, 나스닥 -5.28% 급락. 국내 Momentum 14.1로 Capitulation(투매) 국면 지속, 시장 폭 붕괴(20일선 위 35.1%, 52주 신저가 389종목)로 Risk-Off 판정. Focus 2 조건 미충족(Momentum 50 이상 필요).",
+  "sentiment_reason": "글로벌 AI 붐 거품 논란과 엔비디아 회계 문제로 나스닥 -5.28%, 필라델피아반도체 -10.73% 폭락 — 국내 시장은 휴장이었으나 Reflexivity 9단계(Capitulation, 투매) 21거래일째 지속 중이며 Momentum 14.1로 기준(50) 크게 하회, Market Regime Filter는 Risk-Off(주식 비중 0%) 판정",
   "key_factors": [
-    "Anthropic 실적 부진과 AI 버블 논란으로 월스트리트 AI 투자심리 급랭 — 나스닥 -5.28%, 필라델피아반도체 -10.73% 폭락",
-    "미국 AI 칩 수출통제와 데이터센터 비용분담 압박이 엔비디아 형사 위반 조사까지 겹치며 반도체 전방위 리스크 부각",
-    "한국은행 12월 금리 인상 재개 전망(3.25%)과 주담대 금리 14년 고점(4.88%)으로 국내 긴축 압력 심화 — 증시 유동성 위축",
-    "코스피 Capitulation 국면 21거래일째(Momentum 14.1), 20일선 위 비율 35.1%·52주 신저가 389종목으로 시장 체력 고갈. 외국인 20일 누적 -16.8조원 순매도"
+    "엔비디아 회계 문제 불거지며 나스닥 -5.28% 폭락, 필라델피아반도체 -10.73% 급락 — AI 붐 지속 가능성에 대한 시장 불안 확산",
+    "앤트로픽 상장 이틀 만에 -8.5% 하락 — AI 기업 멀티칩 전략이 엔비디아 독점 체제에 위협 요인으로 부각",
+    "중국 기술주 6개월간 2289조원 증발, VIX 35.89(+26.20%) 급등 — 글로벌 기술주 투자 심리 급랭"
   ],
-  "news_summary": "한국은행 12월 금리 인상 재개 전망 — 연합뉴스 보도 전문가 6명 전원이 3.25% 인상 예상. 수출 호조(1조달러 돌파)와 물가 압력으로 긴축 여건 충족. 미 연준도 12월 인상 유력하나 빅스텝 가능성 작음. 국내 증시 유동성 위축 압력.\n주택담보대출 금리 14년 고점(4.88%) — 매일경제 보도, 9월 신규 취급 금리가 전월 4.66%보다 0.22%p 상승. 금리 상승에도 대출 잔액 증가폭 확대는 중도금·이주비 대출과 수도권 집값 상승 반영. 긴축 압력 지속.\n은행 우대금리 축소 실태 자체점검 — 금융당국이 이달 말 결과 취합 후 대응책 마련. 내달 초 10년 고정금리 주담대 활성화 논의 착수. 차주 이자 부담 경감 정책 모색.\n트럼프, 민주당과 신용카드 금리 상한 10% 협력 제안 — Seeking Alpha 보도. 2024 대선 공약 실현 시도로 초당적 협력 신호. 금융주 수익성 압박 가능성.\n대중국 자동차 무역적자 6조원 역대 최대 — 연합뉴스 보도, 중국 상하이산 테슬라 판매 급증으로 수입차 1위 질주. 국내 생산 기반 위축 우려로 업계 세제 지원 촉구. 국내 자동차 산업 압박.\n멕시코 시날로아주 마약 조직 폭력 사태 — FT 보도, 마약 밀매업자 체포 후 폭력 발생. 중남미 정정 불안 반영, 유가 소폭 상승 촉매.\nAnthropic IPO 실패로 AI 투자심리 급랭 — Bloomberg 복수 기사('Anthropic Fails to Calm AI Jitters', 'Wall Street Asks What Can Save AI Trade After Anthropic Wipeout', 'Is AI a Bubble?'). AI 버블 논란 확산으로 필라델피아반도체 -10.73% 폭락 직접 촉매. 국내 반도체 투자심리 직격탄.\n엔비디아 캘리포니아 형사 조사 확대 — Seeking Alpha·Bloomberg 보도, 고급 칩 불법 대중 판매와 투자자 오도 혐의로 형사 위반 가능성 조사 중. 엔비디아 추가 하락 리스크로 필라델피아반도체 급락 가중.\nAmazon, AI 스타트업 Decart 75억달러 인수 임박 — FT·Seeking Alpha 보도, 샌프란시스코 기반 AI 스타트업 인수 막바지 협상. AI 인프라 투자 지속 의지 확인이나 Anthropic 실패 여파로 단기 투자심리 개선 효과 제한.\n테슬라 FSD V15 출시, 다음 달 광범위 배포 — Investors·Seeking Alpha 보도, 일론 머스크 'something special' 언급. 자율주행 기술 진전 긍정 신호이나 AI 투매 국면에서 주가 반등 동력 부족.\nGoldman Sachs·Apollo, SpaceX 320억달러 채권 가격 책정 — Bloomberg 보도, AI 칩 구매 자금 조달 목적. AI 인프라 투자 지속 확인이나 Anthropic 실패로 AI 성장 스토리 의문.",
+  "news_summary": "미 국채 10년물 금리 -2.77%, 2년물 -0.60% 급락 — 블룸버그 Bond Market's Go-To Trade for Fed Hikes Roiled by Stocks Retreat 보도, 기술주 폭락으로 안전자산 선호 급증하며 커브 스티프닝(장기금리가 단기금리보다 빠르게 하락하는 현상) 반전\n중국 기술주 6개월간 2289조원(1.7조 달러) 시가총액 증발 — 작년 딥시크 AI 모델 흥행 이후 불붙었던 투자 열기 급랭, 당국 증시 부양책과 관영매체 경고에도 불안 지속\n달러인덱스 103.81(-0.09%) 소폭 하락 — 국채 금리 급락으로 달러 약세, 리스크오프(위험자산 회피) 국면에서 채권 선호\n금 3515.4달러 -4.62% 급락 — VIX 35.89 급등 속 현금 확보 목적 매도 추정, 달러 약세에도 안전자산 역할 약화\n베센트 미 재무장관 젠슨 황 엔비디아 복귀 가능성 배제 않아 — FT Bessent refuses to rule out Huang's return to Nvidia 보도, 회계 문제 후 시장 불안 증폭\n북한 영변 핵시설 우라늄 농축시설 증축 확인 — WSJ 위성사진 분석, 신규 건물 원심분리기 설치 시 연간 35kg 이상 고농축 우라늄 추가 생산 가능성\nOpenAI, AI 개발 perplexity(혼란도 지표) 기반 업계 공통 제한 촉구 — Seeking Alpha 보도, 모델 성능 개선이 예측 불가 능력 출현으로 이어질 수 있다는 우려\n엔비디아 호실적 발표 직후 회계 문제 불거져 나스닥 -5.28% 폭락 — 매일경제 젠슨 황 불똥 엔비디아 고비 넘자마자 보도, 이번 주 HPE와 Dell AI 서버 실적 발표 앞두고 투자자 불안 최고조\n앤트로픽 세기의 상장 이틀 만에 -8.5% 급락 — 멀티칩 전략(여러 칩 제조사 AI 에이전트 구동)이 엔비디아 독점 체제 위협 요인으로 부각, Seeking Alpha How much of a threat is Anthropic's multi-chip strategy 보도\n블룸버그 Strong Earnings Prove No Match for the Crumbling AI Trade 헤드라인 — 개별 기업 실적 호조에도 AI 붐 지속 가능성 의문으로 기술주 전반 매도\nDell 실적 발표 앞두고 252억 달러 변동성 예상 — Benzinga 보도, AI 서버 출하와 이익 전환 여부가 칩 수요의 실물 확인 잣대로 주목\n26세 구글 직원 연봉 32.3만 달러이지만 최저임금 이하로 생활 — CNBC 보도, 빅테크 고연봉에도 절약 문화 확산 사례",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "한국은행 12월 금리 인상 재개 전망 — 연합뉴스 보도 전문가 6명 전원이 3.25% 인상 예상. 수출 호조(1조달러 돌파)와 물가 압력으로 긴축 여건 충족. 미 연준도 12월 인상 유력하나 빅스텝 가능성 작음. 국내 증시 유동성 위축 압력.",
+          "text": "미 국채 10년물 금리 -2.77%, 2년물 -0.60% 급락 — 블룸버그 Bond Market's Go-To Trade for Fed Hikes Roiled by Stocks Retreat 보도, 기술주 폭락으로 안전자산 선호 급증하며 커브 스티프닝(장기금리가 단기금리보다 빠르게 하락하는 현상) 반전",
           "impact": "high"
         },
         {
-          "text": "주택담보대출 금리 14년 고점(4.88%) — 매일경제 보도, 9월 신규 취급 금리가 전월 4.66%보다 0.22%p 상승. 금리 상승에도 대출 잔액 증가폭 확대는 중도금·이주비 대출과 수도권 집값 상승 반영. 긴축 압력 지속.",
+          "text": "중국 기술주 6개월간 2289조원(1.7조 달러) 시가총액 증발 — 작년 딥시크 AI 모델 흥행 이후 불붙었던 투자 열기 급랭, 당국 증시 부양책과 관영매체 경고에도 불안 지속",
+          "impact": "high"
+        },
+        {
+          "text": "달러인덱스 103.81(-0.09%) 소폭 하락 — 국채 금리 급락으로 달러 약세, 리스크오프(위험자산 회피) 국면에서 채권 선호",
           "impact": "mid"
         },
         {
-          "text": "은행 우대금리 축소 실태 자체점검 — 금융당국이 이달 말 결과 취합 후 대응책 마련. 내달 초 10년 고정금리 주담대 활성화 논의 착수. 차주 이자 부담 경감 정책 모색.",
+          "text": "금 3515.4달러 -4.62% 급락 — VIX 35.89 급등 속 현금 확보 목적 매도 추정, 달러 약세에도 안전자산 역할 약화",
           "impact": "mid"
         }
       ]
@@ -3884,15 +3880,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "트럼프, 민주당과 신용카드 금리 상한 10% 협력 제안 — Seeking Alpha 보도. 2024 대선 공약 실현 시도로 초당적 협력 신호. 금융주 수익성 압박 가능성.",
+          "text": "베센트 미 재무장관 젠슨 황 엔비디아 복귀 가능성 배제 않아 — FT Bessent refuses to rule out Huang's return to Nvidia 보도, 회계 문제 후 시장 불안 증폭",
           "impact": "high"
         },
         {
-          "text": "대중국 자동차 무역적자 6조원 역대 최대 — 연합뉴스 보도, 중국 상하이산 테슬라 판매 급증으로 수입차 1위 질주. 국내 생산 기반 위축 우려로 업계 세제 지원 촉구. 국내 자동차 산업 압박.",
+          "text": "북한 영변 핵시설 우라늄 농축시설 증축 확인 — WSJ 위성사진 분석, 신규 건물 원심분리기 설치 시 연간 35kg 이상 고농축 우라늄 추가 생산 가능성",
           "impact": "mid"
         },
         {
-          "text": "멕시코 시날로아주 마약 조직 폭력 사태 — FT 보도, 마약 밀매업자 체포 후 폭력 발생. 중남미 정정 불안 반영, 유가 소폭 상승 촉매.",
+          "text": "OpenAI, AI 개발 perplexity(혼란도 지표) 기반 업계 공통 제한 촉구 — Seeking Alpha 보도, 모델 성능 개선이 예측 불가 능력 출현으로 이어질 수 있다는 우려",
           "impact": "mid"
         }
       ]
@@ -3902,23 +3898,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "Anthropic IPO 실패로 AI 투자심리 급랭 — Bloomberg 복수 기사('Anthropic Fails to Calm AI Jitters', 'Wall Street Asks What Can Save AI Trade After Anthropic Wipeout', 'Is AI a Bubble?'). AI 버블 논란 확산으로 필라델피아반도체 -10.73% 폭락 직접 촉매. 국내 반도체 투자심리 직격탄.",
+          "text": "엔비디아 호실적 발표 직후 회계 문제 불거져 나스닥 -5.28% 폭락 — 매일경제 젠슨 황 불똥 엔비디아 고비 넘자마자 보도, 이번 주 HPE와 Dell AI 서버 실적 발표 앞두고 투자자 불안 최고조",
           "impact": "high"
         },
         {
-          "text": "엔비디아 캘리포니아 형사 조사 확대 — Seeking Alpha·Bloomberg 보도, 고급 칩 불법 대중 판매와 투자자 오도 혐의로 형사 위반 가능성 조사 중. 엔비디아 추가 하락 리스크로 필라델피아반도체 급락 가중.",
+          "text": "앤트로픽 세기의 상장 이틀 만에 -8.5% 급락 — 멀티칩 전략(여러 칩 제조사 AI 에이전트 구동)이 엔비디아 독점 체제 위협 요인으로 부각, Seeking Alpha How much of a threat is Anthropic's multi-chip strategy 보도",
           "impact": "high"
         },
         {
-          "text": "Amazon, AI 스타트업 Decart 75억달러 인수 임박 — FT·Seeking Alpha 보도, 샌프란시스코 기반 AI 스타트업 인수 막바지 협상. AI 인프라 투자 지속 의지 확인이나 Anthropic 실패 여파로 단기 투자심리 개선 효과 제한.",
+          "text": "블룸버그 Strong Earnings Prove No Match for the Crumbling AI Trade 헤드라인 — 개별 기업 실적 호조에도 AI 붐 지속 가능성 의문으로 기술주 전반 매도",
           "impact": "high"
         },
         {
-          "text": "테슬라 FSD V15 출시, 다음 달 광범위 배포 — Investors·Seeking Alpha 보도, 일론 머스크 'something special' 언급. 자율주행 기술 진전 긍정 신호이나 AI 투매 국면에서 주가 반등 동력 부족.",
+          "text": "Dell 실적 발표 앞두고 252억 달러 변동성 예상 — Benzinga 보도, AI 서버 출하와 이익 전환 여부가 칩 수요의 실물 확인 잣대로 주목",
           "impact": "mid"
         },
         {
-          "text": "Goldman Sachs·Apollo, SpaceX 320억달러 채권 가격 책정 — Bloomberg 보도, AI 칩 구매 자금 조달 목적. AI 인프라 투자 지속 확인이나 Anthropic 실패로 AI 성장 스토리 의문.",
+          "text": "26세 구글 직원 연봉 32.3만 달러이지만 최저임금 이하로 생활 — CNBC 보도, 빅테크 고연봉에도 절약 문화 확산 사례",
           "impact": "mid"
         }
       ]
@@ -3926,189 +3922,186 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "Anthropic IPO 실패와 AI 버블 논란이 월스트리트 전반에 AI 투자심리 급랭 촉발. Bloomberg 기사 'Wall Street Asks What Can Save AI Trade After Anthropic Wipeout'이 상징. VIX +26.20%로 공포 심리 확산.",
+      "reason": "엔비디아 회계 문제와 AI 붐 거품 논란으로 기술주 중심 광범위 매도세 — 블룸버그 Strong Earnings Prove No Match for the Crumbling AI Trade 보도",
       "drivers": [
-        "Anthropic 실적 부진·IPO 실패로 AI 투자심리 붕괴",
-        "AI 버블 논란 확산('Is AI a Bubble?' Bloomberg 기사)",
-        "VIX 35.89 (+26.20%) 급등"
+        "나스닥 -5.28% 급락",
+        "엔비디아 회계 이슈",
+        "AI 기업 실적 호조에도 투자 심리 악화"
       ]
     },
     "NASDAQ": {
-      "reason": "AI 주도주 집단 투매. Anthropic 충격에 엔비디아 캘리포니아 형사 조사 확대(Bloomberg 보도)와 AI 칩 수출통제·데이터센터 비용분담 압박이 겹치며 기술주 전면 급락.",
+      "reason": "엔비디아 회계 문제 불거지고 앤트로픽 상장 후 -8.5% 하락하며 AI 섹터 전반 공포 매도 — 필라델피아반도체 -10.73% 동반 급락",
       "drivers": [
-        "Anthropic 실패로 AI 성장 스토리 의문",
-        "엔비디아 형사 조사 확대 리스크",
-        "AI 칩 수출통제와 데이터센터 비용 압박"
+        "필라델피아반도체 -10.73%",
+        "엔비디아 회계 이슈",
+        "앤트로픽 상장 후 급락"
       ]
     },
     "DOW": {
-      "reason": "나스닥·S&P500 급락에 동조 하락. 기술주 비중이 낮아 상대적으로 낙폭은 제한(-1.93%)되었으나 VIX 급등으로 전반적 위험회피 심리 반영.",
+      "reason": "기술주 대비 완만한 낙폭이나 AI 붐 붕괴 우려가 광범위 리스크오프(위험자산 회피) 심리로 확산",
       "drivers": [
-        "나스닥·S&P500 급락 동조",
-        "VIX +26.20%로 위험회피 심리"
+        "나스닥 -5.28% 충격",
+        "VIX 35.89 급등"
       ]
     },
     "VIX": {
-      "reason": "Anthropic 실패와 AI 투자심리 붕괴, 엔비디아 형사 조사 확대 리스크가 겹치며 공포 지수 급등. 필라델피아반도체 -10.73% 폭락이 변동성 확대 촉발.",
+      "reason": "엔비디아 회계 이슈와 AI 기술주 폭락으로 공포지수 35.89까지 +26.20% 급등 — 블룸버그 Investors Brave Stock Market Fragility as AI Trade Falters 보도",
       "drivers": [
-        "AI 투자심리 급랭(Anthropic 실패)",
-        "엔비디아 형사 조사 확대 불확실성",
-        "필라델피아반도체 -10.73% 폭락"
+        "나스닥 -5.28%",
+        "AI 붐 지속 가능성 의문"
       ]
     },
     "필라델피아반도체": {
-      "reason": "Anthropic 실패로 AI 수요 성장 스토리에 의문 + 엔비디아 캘리포니아 형사 조사 확대(칩 불법 판매·투자자 오도 혐의) + AI 칩 수출통제·데이터센터 비용분담 압박이 삼중 충격. 연합뉴스 보도 '미국 AI칩 수출통제·데이터센터 비용분담에 투매'가 직접 촉매.",
+      "reason": "엔비디아 호실적 발표 직후 회계 문제 불거지고, 앤트로픽 멀티칩 전략이 엔비디아 독점 체제 위협으로 부각되며 -10.73% 폭락 — Seeking Alpha How much of a threat is Anthropic's multi-chip strategy to Nvidia 보도",
       "drivers": [
-        "Anthropic 실패로 AI 성장 의문",
-        "엔비디아 형사 조사 확대 리스크",
-        "AI 칩 수출통제·데이터센터 비용분담 압박"
+        "엔비디아 회계 이슈",
+        "앤트로픽 멀티칩 전략",
+        "AI 서버 실적 대기(HPE, Dell) 불안"
       ]
     },
     "러셀2000": {
-      "reason": "대형주 급락에 동조 하락. 직접 촉매 없으나 VIX 급등과 위험회피 심리 확산으로 중소형주도 매도 압력. 나스닥 -5.28% 폭락에 동조.",
+      "reason": "기술주 급락이 중소형주로 확산되며 -2.76% 하락 — 광범위 리스크오프 국면",
       "drivers": [
-        "나스닥 -5.28% 급락 동조",
-        "VIX +26.20%로 위험회피"
+        "나스닥 급락 여파",
+        "VIX 35.89 급등"
       ]
     },
     "영국FTSE": {
-      "reason": "직접 촉매 없음 — 미국 AI 투자심리 급랭과 글로벌 위험회피 흐름 동조. 유럽 시간대 미국 선물 급락 선반영.",
+      "reason": "미국 기술주 충격이 유럽으로 파급되며 -1.02% 하락",
       "drivers": [
-        "미국 AI 투자심리 붕괴 동조",
-        "글로벌 위험회피 확산"
+        "나스닥 -5.28% 여파"
       ]
     },
     "독일DAX": {
-      "reason": "미국 AI 투매 충격이 유럽 시장에 전이. 독일 기술주와 산업재가 미국 경기 민감도 높아 나스닥 -5.28% 급락에 동조 하락. 직접 뉴스는 없으나 글로벌 위험회피.",
+      "reason": "미국 AI 붐 붕괴 우려가 유럽 기술주·산업재로 전이되며 -2.60% 급락",
       "drivers": [
-        "나스닥 -5.28% 급락 동조",
-        "글로벌 위험회피 심리"
+        "나스닥 급락",
+        "글로벌 리스크오프"
       ]
     },
     "니케이": {
-      "reason": "미국 필라델피아반도체 -10.73% 급락이 일본 반도체·전자 업종 직격탄. AI 투자심리 붕괴와 엔비디아 형사 조사 확대 리스크가 소니·도쿄일렉트론 등 일본 기술주 동반 급락 촉발.",
+      "reason": "엔비디아 회계 이슈와 필라델피아반도체 -10.73%가 아시아 반도체·전자주 직격탄으로 작용, -5.06% 폭락",
       "drivers": [
-        "필라델피아반도체 -10.73% 폭락 동조",
-        "AI 투자심리 급랭 전이"
+        "필라델피아반도체 -10.73%",
+        "엔비디아 회계 문제"
       ]
     },
     "항셍": {
-      "reason": "직접 촉매 없음 — 미국 AI 투매와 글로벌 위험회피 흐름 동조. 중국 본토 경기 불확실성 속 외국인 매도 압력. 나스닥 -5.28% 급락 여파.",
+      "reason": "중국 기술주 6개월간 2289조원 증발 지속, 미국 AI 붐 붕괴 우려 추가되며 -1.89% 하락",
       "drivers": [
-        "나스닥 급락 동조",
-        "글로벌 위험회피 심리"
+        "중국 기술주 2289조원 증발",
+        "나스닥 급락 여파"
       ]
     },
     "달러인덱스": {
-      "reason": "등락폭 미미(-0.09%). 미국 2년물 국채 금리 -0.60% 하락으로 단기적 달러 약세 압력 있었으나, VIX 급등과 위험회피 수요가 상쇄. 연준 12월 인상 전망(한은 보도)은 지지 요인.",
+      "reason": "미 국채 수요 증가(2Y -0.60%, 10Y -2.77%)로 달러 약세 — 리스크오프 시 채권 선호",
       "drivers": [
-        "미국 2년물 금리 -0.60% 하락",
-        "VIX 급등으로 위험회피 수요 상쇄"
+        "국채 2Y -0.60%",
+        "국채 10Y -2.77%"
       ]
     },
     "국채2Y": {
-      "reason": "AI 투매와 경기 둔화 우려로 단기 안전자산 선호. VIX +26.20% 급등과 주식 급락이 단기 국채 매수 촉발. 다만 연준 12월 인상 전망은 하락 폭 제한 요인.",
+      "reason": "기술주 폭락으로 안전자산 선호 급증, 단기 국채 수요 확대로 금리 -0.60% 하락",
       "drivers": [
-        "VIX +26.20% 급등으로 안전자산 선호",
-        "AI 투매와 경기 우려"
+        "나스닥 -5.28% 급락",
+        "VIX 35.89 급등"
       ]
     },
     "국채10Y": {
-      "reason": "나스닥 -5.28% 급락과 AI 버블 논란으로 장기 성장 기대 하락 — 장기 국채 강세. VIX 급등과 위험회피 심리가 10년물 금리 -2.77% 급락 촉발. 연준 인상 전망에도 성장 우려가 우세.",
+      "reason": "AI 붐 붕괴 우려로 장기 성장 기대 약화, 안전자산 쏠림으로 10년물 금리 -2.77% 급락",
       "drivers": [
-        "나스닥 -5.28%·AI 버블 논란",
-        "VIX 급등으로 안전자산 선호"
+        "기술주 폭락",
+        "리스크오프 채권 수요"
       ]
     },
     "코스피": {
-      "reason": "필라델피아반도체 -10.73% 폭락이 국내 반도체·전자 업종 직격탄(전기전자 Sector Momentum 1위였으나 급락). 연합뉴스 보도 '미국 AI칩 수출통제·데이터센터 비용분담에 투매'와 '5천피 무너지고 미국증시 급락'이 직접 촉매. 외국인 1일 -1.1조·20일 -14.8조 순매도로 수급 붕괴. Momentum 14.1(백분위 1 수준), 20일선 위 비율 30.6%, 52주 신저가 389종목으로 Capitulation 국면 심화.",
+      "reason": "휴장(2026-11-20 기준 등락 0.00%) — 전일 Reflexivity 9단계 Capitulation 국면 21거래일째 지속 중",
       "drivers": [
-        "필라델피아반도체 -10.73% 폭락 동조",
-        "AI 칩 수출통제·데이터센터 비용분담 우려",
-        "외국인 1일 -1.1조·20일 -14.8조 순매도"
+        "휴장"
       ]
     },
     "코스닥": {
-      "reason": "코스피보다 낙폭 큰 -5.71%. 나스닥 -5.28% 급락과 AI 투자심리 붕괴가 국내 IT·바이오 중소형주 직격탄. 외국인 1일 -1,710억·20일 -2.0조 순매도. 20일선 위 비율 37.2%, 시장 폭 붕괴.",
+      "reason": "휴장(등락 0.00%) — Momentum 14.1로 기준 50 크게 하회, Market Regime Filter Risk-Off 판정",
       "drivers": [
-        "나스닥 -5.28% 급락 동조",
-        "AI 투자심리 붕괴 전이",
-        "외국인 1일 -1,710억·20일 -2.0조 순매도"
+        "휴장"
       ]
     },
     "금": {
-      "reason": "VIX +26.20% 급등에도 불구하고 금 -4.62% 급락. 직접 촉매는 뉴스에 없으나, 달러인덱스 소폭 하락(-0.09%)에도 불구 금 급락은 유동성 확보 목적 매도(forced selling) 가능성 시사. 주식 급락 시 안전자산보다 현금 확보 우선.",
+      "reason": "달러 약세에도 기술주 폭락과 VIX 급등으로 현금 선호 심리 강화, 금 -4.62% 급락 — 유동성 확보 매도 가능성",
       "drivers": [
-        "주식 급락 시 유동성 확보 목적 매도 추정",
-        "VIX 급등에도 안전자산 역할 미작동"
+        "VIX 35.89 급등",
+        "현금 확보 매도"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 없음 — 멕시코 마약 조직 폭력 사태(FT 보도 'Violence erupts in Sinaloa')로 중남미 공급 우려 소폭 반영. 주식 급락에도 유가는 +0.93% 소폭 상승.",
+      "reason": "직접 촉매 없음 — 글로벌 리스크오프 국면 속 소폭 +0.24% 등락, 중동·공급 요인 보합",
       "drivers": [
-        "멕시코 폭력 사태로 공급 우려",
-        "주식 급락과 무관한 독립 흐름"
+        "중동 지정학 보합"
       ]
     },
     "원달러": {
-      "reason": "한국은행 12월 금리 인상 재개 전망(연합뉴스 보도 '석 달 만에 금리 인상 재개 전망, 내년까지 긴축')과 코스피 -5.21% 급락이 상쇄. 외국인 20일 -16.8조 순매도에도 원화 약세 제한(+0.33%)은 긴축 기대 반영.",
+      "reason": "미국 기술주 폭락과 국내 Reflexivity 9단계(투매) 지속으로 외국인 매도 압력 우려, 원화 약세 +0.84%",
       "drivers": [
-        "한은 12월 금리 인상 재개 전망",
-        "외국인 20일 -16.8조 순매도 압력"
+        "나스닥 -5.28%",
+        "국내 Momentum 14.1 급락"
       ]
     },
     "알루미늄": {
-      "reason": "직접 촉매 없음 — 중국 제조업 수요와 무관한 소폭 상승. 주식 급락 국면에서 산업 금속은 중립.",
+      "reason": "중국 기술주 2289조원 증발과 글로벌 경기 둔화 우려로 산업 금속 수요 약화 -1.76%",
       "drivers": [
-        "중국 제조업 수요 중립",
-        "주식 급락과 독립 흐름"
+        "중국 기술주 급락",
+        "글로벌 리스크오프"
       ]
     },
     "구리": {
-      "reason": "AI 투자심리 붕괴와 글로벌 경기 우려로 산업 금속 수요 하락 반영. 나스닥 -5.28%·필라델피아반도체 -10.73% 급락이 AI 인프라 투자 둔화 기대로 구리 수요 타격.",
+      "reason": "AI 붐 붕괴 우려와 중국 경기 불안으로 구리 수요 전망 악화 -2.49%",
       "drivers": [
-        "나스닥·필라델피아반도체 급락",
-        "AI 인프라 투자 둔화 우려"
+        "AI 붐 거품 논란",
+        "중국 기술주 2289조원 증발"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "Anthropic 실패와 엔비디아 형사 조사 확대로 필라델피아반도체 -10.73% 급락이 국내 반도체·전자 직격탄. 외국인 1일 -1.1조·20일 -14.8조 순매도로 코스피 -5.21%, Capitulation 국면 21거래일째. 한은 12월 금리 인상 재개 전망은 긴축 압력 가중.",
+    "summary": "휴장으로 직접 거래 없었으나 Reflexivity 9단계(Capitulation, 투매) 21거래일째 지속 — 필라델피아반도체 -10.73%, 엔비디아 회계 이슈가 개장 후 삼성전자·SK하이닉스 등 국내 반도체주에 직격탄 예상",
     "positive_factors": [
-      "없음 — 글로벌 AI 투매와 국내 긴축 압력으로 긍정 요인 부재. 로봇주 단기 상승(CES 기대)은 시장 전체 흐름 역행 불가.",
-      "한국 수출 1조달러 돌파 전망(세계 4위) — 연합뉴스 보도이나 반도체 쏠림(42.7%) 심화로 AI 투매 충격 직접 노출. 반도체 제외 시 세계 8위로 구조적 취약성."
+      "없음 — 글로벌 기술주 폭락과 AI 붐 거품 논란으로 긍정 요인 부재",
+      "국내 휴장으로 직접 충격 1거래일 지연 — 대응 시간 확보 가능"
     ],
     "negative_factors": [
-      "필라델피아반도체 -10.73% 폭락 → 국내 전기전자 업종(Sector Momentum 1위) 급락. AI 칩 수출통제·데이터센터 비용분담 우려로 삼성전자·SK하이닉스 등 반도체 주도주 투매. 외국인 1일 -1.1조·20일 -14.8조 순매도.",
-      "한은 12월 금리 인상 재개 전망(3.25%)과 주담대 금리 14년 고점(4.88%)으로 국내 긴축 압력 심화 → 증시 유동성 위축. Momentum 14.1(백분위 1), 20일선 위 비율 35.1%, 52주 신저가 389종목으로 시장 체력 고갈."
+      "필라델피아반도체 -10.73% → 삼성전자·SK하이닉스 등 국내 반도체주 개장 후 급락 불가피, 전기전자 업종 Sector Momentum 1위이나 RRG lagging·52주 고점 근처 비율 1%로 추세 훼손 우려",
+      "외국인 20일 누적 -14.8조원(KOSPI) + -2.0조원(KOSDAQ) 순매도 지속, 원달러 1346.04(+0.84%) 상승 — 엔비디아 회계 이슈 추가 시 매도 압력 가속 가능성"
     ],
-    "key_watch": "오늘(11월 22일) 미국 증시 반응과 엔비디아 추가 하락 여부. Capitulation 국면(21거래일째)에서 추가 패닉 매도 나올지, 아니면 과매도 반등 시도할지가 단기 분수령. Market Regime Filter는 Risk-Off(주식 비중 0%) 판정 — 2,430개 조합 중 0개만 Risk-On. 현금 대기 유지하며 Momentum 50 이상 회복 시점 주시."
+    "key_watch": "이번 주 HPE·Dell AI 서버 실적 발표 — 칩 수요가 실제 서버 출하·이익으로 연결되는지 확인, 긍정 시 반도체주 반등 계기 가능하나 현재 Market Regime Filter Risk-Off(주식 비중 0%) 판정으로 신규 진입은 조건 충족 후 검토"
   },
   "sector_impact": {},
   "strong_buy": [],
   "watch": [
     {
       "sector": "전기전자",
-      "reason": "전기전자는 Sector Momentum 1위(12개월 상대 +107%)였으나 필라델피아반도체 -10.73% 급락으로 오늘 급락. RRG lagging 전환. AI 투자심리 붕괴와 엔비디아 형사 조사 확대 리스크로 단기 추가 하락 가능. Market Regime Risk-Off 국면에서 신규 진입 부적합."
+      "reason": "전기전자 — Sector Momentum 1위(12개월 상대 +107%)이나 RRG lagging·52주 고점 근처 비율 1%로 추세 훼손, 필라델피아반도체 -10.73%와 엔비디아 회계 이슈로 개장 후 급락 불가피하여 Risk-Off 국면 해소 후 재평가 대기"
     },
     {
-      "sector": "의료·정밀기기",
-      "reason": "Sector Momentum 2위(+80%)이나 오늘 급락. 시장 폭 붕괴(20일선 위 4%)로 업종 내 개별 종목 대부분 하락. Risk-Off 국면에서 방어 효과 없음."
+      "sector": "IT서비스",
+      "reason": "IT서비스 — RRG leading이나 NAVER 등 대형주 1개월 -12.8%, 글로벌 AI 붐 거품 논란 여파로 단기 반등 기대 어려움"
     },
     {
-      "sector": "기계·장비(로봇)",
-      "reason": "급락장 속 로봇주 약진(레인보우로보틱스 코스닥 시총 4위 등극) — 연합뉴스 보도, CES 2027 호재 기대감. 삼성전자 휴머노이드 공개 여부가 관건. 단, 시장 전체 Capitulation 국면에서 테마 상승은 지속 가능성 낮음. 관망."
+      "sector": "제약",
+      "reason": "제약 — Focus 2 선정 업종(6개월 상대 +26.3%)이나 Reflexivity 9단계·Momentum 14.1로 시장 조건 미충족, 조건 전환 후 셀트리온(068270) 재검토"
+    },
+    {
+      "sector": "금융",
+      "reason": "금융 — Focus 2 선정 업종(6개월 상대 +28.5%)이나 시장 조건 미충족, 조건 전환 후 메리츠금융지주(138040) 재검토"
     }
   ],
   "avoid": [],
-  "summary": "Anthropic 실패·엔비디아 조사 확대로 필라델피아반도체 -10.73% 급락 → 코스피 -5.21%, Capitulation 21거래일째. Momentum 14.1·20일선 위 35.1%로 Risk-Off(주식 비중 0%) — 현금 대기, Momentum 50 이상 회복 시까지 신규 매수 보류.",
-  "strategy_brief": "Anthropic IPO 실패와 AI 버블 논란이 월스트리트 AI 투자심리를 급랭시키며 필라델피아반도체 -10.73%, 나스닥 -5.28% 폭락했고, 엔비디아 캘리포니아 형사 조사 확대(칩 불법 판매·투자자 오도 혐의)가 반도체 리스크를 가중시켰습니다. 국내 증시는 외국인 1일 -1.1조원·20일 -14.8조원 순매도 속에 코스피 -5.21%로 Capitulation 국면 21거래일째 진입했고, Momentum 14.1(백분위 1 수준)·20일선 위 비율 35.1%·52주 신저가 389종목으로 시장 체력이 고갈된 상태입니다. 한국은행 12월 금리 인상 재개 전망(3.25%)과 주담대 금리 14년 고점(4.88%)은 국내 긁축 압력을 심화시켜 증시 유동성 위축을 가중합니다. Market Regime Filter는 2,430개 조합 중 0개만 Risk-On으로 주식 비중 0% 판정 — 현금(단기채) 100% 대기를 유지하며, Momentum이 50 이상 회복하고 시장 폭(20일선 위 비율)이 개선될 때까지 신규 매수를 보류합니다. Focus 2는 조건 미충족(Momentum 14.1 vs 기준 50)으로 셀트리온·메리츠금융을 대기 명단에 두고, 국면 전환 시 우선 편입 대상으로 모니터링합니다.",
-  "strategy_headline": "AI 버블 논란·엔비디아 조사로 투매 — 현금 대기",
+  "summary": "AI 붐 붕괴 우려로 나스닥 -5.28%·필라델피아반도체 -10.73% 폭락 — 국내 Reflexivity 9단계·Momentum 14.1·Risk-Off(주식 비중 0%) 판정, 현금 대기 외 선택지 없음",
+  "strategy_brief": "엔비디아 회계 문제와 앤트로픽 멀티칩 전략 부각으로 AI 붐 지속 가능성에 대한 시장 의문이 확산되며 필라델피아반도체가 -10.73% 폭락했고, 나스닥 -5.28%·VIX 35.89 급등으로 글로벌 리스크오프(위험자산 회피) 국면이 심화되었습니다. 국내 시장은 휴장으로 직접 충격을 1거래일 지연시켰으나 Reflexivity 9단계(Capitulation, 투매) 21거래일째 지속 중이며 Momentum 14.1로 기준 50을 크게 하회, Market Regime Filter는 Risk-Off(주식 비중 0%) 판정을 유지하고 있습니다. 외국인 20일 누적 -16.8조원 순매도·20일선 위 종목 비율 35.1%·52주 신저가 389종목 등 시장 폭(market breadth) 지표가 극도로 악화된 상황에서 신규 진입은 전면 보류하고 현금(단기채) 100% 대기가 유일한 선택입니다. 이번 주 HPE·Dell AI 서버 실적이 긍정적으로 나올 경우 반등 계기가 될 수 있으나, Fundamentals 55 이상(현재 56.9 충족)과 Momentum 50 이상(현재 14.1 미달) 조건을 동시에 충족한 뒤 셀트리온·메리츠금융지주 등 Focus 2 종목부터 단계적 재진입을 검토해야 합니다.",
+  "strategy_headline": "AI 붐 붕괴 충격파 — Risk-Off 현금 대기, 반도체 급락 불가피",
   "strategy_points": [
-    "Anthropic 실패와 엔비디아 형사 조사 확대로 필라델피아반도체 -10.73% 급락 → 국내 반도체 직격탄, 코스피 -5.21%로 Capitulation(투매) 국면 21거래일째",
-    "Momentum 14.1(백분위 1), 20일선 위 비율 35.1%, 52주 신저가 389종목으로 시장 체력 고갈 — Market Regime Filter Risk-Off(주식 비중 0%) 판정",
-    "한은 12월 금리 인상 재개 전망(3.25%)과 주담대 금리 14년 고점(4.88%)은 긴축 압력 가중 — 증시 유동성 위축",
-    "Focus 2는 Momentum 50 이상 회복 시 셀트리온·메리츠금융 우선 편입 — 현재는 전량 현금(단기채) 대기"
+    "엔비디아 회계 이슈·필라델피아반도체 -10.73% → 국내 반도체주 개장 후 직격탄, 전기전자 Momentum 1위이나 추세 훼손 우려",
+    "Reflexivity 9단계(Capitulation, 투매) 21거래일째·Momentum 14.1(기준 50)·Market Regime Filter Risk-Off(주식 비중 0%) — 신규 진입 전면 보류",
+    "외국인 20일 -14.8조원·20일선 위 종목 35.1%·52주 신저가 389종목 — 광범위 약세 지속, 조건 충족 전까지 현금(단기채) 100% 유지",
+    "이번 주 HPE·Dell AI 서버 실적 주목 — 긍정 시 반등 계기 가능하나 Momentum 50 회복 확인 후 재진입 검토"
   ],
   "top_picks": [
     {
@@ -4120,7 +4113,7 @@
           "name": "셀트리온",
           "code": "068270",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정 업종 1위(제약, 6개월 상대 +26.3%·업종 이익 1년 +51%). Score 87, 업종 내 종합 80, 목표가 상향 14건·하향 1건(17곳). Quality 55·Trend 55·Low Vol 95로 방어적 프로필. 52주 고점 대비 -14.5%, 1개월 +4.2%로 급락장 속 상대 강세. 1년 EPS 증가 +136%로 실적 모멘텀 강함. 전환 조건: Fundamentals 56.9(기준 55 이상 충족)이나 Momentum 14.1이 50 이상 회복 필요. 리스크: 글로벌 AI 투매 지속 시 바이오도 동반 하락 가능. 현재 Risk-Off(주식 비중 0%) 판정으로 대기 명단.",
+          "reason": "대기 — Focus 2 1번 종목, 선정 업종 1위(제약, 6개월 상대 +26.3%), Score 87·업종 내 종합 80·목표가 상향 14건(17곳 중), 1년 EPS 증가 +136%이나 현재 Fundamentals 56.9(기준 55 이상 충족)·Momentum 14.1(기준 50 미달)로 시장 조건 불충족 / 전환 조건: Momentum 50 이상(현재 14.1, 기준 50) 회복 시 Quality 고점 근접 종목으로 우선 배치 / 리스크: 글로벌 AI 붐 붕괴 우려 지속 시 Momentum 추가 하락 가능",
           "rrg_tracked": true,
           "rrg_actual_sector": "제약",
           "rrg_sector_match": true,
@@ -4138,7 +4131,7 @@
           "name": "메리츠금융지주",
           "code": "138040",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정 업종 2위(금융, 6개월 상대 +28.5%·업종 이익 1년 +17%). Score 85, 업종 내 종합 73, 목표가 상향 1건·하향 0건(4곳). Quality 62·Trend 65·Low Vol 82. 52주 고점 대비 -20.4%, 1개월 -10.8%로 조정. Picks 엔진 순위 48위(600종목 중). 한은 금리 인상 재개 전망은 예대마진(은행 대출금리와 예금금리 차이로 수익성 지표) 개선 기대이나 단기적으로 증시 유동성 위축 압력. 전환 조건: Fundamentals 56.9(기준 55 이상 충족)이나 Momentum 14.1이 50 이상 회복 필요. 리스크: 트럼프 신용카드 금리 상한 10% 제안은 금융주 수익성 압박 요인. 현재 Risk-Off(주식 비중 0%) 판정으로 대기 명단.",
+          "reason": "대기 — Focus 2 2번 종목, 선정 업종 2위(금융, 6개월 상대 +28.5%), Score 85·업종 내 종합 73·목표가 상향 1건(4곳 중), 1년 EPS 증가 +5%이나 시장 조건 불충족 / 전환 조건: Fundamentals 55 이상(현재 56.9 충족)·Momentum 50 이상(현재 14.1 미달) 동시 충족 시 / 리스크: 외국인 20일 -14.8조원 순매도 지속, 1개월 -10.8%로 단기 추세 약세",
           "rrg_tracked": true,
           "rrg_actual_sector": "금융",
           "rrg_sector_match": true,
@@ -4156,7 +4149,7 @@
           "name": "농심",
           "code": "004370",
           "signal": "prime",
-          "reason": "대기 — Picks 엔진 Composite 76(2위/600종목). Quality 62·Trend 70·Low Vol 96으로 방어적 프로필. 음식료·담배는 Sector Momentum 12위(+14%)이나 RRG leading 위치. 52주 고점 대비 -30.6%, 1개월 -18.0%로 급락장 동조 하락. K-라면 수출 연간 20억달러 임박(연합뉴스 보도)은 중장기 긍정 요인. 전환 조건: Momentum 14.1이 50 이상 회복 시 방어주로 우선 편입 고려. 리스크: 시장 전체 Capitulation 국면에서 방어주도 하락 압력. 현재 Risk-Off(주식 비중 0%) 판정으로 대기 명단.",
+          "reason": "대기 — Picks 포트폴리오 2위(600종목 중), Composite 76(Quality 62·Trend 70·Low Vol 96)으로 저변동성 방어주, RRG leading 업종이나 현재 Risk-Off(주식 비중 0%) 판정으로 신규 배치 보류, 52주 고점 대비 -30.6%·1개월 -18.0%로 낙폭 확대 중 / 전환 조건: Market Regime Filter Risk-On 전환 시 방어 성격 1순위 / 리스크: Reflexivity 9단계 21거래일째, 20일선 위 종목 비율 35.1%로 광범위 약세 지속",
           "rrg_tracked": true,
           "rrg_actual_sector": "음식료·담배",
           "rrg_sector_match": true,
@@ -4168,6 +4161,6 @@
   ],
   "caution_sectors": [
     "전기전자",
-    "의료·정밀기기"
+    "IT서비스"
   ]
 }
