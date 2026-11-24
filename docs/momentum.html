@@ -65,10 +65,20 @@
                 flex-wrap: wrap;
             }
         }
+
         /* 본문 패널 테이블 종목 글씨 축소 */
-        .panel-table-wrap table td, .panel-table-wrap table th { font-size: .78rem !important; }
+        .panel-table-wrap table td,
+        .panel-table-wrap table th {
+            font-size: .78rem !important;
+        }
+
         /* 행간격 압축 — 모니터에 꽉 차게 */
-        table td, table th { padding-top: 3px !important; padding-bottom: 3px !important; line-height: 1.3 !important; }
+        table td,
+        table th {
+            padding-top: 3px !important;
+            padding-bottom: 3px !important;
+            line-height: 1.3 !important;
+        }
     </style>
 </head>
 
@@ -79,7 +89,8 @@
         <header class="mb-6">
             <div class="header-inner">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">Momentum <span class="text-lg font-normal text-gray-400">Board</span></h1>
+                    <h1 class="text-3xl font-bold text-gray-800">Momentum <span
+                            class="text-lg font-normal text-gray-400">Board</span></h1>
                     <div class="text-sm text-gray-500 mt-1">
                         Last Update: <span id="updated" class="font-medium text-gray-700">-</span>
                         &nbsp;|&nbsp;
@@ -146,6 +157,8 @@
         }
 
         let lastUpdatedAt = null
+        let membersOpen = false      // "구성 종목" 펼침 상태 (자동 갱신 후에도 유지)
+        let restoredOnce = false     // 최초 로드 시 1회만 해당 섹터로 스크롤
         function render() {
             document.getElementById("loading").style.display = "none"
             document.getElementById("content").style.display = "block"
@@ -179,6 +192,7 @@
 
             // 데이터가 바뀐 경우에만 히트맵 전체를 다시 그림 (펼쳐진 패널 보존)
             const dataChanged = lastUpdatedAt !== allData.updated_at
+            const keepScrollY = restoredOnce ? window.scrollY : null
             if (dataChanged) {
                 renderHeatmap()
                 lastUpdatedAt = allData.updated_at
@@ -192,7 +206,7 @@
                     const panel = document.querySelector(`.inline-panel[data-row="${rowStart}"]`)
                     const card = document.querySelector(`[data-sector="${currentSector}"]`)
                     if (panel && card) {
-                        const wasFirstLoad = !panel.dataset.restored
+                        const wasFirstLoad = !restoredOnce
                         panel.style.display = "block"
                         card.classList.add("ring-2", "ring-gray-400")
                         document.getElementById(`panel-label-${rowStart}`).innerHTML =
@@ -212,15 +226,18 @@
                                 ).join("")
                         }
                         renderPanelTable(rowStart, currentSector, currentFilter)
+                        applyMembersState(rowStart)
                         // F5 새로고침 직후(최초 복원)에만 해당 카드로 스크롤
                         if (wasFirstLoad) {
-                            panel.dataset.restored = "1"
                             const cardRow = document.querySelector(`.grid[data-row="${rowStart}"]`)
                             if (cardRow) setTimeout(() => cardRow.scrollIntoView({ behavior: "auto", block: "start" }), 50)
                         }
                     }
                 }
             }
+            restoredOnce = true
+            // 자동 갱신으로 다시 그린 뒤에도 보던 위치 그대로
+            if (keepScrollY !== null && dataChanged) window.scrollTo(0, keepScrollY)
         }
 
         const COLS = 6
@@ -258,7 +275,7 @@
                         <div class="flex items-baseline justify-between gap-2">
                             <div class="text-sm font-semibold text-gray-800 truncate">${name}</div>
                             <div class="text-sm font-bold whitespace-nowrap ${ret > 0 ? "text-red-600" : ret < 0 ? "text-blue-600" : "text-gray-500"}">
-                                ${ret !== null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
+                                ${ret != null ? (ret > 0 ? "+" : "") + ret.toFixed(2) + "%" : "-"}
                             </div>
                         </div>
                         <div class="text-gray-500 flex justify-between mt-1" style="font-size:10px;">
@@ -353,6 +370,7 @@
                     ).join("")
             }
             renderPanelTable(rowStart, name, "all")
+            applyMembersState(rowStart)
             // URL에 현재 섹터 저장 (F5 새로고침해도 유지)
             const params = new URLSearchParams(location.search)
             params.set("sector", name)
@@ -374,10 +392,16 @@
 
         function togglePanelMembers(rowStart) {
             const panel = document.getElementById(`panel-members-${rowStart}`)
+            membersOpen = panel.style.display === "none"
+            applyMembersState(rowStart)
+        }
+
+        function applyMembersState(rowStart) {
+            const panel = document.getElementById(`panel-members-${rowStart}`)
             const arrow = document.getElementById(`panel-members-arrow-${rowStart}`)
-            const isOpen = panel.style.display !== "none"
-            panel.style.display = isOpen ? "none" : "block"
-            arrow.textContent = isOpen ? "▶" : "▼"
+            if (!panel || !arrow) return
+            panel.style.display = membersOpen ? "block" : "none"
+            arrow.textContent = membersOpen ? "▼" : "▶"
         }
 
         function setPanelFilter(rowStart, filter) {
@@ -616,28 +640,28 @@
         })
     </script>
     <script>
-        // EQ_AUTO_RELOAD: 새 버전이 배포되면 탭을 자동 새로고침 (5분마다 확인, 탭이 보이고 입력 중이 아닐 때만)
-        (function () {
-            var base = null;
-            function h(t) { var x = 0; for (var i = 0; i < t.length; i++) x = (x * 31 + t.charCodeAt(i)) | 0; return x; }
-            function check() {
-                if (document.hidden) return;
-                fetch(location.pathname + '?_v=' + Date.now(), { cache: 'no-store' })
-                    .then(function (r) { return r.ok ? r.text() : null; })
-                    .then(function (t) {
-                        if (!t || t.indexOf('</html>') < 0) return;
-                        var v = h(t);
-                        if (base === null) { base = v; return; }
-                        var a = document.activeElement;
-                        var busy = document.querySelector('.modal-backdrop.open') ||
-                            (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));
-                        if (v !== base && !busy) location.reload();
-                    })
-                    .catch(function () {});
-            }
-            setTimeout(check, 3000);
-            setInterval(check, 5 * 60 * 1000);
-        })();
+            // EQ_AUTO_RELOAD: 새 버전이 배포되면 탭을 자동 새로고침 (5분마다 확인, 탭이 보이고 입력 중이 아닐 때만)
+            (function () {
+                var base = null;
+                function h(t) { var x = 0; for (var i = 0; i < t.length; i++) x = (x * 31 + t.charCodeAt(i)) | 0; return x; }
+                function check() {
+                    if (document.hidden) return;
+                    fetch(location.pathname + '?_v=' + Date.now(), { cache: 'no-store' })
+                        .then(function (r) { return r.ok ? r.text() : null; })
+                        .then(function (t) {
+                            if (!t || t.indexOf('</html>') < 0) return;
+                            var v = h(t);
+                            if (base === null) { base = v; return; }
+                            var a = document.activeElement;
+                            var busy = document.querySelector('.modal-backdrop.open') ||
+                                (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));
+                            if (v !== base && !busy) location.reload();
+                        })
+                        .catch(function () { });
+                }
+                setTimeout(check, 3000);
+                setInterval(check, 5 * 60 * 1000);
+            })();
     </script>
 </body>
 
