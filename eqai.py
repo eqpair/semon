@@ -14,6 +14,7 @@ import asyncio
 import json
 import logging
 import os
+import shutil
 import sys
 import boto3
 import anthropic
@@ -152,6 +153,8 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         _asof    = _domestic_asof()
         _session = _kr_session(asof=_asof)
         timeline_rules  = _timeline_rules(_session, _asof)
+        final_check     = _final_check(_session)
+        _LAST_EDITION.update(edition=_session, asof=_asof)
         macro_text      = _format_macro_timeline(news_data.get("macro", {}), _session, _asof)
         logger.info(f"시간 순서: 한국장 {_session}, 국내 데이터 기준일 {_asof or '?'}")
         # US 섹터 로테이션 컨텍스트 (fail-open: 없으면 기존과 동일)
@@ -247,7 +250,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 {rrg_text}
 
 [종합 판단 원칙 — 글로벌에서 국내로, 국내에서 종목으로 / 매우 중요]
-- 위 [시간 순서] 규칙을 다시 확인하세요. 국내 시장이 간밤 미국장에 이미 반응했다는 식의 문장이 하나라도 있으면 잘못된 리포트입니다.
+{final_check}
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
 - top_picks는 반드시 위 '종목 후보'(Picks 이번 달 포트폴리오) 목록 안에서만 고르세요. 주식 비중 70% 이상이면 3~6종목, 30~70%면 3~4종목, 30% 이하면 2~3종목입니다. 목록 밖 종목은 시스템이 자동 제외합니다.
 - 'Focus 2' 블록이 있으면 그 두 종목을 top_picks의 맨 앞에 두세요(목록 밖 제한의 예외). 실제 매매 후보는 이 두 종목입니다. 상태가 보유 중이거나 조건 충족이면 각 reason에 선정 업종 순위, Score와 업종 내 종합, 목표가 상향·하향 건수를 숫자로 쓰고 끝에 리스크: …를 붙이세요. 상태가 대기이면 reason은 대기 — 로 시작하고 끝에 전환 조건: Fundamentals 기준 이상과 Momentum 기준 이상(현재 값과 기준을 숫자로)을 쓰세요. strategy_brief에 Focus 2의 상태와 시장 조건 숫자를 한 문장으로 밝히세요.
@@ -333,7 +336,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 </analysis>"""
 
         resp = client.messages.create(
-            model="claude-sonnet-4-5",
+            model=EQAI_MODEL,
             max_tokens=16000,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -663,9 +666,12 @@ def _format_macro(macro: dict) -> str:
         lines.append(f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)")
     return "\n".join(lines)
 
-# ── 시간 순서(타임라인) ───────────────────────────────────────
-# 07:00 실행 기준: 국내 데이터(전일 15:30 마감) → 간밤 미국장(06:00 마감) → 오늘 한국장(09:00 개장) 순서.
-# 이 순서를 프롬프트에 밝히지 않으면 "미국 급락에도 코스피 보합"처럼 국내가 이미 반응한 것처럼 쓴다.
+# ── 시간 순서(타임라인)와 회차 ────────────────────────────────
+# 하루 3회(평일 07:00 개장 전 / 11:30 장중 / 19:00 마감 후) 실행. 회차마다 "무엇이 무엇보다 먼저 일어났는지"가 다르므로
+# 실행 시각으로 회차를 정하고, 그 회차에 맞는 시간 순서 규칙과 매크로 표 묶음을 프롬프트에 넣는다.
+EQAI_MODEL = os.getenv("EQAI_MODEL", "claude-sonnet-5-5")
+EDITION_LABEL = {"pre": "개장 전 전망", "open": "장중 점검", "closed": "마감 후 정리"}
+_LAST_EDITION = {}
 _ASIA_NAMES = ("코스피", "코스닥", "니케이", "항셍")
 _EUROPE_NAMES = ("영국FTSE", "독일DAX")
 _US_NAMES = ("S&P500", "NASDAQ", "DOW", "VIX", "필라델피아반도체", "러셀2000", "국채2Y", "국채10Y")
@@ -681,61 +687,95 @@ def _domestic_asof() -> str:
 
 
 def _kr_session(now=None, asof: str = "") -> str:
-    """pre = 국내 데이터 기준일 이후 한국장이 아직 안 열림(개장 전·주말·휴장) / open = 장중 / closed = 오늘 장 마감 후"""
+    """pre = 개장 전(주말 포함) / open = 장중 / closed = 오늘 장 마감 후"""
     now = now or datetime.now(KST)
     hm = now.strftime("%H:%M")
     if now.weekday() >= 5 or hm < "09:00":
         return "pre"
-    if hm < "15:30":
-        return "open"
-    return "closed" if (not asof or asof >= now.strftime("%Y-%m-%d")) else "pre"
+    return "open" if hm < "15:30" else "closed"
 
 
-def _format_macro_timeline(macro: dict, session: str, asof: str) -> str:
-    """매크로 지수를 시간 순서대로 묶어서 표시. 개장 전에는 코스피·코스닥 등락률을 빼고 전일 종가로만 표기."""
+def _format_macro_timeline(macro: dict, session: str, asof: str, now=None) -> str:
+    """매크로 지수를 그 회차의 시간 순서대로 묶어서 표시."""
+    now = now or datetime.now(KST)
     def line(name, d, no_change=False):
         if no_change:
             return f"  {name}: {d.get('price')} (전일 종가 — 오늘 한국장 개장 전이라 등락 없음)"
         chg = d.get("change", 0)
         return f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)"
-    if session != "pre":
-        return _format_macro(macro)
     day = asof or "전일"
-    groups = [
-        (f"① {day} 아시아장 종가 — 간밤 미국장이 열리기 '전'에 끝난 시세 (미국장 결과 미반영)", _ASIA_NAMES),
-        ("② 유럽장 종가 — 미국장 마감 전에 끝난 시세", _EUROPE_NAMES),
-        ("③ 간밤 미국장 종가 — 가장 최신. 한국장에는 아직 반영되지 않음", _US_NAMES),
-    ]
-    used, out = set(), []
+    if session == "pre":
+        groups = [
+            (f"① {day} 아시아장 종가 — 간밤 미국장이 열리기 '전'에 끝난 시세 (미국장 결과 미반영)", _ASIA_NAMES),
+            ("② 유럽장 종가 — 미국장 마감 전에 끝난 시세", _EUROPE_NAMES),
+            ("③ 간밤 미국장 종가 — 가장 최신. 한국장에는 아직 반영되지 않음", _US_NAMES),
+        ]
+    elif session == "open":
+        groups = [
+            ("① 간밤 미국장 종가 — 오늘 한국장이 지금 반영하고 있는 재료", _US_NAMES),
+            ("② 유럽장 전일 종가 — 간밤 미국장 마감 전에 끝난 시세", _EUROPE_NAMES),
+            ("③ 오늘 아시아장 장중 시세 — 가장 최신(마감 전이라 바뀔 수 있음)", _ASIA_NAMES),
+        ]
+    else:
+        us_live = now.strftime("%H:%M") >= "22:30"
+        groups = [
+            (("① 미국장 — 오늘 밤 장중 시세(한국장 마감 '이후'에 움직이는 중, 한국장 미반영)" if us_live
+              else "① 간밤 미국장 종가 — 오늘 한국장에 이미 반영된 재료 (오늘 밤 미국장은 아직 결과 없음)"), _US_NAMES),
+            ("② 오늘 아시아장 종가 — 오늘 한국장 결과 포함", _ASIA_NAMES),
+            ("③ 유럽장 — 오늘 장중이거나 방금 마감", _EUROPE_NAMES),
+        ]
+    used, blocks = set(), []
     for title, names in groups:
-        rows = [line(n, macro[n], no_change=n in ("코스피", "코스닥")) for n in names if n in macro]
+        rows = [line(n, macro[n], no_change=(session == "pre" and n in ("코스피", "코스닥"))) for n in names if n in macro]
         used.update(names)
         if rows:
-            out.append(f"[{title}]\n" + "\n".join(rows))
+            blocks.append(f"[{title}]\n" + "\n".join(rows))
     rest = [line(n, d) for n, d in macro.items() if n not in used]
     if rest:
-        out.append("[④ 환율·원자재 — 거의 24시간 거래, 최신]\n" + "\n".join(rest))
-    return "\n".join(out)
+        blocks.append("[④ 환율·원자재 — 거의 24시간 거래, 최신]\n" + "\n".join(rest))
+    return "\n".join(blocks)
 
 
 def _timeline_rules(session: str, asof: str, now=None) -> str:
     now = now or datetime.now(KST)
     stamp = now.strftime("%Y-%m-%d %H:%M")
+    today = now.strftime("%Y-%m-%d")
     day = asof or "직전 거래일"
+    head = f"[시간 순서 — 최우선 규칙, 다른 모든 지시보다 앞섬 / 이번 회차: {EDITION_LABEL.get(session, session)}]\n"
     if session == "pre":
-        return f"""[시간 순서 — 최우선 규칙, 다른 모든 지시보다 앞섬]
-- 지금은 {stamp} KST이고, 오늘 한국장은 아직 열리지 않았습니다.
+        return head + f"""- 지금은 {stamp} KST이고, 오늘 한국장은 아직 열리지 않았습니다.
 - 실제 시간 순서: (1) {day} 한국장 마감(15:30) → (2) 그 뒤에 열린 간밤 미국장 → (3) 지금 → (4) 곧 열릴 한국장.
 - 아래 국내 데이터(국면·시장 폭·수급·섹터·종목 점수, 코스피·코스닥)는 전부 (1) 시점, 즉 간밤 미국장 '이전' 값입니다. 간밤 미국장의 결과는 한국장에 아직 하루도 반영되지 않았습니다.
 - 금지: 국내 시장이 간밤 미국장에 이미 반응한 것처럼 쓰는 모든 표현. 예: 미국 급락에도 코스피 보합, 국내는 선방했다, 지켰다, 버텼다, 충격을 완충했다, 외국인 순매수가 충격을 흡수했다. 전일 국내 등락·수급을 간밤 미국장에 대한 반응이나 결과로 해석하지 마세요.
 - 국내에 대한 서술은 전부 오늘 개장 이후의 전망으로 쓰세요(예: 하락 출발 가능성, 반도체 약세 압력 예상, 외국인 매도 전환 여부 확인 필요). 전일 국내 데이터는 충격을 받기 전의 출발 조건(전일까지의 외국인 순매수 규모, Momentum 값 등)으로만 인용하고 반드시 전일 기준임을 밝히세요.
+- 매크로 표 ①·② 묶음(니케이·항셍·유럽)은 간밤 미국장보다 먼저 끝난 시세입니다. 이 지수들의 등락 원인을 ③ 간밤 미국장에서 찾지 마세요. 뉴스 본문에 근거가 없으면 원인을 추정하지 말고 직접 촉매 확인 안 됨이라고만 쓰세요.
 - strategy_headline·strategy_points·strategy_brief·summary·korea_impact·sentiment_reason 모두에 적용됩니다. macro_reasons의 코스피·코스닥 reason은 오늘 개장 전임을 밝히고 간밤 미국장을 감안한 출발 전망으로 쓰세요."""
     if session == "open":
-        return f"""[시간 순서]
-- 지금은 {stamp} KST, 한국장 장중입니다. 코스피·코스닥 등락률은 오늘 장중 값으로 간밤 미국장이 반영되고 있는 중입니다.
-- 그 밖의 국내 데이터(국면·시장 폭·수급·종목 점수)는 {day} 장 마감 기준으로 간밤 미국장 '이전' 값입니다. 이 데이터를 간밤 미국장에 대한 반응으로 쓰지 마세요."""
-    return f"""[시간 순서]
-- 지금은 {stamp} KST, 오늘 한국장은 마감했습니다. 국내 데이터는 {day} 장 마감 기준이며, 그 이후에 열리는 미국장 결과는 아직 반영되지 않았습니다. 매크로 표의 미국 지수가 한국장 마감보다 먼저인지 나중인지 구분해서 인과를 쓰세요."""
+        return head + f"""- 지금은 {stamp} KST, 오늘 한국장이 열려 있는 장중입니다.
+- 실제 시간 순서: (1) {day} 한국장 마감 → (2) 간밤 미국장 → (3) 오늘 한국장 개장(09:00) → (4) 지금.
+- 코스피·코스닥·니케이·항셍 등락률은 오늘 장중 값입니다. 간밤 미국장에 대한 오늘의 실제 반응으로 서술할 수 있지만, 반드시 장중 현재 기준임을 밝히고 마감 결과처럼 단정하지 마세요.
+- 그 밖의 국내 데이터(국면·시장 폭·수급·Sector Momentum·종목 점수·Focus 2)는 {day} 장 마감 기준으로 간밤 미국장 '이전' 값입니다. 오늘 장중 수급이나 오늘의 반응처럼 쓰지 말고, 인용할 때 전일 기준임을 밝히세요.
+- 전개 순서: ① 간밤 미국장 → ② 오늘 장중 국내 시장의 현재 반응(아침 예상과 같은지 다른지) → ③ 마감까지 확인할 포인트와 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '지금까지 어떻게 전개됐고 남은 장에서 무엇을 볼지'로 읽으세요."""
+    us_live = now.strftime("%H:%M") >= "22:30"
+    us_line = ("- 매크로 표의 미국 지수는 지금 진행 중인 오늘 밤 장중 시세입니다. 한국장 마감 '이후'의 움직임이므로 오늘 한국장의 원인으로 쓰지 말고, 내일 한국장에 줄 영향으로만 쓰세요(마감 전이라 단정 금지)."
+               if us_live else
+               "- 매크로 표의 미국 지수는 간밤 종가로, 오늘 한국장에 이미 반영된 재료입니다. 오늘 밤 미국장은 아직 결과가 없으니 결과를 예측해 단정하지 말고 관전 포인트(예정된 지표·실적·이벤트)로만 쓰세요.")
+    if asof and asof >= today:
+        dom = f"- 국내 데이터(국면·시장 폭·수급·종목 점수)는 오늘({day}) 장 마감 기준입니다. 간밤 미국장에 대한 오늘 한국장의 실제 반응으로 서술할 수 있습니다(과거형 가능)."
+    else:
+        dom = (f"- 주의: 국내 데이터(국면·시장 폭·수급·종목 점수)는 아직 {day} 기준입니다(오늘 치 미갱신 또는 휴장). 오늘 값은 코스피·코스닥 등락률뿐입니다. "
+               "오늘의 수급·시장 폭을 아는 것처럼 쓰지 말고 인용할 때 기준일을 밝히세요.")
+    return head + f"""- 지금은 {stamp} KST, 오늘 한국장은 마감했습니다.
+- 실제 시간 순서: (1) 간밤 미국장 → (2) 오늘 한국장(09:00~15:30) → (3) 지금 → (4) 오늘 밤 미국장.
+{dom}
+{us_line}
+- 전개 순서: ① 간밤 미국장 → ② 오늘 국내 시장이 실제로 어떻게 반응했는지(지수·수급·시장 폭) → ③ 오늘 밤 미국장 관전 포인트와 내일 한국장 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '오늘 어떻게 전개됐고 내일 무엇을 볼지'로 읽으세요."""
+
+
+def _final_check(session: str) -> str:
+    first = ("국내 시장이 간밤 미국장에 이미 반응했다는 식의 문장이 하나라도 있으면 잘못된 리포트입니다."
+             if session == "pre" else "먼저 일어난 일을 나중 일의 결과처럼 쓴 문장이 하나라도 있으면 잘못된 리포트입니다.")
+    return f"""- [출력 전 점검 — 하나라도 어기면 다시 쓰세요] (가) 위 [시간 순서] 규칙을 다시 확인하세요. {first} (나) 'Focus 2' 블록이 있으면 strategy_points 중 하나와 strategy_brief의 한 문장에 Focus 2 두 종목의 상태와 시장 조건 숫자(Fundamentals·Momentum의 현재 값과 기준)를 반드시 넣으세요. (다) 주식 비중 30% 이하(Risk-Off)일 때는 어떤 필드에도 매수, 저점 매수, 매수 타이밍, 분할 매수, 비중 확대 같은 표현을 쓰지 마세요. 조건이 충족된 뒤의 행동도 '대기 명단 재검토'로만 쓰세요."""
 
 
 def _format_articles(articles: list) -> str:
@@ -775,6 +815,9 @@ def save_report(report: dict) -> bool:
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(report, f, ensure_ascii=False, indent=2)
         tmp.replace(REPORT_PATH)
+        ed = report.get("edition")
+        if ed in EDITION_LABEL:
+            shutil.copyfile(REPORT_PATH, REPORT_PATH.with_name(f"eqai_report_{ed}.json"))
         logger.info(f"리포트 저장 완료: {REPORT_PATH}")
         return True
     except Exception as e:
@@ -788,7 +831,8 @@ def git_push_report() -> bool:
     try:
         import git
         repo = git.Repo("/home/ubuntu/semon")
-        repo.index.add(["docs/data/eqai_report.json"])
+        repo.index.add(["docs/data/eqai_report.json"] + [f"docs/data/eqai_report_{e}.json" for e in EDITION_LABEL
+                                                         if REPORT_PATH.with_name(f"eqai_report_{e}.json").exists()])
         repo.index.commit(f"EQAI report {datetime.now(KST).strftime('%Y-%m-%d %H:%M')} KST")
         repo.remote("origin").push()
         logger.info("EQAI 리포트 push 완료")
@@ -848,6 +892,9 @@ def run():
 
     report = {
         "generated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
+        "edition":       _LAST_EDITION.get("edition") or _kr_session(),
+        "edition_label": EDITION_LABEL.get(_LAST_EDITION.get("edition") or _kr_session(), ""),
+        "domestic_asof": _LAST_EDITION.get("asof") or _domestic_asof(),
         "macro":        macro_with_reasons,
         "sector_rrg":   rrg_data.get("sector_rrg", {}),
         "sources":      sources,

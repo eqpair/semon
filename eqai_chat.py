@@ -324,7 +324,7 @@ def chat():
 
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         resp = client.messages.create(
-            model="claude-sonnet-4-5",
+            model=os.getenv("EQAI_MODEL", "claude-sonnet-5-5"),
             max_tokens=8192,
             system=system_prompt,
             messages=messages,

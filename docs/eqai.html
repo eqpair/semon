@@ -349,7 +349,15 @@
             <div class="section-card mb-4">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">국내 시장 전략</h2>
-                    <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full font-medium">종합 분석</span>
+                    <div class="flex items-center gap-2 flex-wrap justify-end">
+                        <span id="edition-info" class="text-xs text-gray-400"></span>
+                        <div id="edition-tabs" class="flex gap-1">
+                            <button data-ed="latest" onclick="setEdition('latest')" class="px-2 py-1 text-xs rounded-full font-medium">최신</button>
+                            <button data-ed="pre" onclick="setEdition('pre')" class="px-2 py-1 text-xs rounded-full font-medium">개장 전</button>
+                            <button data-ed="open" onclick="setEdition('open')" class="px-2 py-1 text-xs rounded-full font-medium">장중</button>
+                            <button data-ed="closed" onclick="setEdition('closed')" class="px-2 py-1 text-xs rounded-full font-medium">마감 후</button>
+                        </div>
+                    </div>
                 </div>
                 <div id="strategy-headline" class="text-base font-bold text-gray-900 mb-3 leading-snug"></div>
                 <ul id="strategy-points" class="space-y-1.5 mb-4"></ul>
@@ -404,6 +412,21 @@
 
     <script>
         let eqaiData = null
+        let currentEdition = "latest"   // latest | pre | open | closed
+        const EDITION_NAMES = { pre: "개장 전 전망", open: "장중 점검", closed: "마감 후 정리" }
+        function setEdition(ed) { currentEdition = ed; loadData() }
+        function renderEditionTabs() {
+            document.querySelectorAll("#edition-tabs button").forEach(b => {
+                const on = b.dataset.ed === currentEdition
+                b.style.background = on ? "#1e293b" : "#f3f4f6"
+                b.style.color = on ? "#fff" : "#4b5563"
+            })
+            const info = document.getElementById("edition-info")
+            if (info && eqaiData) {
+                const name = eqaiData.edition_label || EDITION_NAMES[eqaiData.edition] || "종합 분석"
+                info.textContent = name + " · " + (eqaiData.generated_at || "").slice(0, 16)
+            }
+        }
         let chatHistory = []
         const CHAT_API_URL = "https://eqmon.duckdns.org/eqai-chat/chat"
         const TRIGGER_URL = "https://eqmon.duckdns.org/eqai-trigger"
@@ -491,8 +514,17 @@
 
         async function loadData() {
             try {
-                const res = await fetch("./data/eqai_report.json?t=" + Date.now())
-                if (!res.ok) throw new Error()
+                const file = currentEdition === "latest" ? "eqai_report.json" : `eqai_report_${currentEdition}.json`
+                const res = await fetch("./data/" + file + "?t=" + Date.now())
+                if (!res.ok) {
+                    if (currentEdition !== "latest") {
+                        // 그 회차 리포트가 아직 없으면 최신으로 되돌림
+                        showToast(EDITION_NAMES[currentEdition] + " 리포트는 아직 없습니다", "#d97706"); hideToast(2500)
+                        currentEdition = "latest"
+                        return loadData()
+                    }
+                    throw new Error()
+                }
                 eqaiData = await res.json()
                 await mergeMacroLive()
                 render()
@@ -501,7 +533,7 @@
             } catch (e) {
                 document.getElementById("loading-state").innerHTML = `
                 <div class="text-lg font-medium text-gray-600 mb-2">분석 리포트 준비 중</div>
-                <div class="text-sm text-gray-400">07:30 장전 리포트가 생성되면 자동으로 표시됩니다</div>`
+                <div class="text-sm text-gray-400">리포트가 생성되면 자동으로 표시됩니다 (평일 07:00 · 11:30 · 19:00)</div>`
             }
         }
 
@@ -510,7 +542,7 @@
             document.getElementById("loading-state").style.display = "none"
             document.getElementById("main-content").style.display = "block"
             document.getElementById("updated").textContent = eqaiData.generated_at || "-"
-            renderMacro(); renderStrategyBrief(); renderPicks(); updateMarketBadge()
+            renderMacro(); renderStrategyBrief(); renderPicks(); updateMarketBadge(); renderEditionTabs()
         }
 
         function makeMacroCard(name, d) {
