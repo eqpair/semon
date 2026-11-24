@@ -1,195 +1,177 @@
 {
-  "generated_at": "2026-11-25 07:03:42",
+  "generated_at": "2026-11-25 08:44:37",
   "macro": {
     "S&P500": {
       "price": 7201.09,
       "change": -0.5,
-      "reason": "엔비디아 -5.86% 주도로 테크 대형주 약세 — Huang 복귀 랠리 반전, 데이터센터 지출 우려 재부상으로 나스닥 -1.48% 하락이 지수 전체 압박. 필수소비재·헬스케어 Leading 섹터의 상대 강세가 하락폭 제한(-0.50%)",
+      "reason": "Nvidia -5.86% 급락과 반도체 전반 약세(-7.88%)가 지수를 끌어내렸으나 에너지·금융·필수소비재 강세로 낙폭 제한 — CNBC 보도에 따르면 젠슨 황 복귀 1일 후 AI 투자 과열 경계론 재확산",
       "drivers": [
-        "엔비디아 -5.86%로 테크 대형주 동반 급락",
-        "AI 데이터센터 지출 감소 우려 재부상",
-        "다우 +0.85%, 러셀2000 +0.57% 중소형주·경기방어 상대 강세"
+        "NVDA -5.86% (Anthropic 밸류에이션 하락·데이터센터 투자 둔화 우려)",
+        "필라델피아반도체 -7.88%",
+        "에너지(WTI +1.81%)·방어주 강세로 낙폭 완충"
       ]
     },
     "NASDAQ": {
       "price": 23733.54,
       "change": -1.48,
-      "reason": "엔비디아 주도 반도체·AI 관련주 패닉 매도 — Huang 복귀 36% 랠리가 하루 만에 반전, Micron 공급 과잉 경고(-10.97%), Marvell -9.10%, ARM -8.55% 등으로 테크 약세 집중. Dell 실적 호조에도 하락",
+      "reason": "Nvidia·Micron·Marvell·AMD 등 반도체 주력주 동반 급락으로 -1.48% 하락 — Investors.com 보도에 따르면 데이터센터 지출 둔화 공포(fears) 재점화",
       "drivers": [
-        "필라델피아반도체 -7.88%, 엔비디아 -5.86%",
-        "Micron -10.97%(공급 과잉 경고)",
-        "AI 부채시장 경계 — Huang 복귀로 엔비디아 AI 금융 역할 불확실성"
+        "NVDA -5.86%",
+        "Micron -10.97%, Marvell -9.10%, AMD -8.55%"
       ]
     },
     "DOW": {
       "price": 50018.7,
       "change": 0.85,
-      "reason": "반도체 급락 속 경기방어 섹터 상대 강세 — 다우 구성 중 금융·산업재 위주 종목이 필수소비재·헬스케어 Leading 흐름에 동조하며 +0.85% 상승. 러셀2000 +0.57%와 함께 테크 외 자금 이동 신호",
+      "reason": "반도체 비중 낮은 가운데 금융·산업재·에너지 강세로 +0.85% 상승 — 러셀2000 +0.57%와 함께 전통 경기주 선호 이동",
       "drivers": [
-        "필수소비재XLP, 헬스케어XLV Leading 지속",
-        "중소형주 러셀2000 +0.57% 동반 상승",
-        "테크 XLK Lagging으로 대형주 차별화"
+        "금융·산업재 강세",
+        "WTI유가 +1.81%"
       ]
     },
     "VIX": {
       "price": 26.36,
       "change": -0.98,
-      "reason": "-0.98%로 소폭 하락에도 26.36 수준 유지 — 월요일 급등(변동성 급증) 후 반도체 패닉에도 추가 상승 없이 고공 비행 지속. 테크 약세가 예상 범위 내로 인식되며 공포 추가 확대는 제한",
+      "reason": "-0.98% 소폭 하락하나 26.36 고점 근처 유지 — 반도체 급락에도 비기술주 강세로 전체 변동성 완화",
       "drivers": [
-        "월요일 급등 후 반전 없이 고공(26.36) 유지",
-        "엔비디아 -5.86% 패닉에도 추가 급등 없음"
+        "DOW +0.85%, 러셀2000 +0.57% 안정"
       ]
     },
     "필라델피아반도체": {
       "price": 8832.5,
       "change": -7.88,
-      "reason": "-7.88% 급락 — 엔비디아 Huang 복귀 랠리 반전, 데이터센터 지출 감소 우려 재부상과 Micron 공급 과잉 경고로 반도체 전반 패닉. Micron -10.97%, Marvell -9.10%, ARM -8.55%, AMD -7% 등 동반 급락",
+      "reason": "-7.88% 급락 — Nvidia 복귀 랠리 1일 만에 반전, Anthropic IPO 대비 밸류에이션 급락·Marketwatch 보도 Micron 공급 과잉(supply glut) 경고·AI 수요 지속성 의문 재점화",
       "drivers": [
-        "엔비디아 -5.86% — Huang 복귀 36% 랠리 반전",
-        "Micron -10.97% — UBS 공급 과잉 경고",
-        "AI 데이터센터 지출 감소 우려 재부상"
+        "NVDA -5.86% (Anthropic 밸류에이션 하락·AI 투자 불확실성)",
+        "Micron -10.97% (애널리스트 공급 과잉 경고)",
+        "Marvell -9.10%, AMD -8.55%"
       ]
     },
     "러셀2000": {
       "price": 2684.94,
       "change": 0.57,
-      "reason": "+0.57% 상승 — 테크 대형주 약세 속 중소형주로 자금 이동. 다우 +0.85%와 함께 경기방어·금융 중심 상대 강세 흐름. 필수소비재·헬스케어 Leading, 기술 XLK Lagging 로테이션이 중소형주에 우호적",
+      "reason": "+0.57% 상승 — 기술주 급락 속 중소형·경기주로 자금 이동, DOW와 동조",
       "drivers": [
-        "테크 대형주 급락 속 자금 이동",
-        "금융XLF, 필수소비재XLP Leading 동조",
-        "다우 +0.85% 경기방어 상대 강세"
+        "기술주 외 섹터 선호 이동"
       ]
     },
     "영국FTSE": {
       "price": 10467.07,
       "change": -0.13,
-      "reason": "-0.13% 소폭 하락 — 미국 테크 약세 여파 제한적, 직접 촉매 없음. 유럽 DAX -1.26% 대비 낙폭 작아 상대 양호. 필수소비재·헬스케어 중심 구성이 테크 충격 완충",
+      "reason": "-0.13% 보합(10467.07) — 에너지·금융 강세로 미국 기술주 약세 영향 차단",
       "drivers": [
-        "미국 테크 약세 여파 제한적",
-        "유럽 DAX -1.26% 대비 상대 양호"
+        "에너지·금융 강세"
       ]
     },
     "독일DAX": {
-      "price": 25017.81,
-      "change": -1.26,
-      "reason": "-1.26% 하락 — 미국 나스닥 -1.48%, 필라델피아반도체 -7.88% 급락에 유럽 테크·산업재 동조 약세. SAP 등 소프트웨어, Infineon 등 반도체 관련 비중이 하락 주도. 직접 촉매 없으나 글로벌 테크 Risk-Off 동조",
+      "price": 25337.27,
+      "change": 2.15,
+      "reason": "+2.15% 급등(25337.27) — 유럽 제조업·산업재 강세, 미국 DOW +0.85%와 동조, 반도체 비중 낮아 미국 기술주 급락 무풍지대",
       "drivers": [
-        "미국 반도체 -7.88% 급락 여파",
-        "유럽 테크·산업재 동조 약세"
+        "유럽 제조업 강세",
+        "미국 DOW와 동조"
       ]
     },
     "니케이": {
       "price": 56436.65,
       "change": -5.06,
-      "reason": "-5.06% 급락 — 엔비디아 월요일 36% 급등 후 화요일 -5.86% 반전으로 일본 반도체·전자 주도 하락. 도쿄일렉트론·어드밴테스트 등 반도체 장비주 패닉. 필라델피아반도체 -7.88% 여파가 아시아 테크 직격",
+      "reason": "-5.06% 급락(56436.65) — 전날(24일) 아시아장에서 미국장 개장 전 선반영, 23일 미국 반도체 약세 여파로 도쿄일렉트론·어드밴테스트 등 반도체 장비주 급락 추정",
       "drivers": [
-        "엔비디아 -5.86% 반전 충격",
-        "필라델피아반도체 -7.88% 여파",
-        "도쿄일렉트론·어드밴테스트 반도체 장비주 급락"
+        "23일 미국 반도체 약세 선반영"
       ]
     },
     "항셍": {
       "price": 22383.74,
       "change": -0.12,
-      "reason": "-0.12% 보합권 — 미국 테크 급락 여파 제한적. 텐센트·알리바바 등 중국 테크 비중이 상대 작고, 금융·부동산 중심 구성이 반도체 충격 완충. 직접 촉매 없이 글로벌 Risk-Off 약한 동조",
+      "reason": "-0.12% 소폭 하락(22383.74) — 중국 본토 부동산·소비 부진 지속, 미국 기술주 영향 제한적",
       "drivers": [
-        "미국 테크 급락 여파 제한적",
-        "중국 테크 비중 작아 완충"
+        "중국 내수 부진"
       ]
     },
     "달러인덱스": {
-      "price": 103.82,
-      "change": -0.48,
-      "reason": "-0.48% 하락 — 국채 2년물 +0.51% 상승에도 10년물 -0.28% 하락으로 장단기 금리 차 축소. 연준 긴축 기대 후퇴와 테크 약세로 안전자산(엔·금) 선호 — 달러 약세. Bond Traders Rush to Hedge Risk of Fed Hikes Stalling Economy 보도",
+      "price": 103.85,
+      "change": -0.45,
+      "reason": "-0.45% 하락(103.85) — 연준 PCE 발표 전 관망, 유럽 DAX +2.15% 강세로 유로 강세 영향",
       "drivers": [
-        "국채 10년 -0.28% 하락 — 긴축 기대 후퇴",
-        "테크 약세로 안전자산 선호",
-        "연준 긴축 경기 둔화 우려 — 채권 헤지 수요 급증"
+        "유럽 증시 강세"
       ]
     },
     "국채2Y": {
       "price": 4.17,
       "change": 0.51,
-      "reason": "+0.51% 상승(금리 상승) — 단기 긴축 기대 일부 유지, Bond Traders Rush to Hedge Risk of Fed Hikes Stalling Economy 보도로 단기 금리 헤지 수요. 10년물 -0.28% 하락 대비 커브 플래트닝(장단기 금리차 축소) 진행",
+      "reason": "+0.51% 상승(4.17%) — 단기 금리 인상 기대 지속, 오늘 발표 예정인 연준 선호 인플레 지표 PCE(개인소비지출물가지수) 대기",
       "drivers": [
-        "단기 긴축 기대 일부 유지",
-        "채권 헤지 수요 — 연준 긴축 경기 둔화 우려"
+        "연준 PCE 발표 대기"
       ]
     },
     "국채10Y": {
       "price": 4.9,
       "change": -0.28,
-      "reason": "-0.28% 하락(금리 하락) — 테크 급락과 AI 지출 우려로 경기 둔화 기대, 장기 안전자산 수요 증가. 2년물 +0.51% 상승 대비 커브 플래트닝 진행. Bond Traders Rush to Hedge Risk 보도",
+      "reason": "-0.28% 하락(4.9%) — 기술주 급락 속 안전자산 수요 일부 유입, 2Y와의 스프레드 축소",
       "drivers": [
-        "테크 급락·AI 지출 우려 — 경기 둔화 기대",
-        "장기 안전자산 수요 증가"
+        "반도체 급락 → 안전자산 선호"
       ]
     },
     "코스피": {
       "price": 5006.03,
       "change": 0.0,
-      "reason": "+0.00% 보합 — 외국인 1일 +6,110억 순매수, 기관 +9,057억 순매수로 개인 -2.0조 순매도 흡수. 미국 반도체 급락 여파 제한적(Reflex 9단계 투매 국면 23일째로 추가 하락 여력 작음). 거래대금 19.6조(평균 대비 0.87배) 저조, 20일선 위 30.4%로 시장 폭 여전히 취약",
+      "reason": "5006.03 (전일 종가 — 오늘 개장 전) — 간밤 필라델피아반도체 -7.88%, Nvidia -5.86% 급락이 아직 반영 전이며 오늘 개장 시 반도체(삼성전자·SK하이닉스) 중심 하락 압력 예상, 외국인은 전일(24일) +6,110억원 순매수했으나 20일 누적 -14.3조원 순매도 기조 지속 중",
       "drivers": [
-        "외국인 +6,110억·기관 +9,057억 순매수",
-        "개인 -2.0조 순매도 — 수급 대립",
-        "미국 반도체 -7.88% 급락 여파 제한적"
+        "간밤 필라델피아반도체 -7.88% (오늘 개장 후 반영 예정)",
+        "외국인 20일 누적 -14.3조원 순매도 기조"
       ]
     },
     "코스닥": {
       "price": 665.88,
       "change": 0.0,
-      "reason": "+0.00% 보합 — 외국인 +1,149억·기관 +2,134억 순매수가 개인 -3,127억 순매도 흡수. 미국 나스닥 -1.48% 하락에도 Reflex 9단계 투매 23일째로 추가 하락폭 제한. 20일선 위 42.5%로 코스피(30.4%)보다 시장 폭 양호하나 거래대금 저조(평균 대비 0.87배)",
+      "reason": "665.88 (전일 종가 — 오늘 개장 전) — 간밤 NASDAQ -1.48% 하락이 아직 반영 전이며 오늘 2차전지·IT 중심 약세 압력, 외국인 전일(24일) +1,149억원 순매수하나 20일 누적 -2.0조원 순매도",
       "drivers": [
-        "외국인 +1,149억·기관 +2,134억 순매수",
-        "개인 -3,127억 순매도",
-        "나스닥 -1.48% 여파 제한적 — Reflex 9단계 추가 하락 여력 작음"
+        "간밤 NASDAQ -1.48% (오늘 개장 후 반영 예정)",
+        "외국인 20일 누적 -2.0조원 순매도"
       ]
     },
     "금": {
-      "price": 3552.9,
-      "change": -2.7,
-      "reason": "-2.70% 급락 — 월요일 엔비디아 36% 급등 랠리로 Risk-On 전환 기대에 안전자산 수요 감소. 화요일 테크 반전에도 반등 없이 하락 지속 — 달러인덱스 -0.48% 약세에도 금 약세는 Risk-On 잔존 신호",
+      "price": 3559.7,
+      "change": -2.51,
+      "reason": "-2.51% 급락(3559.7) — 간밤 DOW·러셀2000 상승과 VIX 하락으로 안전자산 수요 감소",
       "drivers": [
-        "월요일 엔비디아 랠리 — Risk-On 전환 기대",
-        "안전자산 수요 감소 지속",
-        "달러 -0.48% 약세에도 금 반등 없음"
+        "DOW +0.85%, 러셀2000 +0.57%",
+        "VIX -0.98%"
       ]
     },
     "WTI유가": {
-      "price": 81.63,
-      "change": 1.82,
-      "reason": "+1.82% 상승 — 중동 지정학 리스크 잔존(사우디 OpenAI 버그 사건 등) 및 공급 우려. 달러인덱스 -0.48% 약세가 원자재 가격 지지. 테크 급락에도 경기방어·유틸리티 Leading 흐름이 수요 기대 유지",
+      "price": 81.62,
+      "change": 1.81,
+      "reason": "+1.81% 상승(81.62) — 중동 지정학 긴장 지속과 경기주 강세 동조",
       "drivers": [
-        "중동 지정학 리스크 — 사우디 OpenAI 사건",
-        "달러 -0.48% 약세 — 원자재 가격 지지"
+        "중동 지정학 리스크",
+        "DOW·러셀2000 상승"
       ]
     },
     "원달러": {
-      "price": 1340.46,
-      "change": -0.29,
-      "reason": "-0.29% 하락(원화 강세) — 외국인 코스피 +6,110억·코스닥 +1,149억 순매수 유입. 달러인덱스 -0.48% 약세 동조. 미국 테크 급락에도 국내 추가 하락 제한(Reflex 9단계 23일째)으로 원화 방어",
+      "price": 1341.12,
+      "change": -0.24,
+      "reason": "-0.24% 하락(1341.12) — 간밤 달러인덱스 -0.45% 약세 반영, 오늘 금통위(금융통화위원회) 기준금리 결정(0.25%p 인상 예상) 대기로 큰 변동 없음",
       "drivers": [
-        "외국인 +7,259억 순매수 유입",
-        "달러인덱스 -0.48% 약세 동조"
+        "달러인덱스 -0.45%",
+        "금통위 대기"
       ]
     },
     "알루미늄": {
       "price": 2752.5,
       "change": -5.0,
-      "reason": "-5.00% 급락 — 중국 경기 둔화 우려 지속(항셍 -0.12% 보합권) 및 AI 데이터센터 지출 감소 우려로 산업 금속 수요 기대 약화. 구리 -2.55% 동반 하락으로 원자재 전반 Risk-Off",
+      "reason": "-5.00% 급락(2752.5) — 중국 수요 둔화 우려와 반도체 급락 동조",
       "drivers": [
-        "중국 경기 둔화 우려",
-        "AI 지출 감소 — 산업 금속 수요 기대 약화"
+        "중국 경기 불안",
+        "기술주 약세 동조"
       ]
     },
     "구리": {
       "price": 5.48,
-      "change": -2.55,
-      "reason": "-2.55% 하락 — AI 데이터센터 지출 감소 우려로 반도체·전자 수요 기대 약화. 필라델피아반도체 -7.88% 급락 여파. 중국 경기 둔화(항셍 보합권) 및 알루미늄 -5.00% 동반 약세로 산업 금속 전반 Risk-Off",
+      "change": -2.53,
+      "reason": "-2.53% 하락(5.48) — AI 인프라 투자 둔화 우려로 반도체 급락과 동조",
       "drivers": [
-        "AI 지출 감소 우려 — 반도체 수요 약화",
-        "필라델피아반도체 -7.88% 급락 여파",
-        "중국 경기 둔화·알루미늄 -5.00% 동반 약세"
+        "필라델피아반도체 -7.88%"
       ]
     }
   },
@@ -338,11 +320,15 @@
         {
           "rs_ratio": 96.107,
           "rs_momentum": 96.893
+        },
+        {
+          "rs_ratio": 95.829,
+          "rs_momentum": 96.442
         }
       ],
-      "sector_ret_5d": -1.21,
-      "improving_count": 2,
-      "watch_count": 1,
+      "sector_ret_5d": -2.28,
+      "improving_count": 0,
+      "watch_count": 3,
       "total": 125
     },
     "기계·장비": {
@@ -489,11 +475,15 @@
         {
           "rs_ratio": 95.578,
           "rs_momentum": 93.564
+        },
+        {
+          "rs_ratio": 93.772,
+          "rs_momentum": 93.181
         }
       ],
-      "sector_ret_5d": 2.14,
-      "improving_count": 3,
-      "watch_count": 0,
+      "sector_ret_5d": 3.22,
+      "improving_count": 1,
+      "watch_count": 2,
       "total": 68
     },
     "IT서비스": {
@@ -501,10 +491,6 @@
       "rs_momentum": 107.736,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 96.021,
-          "rs_momentum": 87.936
-        },
         {
           "rs_ratio": 94.831,
           "rs_momentum": 85.111
@@ -660,11 +646,15 @@
         {
           "rs_ratio": 114.471,
           "rs_momentum": 110.73
+        },
+        {
+          "rs_ratio": 112.144,
+          "rs_momentum": 107.736
         }
       ],
-      "sector_ret_5d": -4.89,
-      "improving_count": 2,
-      "watch_count": 0,
+      "sector_ret_5d": -4.39,
+      "improving_count": 0,
+      "watch_count": 2,
       "total": 46
     },
     "화학": {
@@ -811,11 +801,15 @@
         {
           "rs_ratio": 100.618,
           "rs_momentum": 97.92
+        },
+        {
+          "rs_ratio": 100.051,
+          "rs_momentum": 97.534
         }
       ],
-      "sector_ret_5d": -2.26,
-      "improving_count": 2,
-      "watch_count": 0,
+      "sector_ret_5d": -1.36,
+      "improving_count": 0,
+      "watch_count": 2,
       "total": 50
     },
     "일반서비스": {
@@ -962,11 +956,15 @@
         {
           "rs_ratio": 111.899,
           "rs_momentum": 106.406
+        },
+        {
+          "rs_ratio": 111.149,
+          "rs_momentum": 105.023
         }
       ],
-      "sector_ret_5d": -4.97,
-      "improving_count": 2,
-      "watch_count": 0,
+      "sector_ret_5d": -3.86,
+      "improving_count": 0,
+      "watch_count": 2,
       "total": 42
     },
     "제약": {
@@ -974,10 +972,6 @@
       "rs_momentum": 107.523,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 103.029,
-          "rs_momentum": 96.265
-        },
         {
           "rs_ratio": 101.842,
           "rs_momentum": 93.121
@@ -1133,11 +1127,15 @@
         {
           "rs_ratio": 116.209,
           "rs_momentum": 110.15
+        },
+        {
+          "rs_ratio": 114.483,
+          "rs_momentum": 107.523
         }
       ],
-      "sector_ret_5d": -4.91,
-      "improving_count": 2,
-      "watch_count": 0,
+      "sector_ret_5d": -3.09,
+      "improving_count": 1,
+      "watch_count": 1,
       "total": 32
     },
     "금속": {
@@ -1284,11 +1282,15 @@
         {
           "rs_ratio": 99.478,
           "rs_momentum": 101.871
+        },
+        {
+          "rs_ratio": 97.155,
+          "rs_momentum": 100.131
         }
       ],
-      "sector_ret_5d": -4.3,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": -4.5,
+      "improving_count": 0,
+      "watch_count": 2,
       "total": 26
     },
     "운송장비·부품": {
@@ -1435,11 +1437,15 @@
         {
           "rs_ratio": 100.864,
           "rs_momentum": 105.424
+        },
+        {
+          "rs_ratio": 100.429,
+          "rs_momentum": 104.28
         }
       ],
-      "sector_ret_5d": -1.48,
-      "improving_count": 3,
-      "watch_count": 1,
+      "sector_ret_5d": -1.33,
+      "improving_count": 1,
+      "watch_count": 3,
       "total": 25
     },
     "유통": {
@@ -1447,10 +1453,6 @@
       "rs_momentum": 103.124,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 94.573,
-          "rs_momentum": 104.049
-        },
         {
           "rs_ratio": 93.411,
           "rs_momentum": 100.34
@@ -1606,9 +1608,13 @@
         {
           "rs_ratio": 104.158,
           "rs_momentum": 104.636
+        },
+        {
+          "rs_ratio": 103.077,
+          "rs_momentum": 103.124
         }
       ],
-      "sector_ret_5d": -3.68,
+      "sector_ret_5d": -3.64,
       "improving_count": 1,
       "watch_count": 0,
       "total": 24
@@ -1757,11 +1763,15 @@
         {
           "rs_ratio": 95.776,
           "rs_momentum": 90.197
+        },
+        {
+          "rs_ratio": 95.219,
+          "rs_momentum": 89.281
         }
       ],
-      "sector_ret_5d": 3.29,
-      "improving_count": 1,
-      "watch_count": 1,
+      "sector_ret_5d": 4.13,
+      "improving_count": 0,
+      "watch_count": 2,
       "total": 20
     },
     "금융": {
@@ -1908,9 +1918,13 @@
         {
           "rs_ratio": 109.108,
           "rs_momentum": 106.827
+        },
+        {
+          "rs_ratio": 108.417,
+          "rs_momentum": 105.644
         }
       ],
-      "sector_ret_5d": -2.63,
+      "sector_ret_5d": -2.76,
       "improving_count": 0,
       "watch_count": 0,
       "total": 19
@@ -1920,10 +1934,6 @@
       "rs_momentum": 101.283,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 101.403,
-          "rs_momentum": 109.228
-        },
         {
           "rs_ratio": 100.185,
           "rs_momentum": 105.501
@@ -2079,11 +2089,15 @@
         {
           "rs_ratio": 101.341,
           "rs_momentum": 102.428
+        },
+        {
+          "rs_ratio": 100.449,
+          "rs_momentum": 101.283
         }
       ],
-      "sector_ret_5d": -0.87,
-      "improving_count": 1,
-      "watch_count": 0,
+      "sector_ret_5d": -1.33,
+      "improving_count": 0,
+      "watch_count": 1,
       "total": 20
     },
     "운송·창고": {
@@ -2230,9 +2244,13 @@
         {
           "rs_ratio": 114.137,
           "rs_momentum": 106.933
+        },
+        {
+          "rs_ratio": 113.793,
+          "rs_momentum": 105.894
         }
       ],
-      "sector_ret_5d": -0.53,
+      "sector_ret_5d": -0.01,
       "improving_count": 0,
       "watch_count": 0,
       "total": 13
@@ -2242,10 +2260,6 @@
       "rs_momentum": 101.045,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 103.467,
-          "rs_momentum": 97.817
-        },
         {
           "rs_ratio": 102.223,
           "rs_momentum": 94.601
@@ -2401,11 +2415,15 @@
         {
           "rs_ratio": 97.345,
           "rs_momentum": 101.565
+        },
+        {
+          "rs_ratio": 96.661,
+          "rs_momentum": 101.045
         }
       ],
-      "sector_ret_5d": -9.46,
-      "improving_count": 3,
-      "watch_count": 1,
+      "sector_ret_5d": -8.08,
+      "improving_count": 0,
+      "watch_count": 4,
       "total": 13
     },
     "음식료·담배": {
@@ -2552,9 +2570,13 @@
         {
           "rs_ratio": 111.75,
           "rs_momentum": 104.968
+        },
+        {
+          "rs_ratio": 110.644,
+          "rs_momentum": 103.156
         }
       ],
-      "sector_ret_5d": -1.02,
+      "sector_ret_5d": -0.42,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -2703,9 +2725,13 @@
         {
           "rs_ratio": 113.828,
           "rs_momentum": 108.119
+        },
+        {
+          "rs_ratio": 114.55,
+          "rs_momentum": 107.848
         }
       ],
-      "sector_ret_5d": 12.29,
+      "sector_ret_5d": 12.47,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
@@ -2715,10 +2741,6 @@
       "rs_momentum": 103.387,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 98.763,
-          "rs_momentum": 100.011
-        },
         {
           "rs_ratio": 97.601,
           "rs_momentum": 96.592
@@ -2874,9 +2896,13 @@
         {
           "rs_ratio": 106.449,
           "rs_momentum": 104.948
+        },
+        {
+          "rs_ratio": 105.353,
+          "rs_momentum": 103.387
         }
       ],
-      "sector_ret_5d": -3.23,
+      "sector_ret_5d": -3.02,
       "improving_count": 0,
       "watch_count": 0,
       "total": 7
@@ -2886,10 +2912,6 @@
       "rs_momentum": 100.828,
       "quadrant": "improving",
       "tail": [
-        {
-          "rs_ratio": 95.473,
-          "rs_momentum": 99.216
-        },
         {
           "rs_ratio": 94.292,
           "rs_momentum": 95.769
@@ -3045,11 +3067,15 @@
         {
           "rs_ratio": 99.068,
           "rs_momentum": 101.874
+        },
+        {
+          "rs_ratio": 99.32,
+          "rs_momentum": 100.828
         }
       ],
-      "sector_ret_5d": -2.78,
-      "improving_count": 1,
-      "watch_count": 0,
+      "sector_ret_5d": -3.22,
+      "improving_count": 0,
+      "watch_count": 1,
       "total": 6
     },
     "섬유·의류": {
@@ -3196,9 +3222,13 @@
         {
           "rs_ratio": 104.482,
           "rs_momentum": 98.97
+        },
+        {
+          "rs_ratio": 102.798,
+          "rs_momentum": 97.196
         }
       ],
-      "sector_ret_5d": -5.91,
+      "sector_ret_5d": -5.76,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
@@ -3347,9 +3377,13 @@
         {
           "rs_ratio": 94.412,
           "rs_momentum": 93.525
+        },
+        {
+          "rs_ratio": 95.27,
+          "rs_momentum": 94.273
         }
       ],
-      "sector_ret_5d": -0.59,
+      "sector_ret_5d": -0.71,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
@@ -3359,10 +3393,6 @@
       "rs_momentum": 108.294,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 84.995,
-          "rs_momentum": 89.419
-        },
         {
           "rs_ratio": 84.999,
           "rs_momentum": 89.835
@@ -3518,9 +3548,13 @@
         {
           "rs_ratio": 114.105,
           "rs_momentum": 111.166
+        },
+        {
+          "rs_ratio": 112.003,
+          "rs_momentum": 108.294
         }
       ],
-      "sector_ret_5d": -14.65,
+      "sector_ret_5d": -15.7,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -3530,10 +3564,6 @@
       "rs_momentum": 103.467,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 95.113,
-          "rs_momentum": 96.137
-        },
         {
           "rs_ratio": 93.948,
           "rs_momentum": 92.799
@@ -3689,9 +3719,13 @@
         {
           "rs_ratio": 108.939,
           "rs_momentum": 106.374
+        },
+        {
+          "rs_ratio": 106.635,
+          "rs_momentum": 103.467
         }
       ],
-      "sector_ret_5d": -1.81,
+      "sector_ret_5d": -1.98,
       "improving_count": 0,
       "watch_count": 1,
       "total": 3
@@ -3701,10 +3735,6 @@
       "rs_momentum": 106.494,
       "quadrant": "leading",
       "tail": [
-        {
-          "rs_ratio": 101.802,
-          "rs_momentum": 98.787
-        },
         {
           "rs_ratio": 100.599,
           "rs_momentum": 95.498
@@ -3860,15 +3890,31 @@
         {
           "rs_ratio": 112.128,
           "rs_momentum": 107.501
+        },
+        {
+          "rs_ratio": 111.806,
+          "rs_momentum": 106.494
         }
       ],
-      "sector_ret_5d": -1.48,
+      "sector_ret_5d": -1.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
     }
   },
   "sources": [
+    {
+      "source": "yonhap",
+      "title": "KB증권 \"젠슨 황 복귀, 삼성전자·SK하이닉스 저평가 해소 촉매\"",
+      "link": "https://www.yna.co.kr/view/AKR20261125028800008",
+      "published": "Wed, 25 Nov 2026 08:36:07 +0900"
+    },
+    {
+      "source": "investors",
+      "title": "Dow Jones Futures Fall: Nvidia, Anthropic Lead AI Retreat But Many Sectors Strong; Fed Inflation Data Due",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-anthropic-ai-retreat-fed-inflation-data/",
+      "published": "Tue, 24 Nov 2026 22:04:05 +0000"
+    },
     {
       "source": "investors",
       "title": "Tesla, SpaceX Reportedly Pick Board Members To Negotiate Elon Musk's Mega Merger",
@@ -3882,10 +3928,34 @@
       "published": "Tue, 24 Nov 2026 13:00:32 +0000"
     },
     {
+      "source": "maeil",
+      "title": "“매일 치료 받고 있다”…젠슨 황, 엔비디아 전직원에게 사과",
+      "link": "https://www.mk.co.kr/news/world/12217701",
+      "published": "Wed, 25 Nov 2026 07:47:28 +09:00"
+    },
+    {
+      "source": "maeil",
+      "title": "“메가 LCC 중심된 ‘진에어’, 항공유 정상화까지 호재 가득”…목표가↑",
+      "link": "https://www.mk.co.kr/news/stock/12217711",
+      "published": "Wed, 25 Nov 2026 08:05:59 +09:00"
+    },
+    {
+      "source": "yonhap",
+      "title": "마지막 금리인상에 베팅?…외인, 금통위 앞두고 국채선물 대량 매수",
+      "link": "https://www.yna.co.kr/view/AKR20261124171200008",
+      "published": "Wed, 25 Nov 2026 08:00:02 +0900"
+    },
+    {
+      "source": "maeil",
+      "title": "“CJ제일제당, 잃을 것 없는 주가…내년 식품·바이오 실적 개선 기대”",
+      "link": "https://www.mk.co.kr/news/stock/12217698",
+      "published": "Wed, 25 Nov 2026 07:37:36 +09:00"
+    },
+    {
       "source": "cnbc_world",
       "title": "Saudi national charged in OpenAI bugging to be released on $1 million bond",
       "link": "https://www.cnbc.com/2026/11/24/openai-bugging-aflozan-release-saudi.html",
-      "published": "Tue, 24 Nov 2026 21:54:49 GMT"
+      "published": "Tue, 24 Nov 2026 22:03:01 GMT"
     },
     {
       "source": "cnbc_tech",
@@ -3912,82 +3982,45 @@
       "published": "Tue, 24 Nov 2026 17:41:23 +0000"
     },
     {
-      "source": "seeking_alpha",
-      "title": "SA Asks: What should Nvidia investors be watching for in the next few weeks?",
-      "link": "https://seekingalpha.com/news/4676388-sa-asks-what-should-nvidia-investors-be-watching-for-in-the-next-few-weeks?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-      "published": "Tue, 24 Nov 2026 16:50:16 -0500"
-    },
-    {
-      "source": "benzinga",
-      "title": "HP Posts Strong Q4 Earnings with AI PCs Nearly 60% of Shipments",
-      "link": "https://www.benzinga.com/markets/earnings/26/11/63610829/hp-posts-strong-q4-earnings-with-ai-pcs-nearly-60-of-shipments",
-      "published": "Tue, 24 Nov 2026 21:44:47 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Dell earnings beat on AI strength, company authorizes $25 billion buyback",
-      "link": "https://www.cnbc.com/2026/11/24/dell-earnings-report-q3-2027.html",
-      "published": "Tue, 24 Nov 2026 21:29:03 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Micron’s stock falls as an analyst warns about a future supply glut",
-      "link": "https://www.marketwatch.com/story/microns-stock-falls-as-an-analyst-warns-about-a-future-supply-glut-f7fbeefb?mod=mw_rss_topstories",
-      "published": "Tue, 24 Nov 2026 21:22:00 GMT"
-    },
-    {
-      "source": "bloomberg",
-      "title": "Nvidia Option Trader Scores 1,984% Gain After CEO Huang’s Return",
-      "link": "https://www.bloomberg.com/news/articles/2026-11-24/nvidia-option-trader-scores-1-984-gain-after-ceo-huang-s-return",
-      "published": "Tue, 24 Nov 2026 21:17:23 GMT"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Nvidia shares fall more than 5% as Huang comeback rally cools",
-      "link": "https://www.cnbc.com/2026/11/24/nvidia-stock-jensen-huang-return.html",
-      "published": "Tue, 24 Nov 2026 21:15:23 GMT"
-    },
-    {
-      "source": "marketwatch",
-      "title": "Nvidia’s stock drops as these major questions loom over Jensen Huang’s return",
-      "link": "https://www.marketwatch.com/story/nvidias-stock-drops-as-these-major-questions-loom-over-jensen-huangs-return-9096636f?mod=mw_rss_topstories",
-      "published": "Tue, 24 Nov 2026 21:14:00 GMT"
-    },
-    {
       "source": "cnbc_world",
       "title": "Jensen Huang tells staff that Nvidia doesn't need a succession plan",
       "link": "https://www.cnbc.com/2026/11/24/jensen-huang-nvidia-employee-meeting.html",
-      "published": "Tue, 24 Nov 2026 20:42:07 GMT"
+      "published": "Tue, 24 Nov 2026 23:13:49 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "Micron boosted CEO Sanjay Mehrotra’s security budget by 2,000%, new filing shows",
+      "link": "https://www.marketwatch.com/story/micron-boosted-ceo-sanjay-mehrotras-security-budget-by-2-000-new-filing-shows-d6202acc?mod=mw_rss_topstories",
+      "published": "Tue, 24 Nov 2026 23:11:00 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "엔비디아 급락 주도로 필라델피아반도체 -7.88%, 나스닥 -1.48% 하락 — Huang 복귀 랠리 반전과 AI 데이터센터 지출 우려 재부상으로 반도체·테크 동반 하락. 국내는 Reflex 9단계(투매) 23일째, Momentum 13.1(기준 50 대비 -37), 주식 비중 0% 대기 국면 지속",
+  "sentiment_reason": "간밤 미국장 필라델피아반도체 -7.88% 급락·NASDAQ -1.48% 등 AI 투자 불확실성 재점화로 국내 반도체 하락 압력 예상 — 오늘 한국장 개장 전이므로 아직 반영 전이며 오늘 하락 출발 가능성",
   "key_factors": [
-    "엔비디아 -5.86% 급락 — 월요일 Huang 복귀 랠리 반전, 데이터센터 지출 감소 우려 재부상과 AI 부채시장 경계로 필라델피아반도체 -7.88% 급락",
-    "반도체 전반 패닉 — Micron -10.97%(공급 과잉 경고), Marvell -9.10%, ARM -8.55%, AMD -7% 등 동반 급락으로 테크 Risk-Off 심화",
-    "Dell 실적 호조(AI 수요, 250억달러 자사주 매입)에도 주가 하락 — AI 수혜 확인 뒤에도 지출 우려가 실적 개선을 압도하는 구조",
-    "국내 시장 폭 20일선 위 38.7%, 60일선 위 30.6%로 소폭 개선에도 외국인 20일 누적 -16.3조원, 거래대금 평균 대비 0.87배로 Momentum 여전히 극약세"
+    "Nvidia 주가 간밤 -5.86% 급락 — 젠슨 황 복귀 호재 1일 만에 소멸, Anthropic 밸류에이션(기업 가치) 하락·AI 데이터센터 투자 둔화 우려 확산",
+    "필라델피아반도체 -7.88%, Micron -10.97%·Marvell -9.10%·AMD -8.55% 동반 급락 — AI 수요 지속성과 공급 과잉 경고 재부상",
+    "Dell 실적 호조(EPS $9.45 vs 예상 $6.59)·$250억 자사주 매입 발표, 러셀2000 +0.57%, DOW +0.85% — AI 외 섹터는 견조하나 국내 영향 제한적"
   ],
-  "news_summary": "Bond Traders Rush to Hedge Risk of Fed Hikes Stalling Economy — 채권 트레이더들이 연준 긴축이 경기를 둔화시킬 위험에 대비한 헤지 수요 급증. 국채 2년 +0.51%, 10년 -0.28%로 커브 플래트닝(장단기 금리차 축소) 진행, 테크 급락과 맞물려 경기 둔화 우려 반영\n달러인덱스 -0.48% 하락 — 국채 10년 금리 하락과 테크 약세로 안전자산(엔·금) 선호, 연준 긴축 기대 후퇴. 원달러 -0.29%로 원화 동조 강세\n금 -2.70% 급락 — 월요일 엔비디아 랠리로 Risk-On 전환 기대에 안전자산 수요 감소. 화요일 테크 반전에도 반등 없이 하락 지속, Risk-On 잔존 신호\nWTI유가 +1.82% 상승 — 중동 지정학 리스크(사우디 OpenAI 사건) 및 달러 약세가 원자재 가격 지지. 구리 -2.55%, 알루미늄 -5.00% 급락은 AI 지출 우려 반영\n트럼프 엔비디아 이사회 개입 — Op-ed: Trump's Nvidia board intervention put a price on national security. 대통령이 엔비디아 이사회 결정(Huang 복귀)에 직접 개입하며 국가 안보를 거래한 선례 비판. 적대국이 주목할 신호로 지적\n사우디 국적자 OpenAI 도청 혐의 100만달러 보석 석방 — Abdulrahman Alfozan(35세)이 OpenAI 임원 회의실 도청 혐의로 기소됐으나 보석 석방. AI 기술 유출 리스크 부각, 중동 지정학 긴장 연장선\n엔비디아 최대 동남아 고객 블랙리스트 — Nvidia's Biggest Southeast Asian Buyer Just Got Blacklisted. 미국 정부가 1년 만에 첫 엔티티리스트 추가, 엔비디아 수출 규제 강화 신호\n엔비디아 -5.86% 급락 — Huang 복귀 월요일 36% 랠리 반전. AI 데이터센터 지출 감소 우려 재부상(Nvidia, Chip Stocks Fall As Data Center Spending Fears Return), AI 부채시장 경계(AI debt markets shudder as Nvidia's top banker returns)로 패닉 매도. Huang은 직원 회의에서 승계 계획 불필요 발언, 거버넌스 논란 지속\nMicron -10.97% 급락 — 애널리스트가 향후 공급 과잉(future supply glut) 경고. HBM·DDR5 수요 호조에도 2027년 생산 증가로 가격 압박 우려. 필라델피아반도체 -7.88% 급락 주도\nDell 실적 호조에도 주가 하락 — 3분기 EPS $9.45(예상 $6.59 상회), AI PC 출하 60% 육박, 250억달러 자사주 매입 승인. 4분기 가이던스도 강세였으나 AI 지출 우려가 실적 개선을 압도하며 장 마감 후 하락\nHP 4분기 실적 호조 — AI PC가 전체 출하의 거의 60% 차지. 실적 상회에도 AI 지출 우려로 시장 반응 제한적\nTesla·SpaceX 이사회 Musk 메가 합병 협상 착수 — 5명 이사(Tesla 3명, SpaceX 2명) 선임. Robotaxi 경쟁사 Uber·Lucid 파트너십이 샌프란시스코 무인 도로 테스트 시작, Tesla 경쟁 심화\nMeta Instagram으로 Muse AI 에이전트 광고 부스트 — 개인 AI 에이전트 Muse가 무료임에도 Instagram 광고 수익 견인. AI 수익화 경로 다각화 신호\n삼성전자 임원 승진 131명 — 작년 대비 20% 감축, 여성 임원 11명 역대 최다. HBM·파운드리·로봇 전문가 대거 발탁, 반도체 부문 성과 보상 집중",
+  "news_summary": "연준 선호 인플레 지표 PCE(개인소비지출물가지수) 오늘 미국 개장 전 발표 예정 — 국채 2Y +0.51%, 10Y -0.28%로 단기 금리 인상 기대 지속\n한국은행 금통위 26일 기준금리 결정 — 증권사 16곳 모두 0.25%p 인상 전망, 외국인은 금통위 앞두고 국채선물 대량 매수(연합뉴스 보도)\nWTI유가 +1.81%(81.62달러) — 중동 지정학 긴장 지속과 DOW·러셀2000 상승 동조, 에너지 섹터 강세\n달러인덱스 -0.45%(103.85), 금 -2.51%(3559.7달러) — 비기술주 강세와 VIX -0.98%로 안전자산 수요 감소\n트럼프 대통령, Nvidia 이사회 개입으로 젠슨 황 복귀 주도 — CNBC 오피니언 보도에 따르면 국가안보에 가격을 매겨 적성국이 주목할 선례 남김\n사우디 국적자 Abdulrahman Alfozan, OpenAI 임원 회의실 도청 혐의로 기소 — 100만 달러 보석 허가, 수요일 석방 예정(CNBC 보도)\nTesla·SpaceX 합병 협상 이사회 구성 — Financial Times 보도에 따르면 Tesla 3명, SpaceX 2명 이사 선임\nNvidia 주가 간밤 -5.86% 급락 — 젠슨 황 복귀 1일 후 Anthropic 밸류에이션 IPO 대비 급락·AI 채권시장 동요(AI debt markets shudder, CNBC 보도)로 데이터센터 투자 둔화 우려 재점화\nMicron -10.97% 폭락 — Marketwatch 보도에 따르면 애널리스트가 향후 공급 과잉(supply glut) 경고, Marvell -9.10%·AMD -8.55%·Arm -8.55% 동반 급락\nDell 3분기 실적 호조 — EPS $9.45(예상 $6.59 상회), AI PC 출하 60% 도달, $250억(약 33조원) 자사주 매입 승인 발표로 간밤 시간외 주가 상승\nKB증권, 젠슨 황 복귀로 삼성전자·SK하이닉스 저평가 해소 촉매 전망 — AI 투자 불확실성 완화, 두 종목을 반도체 업종 최선호주로 제시(연합뉴스 보도)\n젠슨 황, Nvidia 전사회의에서 사과 — 블룸버그 보도에 따르면 24일 복귀 후 하루 만에 개인적 실수 인정, 중국 스파이 의혹 받은 앨리스 황 등과 부적절한 관계 시인\nHP 4분기 실적 호조 — AI PC가 출하의 거의 60% 차지, Benzinga 보도",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "Bond Traders Rush to Hedge Risk of Fed Hikes Stalling Economy — 채권 트레이더들이 연준 긴축이 경기를 둔화시킬 위험에 대비한 헤지 수요 급증. 국채 2년 +0.51%, 10년 -0.28%로 커브 플래트닝(장단기 금리차 축소) 진행, 테크 급락과 맞물려 경기 둔화 우려 반영",
+          "text": "연준 선호 인플레 지표 PCE(개인소비지출물가지수) 오늘 미국 개장 전 발표 예정 — 국채 2Y +0.51%, 10Y -0.28%로 단기 금리 인상 기대 지속",
           "impact": "high"
         },
         {
-          "text": "달러인덱스 -0.48% 하락 — 국채 10년 금리 하락과 테크 약세로 안전자산(엔·금) 선호, 연준 긴축 기대 후퇴. 원달러 -0.29%로 원화 동조 강세",
+          "text": "한국은행 금통위 26일 기준금리 결정 — 증권사 16곳 모두 0.25%p 인상 전망, 외국인은 금통위 앞두고 국채선물 대량 매수(연합뉴스 보도)",
           "impact": "mid"
         },
         {
-          "text": "금 -2.70% 급락 — 월요일 엔비디아 랠리로 Risk-On 전환 기대에 안전자산 수요 감소. 화요일 테크 반전에도 반등 없이 하락 지속, Risk-On 잔존 신호",
+          "text": "WTI유가 +1.81%(81.62달러) — 중동 지정학 긴장 지속과 DOW·러셀2000 상승 동조, 에너지 섹터 강세",
           "impact": "mid"
         },
         {
-          "text": "WTI유가 +1.82% 상승 — 중동 지정학 리스크(사우디 OpenAI 사건) 및 달러 약세가 원자재 가격 지지. 구리 -2.55%, 알루미늄 -5.00% 급락은 AI 지출 우려 반영",
+          "text": "달러인덱스 -0.45%(103.85), 금 -2.51%(3559.7달러) — 비기술주 강세와 VIX -0.98%로 안전자산 수요 감소",
           "impact": "mid"
         }
       ]
@@ -3997,15 +4030,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "트럼프 엔비디아 이사회 개입 — Op-ed: Trump's Nvidia board intervention put a price on national security. 대통령이 엔비디아 이사회 결정(Huang 복귀)에 직접 개입하며 국가 안보를 거래한 선례 비판. 적대국이 주목할 신호로 지적",
+          "text": "트럼프 대통령, Nvidia 이사회 개입으로 젠슨 황 복귀 주도 — CNBC 오피니언 보도에 따르면 국가안보에 가격을 매겨 적성국이 주목할 선례 남김",
           "impact": "high"
         },
         {
-          "text": "사우디 국적자 OpenAI 도청 혐의 100만달러 보석 석방 — Abdulrahman Alfozan(35세)이 OpenAI 임원 회의실 도청 혐의로 기소됐으나 보석 석방. AI 기술 유출 리스크 부각, 중동 지정학 긴장 연장선",
+          "text": "사우디 국적자 Abdulrahman Alfozan, OpenAI 임원 회의실 도청 혐의로 기소 — 100만 달러 보석 허가, 수요일 석방 예정(CNBC 보도)",
           "impact": "mid"
         },
         {
-          "text": "엔비디아 최대 동남아 고객 블랙리스트 — Nvidia's Biggest Southeast Asian Buyer Just Got Blacklisted. 미국 정부가 1년 만에 첫 엔티티리스트 추가, 엔비디아 수출 규제 강화 신호",
+          "text": "Tesla·SpaceX 합병 협상 이사회 구성 — Financial Times 보도에 따르면 Tesla 3명, SpaceX 2명 이사 선임",
           "impact": "mid"
         }
       ]
@@ -4015,31 +4048,27 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "엔비디아 -5.86% 급락 — Huang 복귀 월요일 36% 랠리 반전. AI 데이터센터 지출 감소 우려 재부상(Nvidia, Chip Stocks Fall As Data Center Spending Fears Return), AI 부채시장 경계(AI debt markets shudder as Nvidia's top banker returns)로 패닉 매도. Huang은 직원 회의에서 승계 계획 불필요 발언, 거버넌스 논란 지속",
+          "text": "Nvidia 주가 간밤 -5.86% 급락 — 젠슨 황 복귀 1일 후 Anthropic 밸류에이션 IPO 대비 급락·AI 채권시장 동요(AI debt markets shudder, CNBC 보도)로 데이터센터 투자 둔화 우려 재점화",
           "impact": "high"
         },
         {
-          "text": "Micron -10.97% 급락 — 애널리스트가 향후 공급 과잉(future supply glut) 경고. HBM·DDR5 수요 호조에도 2027년 생산 증가로 가격 압박 우려. 필라델피아반도체 -7.88% 급락 주도",
+          "text": "Micron -10.97% 폭락 — Marketwatch 보도에 따르면 애널리스트가 향후 공급 과잉(supply glut) 경고, Marvell -9.10%·AMD -8.55%·Arm -8.55% 동반 급락",
           "impact": "high"
         },
         {
-          "text": "Dell 실적 호조에도 주가 하락 — 3분기 EPS $9.45(예상 $6.59 상회), AI PC 출하 60% 육박, 250억달러 자사주 매입 승인. 4분기 가이던스도 강세였으나 AI 지출 우려가 실적 개선을 압도하며 장 마감 후 하락",
+          "text": "Dell 3분기 실적 호조 — EPS $9.45(예상 $6.59 상회), AI PC 출하 60% 도달, $250억(약 33조원) 자사주 매입 승인 발표로 간밤 시간외 주가 상승",
           "impact": "high"
         },
         {
-          "text": "HP 4분기 실적 호조 — AI PC가 전체 출하의 거의 60% 차지. 실적 상회에도 AI 지출 우려로 시장 반응 제한적",
+          "text": "KB증권, 젠슨 황 복귀로 삼성전자·SK하이닉스 저평가 해소 촉매 전망 — AI 투자 불확실성 완화, 두 종목을 반도체 업종 최선호주로 제시(연합뉴스 보도)",
           "impact": "mid"
         },
         {
-          "text": "Tesla·SpaceX 이사회 Musk 메가 합병 협상 착수 — 5명 이사(Tesla 3명, SpaceX 2명) 선임. Robotaxi 경쟁사 Uber·Lucid 파트너십이 샌프란시스코 무인 도로 테스트 시작, Tesla 경쟁 심화",
+          "text": "젠슨 황, Nvidia 전사회의에서 사과 — 블룸버그 보도에 따르면 24일 복귀 후 하루 만에 개인적 실수 인정, 중국 스파이 의혹 받은 앨리스 황 등과 부적절한 관계 시인",
           "impact": "mid"
         },
         {
-          "text": "Meta Instagram으로 Muse AI 에이전트 광고 부스트 — 개인 AI 에이전트 Muse가 무료임에도 Instagram 광고 수익 견인. AI 수익화 경로 다각화 신호",
-          "impact": "mid"
-        },
-        {
-          "text": "삼성전자 임원 승진 131명 — 작년 대비 20% 감축, 여성 임원 11명 역대 최다. HBM·파운드리·로봇 전문가 대거 발탁, 반도체 부문 성과 보상 집중",
+          "text": "HP 4분기 실적 호조 — AI PC가 출하의 거의 60% 차지, Benzinga 보도",
           "impact": "mid"
         }
       ]
@@ -4047,208 +4076,183 @@
   ],
   "macro_reasons": {
     "S&P500": {
-      "reason": "엔비디아 -5.86% 주도로 테크 대형주 약세 — Huang 복귀 랠리 반전, 데이터센터 지출 우려 재부상으로 나스닥 -1.48% 하락이 지수 전체 압박. 필수소비재·헬스케어 Leading 섹터의 상대 강세가 하락폭 제한(-0.50%)",
+      "reason": "Nvidia -5.86% 급락과 반도체 전반 약세(-7.88%)가 지수를 끌어내렸으나 에너지·금융·필수소비재 강세로 낙폭 제한 — CNBC 보도에 따르면 젠슨 황 복귀 1일 후 AI 투자 과열 경계론 재확산",
       "drivers": [
-        "엔비디아 -5.86%로 테크 대형주 동반 급락",
-        "AI 데이터센터 지출 감소 우려 재부상",
-        "다우 +0.85%, 러셀2000 +0.57% 중소형주·경기방어 상대 강세"
+        "NVDA -5.86% (Anthropic 밸류에이션 하락·데이터센터 투자 둔화 우려)",
+        "필라델피아반도체 -7.88%",
+        "에너지(WTI +1.81%)·방어주 강세로 낙폭 완충"
       ]
     },
     "NASDAQ": {
-      "reason": "엔비디아 주도 반도체·AI 관련주 패닉 매도 — Huang 복귀 36% 랠리가 하루 만에 반전, Micron 공급 과잉 경고(-10.97%), Marvell -9.10%, ARM -8.55% 등으로 테크 약세 집중. Dell 실적 호조에도 하락",
+      "reason": "Nvidia·Micron·Marvell·AMD 등 반도체 주력주 동반 급락으로 -1.48% 하락 — Investors.com 보도에 따르면 데이터센터 지출 둔화 공포(fears) 재점화",
       "drivers": [
-        "필라델피아반도체 -7.88%, 엔비디아 -5.86%",
-        "Micron -10.97%(공급 과잉 경고)",
-        "AI 부채시장 경계 — Huang 복귀로 엔비디아 AI 금융 역할 불확실성"
+        "NVDA -5.86%",
+        "Micron -10.97%, Marvell -9.10%, AMD -8.55%"
       ]
     },
     "DOW": {
-      "reason": "반도체 급락 속 경기방어 섹터 상대 강세 — 다우 구성 중 금융·산업재 위주 종목이 필수소비재·헬스케어 Leading 흐름에 동조하며 +0.85% 상승. 러셀2000 +0.57%와 함께 테크 외 자금 이동 신호",
+      "reason": "반도체 비중 낮은 가운데 금융·산업재·에너지 강세로 +0.85% 상승 — 러셀2000 +0.57%와 함께 전통 경기주 선호 이동",
       "drivers": [
-        "필수소비재XLP, 헬스케어XLV Leading 지속",
-        "중소형주 러셀2000 +0.57% 동반 상승",
-        "테크 XLK Lagging으로 대형주 차별화"
+        "금융·산업재 강세",
+        "WTI유가 +1.81%"
       ]
     },
     "VIX": {
-      "reason": "-0.98%로 소폭 하락에도 26.36 수준 유지 — 월요일 급등(변동성 급증) 후 반도체 패닉에도 추가 상승 없이 고공 비행 지속. 테크 약세가 예상 범위 내로 인식되며 공포 추가 확대는 제한",
+      "reason": "-0.98% 소폭 하락하나 26.36 고점 근처 유지 — 반도체 급락에도 비기술주 강세로 전체 변동성 완화",
       "drivers": [
-        "월요일 급등 후 반전 없이 고공(26.36) 유지",
-        "엔비디아 -5.86% 패닉에도 추가 급등 없음"
+        "DOW +0.85%, 러셀2000 +0.57% 안정"
       ]
     },
     "필라델피아반도체": {
-      "reason": "-7.88% 급락 — 엔비디아 Huang 복귀 랠리 반전, 데이터센터 지출 감소 우려 재부상과 Micron 공급 과잉 경고로 반도체 전반 패닉. Micron -10.97%, Marvell -9.10%, ARM -8.55%, AMD -7% 등 동반 급락",
+      "reason": "-7.88% 급락 — Nvidia 복귀 랠리 1일 만에 반전, Anthropic IPO 대비 밸류에이션 급락·Marketwatch 보도 Micron 공급 과잉(supply glut) 경고·AI 수요 지속성 의문 재점화",
       "drivers": [
-        "엔비디아 -5.86% — Huang 복귀 36% 랠리 반전",
-        "Micron -10.97% — UBS 공급 과잉 경고",
-        "AI 데이터센터 지출 감소 우려 재부상"
+        "NVDA -5.86% (Anthropic 밸류에이션 하락·AI 투자 불확실성)",
+        "Micron -10.97% (애널리스트 공급 과잉 경고)",
+        "Marvell -9.10%, AMD -8.55%"
       ]
     },
     "러셀2000": {
-      "reason": "+0.57% 상승 — 테크 대형주 약세 속 중소형주로 자금 이동. 다우 +0.85%와 함께 경기방어·금융 중심 상대 강세 흐름. 필수소비재·헬스케어 Leading, 기술 XLK Lagging 로테이션이 중소형주에 우호적",
+      "reason": "+0.57% 상승 — 기술주 급락 속 중소형·경기주로 자금 이동, DOW와 동조",
       "drivers": [
-        "테크 대형주 급락 속 자금 이동",
-        "금융XLF, 필수소비재XLP Leading 동조",
-        "다우 +0.85% 경기방어 상대 강세"
-      ]
-    },
-    "영국FTSE": {
-      "reason": "-0.13% 소폭 하락 — 미국 테크 약세 여파 제한적, 직접 촉매 없음. 유럽 DAX -1.26% 대비 낙폭 작아 상대 양호. 필수소비재·헬스케어 중심 구성이 테크 충격 완충",
-      "drivers": [
-        "미국 테크 약세 여파 제한적",
-        "유럽 DAX -1.26% 대비 상대 양호"
-      ]
-    },
-    "독일DAX": {
-      "reason": "-1.26% 하락 — 미국 나스닥 -1.48%, 필라델피아반도체 -7.88% 급락에 유럽 테크·산업재 동조 약세. SAP 등 소프트웨어, Infineon 등 반도체 관련 비중이 하락 주도. 직접 촉매 없으나 글로벌 테크 Risk-Off 동조",
-      "drivers": [
-        "미국 반도체 -7.88% 급락 여파",
-        "유럽 테크·산업재 동조 약세"
-      ]
-    },
-    "니케이": {
-      "reason": "-5.06% 급락 — 엔비디아 월요일 36% 급등 후 화요일 -5.86% 반전으로 일본 반도체·전자 주도 하락. 도쿄일렉트론·어드밴테스트 등 반도체 장비주 패닉. 필라델피아반도체 -7.88% 여파가 아시아 테크 직격",
-      "drivers": [
-        "엔비디아 -5.86% 반전 충격",
-        "필라델피아반도체 -7.88% 여파",
-        "도쿄일렉트론·어드밴테스트 반도체 장비주 급락"
-      ]
-    },
-    "항셍": {
-      "reason": "-0.12% 보합권 — 미국 테크 급락 여파 제한적. 텐센트·알리바바 등 중국 테크 비중이 상대 작고, 금융·부동산 중심 구성이 반도체 충격 완충. 직접 촉매 없이 글로벌 Risk-Off 약한 동조",
-      "drivers": [
-        "미국 테크 급락 여파 제한적",
-        "중국 테크 비중 작아 완충"
-      ]
-    },
-    "달러인덱스": {
-      "reason": "-0.48% 하락 — 국채 2년물 +0.51% 상승에도 10년물 -0.28% 하락으로 장단기 금리 차 축소. 연준 긴축 기대 후퇴와 테크 약세로 안전자산(엔·금) 선호 — 달러 약세. Bond Traders Rush to Hedge Risk of Fed Hikes Stalling Economy 보도",
-      "drivers": [
-        "국채 10년 -0.28% 하락 — 긴축 기대 후퇴",
-        "테크 약세로 안전자산 선호",
-        "연준 긴축 경기 둔화 우려 — 채권 헤지 수요 급증"
+        "기술주 외 섹터 선호 이동"
       ]
     },
     "국채2Y": {
-      "reason": "+0.51% 상승(금리 상승) — 단기 긴축 기대 일부 유지, Bond Traders Rush to Hedge Risk of Fed Hikes Stalling Economy 보도로 단기 금리 헤지 수요. 10년물 -0.28% 하락 대비 커브 플래트닝(장단기 금리차 축소) 진행",
+      "reason": "+0.51% 상승(4.17%) — 단기 금리 인상 기대 지속, 오늘 발표 예정인 연준 선호 인플레 지표 PCE(개인소비지출물가지수) 대기",
       "drivers": [
-        "단기 긴축 기대 일부 유지",
-        "채권 헤지 수요 — 연준 긴축 경기 둔화 우려"
+        "연준 PCE 발표 대기"
       ]
     },
     "국채10Y": {
-      "reason": "-0.28% 하락(금리 하락) — 테크 급락과 AI 지출 우려로 경기 둔화 기대, 장기 안전자산 수요 증가. 2년물 +0.51% 상승 대비 커브 플래트닝 진행. Bond Traders Rush to Hedge Risk 보도",
+      "reason": "-0.28% 하락(4.9%) — 기술주 급락 속 안전자산 수요 일부 유입, 2Y와의 스프레드 축소",
       "drivers": [
-        "테크 급락·AI 지출 우려 — 경기 둔화 기대",
-        "장기 안전자산 수요 증가"
+        "반도체 급락 → 안전자산 선호"
       ]
     },
-    "코스피": {
-      "reason": "+0.00% 보합 — 외국인 1일 +6,110억 순매수, 기관 +9,057억 순매수로 개인 -2.0조 순매도 흡수. 미국 반도체 급락 여파 제한적(Reflex 9단계 투매 국면 23일째로 추가 하락 여력 작음). 거래대금 19.6조(평균 대비 0.87배) 저조, 20일선 위 30.4%로 시장 폭 여전히 취약",
+    "달러인덱스": {
+      "reason": "-0.45% 하락(103.85) — 연준 PCE 발표 전 관망, 유럽 DAX +2.15% 강세로 유로 강세 영향",
       "drivers": [
-        "외국인 +6,110억·기관 +9,057억 순매수",
-        "개인 -2.0조 순매도 — 수급 대립",
-        "미국 반도체 -7.88% 급락 여파 제한적"
-      ]
-    },
-    "코스닥": {
-      "reason": "+0.00% 보합 — 외국인 +1,149억·기관 +2,134억 순매수가 개인 -3,127억 순매도 흡수. 미국 나스닥 -1.48% 하락에도 Reflex 9단계 투매 23일째로 추가 하락폭 제한. 20일선 위 42.5%로 코스피(30.4%)보다 시장 폭 양호하나 거래대금 저조(평균 대비 0.87배)",
-      "drivers": [
-        "외국인 +1,149억·기관 +2,134억 순매수",
-        "개인 -3,127억 순매도",
-        "나스닥 -1.48% 여파 제한적 — Reflex 9단계 추가 하락 여력 작음"
+        "유럽 증시 강세"
       ]
     },
     "금": {
-      "reason": "-2.70% 급락 — 월요일 엔비디아 36% 급등 랠리로 Risk-On 전환 기대에 안전자산 수요 감소. 화요일 테크 반전에도 반등 없이 하락 지속 — 달러인덱스 -0.48% 약세에도 금 약세는 Risk-On 잔존 신호",
+      "reason": "-2.51% 급락(3559.7) — 간밤 DOW·러셀2000 상승과 VIX 하락으로 안전자산 수요 감소",
       "drivers": [
-        "월요일 엔비디아 랠리 — Risk-On 전환 기대",
-        "안전자산 수요 감소 지속",
-        "달러 -0.48% 약세에도 금 반등 없음"
+        "DOW +0.85%, 러셀2000 +0.57%",
+        "VIX -0.98%"
       ]
     },
     "WTI유가": {
-      "reason": "+1.82% 상승 — 중동 지정학 리스크 잔존(사우디 OpenAI 버그 사건 등) 및 공급 우려. 달러인덱스 -0.48% 약세가 원자재 가격 지지. 테크 급락에도 경기방어·유틸리티 Leading 흐름이 수요 기대 유지",
+      "reason": "+1.81% 상승(81.62) — 중동 지정학 긴장 지속과 경기주 강세 동조",
       "drivers": [
-        "중동 지정학 리스크 — 사우디 OpenAI 사건",
-        "달러 -0.48% 약세 — 원자재 가격 지지"
+        "중동 지정학 리스크",
+        "DOW·러셀2000 상승"
       ]
     },
     "원달러": {
-      "reason": "-0.29% 하락(원화 강세) — 외국인 코스피 +6,110억·코스닥 +1,149억 순매수 유입. 달러인덱스 -0.48% 약세 동조. 미국 테크 급락에도 국내 추가 하락 제한(Reflex 9단계 23일째)으로 원화 방어",
+      "reason": "-0.24% 하락(1341.12) — 간밤 달러인덱스 -0.45% 약세 반영, 오늘 금통위(금융통화위원회) 기준금리 결정(0.25%p 인상 예상) 대기로 큰 변동 없음",
       "drivers": [
-        "외국인 +7,259억 순매수 유입",
-        "달러인덱스 -0.48% 약세 동조"
+        "달러인덱스 -0.45%",
+        "금통위 대기"
       ]
     },
     "알루미늄": {
-      "reason": "-5.00% 급락 — 중국 경기 둔화 우려 지속(항셍 -0.12% 보합권) 및 AI 데이터센터 지출 감소 우려로 산업 금속 수요 기대 약화. 구리 -2.55% 동반 하락으로 원자재 전반 Risk-Off",
+      "reason": "-5.00% 급락(2752.5) — 중국 수요 둔화 우려와 반도체 급락 동조",
       "drivers": [
-        "중국 경기 둔화 우려",
-        "AI 지출 감소 — 산업 금속 수요 기대 약화"
+        "중국 경기 불안",
+        "기술주 약세 동조"
       ]
     },
     "구리": {
-      "reason": "-2.55% 하락 — AI 데이터센터 지출 감소 우려로 반도체·전자 수요 기대 약화. 필라델피아반도체 -7.88% 급락 여파. 중국 경기 둔화(항셍 보합권) 및 알루미늄 -5.00% 동반 약세로 산업 금속 전반 Risk-Off",
+      "reason": "-2.53% 하락(5.48) — AI 인프라 투자 둔화 우려로 반도체 급락과 동조",
       "drivers": [
-        "AI 지출 감소 우려 — 반도체 수요 약화",
-        "필라델피아반도체 -7.88% 급락 여파",
-        "중국 경기 둔화·알루미늄 -5.00% 동반 약세"
+        "필라델피아반도체 -7.88%"
+      ]
+    },
+    "니케이": {
+      "reason": "-5.06% 급락(56436.65) — 전날(24일) 아시아장에서 미국장 개장 전 선반영, 23일 미국 반도체 약세 여파로 도쿄일렉트론·어드밴테스트 등 반도체 장비주 급락 추정",
+      "drivers": [
+        "23일 미국 반도체 약세 선반영"
+      ]
+    },
+    "항셍": {
+      "reason": "-0.12% 소폭 하락(22383.74) — 중국 본토 부동산·소비 부진 지속, 미국 기술주 영향 제한적",
+      "drivers": [
+        "중국 내수 부진"
+      ]
+    },
+    "영국FTSE": {
+      "reason": "-0.13% 보합(10467.07) — 에너지·금융 강세로 미국 기술주 약세 영향 차단",
+      "drivers": [
+        "에너지·금융 강세"
+      ]
+    },
+    "독일DAX": {
+      "reason": "+2.15% 급등(25337.27) — 유럽 제조업·산업재 강세, 미국 DOW +0.85%와 동조, 반도체 비중 낮아 미국 기술주 급락 무풍지대",
+      "drivers": [
+        "유럽 제조업 강세",
+        "미국 DOW와 동조"
+      ]
+    },
+    "코스피": {
+      "reason": "5006.03 (전일 종가 — 오늘 개장 전) — 간밤 필라델피아반도체 -7.88%, Nvidia -5.86% 급락이 아직 반영 전이며 오늘 개장 시 반도체(삼성전자·SK하이닉스) 중심 하락 압력 예상, 외국인은 전일(24일) +6,110억원 순매수했으나 20일 누적 -14.3조원 순매도 기조 지속 중",
+      "drivers": [
+        "간밤 필라델피아반도체 -7.88% (오늘 개장 후 반영 예정)",
+        "외국인 20일 누적 -14.3조원 순매도 기조"
+      ]
+    },
+    "코스닥": {
+      "reason": "665.88 (전일 종가 — 오늘 개장 전) — 간밤 NASDAQ -1.48% 하락이 아직 반영 전이며 오늘 2차전지·IT 중심 약세 압력, 외국인 전일(24일) +1,149억원 순매수하나 20일 누적 -2.0조원 순매도",
+      "drivers": [
+        "간밤 NASDAQ -1.48% (오늘 개장 후 반영 예정)",
+        "외국인 20일 누적 -2.0조원 순매도"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "엔비디아 급락·필라델피아반도체 -7.88%에도 코스피 보합 — Reflex 9단계(투매) 23일째로 추가 하락 여력 작고 외국인·기관 1일 순매수 +1.5조원 유입이 충격 완충. 단, Momentum 13.1(기준 50 대비 -37), 주식 비중 0% 대기 국면 지속으로 반등 확인 필요",
+    "summary": "간밤 필라델피아반도체 -7.88%·Nvidia -5.86% 급락이 오늘 개장 후 반도체(삼성전자·SK하이닉스) 중심 하락 압력으로 작용 예상 — 국내 시장은 Reflex 9단계 Capitulation(투매), Momentum 13.1(백분위), 주식 비중 0% 권고로 현금 대기 유지",
     "positive_factors": [
-      "외국인 코스피 +6,110억·코스닥 +1,149억 순매수 — 20일 누적 -16.3조원 대비 1일 반전, 미국 테크 급락에도 국내 저가 매수 유입",
-      "Reflex 9단계(투매) 23일째 — 추가 하락 여력 제한적. 20일선 위 38.7%(5일 전 36.6%), 60일선 위 30.6%(5일 전 28.0%)로 시장 폭(market breadth) 소폭 개선, 패닉 매도 진정 초기 신호",
-      "Dell·HP AI PC 실적 호조 — AI PC 출하 60% 육박, 국내 IT부품·디스플레이(삼성디스플레이·LG디스플레이) 수혜 기대 유지"
+      "Dell 실적 호조(AI PC 60%)·$250억 자사주 매입 발표 — 국내 IT부품·디스플레이 중장기 수요 기대 유지",
+      "KB증권, 젠슨 황 복귀로 삼성전자·SK하이닉스 저평가 해소 촉매 전망 — HBM(고대역폭메모리) 수요 불확실성 완화 기대"
     ],
     "negative_factors": [
-      "필라델피아반도체 -7.88%, 엔비디아 -5.86% 급락 — Huang 복귀 랠리 반전, AI 데이터센터 지출 감소 우려 재부상. Micron -10.97% 공급 과잉 경고로 삼성전자·SK하이닉스 HBM 밸류에이션(실적 대비 주가 수준) 압박 리스크",
-      "Momentum 13.1(기준 50 대비 -37), 주식 비중 0% 대기 — 거래대금 19.6조(평균 대비 0.87배) 저조, 20일선 위 코스피 30.4%·코스닥 42.5%로 시장 폭 여전히 취약. Risk-On 전환까지 현금 보유 원칙"
+      "간밤 필라델피아반도체 -7.88%, Nvidia -5.86%, Micron -10.97% 급락 — 오늘 삼성전자·SK하이닉스 하락 압력, 전기전자(Sector Momentum 2위) 타격 예상",
+      "외국인 20일 누적 코스피 -14.3조원·코스닥 -2.0조원 순매도 기조 — 전일(24일) 코스피 +6,110억원 순매수는 일시적 반등 가능성, 오늘 매도 전환 여부 확인 필요"
     ],
-    "key_watch": "삼성전자·SK하이닉스 Micron 공급 과잉 경고 반응 — HBM 수급 타이트 여부 재확인 필요. 외국인 20일 -16.3조 순매도 반전 지속 여부가 Momentum 50 돌파(주식 비중 상향) 조건"
+    "key_watch": "오늘 개장 직후 삼성전자·SK하이닉스 낙폭과 외국인 수급 전환 여부, 미국 PCE 발표(오늘 밤) 후 연준 금리 경로 재평가 — 금통위 26일 0.25%p 인상 시 금융주 단기 변동성"
   },
   "sector_impact": {},
   "strong_buy": [
     {
-      "sector": "전기전자",
-      "rrg_quadrant": "lagging",
+      "sector": "-",
+      "rrg_quadrant": "leading",
       "claude_quadrant": "leading",
-      "reason": "대기 — 미국 AI 지출 우려 재부상으로 엔비디아 -5.86%, Micron -10.97% 급락. Sector Momentum 2위(12개월 상대 +103%)이나 52주 신고가 근처 2%로 추세 취약. 주식 비중 0% 대기 국면(Momentum 13.1, 기준 50)으로 신규 진입 보류. 전환 조건: Fundamentals 56.8(기준 55 이상 충족) 및 Momentum 50 이상 복귀 + 외국인 순매수 지속 확인. 리스크: Micron 공급 과잉 경고가 삼성전자·SK하이닉스 HBM 밸류에이션 압박 가능성"
-    },
-    {
-      "sector": "의료·정밀기기",
-      "rrg_quadrant": "lagging",
-      "claude_quadrant": "leading",
-      "reason": "대기 — Sector Momentum 1위(12개월 상대 +60%), 52주 신고가 근처 4%로 추세 양호. 단, 주식 비중 0%(Momentum 13.1, 기준 50) 대기 국면으로 신규 진입 보류. Dell·HP AI PC 출하 60% 호조가 국내 IT부품 수혜 기대 유지하나 미국 테크 급락 여파 관망 필요. 전환 조건: Momentum 50 이상 복귀 + 거래대금 평균 이상 + 외국인 순매수 20일 누적 적자 축소. 리스크: AI 데이터센터 지출 우려 확산 시 의료기기 수요도 연쇄 약화 가능성"
+      "reason": "현재 주식 비중 0%(Risk-Off) — 매수 권고 없음, 아래는 주식 비중 상승 시 우선 검토 대기 명단"
     }
   ],
   "watch": [
     {
-      "sector": "일반서비스",
-      "reason": "Sector Momentum 3위(12개월 상대 +4%), RRG leading이나 52주 신고가 근처 5%로 추세 중립. 주식 비중 0% 대기 국면으로 신규 진입 보류. 미국 필수소비재XLP·헬스케어XLV Leading 흐름이 국내 일반서비스(코웨이·롯데렌탈 등)에 우호적이나 거래대금 저조(0.87배)로 모멘텀 부족. 전환 조건: Momentum 50 이상 + 거래대금 평균 이상"
+      "sector": "전기전자",
+      "reason": "간밤 필라델피아반도체 -7.88%, Nvidia -5.86%, Micron -10.97% 급락으로 Sector Momentum 2위 전기전자 오늘 급락 예상 — AI 투자 불확실성 재점화, 삼성전자·SK하이닉스 하락 압력"
     },
     {
-      "sector": "건설",
-      "reason": "Sector Momentum 4위(12개월 상대 +88%), 52주 신고가 근처 0%로 추세 취약. 주식 비중 0% 대기 국면, 미국 산업재XLI Leading(R101.7/M100.7)이나 국내 건설은 부동산 PF 리스크 잔존. 전환 조건: 20일선 위 비율 50% 이상 + Momentum 50 이상 복귀"
+      "sector": "IT서비스",
+      "reason": "NASDAQ -1.48%, IT 서비스 RRG leading이나 Sector Momentum 8위 — 간밤 기술주 급락 여파 예상"
     },
     {
-      "sector": "운송장비·부품",
-      "reason": "Sector Momentum 하위 17위(12개월 상대 -15%), RRG leading이나 최근 1개월 수익률 -15%로 모멘텀 취약. 주식 비중 0% 대기, 미국 Tesla Robotaxi 경쟁 심화(Uber·Lucid 무인 테스트)가 국내 자율주행 부품사 압박. Risk-On 전환 시에도 하위 섹터 제외 원칙"
+      "sector": "금융",
+      "reason": "금통위 26일 0.25%p 인상 예상, 외국인 국채선물 대량 매수 — 단기 금리 변동성 확대 시 Sector Momentum 13위 금융 영향"
     }
   ],
   "avoid": [],
-  "summary": "엔비디아 급락·필라델피아반도체 -7.88%에도 코스피 보합 — Reflex 9단계(투매) 23일째 완충, 외국인 1일 +6,110억 순매수 유입. 단, Momentum 13.1(기준 50 대비 -37), 주식 비중 0% 대기 지속 — Micron 공급 과잉 경고로 반도체 관망, 현금(단기채) 100% 보유 원칙",
-  "strategy_brief": "엔비디아 Huang 복귀 랠리가 하루 만에 반전(-5.86%)하며 필라델피아반도체 -7.88%, 나스닥 -1.48% 급락했으나 코스피는 보합권을 지켰다. Reflex 9단계(투매) 23일째로 추가 하락 여력이 작고 외국인 1일 +6,110억·기관 +9,057억 순매수가 개인 -2.0조 순매도를 흡수하며 충격을 완충했기 때문이다. 그러나 Momentum 13.1(기준 50 대비 -37), 거래대금 평균 대비 0.87배, 20일선 위 비율 38.7%로 시장 폭(market breadth)은 여전히 취약해 주식 비중 0% 대기 국면이 지속된다. Micron 공급 과잉 경고(-10.97%)가 HBM 밸류에이션을 압박할 리스크가 있고, Dell·HP AI PC 60% 호조에도 AI 지출 우려가 실적을 압도하는 구조에서 반도체 섹터는 관망이 필요하다. Focus 2(셀트리온·메리츠금융지주)는 시장 조건 미충족(Momentum 13.1<50)으로 대기 명단에 두고, Momentum 50 이상 복귀·외국인 순매수 지속·거래대금 평균 이상 확인 시 전환한다. 현금(단기채) 100% 보유 원칙을 유지하며, 하루 급반등만으로 국면 전환을 단정하지 않고 Momentum과 거래대금 개선을 함께 확인해야 한다.",
-  "strategy_headline": "엔비디아 급락에도 국내 보합 — 투매 23일째 완충, 주식 비중 0% 대기 지속",
+  "summary": "간밤 필라델피아반도체 -7.88%·Nvidia -5.86% 급락으로 AI 투자 불확실성 재점화 — 국내 Momentum 13.1·외국인 20일 -14.3조원 순매도·주식 비중 0% 권고로 현금 대기 유지, 오늘 반도체 하락 출발 예상",
+  "strategy_brief": "간밤 미국 시장은 Nvidia -5.86%·필라델피아반도체 -7.88% 급락으로 AI 투자 불확실성이 재점화됐고, Anthropic 밸류에이션 급락과 Micron 공급 과잉 경고가 반도체 전반을 압박했습니다. Dell 실적 호조와 DOW +0.85%는 비기술주 강세를 보였으나 국내 반도체 의존도가 높아 오늘 삼성전자·SK하이닉스 중심 하락 출발이 예상됩니다. 국내는 Reflex 9단계 Capitulation(투매·Momentum 급락 구간), Momentum 13.1(백분위)·시장 폭 20일선 위 38.7%·외국인 20일 누적 -14.3조원 순매도로 Market Regime Filter가 주식 비중 0%(Risk-Off)를 권고하며, 현금(단기채) 100% 유지가 원칙입니다. Focus 2(셀트리온·메리츠금융지주)는 Fundamentals 56.8이 기준(55) 이상이나 Momentum 13.1이 기준(50) 미만으로 대기 상태이며, Momentum 50 이상 복귀 시 전환을 검토합니다. Picks 종목(농심·코웨이 등)은 주식 비중 상승 시 우선 검토 대기 명단이며 현재 신규 매수를 보류합니다.",
+  "strategy_headline": "AI 불확실성 재점화, 반도체 급락 압력 — 현금 대기 유지",
   "strategy_points": [
-    "엔비디아 -5.86% 급락·필라델피아반도체 -7.88% 패닉에도 코스피 보합 — Reflex 9단계(투매, 매도가 매도를 부르는 구간) 23일째로 추가 하락 여력 작고 외국인 1일 +6,110억 순매수 유입이 충격 완충",
-    "Momentum 13.1(기준 50 대비 -37), 주식 비중 0% 대기 국면 지속 — 시장 폭(market breadth, 20일선 위 비율) 38.7%로 소폭 개선에도 거래대금 평균 대비 0.87배 저조, Risk-On 전환 미확인. 현금(단기채) 100% 유지 원칙",
-    "Micron 공급 과잉 경고가 삼성전자·SK하이닉스 HBM 밸류에이션(실적 대비 주가 수준) 압박 리스크 — Dell·HP AI PC 60% 호조에도 AI 데이터센터 지출 우려가 실적 개선을 압도하는 구조, 반도체 섹터 관망 필요",
-    "Focus 2(셀트리온·메리츠금융지주) 대기 — 시장 조건(Fundamentals 56.8≥55 충족, Momentum 13.1<50 미달) 미충족. 전환 조건: Momentum 50 이상 복귀 + 외국인 순매수 지속 + 거래대금 평균 이상"
+    "간밤 필라델피아반도체 -7.88%·Nvidia -5.86%(Anthropic 밸류에이션 급락·공급 과잉 경고) — 오늘 삼성전자·SK하이닉스 하락 압력",
+    "국내 Reflex 9단계 Capitulation(투매·Momentum 급락 구간), Momentum 13.1(백분위)·시장 폭(20일선 위 38.7%)·외국인 20일 -14.3조원 순매도 — Market Regime Filter 주식 비중 0% 권고",
+    "Dell 실적 호조·DOW +0.85%는 중장기 긍정이나 국내 영향 제한적 — Sector Momentum 상위(전기전자 2위·일반서비스 3위) 타격 예상",
+    "Focus 2(셀트리온·메리츠금융지주) 대기 상태 — Fundamentals 56.8 충족하나 Momentum 13.1(기준 50 미만)로 시장 조건 미충족, Momentum 50 이상 복귀 시 전환"
   ],
   "top_picks": [
     {
@@ -4260,7 +4264,7 @@
           "name": "셀트리온",
           "code": "068270",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정(업종 1위 제약, 6개월 상대 +22.4%·업종 이익 +58%). Score 90(업종 내 종합 81, 목표가 14↑ 1↓/17곳). 단, 시장 조건 미충족(Fundamentals 56.8은 기준 55 이상 충족, Momentum 13.1은 기준 50 미만)으로 현금 보유. 전환 조건: Momentum 50 이상 복귀 + 외국인 순매수 지속 확인. 리스크: 미국 헬스케어XLV Leading이나 테크 급락 여파 확산 시 바이오 밸류에이션 압박 가능성",
+          "reason": "대기 — Focus 2 선정 업종 1위(제약 6개월 상대 +22.4%, 업종 이익 1년 +58%), Score 90·업종 내 종합 81, 목표가 상향 14곳·하향 1곳(17곳), 1년 EPS 증가 +136% — 현재 Fundamentals 56.8(기준 55 이상 충족)이나 Momentum 13.1(기준 50 미만)로 시장 조건 미충족 / 전환 조건: Momentum 50 이상(현재 13.1) 복귀 시 / 리스크: 간밤 기술주 급락 확산 시 제약 방어 효과 제한적, 외국인 20일 -14.3조원 순매도 기조 지속",
           "rrg_tracked": true,
           "rrg_actual_sector": "제약",
           "rrg_sector_match": true,
@@ -4278,7 +4282,7 @@
           "name": "메리츠금융지주",
           "code": "138040",
           "signal": "prime",
-          "reason": "대기 — Focus 2 선정(업종 2위 금융, 6개월 상대 +24.5%·업종 이익 +17%). Score 87(업종 내 종합 77, 목표가 1↑ 0↓/4곳). 단, 시장 조건 미충족(Momentum 13.1, 기준 50 미만)으로 현금 보유. 미국 금융XLF Leading(R106.0/M100.8), 국채 커브 플래트닝(2년 +0.51%, 10년 -0.28%)이 예대마진 개선 기대 약화. 전환 조건: Momentum 50 이상 + 국채 10년 금리 반등 확인. 리스크: 테크 급락 확산 시 금융주 Risk-Off 동조 가능성",
+          "reason": "대기 — Focus 2 선정 업종 2위(금융 6개월 상대 +24.5%, 업종 이익 1년 +17%), Score 87·업종 내 종합 77, 목표가 상향 1곳·하향 0곳(4곳) — 현재 Fundamentals 56.8(기준 55 이상 충족)이나 Momentum 13.1(기준 50 미만)로 시장 조건 미충족, 1개월 -9.3% / 전환 조건: Momentum 50 이상(현재 13.1) 복귀 시 / 리스크: 금통위 26일 0.25%p 인상 시 단기 금리 변동성, 외국인 순매도 지속 시 추가 하락",
           "rrg_tracked": true,
           "rrg_actual_sector": "금융",
           "rrg_sector_match": true,
@@ -4296,47 +4300,11 @@
           "name": "농심",
           "code": "004370",
           "signal": "prime",
-          "reason": "대기 — Picks 순위 2위, Composite 78(Quality 61·Trend 76·Low Vol 96). Sector Momentum 11위(12개월 상대 +11%), 미국 필수소비재XLP Leading(R111.8/M102.3) 흐름 동조. 52주 고점 대비 -30.0%, 1개월 -15.9%로 Low Vol 96 돋보임. 단, 주식 비중 0%(Momentum 13.1, 기준 50) 대기 국면. 전환 조건: Momentum 50 이상 + 거래대금 평균 이상. 리스크: 경기방어 섹터이나 국내 소비 둔화 시 실적 개선 제한",
+          "reason": "대기 — Picks 오늘 순위 2위(600종목 중), Composite 78(Quality 61·Trend 76·Low Vol 96), 52주 고점 대비 -30.0% — 간밤 DOW +0.85%·필수소비재 XLP Leading(R111.8/M102.3)이나 국내 Momentum 13.1·주식 비중 0%로 신규 매수 보류 / 전환 조건: Momentum 50 이상 복귀·주식 비중 30% 이상 / 리스크: Sector Momentum 11위로 상위권 아님, 1개월 -15.9%·교체 후 -15.7% 약세",
           "rrg_tracked": true,
           "rrg_actual_sector": "음식료·담배",
           "rrg_sector_match": true,
           "rrg_signal": "weakening",
-          "focus": false
-        }
-      ]
-    },
-    {
-      "sector": "전기전자",
-      "rrg_quadrant": "lagging",
-      "reason": "대기 — 미국 AI 지출 우려 재부상으로 엔비디아 -5.86%, Micron -10.97% 급락. Sector Momentum 2위(12개월 상대 +103%)이나 52주 신고가 근처 2%로 추세 취약. 주식 비중 0% 대기 국면(Momentum 13.1, 기준 50)으로 신규 진입 보류. 전환 조건: Fundamentals 56.8(기준 55 이상 충족) 및 Momentum 50 이상 복귀 + 외국인 순매수 지속 확인. 리스크: Micron 공급 과잉 경고가 삼성전자·SK하이닉스 HBM 밸류에이션 압박 가능성",
-      "stocks": [
-        {
-          "name": "세방전지",
-          "code": "004490",
-          "signal": "prime",
-          "reason": "대기 — Picks 순위 4위, Composite 77(Quality 74·Trend 76·Low Vol 80). Sector Momentum 2위(12개월 상대 +103%)이나 52주 고점 대비 -37.3%, 1개월 -21.3%로 미국 반도체 급락 여파. Quality 74(실적·수급 양호), Trend 76 우수하나 주식 비중 0% 대기. 전환 조건: 필라델피아반도체 반등 + Momentum 50 이상 복귀. 리스크: Micron 공급 과잉 경고 확산 시 2차전지 소재 밸류에이션도 압박 가능성",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "전기전자",
-          "rrg_sector_match": true,
-          "rrg_signal": "lagging",
-          "focus": false
-        }
-      ]
-    },
-    {
-      "sector": "통신",
-      "rrg_quadrant": "",
-      "reason": "",
-      "stocks": [
-        {
-          "name": "KT",
-          "code": "030200",
-          "signal": "prime",
-          "reason": "대기 — Picks 순위 6위, Composite 75(Quality 70·Trend 59·Low Vol 97). Sector Momentum 중위권, RRG leading. 52주 고점 대비 -36.9%, 1개월 -4.8%로 Low Vol 97 최상위. 미국 커뮤니케이션XLC Leading(R101.9/M103.9) 동조 기대. 단, 주식 비중 0% 대기. 전환 조건: Momentum 50 이상 + 거래대금 평균 이상. 리스크: 배당 매력에도 성장성 제한, Risk-On 전환 초기 소외 가능성",
-          "rrg_tracked": true,
-          "rrg_actual_sector": "통신",
-          "rrg_sector_match": true,
-          "rrg_signal": "leading",
           "focus": false
         }
       ]
@@ -4350,7 +4318,7 @@
           "name": "코웨이",
           "code": "021240",
           "signal": "prime",
-          "reason": "대기 — Picks 순위 8위, Composite 74(Quality 65·Trend 70·Low Vol 89). Sector Momentum 3위(12개월 상대 +4%), 52주 고점 대비 -10.1%로 추세 양호. 미국 필수소비재·헬스케어 Leading 흐름이 국내 생활서비스 수혜 기대. 단, 주식 비중 0% 대기, 거래대금 0.87배 저조. 전환 조건: Momentum 50 이상 + 거래대금 평균 이상. 리스크: 경기방어 섹터이나 국내 소비 둔화 시 렌탈 해지 증가 가능성",
+          "reason": "대기 — Picks 오늘 순위 8위, Composite 74(Quality 65·Trend 70·Low Vol 89), Sector Momentum 3위(일반서비스 6개월 상대 +4%), 52주 고점 대비 -10.1% — 간밤 미국 방어주 강세 동조 가능하나 국내 Momentum 13.1·주식 비중 0%로 신규 매수 보류 / 전환 조건: Momentum 50 이상 복귀·주식 비중 30% 이상 / 리스크: 1개월 -5.9%·교체 후 -7.4%, 외국인 20일 순매도 지속",
           "rrg_tracked": true,
           "rrg_actual_sector": "일반서비스",
           "rrg_sector_match": true,
@@ -4361,7 +4329,7 @@
     }
   ],
   "caution_sectors": [
-    "일반서비스",
-    "건설"
+    "전기전자",
+    "IT서비스"
   ]
 }
