@@ -149,7 +149,11 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
         load_dotenv("/home/ubuntu/semon/.env")
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-        macro_text      = _format_macro(news_data.get("macro", {}))
+        _asof    = _domestic_asof()
+        _session = _kr_session(asof=_asof)
+        timeline_rules  = _timeline_rules(_session, _asof)
+        macro_text      = _format_macro_timeline(news_data.get("macro", {}), _session, _asof)
+        logger.info(f"시간 순서: 한국장 {_session}, 국내 데이터 기준일 {_asof or '?'}")
         # US 섹터 로테이션 컨텍스트 (fail-open: 없으면 기존과 동일)
         try:
             from us_context import us_rotation_block
@@ -226,6 +230,8 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 - 뉴스에 직접적 근거가 없으면 "직접 촉매 없음 — [관련 매크로 흐름] 동조" 형식으로 명시하세요
 - 절대로 추측성 원인을 만들어내지 마세요. 근거가 약하면 약하다고 쓰세요
 
+{timeline_rules}
+
 === 글로벌 매크로 ===
 {macro_text}
 
@@ -241,6 +247,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 {rrg_text}
 
 [종합 판단 원칙 — 글로벌에서 국내로, 국내에서 종목으로 / 매우 중요]
+- 위 [시간 순서] 규칙을 다시 확인하세요. 국내 시장이 간밤 미국장에 이미 반응했다는 식의 문장이 하나라도 있으면 잘못된 리포트입니다.
 - korea_impact의 positive/negative 요인은 반드시 위 글로벌 매크로·뉴스에서 직접 도출하세요. 각 요인은 "[글로벌 원인] → [국내 영향]" 형태로 인과를 드러내세요. (예: "필라델피아반도체 +2%·엔비디아 가이던스 상향 → 국내 반도체 투자심리 개선")
 - top_picks는 반드시 위 '종목 후보'(Picks 이번 달 포트폴리오) 목록 안에서만 고르세요. 주식 비중 70% 이상이면 3~6종목, 30~70%면 3~4종목, 30% 이하면 2~3종목입니다. 목록 밖 종목은 시스템이 자동 제외합니다.
 - 'Focus 2' 블록이 있으면 그 두 종목을 top_picks의 맨 앞에 두세요(목록 밖 제한의 예외). 실제 매매 후보는 이 두 종목입니다. 상태가 보유 중이거나 조건 충족이면 각 reason에 선정 업종 순위, Score와 업종 내 종합, 목표가 상향·하향 건수를 숫자로 쓰고 끝에 리스크: …를 붙이세요. 상태가 대기이면 reason은 대기 — 로 시작하고 끝에 전환 조건: Fundamentals 기준 이상과 Momentum 기준 이상(현재 값과 기준을 숫자로)을 쓰세요. strategy_brief에 Focus 2의 상태와 시장 조건 숫자를 한 문장으로 밝히세요.
@@ -655,6 +662,81 @@ def _format_macro(macro: dict) -> str:
         chg = d.get("change", 0)
         lines.append(f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)")
     return "\n".join(lines)
+
+# ── 시간 순서(타임라인) ───────────────────────────────────────
+# 07:00 실행 기준: 국내 데이터(전일 15:30 마감) → 간밤 미국장(06:00 마감) → 오늘 한국장(09:00 개장) 순서.
+# 이 순서를 프롬프트에 밝히지 않으면 "미국 급락에도 코스피 보합"처럼 국내가 이미 반응한 것처럼 쓴다.
+_ASIA_NAMES = ("코스피", "코스닥", "니케이", "항셍")
+_EUROPE_NAMES = ("영국FTSE", "독일DAX")
+_US_NAMES = ("S&P500", "NASDAQ", "DOW", "VIX", "필라델피아반도체", "러셀2000", "국채2Y", "국채10Y")
+
+
+def _domestic_asof() -> str:
+    """국내 데이터 기준일(YYYY-MM-DD). 못 읽으면 빈 문자열."""
+    try:
+        from eqai_domestic import REFLEX_JSON
+        return str(json.loads(REFLEX_JSON.read_text(encoding="utf-8")).get("as_of", ""))[:10]
+    except Exception:
+        return ""
+
+
+def _kr_session(now=None, asof: str = "") -> str:
+    """pre = 국내 데이터 기준일 이후 한국장이 아직 안 열림(개장 전·주말·휴장) / open = 장중 / closed = 오늘 장 마감 후"""
+    now = now or datetime.now(KST)
+    hm = now.strftime("%H:%M")
+    if now.weekday() >= 5 or hm < "09:00":
+        return "pre"
+    if hm < "15:30":
+        return "open"
+    return "closed" if (not asof or asof >= now.strftime("%Y-%m-%d")) else "pre"
+
+
+def _format_macro_timeline(macro: dict, session: str, asof: str) -> str:
+    """매크로 지수를 시간 순서대로 묶어서 표시. 개장 전에는 코스피·코스닥 등락률을 빼고 전일 종가로만 표기."""
+    def line(name, d, no_change=False):
+        if no_change:
+            return f"  {name}: {d.get('price')} (전일 종가 — 오늘 한국장 개장 전이라 등락 없음)"
+        chg = d.get("change", 0)
+        return f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)"
+    if session != "pre":
+        return _format_macro(macro)
+    day = asof or "전일"
+    groups = [
+        (f"① {day} 아시아장 종가 — 간밤 미국장이 열리기 '전'에 끝난 시세 (미국장 결과 미반영)", _ASIA_NAMES),
+        ("② 유럽장 종가 — 미국장 마감 전에 끝난 시세", _EUROPE_NAMES),
+        ("③ 간밤 미국장 종가 — 가장 최신. 한국장에는 아직 반영되지 않음", _US_NAMES),
+    ]
+    used, out = set(), []
+    for title, names in groups:
+        rows = [line(n, macro[n], no_change=n in ("코스피", "코스닥")) for n in names if n in macro]
+        used.update(names)
+        if rows:
+            out.append(f"[{title}]\n" + "\n".join(rows))
+    rest = [line(n, d) for n, d in macro.items() if n not in used]
+    if rest:
+        out.append("[④ 환율·원자재 — 거의 24시간 거래, 최신]\n" + "\n".join(rest))
+    return "\n".join(out)
+
+
+def _timeline_rules(session: str, asof: str, now=None) -> str:
+    now = now or datetime.now(KST)
+    stamp = now.strftime("%Y-%m-%d %H:%M")
+    day = asof or "직전 거래일"
+    if session == "pre":
+        return f"""[시간 순서 — 최우선 규칙, 다른 모든 지시보다 앞섬]
+- 지금은 {stamp} KST이고, 오늘 한국장은 아직 열리지 않았습니다.
+- 실제 시간 순서: (1) {day} 한국장 마감(15:30) → (2) 그 뒤에 열린 간밤 미국장 → (3) 지금 → (4) 곧 열릴 한국장.
+- 아래 국내 데이터(국면·시장 폭·수급·섹터·종목 점수, 코스피·코스닥)는 전부 (1) 시점, 즉 간밤 미국장 '이전' 값입니다. 간밤 미국장의 결과는 한국장에 아직 하루도 반영되지 않았습니다.
+- 금지: 국내 시장이 간밤 미국장에 이미 반응한 것처럼 쓰는 모든 표현. 예: 미국 급락에도 코스피 보합, 국내는 선방했다, 지켰다, 버텼다, 충격을 완충했다, 외국인 순매수가 충격을 흡수했다. 전일 국내 등락·수급을 간밤 미국장에 대한 반응이나 결과로 해석하지 마세요.
+- 국내에 대한 서술은 전부 오늘 개장 이후의 전망으로 쓰세요(예: 하락 출발 가능성, 반도체 약세 압력 예상, 외국인 매도 전환 여부 확인 필요). 전일 국내 데이터는 충격을 받기 전의 출발 조건(전일까지의 외국인 순매수 규모, Momentum 값 등)으로만 인용하고 반드시 전일 기준임을 밝히세요.
+- strategy_headline·strategy_points·strategy_brief·summary·korea_impact·sentiment_reason 모두에 적용됩니다. macro_reasons의 코스피·코스닥 reason은 오늘 개장 전임을 밝히고 간밤 미국장을 감안한 출발 전망으로 쓰세요."""
+    if session == "open":
+        return f"""[시간 순서]
+- 지금은 {stamp} KST, 한국장 장중입니다. 코스피·코스닥 등락률은 오늘 장중 값으로 간밤 미국장이 반영되고 있는 중입니다.
+- 그 밖의 국내 데이터(국면·시장 폭·수급·종목 점수)는 {day} 장 마감 기준으로 간밤 미국장 '이전' 값입니다. 이 데이터를 간밤 미국장에 대한 반응으로 쓰지 마세요."""
+    return f"""[시간 순서]
+- 지금은 {stamp} KST, 오늘 한국장은 마감했습니다. 국내 데이터는 {day} 장 마감 기준이며, 그 이후에 열리는 미국장 결과는 아직 반영되지 않았습니다. 매크로 표의 미국 지수가 한국장 마감보다 먼저인지 나중인지 구분해서 인과를 쓰세요."""
+
 
 def _format_articles(articles: list) -> str:
     lines = []
