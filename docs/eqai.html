@@ -416,7 +416,7 @@
     <script>
         let eqaiData = null
         let currentEdition = "latest"   // latest | pre | open | closed
-        // 핵심 종목 접기: 현금 유지 국면(주식 비중 30% 이하)이면 기본 접힘. 사용자가 직접 누르면 그 선택을 유지.
+        // 핵심 종목 접기: 주식 비중 0%(전액 현금)일 때만 기본 접힘. 사용자가 직접 누르면 그 선택을 유지.
         let picksExposure = null      // 0~1, 못 읽으면 null(펼침)
         let picksUserChoice = null    // true=펼침 / false=접힘 / null=자동
         async function loadExposure() {
@@ -429,7 +429,7 @@
             applyPicksFold()
         }
         function applyPicksFold() {
-            const cashOnly = picksExposure !== null && picksExposure <= 0.3
+            const cashOnly = picksExposure !== null && picksExposure <= 0
             const open = picksUserChoice !== null ? picksUserChoice : !cashOnly
             const c = document.getElementById("picks-content"), a = document.getElementById("picks-arrow"), n = document.getElementById("picks-note")
             if (!c || !a || !n) return
