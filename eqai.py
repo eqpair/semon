@@ -337,10 +337,14 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 
         resp = client.messages.create(
             model=EQAI_MODEL,
-            max_tokens=16000,
+            max_tokens=20000,
             messages=[{"role": "user", "content": prompt}]
         )
-        text = resp.content[0].text
+        # 새 모델은 응답 앞에 thinking 블록이 올 수 있으므로 text 블록만 모은다
+        text = "".join(getattr(blk, "text", "") or "" for blk in resp.content if getattr(blk, "type", "") == "text")
+        _u = getattr(resp, "usage", None)
+        logger.info(f"API 사용량: 입력 {getattr(_u, 'input_tokens', '?')} / 출력 {getattr(_u, 'output_tokens', '?')} 토큰, "
+                    f"종료 사유 {getattr(resp, 'stop_reason', '?')}, 모델 {EQAI_MODEL}")
         logger.info(f"분석 완료 ({len(text)}자)")
         return _dehanja(_parse_xml_response(text, rrg_data))
 
