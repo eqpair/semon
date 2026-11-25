@@ -781,9 +781,10 @@ def _date_ctx(macro: dict, session: str, asof: str, now) -> dict:
 - 미국장은 미국 현지 날짜가 아니라 한국시간으로 마감한 날짜로 부르세요(예: {U_short}).
 - 같은 문단에서 같은 날짜가 되풀이되면 두 번째부터는 요일을 빼고 날짜만 써도 됩니다.
 - 아래 지시문과 예시에 나오는 오늘·전일·간밤은 설명용 표현입니다. 출력에서는 반드시 해당 날짜로 바꿔 쓰세요.
+- 매크로 표에서 '← 주의'가 붙은 지수는 묶음 제목의 날짜가 아니라 표시된 날짜의 시세입니다(휴장이거나 시세가 아직 안 들어온 경우). 같은 묶음의 다른 지수와 같은 날 움직인 것처럼 쓰지 말고, 인용하려면 그 날짜를 밝히세요.
 """
     return dict(T=T, K=K, U=U, U_short=U_short, NK=NK, hm=hm, us_live=us_live, table=table,
-                fresh=bool(kd and kd >= today))
+                fresh=bool(kd and kd >= today), kd=kd, ud=ud, today=today)
 
 
 def _format_macro_timeline(macro: dict, session: str, asof: str, now=None) -> str:
@@ -794,7 +795,22 @@ def _format_macro_timeline(macro: dict, session: str, asof: str, now=None) -> st
         if no_change:
             return f"  {name}: {d.get('price')} ({c['K']} 종가 — {c['NK']} 한국장 개장 전이라 등락 없음)"
         chg = d.get("change", 0)
-        return f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)"
+        base = f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)"
+        exp, act = expect.get(name), _to_date(d.get("date"))
+        if exp and act and act != exp:
+            base += f" ← 주의: {_dl(act, now)} 시세(묶음 날짜와 다름)"
+        return base
+    # 지수별로 '이 묶음이라면 있어야 할 시세 날짜'. 실제 날짜가 다르면 줄 끝에 표시한다.
+    kd, ud, today = c["kd"], c["ud"], c["today"]
+    expect = {}
+    if session == "pre":
+        expect.update({n: kd for n in ("니케이", "항셍") + _EUROPE_NAMES})
+    elif session == "open":
+        expect.update({n: today for n in ("니케이", "항셍")})
+        expect.update({n: kd for n in _EUROPE_NAMES})
+    else:
+        expect.update({n: today for n in ("니케이", "항셍") + _EUROPE_NAMES})
+    expect.update({n: ud for n in _US_NAMES})
     if session == "pre":
         groups = [
             (f"① {c['K']} 아시아장 종가 — {c['U_short']}보다 '먼저' 끝난 시세 (미국장 결과 미반영)", _ASIA_NAMES),

@@ -156,7 +156,7 @@ def fetch_macro() -> dict:
                     result[name] = {
                         "price":  round(curr, 2),
                         "change": round(chg, 2),
-                        "date":   closes.index[-1].strftime("%Y-%m-%d"),   # 그 거래소 현지 날짜
+                        "date":   (closes.index[-1] + __import__("datetime").timedelta(hours=12)).strftime("%Y-%m-%d"),   # 그 거래소 현지 날짜
                     }
                 else:
                     logger.warning(f"매크로 기준가 비정상 ({name}): prev={prev}")
