@@ -854,7 +854,7 @@ def _timeline_rules(session: str, asof: str, now=None, macro=None) -> str:
 - 금지: 국내 시장이 {US}에 이미 반응한 것처럼 쓰는 모든 표현. 예: 미국 급락에도 코스피 보합, 국내는 선방했다, 지켰다, 버텼다, 충격을 완충했다, 외국인 순매수가 충격을 흡수했다. {K} 국내 등락·수급을 {US}에 대한 반응이나 결과로 해석하지 마세요.
 - 국내에 대한 서술은 전부 {NK} 개장 이후의 전망으로 쓰세요(예: 하락 출발 가능성, 반도체 약세 압력 예상, 외국인 매도 전환 여부 확인 필요). {K} 국내 데이터는 충격을 받기 전의 출발 조건(외국인 순매수 규모, Momentum 값 등)으로만 인용하고 반드시 {K} 기준임을 밝히세요.
 - 매크로 표 ①·② 묶음(니케이·항셍·유럽)은 {US}보다 먼저 끝난 시세입니다. 이 지수들의 등락 원인을 ③ 미국장에서 찾지 마세요. 뉴스 본문에 근거가 없으면 원인을 추정하지 말고 직접 촉매 확인 안 됨이라고만 쓰세요.
-- strategy_headline·strategy_points·strategy_brief·summary·korea_impact·sentiment_reason 모두에 적용됩니다. macro_reasons의 코스피·코스닥 reason은 {NK} 개장 전임을 밝히고 {US}을 감안한 출발 전망으로 쓰세요."""
+- strategy_headline·strategy_points·strategy_brief·summary·korea_impact·sentiment_reason 모두에 적용됩니다. macro_reasons의 코스피·코스닥 reason은 {US}을 감안한 {NK} 출발 전망만 한두 문장으로 쓰세요. 개장 전이라는 설명, 표시된 지수가 어느 날 종가인지에 대한 설명, 등락률이 0%인 이유는 쓰지 마세요."""
     if session == "open":
         return head + f"""- 지금은 {T} {hm}, {T} 한국장이 열려 있는 장중입니다.
 - 실제 시간 순서: (1) {K} 한국장 마감 → (2) {U} → (3) {T} 한국장 개장(09:00) → (4) 지금.
