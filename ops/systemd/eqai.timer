@@ -1,9 +1,8 @@
 [Unit]
-Description=EQAI Timer (평일 07:00 개장 전 / 11:30 장중 / 19:00 마감 후)
+Description=EQAI Timer (평일 07:00 개장 전 / 19:00 마감 후)
 
 [Timer]
 OnCalendar=Mon..Fri *-*-* 07:00:00 Asia/Seoul
-OnCalendar=Mon..Fri *-*-* 11:30:00 Asia/Seoul
 OnCalendar=Mon..Fri *-*-* 19:00:00 Asia/Seoul
 Persistent=true
 

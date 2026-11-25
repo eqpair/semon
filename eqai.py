@@ -335,11 +335,25 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
   <summary>오늘 시장 한줄 판단</summary>
 </analysis>"""
 
-        resp = client.messages.create(
-            model=EQAI_MODEL,
-            max_tokens=20000,
-            messages=[{"role": "user", "content": prompt}]
-        )
+        # 긴 출력(thinking 포함)이 잘리지 않도록 스트리밍으로 받는다. effort는 .env의 EQAI_EFFORT로 조절(기본 high).
+        # 이 방식이 실패하면 기존 방식(검증된 설정)으로 한 번 더 시도한다.
+        _effort = os.getenv("EQAI_EFFORT", "high")
+        try:
+            with client.messages.stream(
+                model=EQAI_MODEL,
+                max_tokens=32000,
+                messages=[{"role": "user", "content": prompt}],
+                extra_body={"output_config": {"effort": _effort}},
+            ) as _stream:
+                resp = _stream.get_final_message()
+            logger.info(f"API 호출: 스트리밍, effort={_effort}")
+        except Exception as _e:
+            logger.warning(f"스트리밍·effort 호출 실패 → 기본 방식으로 재시도: {_e}")
+            resp = client.messages.create(
+                model=EQAI_MODEL,
+                max_tokens=20000,
+                messages=[{"role": "user", "content": prompt}]
+            )
         # 새 모델은 응답 앞에 thinking 블록이 올 수 있으므로 text 블록만 모은다
         text = "".join(getattr(blk, "text", "") or "" for blk in resp.content if getattr(blk, "type", "") == "text")
         _u = getattr(resp, "usage", None)
@@ -671,7 +685,7 @@ def _format_macro(macro: dict) -> str:
     return "\n".join(lines)
 
 # ── 시간 순서(타임라인)와 회차 ────────────────────────────────
-# 하루 3회(평일 07:00 개장 전 / 11:30 장중 / 19:00 마감 후) 실행. 회차마다 "무엇이 무엇보다 먼저 일어났는지"가 다르므로
+# 하루 2회(평일 07:00 개장 전 / 19:00 마감 후) 자동 실행 + 장중 수동 UPDATE. 회차마다 "무엇이 무엇보다 먼저 일어났는지"가 다르므로
 # 실행 시각으로 회차를 정하고, 그 회차에 맞는 시간 순서 규칙과 매크로 표 묶음을 프롬프트에 넣는다.
 EQAI_MODEL = os.getenv("EQAI_MODEL", "claude-sonnet-5-5")
 EDITION_LABEL = {"pre": "개장 전 전망", "open": "장중 점검", "closed": "마감 후 정리"}
