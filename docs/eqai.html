@@ -455,7 +455,12 @@
             const info = document.getElementById("edition-info")
             if (info && eqaiData) {
                 const name = eqaiData.edition_label || EDITION_NAMES[eqaiData.edition] || "종합 분석"
-                info.textContent = name + " · " + (eqaiData.generated_at || "").slice(0, 16)
+                const gen = (eqaiData.generated_at || "").slice(0, 16)
+                const todayKST = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" })
+                const old = gen && gen.slice(0, 10) !== todayKST
+                info.textContent = (old ? "지난 리포트 · " : "") + name + " · " + gen
+                info.style.color = old ? "#d97706" : ""
+                info.style.fontWeight = old ? "600" : ""
             }
         }
         let chatHistory = []

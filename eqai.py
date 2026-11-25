@@ -152,7 +152,7 @@ def claude_analyze(news_data: dict, rrg_data: dict) -> dict:
 
         _asof    = _domestic_asof()
         _session = _kr_session(asof=_asof)
-        timeline_rules  = _timeline_rules(_session, _asof)
+        timeline_rules  = _timeline_rules(_session, _asof, macro=news_data.get("macro", {}))
         final_check     = _final_check(_session)
         _LAST_EDITION.update(edition=_session, asof=_asof)
         macro_text      = _format_macro_timeline(news_data.get("macro", {}), _session, _asof)
@@ -713,34 +713,106 @@ def _kr_session(now=None, asof: str = "") -> str:
     return "open" if hm < "15:30" else "closed"
 
 
+import re
+_WD = "월화수목금토일"
+
+
+def _to_date(v):
+    try:
+        return datetime.strptime(str(v)[:10], "%Y-%m-%d").date()
+    except Exception:
+        return None
+
+
+def _dl(d, now) -> str:
+    """날짜 라벨: 26일(목). 이번 달이 아니면 12월 1일(화)."""
+    lab = f"{d.day}일({_WD[d.weekday()]})"
+    return lab if (d.year, d.month) == (now.year, now.month) else f"{d.month}월 {lab}"
+
+
+def _date_ctx(macro: dict, session: str, asof: str, now) -> dict:
+    """프롬프트에 넣을 한국시간 기준 날짜 라벨 모음. 미국장 날짜는 실제 시세의 마지막 봉 날짜에서 가져온다."""
+    from datetime import timedelta
+    today = now.date()
+    hm = now.strftime("%H:%M")
+    T = _dl(today, now)
+    kd = _to_date(asof)
+    K = _dl(kd, now) if kd else "직전 거래일"
+    ud = None
+    for nm in ("S&P500", "NASDAQ", "DOW"):
+        ud = _to_date((macro or {}).get(nm, {}).get("date"))
+        if ud:
+            break
+    us_live = bool(ud) and session == "closed" and hm >= "22:30" and ud >= today
+    if ud and us_live:
+        U = f"한국시간 {T} 밤에 개장해 지금 진행 중인 미국장(마감 전)"
+        U_short = f"{T} 밤 진행 중인 미국장"
+    elif ud:
+        uc = ud + timedelta(days=1)          # 미국 16:00 마감 = 한국시간 다음 날 새벽
+        U = f"한국시간 {_dl(uc, now)} 새벽에 마감한 미국장(미국 현지 날짜로는 {_dl(ud, now)} 장)"
+        U_short = f"{_dl(uc, now)} 새벽 마감한 미국장"
+    else:
+        U = "가장 최근에 마감한 미국장(한국시간 새벽 마감)"
+        U_short = "가장 최근 미국장"
+    nk = today
+    if not (session == "pre" and today.weekday() < 5):
+        nk = today + timedelta(days=1)
+    while nk.weekday() >= 5:
+        nk += timedelta(days=1)
+    NK = _dl(nk, now)
+    if session == "pre":
+        kr_line = f"가장 최근에 끝난 한국장: {K} (15:30 마감)"
+    elif session == "open":
+        kr_line = f"지금 열려 있는 한국장: {T} (09:00 개장, 장중) / 그 직전에 끝난 한국장: {K}"
+    else:
+        kr_line = f"가장 최근에 끝난 한국장: {T} (15:30 마감)"
+    next_us = (f"다음 미국장: 한국시간 {T} 밤 개장 예정" if not us_live and session != "pre" or (session == "pre" and today.weekday() < 5)
+               else "다음 미국장: 다음 미국 거래일 밤(한국시간)")
+    table = f"""[날짜 표 — 모든 날짜는 한국시간(KST) 기준]
+- 지금: {T} {hm}
+- {kr_line}
+- 가장 최근 미국장: {U}
+- 다음 한국장: {NK} 09:00 개장 (휴장이면 그다음 거래일)
+- {next_us} (미국 휴장일이면 뉴스에 근거해 그 사실을 쓰세요)
+
+[날짜 표기 규칙 — 최우선]
+- 이 리포트는 다음 날에도 읽힙니다. 오늘·어제·전일·간밤·어젯밤·내일·오늘 밤 같은 상대 표현을 날짜 없이 쓰지 마세요. 한국장·미국장·지표·이벤트를 말할 때는 위 날짜 표의 한국시간 날짜를 직접 쓰세요.
+- 표기 형식 예시(내용이 아니라 날짜를 붙이는 방식만 따르세요): {K} 코스피 종가 / {U_short}의 나스닥 / {NK} 한국장 개장.
+- 미국장은 미국 현지 날짜가 아니라 한국시간으로 마감한 날짜로 부르세요(예: {U_short}).
+- 같은 문단에서 같은 날짜가 되풀이되면 두 번째부터는 요일을 빼고 날짜만 써도 됩니다.
+- 아래 지시문과 예시에 나오는 오늘·전일·간밤은 설명용 표현입니다. 출력에서는 반드시 해당 날짜로 바꿔 쓰세요.
+"""
+    return dict(T=T, K=K, U=U, U_short=U_short, NK=NK, hm=hm, us_live=us_live, table=table,
+                fresh=bool(kd and kd >= today))
+
+
 def _format_macro_timeline(macro: dict, session: str, asof: str, now=None) -> str:
-    """매크로 지수를 그 회차의 시간 순서대로 묶어서 표시."""
+    """매크로 지수를 그 회차의 시간 순서대로, 한국시간 날짜를 붙여 묶어서 표시."""
     now = now or datetime.now(KST)
+    c = _date_ctx(macro, session, asof, now)
     def line(name, d, no_change=False):
         if no_change:
-            return f"  {name}: {d.get('price')} (전일 종가 — 오늘 한국장 개장 전이라 등락 없음)"
+            return f"  {name}: {d.get('price')} ({c['K']} 종가 — {c['NK']} 한국장 개장 전이라 등락 없음)"
         chg = d.get("change", 0)
         return f"  {name}: {d.get('price')} ({'+' if chg >= 0 else ''}{chg:.2f}%)"
-    day = asof or "전일"
     if session == "pre":
         groups = [
-            (f"① {day} 아시아장 종가 — 간밤 미국장이 열리기 '전'에 끝난 시세 (미국장 결과 미반영)", _ASIA_NAMES),
-            ("② 유럽장 종가 — 미국장 마감 전에 끝난 시세", _EUROPE_NAMES),
-            ("③ 간밤 미국장 종가 — 가장 최신. 한국장에는 아직 반영되지 않음", _US_NAMES),
+            (f"① {c['K']} 아시아장 종가 — {c['U_short']}보다 '먼저' 끝난 시세 (미국장 결과 미반영)", _ASIA_NAMES),
+            (f"② 유럽장 종가 — {c['U_short']} 마감 전에 끝난 시세", _EUROPE_NAMES),
+            (f"③ {c['U']} 종가 — 가장 최신. 한국장에는 아직 반영되지 않음", _US_NAMES),
         ]
     elif session == "open":
         groups = [
-            ("① 간밤 미국장 종가 — 오늘 한국장이 지금 반영하고 있는 재료", _US_NAMES),
-            ("② 유럽장 전일 종가 — 간밤 미국장 마감 전에 끝난 시세", _EUROPE_NAMES),
-            ("③ 오늘 아시아장 장중 시세 — 가장 최신(마감 전이라 바뀔 수 있음)", _ASIA_NAMES),
+            (f"① {c['U']} 종가 — {c['T']} 한국장이 지금 반영하고 있는 재료", _US_NAMES),
+            (f"② 유럽장 직전 종가 — {c['U_short']} 마감 전에 끝난 시세", _EUROPE_NAMES),
+            (f"③ {c['T']} 아시아장 장중 시세 — 가장 최신(마감 전이라 바뀔 수 있음)", _ASIA_NAMES),
         ]
     else:
-        us_live = now.strftime("%H:%M") >= "22:30"
         groups = [
-            (("① 미국장 — 오늘 밤 장중 시세(한국장 마감 '이후'에 움직이는 중, 한국장 미반영)" if us_live
-              else "① 간밤 미국장 종가 — 오늘 한국장에 이미 반영된 재료 (오늘 밤 미국장은 아직 결과 없음)"), _US_NAMES),
-            ("② 오늘 아시아장 종가 — 오늘 한국장 결과 포함", _ASIA_NAMES),
-            ("③ 유럽장 — 오늘 장중이거나 방금 마감", _EUROPE_NAMES),
+            ((f"① {c['U']} 시세 — {c['T']} 한국장 마감 '이후'의 움직임, 한국장 미반영" if c["us_live"]
+              else f"① {c['U']} 종가 — {c['T']} 한국장에 이미 반영된 재료 (다음 미국장은 아직 결과 없음)"), _US_NAMES),
+            (f"② {c['T']} 아시아장 종가 — {c['T']} 한국장 결과 포함", _ASIA_NAMES),
+            (f"③ 유럽장 — {c['T']} 장중이거나 방금 마감", _EUROPE_NAMES),
         ]
     used, blocks = set(), []
     for title, names in groups:
@@ -754,46 +826,61 @@ def _format_macro_timeline(macro: dict, session: str, asof: str, now=None) -> st
     return "\n".join(blocks)
 
 
-def _timeline_rules(session: str, asof: str, now=None) -> str:
+def _timeline_rules(session: str, asof: str, now=None, macro=None) -> str:
     now = now or datetime.now(KST)
-    stamp = now.strftime("%Y-%m-%d %H:%M")
-    today = now.strftime("%Y-%m-%d")
-    day = asof or "직전 거래일"
-    head = f"[시간 순서 — 최우선 규칙, 다른 모든 지시보다 앞섬 / 이번 회차: {EDITION_LABEL.get(session, session)}]\n"
+    c = _date_ctx(macro or {}, session, asof, now)
+    T, K, U, US, NK, hm = c["T"], c["K"], c["U"], c["U_short"], c["NK"], c["hm"]
+    head = c["table"] + f"\n[시간 순서 — 최우선 규칙, 다른 모든 지시보다 앞섬 / 이번 회차: {EDITION_LABEL.get(session, session)}]\n"
     if session == "pre":
-        return head + f"""- 지금은 {stamp} KST이고, 오늘 한국장은 아직 열리지 않았습니다.
-- 실제 시간 순서: (1) {day} 한국장 마감(15:30) → (2) 그 뒤에 열린 간밤 미국장 → (3) 지금 → (4) 곧 열릴 한국장.
-- 아래 국내 데이터(국면·시장 폭·수급·섹터·종목 점수, 코스피·코스닥)는 전부 (1) 시점, 즉 간밤 미국장 '이전' 값입니다. 간밤 미국장의 결과는 한국장에 아직 하루도 반영되지 않았습니다.
-- 금지: 국내 시장이 간밤 미국장에 이미 반응한 것처럼 쓰는 모든 표현. 예: 미국 급락에도 코스피 보합, 국내는 선방했다, 지켰다, 버텼다, 충격을 완충했다, 외국인 순매수가 충격을 흡수했다. 전일 국내 등락·수급을 간밤 미국장에 대한 반응이나 결과로 해석하지 마세요.
-- 국내에 대한 서술은 전부 오늘 개장 이후의 전망으로 쓰세요(예: 하락 출발 가능성, 반도체 약세 압력 예상, 외국인 매도 전환 여부 확인 필요). 전일 국내 데이터는 충격을 받기 전의 출발 조건(전일까지의 외국인 순매수 규모, Momentum 값 등)으로만 인용하고 반드시 전일 기준임을 밝히세요.
-- 매크로 표 ①·② 묶음(니케이·항셍·유럽)은 간밤 미국장보다 먼저 끝난 시세입니다. 이 지수들의 등락 원인을 ③ 간밤 미국장에서 찾지 마세요. 뉴스 본문에 근거가 없으면 원인을 추정하지 말고 직접 촉매 확인 안 됨이라고만 쓰세요.
-- strategy_headline·strategy_points·strategy_brief·summary·korea_impact·sentiment_reason 모두에 적용됩니다. macro_reasons의 코스피·코스닥 reason은 오늘 개장 전임을 밝히고 간밤 미국장을 감안한 출발 전망으로 쓰세요."""
+        return head + f"""- 지금은 {T} {hm}이고, {NK} 한국장은 아직 열리지 않았습니다.
+- 실제 시간 순서: (1) {K} 한국장 마감(15:30) → (2) {U} → (3) 지금 → (4) {NK} 한국장.
+- 아래 국내 데이터(국면·시장 폭·수급·섹터·종목 점수, 코스피·코스닥)는 전부 (1) {K} 마감 값, 즉 {US} '이전' 값입니다. {US}의 결과는 한국장에 아직 하루도 반영되지 않았습니다.
+- 금지: 국내 시장이 {US}에 이미 반응한 것처럼 쓰는 모든 표현. 예: 미국 급락에도 코스피 보합, 국내는 선방했다, 지켰다, 버텼다, 충격을 완충했다, 외국인 순매수가 충격을 흡수했다. {K} 국내 등락·수급을 {US}에 대한 반응이나 결과로 해석하지 마세요.
+- 국내에 대한 서술은 전부 {NK} 개장 이후의 전망으로 쓰세요(예: 하락 출발 가능성, 반도체 약세 압력 예상, 외국인 매도 전환 여부 확인 필요). {K} 국내 데이터는 충격을 받기 전의 출발 조건(외국인 순매수 규모, Momentum 값 등)으로만 인용하고 반드시 {K} 기준임을 밝히세요.
+- 매크로 표 ①·② 묶음(니케이·항셍·유럽)은 {US}보다 먼저 끝난 시세입니다. 이 지수들의 등락 원인을 ③ 미국장에서 찾지 마세요. 뉴스 본문에 근거가 없으면 원인을 추정하지 말고 직접 촉매 확인 안 됨이라고만 쓰세요.
+- strategy_headline·strategy_points·strategy_brief·summary·korea_impact·sentiment_reason 모두에 적용됩니다. macro_reasons의 코스피·코스닥 reason은 {NK} 개장 전임을 밝히고 {US}을 감안한 출발 전망으로 쓰세요."""
     if session == "open":
-        return head + f"""- 지금은 {stamp} KST, 오늘 한국장이 열려 있는 장중입니다.
-- 실제 시간 순서: (1) {day} 한국장 마감 → (2) 간밤 미국장 → (3) 오늘 한국장 개장(09:00) → (4) 지금.
-- 코스피·코스닥·니케이·항셍 등락률은 오늘 장중 값입니다. 간밤 미국장에 대한 오늘의 실제 반응으로 서술할 수 있지만, 반드시 장중 현재 기준임을 밝히고 마감 결과처럼 단정하지 마세요.
-- 그 밖의 국내 데이터(국면·시장 폭·수급·Sector Momentum·종목 점수·Focus 2)는 {day} 장 마감 기준으로 간밤 미국장 '이전' 값입니다. 오늘 장중 수급이나 오늘의 반응처럼 쓰지 말고, 인용할 때 전일 기준임을 밝히세요.
-- 전개 순서: ① 간밤 미국장 → ② 오늘 장중 국내 시장의 현재 반응(아침 예상과 같은지 다른지) → ③ 마감까지 확인할 포인트와 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '지금까지 어떻게 전개됐고 남은 장에서 무엇을 볼지'로 읽으세요."""
-    us_live = now.strftime("%H:%M") >= "22:30"
-    us_line = ("- 매크로 표의 미국 지수는 지금 진행 중인 오늘 밤 장중 시세입니다. 한국장 마감 '이후'의 움직임이므로 오늘 한국장의 원인으로 쓰지 말고, 내일 한국장에 줄 영향으로만 쓰세요(마감 전이라 단정 금지)."
-               if us_live else
-               "- 매크로 표의 미국 지수는 간밤 종가로, 오늘 한국장에 이미 반영된 재료입니다. 오늘 밤 미국장은 아직 결과가 없으니 결과를 예측해 단정하지 말고 관전 포인트(예정된 지표·실적·이벤트)로만 쓰세요.")
-    if asof and asof >= today:
-        dom = f"- 국내 데이터(국면·시장 폭·수급·종목 점수)는 오늘({day}) 장 마감 기준입니다. 간밤 미국장에 대한 오늘 한국장의 실제 반응으로 서술할 수 있습니다(과거형 가능)."
+        return head + f"""- 지금은 {T} {hm}, {T} 한국장이 열려 있는 장중입니다.
+- 실제 시간 순서: (1) {K} 한국장 마감 → (2) {U} → (3) {T} 한국장 개장(09:00) → (4) 지금.
+- 코스피·코스닥·니케이·항셍 등락률은 {T} 장중 값입니다. {US}에 대한 실제 반응으로 서술할 수 있지만, 반드시 {T} {hm} 장중 기준임을 밝히고 마감 결과처럼 단정하지 마세요.
+- 그 밖의 국내 데이터(국면·시장 폭·수급·Sector Momentum·종목 점수)는 {K} 장 마감 기준으로 {US} '이전' 값입니다. {T} 장중 수급이나 {T}의 반응처럼 쓰지 말고, 인용할 때 {K} 기준임을 밝히세요.
+- 전개 순서: ① {US} → ② {T} 장중 국내 시장의 현재 반응(개장 전 예상과 같은지 다른지) → ③ {T} 마감까지 확인할 포인트와 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '{T} 지금까지 어떻게 전개됐고 남은 장에서 무엇을 볼지'로 읽으세요."""
+    us_line = (f"- 매크로 표의 미국 지수는 {U}의 시세입니다. {T} 한국장 마감 '이후'의 움직임이므로 {T} 한국장의 원인으로 쓰지 말고, {NK} 한국장에 줄 영향으로만 쓰세요(마감 전이라 단정 금지)."
+               if c["us_live"] else
+               f"- 매크로 표의 미국 지수는 {U}의 종가로, {T} 한국장에 이미 반영된 재료입니다. 그다음 미국장(한국시간 {T} 밤 개장)은 아직 결과가 없으니 결과를 예측해 단정하지 말고 관전 포인트(예정된 지표·실적·이벤트)로만 쓰세요.")
+    if c["fresh"]:
+        dom = (f"- 국내 데이터(국면·시장 폭·수급·종목 점수)는 {T} 장 마감 기준입니다." if c["us_live"] else
+               f"- 국내 데이터(국면·시장 폭·수급·종목 점수)는 {T} 장 마감 기준입니다. {US}에 대한 {T} 한국장의 실제 반응으로 서술할 수 있습니다(과거형 가능).")
     else:
-        dom = (f"- 주의: 국내 데이터(국면·시장 폭·수급·종목 점수)는 아직 {day} 기준입니다(오늘 치 미갱신 또는 휴장). 오늘 값은 코스피·코스닥 등락률뿐입니다. "
-               "오늘의 수급·시장 폭을 아는 것처럼 쓰지 말고 인용할 때 기준일을 밝히세요.")
-    return head + f"""- 지금은 {stamp} KST, 오늘 한국장은 마감했습니다.
-- 실제 시간 순서: (1) 간밤 미국장 → (2) 오늘 한국장(09:00~15:30) → (3) 지금 → (4) 오늘 밤 미국장.
+        dom = (f"- 주의: 국내 데이터(국면·시장 폭·수급·종목 점수)는 아직 {K} 기준입니다({T} 치 미갱신 또는 휴장). {T} 값은 코스피·코스닥 등락률뿐입니다. "
+               f"{T}의 수급·시장 폭을 아는 것처럼 쓰지 말고 인용할 때 기준일을 밝히세요.")
+    if c["us_live"]:
+        return head + f"""- 지금은 {T} {hm}, {T} 한국장은 마감했고 미국장이 열려 있습니다.
+- 실제 시간 순서: (1) {T} 한국장(09:00~15:30) → (2) {U} → (3) 지금 → (4) {NK} 한국장.
 {dom}
 {us_line}
-- 전개 순서: ① 간밤 미국장 → ② 오늘 국내 시장이 실제로 어떻게 반응했는지(지수·수급·시장 폭) → ③ 오늘 밤 미국장 관전 포인트와 내일 한국장 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '오늘 어떻게 전개됐고 내일 무엇을 볼지'로 읽으세요."""
+- 전개 순서: ① {T} 국내 시장 결과(지수·수급·시장 폭) → ② {US}의 현재 흐름 → ③ {NK} 한국장 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '{T} 어떻게 전개됐고 {NK}에 무엇을 볼지'로 읽으세요."""
+    return head + f"""- 지금은 {T} {hm}, {T} 한국장은 마감했습니다.
+- 실제 시간 순서: (1) {U} → (2) {T} 한국장(09:00~15:30) → (3) 지금 → (4) 다음 미국장(한국시간 {T} 밤) → (5) {NK} 한국장.
+{dom}
+{us_line}
+- 전개 순서: ① {US} → ② {T} 국내 시장이 실제로 어떻게 반응했는지(지수·수급·시장 폭) → ③ 다음 미국장 관전 포인트와 {NK} 한국장 대응. 아래 지시문의 '오늘 국내 시장이 어떻게 전개될지'는 이 회차에서 '{T} 어떻게 전개됐고 {NK}에 무엇을 볼지'로 읽으세요."""
 
 
 def _final_check(session: str) -> str:
-    first = ("국내 시장이 간밤 미국장에 이미 반응했다는 식의 문장이 하나라도 있으면 잘못된 리포트입니다."
+    first = ("국내 시장이 가장 최근 미국장에 이미 반응했다는 식의 문장이 하나라도 있으면 잘못된 리포트입니다."
              if session == "pre" else "먼저 일어난 일을 나중 일의 결과처럼 쓴 문장이 하나라도 있으면 잘못된 리포트입니다.")
-    return f"""- [출력 전 점검 — 하나라도 어기면 다시 쓰세요] (가) 위 [시간 순서] 규칙을 다시 확인하세요. {first} (나) 출력의 어떤 필드에도 Focus 2 또는 Focus라는 이름을 쓰지 마세요. strategy_headline·strategy_points·strategy_brief·summary에서는 그 두 종목의 선정 여부나 대기 상태를 따로 다루지 마세요(종목은 top_picks에만 넣고, Fundamentals·Momentum 숫자는 시장 국면 설명에만 쓰세요). (다) 주식 비중 30% 이하(Risk-Off)일 때는 어떤 필드에도 매수, 저점 매수, 매수 타이밍, 분할 매수, 비중 확대 같은 표현을 쓰지 마세요. 조건이 충족된 뒤의 행동도 '대기 명단 재검토'로만 쓰세요."""
+    return f"""- [출력 전 점검 — 하나라도 어기면 다시 쓰세요] (가) 위 [시간 순서] 규칙을 다시 확인하세요. {first} (나) 출력의 어떤 필드에도 Focus 2 또는 Focus라는 이름을 쓰지 마세요. strategy_headline·strategy_points·strategy_brief·summary에서는 그 두 종목의 선정 여부나 대기 상태를 따로 다루지 마세요(종목은 top_picks에만 넣고, Fundamentals·Momentum 숫자는 시장 국면 설명에만 쓰세요). (다) 주식 비중 30% 이하(Risk-Off)일 때는 어떤 필드에도 매수, 저점 매수, 매수 타이밍, 분할 매수, 비중 확대 같은 표현을 쓰지 마세요. 조건이 충족된 뒤의 행동도 '대기 명단 재검토'로만 쓰세요. (라) [날짜 표기 규칙]을 다시 확인하세요. 오늘·어제·전일·간밤·어젯밤·내일·오늘 밤이 날짜 없이 쓰인 곳이 하나라도 있으면 위 날짜 표의 한국시간 날짜로 고치세요."""
+
+
+_REL_WORDS = re.compile(r"(오늘 밤|오늘|어제|어젯밤|전일|간밤|내일)(?!\s*\()")
+
+
+def _relative_word_count(analysis: dict) -> int:
+    """날짜 없이 쓰인 상대 표현 개수(점검용 로그)."""
+    parts = [analysis.get(k) or "" for k in ("strategy_headline", "strategy_brief", "summary", "sentiment_reason")]
+    parts += list(analysis.get("strategy_points") or [])
+    return sum(len(_REL_WORDS.findall(str(x))) for x in parts)
 
 
 def _format_articles(articles: list) -> str:
@@ -876,6 +963,12 @@ def run():
     if not analysis.get("strategy_headline") or not analysis.get("strategy_brief"):
         logger.warning("핵심 필드(headline/brief) 누락 — 1회 재시도")
         analysis = claude_analyze(news_data, rrg_data)
+
+    try:
+        _rel = _relative_word_count(analysis)
+        (logger.warning if _rel else logger.info)(f"날짜 표기 점검: 날짜 없는 상대 표현 {_rel}곳")
+    except Exception:
+        pass
 
     # ── 매크로 데이터에 원인 병합 ─────────────────────────────
     macro_with_reasons = {}
