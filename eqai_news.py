@@ -134,12 +134,90 @@ def fetch_kr_index_kis() -> dict:
     return result
 
 
+# ── 해외 지수: KIS 해외지수 기간별시세 (yfinance 최신 일봉 누락 대응) ──
+#
+# yfinance는 장 마감 뒤 그날 일봉을 한동안 빼먹는 일이 있다(2026-11-26 확인: 니케이·항셍·DAX의 25일 봉 누락).
+# 같은 시각 KIS는 25일 봉을 정상 제공 → 아래 지수는 KIS를 먼저 쓰고, 실패하면 yfinance로 대체한다.
+# 코드는 KIS 해외지수 코드표(frgn_code.mst)에서 확인한 값. (.DJI는 KIS 공식 샘플의 예시 코드)
+KIS_OVERSEAS_URL = "https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/inquire-daily-chartprice"
+KIS_OVERSEAS_CODES = {
+    "S&P500": "SPX", "NASDAQ": "COMP", "DOW": ".DJI", "VIX": "VIX", "필라델피아반도체": "SOX",
+    "영국FTSE": "GB#FTSE", "독일DAX": "GR#DAX", "니케이": "JP#NI225", "항셍": "HK#HS",
+}
+
+
+def fetch_overseas_index_kis() -> dict:
+    """해외 주요 지수의 최근 종가·등락률·시세 날짜를 KIS로 조회. 실패한 지수는 빠진다(호출부에서 yfinance로 대체)."""
+    import os
+    import asyncio
+    from datetime import datetime, timedelta
+    from pathlib import Path
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).parent / ".env")
+    result = {}
+    try:
+        from kis_auth import get_access_token
+        token = asyncio.run(get_access_token())
+        headers = {
+            "authorization": f"Bearer {token}",
+            "appkey":        os.getenv("KIS_APP_KEY"),
+            "appsecret":     os.getenv("KIS_APP_SECRET"),
+            "tr_id":         "FHKST03030100",
+        }
+        d2 = datetime.now().strftime("%Y%m%d")
+        d1 = (datetime.now() - timedelta(days=12)).strftime("%Y%m%d")
+        for name, iscd in KIS_OVERSEAS_CODES.items():
+            try:
+                r = requests.get(
+                    KIS_OVERSEAS_URL,
+                    headers=headers,
+                    params={
+                        "FID_COND_MRKT_DIV_CODE": "N",
+                        "FID_INPUT_ISCD":         iscd,
+                        "FID_INPUT_DATE_1":       d1,
+                        "FID_INPUT_DATE_2":       d2,
+                        "FID_PERIOD_DIV_CODE":    "D",
+                    },
+                    timeout=5,
+                )
+                bars = []
+                for b in (r.json().get("output2") or []):
+                    try:
+                        c = float(b.get("ovrs_nmix_prpr") or 0)
+                    except (TypeError, ValueError):
+                        c = 0.0
+                    d = str(b.get("stck_bsop_date") or "")
+                    if c > 0 and len(d) == 8:
+                        bars.append((d, c))
+                bars.sort(reverse=True)            # 최신 날짜가 맨 앞
+                if len(bars) >= 2:
+                    (d0, curr), (_, prev) = bars[0], bars[1]
+                    result[name] = {
+                        "price":  round(curr, 2),
+                        "change": round((curr - prev) / prev * 100, 2),
+                        "date":   f"{d0[:4]}-{d0[4:6]}-{d0[6:]}",
+                    }
+                else:
+                    logger.warning(f"KIS 해외지수 데이터 부족 ({name}): {len(bars)}일치 — yfinance로 대체")
+            except Exception as e:
+                logger.warning(f"KIS 해외지수 조회 실패 ({name}): {e} — yfinance로 대체")
+        logger.info(f"KIS 해외지수 {len(result)}/{len(KIS_OVERSEAS_CODES)}개 조회")
+    except Exception as e:
+        logger.warning(f"KIS 해외지수 조회 불가 (토큰/모듈): {e}")
+    return result
+
+
 def fetch_macro() -> dict:
     result = {}
     kis_kr = fetch_kr_index_kis()   # 코스피/코스닥은 KIS 공식 시세 우선
+    kis_os = fetch_overseas_index_kis()   # 해외 주요 지수도 KIS 우선, 실패분만 yfinance
     for name, symbol in MACRO_TICKERS.items():
         if name in kis_kr:
             result[name] = kis_kr[name]
+            continue
+        if name in kis_os:
+            result[name] = kis_os[name]
             continue
         try:
             hist = yf.Ticker(symbol).history(period="5d")
