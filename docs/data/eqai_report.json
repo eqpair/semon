@@ -1,206 +1,213 @@
 {
-  "generated_at": "2026-11-26 08:50:58",
+  "generated_at": "2026-11-27 07:03:03",
   "edition": "pre",
   "edition_label": "개장 전 전망",
-  "domestic_asof": "2026-11-25",
+  "domestic_asof": "2026-11-26",
   "macro": {
     "S&P500": {
       "price": 7182.78,
       "change": -0.25,
       "date": "2026-11-25",
-      "reason": "예상보다 높은 물가 지표로 하락 출발했고, 엔비디아 신용등급 부정적 관찰과 AI 신용 우려가 겹쳤습니다. 장 후반 낙폭이 줄어 -0.25%로 마감했습니다.",
+      "reason": "기술 섹터 소외 속에 AI 관련 불안이 이어졌습니다. 마켓워치는 엔비디아와 AI 트레이드가 아직 불확실성을 벗어나지 못했다고 짚었고, 필수소비재·유틸리티·헬스케어가 주도했습니다.",
       "drivers": [
-        "예상 상회 물가 지표",
-        "엔비디아 등 AI주 약세"
+        "기술(XLK) 섹터 소외",
+        "필수소비재(XLP) 상대강도 112.2",
+        "엔비디아 변동성 부각"
       ]
     },
     "NASDAQ": {
       "price": 23585.8,
       "change": -0.62,
       "date": "2026-11-25",
-      "reason": "AI 신용 우려로 장중 4% 이상 급락했다가 낙폭을 대부분 만회해 -0.62%로 마감했습니다. 엔비디아가 약세를 주도했고 AMD·마이크론도 하락했습니다.",
+      "reason": "엔비디아를 둘러싼 변동성과 규제 이슈가 부담이었습니다. 젠슨 황 CEO 복귀 후 단일종목 ETF가 급락했고, 칩 구매자에게 중국 임대 배제를 요구한다는 보도도 나왔습니다.",
       "drivers": [
-        "엔비디아 신용등급 부정적 관찰",
-        "AMD·마이크론 등 AI주 동반 하락"
+        "엔비디아 변동성 (2x Short NVDA ETF 월요일 -63%)",
+        "칩 구매자 대상 중국 임대 배제 요구 (CNBC)"
       ]
     },
     "DOW": {
       "price": 50182.95,
       "change": 0.33,
       "date": "2026-11-25",
-      "reason": "기술주 대신 경기 호조 신호와 비기술 업종이 받쳐 +0.33%로 마감했습니다. 미국 섹터 중 필수소비재·유틸리티·헬스케어는 SPY 대비 상대강도가 높았고 기술은 소외됐습니다.",
+      "reason": "직접 종목 촉매는 확인 안 됨. 금융·헬스케어·필수소비재 등 경기·방어 성격 섹터가 주도한 로테이션에 동조해 소폭 올랐습니다.",
       "drivers": [
-        "장 후반 낙폭 축소",
-        "비기술 업종 상대 강세"
+        "금융(XLF) 상대강도 106.9",
+        "헬스케어(XLV) 상대강도 109.4"
       ]
     },
     "VIX": {
-      "price": 28.29,
-      "change": 7.32,
-      "date": "2026-11-25",
-      "reason": "나스닥이 장중 4% 이상 흔들리며 변동성 지표가 +7.32% 올라 28.29가 됐습니다. 장 후반 낙폭을 줄였어도 위험회피 심리가 남아 있습니다.",
+      "price": 26.8,
+      "change": -5.27,
+      "date": "2026-11-26",
+      "reason": "26일(목) 시세 기준 26.8로 -5.27% 내렸습니다. 마이클 버리가 나스닥100 풋옵션을 처분하고 콜옵션 중심으로 바꿨다는 블룸버그 보도 등 심리 개선 신호와 맞물렸지만, 직접 인과는 약합니다.",
       "drivers": [
-        "나스닥 장중 4% 이상 낙폭",
-        "AI 신용 우려"
+        "마이클 버리 풋→콜 전환 (블룸버그)",
+        "글로벌 증시 반등 흐름"
       ]
     },
     "필라델피아반도체": {
       "price": 8774.86,
       "change": -0.65,
       "date": "2026-11-25",
-      "reason": "엔비디아가 S&P 신용등급 부정적 관찰과 중국 AI 칩 원격 접근 규제 이슈로 약세였습니다. AMD·마이크론도 AI주 하락을 이끌며 -0.65%를 기록했습니다.",
+      "reason": "엔비디아 고객의 중국 임대 배제 요구와 AI 전망 재평가가 겹쳤습니다. 도이체방크는 반도체 수출액이 처음으로 석유·가스를 넘었다고 분석했으나 투자자들이 AI 전망을 다시 따지는 시점입니다.",
       "drivers": [
-        "엔비디아 AA 등급 부정적 관찰",
-        "AMD·마이크론 동반 하락",
-        "미국의 중국 AI 칩 접근 규제 강화"
+        "엔비디아 칩 구매자 중국 임대 배제 요구",
+        "AI 전망 재평가 (도이체방크 분석)"
       ]
     },
     "러셀2000": {
       "price": 2704.06,
       "change": 0.71,
       "date": "2026-11-25",
-      "reason": "AI·대형 기술주 부진 속에 소형주로 자금이 이동해 +0.71%를 기록했습니다. 경기 호조 신호도 소형주에 우호적이었습니다.",
+      "reason": "직접 촉매 없음 — 미국 10년 국채금리 하락과 경기·방어 섹터로 자금이 이동하는 흐름에 동조해 +0.71% 올랐습니다.",
       "drivers": [
-        "대형 기술주에서 소형주로 순환",
-        "경기 호조 신호"
+        "국채10Y -1.14%",
+        "섹터 로테이션 (기술 외 섹터 주도)"
       ]
     },
     "영국FTSE": {
-      "price": 10426.94,
-      "change": -0.38,
-      "date": "2026-11-25",
-      "reason": "유럽장은 26일(목) 새벽 마감한 미국장 이전에 끝났고, 뉴스 본문에 직접 촉매가 없어 원인은 확인 안 됨.",
+      "price": 10609.3,
+      "change": 1.75,
+      "date": "2026-11-26",
+      "reason": "CNBC가 26일(목) 글로벌 증시의 반등과 새 관세를 넘기는 분위기를 전했지만, FTSE 개별 촉매는 뉴스 본문에서 확인되지 않습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "ECB 신임 총재 인선 (연속성 평가, 지수 영향은 확인 안 됨)"
       ]
     },
     "독일DAX": {
-      "price": 25017.81,
-      "change": -1.26,
-      "date": "2026-11-24",
-      "reason": "24일(화) 시세이며, 직접 촉매 확인 안 됨. 뉴스 본문에 유럽 증시 관련 근거가 없습니다.",
+      "price": 25215.52,
+      "change": 2.08,
+      "date": "2026-11-26",
+      "reason": "26일(목) 글로벌 증시가 AI 주도 급락 후 반등하고 새 관세 부담을 넘겼다는 CNBC 보도와 같은 흐름입니다. DAX 개별 촉매는 확인 안 됨.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "개별 촉매 확인 안 됨"
       ]
     },
     "니케이": {
-      "price": 58644.63,
-      "change": 3.91,
-      "date": "2026-11-24",
-      "reason": "24일(화) 시세이며, 뉴스 본문에서 직접 촉매는 확인 안 됨. 26일(목) 새벽 마감한 미국장보다 앞선 시세라 미국장과 연결하지 않습니다.",
+      "price": 57499.16,
+      "change": 0.86,
+      "date": "2026-11-26",
+      "reason": "CNBC는 26일(목) 글로벌 증시가 AI 주도 급락에서 일부 회복하고 백악관의 새 관세를 넘겼다고 보도했습니다. 니케이 개별 촉매는 확인 안 됨.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "개별 촉매 확인 안 됨"
       ]
     },
     "항셍": {
-      "price": 22219.65,
-      "change": -0.73,
-      "date": "2026-11-24",
-      "reason": "24일(화) 시세이며, 직접 촉매 확인 안 됨. 뉴스 본문에 홍콩 시장 관련 근거가 없습니다.",
+      "price": 22226.88,
+      "change": 1.19,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 확인 안 됨. 26일(목) 글로벌 증시의 AI 급락 후 회복 흐름과 동조한 것으로 보이며, 항셍 개별 재료는 뉴스에 없습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "개별 촉매 확인 안 됨"
       ]
     },
     "달러인덱스": {
-      "price": 103.7,
-      "change": -0.11,
-      "date": "2026-11-25",
-      "reason": "직접 촉매 없음 — 미국 국채금리 하락 흐름에 동조해 -0.11%로 소폭 약세였습니다.",
+      "price": 103.78,
+      "change": 0.11,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 없음 — 연준 인상 기대와 새 관세 발표 속 소폭 강세로 동조했습니다. 변동폭이 작아 의미는 제한적입니다.",
       "drivers": [
-        "미국 국채금리 하락 동조"
+        "연준 인상 임박 보도 (FT)",
+        "백악관 새 관세 발표"
       ]
     },
     "국채2Y": {
-      "price": 4.15,
+      "price": 4.16,
       "change": -0.31,
       "date": "2026-11-25",
-      "reason": "뉴스 본문에 직접 원인이 없음. 위험자산이 장중 급락한 흐름과 동조한 채권 강세로 보이나, 물가가 예상보다 높았다는 보도와는 방향이 엇갈려 근거가 약합니다.",
+      "reason": "직접 촉매 확인 안 됨. 벤징가는 인플레이션이 10월에 정점을 찍었을 가능성과 연준 인상 횟수에 대한 이코노미스트 의견 분분함을 전했고, FT는 연준이 인상할 태세라고 보도했습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨",
-        "장중 위험회피 국면과 동조"
+        "인플레이션 10월 정점론 (벤징가)",
+        "연준 인상 임박 보도 (FT)"
       ]
     },
     "국채10Y": {
       "price": 4.85,
       "change": -1.14,
       "date": "2026-11-25",
-      "reason": "직접 촉매 없음 — 2년물 -0.31%와 함께 채권 강세로 움직였습니다. 12월 금리 인상 베팅이 강화된 것과는 방향이 달라 원인을 단정하기 어렵습니다.",
+      "reason": "직접 촉매 확인 안 됨. 인플레이션 정점론과 주식시장 불안 속에서 장기물 수요가 늘어난 흐름과 동조한 것으로 보이며, 근거는 약합니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨",
-        "2년물 동반 하락"
+        "인플레이션 10월 정점론",
+        "증시 불안 속 채권 선호 (뉴스 직접 근거 약함)"
       ]
     },
     "코스피": {
-      "price": 4697.51,
+      "price": 4711.21,
       "change": 0.0,
-      "reason": "26일(목) 새벽 마감한 미국장에서 나스닥 -0.62%, 필라델피아반도체 -0.65%, 엔비디아 약세가 나와 반도체 중심의 하락 출발 가능성이 큽니다. 외국인 매도 지속 여부가 낙폭을 좌우할 전망입니다.",
+      "reason": "26일(목) 새벽 마감한 미국장에서 나스닥 -0.62%, 필라델피아반도체 -0.65%로 기술주가 약했던 만큼, 27일(금) 한국장은 반도체 중심의 약세 압력 속에 출발할 가능성이 큽니다. 외국인 매도 지속 여부가 낙폭을 좌우할 전망입니다.",
       "drivers": [
-        "엔비디아 신용등급 부정적 관찰·AI주 약세",
-        "VIX 28.29 급등에 따른 외국인 수급 부담"
+        "필라델피아반도체 -0.65%",
+        "외국인 코스피 20일 -17.5조 (26일(목) 기준)"
       ]
     },
     "코스닥": {
-      "price": 650.64,
+      "price": 655.71,
       "change": 0.0,
-      "reason": "AI·기술주 약세 부담과 러셀2000 +0.71% 소형주 강세가 맞서 혼조 출발 가능성이 있습니다. 위험회피가 커서 반등 시도는 제한적일 전망입니다.",
+      "reason": "러셀2000(미국 중소형주 지수) +0.71%는 중소형주 심리에 우호적이지만 나스닥 -0.62%의 기술주 약세와 상충해, 27일(금) 한국장은 방향성이 제한된 채 출발할 전망입니다.",
       "drivers": [
-        "나스닥 -0.62%",
-        "러셀2000 +0.71%"
+        "러셀2000 +0.71%",
+        "나스닥 -0.62%"
       ]
     },
     "금": {
-      "price": 3603.1,
-      "change": 1.16,
-      "date": "2026-11-25",
-      "reason": "직접 촉매 없음 — VIX 급등과 국채금리 하락이 맞물린 위험회피 흐름과 동조해 +1.16%를 기록했습니다. 뉴스 본문에 금 관련 직접 근거는 없습니다.",
+      "price": 3593.4,
+      "change": 1.63,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 없음 — 새 관세와 AI 변동성이 이어지는 가운데 안전자산 선호 흐름에 동조한 것으로 보이며, 뉴스에 금 관련 본문은 없습니다.",
       "drivers": [
-        "위험회피 심리 동조",
-        "국채금리 하락"
+        "백악관 새 관세 발표",
+        "AI 관련 변동성"
       ]
     },
     "WTI유가": {
-      "price": 84.02,
-      "change": 2.4,
-      "date": "2026-11-25",
-      "reason": "직접 촉매 확인 안 됨. 경기 호조 신호 보도와 방향은 같지만 인과는 확인되지 않았습니다.",
+      "price": 84.91,
+      "change": 1.47,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 없음 — 뉴스에 원유 수급 관련 본문이 없어 원인을 확인할 수 없습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "직접 촉매 확인 안 됨",
+        "원자재 전반 상승 흐름 동조 (구리·금)"
       ]
     },
     "원달러": {
-      "price": 1344.14,
-      "change": 0.23,
-      "date": "2026-11-25",
-      "reason": "직접 촉매 없음 — 위험회피 분위기에 +0.23%로 소폭 상승했습니다. 26일(목) 한국은행 금통위 결과가 다음 변수입니다.",
+      "price": 1343.53,
+      "change": 0.07,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 없음 — 달러인덱스 소폭 강세(+0.11%)에 동조한 미미한 움직임입니다.",
       "drivers": [
-        "VIX 급등에 따른 위험회피 동조",
-        "26일(목) 금통위 인상 여부"
-      ]
-    },
-    "알루미늄": {
-      "price": 2787.0,
-      "change": -2.98,
-      "date": "2026-11-25",
-      "reason": "직접 촉매 없음 — 구리 +2.26%와 반대로 -2.98% 하락했으나 뉴스 본문에 근거가 없습니다. 개별 수급 요인은 확인 안 됨.",
-      "drivers": [
+        "달러인덱스 +0.11%",
         "직접 촉매 확인 안 됨"
       ]
     },
-    "구리": {
-      "price": 5.48,
-      "change": 2.26,
-      "date": "2026-11-25",
-      "reason": "직접 촉매 확인 안 됨. 경기 호조 신호 보도와 방향은 일치하나 인과는 확인되지 않았습니다.",
+    "알루미늄": {
+      "price": 2774.5,
+      "change": -1.71,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 없음 — 같은 산업금속인 구리(+1.89%)와 반대로 움직였고, 뉴스 본문에 근거가 없어 원인을 확인할 수 없습니다.",
       "drivers": [
         "직접 촉매 확인 안 됨",
-        "경기 호조 신호와 방향 일치"
+        "구리와 엇갈린 흐름"
+      ]
+    },
+    "구리": {
+      "price": 5.43,
+      "change": 1.89,
+      "date": "2026-11-26",
+      "reason": "직접 촉매 없음 — 뉴스에 구리 관련 본문이 없습니다. 금·유가가 함께 오른 원자재 강세 흐름에 동조했습니다.",
+      "drivers": [
+        "금 +1.63%",
+        "WTI유가 +1.47%"
       ]
     }
   },
   "sector_rrg": {
     "전기전자": {
-      "rs_ratio": 96.733,
-      "rs_momentum": 97.493,
+      "rs_ratio": 96.382,
+      "rs_momentum": 97.302,
       "quadrant": "lagging",
       "tail": [
         {
@@ -348,18 +355,18 @@
           "rs_momentum": 96.442
         },
         {
-          "rs_ratio": 96.733,
-          "rs_momentum": 97.493
+          "rs_ratio": 96.382,
+          "rs_momentum": 97.302
         }
       ],
-      "sector_ret_5d": -8.26,
-      "improving_count": 1,
-      "watch_count": 3,
+      "sector_ret_5d": -10.88,
+      "improving_count": 3,
+      "watch_count": 2,
       "total": 125
     },
     "기계·장비": {
-      "rs_ratio": 95.546,
-      "rs_momentum": 94.776,
+      "rs_ratio": 94.385,
+      "rs_momentum": 95.036,
       "quadrant": "lagging",
       "tail": [
         {
@@ -507,18 +514,18 @@
           "rs_momentum": 93.181
         },
         {
-          "rs_ratio": 95.546,
-          "rs_momentum": 94.776
+          "rs_ratio": 94.385,
+          "rs_momentum": 95.036
         }
       ],
-      "sector_ret_5d": -3.14,
+      "sector_ret_5d": -6.99,
       "improving_count": 1,
-      "watch_count": 3,
+      "watch_count": 2,
       "total": 68
     },
     "IT서비스": {
-      "rs_ratio": 111.389,
-      "rs_momentum": 106.534,
+      "rs_ratio": 111.315,
+      "rs_momentum": 105.865,
       "quadrant": "leading",
       "tail": [
         {
@@ -678,18 +685,18 @@
           "rs_momentum": 107.736
         },
         {
-          "rs_ratio": 111.389,
-          "rs_momentum": 106.534
+          "rs_ratio": 111.315,
+          "rs_momentum": 105.865
         }
       ],
-      "sector_ret_5d": -1.94,
+      "sector_ret_5d": -1.38,
       "improving_count": 1,
-      "watch_count": 1,
+      "watch_count": 0,
       "total": 46
     },
     "화학": {
-      "rs_ratio": 100.693,
-      "rs_momentum": 98.188,
+      "rs_ratio": 101.311,
+      "rs_momentum": 98.818,
       "quadrant": "weakening",
       "tail": [
         {
@@ -837,18 +844,18 @@
           "rs_momentum": 97.534
         },
         {
-          "rs_ratio": 100.693,
-          "rs_momentum": 98.188
+          "rs_ratio": 101.311,
+          "rs_momentum": 98.818
         }
       ],
-      "sector_ret_5d": 0.52,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": 1.33,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 50
     },
     "일반서비스": {
-      "rs_ratio": 111.364,
-      "rs_momentum": 104.951,
+      "rs_ratio": 111.421,
+      "rs_momentum": 104.886,
       "quadrant": "leading",
       "tail": [
         {
@@ -996,18 +1003,18 @@
           "rs_momentum": 105.023
         },
         {
-          "rs_ratio": 111.364,
-          "rs_momentum": 104.951
+          "rs_ratio": 111.421,
+          "rs_momentum": 104.886
         }
       ],
-      "sector_ret_5d": -0.6,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -1.22,
+      "improving_count": 2,
+      "watch_count": 0,
       "total": 42
     },
     "제약": {
-      "rs_ratio": 114.147,
-      "rs_momentum": 106.849,
+      "rs_ratio": 114.396,
+      "rs_momentum": 106.403,
       "quadrant": "leading",
       "tail": [
         {
@@ -1167,18 +1174,18 @@
           "rs_momentum": 107.523
         },
         {
-          "rs_ratio": 114.147,
-          "rs_momentum": 106.849
+          "rs_ratio": 114.396,
+          "rs_momentum": 106.403
         }
       ],
-      "sector_ret_5d": 1.23,
-      "improving_count": 0,
-      "watch_count": 4,
+      "sector_ret_5d": 0.78,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 32
     },
     "금속": {
-      "rs_ratio": 99.129,
-      "rs_momentum": 100.917,
+      "rs_ratio": 98.795,
+      "rs_momentum": 100.734,
       "quadrant": "improving",
       "tail": [
         {
@@ -1326,18 +1333,18 @@
           "rs_momentum": 100.131
         },
         {
-          "rs_ratio": 99.129,
-          "rs_momentum": 100.917
+          "rs_ratio": 98.795,
+          "rs_momentum": 100.734
         }
       ],
-      "sector_ret_5d": -1.7,
+      "sector_ret_5d": -2.22,
       "improving_count": 1,
-      "watch_count": 1,
+      "watch_count": 2,
       "total": 26
     },
     "운송장비·부품": {
-      "rs_ratio": 101.38,
-      "rs_momentum": 105.092,
+      "rs_ratio": 101.994,
+      "rs_momentum": 105.544,
       "quadrant": "leading",
       "tail": [
         {
@@ -1485,18 +1492,18 @@
           "rs_momentum": 104.28
         },
         {
-          "rs_ratio": 101.38,
-          "rs_momentum": 105.092
+          "rs_ratio": 101.994,
+          "rs_momentum": 105.544
         }
       ],
-      "sector_ret_5d": -0.88,
-      "improving_count": 1,
-      "watch_count": 3,
+      "sector_ret_5d": -3.16,
+      "improving_count": 3,
+      "watch_count": 2,
       "total": 25
     },
     "유통": {
-      "rs_ratio": 103.584,
-      "rs_momentum": 103.461,
+      "rs_ratio": 103.518,
+      "rs_momentum": 103.203,
       "quadrant": "leading",
       "tail": [
         {
@@ -1656,18 +1663,18 @@
           "rs_momentum": 103.124
         },
         {
-          "rs_ratio": 103.584,
-          "rs_momentum": 103.461
+          "rs_ratio": 103.518,
+          "rs_momentum": 103.203
         }
       ],
-      "sector_ret_5d": -5.98,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -6.36,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 24
     },
     "의료·정밀기기": {
-      "rs_ratio": 96.524,
-      "rs_momentum": 90.69,
+      "rs_ratio": 96.259,
+      "rs_momentum": 90.676,
       "quadrant": "lagging",
       "tail": [
         {
@@ -1815,18 +1822,18 @@
           "rs_momentum": 89.281
         },
         {
-          "rs_ratio": 96.524,
-          "rs_momentum": 90.69
+          "rs_ratio": 96.259,
+          "rs_momentum": 90.676
         }
       ],
-      "sector_ret_5d": 0.32,
-      "improving_count": 0,
-      "watch_count": 2,
+      "sector_ret_5d": -6.45,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 20
     },
     "금융": {
-      "rs_ratio": 109.151,
-      "rs_momentum": 105.945,
+      "rs_ratio": 109.714,
+      "rs_momentum": 106.52,
       "quadrant": "leading",
       "tail": [
         {
@@ -1974,18 +1981,18 @@
           "rs_momentum": 105.644
         },
         {
-          "rs_ratio": 109.151,
-          "rs_momentum": 105.945
+          "rs_ratio": 109.714,
+          "rs_momentum": 106.52
         }
       ],
-      "sector_ret_5d": -2.41,
-      "improving_count": 0,
+      "sector_ret_5d": -2.65,
+      "improving_count": 2,
       "watch_count": 0,
       "total": 19
     },
     "지주": {
-      "rs_ratio": 103.981,
-      "rs_momentum": 103.277,
+      "rs_ratio": 101.378,
+      "rs_momentum": 102.011,
       "quadrant": "leading",
       "tail": [
         {
@@ -2145,18 +2152,18 @@
           "rs_momentum": 101.283
         },
         {
-          "rs_ratio": 103.981,
-          "rs_momentum": 103.277
+          "rs_ratio": 101.378,
+          "rs_momentum": 102.011
         }
       ],
-      "sector_ret_5d": 1.34,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -6.99,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 20
     },
     "운송·창고": {
-      "rs_ratio": 114.168,
-      "rs_momentum": 105.897,
+      "rs_ratio": 114.338,
+      "rs_momentum": 105.53,
       "quadrant": "leading",
       "tail": [
         {
@@ -2304,18 +2311,18 @@
           "rs_momentum": 105.894
         },
         {
-          "rs_ratio": 114.168,
-          "rs_momentum": 105.897
+          "rs_ratio": 114.338,
+          "rs_momentum": 105.53
         }
       ],
-      "sector_ret_5d": -0.09,
+      "sector_ret_5d": -3.52,
       "improving_count": 0,
       "watch_count": 0,
       "total": 13
     },
     "건설": {
-      "rs_ratio": 96.837,
-      "rs_momentum": 101.394,
+      "rs_ratio": 96.495,
+      "rs_momentum": 101.293,
       "quadrant": "improving",
       "tail": [
         {
@@ -2475,18 +2482,18 @@
           "rs_momentum": 101.045
         },
         {
-          "rs_ratio": 96.837,
-          "rs_momentum": 101.394
+          "rs_ratio": 96.495,
+          "rs_momentum": 101.293
         }
       ],
-      "sector_ret_5d": -10.31,
-      "improving_count": 2,
-      "watch_count": 2,
+      "sector_ret_5d": -12.22,
+      "improving_count": 3,
+      "watch_count": 0,
       "total": 13
     },
     "음식료·담배": {
-      "rs_ratio": 111.315,
-      "rs_momentum": 103.589,
+      "rs_ratio": 112.044,
+      "rs_momentum": 103.692,
       "quadrant": "leading",
       "tail": [
         {
@@ -2634,18 +2641,18 @@
           "rs_momentum": 103.156
         },
         {
-          "rs_ratio": 111.315,
-          "rs_momentum": 103.589
+          "rs_ratio": 112.044,
+          "rs_momentum": 103.692
         }
       ],
-      "sector_ret_5d": 1.06,
+      "sector_ret_5d": 0.74,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
     },
     "오락·문화": {
-      "rs_ratio": 116.32,
-      "rs_momentum": 108.996,
+      "rs_ratio": 118.237,
+      "rs_momentum": 110.28,
       "quadrant": "leading",
       "tail": [
         {
@@ -2793,18 +2800,18 @@
           "rs_momentum": 107.848
         },
         {
-          "rs_ratio": 116.32,
-          "rs_momentum": 108.996
+          "rs_ratio": 118.237,
+          "rs_momentum": 110.28
         }
       ],
-      "sector_ret_5d": 7.68,
+      "sector_ret_5d": 2.3,
       "improving_count": 0,
       "watch_count": 0,
       "total": 9
     },
     "보험": {
-      "rs_ratio": 105.712,
-      "rs_momentum": 103.53,
+      "rs_ratio": 105.602,
+      "rs_momentum": 103.225,
       "quadrant": "leading",
       "tail": [
         {
@@ -2964,18 +2971,18 @@
           "rs_momentum": 103.387
         },
         {
-          "rs_ratio": 105.712,
-          "rs_momentum": 103.53
+          "rs_ratio": 105.602,
+          "rs_momentum": 103.225
         }
       ],
-      "sector_ret_5d": -9.19,
+      "sector_ret_5d": -8.18,
       "improving_count": 0,
-      "watch_count": 0,
+      "watch_count": 1,
       "total": 7
     },
     "증권": {
-      "rs_ratio": 98.236,
-      "rs_momentum": 100.997,
+      "rs_ratio": 99.502,
+      "rs_momentum": 101.619,
       "quadrant": "improving",
       "tail": [
         {
@@ -3135,18 +3142,18 @@
           "rs_momentum": 100.828
         },
         {
-          "rs_ratio": 98.236,
-          "rs_momentum": 100.997
+          "rs_ratio": 99.502,
+          "rs_momentum": 101.619
         }
       ],
-      "sector_ret_5d": -5.34,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -1.1,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 6
     },
     "섬유·의류": {
-      "rs_ratio": 102.625,
-      "rs_momentum": 96.953,
+      "rs_ratio": 103.13,
+      "rs_momentum": 97.367,
       "quadrant": "weakening",
       "tail": [
         {
@@ -3294,18 +3301,18 @@
           "rs_momentum": 97.196
         },
         {
-          "rs_ratio": 102.625,
-          "rs_momentum": 96.953
+          "rs_ratio": 103.13,
+          "rs_momentum": 97.367
         }
       ],
-      "sector_ret_5d": -1.98,
+      "sector_ret_5d": -3.32,
       "improving_count": 0,
       "watch_count": 0,
       "total": 5
     },
     "비금속": {
-      "rs_ratio": 95.937,
-      "rs_momentum": 95.576,
+      "rs_ratio": 96.125,
+      "rs_momentum": 96.117,
       "quadrant": "lagging",
       "tail": [
         {
@@ -3453,18 +3460,18 @@
           "rs_momentum": 94.273
         },
         {
-          "rs_ratio": 95.937,
-          "rs_momentum": 95.576
+          "rs_ratio": 96.125,
+          "rs_momentum": 96.117
         }
       ],
-      "sector_ret_5d": -4.14,
+      "sector_ret_5d": -10.46,
       "improving_count": 0,
       "watch_count": 0,
       "total": 4
     },
     "통신": {
-      "rs_ratio": 111.216,
-      "rs_momentum": 107.074,
+      "rs_ratio": 110.539,
+      "rs_momentum": 106.062,
       "quadrant": "leading",
       "tail": [
         {
@@ -3624,18 +3631,18 @@
           "rs_momentum": 108.294
         },
         {
-          "rs_ratio": 111.216,
-          "rs_momentum": 107.074
+          "rs_ratio": 110.539,
+          "rs_momentum": 106.062
         }
       ],
-      "sector_ret_5d": -11.04,
+      "sector_ret_5d": -10.04,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
     },
     "유틸리티": {
-      "rs_ratio": 105.891,
-      "rs_momentum": 102.388,
+      "rs_ratio": 104.566,
+      "rs_momentum": 100.927,
       "quadrant": "leading",
       "tail": [
         {
@@ -3795,18 +3802,18 @@
           "rs_momentum": 103.467
         },
         {
-          "rs_ratio": 105.891,
-          "rs_momentum": 102.388
+          "rs_ratio": 104.566,
+          "rs_momentum": 100.927
         }
       ],
-      "sector_ret_5d": -0.95,
-      "improving_count": 0,
-      "watch_count": 1,
+      "sector_ret_5d": -0.51,
+      "improving_count": 1,
+      "watch_count": 0,
       "total": 3
     },
     "은행": {
-      "rs_ratio": 112.267,
-      "rs_momentum": 106.523,
+      "rs_ratio": 112.987,
+      "rs_momentum": 106.785,
       "quadrant": "leading",
       "tail": [
         {
@@ -3966,11 +3973,11 @@
           "rs_momentum": 106.494
         },
         {
-          "rs_ratio": 112.267,
-          "rs_momentum": 106.523
+          "rs_ratio": 112.987,
+          "rs_momentum": 106.785
         }
       ],
-      "sector_ret_5d": 0.21,
+      "sector_ret_5d": -0.97,
       "improving_count": 0,
       "watch_count": 0,
       "total": 3
@@ -3979,122 +3986,118 @@
   "sources": [
     {
       "source": "benzinga",
-      "title": "AMD, Micron, Nvidia Lead AI Stocks Lower as Market Tumbles Into Thanksgiving",
-      "link": "https://www.benzinga.com/markets/tech/26/11/63629268/amd-micron-nvidia-lead-ai-stocks-lower-as-market-tumbles-into-thanksgiving",
-      "published": "Wed, 25 Nov 2026 15:33:33 +0000"
+      "title": "Thanksgiving Shopping Is Going Mobile. Apple and Amazon Could Benefit From a $4.4 Billion Trend",
+      "link": "https://www.benzinga.com/trading-ideas/long-ideas/26/11/63663131/thanksgiving-mobile-shopping-stocks",
+      "published": "Thu, 26 Nov 2026 19:45:05 +0000"
+    },
+    {
+      "source": "benzinga",
+      "title": "Google’s Amazon Blind Spot: Gemini Recommends It More Than Any Retailer, But Never Links to It",
+      "link": "https://www.benzinga.com/trading-ideas/long-ideas/26/11/63663089/amazon-gemini-ai-search-blind-spot",
+      "published": "Thu, 26 Nov 2026 19:20:07 +0000"
     },
     {
       "source": "yonhap",
-      "title": "DS증권, 에이피알 목표가↓…\"일시적 요인 실적부진, 매수기회\"",
-      "link": "https://www.yna.co.kr/view/AKR20261126029500008",
-      "published": "Thu, 26 Nov 2026 08:34:56 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "“한화솔루션, 2027년 실적 소폭 개선 VS 현금흐름 부족” 목표가↓",
-      "link": "https://www.mk.co.kr/news/stock/12218896",
-      "published": "Thu, 26 Nov 2026 07:35:34 +09:00"
-    },
-    {
-      "source": "yonhap",
-      "title": "올해 마지막 금통위…금리 3.25%로 올리고 성장전망 상향할듯",
-      "link": "https://www.yna.co.kr/view/AKR20261125128400002",
-      "published": "Thu, 26 Nov 2026 05:45:01 +0900"
-    },
-    {
-      "source": "maeil",
-      "title": "엔비디아 신용등급 강등 검토하는 S&P…“경영·지배구조 평가 악화”",
-      "link": "https://www.mk.co.kr/news/world/12218865",
-      "published": "Thu, 26 Nov 2026 06:42:12 +09:00"
-    },
-    {
-      "source": "maeil",
-      "title": "‘큰 형님’ 구글의 귀환 … 제미나이 네온·무료 비서 태스크 “꽤 쓸만하네”",
-      "link": "https://www.mk.co.kr/news/world/12218137",
-      "published": "Thu, 26 Nov 2026 04:30:00 +09:00"
+      "title": "대출 늘고 금리 오르며…은행 3분기까지 이자이익 48조원 넘어",
+      "link": "https://www.yna.co.kr/view/AKR20261126177900002",
+      "published": "Fri, 27 Nov 2026 06:00:04 +0900"
     },
     {
       "source": "cnbc_tech",
-      "title": "Nvidia sellers seek new buyers as U.S. curbs China AI chip access, sources tell CNBC",
-      "link": "https://www.cnbc.com/2026/11/25/nvidia-china-ai-chip-remote-access.html",
-      "published": "Wed, 25 Nov 2026 17:28:24 GMT"
+      "title": "Nvidia chip buyers told to rule out Chinese renters to purchase GPUs, sources say",
+      "link": "https://www.cnbc.com/2026/11/26/neoclouds-nvidia-china-ai.html",
+      "published": "Thu, 26 Nov 2026 17:04:54 GMT"
     },
     {
-      "source": "cnbc_finance",
-      "title": "Jensen Huang's Nvidia return shows the U.S.-China AI race is about more than chips",
-      "link": "https://www.cnbc.com/2026/11/25/jensen-huang-nvidia-ai-talent-race.html",
-      "published": "Wed, 25 Nov 2026 14:29:00 GMT"
+      "source": "marketwatch",
+      "title": "Nvidia and the whole AI trade aren’t out of the woods — not by a long shot",
+      "link": "https://www.marketwatch.com/story/nvidia-and-the-whole-ai-trade-arent-out-of-the-woods-not-by-a-long-shot-bccc0025?mod=mw_rss_topstories",
+      "published": "Thu, 26 Nov 2026 14:00:00 GMT"
+    },
+    {
+      "source": "maeil",
+      "title": "금리 올렸는데 은행주 왜 파래요…한발 먼저 가는 주식 ‘선반영’ 해석",
+      "link": "https://www.mk.co.kr/news/stock/12219785",
+      "published": "Thu, 26 Nov 2026 22:06:04 +09:00"
+    },
+    {
+      "source": "marketwatch",
+      "title": "I hate that Jensen Huang is back at Nvidia, but I love what it’s done for my 401(k). Am I a hypocrite?",
+      "link": "https://www.marketwatch.com/story/i-hate-that-jensen-huang-is-back-at-nvidia-but-i-love-what-its-done-for-my-401-k-am-i-a-hypocrite-f63c0303?mod=mw_rss_topstories",
+      "published": "Thu, 26 Nov 2026 21:30:00 GMT"
+    },
+    {
+      "source": "benzinga",
+      "title": "Why Reddit Is Crushing Amazon and Walmart for Holiday Gift Traffic",
+      "link": "https://www.benzinga.com/trading-ideas/long-ideas/26/11/63663205/reddit-ai-holiday-gift-traffic",
+      "published": "Thu, 26 Nov 2026 20:20:06 +0000"
+    },
+    {
+      "source": "benzinga",
+      "title": "Elon Musk Says ‘Pretty Much Everyone’s Going to Want One, if Not Two’ Tesla Robots Once They Can Wash Dirty Dishes and Take Out Trash Within 18 Months",
+      "link": "https://www.benzinga.com/news/26/11/63663113/elon-musk-says-pretty-much-everyones-going-to-want-one-if-not-two-tesla-robots-once-they-can-wash-dirty-dishes-and-take-out-trash-within-18-months",
+      "published": "Thu, 26 Nov 2026 19:30:08 +0000"
     },
     {
       "source": "cnbc_world",
-      "title": "Saudi national in OpenAI bugging case is out on bond after DOJ tries to block release",
-      "link": "https://www.cnbc.com/2026/11/25/openai-bugging-aflozan-bond-release-saudi.html",
-      "published": "Wed, 25 Nov 2026 19:11:53 GMT"
+      "title": "Buyer beware? Nvidia's volatile swings expose risks of single-stock ETFs",
+      "link": "https://www.cnbc.com/2026/11/26/nvidias-volatile-swings-expose-risks-of-single-stock-etfs.html",
+      "published": "Thu, 26 Nov 2026 16:00:01 GMT"
+    },
+    {
+      "source": "marketwatch",
+      "title": "We are living in perilous times if Nvidia CEO Jensen Huang dictates your 401(k) balance",
+      "link": "https://www.marketwatch.com/story/we-are-living-in-perilous-times-if-nvidias-jensen-huang-dictates-your-401-k-balance-e0942d1e?mod=mw_rss_topstories",
+      "published": "Thu, 26 Nov 2026 15:30:00 GMT"
     },
     {
       "source": "benzinga",
-      "title": "Nasdaq 100 Drops 2.5% on AI Credit Fears, Nvidia Sinks 7%: Stock Market Today",
-      "link": "https://www.benzinga.com/markets/equities/26/11/63643697/stock-market-today-nvidia-ai-credit-fears-sp-500-worst-month-since-2022",
-      "published": "Wed, 25 Nov 2026 17:57:14 +0000"
-    },
-    {
-      "source": "cnbc_world",
-      "title": "Prediction markets push OpenAI IPO expectations later into 2027",
-      "link": "https://www.cnbc.com/2026/11/25/openai-ipo-odds-2027-prediction-markets.html",
-      "published": "Wed, 25 Nov 2026 17:08:03 GMT"
+      "title": "Pablo Hernández de Cos Gets the ECB Job: Analysts Call It Continuity — With a Twist",
+      "link": "https://www.benzinga.com/markets/eurozone/26/11/63663246/hernandez-de-cos-ecb-president-analysts-continuity-twist",
+      "published": "Thu, 26 Nov 2026 20:45:07 +0000"
     },
     {
       "source": "benzinga",
-      "title": "Nvidia’s AI Empire Doesn’t Run on Nvidia Alone. This New ETF Knows It",
-      "link": "https://www.benzinga.com/etfs/new-etfs/26/11/63634841/nvidias-ai-empire-doesnt-run-on-nvidia-alone-this-new-etf-knows-it",
-      "published": "Wed, 25 Nov 2026 16:27:08 +0000"
-    },
-    {
-      "source": "fnnews",
-      "title": "산업부 \"美, 한미 관세합의 존중 재확인\"…과잉생산 관세 25% 상향 여지도",
-      "link": "https://www.fnnews.com/news/202611260114284791",
-      "published": "Thu,26 Nov 2026 01:21:37 +0900"
-    },
-    {
-      "source": "cnbc_tech",
-      "title": "Saudi national charged in OpenAI bugging to be released on $1 million bond",
-      "link": "https://www.cnbc.com/2026/11/24/openai-bugging-aflozan-release-saudi.html",
-      "published": "Wed, 25 Nov 2026 15:55:40 GMT"
+      "title": "Buy Now, Pay Later Is Becoming a Holiday Shopping Lifeline. Should Affirm Investors Be Excited?",
+      "link": "https://www.benzinga.com/trading-ideas/long-ideas/26/11/63663014/affirm-stock-holiday-bnpl-growth",
+      "published": "Thu, 26 Nov 2026 18:30:05 +0000"
     },
     {
       "source": "benzinga",
-      "title": "Google Is Turning AI Performance Into a Price War Anthropic Can’t Ignore",
-      "link": "https://www.benzinga.com/trading-ideas/long-ideas/26/11/63622283/google-ai-price-war-anthropic",
-      "published": "Wed, 25 Nov 2026 14:38:22 +0000"
+      "title": "Inflation May Have Peaked in October: Economists Split on How Many Fed Hikes Are Effectively Needed",
+      "link": "https://www.benzinga.com/markets/economic-data/26/11/63662948/inflation-may-have-peaked-economists-split-fed-hikes",
+      "published": "Thu, 26 Nov 2026 18:20:06 +0000"
+    },
+    {
+      "source": "ft",
+      "title": "Pablo Hernández de Cos wins race for ECB presidency",
+      "link": "https://www.ft.com/content/88a0691a-6ce8-4c97-abf4-7aee0351fd51?syn-25a6b1a6=1",
+      "published": "Thu, 26 Nov 2026 17:36:51 GMT"
     }
   ],
   "global_sentiment": "risk_off",
-  "sentiment_reason": "26일(목) 새벽 마감한 미국장에서 AI주 신용 우려로 VIX가 28.29(+7.32%)로 급등했습니다. 25일(수) 기준 국내 국면은 9단계 투매이고 Risk-Off 판정(주식 비중 0%)이 이어지고 있습니다.",
+  "sentiment_reason": "26일(목) 새벽 마감한 미국장에서 기술주가 약했고 연준 인상 보도가 이어진 데다, 국내는 26일(목) 기준 9단계 투매 국면으로 Risk-Off(주식 비중 0%) 판정이 유지됩니다.",
   "key_factors": [
-    "S&P의 엔비디아 신용등급(AA) 부정적 관찰 지정과 AI 신용 우려로 나스닥이 장중 4% 이상 급락한 뒤 낙폭을 줄여 -0.62%로 마감했습니다. 필라델피아반도체는 -0.65%였습니다.",
-    "예상보다 높은 물가 지표와 경기 호조 신호로 12월 금리 인상 베팅이 강화됐고, 한국은행 금융통화위원회는 26일(목) 3.25% 인상이 유력합니다.",
-    "25일(수) 코스피 외국인 순매도는 1일 -1.9조, 20일 -16.8조입니다. 200일선 위 종목은 19.3%, 신저가는 225종목으로 시장 폭이 약해 Risk-Off가 유지됩니다."
+    "26일(목) 새벽 마감한 미국장: 나스닥 -0.62%, 필라델피아반도체 -0.65%, 기술(XLK) 섹터 소외, 필수소비재·유틸리티·헬스케어 주도",
+    "FT 보도: 연준이 증시 혼조에도 금리 인상에 나설 태세. 백악관의 새 관세 발표와 엔비디아 칩 구매자 대상 중국 임대 배제 요구가 겹침",
+    "국내 26일(목) 기준: 9단계 투매 국면, Momentum 12.3, 코스피 외국인 20일 순매도 -17.5조, 주식 비중 0%"
   ],
-  "news_summary": "미국 증시는 25일(현지) 예상보다 뜨거운 물가 지표에 하락 출발했습니다. 경기 호조 신호로 12월 금리 인상 베팅이 강화됐고, 장 후반 낙폭을 줄여 지수는 장중 고점 부근에서 마감했습니다.\n나스닥은 장중 4% 이상 급락했다가 낙폭을 줄여 -0.62%로 마감했습니다. VIX는 28.29로 +7.32% 올랐고, 미국 증시는 한국시간 26일(목) 밤 추수감사절로 휴장합니다.\n금 3603.1(+1.16%), WTI 84.02(+2.40%), 구리 5.48(+2.26%)이 올랐고 알루미늄은 2787.0(-2.98%) 내렸습니다. 뉴스 본문에서 직접 원인은 확인되지 않았습니다.\n한국은행 금융통화위원회가 26일(목) 올해 마지막 회의에서 기준금리를 3.00%에서 3.25%로 올릴 가능성이 큽니다. 전문가 6명 전원이 0.25%p 인상을 예상했고 올해 성장률은 3%대 후반으로 상향될 전망입니다.\n미국이 구조적 과잉생산 관련 무역법 301조 조사 결과를 발표했습니다. 한국에는 기존 관세를 포함해 총 15%를 제안했고 정부는 한미 관세합의 존중을 재확인받았지만, 협의 결과에 따라 25%까지 오를 여지가 남았습니다.\n트럼프 행정부가 중국 기업의 최첨단 AI 시스템 원격 접근 규제를 강화했습니다. 엔비디아 칩 판매자들이 새 구매자를 찾고 있고, 시장에 나온 물량이 이례적으로 많다고 CNBC가 전했습니다.\n국방부가 지난 주말 젠슨 황의 엔비디아 CEO 복귀를 위해 국방물자생산법 발동까지 논의했다고 WaPo가 보도했습니다. 트럼프 대통령은 인재 보호를 강조해 미중 AI 경쟁이 칩뿐 아니라 인재 싸움임을 보여줍니다.\n스페이스X는 모든 활성 트럼프 계좌에 클래스A 주식 1주를 기부하고 머스크가 같은 규모로 매칭하기로 했습니다. 규모는 약 178억 달러로 보도됐습니다.\nS&P가 25일(현지) 엔비디아의 장기 신용등급과 선순위 무담보 채권 등급 AA를 부정적 관찰 대상에 올렸습니다. 황 CEO의 사임·복귀 과정에서 불거진 지배구조 문제와 대중국 수출통제 위반 의혹이 배경입니다. 즉각 하향은 아니지만 단기간 내 조정 가능성을 열어둔 조치입니다.\n엔비디아·AMD·마이크론이 AI주 하락을 주도했습니다. Benzinga는 나스닥100이 한때 2.5% 하락했고 엔비디아가 7% 급락했다고 전했으며, 월요일 반등분의 상당 부분을 반납했습니다.\n황 CEO는 복귀 후 첫 직원 회의에서 직원들에게 실망을 줬다며 사과했습니다. 후계 계획은 필요 없다고 밝혔습니다.\n구글이 11월 들어 제미나이 4.0 모델과 에이전트 ‘태스크’를 선보이며 존재감을 회복했습니다. TPU 설계부터 클라우드, 챗봇까지 갖춘 풀스택 구조이며 Benzinga는 AI 성능 경쟁이 가격 경쟁으로 번진다고 분석했습니다.\n스페이스X가 FCC로부터 AI 컴퓨팅 위성 100만 기 궤도 배치 승인을 받았습니다. 앤트로픽의 상장 후 주가가 불안해 예측시장은 OpenAI 상장 시점을 2027년 쪽으로 늦춰 반영하고 있습니다.",
+  "news_summary": "FT는 연준이 주식시장 혼란에도 금리 인상에 나설 태세라고 보도했습니다. 인상 폭과 시점은 헤드라인 기준이라 본문에서 확인되지 않습니다.\n벤징가는 인플레이션이 10월에 정점을 찍었을 수 있다고 전했지만, 연준이 실제로 몇 차례 인상해야 하는지를 두고 이코노미스트 의견이 갈린다고 짚었습니다.\n파블로 에르난데스 데 코스가 ECB 총재직을 차지했습니다. 애널리스트들은 정책 연속성이 이어지되 일부 변화가 있을 것으로 평가했습니다(FT, 벤징가).\n트럼프 행정부가 AI 반도체 원격 접속 제한 규정을 발표한 뒤, 네오클라우드는 컴퓨팅 용량의 일부라도 중국 기업에 임대되면 엔비디아 칩을 살 수 없다는 통보를 받았습니다(CNBC). 중국 암시장 GPU 가격은 미국의 5~6배로 뛰었고, 양국 AI 격차는 최대 9개월로 벌어질 전망입니다(매일경제).\n백악관이 25일(현지시간 수요일) 새 관세를 발표했습니다. 26일(목) 글로벌 증시는 이를 넘기며 반등했습니다(CNBC). 구체 품목과 세율은 본문에서 확인되지 않습니다.\n앤드루 베일리 영란은행 총재가 공개 전 AI 모델이 암호화 보안에 대한 우려를 키웠다고 밝혔습니다(FT, 헤드라인 기준).\n엔비디아 변동성이 커졌습니다. 젠슨 황이 CEO로 복귀한 월요일 GraniteShares 2x Short NVDA ETF(NVD)가 63% 급락해 단일종목 ETF의 위험이 드러났습니다(CNBC). 마켓워치는 엔비디아와 AI 트레이드가 아직 불확실성을 벗어나지 못했다고 평가했습니다.\n일론 머스크는 18개월 안에 테슬라 로봇이 설거지와 쓰레기 비우기를 할 수 있게 되면 ‘거의 모두가 한 대, 어쩌면 두 대를 원할 것’이라고 말했습니다(벤징가).\n월가 헤지펀드 매니저 마이클 버리가 나스닥100 풋옵션을 처분하고 포트폴리오 대부분을 콜옵션으로 바꿨습니다. 12일 기술주 반등을 상승 함정(bull trap)이라고 밝힌 지 13일 만입니다(블룸버그 인용, 25일 현지시간).\n도이체방크가 국제무역센터(ITC) 데이터로 분석한 결과, AI 붐으로 반도체가 글로벌 수출액에서 처음으로 석유·가스를 넘어섰습니다. 다만 투자자들이 AI 전망을 재평가하는 시점에 나온 이정표입니다(CNBC).\n국내 은행의 3분기 누적 이자이익은 48조4천억원으로 대출 확대와 금리 상승 영향에 8.2% 늘었고, 유가증권 이익 급감으로 비이자이익은 12.9% 줄었습니다(연합뉴스). 한국은행의 기준금리 인상에도 26일(목) KB금융 -1.89%, 하나금융지주 -1.41% 등 금융지주 주가는 하락했습니다(매일경제).",
   "news_categories": [
     {
       "name": "macro",
       "label": "매크로·금리",
       "items": [
         {
-          "text": "미국 증시는 25일(현지) 예상보다 뜨거운 물가 지표에 하락 출발했습니다. 경기 호조 신호로 12월 금리 인상 베팅이 강화됐고, 장 후반 낙폭을 줄여 지수는 장중 고점 부근에서 마감했습니다.",
+          "text": "FT는 연준이 주식시장 혼란에도 금리 인상에 나설 태세라고 보도했습니다. 인상 폭과 시점은 헤드라인 기준이라 본문에서 확인되지 않습니다.",
           "impact": "high"
         },
         {
-          "text": "나스닥은 장중 4% 이상 급락했다가 낙폭을 줄여 -0.62%로 마감했습니다. VIX는 28.29로 +7.32% 올랐고, 미국 증시는 한국시간 26일(목) 밤 추수감사절로 휴장합니다.",
+          "text": "벤징가는 인플레이션이 10월에 정점을 찍었을 수 있다고 전했지만, 연준이 실제로 몇 차례 인상해야 하는지를 두고 이코노미스트 의견이 갈린다고 짚었습니다.",
           "impact": "mid"
         },
         {
-          "text": "금 3603.1(+1.16%), WTI 84.02(+2.40%), 구리 5.48(+2.26%)이 올랐고 알루미늄은 2787.0(-2.98%) 내렸습니다. 뉴스 본문에서 직접 원인은 확인되지 않았습니다.",
-          "impact": "mid"
-        },
-        {
-          "text": "한국은행 금융통화위원회가 26일(목) 올해 마지막 회의에서 기준금리를 3.00%에서 3.25%로 올릴 가능성이 큽니다. 전문가 6명 전원이 0.25%p 인상을 예상했고 올해 성장률은 3%대 후반으로 상향될 전망입니다.",
+          "text": "파블로 에르난데스 데 코스가 ECB 총재직을 차지했습니다. 애널리스트들은 정책 연속성이 이어지되 일부 변화가 있을 것으로 평가했습니다(FT, 벤징가).",
           "impact": "mid"
         }
       ]
@@ -4104,19 +4107,15 @@
       "label": "지정학·정책",
       "items": [
         {
-          "text": "미국이 구조적 과잉생산 관련 무역법 301조 조사 결과를 발표했습니다. 한국에는 기존 관세를 포함해 총 15%를 제안했고 정부는 한미 관세합의 존중을 재확인받았지만, 협의 결과에 따라 25%까지 오를 여지가 남았습니다.",
+          "text": "트럼프 행정부가 AI 반도체 원격 접속 제한 규정을 발표한 뒤, 네오클라우드는 컴퓨팅 용량의 일부라도 중국 기업에 임대되면 엔비디아 칩을 살 수 없다는 통보를 받았습니다(CNBC). 중국 암시장 GPU 가격은 미국의 5~6배로 뛰었고, 양국 AI 격차는 최대 9개월로 벌어질 전망입니다(매일경제).",
           "impact": "high"
         },
         {
-          "text": "트럼프 행정부가 중국 기업의 최첨단 AI 시스템 원격 접근 규제를 강화했습니다. 엔비디아 칩 판매자들이 새 구매자를 찾고 있고, 시장에 나온 물량이 이례적으로 많다고 CNBC가 전했습니다.",
-          "impact": "high"
-        },
-        {
-          "text": "국방부가 지난 주말 젠슨 황의 엔비디아 CEO 복귀를 위해 국방물자생산법 발동까지 논의했다고 WaPo가 보도했습니다. 트럼프 대통령은 인재 보호를 강조해 미중 AI 경쟁이 칩뿐 아니라 인재 싸움임을 보여줍니다.",
+          "text": "백악관이 25일(현지시간 수요일) 새 관세를 발표했습니다. 26일(목) 글로벌 증시는 이를 넘기며 반등했습니다(CNBC). 구체 품목과 세율은 본문에서 확인되지 않습니다.",
           "impact": "mid"
         },
         {
-          "text": "스페이스X는 모든 활성 트럼프 계좌에 클래스A 주식 1주를 기부하고 머스크가 같은 규모로 매칭하기로 했습니다. 규모는 약 178억 달러로 보도됐습니다.",
+          "text": "앤드루 베일리 영란은행 총재가 공개 전 AI 모델이 암호화 보안에 대한 우려를 키웠다고 밝혔습니다(FT, 헤드라인 기준).",
           "impact": "mid"
         }
       ]
@@ -4126,23 +4125,23 @@
       "label": "기업·실적",
       "items": [
         {
-          "text": "S&P가 25일(현지) 엔비디아의 장기 신용등급과 선순위 무담보 채권 등급 AA를 부정적 관찰 대상에 올렸습니다. 황 CEO의 사임·복귀 과정에서 불거진 지배구조 문제와 대중국 수출통제 위반 의혹이 배경입니다. 즉각 하향은 아니지만 단기간 내 조정 가능성을 열어둔 조치입니다.",
+          "text": "엔비디아 변동성이 커졌습니다. 젠슨 황이 CEO로 복귀한 월요일 GraniteShares 2x Short NVDA ETF(NVD)가 63% 급락해 단일종목 ETF의 위험이 드러났습니다(CNBC). 마켓워치는 엔비디아와 AI 트레이드가 아직 불확실성을 벗어나지 못했다고 평가했습니다.",
           "impact": "high"
         },
         {
-          "text": "엔비디아·AMD·마이크론이 AI주 하락을 주도했습니다. Benzinga는 나스닥100이 한때 2.5% 하락했고 엔비디아가 7% 급락했다고 전했으며, 월요일 반등분의 상당 부분을 반납했습니다.",
+          "text": "일론 머스크는 18개월 안에 테슬라 로봇이 설거지와 쓰레기 비우기를 할 수 있게 되면 ‘거의 모두가 한 대, 어쩌면 두 대를 원할 것’이라고 말했습니다(벤징가).",
           "impact": "high"
         },
         {
-          "text": "황 CEO는 복귀 후 첫 직원 회의에서 직원들에게 실망을 줬다며 사과했습니다. 후계 계획은 필요 없다고 밝혔습니다.",
+          "text": "월가 헤지펀드 매니저 마이클 버리가 나스닥100 풋옵션을 처분하고 포트폴리오 대부분을 콜옵션으로 바꿨습니다. 12일 기술주 반등을 상승 함정(bull trap)이라고 밝힌 지 13일 만입니다(블룸버그 인용, 25일 현지시간).",
           "impact": "mid"
         },
         {
-          "text": "구글이 11월 들어 제미나이 4.0 모델과 에이전트 ‘태스크’를 선보이며 존재감을 회복했습니다. TPU 설계부터 클라우드, 챗봇까지 갖춘 풀스택 구조이며 Benzinga는 AI 성능 경쟁이 가격 경쟁으로 번진다고 분석했습니다.",
+          "text": "도이체방크가 국제무역센터(ITC) 데이터로 분석한 결과, AI 붐으로 반도체가 글로벌 수출액에서 처음으로 석유·가스를 넘어섰습니다. 다만 투자자들이 AI 전망을 재평가하는 시점에 나온 이정표입니다(CNBC).",
           "impact": "mid"
         },
         {
-          "text": "스페이스X가 FCC로부터 AI 컴퓨팅 위성 100만 기 궤도 배치 승인을 받았습니다. 앤트로픽의 상장 후 주가가 불안해 예측시장은 OpenAI 상장 시점을 2027년 쪽으로 늦춰 반영하고 있습니다.",
+          "text": "국내 은행의 3분기 누적 이자이익은 48조4천억원으로 대출 확대와 금리 상승 영향에 8.2% 늘었고, 유가증권 이익 급감으로 비이자이익은 12.9% 줄었습니다(연합뉴스). 한국은행의 기준금리 인상에도 26일(목) KB금융 -1.89%, 하나금융지주 -1.41% 등 금융지주 주가는 하락했습니다(매일경제).",
           "impact": "mid"
         }
       ]
@@ -4150,191 +4149,209 @@
   ],
   "macro_reasons": {
     "코스피": {
-      "reason": "26일(목) 새벽 마감한 미국장에서 나스닥 -0.62%, 필라델피아반도체 -0.65%, 엔비디아 약세가 나와 반도체 중심의 하락 출발 가능성이 큽니다. 외국인 매도 지속 여부가 낙폭을 좌우할 전망입니다.",
+      "reason": "26일(목) 새벽 마감한 미국장에서 나스닥 -0.62%, 필라델피아반도체 -0.65%로 기술주가 약했던 만큼, 27일(금) 한국장은 반도체 중심의 약세 압력 속에 출발할 가능성이 큽니다. 외국인 매도 지속 여부가 낙폭을 좌우할 전망입니다.",
       "drivers": [
-        "엔비디아 신용등급 부정적 관찰·AI주 약세",
-        "VIX 28.29 급등에 따른 외국인 수급 부담"
+        "필라델피아반도체 -0.65%",
+        "외국인 코스피 20일 -17.5조 (26일(목) 기준)"
       ]
     },
     "코스닥": {
-      "reason": "AI·기술주 약세 부담과 러셀2000 +0.71% 소형주 강세가 맞서 혼조 출발 가능성이 있습니다. 위험회피가 커서 반등 시도는 제한적일 전망입니다.",
+      "reason": "러셀2000(미국 중소형주 지수) +0.71%는 중소형주 심리에 우호적이지만 나스닥 -0.62%의 기술주 약세와 상충해, 27일(금) 한국장은 방향성이 제한된 채 출발할 전망입니다.",
       "drivers": [
-        "나스닥 -0.62%",
-        "러셀2000 +0.71%"
+        "러셀2000 +0.71%",
+        "나스닥 -0.62%"
       ]
     },
     "니케이": {
-      "reason": "24일(화) 시세이며, 뉴스 본문에서 직접 촉매는 확인 안 됨. 26일(목) 새벽 마감한 미국장보다 앞선 시세라 미국장과 연결하지 않습니다.",
+      "reason": "CNBC는 26일(목) 글로벌 증시가 AI 주도 급락에서 일부 회복하고 백악관의 새 관세를 넘겼다고 보도했습니다. 니케이 개별 촉매는 확인 안 됨.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "개별 촉매 확인 안 됨"
       ]
     },
     "항셍": {
-      "reason": "24일(화) 시세이며, 직접 촉매 확인 안 됨. 뉴스 본문에 홍콩 시장 관련 근거가 없습니다.",
+      "reason": "직접 촉매 확인 안 됨. 26일(목) 글로벌 증시의 AI 급락 후 회복 흐름과 동조한 것으로 보이며, 항셍 개별 재료는 뉴스에 없습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "개별 촉매 확인 안 됨"
       ]
     },
     "영국FTSE": {
-      "reason": "유럽장은 26일(목) 새벽 마감한 미국장 이전에 끝났고, 뉴스 본문에 직접 촉매가 없어 원인은 확인 안 됨.",
+      "reason": "CNBC가 26일(목) 글로벌 증시의 반등과 새 관세를 넘기는 분위기를 전했지만, FTSE 개별 촉매는 뉴스 본문에서 확인되지 않습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "ECB 신임 총재 인선 (연속성 평가, 지수 영향은 확인 안 됨)"
       ]
     },
     "독일DAX": {
-      "reason": "24일(화) 시세이며, 직접 촉매 확인 안 됨. 뉴스 본문에 유럽 증시 관련 근거가 없습니다.",
+      "reason": "26일(목) 글로벌 증시가 AI 주도 급락 후 반등하고 새 관세 부담을 넘겼다는 CNBC 보도와 같은 흐름입니다. DAX 개별 촉매는 확인 안 됨.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "글로벌 증시 반등 흐름 (CNBC)",
+        "개별 촉매 확인 안 됨"
       ]
     },
     "S&P500": {
-      "reason": "예상보다 높은 물가 지표로 하락 출발했고, 엔비디아 신용등급 부정적 관찰과 AI 신용 우려가 겹쳤습니다. 장 후반 낙폭이 줄어 -0.25%로 마감했습니다.",
+      "reason": "기술 섹터 소외 속에 AI 관련 불안이 이어졌습니다. 마켓워치는 엔비디아와 AI 트레이드가 아직 불확실성을 벗어나지 못했다고 짚었고, 필수소비재·유틸리티·헬스케어가 주도했습니다.",
       "drivers": [
-        "예상 상회 물가 지표",
-        "엔비디아 등 AI주 약세"
+        "기술(XLK) 섹터 소외",
+        "필수소비재(XLP) 상대강도 112.2",
+        "엔비디아 변동성 부각"
       ]
     },
     "NASDAQ": {
-      "reason": "AI 신용 우려로 장중 4% 이상 급락했다가 낙폭을 대부분 만회해 -0.62%로 마감했습니다. 엔비디아가 약세를 주도했고 AMD·마이크론도 하락했습니다.",
+      "reason": "엔비디아를 둘러싼 변동성과 규제 이슈가 부담이었습니다. 젠슨 황 CEO 복귀 후 단일종목 ETF가 급락했고, 칩 구매자에게 중국 임대 배제를 요구한다는 보도도 나왔습니다.",
       "drivers": [
-        "엔비디아 신용등급 부정적 관찰",
-        "AMD·마이크론 등 AI주 동반 하락"
+        "엔비디아 변동성 (2x Short NVDA ETF 월요일 -63%)",
+        "칩 구매자 대상 중국 임대 배제 요구 (CNBC)"
       ]
     },
     "DOW": {
-      "reason": "기술주 대신 경기 호조 신호와 비기술 업종이 받쳐 +0.33%로 마감했습니다. 미국 섹터 중 필수소비재·유틸리티·헬스케어는 SPY 대비 상대강도가 높았고 기술은 소외됐습니다.",
+      "reason": "직접 종목 촉매는 확인 안 됨. 금융·헬스케어·필수소비재 등 경기·방어 성격 섹터가 주도한 로테이션에 동조해 소폭 올랐습니다.",
       "drivers": [
-        "장 후반 낙폭 축소",
-        "비기술 업종 상대 강세"
+        "금융(XLF) 상대강도 106.9",
+        "헬스케어(XLV) 상대강도 109.4"
       ]
     },
     "VIX": {
-      "reason": "나스닥이 장중 4% 이상 흔들리며 변동성 지표가 +7.32% 올라 28.29가 됐습니다. 장 후반 낙폭을 줄였어도 위험회피 심리가 남아 있습니다.",
+      "reason": "26일(목) 시세 기준 26.8로 -5.27% 내렸습니다. 마이클 버리가 나스닥100 풋옵션을 처분하고 콜옵션 중심으로 바꿨다는 블룸버그 보도 등 심리 개선 신호와 맞물렸지만, 직접 인과는 약합니다.",
       "drivers": [
-        "나스닥 장중 4% 이상 낙폭",
-        "AI 신용 우려"
+        "마이클 버리 풋→콜 전환 (블룸버그)",
+        "글로벌 증시 반등 흐름"
       ]
     },
     "필라델피아반도체": {
-      "reason": "엔비디아가 S&P 신용등급 부정적 관찰과 중국 AI 칩 원격 접근 규제 이슈로 약세였습니다. AMD·마이크론도 AI주 하락을 이끌며 -0.65%를 기록했습니다.",
+      "reason": "엔비디아 고객의 중국 임대 배제 요구와 AI 전망 재평가가 겹쳤습니다. 도이체방크는 반도체 수출액이 처음으로 석유·가스를 넘었다고 분석했으나 투자자들이 AI 전망을 다시 따지는 시점입니다.",
       "drivers": [
-        "엔비디아 AA 등급 부정적 관찰",
-        "AMD·마이크론 동반 하락",
-        "미국의 중국 AI 칩 접근 규제 강화"
+        "엔비디아 칩 구매자 중국 임대 배제 요구",
+        "AI 전망 재평가 (도이체방크 분석)"
       ]
     },
     "러셀2000": {
-      "reason": "AI·대형 기술주 부진 속에 소형주로 자금이 이동해 +0.71%를 기록했습니다. 경기 호조 신호도 소형주에 우호적이었습니다.",
+      "reason": "직접 촉매 없음 — 미국 10년 국채금리 하락과 경기·방어 섹터로 자금이 이동하는 흐름에 동조해 +0.71% 올랐습니다.",
       "drivers": [
-        "대형 기술주에서 소형주로 순환",
-        "경기 호조 신호"
+        "국채10Y -1.14%",
+        "섹터 로테이션 (기술 외 섹터 주도)"
       ]
     },
     "국채2Y": {
-      "reason": "뉴스 본문에 직접 원인이 없음. 위험자산이 장중 급락한 흐름과 동조한 채권 강세로 보이나, 물가가 예상보다 높았다는 보도와는 방향이 엇갈려 근거가 약합니다.",
+      "reason": "직접 촉매 확인 안 됨. 벤징가는 인플레이션이 10월에 정점을 찍었을 가능성과 연준 인상 횟수에 대한 이코노미스트 의견 분분함을 전했고, FT는 연준이 인상할 태세라고 보도했습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨",
-        "장중 위험회피 국면과 동조"
+        "인플레이션 10월 정점론 (벤징가)",
+        "연준 인상 임박 보도 (FT)"
       ]
     },
     "국채10Y": {
-      "reason": "직접 촉매 없음 — 2년물 -0.31%와 함께 채권 강세로 움직였습니다. 12월 금리 인상 베팅이 강화된 것과는 방향이 달라 원인을 단정하기 어렵습니다.",
+      "reason": "직접 촉매 확인 안 됨. 인플레이션 정점론과 주식시장 불안 속에서 장기물 수요가 늘어난 흐름과 동조한 것으로 보이며, 근거는 약합니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨",
-        "2년물 동반 하락"
+        "인플레이션 10월 정점론",
+        "증시 불안 속 채권 선호 (뉴스 직접 근거 약함)"
       ]
     },
     "달러인덱스": {
-      "reason": "직접 촉매 없음 — 미국 국채금리 하락 흐름에 동조해 -0.11%로 소폭 약세였습니다.",
+      "reason": "직접 촉매 없음 — 연준 인상 기대와 새 관세 발표 속 소폭 강세로 동조했습니다. 변동폭이 작아 의미는 제한적입니다.",
       "drivers": [
-        "미국 국채금리 하락 동조"
+        "연준 인상 임박 보도 (FT)",
+        "백악관 새 관세 발표"
       ]
     },
     "금": {
-      "reason": "직접 촉매 없음 — VIX 급등과 국채금리 하락이 맞물린 위험회피 흐름과 동조해 +1.16%를 기록했습니다. 뉴스 본문에 금 관련 직접 근거는 없습니다.",
+      "reason": "직접 촉매 없음 — 새 관세와 AI 변동성이 이어지는 가운데 안전자산 선호 흐름에 동조한 것으로 보이며, 뉴스에 금 관련 본문은 없습니다.",
       "drivers": [
-        "위험회피 심리 동조",
-        "국채금리 하락"
+        "백악관 새 관세 발표",
+        "AI 관련 변동성"
       ]
     },
     "WTI유가": {
-      "reason": "직접 촉매 확인 안 됨. 경기 호조 신호 보도와 방향은 같지만 인과는 확인되지 않았습니다.",
+      "reason": "직접 촉매 없음 — 뉴스에 원유 수급 관련 본문이 없어 원인을 확인할 수 없습니다.",
       "drivers": [
-        "직접 촉매 확인 안 됨"
+        "직접 촉매 확인 안 됨",
+        "원자재 전반 상승 흐름 동조 (구리·금)"
       ]
     },
     "원달러": {
-      "reason": "직접 촉매 없음 — 위험회피 분위기에 +0.23%로 소폭 상승했습니다. 26일(목) 한국은행 금통위 결과가 다음 변수입니다.",
+      "reason": "직접 촉매 없음 — 달러인덱스 소폭 강세(+0.11%)에 동조한 미미한 움직임입니다.",
       "drivers": [
-        "VIX 급등에 따른 위험회피 동조",
-        "26일(목) 금통위 인상 여부"
-      ]
-    },
-    "알루미늄": {
-      "reason": "직접 촉매 없음 — 구리 +2.26%와 반대로 -2.98% 하락했으나 뉴스 본문에 근거가 없습니다. 개별 수급 요인은 확인 안 됨.",
-      "drivers": [
+        "달러인덱스 +0.11%",
         "직접 촉매 확인 안 됨"
       ]
     },
-    "구리": {
-      "reason": "직접 촉매 확인 안 됨. 경기 호조 신호 보도와 방향은 일치하나 인과는 확인되지 않았습니다.",
+    "알루미늄": {
+      "reason": "직접 촉매 없음 — 같은 산업금속인 구리(+1.89%)와 반대로 움직였고, 뉴스 본문에 근거가 없어 원인을 확인할 수 없습니다.",
       "drivers": [
         "직접 촉매 확인 안 됨",
-        "경기 호조 신호와 방향 일치"
+        "구리와 엇갈린 흐름"
+      ]
+    },
+    "구리": {
+      "reason": "직접 촉매 없음 — 뉴스에 구리 관련 본문이 없습니다. 금·유가가 함께 오른 원자재 강세 흐름에 동조했습니다.",
+      "drivers": [
+        "금 +1.63%",
+        "WTI유가 +1.47%"
       ]
     }
   },
   "korea_market_impact": {
-    "summary": "26일(목) 한국장은 엔비디아 신용등급 부정적 관찰과 AI주 약세 여파로 반도체 중심 하락 출발 가능성이 큽니다. 외국인 수급이 돌아서지 않으면 약세가 이어질 전망입니다.",
+    "summary": "26일(목) 새벽 마감한 미국장의 기술주·반도체 약세는 27일(금) 한국장에 반도체 중심 약세 압력으로 작용할 전망이며, 외국인 매도가 이어지는지가 낙폭을 좌우할 변수입니다.",
     "positive_factors": [
-      "미국 10년물 금리 4.85%(-1.14%)와 2년물 4.15%(-0.31%) 하락 → 금리 부담이 일부 줄어 금리 민감 업종 부담이 완화될 수 있음",
-      "러셀2000 +0.71%·다우 +0.33%와 나스닥 장중 급락 후 낙폭 축소 → 위험회피가 일부 진정돼 지수 하방을 제한할 여지",
-      "산업부의 미국 한미 관세합의 존중 재확인과 총 15% 제안 → 관세 불확실성 완화 요인"
+      "미국 국채 10년물 4.85%(-1.14%)·2년물 4.16%(-0.31%) 하락 → 금리 부담이 일부 줄어 금리 민감 업종의 심리에 소폭 우호적일 수 있음",
+      "26일(목) 니케이 +0.86%·항셍 +1.19%·DAX +2.08% 반등과 마이클 버리의 콜옵션 전환 → 투자심리 악화가 일부 진정되는 신호로 27일(금) 한국장 개장 초 분위기를 지지할 가능성"
     ],
     "negative_factors": [
-      "S&P의 엔비디아 AA 등급 부정적 관찰·필라델피아반도체 -0.65% → 국내 반도체 투자심리 위축과 전기전자 업종 약세 압력",
-      "VIX 28.29(+7.32%)·원달러 1344.14(+0.23%) → 25일(수) 코스피 외국인 -1.9조 매도 흐름 연장 가능성",
-      "미국의 중국 AI 칩 원격 접근 규제와 301조 관세 25% 상향 여지 → 반도체·수출 업종 불확실성 확대"
+      "나스닥 -0.62%·필라델피아반도체 -0.65%·기술 섹터 소외 → 코스피 반도체 약세 압력, 26일(목) 기준 코스피 외국인 20일 -17.5조 순매도가 이어질 우려",
+      "연준 인상 임박 보도·백악관 새 관세·엔비디아 칩 구매자 대상 중국 임대 배제 요구 → 수출·반도체 심리 부담, 달러인덱스 +0.11%·원달러 1343.53(+0.07%)로 환율 방어 여력도 제한적"
     ],
-    "key_watch": "26일(목) 한국장 개장 후 외국인 매도 지속 여부와 반도체 낙폭, 26일(목) 금통위의 3.25% 인상 결정을 확인해야 합니다. 한국시간 26일(목) 밤 미국장은 휴장이라 새 미국 가격 신호가 없습니다."
+    "key_watch": "27일(금) 한국장 개장 후 외국인 순매도 지속 여부, 반도체 대형주 낙폭, 거래대금(26일(목) 16.7조, 20일 평균의 0.76배) 변화. 27일(금) 밤은 미국 단축 거래입니다(26일(목) 미국 현지 추수감사절 휴장 이후)."
   },
   "sector_impact": {},
-  "strong_buy": [],
+  "strong_buy": [
+    {
+      "sector": "제약",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "대기 명단 업종: 6개월 상대수익 +25.3%, 업종 이익 1년 +58%. 다만 시장 조건 충족 전까지는 현금 유지가 전제이며 12개월 Sector Momentum 순위는 17위로 하위"
+    },
+    {
+      "sector": "오락·문화",
+      "rrg_quadrant": "leading",
+      "claude_quadrant": "leading",
+      "reason": "대기 명단 업종: 6개월 상대수익 +26.6%, 업종 이익 1년 +37%. 12개월 Sector Momentum 순위는 18위로 하위라 시장 조건 충족 전까지 현금 유지가 전제"
+    }
+  ],
   "watch": [
     {
       "sector": "전기전자",
-      "reason": "12개월 상대수익 +113%로 Sector Momentum 1위지만 52주 신고가 근처 종목은 1%뿐입니다. 26일(목) 새벽 마감한 미국장의 필라델피아반도체 -0.65%도 부담이라 대기 명단 재검토 대상입니다"
+      "reason": "12개월 상대수익 +150%로 업종 순위 1위지만 52주 신고가 근처 종목은 2%뿐이고, 미국 기술주·반도체 약세가 27일(금) 한국장 부담으로 작용할 수 있음"
+    },
+    {
+      "sector": "금융",
+      "reason": "한국은행 기준금리 인상에도 26일(목) KB금융 -1.89%, 하나금융지주 -1.41% 하락. 이자이익 증가(3분기 누적 +8.2%)가 이미 주가에 반영됐다는 해석이 있어 방향 확인 필요"
     },
     {
       "sector": "건설",
-      "reason": "12개월 상대수익 +86%로 4위입니다. 미국 10년물 금리 하락은 우호적이나 26일(목) 한국은행 금리 인상 가능성이 부담이라 대기 명단 재검토 대상입니다"
-    },
-    {
-      "sector": "제약",
-      "reason": "6개월 상대수익과 업종 이익 증가율은 상위지만 12개월 Sector Momentum은 17위로 하위입니다. 시장 국면이 바뀌기 전에는 대기 명단 재검토 대상입니다"
+      "reason": "12개월 상대수익 +92%로 업종 순위 4위이나 52주 신고가 근처 종목 비율이 0%이고, 국내 금리 인상 부담이 변수"
     }
   ],
   "avoid": [],
-  "summary": "26일(목) 새벽 마감한 미국장에서 엔비디아 등급 이슈와 AI 신용 우려로 변동성이 커져 26일(목) 한국장은 반도체 중심 약세 출발 가능성이 크고, 투매 국면과 Risk-Off 판정에 따라 주식 비중 0%·현금 100%를 유지하며 진입 아이디어는 없이 대기 명단 재검토 조건만 점검합니다.",
-  "strategy_brief": "26일(목) 새벽 마감한 미국장은 예상보다 높은 물가 지표와 AI 신용 우려로 나스닥이 장중 4% 이상 급락했다가 -0.62%로 마감했고, 엔비디아 등급 이슈가 AI 반도체 심리를 흔들었습니다. 이 충격은 26일(목) 한국장에 처음 반영되므로 반도체 중심 약세 출발과 외국인 수급 부담을 염두에 둬야 합니다. 현재 주식 비중은 0%이며 권장 배분은 KODEX 200 0%, Picks 종목 0%, 현금(단기채) 100%입니다. 하루 반등만으로 국면 전환을 단정하지 않고, 조건이 충족될 때까지 신규 진입은 보류하며 대기 명단은 재검토 대상으로만 관리합니다. 26일(목) 금통위 결과와 외국인 수급 전환이 다음 확인 포인트입니다.",
-  "strategy_headline": "미국 AI주 급락 → 국내 반도체 약세 출발, 현금 유지",
+  "summary": "미국 기술주 약세와 연준 인상 우려로 27일(금) 한국장은 반도체 약세 압력이 예상되고, 국내는 투매 국면의 Risk-Off(주식 비중 0%)가 이어져 현금 100% 유지가 우선이며 진입 아이디어는 Momentum 회복 확인 뒤 대기 명단 재검토 단계에서 다룹니다.",
+  "strategy_brief": "26일(목) 새벽 마감한 미국장은 나스닥 -0.62%, 필라델피아반도체 -0.65%로 기술주가 밀리고 필수소비재·유틸리티·헬스케어가 주도했습니다. 여기에 연준 인상 보도와 새 관세, 엔비디아 중국 임대 배제 요구가 겹쳐 27일(금) 한국장은 반도체 중심 약세 압력 속에서 열릴 가능성이 큽니다. 국내는 26일(목) 기준 Fundamentals(수출·금리 등 실물 환경 점수)가 56.5로 평소 수준이지만 Momentum(가격·거래대금·수급 반응 점수)이 12.3, Bias(Momentum에서 Fundamentals를 뺀 값)가 -44로 가격 반응이 실물 대비 크게 약합니다. 현재 주식 비중은 0%이고 권장 배분은 KODEX 200·TIGER 200 0% + Picks 종목 0% + 현금(단기채) 100%이므로 신규 진입은 보류합니다. 하루 반등만으로 국면 전환을 단정하지 않고, 외국인 순매도 지속 여부와 Momentum 회복을 확인한 뒤 대기 명단을 재검토합니다.",
+  "strategy_headline": "미국 기술주 약세 → 반도체 압력, 현금 유지 우선",
   "strategy_points": [
-    "26일(목) 새벽 마감한 미국장에서 나스닥 -0.62%, 필라델피아반도체 -0.65%였고, 엔비디아는 S&P의 신용등급 부정적 관찰(등급 하향 가능성 집중 검토) 소식에 약세 → 26일(목) 한국장은 반도체 중심 약세 압력이 예상됩니다.",
-    "VIX(변동성지수, 시장의 공포 정도) 28.29(+7.32%) → 26일(목) 외국인 수급(투자자별 매매 동향)이 25일(수) 코스피 -1.9조 매도에서 돌아서는지가 관건입니다.",
-    "25일(수) 기준 국내는 9단계 Capitulation(투매, 매도가 매도를 부르는 구간)으로 Momentum(가격·수급 반응) 12.6, Fundamentals(수출·경기 등 실물 환경) 56.6입니다. 시장 폭(오르는 종목 비율)은 200일선 위 19.3%, 신저가 225종목으로 Risk-Off(위험회피 국면)이며 현금 100% 유지입니다.",
-    "26일(목) 한국은행 금융통화위원회의 3.25% 인상 가능성과 미국 관세 25% 상향 여지가 변동성 요인이며, 한국시간 26일(목) 밤 미국장은 휴장입니다."
+    "26일(목) 새벽 마감한 미국장에서 나스닥 -0.62%·필라델피아반도체 -0.65%로 기술주가 밀리고 필수소비재·유틸리티가 주도 → 27일(금) 한국장은 반도체 약세 압력 속 출발 가능성.",
+    "미국 긴축 우려·기술주 부담 → 26일(목) 기준 국내는 9단계 Capitulation(투매: 매도가 매도를 부르는 국면), 20일선 위 종목 41.2%·200일선 위 20.7%(시장 폭: 오르는 종목이 얼마나 넓게 퍼졌는지), 코스피 외국인 20일 -17.5조(수급: 투자자별 매매 흐름)로 Risk-Off(위험 회피 국면) 유지.",
+    "미국 반도체 약세 → 전기전자는 12개월 상대수익 +150%로 Sector Momentum(업종별 12개월 상대수익 순위) 1위지만 신고가 근처 종목이 2%뿐이라 업종 순위만으로 비중을 늘릴 근거가 부족함.",
+    "연준 인상 임박 보도·새 관세·엔비디아 칩 구매자 대상 중국 임대 배제 요구 → 변동성 확대 우려, 26일(목) 미국 휴장 뒤 27일(금) 밤 미국 단축 거래까지 확인 필요."
   ],
   "top_picks": [
     {
       "sector": "제약",
-      "rrg_quadrant": "",
-      "reason": "",
+      "rrg_quadrant": "leading",
+      "reason": "대기 명단 업종: 6개월 상대수익 +25.3%, 업종 이익 1년 +58%. 다만 시장 조건 충족 전까지는 현금 유지가 전제이며 12개월 Sector Momentum 순위는 17위로 하위",
       "stocks": [
         {
           "name": "셀트리온",
           "code": "068270",
           "signal": "prime",
-          "reason": "대기 — 26일(목) 새벽 마감한 미국장에서 AI·기술주가 흔들리자 AI 반도체 의존도가 낮은 업종이 상대적으로 부각될 수 있다는 판단(korea_impact의 반도체 약세 요인에서 파생)입니다. 다만 국내는 Risk-Off(주식 비중 0%)여서 실제 진입이 아닌 대기 명단입니다. 선정 업종 1위(6개월 상대 +29.4%, 업종 이익 1년 +57%)이고 Score 91, 업종 내 종합 82입니다. 목표가 15↑ 1↓ / 17곳, 1년 EPS +136%, 52주 고점 대비 -13.8%, Picks 점수는 Quality 55·Trend 55·Low Vol 95입니다. 전환 조건: Fundamentals 기준 55 이상(현재 56.6)과 Momentum 기준 50 이상(현재 12.6)이 모두 충족될 것. 리스크: 12개월 Sector Momentum은 17위 하위이고 1개월 +9.1% 상승 뒤 되돌림이 나올 수 있으며, 투매 국면이 이어지면 지수 충격을 피하기 어려움",
+          "reason": "대기 — 미국 헬스케어(XLV) 주도라는 글로벌 흐름이 국내 제약 상대 선호로 이어질 가능성을 전제로, 선정 업종 1위(6개월 상대 +25.3%, 업종 이익 1년 +58%), Score 92·업종 내 종합 84, 목표가 16↑ 1↓ / 17곳, 1년 EPS +136%, 52주 고점 대비 -14.3%가 근거이나 시장 국면은 Risk-Off(주식 비중 0%)라 대기 명단으로만 둠. 전환 조건: Fundamentals 56.5(기준 55 이상 충족 유지)와 Momentum 12.3(기준 50 이상, 현재 미충족). 리스크: 12개월 Sector Momentum 17위로 하위이고, 투매 국면에서는 지수 동반 하락 가능성이 있음",
           "rrg_tracked": true,
           "rrg_actual_sector": "제약",
           "rrg_sector_match": true,
@@ -4345,14 +4362,14 @@
     },
     {
       "sector": "오락·문화",
-      "rrg_quadrant": "",
-      "reason": "",
+      "rrg_quadrant": "leading",
+      "reason": "대기 명단 업종: 6개월 상대수익 +26.6%, 업종 이익 1년 +37%. 12개월 Sector Momentum 순위는 18위로 하위라 시장 조건 충족 전까지 현금 유지가 전제",
       "stocks": [
         {
-          "name": "강원랜드",
-          "code": "035250",
+          "name": "에스엠",
+          "code": "041510",
           "signal": "prime",
-          "reason": "대기 — 26일(새벽 마감한 미국장에서 VIX가 28.29로 오르며 AI 반도체 비중이 낮은 내수 업종으로 시선이 갈 수 있다는 판단이지만, 국내는 Risk-Off(주식 비중 0%)라 대기 명단입니다. 선정 업종 2위(6개월 상대 +25.3%, 업종 이익 1년 +38%)이고 Score 78, 업종 내 종합 82입니다. 목표가는 0↑ 2↓ / 9곳으로 하향 우위이고 52주 고점 대비 -29.8%, 1개월 -0.1%, 1년 EPS -30%입니다. 전환 조건: Fundamentals 기준 55 이상(현재 56.6)과 Momentum 기준 50 이상(현재 12.6)이 모두 충족될 것. 리스크: 목표가 하향 우위가 이어지면 대기 명단에서 제외될 수 있고, 12개월 Sector Momentum은 18위 최하위이며 EPS도 감소 중",
+          "reason": "대기 — 미국 커뮤니케이션(XLC) 섹터의 높은 모멘텀(RS-Momentum 104.6)이 국내 엔터·미디어 심리에 이어질 가능성을 전제로, 선정 업종 2위(6개월 상대 +26.6%, 업종 이익 1년 +37%), Score 79·업종 내 종합 70, 1년 EPS +300%, 52주 고점 대비 -26.4%가 근거이나 시장 국면이 Risk-Off(주식 비중 0%)라 대기 명단으로만 둠. 전환 조건: Fundamentals 56.5(기준 55 이상 충족 유지)와 Momentum 12.3(기준 50 이상, 현재 미충족). 리스크: 목표가 3↑ 5↓ / 16곳으로 하향 우위이고 1개월 +24.4% 급등 구간이며 12개월 Sector Momentum 18위로 하위",
           "rrg_tracked": true,
           "rrg_actual_sector": "오락·문화",
           "rrg_sector_match": true,
@@ -4370,7 +4387,7 @@
           "name": "IPARK현대산업개발",
           "code": "294870",
           "signal": "prime",
-          "reason": "대기 — 미국 10년물 금리 4.85%(-1.14%) 하락이 금리 민감 업종 부담을 덜어준다는 판단(korea_impact의 금리 하락 요인에서 파생)입니다. 국내는 Risk-Off(주식 비중 0%)이고 건설은 12개월 상대수익 +86%로 Sector Momentum 4위입니다. 종목은 순위 5위, Quality 70·Trend 63·Low Vol 91, 52주 고점 대비 -4.2%, 1개월 -1.1%로 추세가 유지됩니다. 전환 조건: Fundamentals 기준 55 이상(현재 56.6)과 Momentum 기준 50 이상(현재 12.6)이 모두 충족되고 대기 명단 재검토에서 순위가 유지될 것. 리스크: 26일(목) 한국은행 금리 인상과 건설 업종의 신고가 근처 종목 비율 0%가 부담이며 투매 국면 지수 충격에 노출됨",
+          "reason": "대기 — 미국 10년 국채금리 4.85%(-1.14%) 하락이 금리 민감 업종의 부담을 덜어줄 수 있다는 판단을 전제로, 국내 Risk-Off(주식 비중 0%)와 건설 Sector Momentum 4위(12개월 상대 +92%) 속에서 Picks 오늘 순위 4위, Quality 70·Trend 64·Low Vol 91, 52주 고점 대비 -5.9%가 근거이며 대기 명단으로만 둠. 전환 조건: Momentum 12.3에서 50 이상 회복, Fundamentals 55 이상 유지(현재 56.5). 리스크: 한국은행 기준금리 인상 부담과 신고가 근처 건설 종목 비율 0%, 1개월 -4.3%",
           "rrg_tracked": true,
           "rrg_actual_sector": "건설",
           "rrg_sector_match": true,
@@ -4382,6 +4399,6 @@
   ],
   "caution_sectors": [
     "전기전자",
-    "건설"
+    "금융"
   ]
 }
