@@ -116,7 +116,7 @@ async def fetch_all_prices_kis(code_list):
     market_code = get_market_code()
     logger.info(f"마켓 코드: {market_code} (시간: {now_kst().strftime('%H:%M')})")
     results    = {}
-    chunk_size = 19
+    chunk_size = 15
     async with aiohttp.ClientSession() as session:
         for i in range(0, len(code_list), chunk_size):
             chunk     = code_list[i:i + chunk_size]
