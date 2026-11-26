@@ -165,8 +165,40 @@ def load_report() -> dict:
     except Exception:
         return {}
 
+MACRO_LIVE_PATH = Path("/home/ubuntu/semon/docs/data/macro_live.json")
+
+
+def _live_context(report: dict):
+    """실시간 시세(macro_live.json, 5분 주기)를 리포트의 매크로 값 위에 덮어쓴다. (매크로 dict, 시세 기준 시각, 지금 시각·장 상태 문구)"""
+    macro = {k: dict(v) for k, v in (report.get("macro") or {}).items()}
+    live_at = ""
+    try:
+        live = json.loads(MACRO_LIVE_PATH.read_text(encoding="utf-8"))
+        if str(live.get("generated_at", "")) > str(report.get("generated_at", "")):
+            for k, v in (live.get("macro") or {}).items():
+                if v.get("price") is not None:
+                    macro.setdefault(k, {}).update({"price": v.get("price"), "change": v.get("change", 0)})
+            live_at = str(live.get("generated_at", ""))[:16]
+    except Exception as e:
+        logger.warning(f"macro_live 읽기 실패(리포트 값 사용): {e}")
+    now = datetime.now(KST)
+    hm = now.strftime("%H:%M")
+    if now.weekday() >= 5:
+        state = "주말, 한국장 휴장"
+    elif hm < "09:00":
+        state = "한국장 개장 전"
+    elif hm < "15:30":
+        state = "한국장 장중"
+    else:
+        state = "한국장 마감 후"
+    now_txt = f"{now.strftime('%Y-%m-%d')}({'월화수목금토일'[now.weekday()]}) {hm} KST, {state}"
+    return macro, live_at, now_txt
+
+
 def build_system_prompt(report: dict, current_prices: dict, messages: list = []) -> str:
-    macro = report.get("macro", {})
+    macro, live_at, now_txt = _live_context(report)
+    report_at = str(report.get("generated_at", ""))[:16]
+    macro_title = f"글로벌 매크로 — 실시간 시세, {live_at} 기준" if live_at else f"글로벌 매크로 — 리포트 작성 시점({report_at}) 시세"
     macro_lines = "\n".join([
         f"  - {k}: {v.get('price')} ({'+' if v.get('change',0)>=0 else ''}{v.get('change',0):.2f}%)"
         for k, v in macro.items()
@@ -256,10 +288,14 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
 - 한국어로 답변합니다
 - 이모지나 이모티콘은 사용하지 마세요. 텍스트만으로 답변하세요.
 {price_section}
-## 현재 시장 스냅샷 ({report.get('generated_at', '')})
+## 지금 시각: {now_txt}
 
-[글로벌 매크로]
+## 시장 자료
+
+[{macro_title}]
 {macro_lines}
+
+[주의] 아래 시장 심리·섹터·주목 종목·종합 판단은 {report_at}에 작성된 리포트의 내용입니다. '개장 전', '출발 예상' 같은 표현은 그 작성 시점 기준입니다. 그 뒤의 실제 움직임은 위 실시간 시세와 종목 현재가로 판단하고, 리포트의 전망과 실제 흐름이 다르면 실제 흐름을 기준으로 답하면서 전망과 달라졌다는 점을 밝히세요.
 
 [시장 심리] {report.get('global_sentiment', '-')} — {report.get('sentiment_reason', '-')}
 
