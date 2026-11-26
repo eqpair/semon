@@ -169,6 +169,8 @@ def fetch_overseas_index_kis() -> dict:
         d1 = (datetime.now() - timedelta(days=12)).strftime("%Y%m%d")
         for name, iscd in KIS_OVERSEAS_CODES.items():
             try:
+                # KIS 유량 제한(계좌당 초당 20건)을 semon 현재가 수집(초당 최대 19건)과 나눠 쓰므로 1초에 1건만 보낸다
+                __import__("time").sleep(1.2)
                 r = requests.get(
                     KIS_OVERSEAS_URL,
                     headers=headers,
