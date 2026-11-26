@@ -936,9 +936,6 @@ def save_report(report: dict) -> bool:
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(report, f, ensure_ascii=False, indent=2)
         tmp.replace(REPORT_PATH)
-        ed = report.get("edition")
-        if ed in EDITION_LABEL:
-            shutil.copyfile(REPORT_PATH, REPORT_PATH.with_name(f"eqai_report_{ed}.json"))
         logger.info(f"리포트 저장 완료: {REPORT_PATH}")
         return True
     except Exception as e:
@@ -952,8 +949,7 @@ def git_push_report() -> bool:
     try:
         import git
         repo = git.Repo("/home/ubuntu/semon")
-        repo.index.add(["docs/data/eqai_report.json"] + [f"docs/data/eqai_report_{e}.json" for e in EDITION_LABEL
-                                                         if REPORT_PATH.with_name(f"eqai_report_{e}.json").exists()])
+        repo.index.add(["docs/data/eqai_report.json"])
         repo.index.commit(f"EQAI report {datetime.now(KST).strftime('%Y-%m-%d %H:%M')} KST")
         repo.remote("origin").push()
         logger.info("EQAI 리포트 push 완료")
@@ -965,7 +961,31 @@ def git_push_report() -> bool:
 
 # ── 메인 ──────────────────────────────────────────────────────
 
+def _kr_closed_today() -> bool:
+    """KIS 국내휴장일조회로 오늘이 휴장일인지 확인. 조회에 실패하면 False(평소대로 진행)."""
+    try:
+        import requests
+        from kis_auth import get_access_token
+        today = datetime.now(KST).strftime("%Y%m%d")
+        r = requests.get(
+            "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/chk-holiday",
+            headers={"authorization": f"Bearer {asyncio.run(get_access_token())}", "appkey": os.getenv("KIS_APP_KEY"),
+                     "appsecret": os.getenv("KIS_APP_SECRET"), "tr_id": "CTCA0903R", "custtype": "P"},
+            params={"BASS_DT": today, "CTX_AREA_FK": "", "CTX_AREA_NK": ""}, timeout=8).json()
+        for o in r.get("output") or []:
+            if o.get("bass_dt") == today:
+                return o.get("opnd_yn") == "N"
+        logger.warning(f"휴장일 조회: 오늘 날짜가 응답에 없음 — 평소대로 진행 ({str(r.get('msg1', '')).strip()[:40]})")
+    except Exception as e:
+        logger.warning(f"휴장일 조회 실패 — 평소대로 진행: {e}")
+    return False
+
+
 def run():
+    # 평일인데 한국장이 쉬는 날(공휴일)이면 리포트를 만들지 않는다. 강제로 만들려면 EQAI_FORCE=1.
+    if datetime.now(KST).weekday() < 5 and os.getenv("EQAI_FORCE") != "1" and _kr_closed_today():
+        logger.info("한국장 휴장일 — 리포트 생략 (기존 리포트 유지)")
+        return {}
     logger.info("EQAI 분석 시작")
 
     logger.info("뉴스 수집 중...")

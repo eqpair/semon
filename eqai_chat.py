@@ -311,6 +311,37 @@ def build_system_prompt(report: dict, current_prices: dict, messages: list = [])
 
 [종합 판단] {report.get('summary', '-')}"""
 
+# ── 접근 제한 ──────────────────────────────────────────────
+# 이 서버는 shmon(Trading Headlines·차트 분석)과 stmon(비트코인 페이지)의 AI 분석용이다.
+# 주소가 공개돼 있으므로 (1) 우리 페이지에서 보낸 요청만 받고 (2) 분당 횟수를 제한한다.
+# 출처(Origin)는 위조할 수 있어 완전한 차단은 아니며, 아무나 주소만으로 쓰는 것을 막는 용도다.
+import time as _time
+ALLOWED_ORIGINS = {"https://eqpair.github.io", "https://eqmon.duckdns.org"}
+PER_IP_PER_MIN, TOTAL_PER_MIN = 15, 40
+_hits = {}
+
+
+@app.before_request
+def _guard():
+    if request.method != "POST" or not request.path.rstrip("/").endswith("/chat"):
+        return None
+    origin = (request.headers.get("Origin") or "").rstrip("/")
+    ip = (request.headers.get("X-Forwarded-For") or request.remote_addr or "?").split(",")[0].strip()
+    if origin not in ALLOWED_ORIGINS:
+        logger.warning(f"채팅 거절(출처 불일치): origin={origin!r} ip={ip}")
+        return jsonify({"error": "허용되지 않은 접근입니다."}), 403
+    now = _time.time()
+    for k in list(_hits):
+        _hits[k] = [t for t in _hits[k] if now - t < 60]
+        if not _hits[k]:
+            del _hits[k]
+    if len(_hits.get(ip, [])) >= PER_IP_PER_MIN or sum(len(v) for v in _hits.values()) >= TOTAL_PER_MIN:
+        logger.warning(f"채팅 거절(횟수 초과): ip={ip}")
+        return jsonify({"error": "요청이 너무 잦습니다. 잠시 후 다시 시도하세요."}), 429
+    _hits.setdefault(ip, []).append(now)
+    return None
+
+
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
@@ -361,7 +392,7 @@ def chat():
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         resp = client.messages.create(
             model=os.getenv("EQAI_MODEL", "claude-sonnet-5-5"),
-            max_tokens=8192,
+            max_tokens=16000,
             system=system_prompt,
             messages=messages,
             tools=[{
@@ -371,6 +402,9 @@ def chat():
             }]
         )
 
+        _u = getattr(resp, "usage", None)
+        logger.info(f"채팅 사용량: 입력 {getattr(_u, 'input_tokens', '?')} / 출력 {getattr(_u, 'output_tokens', '?')} 토큰, "
+                    f"종료 사유 {getattr(resp, 'stop_reason', '?')}")
         # 모든 text 블록 합치기 (검색 시 응답이 여러 블록으로 분할됨)
         answer_parts, sources = [], []
         for block in resp.content:
