@@ -114,7 +114,7 @@ async def _fetch_one(session, token, code, market_code):
     return code, None, None, None
 
 
-PRICE_GAP = 0.1   # 현재가 요청 사이 간격(초). 600종목이면 한 바퀴 약 60초
+PRICE_GAP = 0.125   # 현재가 요청 사이 간격(초). 600종목이면 한 바퀴 약 60초
 
 
 async def fetch_all_prices_kis(code_list):
