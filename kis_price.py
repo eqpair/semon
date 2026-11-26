@@ -86,6 +86,9 @@ async def _fetch_one_market(session, token, code, market_code):
                 p = None
             if sd is not None and sd <= 0:
                 sd = None
+            if p is None:
+                # 실패 원인 확인용: KIS 오류 코드와 메시지 (EGW00201 = 초당 호출 한도 초과)
+                logger.info(f"KIS 현재가 빈 응답 ({code} mkt={market_code}): {data.get('msg_cd')} {str(data.get('msg1') or '').strip()}")
             return p, v, sd, data.get("rt_cd")
     except Exception as e:
         logger.warning(f"KIS 현재가 오류 ({code} mkt={market_code}): {e}")
