@@ -114,21 +114,27 @@ async def _fetch_one(session, token, code, market_code):
     return code, None, None, None
 
 
+PRICE_GAP = 0.1   # 현재가 요청 사이 간격(초). 600종목이면 한 바퀴 약 60초
+
+
 async def fetch_all_prices_kis(code_list):
     token       = await get_access_token()
     market_code = get_market_code()
     logger.info(f"마켓 코드: {market_code} (시간: {now_kst().strftime('%H:%M')})")
     results    = {}
-    chunk_size = 12
+    # 요청을 한꺼번에 묶어 보내지 않고 0.1초 간격으로 고르게 보낸다(초당 10건).
+    # KIS는 초당 평균이 한도 안이어도 순간적으로 몰린 요청을 "초당 거래건수 초과"로 거절한다
+    # (2026-11-26 확인: 12건 묶음에서도 거절 발생, 같은 앱키를 stmon·해외지수 조회와 나눠 씀).
+    gap = PRICE_GAP
+
+    async def _paced(k, code):
+        await asyncio.sleep(k * gap)
+        return await _fetch_one(session, token, code, market_code)
+
     async with aiohttp.ClientSession() as session:
-        for i in range(0, len(code_list), chunk_size):
-            chunk     = code_list[i:i + chunk_size]
-            tasks     = [_fetch_one(session, token, code, market_code) for code in chunk]
-            responses = await asyncio.gather(*tasks)
-            for code, price, volume, sdpr in responses:
-                results[code] = (price, volume, sdpr)
-            if i + chunk_size < len(code_list):
-                await asyncio.sleep(1.1)
+        responses = await asyncio.gather(*[_paced(k, code) for k, code in enumerate(code_list)])
+        for code, price, volume, sdpr in responses:
+            results[code] = (price, volume, sdpr)
     success = sum(1 for v in results.values() if v[0] is not None)
     fail = len(code_list) - success
     if fail > 0:
